@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A320 Trainer</title>
+<meta name="theme-color" content="#0c1116">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="A320 Trainer">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  :root{
+    --bg:#0c1116; --panel:#10161c; --panel2:#18222b; --edge:#2b3742;
+    --edge-lit:#3c4d5a;
+    --brand:#a13444; --brand-deep:#7a2230;
+    --green:#37d06a; --green-deep:#1f7d42;
+    --amber:#ffb02e; --amber-deep:#a86a00;
+    --cyan:#3fcbe0; --white:#eef4f8; --muted:#8698a6; --muted-2:#5f7180;
+    --font-ui:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --font-data:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #16202a 0%, var(--bg) 60%);
+    color:var(--white); font-family:var(--font-ui);
+    min-height:100vh; -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:calc(24px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) calc(60px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left))}
+
+  /* ---- Header placard ---- */
+  .placard{
+    display:flex; align-items:center; gap:14px;
+    border:1px solid var(--edge); border-top:3px solid var(--brand);
+    background:linear-gradient(180deg,var(--panel) 0%,#0d1319 100%);
+    border-radius:10px; padding:14px 18px; margin-bottom:20px;
+  }
+  .placard .badge{
+    font-family:var(--font-data); font-weight:700; font-size:13px;
+    letter-spacing:2px; color:var(--bg);
+    background:var(--brand); padding:6px 10px; border-radius:5px; white-space:nowrap;
+  }
+  .placard h1{font-size:16px; margin:0; letter-spacing:.5px; font-weight:600}
+  .placard .sub{font-size:11.5px; color:var(--muted); letter-spacing:1px;
+    text-transform:uppercase; font-family:var(--font-data)}
+
+  /* ---- Status strip ---- */
+  .strip{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--edge); border:1px solid var(--edge);
+    border-radius:8px; overflow:hidden; margin-bottom:18px;
+  }
+  .strip .cell{background:var(--panel); padding:9px 8px; text-align:center}
+  .strip .k{font-size:9.5px; letter-spacing:1.5px; color:var(--muted-2);
+    text-transform:uppercase; font-family:var(--font-data)}
+  .strip .v{font-size:20px; font-family:var(--font-data); font-weight:700;
+    color:var(--cyan); line-height:1.2}
+  .strip .v.green{color:var(--green)} .strip .v.amber{color:var(--amber)}
+
+  .progress{height:4px; background:var(--panel2); border-radius:3px;
+    overflow:hidden; margin-bottom:22px; border:1px solid var(--edge)}
+  .progress > i{display:block; height:100%; background:linear-gradient(90deg,var(--brand),#c94a5d);
+    width:0%; transition:width .35s ease}
+
+  /* ---- Cards / panels ---- */
+  .panel{border:1px solid var(--edge); background:var(--panel);
+    border-radius:12px; padding:20px; margin-bottom:16px}
+
+  .eyebrow{font-family:var(--font-data); font-size:10.5px; letter-spacing:2px;
+    text-transform:uppercase; color:var(--muted); margin-bottom:10px;
+    display:flex; align-items:center; gap:8px}
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%;
+    background:var(--cyan); box-shadow:0 0 8px var(--cyan)}
+
+  .question{font-size:19px; line-height:1.4; font-weight:500; margin:2px 0 20px}
+
+  .options{display:flex; flex-direction:column; gap:10px}
+  .opt{
+    display:flex; align-items:center; gap:13px; width:100%; text-align:left;
+    background:var(--panel2); border:1px solid var(--edge); color:var(--white);
+    padding:14px 16px; border-radius:9px; cursor:pointer; font-size:15px;
+    font-family:var(--font-ui); transition:border-color .15s, background .15s, transform .05s;
+  }
+  .opt:hover:not(:disabled){border-color:var(--edge-lit); background:#1d2831}
+  .opt:active:not(:disabled){transform:translateY(1px)}
+  .opt:disabled{cursor:default}
+  .opt .tag{font-family:var(--font-data); font-weight:700; font-size:12px;
+    color:var(--muted); border:1px solid var(--edge); border-radius:5px;
+    min-width:26px; height:26px; display:flex; align-items:center; justify-content:center;
+    flex:0 0 auto}
+  .opt .txt{font-family:var(--font-data); font-size:14.5px}
+  .opt.correct{border-color:var(--green); background:rgba(55,208,106,.10)}
+  .opt.correct .tag{color:var(--green); border-color:var(--green)}
+  .opt.wrong{border-color:var(--amber); background:rgba(255,176,46,.10)}
+  .opt.wrong .tag{color:var(--amber); border-color:var(--amber)}
+  .opt.dim{opacity:.5}
+
+  /* ---- ECAM feedback (signature) ---- */
+  .ecam{border-radius:10px; margin-top:18px; overflow:hidden;
+    border:1px solid var(--edge); background:#0a0f13;
+    animation:ecamIn .25s ease}
+  @keyframes ecamIn{from{opacity:0; transform:translateY(6px)}to{opacity:1;transform:none}}
+  .ecam .head{display:flex; align-items:center; gap:10px; padding:10px 14px;
+    font-family:var(--font-data); font-size:12px; letter-spacing:1.5px;
+    border-bottom:1px solid var(--edge)}
+  .ecam .head .dot{width:9px;height:9px;border-radius:50%}
+  .ecam.ok .head{color:var(--green)} .ecam.ok .head .dot{background:var(--green);box-shadow:0 0 8px var(--green)}
+  .ecam.no .head{color:var(--amber)} .ecam.no .head .dot{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .ecam .body{padding:14px 16px}
+  .ecam .ans{font-family:var(--font-data); font-size:14px; color:var(--cyan);
+    margin-bottom:10px}
+  .ecam .ans b{color:var(--white)}
+  .ecam .why{font-size:14px; color:#c7d3db; line-height:1.55}
+  .ecam .why .lead{color:var(--muted); font-family:var(--font-data); font-size:10.5px;
+    letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:4px}
+
+  /* ---- Buttons ---- */
+  .btn{font-family:var(--font-data); font-size:13.5px; letter-spacing:1px;
+    text-transform:uppercase; border:1px solid var(--edge-lit); background:var(--panel2);
+    color:var(--white); padding:13px 22px; border-radius:9px; cursor:pointer;
+    transition:background .15s, border-color .15s; font-weight:600}
+  .btn:hover{background:#22303a; border-color:var(--brand)}
+  .btn.primary{background:var(--brand); border-color:var(--brand)}
+  .btn.primary:hover{background:#b93c4f}
+  .btn.ghost{background:transparent}
+  .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+  .row.end{justify-content:flex-end}
+
+  /* ---- Start screen ---- */
+  .lede{font-size:14.5px; color:var(--muted); margin:0 0 20px; line-height:1.6}
+  .modegrid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:22px}
+  @media(max-width:560px){.modegrid{grid-template-columns:1fr}}
+  .mode{border:1px solid var(--edge); background:var(--panel2); border-radius:11px;
+    padding:18px; cursor:pointer; text-align:left; color:var(--white);
+    font-family:var(--font-ui); transition:border-color .15s, background .15s}
+  .mode:hover{border-color:var(--brand); background:#1d2831}
+  .mode .mt{font-size:16px; font-weight:600; margin-bottom:6px; display:flex;
+    align-items:center; gap:9px}
+  .mode .mt .ic{font-family:var(--font-data); font-size:11px; color:var(--bg);
+    background:var(--cyan); border-radius:4px; padding:3px 6px; letter-spacing:1px}
+  .mode.alt .mt .ic{background:var(--amber)}
+  .mode .md{font-size:13px; color:var(--muted); line-height:1.5}
+
+  .filters .eyebrow{margin-bottom:12px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{font-family:var(--font-data); font-size:12px; letter-spacing:.5px;
+    border:1px solid var(--edge); background:var(--panel2); color:var(--muted);
+    padding:8px 13px; border-radius:20px; cursor:pointer; transition:all .15s;
+    text-transform:uppercase}
+  .chip[aria-pressed="true"]{background:var(--brand); border-color:var(--brand);
+    color:var(--white)}
+  .chip:hover{border-color:var(--brand)}
+
+  /* ---- QRH sequence panel (memory drill) ---- */
+  .qrh{border:1px solid var(--edge); border-radius:10px; overflow:hidden; margin-top:16px}
+  .qrh .qh{background:var(--brand-deep); color:#fff; font-family:var(--font-data);
+    font-size:13px; letter-spacing:1px; padding:9px 14px; font-weight:700}
+  .qrh .step{display:flex; justify-content:space-between; gap:14px; padding:10px 14px;
+    border-top:1px solid var(--edge); font-family:var(--font-data); font-size:13.5px;
+    align-items:baseline}
+  .qrh .step:nth-child(odd){background:#0d1319}
+  .qrh .step .l{color:var(--white)}
+  .qrh .step .d{flex:1; border-bottom:1px dotted var(--muted-2); margin:0 4px; transform:translateY(-3px)}
+  .qrh .step .r{color:var(--cyan); font-weight:700; white-space:nowrap; text-align:right}
+  .qrh .note{padding:10px 14px; border-top:1px solid var(--edge); color:var(--amber);
+    font-size:12.5px; font-family:var(--font-data); background:rgba(255,176,46,.06)}
+  .trigcue{font-family:var(--font-data); color:var(--amber); font-size:15px;
+    letter-spacing:1px; margin:6px 0 2px; font-weight:700}
+
+  /* ---- Results ---- */
+  .bigscore{font-family:var(--font-data); font-size:56px; font-weight:700; line-height:1;
+    text-align:center; margin:6px 0}
+  .verdict{text-align:center; font-family:var(--font-data); letter-spacing:2px;
+    text-transform:uppercase; font-size:13px; margin-bottom:8px}
+  .review .ritem{border-top:1px solid var(--edge); padding:13px 0; font-size:14px}
+  .review .rq{color:var(--white); margin-bottom:5px}
+  .review .ra{font-family:var(--font-data); font-size:13px; color:var(--green)}
+  .review .rmiss{font-family:var(--font-data); font-size:13px; color:var(--amber)}
+
+  .hidden{display:none!important}
+  .foot{text-align:center; font-size:11px; color:var(--muted-2); margin-top:26px;
+    font-family:var(--font-data); letter-spacing:.5px; line-height:1.6}
+  a{color:var(--muted)}
+  :focus-visible{outline:2px solid var(--cyan); outline-offset:2px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="placard">
+    <span class="badge">A320</span>
+    <div>
+      <h1>Checkride Trainer</h1>
+      <div class="sub">Limitations &middot; Memory Items &middot; Approach</div>
+    </div>
+  </div>
+
+  <!-- ================= START ================= -->
+  <section id="start">
+    <p class="lede">Pick a drill. In the limitations check you get an ECAM-style debrief on
+      every question &mdash; the answer and the reasoning &mdash; whether you're right or wrong.
+      The bank now includes your BTC progress-test questions alongside the curated set. The
+      memory-item drill is self-marked: recall the sequence cold, then reveal and grade yourself.</p>
+
+    <div class="modegrid">
+      <button class="mode" id="modeMcq">
+        <div class="mt"><span class="ic">MCQ</span>Limitations Check</div>
+        <div class="md">Multiple-choice on numbers and limits. Filter by system below. Debrief after each answer.</div>
+      </button>
+      <button class="mode alt" id="modeMem">
+        <div class="mt"><span class="ic">REC</span>Memory Item Drill</div>
+        <div class="md">Trigger &rarr; recall the full actioned sequence from memory &rarr; reveal &amp; self-grade.</div>
+      </button>
+    </div>
+
+    <div class="panel filters" id="filterPanel">
+      <div class="eyebrow">Question sets</div>
+      <div class="chips" id="chips"></div>
+      <div class="eyebrow" style="margin-top:20px">Questions per run</div>
+      <div class="chips" id="lenChips"></div>
+      <div class="row">
+        <button class="btn primary" id="startMcqBtn">Begin check &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUIZ ================= -->
+  <section id="quiz" class="hidden">
+    <div class="strip">
+      <div class="cell"><div class="k">Item</div><div class="v" id="sPos">0/0</div></div>
+      <div class="cell"><div class="k">Correct</div><div class="v green" id="sCor">0</div></div>
+      <div class="cell"><div class="k">Missed</div><div class="v amber" id="sMiss">0</div></div>
+      <div class="cell"><div class="k">Streak</div><div class="v" id="sStreak">0</div></div>
+    </div>
+    <div class="progress"><i id="bar"></i></div>
+
+    <div class="panel">
+      <div class="eyebrow" id="qCat">System</div>
+      <div class="question" id="qText">&nbsp;</div>
+      <div class="options" id="qOpts"></div>
+      <div id="ecamSlot"></div>
+      <div class="row end" id="nextRow" style="display:none">
+        <button class="btn primary" id="nextBtn">Next &rarr;</button>
+      </div>
+    </div>
+    <div class="row"><button class="btn ghost" id="quitBtn">&larr; End &amp; score</button></div>
+  </section>
+
+  <!-- ================= MEMORY DRILL ================= -->
+  <section id="mem" class="hidden">
+    <div class="strip">
+      <div class="cell"><div class="k">Item</div><div class="v" id="mPos">0/0</div></div>
+      <div class="cell"><div class="k">Got it</div><div class="v green" id="mCor">0</div></div>
+      <div class="cell"><div class="k">Missed</div><div class="v amber" id="mMiss">0</div></div>
+      <div class="cell"><div class="k">Recall</div><div class="v" id="mPct">&mdash;</div></div>
+    </div>
+    <div class="progress"><i id="mBar"></i></div>
+
+    <div class="panel">
+      <div class="eyebrow">Memory item &mdash; recall cold</div>
+      <div id="memName" class="question" style="margin-bottom:6px">&nbsp;</div>
+      <div class="trigcue" id="memTrig">&nbsp;</div>
+      <p class="md" style="color:var(--muted); font-size:13.5px; margin:10px 0 0">
+        Say or write the full actioned sequence, in order. Then reveal to check.</p>
+
+      <div id="memReveal"></div>
+
+      <div class="row" id="memRevealRow">
+        <button class="btn primary" id="revealBtn">Reveal sequence</button>
+      </div>
+      <div class="row" id="memGradeRow" style="display:none">
+        <button class="btn" id="gotBtn" style="border-color:var(--green-deep)">&#10003;&nbsp; Got it</button>
+        <button class="btn" id="missBtn" style="border-color:var(--amber-deep)">&#10007;&nbsp; Missed it</button>
+      </div>
+    </div>
+    <div class="row"><button class="btn ghost" id="memQuitBtn">&larr; End &amp; score</button></div>
+  </section>
+
+  <!-- ================= RESULTS ================= -->
+  <section id="results" class="hidden">
+    <div class="panel">
+      <div class="eyebrow" id="rEye">Debrief</div>
+      <div class="bigscore" id="rScore">0%</div>
+      <div class="verdict" id="rVerdict">&nbsp;</div>
+      <div class="review" id="rReview"></div>
+      <div class="row" style="margin-top:20px">
+        <button class="btn primary" id="againBtn">Run again</button>
+        <button class="btn ghost" id="homeBtn">Change drill</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    Study aid &mdash; NOT for flying. Verify every value against current FCOM / QRH.<br>
+    Content derived from an unofficial A320 summary (V5.0 Jan-2022).
+  </div>
+</div>
+
+<script>
+/* ============ QUESTION BANK ============ */
+const BANK = [
+ // --- SPEEDS ---
+ {c:"Speeds & Limits",q:"What is VMO?",o:["320 kt","340 kt","350 kt","M 0.82"],a:2,
+  w:"VMO 350 kt / MMO M 0.82. Below the crossover altitude the kt limit governs; above it, the Mach limit."},
+ {c:"Speeds & Limits",q:"What is MMO?",o:["M 0.78","M 0.80","M 0.82","M 0.86"],a:2,
+  w:"MMO M 0.82 pairs with VMO 350 kt. The barber pole on the PFD shows whichever is limiting."},
+ {c:"Speeds & Limits",q:"Max demonstrated crosswind for takeoff and landing?",o:["29 kt","33 kt","38 kt","45 kt"],a:2,
+  w:"38 kt, gust included. It's a demonstrated value, not a hard limit, but operators typically treat it as one."},
+ {c:"Speeds & Limits",q:"Max tailwind for takeoff and for landing?",o:["5 kt / 10 kt","10 kt / 10 kt","10 kt / 15 kt","15 kt / 15 kt"],a:1,
+  w:"10 kt for both. Same number each way keeps it simple under load."},
+ {c:"Speeds & Limits",q:"Maximum speed for wiper operation?",o:["200 kt","230 kt","250 kt","280 kt"],a:1,
+  w:"Wipers 230 kt. Distinct from the cockpit window open limit of 200 kt — don't swap them."},
+ {c:"Speeds & Limits",q:"Max speed with a cockpit window open?",o:["160 kt","200 kt","230 kt","260 kt"],a:1,
+  w:"200 kt. This is a ground/low-speed consideration; wipers sit just above at 230 kt."},
+ {c:"Speeds & Limits",q:"Maximum tire speed?",o:["182 kt GS","195 kt GS","204 kt GS","210 kt GS"],a:1,
+  w:"195 kt groundspeed — the structural/thermal limit of the tire, so it's referenced to the ground, not the air."},
+ {c:"Speeds & Limits",q:"Taxi speed limit when taxi weight exceeds 76,000 kg?",o:["Do not exceed 10 kt in a turn","Do not exceed 20 kt in a turn","Do not exceed 30 kt straight","No specific limit"],a:1,
+  w:"Above 76,000 kg, don't exceed 20 kt during a turn — heavy weight raises side-load stress on the gear."},
+
+ // --- GEAR & BRAKES ---
+ {c:"Gear & Brakes",q:"VLE — max speed with landing gear extended?",o:["250 kt / M 0.60","270 kt / M 0.65","280 kt / M 0.67","320 kt / M 0.77"],a:2,
+  w:"VLE 280 kt / M 0.67 (gear already down). It's higher than the operating speeds because the doors are closed."},
+ {c:"Gear & Brakes",q:"VLO for gear extension?",o:["220 kt / M 0.54","250 kt / M 0.60","280 kt / M 0.67","300 kt / M 0.70"],a:1,
+  w:"Extension 250 kt / M 0.60. Extension is faster-tolerant than retraction because the doors/actuators load up differently."},
+ {c:"Gear & Brakes",q:"VLO for gear retraction?",o:["200 kt / M 0.50","220 kt / M 0.54","250 kt / M 0.60","280 kt / M 0.67"],a:1,
+  w:"Retraction 220 kt / M 0.54 — the lowest of the three gear speeds. Order low-to-high: retract 220, extend 250, extended 280."},
+ {c:"Gear & Brakes",q:"The LG safety valve cuts off gear operation at what speed?",o:["220 kt","250 kt","260 kt","280 kt"],a:2,
+  w:"260 kt, and only if the LG lever is UP — it protects against inadvertent extension at high speed."},
+ {c:"Gear & Brakes",q:"Max brake temperature WITH brake fans running?",o:["150 °C","300 °C","500 °C","800 °C"],a:0,
+  w:"150 °C with fans. Fans cool faster but the acceptable ceiling for takeoff is set lower to guarantee margin."},
+ {c:"Gear & Brakes",q:"Max brake temperature WITHOUT brake fans?",o:["150 °C","200 °C","300 °C","450 °C"],a:2,
+  w:"300 °C without fans. The pair to remember: 150 with fans / 300 without."},
+ {c:"Gear & Brakes",q:"Taxi speed limit with one tire per gear deflated?",o:["3 kt","7 kt","10 kt","20 kt"],a:1,
+  w:"7 kt with one tire per gear deflated; 3 kt if two are deflated on the same gear. Fewer good tires, slower taxi."},
+ {c:"Gear & Brakes",q:"Nosewheel steering: max NWS angle vs angle when taxiing?",o:["±75° / 85°","±85° / 75°","±90° / 70°","±65° / 45°"],a:1,
+  w:"Max NWS angle ±85°; when taxiing 75°. Using the rudder pedals alone gives just 7° of steering."},
+
+ // --- FLAPS ---
+ {c:"Flaps & Config",q:"Flap/slat placard speed for CONF 1 on the A320 CEO?",o:["200 kt","215 kt","230 kt","238 kt"],a:2,
+  w:"230 kt (A320 CEO). A321s are slightly higher (235/238) because of different flap loading."},
+ {c:"Flaps & Config",q:"Flap/slat placard speed for CONF FULL on the A320 CEO?",o:["177 kt","185 kt","190 kt","200 kt"],a:0,
+  w:"177 kt — the lowest placard. More flap out = lower max speed. A321 FULL is 190/186."},
+ {c:"Flaps & Config",q:"Maximum altitude with flaps/slats extended?",o:["15,000 ft","20,000 ft","25,000 ft","30,000 ft"],a:1,
+  w:"20,000 ft. Above that the config must be clean — relevant to slat/flap use in a drift-down or ice case."},
+ {c:"Flaps & Config",q:"With CONF 1+F, flaps auto-retract to 0 above what speed?",o:["185 kt","200 kt","210 kt","230 kt"],a:2,
+  w:"210 kt. The 'F' (flaps) auto-retracts, leaving CONF 1 (slats only), protecting the flaps from overspeed."},
+ {c:"Flaps & Config",q:"Speed-brake inhibition config on the A320?",o:["CONF 2","CONF 3","CONF 3 or FULL","CONF FULL"],a:3,
+  w:"A320: inhibited in CONF FULL (retract before FULL). A321 differs — inhibited in CONF 3 or FULL."},
+
+ // --- PRESSURISATION ---
+ {c:"Pressurisation",q:"Maximum cabin positive differential pressure?",o:["8.6 PSI","9.0 PSI","9.4 PSI","10.0 PSI"],a:1,
+  w:"9.0 PSI max positive. The safety relief valve opens at 8.6 PSI, keeping structure below the 9.0 limit."},
+ {c:"Pressurisation",q:"Maximum cabin NEGATIVE differential pressure?",o:["-0.5 PSI","-1.0 PSI","-2.0 PSI","-8.6 PSI"],a:1,
+  w:"-1.0 PSI. Negative diff (cabin lower than outside) is far more limiting than positive — a rapid descent risk."},
+ {c:"Pressurisation",q:"Safety relief valve setting?",o:["1.0 PSI","8.6 PSI","9.0 PSI","9.4 PSI"],a:1,
+  w:"8.6 PSI — set just below the 9.0 PSI max positive diff so it relieves before the structural limit."},
+ {c:"Pressurisation",q:"Maximum pressure (operating) altitude?",o:["37,000 ft","39,000 ft","39,800 ft","41,000 ft"],a:2,
+  w:"39,800 ft. Effectively the service ceiling for these variants."},
+
+ // --- ENGINE & APU ---
+ {c:"Engine & APU",q:"EGT limit for Takeoff/GA — A320 (CFM/non-NEO)?",o:["610 °C","635 °C","650 °C","1083 °C"],a:1,
+  w:"635 °C (A320). A321 is 650 °C; NEO EGT scales are far higher (1083 °C) — different engine architecture."},
+ {c:"Engine & APU",q:"Takeoff/GA thrust time limit — all engines vs one engine?",o:["2 min / 5 min","5 min / 10 min","10 min / 10 min","5 min / 5 min"],a:1,
+  w:"5 min all engines, 10 min with one engine out (extra time granted for OEI performance)."},
+ {c:"Engine & APU",q:"Minimum oil pressure?",o:["40 PSI","60 PSI","90 PSI","13 PSI"],a:1,
+  w:"60 PSI minimum, both CEO and NEO. Max oil pressure is unlimited on CEO but capped at 270 PSI on NEO."},
+ {c:"Engine & APU",q:"Reverse thrust selection in flight is…",o:["Permitted at idle","Permitted above FL200","Prohibited","Permitted below 70 kt only"],a:2,
+  w:"Prohibited in flight. On the ground, max reverse shouldn't be used below 70 kt; idle reverse is fine down to a stop."},
+ {c:"Engine & APU",q:"Maximum crosswind for engine start?",o:["25 kt","35 kt","45 kt","No limit"],a:1,
+  w:"35 kt x-wind start limit — protects against tailwind/crosswind hot or hung starts."},
+ {c:"Engine & APU",q:"FLEX (reduced-thrust) takeoff is NOT permitted when…",o:["OAT is above TREF","FLEX temp is lower than TREF or lower than actual OAT","Runway is dry","Below MTOW"],a:1,
+  w:"FLEX temp must be at least TREF and at least the actual OAT — otherwise you'd command more thrust than TOGA logic allows."},
+ {c:"Engine & APU",q:"After 3 consecutive APU start attempts, the wait before a new start is…",o:["15 min","30 min","60 min","No wait"],a:2,
+  w:"60 min cooling. Also: above FL250 an APU restart is on BATTERY only."},
+ {c:"Engine & APU",q:"Max altitude to use APU bleed to assist engine start?",o:["15,000 ft","20,000 ft","22,500 ft","25,000 ft"],a:1,
+  w:"20,000 ft for engine-start assist. A/C+press single-pack is also 20,000 ft (VAS/KDF 22,500), dual-pack only 15,000 ft."},
+ {c:"Engine & APU",q:"APU bleed air for wing anti-ice is…",o:["Permitted below FL100","Permitted on ground only","Not permitted","Permitted single-pack only"],a:2,
+  w:"Not permitted — APU bleed can't supply enough hot air reliably for wing anti-ice."},
+ {c:"Engine & APU",q:"Minimum fuel quantity for takeoff?",o:["1000 kg","1500 kg","2000 kg","500 kg"],a:1,
+  w:"1500 kg, and the FUEL WING TK LO LVL ECAM must NOT be displayed for takeoff."},
+
+ // --- ICE ---
+ {c:"Ice & Weather",q:"Icing conditions exist when OAT (ground) / TAT (flight) is at or below…",o:["+3 °C with any cloud","+5 °C with rain","+10 °C with visible moisture (vis ≤1600 m)","0 °C only"],a:2,
+  w:"≤10 °C with visible moisture and visibility 1 sm (1600 m) or less — or ≤10 °C on ground with snow/slush/standing water."},
+ {c:"Ice & Weather",q:"Severe ice accretion is declared when airframe ice reaches approximately…",o:["1 mm","3 mm","5 mm (0.2 in)","10 mm"],a:2,
+  w:"~5 mm (0.2 in) or more. This drives the min-speed increments for the ice-accretion case."},
+ {c:"Ice & Weather",q:"Min speed with ice accretion, wing anti-ice OPERATIVE, in CONF FULL?",o:["VLS","VLS + 5 kt","VLS + 10 kt","Green Dot"],a:1,
+  w:"VLS + 5 kt in CONF FULL (operative). In CONF 1/2/3 it's VLS + 10 kt. If anti-ice is INOP: VLS + 10 / Green Dot."},
+ {c:"Ice & Weather",q:"Max acceptable frost on the UNDERSIDE of the wing tank areas?",o:["None","3 mm (0.125 in)","5 mm","Thin hoarfrost only"],a:1,
+  w:"Up to 3 mm (0.125 in) of frost is acceptable under the wing tank area (cold-soaked fuel). Upper fuselage tolerates thin hoarfrost."},
+
+ // --- APPROACH / LVO ---
+ {c:"Approach & LVO",q:"Low Visibility Operations (LVO) are defined by RVR below…",o:["550 m","400 m for takeoff / below CAT I minima for landing","300 m","200 m"],a:1,
+  w:"RVR below 400 m for takeoff, and below CAT I minima for landing. Visibility must be reported in RVR during LVO."},
+ {c:"Approach & LVO",q:"During LVO, the max crosswind for takeoff and manual landing is…",o:["10 kt","15 kt","20 kt","38 kt"],a:1,
+  w:"15 kt in LVO (vs 38 kt demonstrated normally). Also: the Commander must be Pilot Flying during LVO."},
+ {c:"Approach & LVO",q:"Minimum RVR for takeoff — A320?",o:["75 m","125 m","150 m","200 m"],a:1,
+  w:"125 m (A320) with the required lighting; A321 needs 150 m. Below 200 m, three RVRs (TDZ/MID/ROLLOUT) must be available."},
+ {c:"Approach & LVO",q:"CAT II landing RVR minima?",o:["RVR ≥ 550 m","RVR ≥ 300 m","RVR ≥ 200 m","75 m ≤ RVR < 200 m"],a:1,
+  w:"CAT II: RVR ≥ 300 m, DH 100–200 ft. CAT IIIA ≥ 200 m; CAT IIIB 75 m ≤ RVR < 200 m."},
+ {c:"Approach & LVO",q:"Approach stabilisation gate — in IMC the aircraft must be stable by…",o:["500 ft","1000 ft","1500 ft","2000 ft"],a:1,
+  w:"1000 ft in IMC, 500 ft in VMC. Config landing, speed Vref to Vapp+15, V/S max 1000 ft/min, thrust not idle."},
+ {c:"Approach & LVO",q:"With APPR mode engaged, the ILS frequency/course freezes ('data lock') at…",o:["1000 ft RA","700 ft RA","400 ft RA","200 ft RA"],a:1,
+  w:"700 ft RA — the receiver freezes freq & course. LAND mode then engages at 400 ft RA and can only be exited via GO-AROUND."},
+ {c:"Approach & LVO",q:"Autoland is permitted only when aircraft weight is…",o:["Above MLW","Below the maximum landing weight","Below MZFW","Any weight"],a:1,
+  w:"Below max landing weight only. Also, with NWS or anti-skid failure, set AP OFF at touchdown."},
+
+ // --- WEIGHTS ---
+ {c:"Weights",q:"A320 CEO maximum takeoff weight (MTOW)?",o:["73,500 kg","77,000 kg","89,000 kg","97,000 kg"],a:1,
+  w:"A320 CEO 77,000 kg. NEO is lighter at 73,500 kg; A321 CEO/NEO 89,000 kg; A321 LR 97,000 kg."},
+ {c:"Weights",q:"A321 LR maximum takeoff weight (MTOW)?",o:["77,000 kg","89,000 kg","93,000 kg","97,000 kg"],a:3,
+  w:"97,000 kg — the heaviest of the family, with extra centre tanks for the long-range mission."},
+];
+
+/* ---- Imported BTC progress-test bank (confirmed answers, no written reasoning) ---- */
+const BTC_Q = [
+ {"c": "BTC · Test 1", "q": "On the OHP, what is signified by a blue light?", "o": ["Normal, but temporary, use of a system.", "A part of a push-button is not used.", "The switch is in the OFF position due to system malfunction.", "Crew awareness required."], "a": 0},
+ {"c": "BTC · Test 1", "q": "Regarding the lights on the overhead panel, which of the following statements is true?", "o": ["Amber means Immediate Action.", "BLUE means crew awareness.", "TWO DOTS means Abnormal Switch Position.", "WHITE means Abnormal Switch Position."], "a": 3},
+ {"c": "BTC · Test 1", "q": "Where in the cockpit are the Secondary Circuit Breakers installed?", "o": ["Left rear corner", "Right rear corner", "Overhead Panel", "In Avionics Bay"], "a": 1},
+ {"c": "BTC · Test 1", "q": "Select correct statement about OEBs?", "o": ["OEB procedures appear on ECAM.", "RED OEBs have a significant impact on the safe operation of the aircraft.", "There are RED, AMBER and WHITE OEBs.", "OEB means Operators Engine Bulletin."], "a": 1},
+ {"c": "BTC · Test 1", "q": "What is the Maximum Runway Slope?", "o": ["1%", "2%", "4%", "5%"], "a": 1, "w": "Runway slope limit is ±2% — same value up- or down-sloping."},
+ {"c": "BTC · Test 1", "q": "What is the maximum ground speed?", "o": ["180 kt", "195 kt", "150 kt", "200 kt"], "a": 1, "w": "The 195 kt ceiling is the maximum tire speed; being a structural/thermal tire limit it's referenced to the ground (GS), not airspeed."},
+ {"c": "BTC · Test 1", "q": "What is the maximum service ceiling for the A320?", "o": ["41000 ft", "39800 ft", "30000 ft", "31000 ft"], "a": 1, "w": "Max pressure/operating altitude is 39,800 ft for these variants — effectively the service ceiling."},
+ {"c": "BTC · Test 1", "q": "What should you call in the event of LOSS OF BRAKING during landing roll?", "o": ["\\\"STOP\\\"", "\\\"APPLY BRAKING\\\"", "\\\"I HAVE CONTROL, BRAKES ON\\\"", "\\\"LOSS OF BRAKING\\\""], "a": 3, "w": "“LOSS OF BRAKING” is the memory-item trigger callout when the aircraft won't decelerate on the roll."},
+ {"c": "BTC · Test 1", "q": "What is the call out for EMERGENCY DESCENT?", "o": ["\\\"EMERGENCY DESCENT\\\"", "\\\"START DESCENT\\\"", "\\\"DESCEND NOW\\\"", "\\\"I HAVE CONTROL, DESCEND\\\""], "a": 0, "w": "“EMERGENCY DESCENT” initiates the memory drill; the PA to the cabin is also “EMERGENCY DESCENT,” then “MASK OFF” at 10,000 ft or lower."},
+ {"c": "BTC · Test 1", "q": "From which panel are the Water and Waste systems controlled?", "o": ["Overhead Panel", "MCDU", "FAP (Forward Attendant Panel)", "Aft Attendance Panel"], "a": 2},
+ {"c": "BTC · Test 1", "q": "The red light on an entry/service door will flash if:", "o": ["The if the door control handle is operated and the slide is still armed", "The cabin is still pressurised and both engines are shut down with slides disarmed", "The slide is still armed after both engines are shut down", "The slide is not armed in flight"], "a": 1},
+ {"c": "BTC · Test 1", "q": "The escape slides at the overwing exits:", "o": ["Are permanently armed", "Are armed by a handle on each exit", "Are armed by a lever in the hat-rack immediately above each overwing exit", "Are armed by the escape lever"], "a": 0},
+ {"c": "BTC · Test 1", "q": "What is the maximum Wind Speed for opening a cockpit window?", "o": ["150 kt", "200 kt", "230 kt", "180 kt"], "a": 1, "w": "Max speed with a cockpit window open is 200 kt — wipers sit just above at 230 kt."},
+ {"c": "BTC · Test 1", "q": "What is the maximum Wind Speed for opening a cabin door?", "o": ["55 kt", "65 kt", "75 kt", "70 kt"], "a": 1, "w": "Max wind for passenger/cabin door operation is 65 kt. (Cargo doors: 40 kt, or 50 kt nose-into-wind, and must be closed before 65 kt.)"},
+ {"c": "BTC · Test 1", "q": "What is the altitude limitation if there is NO crack on cockpit side (inner ply) in event of Windshield crack?", "o": ["MAX FL 100", "MAX FL 230", "NO LIMITATION", "MAX FL 250"], "a": 2},
+ {"c": "BTC · Test 1", "q": "With the white strobe light switch at AUTO, the lights will operate when:", "o": ["The main gear strut is not compressed", "The first engine is started", "Take-off thrust is set", "The landing gear is retracted"], "a": 0},
+ {"c": "BTC · Test 1", "q": "Which of the following cockpit lights are available when only the batteries powering aircraft?", "o": ["Reading lights and dome lights", "(Capt side) Both dome lights", "Right-hand dome light (F/O side)", "Left-hand dome light"], "a": 2},
+ {"c": "BTC · Test 4", "q": "When will a white SQUIB light illuminate on FIRE panel?", "o": ["When the FIRE p/button is released out.", "When the AGENT bottle pressure is low.", "As soon as the FIRE signal has been triggered.", "When the AGENT p/button is pushed."], "a": 0},
+ {"c": "BTC · Test 4", "q": "Regarding APU FIRE, which of the following statements is true?", "o": ["The APU will always automatically shutdown.", "In flight, the APU will shut down automatically.", "On the ground, the APU will automatically shut down and the extinguisher bottle will be discharged.", "On the ground, the APU will automatically shut down. The ECAM procedure must be carried out in order to discharge the fire bottle."], "a": 2},
+ {"c": "BTC · Test 4", "q": "To achieve a full test of the APU fire detection and extinguishing system on the ground, which statement is true?", "o": ["Requires the APU Master Switch to be ON.", "Requires at least one battery to be switched ON.", "Requires AC Power.", "Will cause the APU to shut down automatically."], "a": 2},
+ {"c": "BTC · Test 4", "q": "Regarding illuminated lights on an ENG FIRE panel, which of the following statements is true?", "o": ["The DISCH light illuminates when the squib has been fire", "All lights illuminate when the fire warning is activated.", "The SQUIB light illuminates when the fire warning is activated.", "The DISCH light illuminates when the bottle is depressurised"], "a": 3},
+ {"c": "BTC · Test 4", "q": "The engine fire detectors are located:", "o": ["In the core and the gearbox", "On the pylon, fan and core", "On the fan and turbine", "On the High Pressure Turbine outlet"], "a": 1},
+ {"c": "BTC · Test 4", "q": "The ENG1 (2) FIRE Light remains illuminated until:", "o": ["The fire switch is pushed", "The fire is extinguished", "Either master warning light is pressed", "Agent 2 is discharged"], "a": 1},
+ {"c": "BTC · Test 4", "q": "On the HYDRAULICS system, what happens automatically after 1st engine start?", "o": ["The BLUE electrical pump runs", "The YELLOW electrical pump runs.", "The PTU will be tested.", "The YELLOW Fire Shut-off valve will open."], "a": 0},
+ {"c": "BTC · Test 4", "q": "Regarding the RAT, which of the following statements is true?", "o": ["It deploys automatically in the event of the GREEN or YELLOW hydraulic system failure.", "It deploys automatically on failure of the BLUE hydraulic pump.", "It powers the EMER generator via the GREEN hydraulic system.", "Its normal operating pressure is 2500 psi."], "a": 3},
+ {"c": "BTC · Test 4", "q": "Which of the following systems have hydraulic fluid shut-off valves?", "o": ["GREEN and BLUE", "BLUE, GREEN and YELLOW", "BLUE and YELLOW", "GREEN and YELLOW"], "a": 3},
+ {"c": "BTC · Test 4", "q": "Where does the hydraulic reservoir pressurisation air come from?", "o": ["ENG 1 dedicated bleed only.", "ENG 1 dedicated bleed or any other available pneumatic source.", "From the main pneumatic system only.", "ENG 2 dedicated bleed or any other available pneumatic source."], "a": 1},
+ {"c": "BTC · Test 4", "q": "When is the PTU inhibited?", "o": ["During first engine start, provided the parking brake is ON.", "Always, during first engine start.", "From electrical power-up until after first engine start.", "From electrical power-up until after second engine start"], "a": 1},
+ {"c": "BTC · Test 4", "q": "Prior to engine start it is possible to pressurise the green hydraulic system by:", "o": ["Use of the green engine pump", "Use of the yellow engine pump and the PTU", "Use of the yellow electric pump and the PTU", "Use of the blue electric pump"], "a": 2},
+ {"c": "BTC · Test 4", "q": "The PTU comes into action automatically when the differential pressure between the GREEN and the YELLOW systems is greater than \\...\\...\\...\\...\\...PSI:", "o": ["300", "500", "750", "900"], "a": 1},
+ {"c": "BTC · Test 4", "q": "Following TR1 failure, which TR supplies which bus?", "o": ["ESS TR supplies the DC BUS 1.", "TR 2 supplies the ESS TR.", "ESS TR supplies the DC ESS BUS.", "ESS TR supplies the AC ESS BUS."], "a": 2},
+ {"c": "BTC · Test 4", "q": "Regarding the IDG disconnect push-button switch, which of the following statements is true?", "o": ["Press it for no more than 3 seconds.", "Press it for at least 3 seconds.", "Press it until the disconnect command disappears from ECAM.", "Press it once to disconnect the IDG and again to reconnect the IDG once the fault condition has been cleared"], "a": 0},
+ {"c": "BTC · Test 4", "q": "What would cause the RAT to auto-extend?", "o": ["Loss of GEN 1 and GEN 2 when in flight.", "Loss of AC BUS 1 and AC BUS 2 when at more than 100 kts IAS.", "Loss of GEN 1 and GEN 2 when at more than 100 kts IAS.", "Loss of AC and DC ESS buses."], "a": 1},
+ {"c": "BTC · Test 4", "q": "Regarding the batteries, which of the following statements is true?", "o": ["Batteries must be charged if the voltage is more than 27.5 V", "The voltage check must be done with The BATT switches OFF.", "Battery charging time is approximately 10 minutes.", "In flight, on battery power only, the battery life is 40 minutes."], "a": 1},
+ {"c": "BTC · Test 4", "q": "What happens when the Gen 1 line P/B is selected to off?", "o": ["AC Bus 1 and 2 are not powered and emergency generator is activated", "AC Bus 1 is powered by Gen 2 because Gen 1 is deactivated", "AC Bus 1 is powered by Gen 2 because Gen 1 line contactor is open", "AC Bus 1 is not powered because the Gen 1 line contactor is opened"], "a": 2},
+ {"c": "BTC · Test 4", "q": "How many times can you reset a circuit breaker:", "o": ["Once.", "Twice, if authorized by the procedure.", "Twice.", "Once, if authorized by the procedure."], "a": 3},
+ {"c": "BTC · Test 4", "q": "If AC bus 1 fails, the AC ESS bus is supplied by the:", "o": ["Emergency Gen.", "AC bus 2", "Static Inverter", "RAT"], "a": 1},
+ {"c": "BTC · Test 5", "q": "Which of the following would cause all ten spoilers to deploy together?", "o": ["A roll input in flight.", "A roll input on the ground.", "A rejected take-off (at \\>72 kts).", "Manual use of speedbrakes in flight."], "a": 2, "w": "Ground spoilers deploy on a rejected takeoff above 72 kt. Below 72 kt they don't extend — which is also why autobrake won't activate in a low-speed RTO."},
+ {"c": "BTC · Test 5", "q": "Which protections are available in NORMAL LAW?", "o": ["Pitch Attitude Protection, Load Factor Protection, High Speed Protection, High Angle of attack Protection, Bank Angle Protection", "Pitch Attitude Protection, Load Factor Protection, High Speed Stability, Low Speed Stability, Bank Angle Protection", "Pitch Attitude Protection, Load Factor Protection, High Speed Protection, Stall Protection only", "Load Factor Protection, High Speed Stability, Low Speed Stability"], "a": 0},
+ {"c": "BTC · Test 5", "q": "In ALTERNATE LAW, what is the lowest speed achievable?", "o": ["Alpha Prot.", "Alpha Max.", "VSW", "Less than VSW"], "a": 3},
+ {"c": "BTC · Test 5", "q": "Which of the following can be overridden by the sidestick?", "o": ["High speed protection.", "Alpha floor.", "Alpha protection.", "Low speed stability."], "a": 3},
+ {"c": "BTC · Test 5", "q": "The aircraft is at 5000 feet, 250kts, straight and level, autopilot off, hands and feet off: if TOGA power is applied, at what speed will the aircraft eventually stabilise?", "o": ["Vmo - 10", "Vmo +6", "Vmo", "Vmo + 16"], "a": 2},
+ {"c": "BTC · Test 5", "q": "Following selection of FLAP 1, which of the following statements is true?", "o": ["When decelerating for the approach, CONFIG 1 + F will be the result.", "During the acceleration, following a go-around, CONFIG 1 + F will be the result.", "During acceleration, following a takeoff, CONFIG 1 will be the result.", "The result is always CONFIG 1 + F in flight."], "a": 1},
+ {"c": "BTC · Test 5", "q": "In flight, with Config 1 selected, what is represented by amber = on the speed strip?", "o": ["The maximum speed for selecting FLAP 2.", "The maximum permitted speed with FLAP 1.", "The minimum permitted speed with FLAP 1.", "The minimum speed for selecting FLAP 0."], "a": 0},
+ {"c": "BTC · Test 5", "q": "The aircraft has achieved, and is maintaining, a constant high alpha, which has caused speedbrake auto-retraction: how can the speedbrakes be extended again?", "o": ["By reducing the alpha.", "By reducing the alpha, retracting the speedbrakes lever, waiting 10 seconds, then extending the lever.", "By reducing the alpha, retracting the speedbrakes lever, then immediately extending it again.", "By keeping high alpha, retracting the speedbrake lever, waiting 10 seconds, then extending the lever."], "a": 1},
+ {"c": "BTC · Test 5", "q": "Regarding maximum bank angles, which of the following statements is true?", "o": ["At normal speeds, the maximum is 67º (full sidestick deflection) and 25º (sidestick neutral).", "The maximum bank angle in ALTERNATE LAW is 45º.", "In HighSpeed Protection, the maximum is 40º (full sidestick deflection) and 0º (sidestick neutral).", "In ALPHA PROT, the maximum bank angle is 33º"], "a": 2},
+ {"c": "BTC · Test 5", "q": "What is signified by MAN PITCH TRIM ONLY on the FMA?", "o": ["Both FAC's have failed.", "The aircraft is in DIRECT LAW.", "The aircraft is in Mechanical Back-Up.", "Loss of all hydraulic power."], "a": 2},
+ {"c": "BTC · Test 5", "q": "A-LOCK (blue) is pulsing under the Flap/Slat indicator on the EWD: what does this signify?", "o": ["Flaps and Slats locked, in any position, due to high alpha.", "Flaps will not retract from 1 to 0 due to high alpha: to retract them reduce the alpha.", "Slats will not retract from 1 to 0 due to high alpha: to retract them, reduce the alpha.", "Slats will not retract from 1 to 0 due to high alpha: to retract them recycle the flap lever."], "a": 2},
+ {"c": "BTC · Test 5", "q": "In NORMAL LAW, what occurs during the approach?", "o": ["At 50 feet the stabiliser freezes: at 30 feet, a nose down order is introduce", "At 30 feet, a nose up order is introduced in order to facilitate the flare.", "When the landing gear is lowered, the aircraft goes into Direct Law.", "When the landing gear is lowered, the roll (only) goes into Direct Law."], "a": 0},
+ {"c": "BTC · Test 5", "q": "Regarding Wing Tip Brakes, which of the following statements is true?", "o": ["They can be reset in flight.", "They operate only for asymmetric travel.", "Flaps and Slats have separate systems", "They are held on by electrical power."], "a": 2},
+ {"c": "BTC · Test 5", "q": "Roll control is achieved using which flight control surfaces?", "o": ["2 ailerons and 6 spoilers", "6 ailerons and 2 spoilers", "2 ailerons and 8 spoilers", "2 ailerons and 10 spoilers"], "a": 2},
+ {"c": "BTC · Test 5", "q": "The side stick priority red arrow will illuminate:", "o": ["In front of the pilot losing authority", "In front of the pilot gaining authority", "Only after the takeover pb has been pressed for 40 secs", "In front of both pilots"], "a": 0},
+ {"c": "BTC · Test 5", "q": "The flight control surfaces are all:", "o": ["Electrically activated and hydraulically controlled", "Mechanically controlled", "Hydraulically actuated and electrically controlled", "Hydraulically actuated, with a mechanical back-up"], "a": 2},
+ {"c": "BTC · Test 5", "q": "Which protection is available in Alternate Law?", "o": ["Load Factor Protection", "Load Factor Protection available only with the Alternate Law with protections", "No protection available in Alternate Law", "Angle of Attack Protection"], "a": 0},
+ {"c": "BTC · Test 5", "q": "What happens when SFCC 1 fails?", "o": ["Nothing as SFCC 2 takes over", "Flaps and slats operate at half speed", "Flaps system lost", "Slats system lost"], "a": 1},
+ {"c": "BTC · Test 5", "q": "In alternate law, the change to direct law occurs when:", "o": ["Landing gear down or at the selection of flaps 2", "Landing gear down", "Passing 50 ft", "Three or more than three system failures"], "a": 1},
+ {"c": "BTC · Test 6", "q": "Regarding the LANDING GEAR, which of the following statements is true?", "o": ["Rudder nosewheel steering is never inhibited on the ground.", "After GRAVITY EXTENSION, the gear doors will remain open.", "With ANTISKID inop., the pedal brakes must be modulated to keep the pressure to \\<1000 psi.", "On landing, the autobrake system is activated by weight on wheels."], "a": 1},
+ {"c": "BTC · Test 6", "q": "On the WHEELS SD, what is indicated if a wheel identification number has vertical amber lines on each side of it?", "o": ["A brake temperature of \\>300ºC.", "A brake temperature between 100ºC and 300ºC.", "Loss of autobrake to that wheel.", "An antiskid brake released fault."], "a": 3},
+ {"c": "BTC · Test 6", "q": "At one hundred knots on take-off, what is the situation regarding Nose Wheel Steering?", "o": ["No Nosewheel steering is available.", "Handwheel steering and rudder steering are both available.", "Handwheel steering is available: rudder steering is not available.", "Rudder steering is available: handwheel steering is not available."], "a": 3},
+ {"c": "BTC · Test 6", "q": "Regarding the AUTOBRAKE system, which of the following statements is true?", "o": ["MAX autobrake provides a pre-programmed deceleration rate.", "It is available in NORMAL and ALTERNATE braking.", "If LO is selected, the system will be activated four seconds after ground spoiler deployment.", "If MED is selected, the system will be triggered two seconds after touchdown."], "a": 2},
+ {"c": "BTC · Test 6", "q": "What causes the DECEL light to illuminate?", "o": ["Activation of the anti-skid system.", "Application of brake pressure to all wheels.", "Achievement of 80% of the selected deceleration rate.", "Activation of the anti-skid and autobrake systems."], "a": 2},
+ {"c": "BTC · Test 6", "q": "What is the sequence of events when Gravity Extension of the gear is performed?", "o": ["Safety valve closes, gear unlocks -- thereby forcing the doors open.", "Safety valve closes, then the doors unlock, then the gear unlocks.", "Doors unlock, gear unlocks, doors close when all gear legs locked down.", "Doors unlock, gear unlocks -- when all gear locked down, the safety valve closes."], "a": 1},
+ {"c": "BTC · Test 6", "q": "During landing, you realise the aircraft is not slowing down...what are the correct initial actions?", "o": ["Reverse MAX: Brake pedals -- press.", "Parking brake in short and successive application.", "Reverse MAX: brake pedals release: A/SKID and N/W STRG OFF.", "Reverse MAX: brake pedals release: A/SKID and N/W STRG OFF then ON."], "a": 2, "w": "The memory sequence begins REV MAX, then BRAKE PEDALS RELEASE, then A/SKID & N/W STRG OFF — releasing the pedals before selecting anti-skid off is essential before pressing for max (~1000 PSI)."},
+ {"c": "BTC · Test 6", "q": "What are the combined correct initial actions of the Crew in event of a Rejected Take Off at 100kts?", "o": ["Idle thrust: when ground spoilers have deployed, SELECT REVERSE MAX.", "Call \"STOP\": REVERSE MAX: when ground spoilers have deployed, apply full pedal braking.", "Call \"STOP\": REVERSE MAX: apply full pedal braking.", "Call \"STOP\": REVERSE -- MAX: monitor braking"], "a": 3, "w": "The Captain announces “STOP,” brings thrust levers to idle and selects max available reverse, while the FO checks/announces reversers and deceleration."},
+ {"c": "BTC · Test 6", "q": "When should the AUDIO SWITCHING switch be moved from the NORM position?", "o": ["After a failure of the Capt's or F/O's loudspeaker.", "After a failure of RMP 1 and RMP 2", "After a failure of ACP1 or ACP2.", "After a failure of any RMP"], "a": 2},
+ {"c": "BTC · Test 6", "q": "Which of the following correctly completes the statement; \"An EMERGENCY CALL, from the cabin to the flight deck, will, on the flight deck,.....\"", "o": ["trigger three buzzer sounds, and illuminate the CALL and ON lights.", "trigger a continuous buzzer sound, and illuminate the ON light.", "trigger three buzzer sounds and illuminate a RESET button on each ACP.", "trigger three buzzer sounds, and illuminate the CALL light only."], "a": 0},
+ {"c": "BTC · Test 6", "q": "In case of dual FMGC failure, selection of radio navigation frequencies is possible with:", "o": ["RMP 1 only", "RMP 1 and 2 only", "RMP 1, 2 and 3", "RMP 2 only"], "a": 1},
+ {"c": "BTC · Test 6", "q": "Which air supplies can be used simultaneously?", "o": ["Engines and APU.", "Engines, APU and Ground Supply (HP).", "Both engines.", "APU and Ground Supply (HP)."], "a": 2},
+ {"c": "BTC · Test 6", "q": "What normally provides bleed leak detection for the APU bleed system?", "o": ["BMC 1", "BMC 2", "BMC 1 and 2", "APU ECB"], "a": 0},
+ {"c": "BTC · Test 6", "q": "Which equipment controls the bleed output temperature to 200ºC?", "o": ["The BLEED valve.", "The BMC's.", "The HP valve.", "A FAN AIR VALVE and a PRECOOLER."], "a": 3},
+ {"c": "BTC · Test 6", "q": "Which of the following correctly completes the statement; \"Switching the APU Air Bleed on will cause......\"", "o": ["the crossbleed valve to open, and the pack flow to go to NORM.", "the crossbleed valve to close, and the pack flow to go to HI.", "the crossbleed valve to open and the ENG bleed valves to close.", "the crossbleed valve to close and the ENG bleed valves to close."], "a": 2},
+ {"c": "BTC · Test 6", "q": "Which of the following statements is true if One Bleed is OFF?", "o": ["Wing Anti-Ice is permitted on one wing at a time.", "Wing Anti-Ice is not permitted.", "With both packs off wing Anti-Ice is permitted.", "With one pack off wing Anti-Ice is permitted."], "a": 3},
+ {"c": "BTC · Test 6", "q": "What precautions should you be take if a LP ground air unit is connected?", "o": ["Do not use conditioned air simultaneously with PACKs", "Do not use APU bleed air", "Only single PACK operation is permitted", "Do not use ENG bleed air"], "a": 0, "w": "With an LP (low-pressure) ground air unit connected, don't use the packs at the same time — combining them can adversely affect the air-conditioning system."},
+ {"c": "BTC · Test 7", "q": "If both lanes of ACSC 1 have failed ------", "o": ["PACK 2 is lost and PACK 1 goes to high flow.", "PACK 1 is lost whilst there is no change in PACK flow for PACK 2.", "All Trim Air Valves are inoperative.", "ACSC 2 will take over, resulting in normal operation."], "a": 2},
+ {"c": "BTC · Test 7", "q": "When the Ram Air switch is selected to ON, which of the following statements is true regarding the Ram Air Valve?", "o": ["It will open only when pressure differential is less than 1.0 psi.", "It directs ambient air to the PACKS.", "It will open only when pressure differential is more than 1.0 psi.", "It should not be opened above 10,000 ft cabin altitude."], "a": 0},
+ {"c": "BTC · Test 7", "q": "In the event of sudden depressurisation at FL 300 due to structural failure, what will be the correct initial actions?", "o": ["Emer Descent -- Initiate, Both PACKS - High", "Emer Descent -- Initiate, if A/THR is off THR LEVERS - IDLE", "Emer Descent -- Initiate, AP and A/THR - OFF", "AP/FD - OFF, THR lever - IDLE, EMER Descent - Initiate"], "a": 1, "w": "This is the Emergency Descent memory item: EMER DESCENT INITIATE, and if A/THR isn't active bring THR LEVERS to IDLE, then speed brake FULL."},
+ {"c": "BTC · Test 7", "q": "What happens if the APU is supplying both PACK\\'s?", "o": ["Both PACK\\'s go to LO flow irrespective of the selected rate.", "Both PACK\\'s go to NORM flow irrespective of the selected rate.", "Both PACK\\'s go to HI flow irrespective of the selected rate.", "PACK 1 goes to LO flow and PACK 2 goes to HI flow irrespective of the selected rate."], "a": 2},
+ {"c": "BTC · Test 7", "q": "Which components modulate the Trim Air Valves?", "o": ["ACSC 1 and 2.", "ACSC 1 only.", "ACSC 2 only.", "BMC 1 and 2"], "a": 0},
+ {"c": "BTC · Test 7", "q": "In regard to the RAM AIR inlet flaps, they are:", "o": ["Closed during T/O and open on landing below 70 kts", "Open during T/O and landing below 70 kts", "Open during T/O and closed below 70 kts on landing", "Closed at all times."], "a": 0},
+ {"c": "BTC · Test 7", "q": "What is the Normal Max Cabin altitude?", "o": ["8000 ft", "9550 ft +/- 350 ft", "14000 ft", "800 ft"], "a": 0},
+ {"c": "BTC · Test 7", "q": "What is the Max negative differential pressure for the cabin:", "o": ["0 PSI", "1 PSI", "2 PSI", "8.6 PSI"], "a": 1, "w": "Max negative cabin differential is -1.0 PSI (cabin lower than outside) — far more limiting than the +9.0 PSI positive diff."},
+ {"c": "BTC · Test 7", "q": "What happens to the pack flow control valves during engine start (Eng Mode selector to ING/START):", "o": ["They must be selected off.", "They must be selected off on cold days only.", "They must be selected off on hot days only.", "They automatically close."], "a": 3},
+ {"c": "BTC · Test 7", "q": "When will the LDG ELEV Fault trigger?", "o": ["When the LDG ELEV selector is set to AUTO and the landing field elevation of the FMGS is not available.", "When the LDG ELEV selector is set to AUTO and the landing field elevation of the CPC is not available.", "When the LDG ELEV selector is not at AUTO and the landing field elevation of the FMGS is not available.", "When the LDG ELEV selector is not at AUTO and the landing field elevation of the CPC is not available."], "a": 0},
+ {"c": "BTC · Test 7", "q": "Cabin pressurisation begins:", "o": ["At first engine start", "With application of take-off power", "Lift off from the runway", "When thrust levers are selected to the CLB detent"], "a": 1},
+ {"c": "BTC · Test 7", "q": "What happens when the BLOWER is selected to OVERRIDE?", "o": ["Blower Fan keeps running + Close config + air conditioning air added.", "Blower Fan keeps running + open config", "Blower Fan stops + Close config + air conditioning air added", "Blower Fan stops + no config change"], "a": 2},
+ {"c": "BTC · Test 7", "q": "What happens when the Extract is selected to OVERRIDE?", "o": ["Extract Fan keeps running + Close config + air conditioning air added", "Extract Fan keeps running + open config", "Extract Fan stops + Close config + air conditioning air added", "Extract Fan stops + no config change"], "a": 0},
+ {"c": "BTC · Test 7", "q": "What happens when the Extract and Blower is selected to OVERRIDE?", "o": ["Extract and Blower Fan keeps running + Intermediate config + air conditioning air added", "Extract and Blower Fan keeps running + Open config + air conditioning air added", "Extract Fan keeps running + Blower Fan Stops + Intermediate config + air conditioning air added", "Extract Fan Stops + Blower Fan keeps running + Intermediate config + air conditioning air added"], "a": 2},
+ {"c": "BTC · Test 7", "q": "Whilst in flight, at HIGH SKIN AIR temperature. In which configuration will the AVIONICS VENT be in?", "o": ["OPEN", "INTERMEDIATE", "CLOSE", "SMOKE"], "a": 1},
+ {"c": "BTC · Test 7", "q": "What happens if WING ANTI-ICE is selected ON when taxying for take-off?", "o": ["The Wing anti-ice valves open for 30 seconds only if ENG anti-ice is ON.", "The Wing anti-ice valves remain closed since aircraft is on Ground.", "The Wing anti-ice valves open for 30 seconds only and on lift off, the valves will re- open.", "The Wing anti-ice valves remain OPEN and remain OPEN until the switch is set to OFF."], "a": 2},
+ {"c": "BTC · Test 7", "q": "If a WING or ENG anti-ice valve loses electrical power, which of the following statements is true?", "o": ["The valves will remain in their present position.", "WING and ENG valves CLOSE", "WING and ENG valves OPEN", "WING valves CLOSE: ENG valves OPEN"], "a": 3},
+ {"c": "BTC · Test 7", "q": "Following landing, in heavy rain, what is (are) the first action(s) to protect the avionics vent. system from water entry?", "o": ["Blower valve to OVRD.", "EXTRACT valve to OVRD.", "EXTRACT and Blower valves to OVR", "Ram Air Valve OPEN."], "a": 1},
+ {"c": "BTC · Test 7", "q": "The rain repellent system is inhibited :", "o": ["On the ground below 70 kts", "During Climb Phase", "When the wipers are working", "A/c on the ground and both engines shutdown"], "a": 3},
+ {"c": "BTC · Test 7", "q": "What constitutes \"icing conditions\"?", "o": ["ENGINE -- IN FLIGHT: TAT between +10ºC and - 30ºC in all flight phases.", "ENGINE -- ON GROUND: OAT ≤10ºC and FOG (visibility less than 1 mile).", "WING -- IN FLIGHT: Visual evidence of ice accumulation on the wings.", "WING -- ON GROUND: OAT ≥10ºC, and contaminated taxyway or runway. (WAI must be selected ON after engine start)."], "a": 1, "w": "Icing conditions exist when OAT (ground) or TAT (flight) is ≤10 °C with visible moisture/fog and visibility of 1 sm (1600 m) or less — or on the ground with snow/slush/standing water."},
+ {"c": "BTC · Test 8", "q": "Which information is used in order to produce the EGPWS display?", "o": ["An FMGS database and FM1 position.", "An FMGS database and FM2 position.", "Weather radar (map mode) and baro altitude.", "Weather radar (map mode) and radio altitude."], "a": 0},
+ {"c": "BTC · Test 8", "q": "What does the Terrain Clearance Floor use in order to generate a \"TOO LOW TERRAIN\" message?", "o": ["GPWS information.", "Terrain Awareness and Display information.", "A database dedicated to a particular runway.", "A database dedicated to a particular airfield."], "a": 2},
+ {"c": "BTC · Test 8", "q": "If ILS 2 receiver fails, where can ILS 1 displays be seen?", "o": ["PFD 2 and ND 2", "PFD 1 and ND 2", "PFD 1 and ND 1", "PFD 2 and ND 1"], "a": 1},
+ {"c": "BTC · Test 8", "q": "What could be the significance of an ALIGN light flashing on ADIRS panel?", "o": ["It may be possible to recover Altitude and Heading.", "The alignment has been completed.", "The system is doing a battery power test.", "The P-POS has not been entered within 10 mins of selecting NAV."], "a": 3},
+ {"c": "BTC · Test 8", "q": "What does a triple click mean during an ILS approach?", "o": ["A level 3 warning to the crew", "A primary failure is occurring, prepare for a Go- Around", "Flaps are set at 3 and the landing gear is not down", "Landing capability down grading warning"], "a": 3},
+ {"c": "BTC · Test 8", "q": "If the TERRAIN ON ND pushbutton is switched OFF what happens if a Terrain awareness warning or caution is generated?", "o": ["The system switches on automatically: the terrain display sweeps from the centre outwards.", "The system switches on automatically: the terrain display sweeps anti-clockwise.", "The TERR ON ND \"ON\" light flashes.", "The Terrain Awareness Display pulses on the N.D."], "a": 0},
+ {"c": "BTC · Test 8", "q": "What are the correct initial actions following a \"WINDSHEAR\" warning after V1 during take-off?", "o": ["Perform Reject Take-off.", "TOGA thrust- FDs OFF: Rotate at VR.", "TOGA thrust: Reaching VR - Rotate : SRS -- follow.", "FLEX thrust: Reaching VR - Rotate : SRS -- follow."], "a": 2, "w": "Past V1 you're committed: set TOGA, rotate at VR, follow SRS orders — and don't change configuration until clear of the windshear."},
+ {"c": "BTC · Test 8", "q": "Following a GPWS \"TOO LOW GEAR\" warning, what are the correct initial actions?", "o": ["Continue Landing.", "Perform a go-around", "Landing Gear down.", "Speed check and Flap Full"], "a": 1, "w": "“TOO LOW GEAR” (and “TOO LOW FLAPS”) are hard EGPWS cautions requiring a go-around, unlike “SINK RATE”/“GLIDESLOPE” which may only need a flight-path adjust."},
+ {"c": "BTC · Test 8", "q": "What is the correct immediate pitch attitude and thrust guidance in the event of unreliable IAS indications above THRUST RED ALT at FL 80?", "o": ["10º / CLB", "5º / CLB", "15º / CLB", "10º / TOGA"], "a": 0, "w": "Above thrust-reduction altitude but below FL100, the unreliable-speed target is 10°/CLB. (Below thrust red alt it's 15°/TOGA; above FL100 it's 5°/CLB.)"},
+ {"c": "BTC · Test 8", "q": "What are the correct initial actions on receipt of a TCAS \"CLIMB\" message?", "o": ["A/P ON: ATHR OFF: V/S to green area on PF", "A/P OFF: ATHR OFF: V/S to green area on PFD.", "A/P OFF: Both FD's OFF: V/S to 1500ft/min -- if still in red area, increase to 2500ft/min.", "A/P OFF: Both FD's OFF: V/S to green area on PFD."], "a": 3, "w": "On any RA, AP OFF and both FDs OFF, then fly the V/S into the green band on the PFD. Never manoeuvre on a TA alone."},
+ {"c": "BTC · Test 8", "q": "What are immediate actions for STALL RECOVERY?", "o": ["TOGA : NOSE DOWN : WINGS LEVEL", "TOGA : MAINTAIN LEVEL FLIGHT WITH WINGS LEVEL", "NOSE DOWN : WINGS LEVEL", "TOGA : NOSE UP : BANK 450"], "a": 2, "w": "Recovery is pitch first — NOSE DOWN to reduce alpha, wings level; thrust is added smoothly only once out of the stall."},
+ {"c": "BTC · Test 8", "q": "In even of STALL WARNING AT LIFT-OFF, what will be the correct initial actions?", "o": ["FDs - OFF : TOGA : PITCH ATTITUDE - 150", "FELX : PITCH ATTITUDE - 12.50 : WINGS LEVEL", "TOGA : PITCH ATTITUDE - 12.50 : WINGS LEVEL", "TOGA : PITCH ATTITUDE - 150 : WINGS LEVEL"], "a": 3, "w": "At lift-off, apply TOGA and simultaneously set 15° pitch, wings level. If it persists once safe speed/path is achieved, treat it as spurious."},
+ {"c": "BTC · Test 8", "q": "On which MCDU page, can aircraft position accuracy be checked?", "o": ["PROG", "PERF", "RAD NAV", "DATA"], "a": 0},
+ {"c": "BTC · Test 8", "q": "Regarding the ISIS, which of the following statements is true?", "o": ["It receives its information from ADIRU 1 or 3.", "It receives its information from ADIRU 3 only.", "The ILS localiser can be used for a back-course approach.", "The ATT RESET function can be used at any time."], "a": 0},
+ {"c": "BTC · Test 8", "q": "If ADIRU 2 fails, the correct action is:", "o": ["Set ATT HDG and Air Data Selectors to Capt 3", "Set ATT HDG and Air Data Selectors to F/O 3", "Set ATT HDG selectors to Capt 3, Air Data Selector to F/O 3", "Set ATT HDG selectors to F/O 3, Air Data Selector to Capt 3"], "a": 1},
+ {"c": "BTC · Test 8", "q": "Selection of the NAV key(on RMP) engages the radio navigation back up mode. This:", "o": ["Removes the NAVAIDS tuning capability from that FMGC", "Isolates the radio communication system.", "Removes the NAVAIDS tuning capability from both FMGCs", "Allows extra NAVAIDS to be tuned and displayed."], "a": 2},
+ {"c": "BTC · Test 8", "q": "What is meant by CHECK ATT (amber) on the PFD's?", "o": ["If it appears on only one PFD, it indicates an impending failure of the associated system.", "If it appears on the CAPT's PFD only, select the IR SWITCHING switch to CAPT ON 3.", "Both PFD's show different attitudes: check ISIS in order to identify failed system.", "If it appears on both PFD's, select the IR SWITCHING switch to CAPT (or F/O) then ignore the other PFD."], "a": 2},
+ {"c": "BTC · Test 8", "q": "In \"ELEC-EMER CONFIG\", which navaids can be tuned?", "o": ["VOR 1, ADF 1 and both ILS's.", "VOR 1, ADF 1 and ILS 1.", "VOR 1 & 2 and both ILS's.", "VOR 1 & 2, ADF 1 & 2, ILS 1 & 2"], "a": 1},
+ {"c": "BTC · Test 8", "q": "How Long does a normal IRS Alignment take?", "o": ["10 min", "16 min", "7 min", "30 sec"], "a": 0},
+ {"c": "BTC · Test 8", "q": "When does the amber ON BAT light on the ADIRS panel illuminate?", "o": ["When the aircraft battery supplies at least one IRS.", "Only when all IRSs supplied by the battery", "When aircraft battery voltage is below the sufficient voltage required to supply IRS", "It illuminates during fast alignment"], "a": 0},
+ {"c": "BTC · Test 9", "q": "In which modes will the Yaw bar be displayed on PFD (LOC signal available for the runway)?", "o": ["RWY and NAV mode", "RWY and ROLL OUT mode", "LAND mode", "RWY TRK mode"], "a": 1},
+ {"c": "BTC · Test 9", "q": "If both FAC\\'s fail, what happens to the rudder limiter?", "o": ["The Rudder Limiter is locked at its present deflection limit and assumes the low speed deflection limit when flap 1 is selected.", "The Rudder Travel Limiter immediately selects the low speed deflection limit.", "Maximum high speed rudder deflection can be obtained after slat extension.", "There will be no effect no effect on rudder limiter as ELAC 2 will take over the function."], "a": 0},
+ {"c": "BTC · Test 9", "q": "With the F.D.s. and A/P's switched OFF, the ATHR is switched on: which of the following statements is correct?", "o": ["The airspeed bug is magenta, and is set by the FMGS.", "The airspeed bug is blue and defaults to the current airspeed.", "The airspeed bug is magenta, and defaults to the current airspeed.", "The airspeed bug is blue, and defaults to green dot speed."], "a": 1},
+ {"c": "BTC · Test 9", "q": "During the managed descent phase and if crew pulls HDG selector knob, the FMA changes from THR IDLE / DES / NAV to.......", "o": ["SPEED / V/S / HDG.", "THR IDLE / V/S / HDG.", "THR IDLE / OP DES / HDG.", "SPEED / OP DES / NAV"], "a": 0},
+ {"c": "BTC · Test 9", "q": "On the FMA in the fifth column", "o": ["A/THR in blue indicates A/THR is active.", "A/THR in white indicates A/THR is active.", "1FD1 indicates FD 2 is switched OFF.", "1FD- indicates FD 2 has failed."], "a": 1},
+ {"c": "BTC · Test 9", "q": "At high altitudes if the aircraft overfly the optimum top of descent point, what is annunciated on the FMA?", "o": ["MACH/DESC (on the top line).", "DESCEND NOW (on the third line).", "MORE DRAG (on the third line).", "DECELERATE (on the third line)."], "a": 3},
+ {"c": "BTC · Test 9", "q": "LAND Mode will disengage when?", "o": ["V/S knob is pushed.", "ALT knob is pushed or pulled.", "HDG knob is pushed.", "Go-around is performed."], "a": 3},
+ {"c": "BTC · Test 9", "q": "SRS on a G/A will give a speed target of?", "o": ["The lower of Vapp or current speed at engagement.", "The higher of Vapp or speed at engagement.", "\"F\" speed.", "An undefined speed that depends on weight and angle of attack"], "a": 1},
+ {"c": "BTC · Test 9", "q": "In THR CLB / CLB / NAV mode, what will be FMA if HDG mode is selected?", "o": ["THR CLB / OP CLB / HDG", "THR CLB / V/S / HDG", "SPEED / OP CLB / HDG", "SPEED / V/S / HDG"], "a": 0},
+ {"c": "BTC · Test 9", "q": "The Capt's flight Director is manually disengaged during the flight?", "o": ["The FD bars disappears from Captains PFD, with the \"2FD2\" symbol displayed", "FD bars disappear from the Captains PFD and the symbol \"-FD2\" is displayed", "An ECAM caution is generated, with \"-FD2\" on FMA", "The FD bars remain on both PFDs but the symbol \"2FD2\" is displayed"], "a": 1},
+ {"c": "BTC · Test 9", "q": "In a climbing turn, the FD's and A/P are switched OFF, then the A/P is selected ON again. What do the FMA's indicate?", "o": ["No FMA since the FDs are not ON", "SPD / ALT / HDG", "THR CLB / OP CLB / HDG or THR CLB / FPA /TRK", "SPEED / V/S / HDG or SPEED / FPA / TRK"], "a": 3},
+ {"c": "BTC · Test 9", "q": "When Gen 1 & Gen 2 fails, the emergency generator supplies the aircraft. Which of the following system is available when EMER GEN powering aircraft?", "o": ["FMGC 1", "FMGC 2", "BOTH FMGC", "NO FMGC is available"], "a": 0},
+ {"c": "BTC · Test 9", "q": "When both FDs are ON and A/THR engaged, which of the following FMGC\\'s is master?", "o": ["FMGC 1", "FMGC 2", "Both FMGCs", "No FMGC is master, as no auto pilot is active."], "a": 0},
+ {"c": "BTC · Test 9", "q": "When is the Autopilot first available for use?", "o": ["50 ft above", "100 ft above", "Just after lift-off", "At rotate"], "a": 1, "w": "The autopilot can first be engaged at 100 ft AGL (or 5 s after lift-off) on takeoff."},
+ {"c": "BTC · Test 9", "q": "At what radio altitude is \\\"RETARD\\\" heard", "o": ["at 10 ft during Autoland", "at 20 ft during Autoland", "at 10 ft during Manual Landing", "at 20 ft during Autoland and Manual Landing"], "a": 0, "w": "In an autoland the “RETARD” callout comes at 10 ft (it's 20 ft in a manual landing), cueing thrust levers to idle."},
+ {"c": "BTC · Test 9", "q": "What do the FMA's read if a lower altitude is selected, and the ALT knob on the FCU is Pulled?", "o": ["DES", "V/S", "OP DES", "EXP DES"], "a": 2},
+ {"c": "BTC · Test 9", "q": "Select the correct statement about Cost Index?", "o": ["Cost Index = 0 corresponds to minimum fuel consumption (Max Range)", "Cost Index = 999 corresponds to minimum fuel consumption (Max Range)", "Cost Index is the ratio of fuel cost to aircraft efficiency", "The Cost Index is used to calculate Green Dot speed."], "a": 0},
+ {"c": "BTC · Test 9", "q": "On which MCDU page would you insert the Trip Wind?", "o": ["Init A", "Init B", "Perf", "Prog"], "a": 1},
+ {"c": "BTC · Test 9", "q": "With the aircraft in flight, A/THR not engaged, thrust levers on CLB gate, an alpha floor is detected:", "o": ["A/THR does not get engaged because the engines are already in CLB.", "A/THR automatically engages, but is not active.", "A/THR automatically engages and controls the engines with CLB.", "A/THR automatically engages and controls the engine with TO/GA."], "a": 3},
+ {"c": "BTC · Test 9", "q": "What mode will the Auto Pilot revert to, if the altitude is changed from FL300 to FL200 when ALT\\*is active?", "o": ["V/S", "DES", "OP DES", "ALT"], "a": 0},
+ {"c": "BTC · Mock 1", "q": "A/C General Regarding the lights on the overhead panel, which of the following statements is true?", "o": ["Amber means Immediate Action.", "BLUE means crew awareness.", "TWO DOTS means Abnormal Switch Position.", "WHITE means Abnormal Switch Position."], "a": 3},
+ {"c": "BTC · Mock 1", "q": "Regarding the RAM AIR inlet flaps, they are:", "o": ["Closed during T/O and open on landing below 70 kts", "Open during T/O and landing below 70 kts", "Open during T/O and closed below 70 kts on landing", "Closed at all times"], "a": 0},
+ {"c": "BTC · Mock 1", "q": "Ice & Rain Protection What happens if WING ANTI-ICE is selected ON when taxying for take-off?", "o": ["The Wing anti-ice valves open for 30 seconds only if ENG anti-ice is ON.", "The Wing anti-ice valves remain closed since aircraft is on Ground.", "The Wing anti-ice valves open for 30 seconds only and on lift off, the valves will re- open.", "The Wing anti-ice valves remain OPEN and remain OPEN until the switch is set to OFF."], "a": 2},
+];
+for(const x of BTC_Q){ BANK.push(x); }
+
+/* ============ MEMORY ITEMS ============ */
+const MEM = [
+ {name:"Loss of Braking", trig:'"LOSS OF BRAKING"', head:"IF NO BRAKING",
+  steps:[["REV","MAX"],["BRAKE PEDAL","RELEASE"],["A/SKID & N/W STRG","OFF"],
+         ["BRAKE PEDALS","PRESS"],["MAX BRK PR","1000 PSI"],
+         ["If still no braking — PARKING BRAKE","SHORT & SUCCESSIVE"]],
+  note:"Release pedals before selecting A/SKID OFF, then press for max 1000 PSI."},
+ {name:"Emergency Descent", trig:'"EMERGENCY DESCENT"', head:"EMER DESCENT",
+  steps:[["CREW OXY MASKS","USE"],["SIGNS","ON"],["EMER DESCENT","INITIATE"],
+         ["If A/THR not active — THR LEVERS","IDLE"],["SPD BRK","FULL"],
+         ["When descent estab — SPEED","MAX / APPROPRIATE"],["L/G","CONSIDER EXTENSION"],
+         ["If CAB ALT >14000 — PAX MASK MAN ON","PRESS"]],
+  note:'PA: "EMERGENCY DESCENT" descending; "MASK OFF" at 10,000 ft or lower.'},
+ {name:"Stall Recovery", trig:'"STALL — I HAVE CONTROLS"', head:"STALL RECOVERY",
+  steps:[["NOSE DOWN PITCH CONTROL","APPLY"],["BANK","WINGS LEVEL"],
+         ["Out of stall — THRUST","INCREASE SMOOTHLY"],["SPEEDBRAKES","CHECK RETRACTED"],
+         ["FLIGHT PATH","RECOVER SMOOTHLY"],["If clean & below 20,000 ft — FLAP 1","SELECT"]],
+  note:"Pitch first, not thrust. If lacking pitch-down authority, reduce thrust."},
+ {name:"Stall Warning at Lift-off", trig:'"STALL TOGA 15°"', head:"STALL AT LIFT-OFF",
+  steps:[["THRUST","TOGA"],["PITCH ATTITUDE (same time)","15°"],["BANK","WINGS LEVEL"]],
+  note:"If it continues once safe speed/path achieved & maintained, treat as spurious."},
+ {name:"Unreliable Speed", trig:'"UNRELIABLE SPEED"', head:"UNRELIABLE SPEED / ADR",
+  steps:[["AP / A/THR / FD","OFF / OFF / OFF"],["Below THRUST RED ALT","15° / TOGA"],
+         ["Above RED ALT, below FL100","10° / CLB"],["Above RED ALT, above FL100","5° / CLB"],
+         ["FLAPS (if CONF 0-3)","MAINTAIN"],["FLAPS (if CONF FULL)","CONF 3 & MAINTAIN"],
+         ["SPEEDBRAKES","CHECK RETRACTED"],["L/G","UP"]],
+  note:"At/above MSA or circuit alt: level off to troubleshoot."},
+ {name:"Windshear Warning", trig:'"WINDSHEAR — TOGA"', head:"WINDSHEAR (WARNING)",
+  steps:[["After V1 — THR LEVERS","TOGA"],["Reaching VR","ROTATE"],["SRS ORDERS","FOLLOW"],
+         ["Airborne — THR AT TOGA","SET / CONFIRM"],["AP (if engaged)","KEEP"],
+         ["SRS ORDERS","FOLLOW"]],
+  note:"Before V1: reject only if big speed loss & sufficient runway. Don't change config until out."},
+ {name:"TCAS Resolution Advisory", trig:'"TCAS — I HAVE CONTROLS"', head:"TCAS RA",
+  steps:[["AP (if engaged)","OFF"],["BOTH FDs","OFF"],["FD orders / V-S","FOLLOW / ADJUST"],
+         ['At "CLEAR OF CONFLICT"',"RESUME NAV per ATC"]],
+  note:'Go-around if RA "CLIMB"/"INCREASE CLIMB" fires on final approach.'},
+ {name:"EGPWS Warning", trig:'"PULL UP — TOGA"', head:"EGPWS PULL UP",
+  steps:[["AP","OFF"],["PITCH","PULL UP"],["THRUST LEVERS","TOGA"],
+         ["SPEED BRAKES","CHECK RETRACTED"],["BANK","WINGS LEVEL / ADJUST"],["SRS ORDERS","FOLLOW"]],
+  note:"Don't change config until clear of the obstacle."},
+];
+
+/* ============ ENGINE ============ */
+const $=id=>document.getElementById(id);
+const sec={start:$("start"),quiz:$("quiz"),mem:$("mem"),results:$("results")};
+function show(name){for(const k in sec)sec[k].classList.toggle("hidden",k!==name);window.scrollTo({top:0,behavior:"instant"});}
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;};
+
+const CATS=[...new Set(BANK.map(x=>x.c))];
+let active=new Set(CATS);
+let runLen=30;
+const chips=$("chips");
+function drawChips(){
+  chips.innerHTML="";
+  const all=document.createElement("button");
+  all.className="chip"; all.textContent="All systems";
+  all.setAttribute("aria-pressed",active.size===CATS.length);
+  all.onclick=()=>{active=active.size===CATS.length?new Set():new Set(CATS);drawChips();};
+  chips.appendChild(all);
+  CATS.forEach(c=>{
+    const b=document.createElement("button");
+    b.className="chip"; b.textContent=c;
+    b.setAttribute("aria-pressed",active.has(c));
+    b.onclick=()=>{active.has(c)?active.delete(c):active.add(c);drawChips();};
+    chips.appendChild(b);
+  });
+}
+drawChips();
+
+const LENS=[["15",15],["30",30],["60",60],["All",0]];
+const lenChips=$("lenChips");
+function drawLens(){
+  lenChips.innerHTML="";
+  LENS.forEach(([lab,val])=>{
+    const b=document.createElement("button");
+    b.className="chip"; b.textContent=lab;
+    b.setAttribute("aria-pressed",runLen===val);
+    b.onclick=()=>{runLen=val;drawLens();};
+    lenChips.appendChild(b);
+  });
+}
+drawLens();
+
+$("modeMcq").onclick=()=>$("filterPanel").scrollIntoView({behavior:"smooth"});
+$("modeMem").onclick=()=>startMem();
+
+/* ---------- MCQ ---------- */
+let queue=[],qi=0,cor=0,miss=0,streak=0,missed=[];
+$("startMcqBtn").onclick=()=>{
+  const pool=BANK.filter(x=>active.has(x.c));
+  if(!pool.length){alert("Select at least one question set.");return;}
+  let deck=shuffle(pool);
+  if(runLen && deck.length>runLen) deck=deck.slice(0,runLen);
+  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[];
+  show("quiz"); renderQ();
+};
+function renderQ(){
+  const q=queue[qi];
+  $("qCat").textContent=q.c;
+  $("qText").textContent=q.q;
+  $("sPos").textContent=(qi+1)+"/"+queue.length;
+  $("sCor").textContent=cor; $("sMiss").textContent=miss; $("sStreak").textContent=streak;
+  $("bar").style.width=((qi)/queue.length*100)+"%";
+  $("ecamSlot").innerHTML=""; $("nextRow").style.display="none";
+  const opts=$("qOpts"); opts.innerHTML="";
+  const order=shuffle(q.o.map((t,i)=>({t,i})));
+  const letters=["A","B","C","D","E"];
+  order.forEach((item,idx)=>{
+    const b=document.createElement("button");
+    b.className="opt";
+    b.innerHTML='<span class="tag">'+letters[idx]+'</span><span class="txt">'+item.t+'</span>';
+    b.onclick=()=>answer(b,item.i,order);
+    opts.appendChild(b);
+  });
+}
+function answer(btn,chosen,order){
+  const q=queue[qi];
+  const correct=chosen===q.a;
+  [...$("qOpts").children].forEach((el,idx)=>{
+    el.disabled=true;
+    const oi=order[idx].i;
+    if(oi===q.a)el.classList.add("correct");
+    else if(oi===chosen)el.classList.add("wrong");
+    else el.classList.add("dim");
+  });
+  if(correct){cor++;streak++;}
+  else{miss++;streak=0;missed.push({q:q.q,a:q.o[q.a]});}
+  $("sCor").textContent=cor;$("sMiss").textContent=miss;$("sStreak").textContent=streak;
+  const e=document.createElement("div");
+  e.className="ecam "+(correct?"ok":"no");
+  e.innerHTML=
+    '<div class="head"><span class="dot"></span>'+(correct?"CORRECT":"CHECK — INCORRECT")+'</div>'+
+    '<div class="body">'+
+      '<div class="ans">ANSWER &nbsp;<b>'+q.o[q.a]+'</b></div>'+
+      (q.w
+        ? '<div class="why"><span class="lead">Reasoning</span>'+q.w+'</div>'
+        : '<div class="why"><span class="lead">Source</span>Confirmed answer from the BTC progress tests \u2014 no written rationale supplied. Verify against FCOM/QRH.</div>')+
+    '</div>';
+  $("ecamSlot").appendChild(e);
+  $("nextRow").style.display="flex";
+  $("nextBtn").focus();
+}
+$("nextBtn").onclick=()=>{ qi++; if(qi>=queue.length)finishMcq(); else renderQ(); };
+$("quitBtn").onclick=()=>finishMcq();
+function finishMcq(){
+  const total=cor+miss;
+  const pct=total?Math.round(cor/total*100):0;
+  $("rEye").textContent="Limitations check — debrief";
+  $("rScore").textContent=pct+"%";
+  $("rScore").style.color=pct>=90?"var(--green)":pct>=75?"var(--cyan)":"var(--amber)";
+  const v=$("rVerdict");
+  if(pct>=90){v.textContent="Sharp — checkride ready";v.style.color="var(--green)";}
+  else if(pct>=75){v.textContent="Solid — tidy the misses";v.style.color="var(--cyan)";}
+  else{v.textContent="More reps needed";v.style.color="var(--amber)";}
+  const r=$("rReview"); r.innerHTML="";
+  if(missed.length){
+    const h=document.createElement("div");h.className="eyebrow";h.style.marginTop="18px";
+    h.textContent="Review — missed items ("+missed.length+")";r.appendChild(h);
+    missed.forEach(m=>{
+      const d=document.createElement("div");d.className="ritem";
+      d.innerHTML='<div class="rq">'+m.q+'</div><div class="ra">&#10003; '+m.a+'</div>';
+      r.appendChild(d);
+    });
+  }else if(total){
+    const d=document.createElement("div");d.className="ritem";d.style.borderTop="none";
+    d.innerHTML='<div class="ra">Clean sweep — nothing missed.</div>';r.appendChild(d);
+  }
+  lastMode="mcq"; show("results");
+}
+
+/* ---------- MEMORY DRILL ---------- */
+let mQueue=[],mi=0,mCor=0,mMiss=0;
+function startMem(){
+  mQueue=shuffle(MEM); mi=0;mCor=0;mMiss=0;
+  show("mem"); renderMem();
+}
+function renderMem(){
+  const m=mQueue[mi];
+  $("mPos").textContent=(mi+1)+"/"+mQueue.length;
+  $("mCor").textContent=mCor;$("mMiss").textContent=mMiss;
+  const done=mCor+mMiss;
+  $("mPct").textContent=done?Math.round(mCor/done*100)+"%":"—";
+  $("mBar").style.width=(mi/mQueue.length*100)+"%";
+  $("memName").textContent=m.name;
+  $("memTrig").textContent=m.trig;
+  $("memReveal").innerHTML="";
+  $("memRevealRow").style.display="flex";
+  $("memGradeRow").style.display="none";
+}
+$("revealBtn").onclick=()=>{
+  const m=mQueue[mi];
+  let html='<div class="qrh"><div class="qh">'+m.head+'</div>';
+  m.steps.forEach(s=>{
+    html+='<div class="step"><span class="l">'+s[0]+'</span><span class="d"></span><span class="r">'+s[1]+'</span></div>';
+  });
+  if(m.note)html+='<div class="note">'+m.note+'</div>';
+  html+='</div>';
+  $("memReveal").innerHTML=html;
+  $("memRevealRow").style.display="none";
+  $("memGradeRow").style.display="flex";
+  $("gotBtn").focus();
+};
+$("gotBtn").onclick=()=>gradeMem(true);
+$("missBtn").onclick=()=>gradeMem(false);
+function gradeMem(ok){ ok?mCor++:mMiss++; mi++; if(mi>=mQueue.length)finishMem(); else renderMem(); }
+$("memQuitBtn").onclick=()=>finishMem();
+function finishMem(){
+  const total=mCor+mMiss;
+  const pct=total?Math.round(mCor/total*100):0;
+  $("rEye").textContent="Memory item drill — debrief";
+  $("rScore").textContent=pct+"%";
+  $("rScore").style.color=pct>=100?"var(--green)":pct>=75?"var(--cyan)":"var(--amber)";
+  const v=$("rVerdict");
+  if(pct>=100){v.textContent="All items secure";v.style.color="var(--green)";}
+  else if(pct>=75){v.textContent="Nearly there";v.style.color="var(--cyan)";}
+  else{v.textContent="Drill again — cold";v.style.color="var(--amber)";}
+  $("rReview").innerHTML='<div class="ritem" style="border-top:none"><div class="ra">'+
+    mCor+' of '+total+' recalled cleanly. Self-graded — be honest on sequence, not just content.</div></div>';
+  lastMode="mem"; show("results");
+}
+
+/* ---------- RESULTS NAV ---------- */
+let lastMode="mcq";
+$("againBtn").onclick=()=>{ lastMode==="mem"?startMem():$("startMcqBtn").onclick(); };
+$("homeBtn").onclick=()=>show("start");
+
+/* keyboard: 1-5 to answer, Enter to advance */
+document.addEventListener("keydown",e=>{
+  if(!sec.quiz.classList.contains("hidden")){
+    if(/^[1-5]$/.test(e.key)){
+      const opts=$("qOpts").children;
+      const idx=+e.key-1;
+      if(opts[idx]&&!opts[idx].disabled)opts[idx].click();
+    }
+    if(e.key==="Enter"&&$("nextRow").style.display!=="none")$("nextBtn").click();
+  }
+});
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  });
+}
+</script>
+</body>
+</html>
