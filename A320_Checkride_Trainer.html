@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A320 Checkride Trainer</title>
+<style>
+  :root{
+    --bg:#0c1116; --panel:#10161c; --panel2:#18222b; --edge:#2b3742;
+    --edge-lit:#3c4d5a;
+    --brand:#a13444; --brand-deep:#7a2230;
+    --green:#37d06a; --green-deep:#1f7d42;
+    --amber:#ffb02e; --amber-deep:#a86a00;
+    --cyan:#3fcbe0; --white:#eef4f8; --muted:#8698a6; --muted-2:#5f7180;
+    --font-ui:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --font-data:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #16202a 0%, var(--bg) 60%);
+    color:var(--white); font-family:var(--font-ui);
+    min-height:100vh; -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:24px 18px 60px}
+
+  /* ---- Header placard ---- */
+  .placard{
+    display:flex; align-items:center; gap:14px;
+    border:1px solid var(--edge); border-top:3px solid var(--brand);
+    background:linear-gradient(180deg,var(--panel) 0%,#0d1319 100%);
+    border-radius:10px; padding:14px 18px; margin-bottom:20px;
+  }
+  .placard .badge{
+    font-family:var(--font-data); font-weight:700; font-size:13px;
+    letter-spacing:2px; color:var(--bg);
+    background:var(--brand); padding:6px 10px; border-radius:5px; white-space:nowrap;
+  }
+  .placard h1{font-size:16px; margin:0; letter-spacing:.5px; font-weight:600}
+  .placard .sub{font-size:11.5px; color:var(--muted); letter-spacing:1px;
+    text-transform:uppercase; font-family:var(--font-data)}
+
+  /* ---- Status strip ---- */
+  .strip{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--edge); border:1px solid var(--edge);
+    border-radius:8px; overflow:hidden; margin-bottom:18px;
+  }
+  .strip .cell{background:var(--panel); padding:9px 8px; text-align:center}
+  .strip .k{font-size:9.5px; letter-spacing:1.5px; color:var(--muted-2);
+    text-transform:uppercase; font-family:var(--font-data)}
+  .strip .v{font-size:20px; font-family:var(--font-data); font-weight:700;
+    color:var(--cyan); line-height:1.2}
+  .strip .v.green{color:var(--green)} .strip .v.amber{color:var(--amber)}
+
+  .progress{height:4px; background:var(--panel2); border-radius:3px;
+    overflow:hidden; margin-bottom:22px; border:1px solid var(--edge)}
+  .progress > i{display:block; height:100%; background:linear-gradient(90deg,var(--brand),#c94a5d);
+    width:0%; transition:width .35s ease}
+
+  /* ---- Cards / panels ---- */
+  .panel{border:1px solid var(--edge); background:var(--panel);
+    border-radius:12px; padding:20px; margin-bottom:16px}
+
+  .eyebrow{font-family:var(--font-data); font-size:10.5px; letter-spacing:2px;
+    text-transform:uppercase; color:var(--muted); margin-bottom:10px;
+    display:flex; align-items:center; gap:8px}
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%;
+    background:var(--cyan); box-shadow:0 0 8px var(--cyan)}
+
+  .question{font-size:19px; line-height:1.4; font-weight:500; margin:2px 0 20px}
+
+  .options{display:flex; flex-direction:column; gap:10px}
+  .opt{
+    display:flex; align-items:center; gap:13px; width:100%; text-align:left;
+    background:var(--panel2); border:1px solid var(--edge); color:var(--white);
+    padding:14px 16px; border-radius:9px; cursor:pointer; font-size:15px;
+    font-family:var(--font-ui); transition:border-color .15s, background .15s, transform .05s;
+  }
+  .opt:hover:not(:disabled){border-color:var(--edge-lit); background:#1d2831}
+  .opt:active:not(:disabled){transform:translateY(1px)}
+  .opt:disabled{cursor:default}
+  .opt .tag{font-family:var(--font-data); font-weight:700; font-size:12px;
+    color:var(--muted); border:1px solid var(--edge); border-radius:5px;
+    min-width:26px; height:26px; display:flex; align-items:center; justify-content:center;
+    flex:0 0 auto}
+  .opt .txt{font-family:var(--font-data); font-size:14.5px}
+  .opt.correct{border-color:var(--green); background:rgba(55,208,106,.10)}
+  .opt.correct .tag{color:var(--green); border-color:var(--green)}
+  .opt.wrong{border-color:var(--amber); background:rgba(255,176,46,.10)}
+  .opt.wrong .tag{color:var(--amber); border-color:var(--amber)}
+  .opt.dim{opacity:.5}
+
+  /* ---- ECAM feedback (signature) ---- */
+  .ecam{border-radius:10px; margin-top:18px; overflow:hidden;
+    border:1px solid var(--edge); background:#0a0f13;
+    animation:ecamIn .25s ease}
+  @keyframes ecamIn{from{opacity:0; transform:translateY(6px)}to{opacity:1;transform:none}}
+  .ecam .head{display:flex; align-items:center; gap:10px; padding:10px 14px;
+    font-family:var(--font-data); font-size:12px; letter-spacing:1.5px;
+    border-bottom:1px solid var(--edge)}
+  .ecam .head .dot{width:9px;height:9px;border-radius:50%}
+  .ecam.ok .head{color:var(--green)} .ecam.ok .head .dot{background:var(--green);box-shadow:0 0 8px var(--green)}
+  .ecam.no .head{color:var(--amber)} .ecam.no .head .dot{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .ecam .body{padding:14px 16px}
+  .ecam .ans{font-family:var(--font-data); font-size:14px; color:var(--cyan);
+    margin-bottom:10px}
+  .ecam .ans b{color:var(--white)}
+  .ecam .why{font-size:14px; color:#c7d3db; line-height:1.55}
+  .ecam .why .lead{color:var(--muted); font-family:var(--font-data); font-size:10.5px;
+    letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:4px}
+
+  /* ---- Buttons ---- */
+  .btn{font-family:var(--font-data); font-size:13.5px; letter-spacing:1px;
+    text-transform:uppercase; border:1px solid var(--edge-lit); background:var(--panel2);
+    color:var(--white); padding:13px 22px; border-radius:9px; cursor:pointer;
+    transition:background .15s, border-color .15s; font-weight:600}
+  .btn:hover{background:#22303a; border-color:var(--brand)}
+  .btn.primary{background:var(--brand); border-color:var(--brand)}
+  .btn.primary:hover{background:#b93c4f}
+  .btn.ghost{background:transparent}
+  .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+  .row.end{justify-content:flex-end}
+
+  /* ---- Start screen ---- */
+  .lede{font-size:14.5px; color:var(--muted); margin:0 0 20px; line-height:1.6}
+  .modegrid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:22px}
+  @media(max-width:560px){.modegrid{grid-template-columns:1fr}}
+  .mode{border:1px solid var(--edge); background:var(--panel2); border-radius:11px;
+    padding:18px; cursor:pointer; text-align:left; color:var(--white);
+    font-family:var(--font-ui); transition:border-color .15s, background .15s}
+  .mode:hover{border-color:var(--brand); background:#1d2831}
+  .mode .mt{font-size:16px; font-weight:600; margin-bottom:6px; display:flex;
+    align-items:center; gap:9px}
+  .mode .mt .ic{font-family:var(--font-data); font-size:11px; color:var(--bg);
+    background:var(--cyan); border-radius:4px; padding:3px 6px; letter-spacing:1px}
+  .mode.alt .mt .ic{background:var(--amber)}
+  .mode .md{font-size:13px; color:var(--muted); line-height:1.5}
+
+  .filters .eyebrow{margin-bottom:12px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{font-family:var(--font-data); font-size:12px; letter-spacing:.5px;
+    border:1px solid var(--edge); background:var(--panel2); color:var(--muted);
+    padding:8px 13px; border-radius:20px; cursor:pointer; transition:all .15s;
+    text-transform:uppercase}
+  .chip[aria-pressed="true"]{background:var(--brand); border-color:var(--brand);
+    color:var(--white)}
+  .chip:hover{border-color:var(--brand)}
+
+  /* ---- QRH sequence panel (memory drill) ---- */
+  .qrh{border:1px solid var(--edge); border-radius:10px; overflow:hidden; margin-top:16px}
+  .qrh .qh{background:var(--brand-deep); color:#fff; font-family:var(--font-data);
+    font-size:13px; letter-spacing:1px; padding:9px 14px; font-weight:700}
+  .qrh .step{display:flex; justify-content:space-between; gap:14px; padding:10px 14px;
+    border-top:1px solid var(--edge); font-family:var(--font-data); font-size:13.5px;
+    align-items:baseline}
+  .qrh .step:nth-child(odd){background:#0d1319}
+  .qrh .step .l{color:var(--white)}
+  .qrh .step .d{flex:1; border-bottom:1px dotted var(--muted-2); margin:0 4px; transform:translateY(-3px)}
+  .qrh .step .r{color:var(--cyan); font-weight:700; white-space:nowrap; text-align:right}
+  .qrh .note{padding:10px 14px; border-top:1px solid var(--edge); color:var(--amber);
+    font-size:12.5px; font-family:var(--font-data); background:rgba(255,176,46,.06)}
+  .trigcue{font-family:var(--font-data); color:var(--amber); font-size:15px;
+    letter-spacing:1px; margin:6px 0 2px; font-weight:700}
+
+  /* ---- Results ---- */
+  .bigscore{font-family:var(--font-data); font-size:56px; font-weight:700; line-height:1;
+    text-align:center; margin:6px 0}
+  .verdict{text-align:center; font-family:var(--font-data); letter-spacing:2px;
+    text-transform:uppercase; font-size:13px; margin-bottom:8px}
+  .review .ritem{border-top:1px solid var(--edge); padding:13px 0; font-size:14px}
+  .review .rq{color:var(--white); margin-bottom:5px}
+  .review .ra{font-family:var(--font-data); font-size:13px; color:var(--green)}
+  .review .rmiss{font-family:var(--font-data); font-size:13px; color:var(--amber)}
+
+  .hidden{display:none!important}
+  .foot{text-align:center; font-size:11px; color:var(--muted-2); margin-top:26px;
+    font-family:var(--font-data); letter-spacing:.5px; line-height:1.6}
+  a{color:var(--muted)}
+  :focus-visible{outline:2px solid var(--cyan); outline-offset:2px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="placard">
+    <span class="badge">A320</span>
+    <div>
+      <h1>Checkride Trainer</h1>
+      <div class="sub">Limitations &middot; Memory Items &middot; Approach</div>
+    </div>
+  </div>
+
+  <!-- ================= START ================= -->
+  <section id="start">
+    <p class="lede">Pick a drill. In the limitations check you get an ECAM-style debrief on
+      every question &mdash; the answer and the reasoning &mdash; whether you're right or wrong.
+      The bank now includes your BTC progress-test questions alongside the curated set. The
+      memory-item drill is self-marked: recall the sequence cold, then reveal and grade yourself.</p>
+
+    <div class="modegrid">
+      <button class="mode" id="modeMcq">
+        <div class="mt"><span class="ic">MCQ</span>Limitations Check</div>
+        <div class="md">Multiple-choice on numbers and limits. Filter by system below. Debrief after each answer.</div>
+      </button>
+      <button class="mode alt" id="modeMem">
+        <div class="mt"><span class="ic">REC</span>Memory Item Drill</div>
+        <div class="md">Trigger &rarr; recall the full actioned sequence from memory &rarr; reveal &amp; self-grade.</div>
+      </button>
+    </div>
+
+    <div class="panel filters" id="filterPanel">
+      <div class="eyebrow">Question sets</div>
+      <div class="chips" id="chips"></div>
+      <div class="eyebrow" style="margin-top:20px">Questions per run</div>
+      <div class="chips" id="lenChips"></div>
+      <div class="row">
+        <button class="btn primary" id="startMcqBtn">Begin check &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUIZ ================= -->
+  <section id="quiz" class="hidden">
+    <div class="strip">
+      <div class="cell"><div class="k">Item</div><div class="v" id="sPos">0/0</div></div>
+      <div class="cell"><div class="k">Correct</div><div class="v green" id="sCor">0</div></div>
+      <div class="cell"><div class="k">Missed</div><div class="v amber" id="sMiss">0</div></div>
+      <div class="cell"><div class="k">Streak</div><div class="v" id="sStreak">0</div></div>
+    </div>
+    <div class="progress"><i id="bar"></i></div>
+
+    <div class="panel">
+      <div class="eyebrow" id="qCat">System</div>
+      <div class="question" id="qText">&nbsp;</div>
+      <div class="options" id="qOpts"></div>
+      <div id="ecamSlot"></div>
+      <div class="row end" id="nextRow" style="display:none">
+        <button class="btn primary" id="nextBtn">Next &rarr;</button>
+      </div>
+    </div>
+    <div class="row"><button class="btn ghost" id="quitBtn">&larr; End &amp; score</button></div>
+  </section>
+
+  <!-- ================= MEMORY DRILL ================= -->
+  <section id="mem" class="hidden">
+    <div class="strip">
+      <div class="cell"><div class="k">Item</div><div class="v" id="mPos">0/0</div></div>
+      <div class="cell"><div class="k">Got it</div><div class="v green" id="mCor">0</div></div>
+      <div class="cell"><div class="k">Missed</div><div class="v amber" id="mMiss">0</div></div>
+      <div class="cell"><div class="k">Recall</div><div class="v" id="mPct">&mdash;</div></div>
+    </div>
+    <div class="progress"><i id="mBar"></i></div>
+
+    <div class="panel">
+      <div class="eyebrow">Memory item &mdash; recall cold</div>
+      <div id="memName" class="question" style="margin-bottom:6px">&nbsp;</div>
+      <div class="trigcue" id="memTrig">&nbsp;</div>
+      <p class="md" style="color:var(--muted); font-size:13.5px; margin:10px 0 0">
+        Say or write the full actioned sequence, in order. Then reveal to check.</p>
+
+      <div id="memReveal"></div>
+
+      <div class="row" id="memRevealRow">
+        <button class="btn primary" id="revealBtn">Reveal sequence</button>
+      </div>
+      <div class="row" id="memGradeRow" style="display:none">
+        <button class="btn" id="gotBtn" style="border-color:var(--green-deep)">&#10003;&nbsp; Got it</button>
+        <button class="btn" id="missBtn" style="border-color:var(--amber-deep)">&#10007;&nbsp; Missed it</button>
+      </div>
+    </div>
+    <div class="row"><button class="btn ghost" id="memQuitBtn">&larr; End &amp; score</button></div>
+  </section>
+
+  <!-- ================= RESULTS ================= -->
+  <section id="results" class="hidden">
+    <div class="panel">
+      <div class="eyebrow" id="rEye">Debrief</div>
+      <div class="bigscore" id="rScore">0%</div>
+      <div class="verdict" id="rVerdict">&nbsp;</div>
+      <div class="review" id="rReview"></div>
+      <div class="row" style="margin-top:20px">
+        <button class="btn primary" id="againBtn">Run again</button>
+        <button class="btn ghost" id="homeBtn">Change drill</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    Study aid &mdash; NOT for flying. Verify every value against current FCOM / QRH.<br>
+    Content derived from an unofficial A320 summary (V5.0 Jan-2022).
+  </div>
+</div>
+
+<script>
+/* ============ QUESTION BANK ============ */
+const BANK = [
+ {"c": "Flight Controls & Flaps", "q": "Flight manoeuvring load acceleration — CLEAN configuration?", "o": ["-1 g to +2.0 g", "-1 g to +2.5 g", "0 g to +2.5 g", "-1.5 g to +2.5 g"], "a": 1, "w": "Clean config: -1 g to +2.5 g. Other configs are 0 g to +2 g. · FCOM LIM-AG-F_CTL"},
+ {"c": "Flight Controls & Flaps", "q": "Flight manoeuvring load acceleration — OTHER (non-clean) configurations?", "o": ["-1 g to +2 g", "0 g to +2 g", "0 g to +2.5 g", "0 g to +1.5 g"], "a": 1, "w": "Other configs: 0 g to +2 g (no negative-g margin with flaps/slats out). · FCOM LIM-AG-F_CTL"},
+ {"c": "Aircraft General", "q": "Maximum runway slope (mean)?", "o": ["±1%", "±2%", "±2.5%", "+2% up only"], "a": 1, "w": "Runway slope (mean) ±2%. · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Aircraft General", "q": "Nominal / minimal runway width?", "o": ["30 m / 23 m", "45 m / 30 m", "60 m / 45 m", "45 m / 23 m"], "a": 1, "w": "Nominal 45 m, minimal 30 m. · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Aircraft General", "q": "Maximum demonstrated crosswind (takeoff and landing)?", "o": ["33 kt", "38 kt (gust included)", "40 kt", "29 kt"], "a": 1, "w": "38 kt, gust included. It's a certification-campaign value, not an AFM limitation, but Airbus recommends not exceeding it intentionally. · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Aircraft General", "q": "Maximum tailwind for TAKEOFF (A321P2F)?", "o": ["10 kt", "15 kt", "5 kt", "20 kt"], "a": 1, "w": "15 kt for the P2F — higher than the 10 kt common on passenger A320s. Confirm against your fleet. · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Aircraft General", "q": "Maximum tailwind for LANDING, and the associated recommendation?", "o": ["10 kt, CONF 3", "15 kt; FLAPS FULL recommended above 10 kt tailwind", "15 kt, CONF 3 only", "10 kt, any config"], "a": 1, "w": "15 kt landing tailwind; with tailwind above 10 kt, FLAPS FULL is recommended. · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Aircraft General", "q": "FWD and AFT cargo doors must be closed before the wind exceeds…?", "o": ["40 kt", "60 kt", "65 kt", "50 kt"], "a": 2, "w": "FWD/AFT cargo doors: closed before 65 kt. · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Aircraft General", "q": "Maximum wind speed for opening the Main Deck Cargo Door (MDCD)?", "o": ["40 kt", "60 kt", "65 kt", "50 kt"], "a": 0, "w": "MDCD opening limit 40 kt. · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Aircraft General", "q": "The Main Deck Cargo Door (MDCD) must be closed before the wind exceeds…?", "o": ["40 kt", "60 kt", "65 kt", "45 kt"], "a": 1, "w": "MDCD: closed before 60 kt (vs 65 kt for the FWD/AFT cargo doors). · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Aircraft General", "q": "Max recommended crosswind on a GOOD (RWYCC 5) wet/contaminated runway?", "o": ["29 kt", "33 kt", "38 kt", "20 kt"], "a": 2, "w": "38 kt at RWYCC 5 (GOOD). It steps down as braking degrades. · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Aircraft General", "q": "Max recommended crosswind on a GOOD-TO-MEDIUM (RWYCC 4) runway?", "o": ["38 kt", "29 kt", "20 kt", "15 kt"], "a": 1, "w": "29 kt at RWYCC 4 (GOOD-TO-MEDIUM), down from 38 kt at RWYCC 5. · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Aircraft General", "q": "Cockpit window open — maximum speed?", "o": ["160 kt", "200 kt", "230 kt", "250 kt"], "a": 1, "w": "200 kt with a cockpit window open. · FCOM LIM-AG-SPD"},
+ {"c": "Flight Controls & Flaps", "q": "Maximum flaps/slats speed — CONF 1?", "o": ["230 kt", "235 kt", "225 kt", "215 kt"], "a": 1, "w": "CONF 1: 235 kt (A321). CONF 0 is limited by VMO/MMO. · FCOM LIM-AG-SPD"},
+ {"c": "Flight Controls & Flaps", "q": "Maximum flaps/slats speed — CONF 1+F?", "o": ["215 kt", "225 kt", "235 kt", "200 kt"], "a": 1, "w": "CONF 1+F: 225 kt. · FCOM LIM-AG-SPD"},
+ {"c": "Flight Controls & Flaps", "q": "Maximum flaps/slats speed — CONF 2?", "o": ["200 kt", "215 kt", "225 kt", "195 kt"], "a": 1, "w": "CONF 2: 215 kt. · FCOM LIM-AG-SPD"},
+ {"c": "Flight Controls & Flaps", "q": "Maximum flaps/slats speed — CONF 3?", "o": ["185 kt", "195 kt", "215 kt", "190 kt"], "a": 1, "w": "CONF 3: 195 kt. · FCOM LIM-AG-SPD"},
+ {"c": "Flight Controls & Flaps", "q": "Maximum flaps/slats speed — CONF FULL?", "o": ["177 kt", "186 kt", "190 kt", "195 kt"], "a": 2, "w": "CONF FULL: 190 kt on the A321P2F. · FCOM LIM-AG-SPD"},
+ {"c": "Aircraft General", "q": "VMO?", "o": ["320 kt", "340 kt", "350 kt", "M 0.82"], "a": 2, "w": "VMO 350 kt (MMO M 0.82). · FCOM LIM-AG-SPD"},
+ {"c": "Aircraft General", "q": "MMO?", "o": ["M 0.78", "M 0.80", "M 0.82", "M 0.84"], "a": 2, "w": "MMO M 0.82. · FCOM LIM-AG-SPD"},
+ {"c": "Gear & Brakes", "q": "VLE — max speed with landing gear extended?", "o": ["250 kt / M 0.60", "280 kt / M 0.67", "220 kt / M 0.54", "300 kt / M 0.70"], "a": 1, "w": "VLE 280 kt / M 0.67. · FCOM LIM-AG-SPD"},
+ {"c": "Gear & Brakes", "q": "VLO — max speed for gear EXTENSION?", "o": ["220 kt / M 0.54", "250 kt / M 0.60", "280 kt / M 0.67", "200 kt / M 0.50"], "a": 1, "w": "VLO extension 250 kt / M 0.60. · FCOM LIM-AG-SPD"},
+ {"c": "Gear & Brakes", "q": "VLO — max speed for gear RETRACTION?", "o": ["220 kt / M 0.54", "250 kt / M 0.60", "280 kt / M 0.67", "200 kt / M 0.50"], "a": 0, "w": "VLO retraction 220 kt / M 0.54 — the lowest of the three gear speeds. · FCOM LIM-AG-SPD"},
+ {"c": "Gear & Brakes", "q": "Maximum tire (ground) speed?", "o": ["182 kt", "195 kt", "204 kt", "210 kt"], "a": 1, "w": "Max ground speed 195 kt — the tyre limit. · FCOM LIM-AG-SPD"},
+ {"c": "Aircraft General", "q": "VMCL — minimum control speed for landing?", "o": ["108 kt", "110 kt", "114 kt", "118 kt"], "a": 2, "w": "VMCL 114 kt. · FCOM LIM-AG-SPD"},
+ {"c": "Aircraft General", "q": "VMCA at sea level?", "o": ["108 kt", "110 kt", "114 kt", "120 kt"], "a": 2, "w": "VMCA 114 kt at sea level; it decreases with altitude. · FCOM LIM-AG-SPD"},
+ {"c": "Flight Controls & Flaps", "q": "VMCG (CONF 1+F) at sea level?", "o": ["108 kt", "110 kt", "114 kt", "106 kt"], "a": 1, "w": "VMCG 110 kt at SL in CONF 1+F (CONF 3 slightly lower at 108 kt). · FCOM LIM-AG-SPD"},
+ {"c": "Flight Controls & Flaps", "q": "Maximum operating altitude with slats and/or flaps extended?", "o": ["15,000 ft", "20,000 ft", "25,000 ft", "22,000 ft"], "a": 1, "w": "20,000 ft with slats/flaps extended. · FCOM LIM-AG-SPD"},
+ {"c": "Aircraft General", "q": "Maximum TAXI weight (A321P2F)?", "o": ["89,400 kg", "93,000 kg", "93,400 kg", "97,400 kg"], "a": 2, "w": "Max taxi 93,400 kg (205,911 lb). · FCOM LIM-AG-WGHT"},
+ {"c": "Aircraft General", "q": "Maximum TAKEOFF weight, brake release (A321P2F)?", "o": ["89,000 kg", "93,000 kg", "93,400 kg", "97,000 kg"], "a": 1, "w": "MTOW (brake release) 93,000 kg (205,029 lb). · FCOM LIM-AG-WGHT"},
+ {"c": "Aircraft General", "q": "Maximum LANDING weight (A321P2F)?", "o": ["73,800 kg", "77,800 kg", "79,200 kg", "75,600 kg"], "a": 1, "w": "MLW 77,800 kg (171,519 lb). · FCOM LIM-AG-WGHT"},
+ {"c": "Aircraft General", "q": "Maximum ZERO FUEL weight (A321P2F)?", "o": ["71,000 kg", "73,800 kg", "77,800 kg", "75,600 kg"], "a": 1, "w": "MZFW 73,800 kg (162,701 lb). · FCOM LIM-AG-WGHT"},
+ {"c": "Aircraft General", "q": "Minimum weight (A321P2F)?", "o": ["37,230 kg", "46,300 kg", "47,500 kg", "40,300 kg"], "a": 2, "w": "Minimum weight 47,500 kg (104,720 lb). · FCOM LIM-AG-WGHT"},
+ {"c": "Aircraft General", "q": "Landing above maximum landing weight is…?", "o": ["Never permitted", "Permitted in exceptional cases (turn-back/diversion) using the overweight landing procedure", "Permitted any time below MTOW", "Permitted only on dry runways"], "a": 1, "w": "Immediate overweight landing is permitted in exceptional cases (in-flight turn-back or diversion) following the overweight landing procedure. · FCOM LIM-AG-WGHT"},
+ {"c": "Air & Pressurisation", "q": "With occupants on board, operating without air-conditioning supply should not exceed…?", "o": ["10 min", "20 min", "30 min", "No limit"], "a": 1, "w": "Not recommended to exceed 20 min without A/C supply — cabin air quality degrades. · FCOM LIM-AIR"},
+ {"c": "Air & Pressurisation", "q": "APU BLEED and the HP Air Start Unit may be used…?", "o": ["Together freely", "Never at the same time", "Only on the ground together", "Only in flight together"], "a": 1, "w": "Must not use APU BLEED and HP Air Start Unit simultaneously — protects the bleed air system. · FCOM LIM-AIR"},
+ {"c": "Air & Pressurisation", "q": "Conditioned air from the packs and from an LP Air Conditioning Unit may be used…?", "o": ["Together freely", "Never at the same time", "Only with one pack", "Only below FL100"], "a": 1, "w": "Must not use pack air and LP A/C unit air at the same time — adverse effect on the A/C system. · FCOM LIM-AIR"},
+ {"c": "Air & Pressurisation", "q": "Avionics ventilation (VH-XF4) — time limit when 46 °C < OAT ≤ 51 °C?", "o": ["No limit", "2 h", "1 h", "0.5 h"], "a": 2, "w": "VH-XF4: ≤41 no limit, 41-46 2 h, 46-51 1 h, 51-55 0.5 h. (These P2F values are lower than typical passenger figures.) · FCOM LIM-AIR"},
+ {"c": "Air & Pressurisation", "q": "Avionics ventilation (VH-XF4) — no time limitation up to what OAT?", "o": ["≤41 °C", "≤46 °C", "≤49 °C", "≤55 °C"], "a": 0, "w": "No limitation at or below 41 °C on VH-XF4. · FCOM LIM-AIR"},
+ {"c": "Air & Pressurisation", "q": "If avionics ventilation must be used above 55 °C, the crew should…?", "o": ["Shut a pack", "Set both packs ON and EXTRACT pb-sw to OVRD", "Open a window", "Land immediately"], "a": 1, "w": "Above 55 °C: both A/C packs ON and EXTRACT pb-sw to OVRD to supply cool air. · FCOM LIM-AIR"},
+ {"c": "Air & Pressurisation", "q": "Maximum positive differential pressure?", "o": ["8.6 PSI", "9.0 PSI", "9.4 PSI", "1.0 PSI"], "a": 1, "w": "9.0 PSI max positive differential (safety valve set at 8.6 PSI). · FCOM LIM-AIR"},
+ {"c": "Air & Pressurisation", "q": "Maximum negative differential pressure?", "o": ["-0.5 PSI", "-1.0 PSI", "-2.0 PSI", "-8.6 PSI"], "a": 1, "w": "-1.0 PSI max negative differential. · FCOM LIM-AIR"},
+ {"c": "Air & Pressurisation", "q": "Safety relief valve setting?", "o": ["1.0 PSI", "8.6 PSI", "9.0 PSI", "9.4 PSI"], "a": 1, "w": "8.6 PSI, just below the 9.0 PSI structural max. · FCOM LIM-AIR"},
+ {"c": "Auto Flight", "q": "Minimum AP engagement height at takeoff?", "o": ["100 ft AGL and at least 5 s after liftoff", "200 ft AGL", "500 ft AGL", "At liftoff"], "a": 0, "w": "100 ft AGL and at least 5 s after liftoff. · FCOM LIM-AFS-10-10"},
+ {"c": "Auto Flight", "q": "Minimum AP engagement height in approach with F-G/S mode?", "o": ["100 ft AGL", "200 ft AGL", "250 ft AGL", "160 ft AGL"], "a": 1, "w": "200 ft AGL with F-G/S mode. · FCOM LIM-AFS-10-10"},
+ {"c": "Auto Flight", "q": "Minimum AP engagement height with FINAL APP, V/S or FPA mode?", "o": ["160 ft AGL", "200 ft AGL", "250 ft AGL", "500 ft AGL"], "a": 2, "w": "250 ft AGL with FINAL APP, V/S or FPA. · FCOM LIM-AFS-10-10"},
+ {"c": "Auto Flight", "q": "Minimum AP height in a circling approach — cat C / cat D?", "o": ["500 / 600 ft AGL", "600 / 500 ft AGL", "250 / 250 ft AGL", "400 / 500 ft AGL"], "a": 0, "w": "500 ft AGL (cat C), 600 ft AGL (cat D). · FCOM LIM-AFS-10-10"},
+ {"c": "Auto Flight", "q": "Minimum AP height for ILS/MLS when CAT 1 is displayed on the FMA?", "o": ["100 ft AGL", "160 ft AGL", "200 ft AGL", "250 ft AGL"], "a": 1, "w": "160 ft AGL with CAT 1 on FMA (also GLS CAT 1, and LPV APPR1). · FCOM LIM-AFS-10-10"},
+ {"c": "Auto Flight", "q": "Minimum AP height for ILS/MLS when CAT 2 or CAT 3 is displayed on the FMA?", "o": ["100 ft AGL", "160 ft AGL", "0 ft AGL if autoland", "250 ft AGL"], "a": 2, "w": "0 ft AGL if autoland, when CAT 2 / CAT 3 SINGLE / CAT 3 DUAL on FMA. · FCOM LIM-AFS-10-10"},
+ {"c": "Auto Flight", "q": "Minimum AP height for a PAR approach?", "o": ["100 ft AGL", "160 ft AGL", "250 ft AGL", "500 ft AGL"], "a": 2, "w": "250 ft AGL for PAR (with HDG V/S or TRK FPA). · FCOM LIM-AFS-10-10"},
+ {"c": "Auto Flight", "q": "Minimum AP engagement height after a manual go-around?", "o": ["100 ft AGL", "200 ft AGL", "250 ft AGL", "500 ft AGL"], "a": 0, "w": "100 ft AGL after a manual go-around. · FCOM LIM-AFS-10-10"},
+ {"c": "Auto Flight", "q": "ILS CAT II — minimum decision height?", "o": ["50 ft", "100 ft", "200 ft", "22 ft"], "a": 1, "w": "CAT II min DH 100 ft, one AP in APPR with CAT 2/3 on FMA. · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "CAT II — for a manual landing, the AP must be disconnected no later than…?", "o": ["50 ft AGL", "80 ft AGL", "100 ft AGL", "160 ft AGL"], "a": 1, "w": "Disconnect AP no later than 80 ft AGL for a manual CAT II landing. · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "CAT III fail-operational (DUAL) — alert height?", "o": ["50 ft", "100 ft", "200 ft", "22 ft"], "a": 1, "w": "Alert height 100 ft; both APs in APPR, CAT 3 DUAL on FMA. · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "CAT III with DH — minimum decision height?", "o": ["50 ft", "22 ft", "100 ft", "0 ft"], "a": 1, "w": "CAT III with DH: min DH 22 ft. Without DH: min RVR 75 m. · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "CAT III without DH — minimum RVR?", "o": ["50 m", "75 m", "200 m", "125 m"], "a": 1, "w": "CAT III without DH: min RVR 75 m. · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "Autoland is approved in which configurations?", "o": ["FULL only", "CONF 2 and 3", "CONF 3 and CONF FULL", "Any config"], "a": 2, "w": "CAT II/III autoland and GLS CAT I autoland approved in CONF 3 and CONF FULL. · FCOM LIM-AFS-20-10"},
+ {"c": "Auto Flight", "q": "Autoland demonstrated glide-slope angle range?", "o": ["-2.0° to -3.0°", "-2.5° to -3.15°", "-3.0° to -3.5°", "-2.5° to -3.5°"], "a": 1, "w": "Demonstrated between -2.5° and -3.15°. · FCOM LIM-AFS-20-10"},
+ {"c": "Auto Flight", "q": "Autoland demonstrated max airport elevation (VH-XF4/5/6)?", "o": ["2,500 ft", "5,750 ft", "8,000 ft", "10,000 ft"], "a": 1, "w": "VH-XF4/5/6: airport elevation at or below 5,750 ft (VH-ULD/ULW/ULY: 2,500 ft). · FCOM LIM-AFS-20-10"},
+ {"c": "Auto Flight", "q": "Automatic landing is not allowed below what pressure altitude?", "o": ["-500 ft", "-1,000 ft", "0 ft", "-2,000 ft"], "a": 1, "w": "Not allowed below -1,000 ft pressure altitude. · FCOM LIM-AFS-20-10"},
+ {"c": "Auto Flight", "q": "Automatic rollout performance is approved on which runways?", "o": ["Dry only", "Dry and wet", "Dry, wet and contaminated", "Any"], "a": 1, "w": "Dry and wet; contaminated-runway rollout was not demonstrated. · FCOM LIM-AFS-20-10"},
+ {"c": "Auto Flight", "q": "Autoland — maximum HEADWIND for a CAT II automatic approach?", "o": ["30 kt", "40 kt", "25 kt", "20 kt"], "a": 1, "w": "40 kt for CAT II approach; 30 kt for CAT III/GLS CAT I and for auto land/rollout. · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "Autoland — maximum TAILWIND?", "o": ["5 kt", "10 kt", "15 kt", "20 kt"], "a": 1, "w": "10 kt tailwind for autoland. · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "Autoland — maximum CROSSWIND for a CAT II automatic approach?", "o": ["15 kt", "20 kt", "25 kt", "38 kt"], "a": 2, "w": "25 kt for CAT II approach; 20 kt for CAT III/GLS CAT I and auto land/rollout. · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "Autoland — maximum CROSSWIND for CAT III / GLS CAT I?", "o": ["15 kt", "20 kt", "25 kt", "30 kt"], "a": 1, "w": "20 kt for CAT III and GLS CAT I (and for automatic landing/rollout). · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "Engine-out: fail-passive autoland requires eng-out procedures complete before…?", "o": ["500 ft", "1,000 ft", "1,500 ft", "2,000 ft"], "a": 1, "w": "CAT II/III fail-passive autoland only in CONF 3/FULL if eng-out procedures done before 1,000 ft. · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "Automatic landing is specifically NOT permitted at…?", "o": ["Any airport above 5,750 ft", "Johannesburg 03R/21L", "Contaminated runways only", "Night"], "a": 1, "w": "Autoland not permitted on Johannesburg runways 03R/21L. · FCOM LIM-AFS-20"},
+ {"c": "Auto Flight", "q": "NAV mode may be used after takeoff provided…?", "o": ["Always", "GPS PRIMARY available, or FMGS takeoff updating checked", "Below FL100 only", "FD is off"], "a": 1, "w": "After takeoff: GPS PRIMARY available, or the crew checked FMGS takeoff updating. · FCOM LIM-AFS-10-30"},
+ {"c": "Auto Flight", "q": "An RNAV(GNSS) approach may be performed provided…?", "o": ["RNP < 0.3", "GPS PRIMARY is available", "AP is off", "Two navaids tuned"], "a": 1, "w": "RNAV(GNSS) requires GPS PRIMARY available. RNAV(RNP) without GPS PRIMARY needs navaid coverage + HIGH accuracy. · FCOM LIM-AFS-10-30"},
+ {"c": "Engine & APU", "q": "After three consecutive APU start attempts, wait…?", "o": ["15 min", "30 min", "60 min", "No wait"], "a": 2, "w": "60 min before a new start attempt. · FCOM LIM-APU-10"},
+ {"c": "Engine & APU", "q": "APU maximum N speed?", "o": ["100%", "105%", "107%", "110%"], "a": 2, "w": "Max APU N speed 107%. · FCOM LIM-APU-10"},
+ {"c": "Engine & APU", "q": "Maximum EGT for APU start below 35,000 ft?", "o": ["675 °C", "1,090 °C", "1,120 °C", "1,000 °C"], "a": 1, "w": "1,090 °C for start below 35,000 ft; 1,120 °C above 35,000 ft. · FCOM LIM-APU-10"},
+ {"c": "Engine & APU", "q": "Maximum EGT for APU start above 35,000 ft?", "o": ["1,090 °C", "1,120 °C", "675 °C", "1,043 °C"], "a": 1, "w": "1,120 °C above 35,000 ft. · FCOM LIM-APU-10"},
+ {"c": "Engine & APU", "q": "Maximum EGT for APU running?", "o": ["635 °C", "675 °C", "1,090 °C", "610 °C"], "a": 1, "w": "675 °C running (starting limits are much higher, 1,090/1,120 °C). · FCOM LIM-APU-10"},
+ {"c": "Engine & APU", "q": "APU bleed — max altitude to assist engine start?", "o": ["15,000 ft", "20,000 ft", "22,500 ft", "25,000 ft"], "a": 1, "w": "20,000 ft to assist engine start. · FCOM LIM-APU-20"},
+ {"c": "Engine & APU", "q": "APU bleed — max altitude for A/C & pressurisation, single pack?", "o": ["15,000 ft", "20,000 ft", "22,500 ft", "25,000 ft"], "a": 2, "w": "22,500 ft single pack; 15,000 ft dual pack. · FCOM LIM-APU-20"},
+ {"c": "Engine & APU", "q": "APU bleed — max altitude for A/C & pressurisation, dual pack?", "o": ["15,000 ft", "20,000 ft", "22,500 ft", "25,000 ft"], "a": 0, "w": "15,000 ft dual pack. · FCOM LIM-APU-20"},
+ {"c": "Engine & APU", "q": "APU bleed air for wing anti-ice is…?", "o": ["Permitted", "Permitted on ground", "Not permitted", "Permitted single pack"], "a": 2, "w": "Not permitted. · FCOM LIM-APU-20"},
+ {"c": "Engine & APU", "q": "During refuel/defuel, if the APU failed to start or auto-shut-down, the crew should…?", "o": ["Retry immediately", "Not start the APU", "Start on battery", "Continue fuelling only"], "a": 1, "w": "Do not start the APU. If a fuel spill occurs, perform a normal shutdown. · FCOM LIM-APU"},
+ {"c": "Communication", "q": "PED WiFi connection is not authorised and must be disabled below…?", "o": ["FL100 (10,000 ft AGL)", "5,000 ft AGL", "FL180", "On the ground only"], "a": 0, "w": "PED WiFi not authorised, and must be disabled, below 10,000 ft AGL. · FCOM LIM-COM"},
+ {"c": "Engine & APU", "q": "EGT limit — Takeoff and Go-around?", "o": ["610 °C", "635 °C", "650 °C", "1,083 °C"], "a": 2, "w": "Takeoff/GA 650 °C (5 min all-engine / 10 min OEI). MCT 610 °C; Start 635 °C. · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "Takeoff/GA thrust time limit — all engines vs one engine out?", "o": ["2 / 5 min", "5 / 10 min", "10 / 10 min", "5 / 5 min"], "a": 1, "w": "5 min all engines, 10 min with one engine inoperative. · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "EGT limit — Maximum Continuous Thrust (MCT)?", "o": ["610 °C", "635 °C", "650 °C", "675 °C"], "a": 0, "w": "MCT 610 °C, time not limited. · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "EGT limit — Starting?", "o": ["610 °C", "635 °C", "650 °C", "1,090 °C"], "a": 1, "w": "Starting 635 °C (on ground and in flight). · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "Maximum N1?", "o": ["98%", "100%", "104%", "107%"], "a": 1, "w": "Max N1 100%. · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "Maximum N2?", "o": ["100%", "105%", "107%", "110%"], "a": 0, "w": "Max N2 100%. · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "Starter — pause required between successive ground cycles?", "o": ["5 s", "15 s", "30 s", "60 s"], "a": 1, "w": "15 s pause between ground start cycles. · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "Starter — cooling required after three failed cycles?", "o": ["15 min", "30 min", "5 min", "60 min"], "a": 1, "w": "30 min cooling after 3 failed cycles (or 4 min continuous / 5 min cumulated crank). · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "Starter — maximum manual-start cycle time?", "o": ["1 min", "2 min", "5 min", "30 s"], "a": 1, "w": "Do not exceed the 2-minute manual-start cycle. · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "Starter must not be run when N2 is above… (ground / flight)?", "o": ["10% / 18%", "18% / 10%", "20% / 20%", "25% / 30%"], "a": 0, "w": "10% on ground, 18% in flight. · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "Selection of reverse thrust in flight is…?", "o": ["Permitted at idle", "Prohibited", "Permitted above FL200", "Permitted below 70 kt"], "a": 1, "w": "Prohibited in flight. Max reverse not below 70 kt; idle reverse permitted to a stop. · FCOM LIM-ENG"},
+ {"c": "Engine & APU", "q": "FLEX (reduced-thrust) takeoff in association with a DERATED takeoff is…?", "o": ["Permitted", "Not permitted", "Permitted on dry only", "Permitted OEI"], "a": 1, "w": "FLEX takeoff is not permitted together with a derated takeoff. · FCOM LIM-ENG-10"},
+ {"c": "Engine & APU", "q": "Maximum crosswind for engine start?", "o": ["25 kt", "35 kt", "45 kt", "No limit"], "a": 1, "w": "The engine can start in crosswind up to 35 kt. · FCOM LIM-ENG"},
+ {"c": "Fire Protection", "q": "The cargo smoke detection system must be operable when…?", "o": ["Always", "The main deck is loaded with cargo", "Only in flight", "APU is running"], "a": 1, "w": "Cargo smoke detection must be operable when the main deck is loaded with cargo. · FCOM LIM-FIR"},
+ {"c": "Flight Controls & Flaps", "q": "Rapid, large alternating control inputs (esp. with large pitch/roll/yaw changes) may cause…?", "o": ["No effect", "Structural failure at any speed", "Only autopilot disconnect", "Overspeed only"], "a": 1, "w": "They may result in structural failures at any speed — a flight-controls caution. · FCOM LIM-F_CTL"},
+ {"c": "Freighter Ops", "q": "Max total occupants in the flight deck, EXCLUDING the two operating flight crew?", "o": ["1", "2", "3", "4"], "a": 2, "w": "No more than 3 occupants in addition to the 2 operating crew. · FCOM LIM-FRE"},
+ {"c": "Freighter Ops", "q": "Access to the Main Deck Cargo Compartment (MDCC) is prohibited during…?", "o": ["Cruise only", "Taxi, takeoff, landing, turbulence, or when seat belts required", "Night flight", "ETOPS"], "a": 1, "w": "MDCC access prohibited during taxi, takeoff, landing, turbulence, or whenever fasten-seat-belts is required. · FCOM LIM-FRE"},
+ {"c": "Freighter Ops", "q": "Each occupant accessing the MDCC in flight must carry…?", "o": ["A fire extinguisher", "Portable oxygen equipment", "A headset", "Nothing special"], "a": 1, "w": "Each occupant accessing the MDCC must carry portable oxygen equipment. · FCOM LIM-FRE"},
+ {"c": "Freighter Ops", "q": "Smoking in the MDCC is…?", "o": ["Allowed in cruise", "Never allowed", "Allowed with oxygen off", "Allowed below FL100"], "a": 1, "w": "Smoking is not allowed at all times in the MDCC. · FCOM LIM-FRE"},
+ {"c": "Fuel", "q": "Minimum fuel quantity for takeoff?", "o": ["1,000 kg", "1,500 kg", "2,000 kg", "500 kg"], "a": 1, "w": "1,500 kg (3,307 lb) minimum for takeoff. · FCOM LIM-FUEL"},
+ {"c": "Fuel", "q": "Maximum fuel temperature?", "o": ["45 °C", "54 °C", "60 °C", "50 °C"], "a": 1, "w": "Max fuel temperature 54 °C (all approved fuels). · FCOM LIM-FUEL"},
+ {"c": "Fuel", "q": "Minimum fuel temperature for JET A1 / JP8 / N°3 JET?", "o": ["-36 °C", "-43 °C", "-54 °C", "-45 °C"], "a": 1, "w": "-43 °C for JET A1/JP8/N°3 JET (JET A is warmer at -36 °C; JP4 coldest at -54 °C). · FCOM LIM-FUEL"},
+ {"c": "Fuel", "q": "Maximum allowed fuel imbalance in flight/landing, heavier tank FULL?", "o": ["500 kg", "600 kg", "850 kg", "1,500 kg"], "a": 1, "w": "600 kg with the heavier tank full; the allowance grows as contents fall. · FCOM LIM-FUEL"},
+ {"c": "Fuel", "q": "There is no fuel-imbalance limitation below what tank quantity?", "o": ["1,000 kg", "1,500 kg", "2,350 kg", "4,000 kg"], "a": 1, "w": "No limitation below 1,500 kg (3,307 lb); variation is linear above that. · FCOM LIM-FUEL"},
+ {"c": "Ice & Rain", "q": "Icing conditions exist when OAT (ground/after T.O.) or TAT (flight) is at or below…?", "o": ["+5 °C", "10 °C with visible moisture (fog ≤1600 m, etc.)", "0 °C", "+3 °C"], "a": 1, "w": "≤10 °C with visible moisture; also ≤10 °C on the ground with snow/standing water/slush. · FCOM LIM-ICE_RAIN"},
+ {"c": "Ice & Rain", "q": "Severe ice accretion is when airframe accumulation reaches approximately…?", "o": ["1 mm", "3 mm", "5 mm (0.2 in)", "10 mm"], "a": 2, "w": "Approximately 5 mm (0.2 in) or more. · FCOM LIM-ICE_RAIN"},
+ {"c": "Ice & Rain", "q": "Wipers maximum operating speed?", "o": ["200 kt", "230 kt", "250 kt", "280 kt"], "a": 1, "w": "230 kt, applicable when the wipers are sweeping. · FCOM LIM-AG-SPD"},
+ {"c": "Gear & Brakes", "q": "Maximum brake temperature for takeoff (brake fans OFF)?", "o": ["150 °C", "300 °C", "500 °C", "800 °C"], "a": 1, "w": "300 °C max brake temperature for takeoff with brake fans off. · FCOM LIM-LG"},
+ {"c": "Gear & Brakes", "q": "The braking system is designed to hold the aircraft stationary at high thrust?", "o": ["Yes", "No — be ready to retard thrust to idle", "Only below MTOW", "Only with parking brake"], "a": 1, "w": "It is not designed to hold the aircraft at high thrust; be ready to retard the thrust levers to idle. · FCOM LIM-LG"},
+ {"c": "Gear & Brakes", "q": "Taxi speed limit (in a turn) with one tire per gear deflated?", "o": ["3 kt", "7 kt", "10 kt", "20 kt"], "a": 1, "w": "7 kt in a turn with max one tire per gear deflated. · FCOM LIM-LG"},
+ {"c": "Gear & Brakes", "q": "Taxi speed limit with two tires deflated on the same main gear?", "o": ["3 kt", "7 kt", "10 kt", "5 kt"], "a": 0, "w": "3 kt with two tires deflated on the same main gear. · FCOM LIM-LG"},
+ {"c": "Gear & Brakes", "q": "Maximum NWS angle with a deflated tire?", "o": ["7°", "30°", "75°", "±85°"], "a": 1, "w": "30° max NWS angle with a deflated tire (normal max is ±85°). · FCOM LIM-LG"},
+ {"c": "Gear & Brakes", "q": "Normal maximum nosewheel steering angle?", "o": ["±30°", "±75°", "±85°", "±90°"], "a": 2, "w": "±85° maximum NWS angle (refer DSC-20-30 Taxiing). · FCOM LIM-LG"},
+ {"c": "Navigation", "q": "IRS ground alignment is possible between which latitudes?", "o": ["70°N and 70°S", "78°N and 78°S", "82°N and 82°S", "90°N and 90°S"], "a": 2, "w": "Ground alignment possible between 82°N and 82°S. · FCOM LIM-NAV"},
+ {"c": "Navigation", "q": "Flying beyond the stated magnetic-reference (polar) latitude limits is…?", "o": ["Permitted with caution", "Prohibited", "Permitted in TRUE ref", "Permitted below FL100"], "a": 1, "w": "Where the IR cannot provide valid magnetic heading/track (defined polar bands), flying beyond those limits is prohibited. · FCOM LIM-NAV"},
+ {"c": "Oxygen", "q": "Oxygen REF temperature on the ground is calculated as…?", "o": ["OAT only", "(OAT + Cockpit TEMP) / 2", "CAB TEMP - 10 °C", "Cockpit TEMP only"], "a": 1, "w": "On ground: REF Temp = (OAT + Cockpit TEMP) / 2. · FCOM LIM-OXY"},
+ {"c": "Oxygen", "q": "Oxygen REF temperature in flight is…?", "o": ["CAB TEMP", "CAB TEMP - 10 °C", "OAT + 10 °C", "(OAT + CAB)/2"], "a": 1, "w": "In flight: REF Temp = CAB TEMP (°C) - 10 °C. · FCOM LIM-OXY"},
+ {"c": "Oxygen", "q": "Minimum flight-crew oxygen bottle pressure depends primarily on…?", "o": ["Aircraft weight", "ETOPS capability, number of occupants, and REF temperature", "Fuel load", "Cabin altitude only"], "a": 1, "w": "The min-pressure tables are indexed by ETOPS capability (90/120/180), occupants, and REF temperature. · FCOM LIM-OXY"},
+ {"c": "Oxygen", "q": "Minimum Lavatory-W portable oxygen bottle pressure at 21 °C (70 °F)?", "o": ["800 PSI", "1,000 PSI", "1,200 PSI", "1,500 PSI"], "a": 2, "w": "1,200 PSI at the 21 °C reference point. · FCOM LIM-OXY"},
+ {"c": "ROW/ROP", "q": "If a runway is not validated for ROPS in the TAWS database, ROPS is…?", "o": ["Fully available", "Inoperative", "Degraded but usable", "Advisory only"], "a": 1, "w": "ROPS is inoperative for runways not validated in the TAWS database; the operator must inform the crew. · FCOM LIM-ROW_ROP"},
+ {"c": "ROW/ROP", "q": "ROPS may be inhibited (TERR pb-sw OFF) when the aircraft position is…?", "o": ["Below 1,000 ft", "Less than 15 NM from the airfield", "Above FL100", "On any approach"], "a": 1, "w": "It may be inhibited within 15 NM of the airfield for procedures identified as producing undue ROW alerts. · FCOM LIM-ROW_ROP"},
+ {"c": "ROW/ROP", "q": "Operations where the assessed FLD is greater than the ROPS runway length…?", "o": ["Are normal", "Must not be conducted unless specifically authorised", "Require CONF FULL", "Need ATC approval only"], "a": 1, "w": "Such operations must not be conducted unless a specific authorisation is obtained. · FCOM LIM-ROW_ROP"},
+ {"c": "Surveillance", "q": "Aircraft navigation based on the terrain display is…?", "o": ["Approved", "Not permitted — situational awareness only", "Approved above MSA", "Approved with GPS PRIMARY"], "a": 1, "w": "Navigation must not be based on the terrain display; it is a situational-awareness tool only. · FCOM LIM-SURV"},
+ {"c": "Surveillance", "q": "Predictive GPWS should be inhibited (TERR pb OFF) when position is…?", "o": ["Below 500 ft", "Less than 15 NM from the airfield (for specified runways/procedures)", "Above FL200", "On every approach"], "a": 1, "w": "Inhibit within 15 NM of the airfield for runways not in the database or procedures known to cause spurious alerts (not on crew judgement alone). · FCOM LIM-SURV"}
+];
+
+/* ---- BTC progress-test bank (filtered: no passenger-ops, no LIM conflicts) ---- */
+const BTC_Q = [
+ {"c": "Aircraft General", "q": "On the OHP, what is signified by a blue light?", "o": ["Normal, but temporary, use of a system.", "A part of a push-button is not used.", "The switch is in the OFF position due to system malfunction.", "Crew awareness required."], "a": 0, "w": "A blue light on the OHP indicates the normal, temporary use of a system (a transient selection). · FCOM DSC-31 (indicating)"},
+ {"c": "Aircraft General", "q": "Regarding the lights on the overhead panel, which of the following statements is true?", "o": ["Amber means Immediate Action.", "BLUE means crew awareness.", "TWO DOTS means Abnormal Switch Position.", "WHITE means Abnormal Switch Position."], "a": 3, "w": "White on a pb-sw flags an off-normal switch position — the system is not in its normal configuration. · FCOM DSC-31 (indicating)"},
+ {"c": "Abnormal & Memory", "q": "Where in the cockpit are the Secondary Circuit Breakers installed?", "o": ["Left rear corner", "Right rear corner", "Overhead Panel", "In Avionics Bay"], "a": 1, "w": "The secondary (maintenance) circuit breakers are located in the right rear corner of the cockpit. · FCOM DSC-24 (Electrical)"},
+ {"c": "Aircraft General", "q": "Select correct statement about OEBs?", "o": ["OEB procedures appear on ECAM.", "RED OEBs have a significant impact on the safe operation of the aircraft.", "There are RED, AMBER and WHITE OEBs.", "OEB means Operators Engine Bulletin."], "a": 1, "w": "RED OEBs cover items with a significant impact on safe operation; other OEBs are less critical. · OEB policy (not DSC)"},
+ {"c": "Aircraft General", "q": "What is the Maximum Runway Slope?", "o": ["1%", "2%", "4%", "5%"], "a": 1, "w": "Runway slope limit is ±2% (mean). · FCOM LIM-AG-OPS-ARPT_WIND"},
+ {"c": "Gear & Brakes", "q": "What is the maximum ground speed?", "o": ["180 kt", "195 kt", "150 kt", "200 kt"], "a": 1, "w": "195 kt is the maximum tyre (ground) speed; being a tyre limit it is referenced to the ground. · FCOM LIM-AG-SPD"},
+ {"c": "Aircraft General", "q": "What is the maximum service ceiling for the A320?", "o": ["41000 ft", "39800 ft", "30000 ft", "31000 ft"], "a": 1, "w": "Max operating altitude is 39,800 ft (top of the environmental envelope). · FCOM LIM-AG-OPS Environmental Envelope"},
+ {"c": "Abnormal & Memory", "q": "What should you call in the event of LOSS OF BRAKING during landing roll?", "o": ["\\\"STOP\\\"", "\\\"APPLY BRAKING\\\"", "\\\"I HAVE CONTROL, BRAKES ON\\\"", "\\\"LOSS OF BRAKING\\\""], "a": 3, "w": "“LOSS OF BRAKING” is the memory-item trigger callout when the aircraft won't decelerate on the roll. · FCOM QRH Memory Items"},
+ {"c": "Abnormal & Memory", "q": "What is the call out for EMERGENCY DESCENT?", "o": ["\\\"EMERGENCY DESCENT\\\"", "\\\"START DESCENT\\\"", "\\\"DESCEND NOW\\\"", "\\\"I HAVE CONTROL, DESCEND\\\""], "a": 0, "w": "“EMERGENCY DESCENT” is the callout initiating the memory drill; PA is also “EMERGENCY DESCENT”, then “MASK OFF” at 10,000 ft. · FCOM QRH Memory Items"},
+ {"c": "Aircraft General", "q": "What is the maximum Wind Speed for opening a cockpit window?", "o": ["150 kt", "200 kt", "230 kt", "180 kt"], "a": 1, "w": "Max speed with a cockpit window open is 200 kt. · FCOM LIM-AG-SPD"},
+ {"c": "Aircraft General", "q": "What is the altitude limitation if there is NO crack on cockpit side (inner ply) in event of Windshield crack?", "o": ["MAX FL 100", "MAX FL 230", "NO LIMITATION", "MAX FL 250"], "a": 2, "w": "With no crack on the inner ply, there is no speed/altitude limitation. · FCOM DSC-56 (Windows)"},
+ {"c": "Electrical", "q": "With the white strobe light switch at AUTO, the lights will operate when:", "o": ["The main gear strut is not compressed", "The first engine is started", "Take-off thrust is set", "The landing gear is retracted"], "a": 0, "w": "In AUTO, the strobe lights operate when the main-gear strut is not compressed (i.e. airborne). · FCOM DSC-33 (Lights)"},
+ {"c": "Electrical", "q": "Which of the following cockpit lights are available when only the batteries powering aircraft?", "o": ["Reading lights and dome lights", "(Capt side) Both dome lights", "Right-hand dome light (F/O side)", "Left-hand dome light"], "a": 2, "w": "On batteries only, the right-hand (F/O) dome light is available. · FCOM DSC-33 (Lights)"},
+ {"c": "Fire Protection", "q": "When will a white SQUIB light illuminate on FIRE panel?", "o": ["When the FIRE p/button is released out.", "When the AGENT bottle pressure is low.", "As soon as the FIRE signal has been triggered.", "When the AGENT p/button is pushed."], "a": 0, "w": "The white SQUIB light confirms the agent squib circuit is armed once the FIRE pb is released out. · FCOM DSC-26-20-10"},
+ {"c": "Fire Protection", "q": "Regarding APU FIRE, which of the following statements is true?", "o": ["The APU will always automatically shutdown.", "In flight, the APU will shut down automatically.", "On the ground, the APU will automatically shut down and the extinguisher bottle will be discharged.", "On the ground, the APU will automatically shut down. The ECAM procedure must be carried out in order to discharge the fire bottle."], "a": 2, "w": "On the ground, an APU fire auto-shuts-down the APU and the extinguisher bottle discharges automatically. · FCOM DSC-26-20-10"},
+ {"c": "Fire Protection", "q": "To achieve a full test of the APU fire detection and extinguishing system on the ground, which statement is true?", "o": ["Requires the APU Master Switch to be ON.", "Requires at least one battery to be switched ON.", "Requires AC Power.", "Will cause the APU to shut down automatically."], "a": 2, "w": "A full test of the APU fire detection/extinguishing system requires AC power. · FCOM DSC-26 (Fire)"},
+ {"c": "Fire Protection", "q": "Regarding illuminated lights on an ENG FIRE panel, which of the following statements is true?", "o": ["The DISCH light illuminates when the squib has been fire", "All lights illuminate when the fire warning is activated.", "The SQUIB light illuminates when the fire warning is activated.", "The DISCH light illuminates when the bottle is depressurised"], "a": 3, "w": "The DISCH light shows the bottle has been fired and is depressurised. · FCOM DSC-26-20"},
+ {"c": "Fire Protection", "q": "The engine fire detectors are located:", "o": ["In the core and the gearbox", "On the pylon, fan and core", "On the fan and turbine", "On the High Pressure Turbine outlet"], "a": 1, "w": "Engine fire-detection loops run along the pylon, fan and core. · FCOM DSC-26-10"},
+ {"c": "Fire Protection", "q": "The ENG1 (2) FIRE Light remains illuminated until:", "o": ["The fire switch is pushed", "The fire is extinguished", "Either master warning light is pressed", "Agent 2 is discharged"], "a": 1, "w": "The ENG FIRE warning light stays illuminated until the fire is extinguished. · FCOM DSC-26-10"},
+ {"c": "Hydraulics", "q": "On the HYDRAULICS system, what happens automatically after 1st engine start?", "o": ["The BLUE electrical pump runs", "The YELLOW electrical pump runs.", "The PTU will be tested.", "The YELLOW Fire Shut-off valve will open."], "a": 0, "w": "The blue electric pump runs automatically once one engine is running / electrical power is available. · FCOM DSC-29-20"},
+ {"c": "Hydraulics", "q": "Regarding the RAT, which of the following statements is true?", "o": ["It deploys automatically in the event of the GREEN or YELLOW hydraulic system failure.", "It deploys automatically on failure of the BLUE hydraulic pump.", "It powers the EMER generator via the GREEN hydraulic system.", "Its normal operating pressure is 2500 psi."], "a": 3, "w": "Normal hydraulic pressure is 3000 PSI, but 2500 PSI when powered by the RAT. · FCOM DSC-29-10-10"},
+ {"c": "Hydraulics", "q": "Which of the following systems have hydraulic fluid shut-off valves?", "o": ["GREEN and BLUE", "BLUE, GREEN and YELLOW", "BLUE and YELLOW", "GREEN and YELLOW"], "a": 3, "w": "Only the green and yellow systems have (fire) shut-off valves; the blue system does not. · FCOM DSC-29-10"},
+ {"c": "Hydraulics", "q": "Where does the hydraulic reservoir pressurisation air come from?", "o": ["ENG 1 dedicated bleed only.", "ENG 1 dedicated bleed or any other available pneumatic source.", "From the main pneumatic system only.", "ENG 2 dedicated bleed or any other available pneumatic source."], "a": 1, "w": "The reservoirs are pressurised by bleed air via the pneumatic system (ENG1 bleed or any available source). · FCOM DSC-29-10-20"},
+ {"c": "Hydraulics", "q": "When is the PTU inhibited?", "o": ["During first engine start, provided the parking brake is ON.", "Always, during first engine start.", "From electrical power-up until after first engine start.", "From electrical power-up until after second engine start"], "a": 1, "w": "The PTU is inhibited during the first engine start and automatically tested on the second. · FCOM DSC-29-20"},
+ {"c": "Hydraulics", "q": "Prior to engine start it is possible to pressurise the green hydraulic system by:", "o": ["Use of the green engine pump", "Use of the yellow engine pump and the PTU", "Use of the yellow electric pump and the PTU", "Use of the blue electric pump"], "a": 2, "w": "Before start, the green system can be pressurised using the yellow electric pump plus the PTU. · FCOM DSC-29-20"},
+ {"c": "Hydraulics", "q": "The PTU comes into action automatically when the differential pressure between the GREEN and the YELLOW systems is greater than \\...\\...\\...\\...\\...PSI:", "o": ["300", "500", "750", "900"], "a": 1, "w": "The PTU runs automatically when the green/yellow differential pressure exceeds 500 PSI. · FCOM DSC-29-20"},
+ {"c": "Electrical", "q": "Following TR1 failure, which TR supplies which bus?", "o": ["ESS TR supplies the DC BUS 1.", "TR 2 supplies the ESS TR.", "ESS TR supplies the DC ESS BUS.", "ESS TR supplies the AC ESS BUS."], "a": 2, "w": "With TR1 failed, the ESS TR supplies the DC ESS BUS. · FCOM DSC-24 (Electrical)"},
+ {"c": "Electrical", "q": "Regarding the IDG disconnect push-button switch, which of the following statements is true?", "o": ["Press it for no more than 3 seconds.", "Press it for at least 3 seconds.", "Press it until the disconnect command disappears from ECAM.", "Press it once to disconnect the IDG and again to reconnect the IDG once the fault condition has been cleared"], "a": 0, "w": "Holding the IDG pb longer than 3 s may damage the disconnect mechanism. · FCOM DSC-24-20"},
+ {"c": "Electrical", "q": "What would cause the RAT to auto-extend?", "o": ["Loss of GEN 1 and GEN 2 when in flight.", "Loss of AC BUS 1 and AC BUS 2 when at more than 100 kts IAS.", "Loss of GEN 1 and GEN 2 when at more than 100 kts IAS.", "Loss of AC and DC ESS buses."], "a": 1, "w": "The RAT extends automatically if AC BUS 1 and AC BUS 2 are both lost above 100 kt. · FCOM DSC-24-10-30-30"},
+ {"c": "Electrical", "q": "Regarding the batteries, which of the following statements is true?", "o": ["Batteries must be charged if the voltage is more than 27.5 V", "The voltage check must be done with The BATT switches OFF.", "Battery charging time is approximately 10 minutes.", "In flight, on battery power only, the battery life is 40 minutes."], "a": 1, "w": "Battery voltage is checked with the BAT pb-sw OFF. · FCOM DSC-24 (Electrical)"},
+ {"c": "Electrical", "q": "What happens when the Gen 1 line P/B is selected to off?", "o": ["AC Bus 1 and 2 are not powered and emergency generator is activated", "AC Bus 1 is powered by Gen 2 because Gen 1 is deactivated", "AC Bus 1 is powered by Gen 2 because Gen 1 line contactor is open", "AC Bus 1 is not powered because the Gen 1 line contactor is opened"], "a": 2, "w": "With GEN 1 line off, its line contactor opens and the bus-tie contactor closes, so AC BUS 1 is fed by GEN 2. · FCOM DSC-24-20"},
+ {"c": "Electrical", "q": "How many times can you reset a circuit breaker:", "o": ["Once.", "Twice, if authorized by the procedure.", "Twice.", "Once, if authorized by the procedure."], "a": 3, "w": "A circuit breaker may be reset only once, and only if authorised by the procedure. · QRH/OEB (not in DSC)"},
+ {"c": "Electrical", "q": "If AC bus 1 fails, the AC ESS bus is supplied by the:", "o": ["Emergency Gen.", "AC bus 2", "Static Inverter", "RAT"], "a": 1, "w": "The AC ESS BUS is normally fed from AC BUS 1; if AC BUS 1 fails it is supplied from AC BUS 2. · FCOM DSC-24 (Electrical)"},
+ {"c": "Flight Controls & Flaps", "q": "Which of the following would cause all ten spoilers to deploy together?", "o": ["A roll input in flight.", "A roll input on the ground.", "A rejected take-off (at \\>72 kts).", "Manual use of speedbrakes in flight."], "a": 2, "w": "All ground spoilers deploy on a rejected takeoff above 72 kt. · FCOM DSC-27-30"},
+ {"c": "Flight Controls & Flaps", "q": "Which protections are available in NORMAL LAW?", "o": ["Pitch Attitude Protection, Load Factor Protection, High Speed Protection, High Angle of attack Protection, Bank Angle Protection", "Pitch Attitude Protection, Load Factor Protection, High Speed Stability, Low Speed Stability, Bank Angle Protection", "Pitch Attitude Protection, Load Factor Protection, High Speed Protection, Stall Protection only", "Load Factor Protection, High Speed Stability, Low Speed Stability"], "a": 0, "w": "Normal law provides pitch attitude, load factor, high-speed, high-AoA and bank-angle protections. · FCOM DSC-27-20-10"},
+ {"c": "Flight Controls & Flaps", "q": "In ALTERNATE LAW, what is the lowest speed achievable?", "o": ["Alpha Prot.", "Alpha Max.", "VSW", "Less than VSW"], "a": 3, "w": "Alternate law has no low-speed (AoA) protection, so speed can decay below VSW. · FCOM DSC-27-20-20"},
+ {"c": "Flight Controls & Flaps", "q": "Which of the following can be overridden by the sidestick?", "o": ["High speed protection.", "Alpha floor.", "Alpha protection.", "Low speed stability."], "a": 3, "w": "Low-speed stability is a soft cue, not a hard protection, and can be overridden by the sidestick. · FCOM DSC-27-20"},
+ {"c": "Flight Controls & Flaps", "q": "The aircraft is at 5000 feet, 250kts, straight and level, autopilot off, hands and feet off: if TOGA power is applied, at what speed will the aircraft eventually stabilise?", "o": ["Vmo - 10", "Vmo +6", "Vmo", "Vmo + 16"], "a": 2, "w": "Hands-off in high-speed stability/protection the aircraft tends to stabilise around VMO. · FCOM DSC-27-20-10"},
+ {"c": "Flight Controls & Flaps", "q": "Following selection of FLAP 1, which of the following statements is true?", "o": ["When decelerating for the approach, CONFIG 1 + F will be the result.", "During the acceleration, following a go-around, CONFIG 1 + F will be the result.", "During acceleration, following a takeoff, CONFIG 1 will be the result.", "The result is always CONFIG 1 + F in flight."], "a": 1, "w": "Selecting FLAP 1 in flight gives CONF 1 (slats only); 1+F is commanded on the ground or during go-around acceleration. · FCOM DSC-27-30"},
+ {"c": "Aircraft General", "q": "In flight, with Config 1 selected, what is represented by amber = on the speed strip?", "o": ["The maximum speed for selecting FLAP 2.", "The maximum permitted speed with FLAP 1.", "The minimum permitted speed with FLAP 1.", "The minimum speed for selecting FLAP 0."], "a": 0, "w": "The amber '=' on the PFD speed scale is VFE-next — the max speed for selecting the next flap step (FLAP 2). · FCOM DSC-31 / DSC-22_10-50"},
+ {"c": "Flight Controls & Flaps", "q": "The aircraft has achieved, and is maintaining, a constant high alpha, which has caused speedbrake auto-retraction: how can the speedbrakes be extended again?", "o": ["By reducing the alpha.", "By reducing the alpha, retracting the speedbrakes lever, waiting 10 seconds, then extending the lever.", "By reducing the alpha, retracting the speedbrakes lever, then immediately extending it again.", "By keeping high alpha, retracting the speedbrake lever, waiting 10 seconds, then extending the lever."], "a": 1, "w": "Recover by reducing alpha, retracting the speedbrakes, and allowing the protection to recover. · FCOM DSC-27-20-10"},
+ {"c": "Flight Controls & Flaps", "q": "Regarding maximum bank angles, which of the following statements is true?", "o": ["At normal speeds, the maximum is 67º (full sidestick deflection) and 25º (sidestick neutral).", "The maximum bank angle in ALTERNATE LAW is 45º.", "In HighSpeed Protection, the maximum is 40º (full sidestick deflection) and 0º (sidestick neutral).", "In ALPHA PROT, the maximum bank angle is 33º"], "a": 2, "w": "In High-Speed Protection the maximum bank is 40° (spiral static stability returns wings toward level). · FCOM DSC-27-20-10"},
+ {"c": "Auto Flight", "q": "What is signified by MAN PITCH TRIM ONLY on the FMA?", "o": ["Both FAC's have failed.", "The aircraft is in DIRECT LAW.", "The aircraft is in Mechanical Back-Up.", "Loss of all hydraulic power."], "a": 2, "w": "MAN PITCH TRIM ONLY on the FMA indicates the aircraft is in mechanical back-up (use manual pitch trim). · FCOM DSC-22_30-80-20"},
+ {"c": "Flight Controls & Flaps", "q": "A-LOCK (blue) is pulsing under the Flap/Slat indicator on the EWD: what does this signify?", "o": ["Flaps and Slats locked, in any position, due to high alpha.", "Flaps will not retract from 1 to 0 due to high alpha: to retract them reduce the alpha.", "Slats will not retract from 1 to 0 due to high alpha: to retract them, reduce the alpha.", "Slats will not retract from 1 to 0 due to high alpha: to retract them recycle the flap lever."], "a": 2, "w": "Alpha/speed lock (A LOCK, pulsing) inhibits slat retraction from 1 to 0 at high AoA / low speed. · FCOM DSC-27-30"},
+ {"c": "Flight Controls & Flaps", "q": "In NORMAL LAW, what occurs during the approach?", "o": ["At 50 feet the stabiliser freezes: at 30 feet, a nose down order is introduce", "At 30 feet, a nose up order is introduced in order to facilitate the flare.", "When the landing gear is lowered, the aircraft goes into Direct Law.", "When the landing gear is lowered, the roll (only) goes into Direct Law."], "a": 0, "w": "In the flare law of normal law: at 50 ft the stabiliser freezes; at 30 ft a slight nose-down is applied. · FCOM DSC-27-20-10"},
+ {"c": "Flight Controls & Flaps", "q": "Regarding Wing Tip Brakes, which of the following statements is true?", "o": ["They can be reset in flight.", "They operate only for asymmetric travel.", "Flaps and Slats have separate systems", "They are held on by electrical power."], "a": 2, "w": "Flaps and slats have independent systems (separate wing-tip brakes / SFCC channels). · FCOM DSC-27-30"},
+ {"c": "Flight Controls & Flaps", "q": "Roll control is achieved using which flight control surfaces?", "o": ["2 ailerons and 6 spoilers", "6 ailerons and 2 spoilers", "2 ailerons and 8 spoilers", "2 ailerons and 10 spoilers"], "a": 2, "w": "Roll control uses the 2 ailerons plus the roll spoilers (spoilers 2–5 on each wing). · FCOM DSC-27-10"},
+ {"c": "Flight Controls & Flaps", "q": "The side stick priority red arrow will illuminate:", "o": ["In front of the pilot losing authority", "In front of the pilot gaining authority", "Only after the takeover pb has been pressed for 40 secs", "In front of both pilots"], "a": 0, "w": "The red sidestick-priority arrow is in front of the pilot who has lost authority. · FCOM DSC-27-10"},
+ {"c": "Flight Controls & Flaps", "q": "The flight control surfaces are all:", "o": ["Electrically activated and hydraulically controlled", "Mechanically controlled", "Hydraulically actuated and electrically controlled", "Hydraulically actuated, with a mechanical back-up"], "a": 2, "w": "All primary flight-control surfaces are hydraulically actuated and electrically (fly-by-wire) controlled. · FCOM DSC-27-10"},
+ {"c": "Flight Controls & Flaps", "q": "Which protection is available in Alternate Law?", "o": ["Load Factor Protection", "Load Factor Protection available only with the Alternate Law with protections", "No protection available in Alternate Law", "Angle of Attack Protection"], "a": 0, "w": "Load factor protection is retained in alternate law. · FCOM DSC-27-20-20"},
+ {"c": "Flight Controls & Flaps", "q": "What happens when SFCC 1 fails?", "o": ["Nothing as SFCC 2 takes over", "Flaps and slats operate at half speed", "Flaps system lost", "Slats system lost"], "a": 1, "w": "If one SFCC fails, both slats and flaps operate at half speed. · FCOM DSC-27-30-10"},
+ {"c": "Flight Controls & Flaps", "q": "In alternate law, the change to direct law occurs when:", "o": ["Landing gear down or at the selection of flaps 2", "Landing gear down", "Passing 50 ft", "Three or more than three system failures"], "a": 1, "w": "In alternate law, the change to direct law occurs when the landing gear is selected down. · FCOM DSC-27-20-20"},
+ {"c": "Gear & Brakes", "q": "Regarding the LANDING GEAR, which of the following statements is true?", "o": ["Rudder nosewheel steering is never inhibited on the ground.", "After GRAVITY EXTENSION, the gear doors will remain open.", "With ANTISKID inop., the pedal brakes must be modulated to keep the pressure to \\<1000 psi.", "On landing, the autobrake system is activated by weight on wheels."], "a": 1, "w": "After a gravity (free-fall) extension, the gear doors remain open (no hydraulic power to close them). · FCOM DSC-32-10-10"},
+ {"c": "Gear & Brakes", "q": "On the WHEELS SD, what is indicated if a wheel identification number has vertical amber lines on each side of it?", "o": ["A brake temperature of \\>300ºC.", "A brake temperature between 100ºC and 300ºC.", "Loss of autobrake to that wheel.", "An antiskid brake released fault."], "a": 3, "w": "A vertical amber line through a wheel number on the WHEEL SD indicates an antiskid/brake-released fault. · FCOM DSC-31-70 / DSC-32"},
+ {"c": "Gear & Brakes", "q": "At one hundred knots on take-off, what is the situation regarding Nose Wheel Steering?", "o": ["No Nosewheel steering is available.", "Handwheel steering and rudder steering are both available.", "Handwheel steering is available: rudder steering is not available.", "Rudder steering is available: handwheel steering is not available."], "a": 3, "w": "Above ~70–100 kt the tiller (handwheel) steering is deactivated; rudder-pedal steering remains available. · FCOM DSC-32 (nose-wheel steering)"},
+ {"c": "Gear & Brakes", "q": "Regarding the AUTOBRAKE system, which of the following statements is true?", "o": ["MAX autobrake provides a pre-programmed deceleration rate.", "It is available in NORMAL and ALTERNATE braking.", "If LO is selected, the system will be activated four seconds after ground spoiler deployment.", "If MED is selected, the system will be triggered two seconds after touchdown."], "a": 2, "w": "With LO selected, autobrake applies 4 s after ground-spoiler deployment (MED applies after 2 s). · FCOM DSC-32-30"},
+ {"c": "Gear & Brakes", "q": "What causes the DECEL light to illuminate?", "o": ["Activation of the anti-skid system.", "Application of brake pressure to all wheels.", "Achievement of 80% of the selected deceleration rate.", "Activation of the anti-skid and autobrake systems."], "a": 2, "w": "The DECEL light comes on green when actual deceleration reaches 80% of the selected rate. · FCOM DSC-32-30-20"},
+ {"c": "Gear & Brakes", "q": "What is the sequence of events when Gravity Extension of the gear is performed?", "o": ["Safety valve closes, gear unlocks -- thereby forcing the doors open.", "Safety valve closes, then the doors unlock, then the gear unlocks.", "Doors unlock, gear unlocks, doors close when all gear legs locked down.", "Doors unlock, gear unlocks -- when all gear locked down, the safety valve closes."], "a": 1, "w": "Gravity-extension sequence: the safety valve closes, then the doors unlock, then the gear free-falls. · FCOM DSC-32-10-10"},
+ {"c": "Abnormal & Memory", "q": "During landing, you realise the aircraft is not slowing down...what are the correct initial actions?", "o": ["Reverse MAX: Brake pedals -- press.", "Parking brake in short and successive application.", "Reverse MAX: brake pedals release: A/SKID and N/W STRG OFF.", "Reverse MAX: brake pedals release: A/SKID and N/W STRG OFF then ON."], "a": 2, "w": "Loss-of-braking memory item: REV MAX, brake pedals RELEASE, then A/SKID & N/W STRG OFF, then press for max (~1000 PSI). · QRH memory items"},
+ {"c": "Abnormal & Memory", "q": "What are the combined correct initial actions of the Crew in event of a Rejected Take Off at 100kts?", "o": ["Idle thrust: when ground spoilers have deployed, SELECT REVERSE MAX.", "Call \"STOP\": REVERSE MAX: when ground spoilers have deployed, apply full pedal braking.", "Call \"STOP\": REVERSE MAX: apply full pedal braking.", "Call \"STOP\": REVERSE -- MAX: monitor braking"], "a": 3, "w": "Rejected-takeoff actions: Captain calls STOP, thrust levers IDLE, max reverse, monitor deceleration. · QRH / PRO-NOR SOP"},
+ {"c": "Communication", "q": "When should the AUDIO SWITCHING switch be moved from the NORM position?", "o": ["After a failure of the Capt's or F/O's loudspeaker.", "After a failure of RMP 1 and RMP 2", "After a failure of ACP1 or ACP2.", "After a failure of any RMP"], "a": 2, "w": "Move the AUDIO SWITCHING selector off NORM after a failure of ACP 1 or ACP 2. · FCOM DSC-23 (Comms)"},
+ {"c": "Communication", "q": "Which of the following correctly completes the statement; \"An EMERGENCY CALL, from the cabin to the flight deck, will, on the flight deck,.....\"", "o": ["trigger three buzzer sounds, and illuminate the CALL and ON lights.", "trigger a continuous buzzer sound, and illuminate the ON light.", "trigger three buzzer sounds and illuminate a RESET button on each ACP.", "trigger three buzzer sounds, and illuminate the CALL light only."], "a": 0, "w": "An EMERGENCY CALL triggers three buzzer sounds and lights the CALL and ON legends. · FCOM DSC-23 (Comms)"},
+ {"c": "Navigation", "q": "In case of dual FMGC failure, selection of radio navigation frequencies is possible with:", "o": ["RMP 1 only", "RMP 1 and 2 only", "RMP 1, 2 and 3", "RMP 2 only"], "a": 1, "w": "With both FMGCs failed, radio-navaids are tuned via RMP 1 and 2 (radio-nav backup). · FCOM DSC-23-10-20"},
+ {"c": "Air & Pressurisation", "q": "Which air supplies can be used simultaneously?", "o": ["Engines and APU.", "Engines, APU and Ground Supply (HP).", "Both engines.", "APU and Ground Supply (HP)."], "a": 2, "w": "Both engine bleeds can supply the system simultaneously. · FCOM DSC-36 (Pneumatic)"},
+ {"c": "Air & Pressurisation", "q": "What normally provides bleed leak detection for the APU bleed system?", "o": ["BMC 1", "BMC 2", "BMC 1 and 2", "APU ECB"], "a": 0, "w": "BMC 1 normally provides leak detection for the APU bleed system. · FCOM DSC-36 (Pneumatic)"},
+ {"c": "Air & Pressurisation", "q": "Which equipment controls the bleed output temperature to 200ºC?", "o": ["The BLEED valve.", "The BMC's.", "The HP valve.", "A FAN AIR VALVE and a PRECOOLER."], "a": 3, "w": "A fan-air valve and a precooler regulate the bleed output temperature to about 200 °C. · FCOM DSC-36-10-20"},
+ {"c": "Air & Pressurisation", "q": "Which of the following correctly completes the statement; \"Switching the APU Air Bleed on will cause......\"", "o": ["the crossbleed valve to open, and the pack flow to go to NORM.", "the crossbleed valve to close, and the pack flow to go to HI.", "the crossbleed valve to open and the ENG bleed valves to close.", "the crossbleed valve to close and the ENG bleed valves to close."], "a": 2, "w": "Selecting APU bleed opens the crossbleed valve and closes the engine bleed valves. · FCOM DSC-36-10"},
+ {"c": "Air & Pressurisation", "q": "Which of the following statements is true if One Bleed is OFF?", "o": ["Wing Anti-Ice is permitted on one wing at a time.", "Wing Anti-Ice is not permitted.", "With both packs off wing Anti-Ice is permitted.", "With one pack off wing Anti-Ice is permitted."], "a": 3, "w": "With one bleed OFF (one pack off), wing anti-ice remains permitted. · FCOM DSC-30 / DSC-36"},
+ {"c": "Aircraft General", "q": "What precautions should you be take if a LP ground air unit is connected?", "o": ["Do not use conditioned air simultaneously with PACKs", "Do not use APU bleed air", "Only single PACK operation is permitted", "Do not use ENG bleed air"], "a": 0, "w": "With an LP ground air unit connected, do not use conditioned air from the packs simultaneously. · FCOM LIM-AIR"},
+ {"c": "Air & Pressurisation", "q": "If both lanes of ACSC 1 have failed ------", "o": ["PACK 2 is lost and PACK 1 goes to high flow.", "PACK 1 is lost whilst there is no change in PACK flow for PACK 2.", "All Trim Air Valves are inoperative.", "ACSC 2 will take over, resulting in normal operation."], "a": 2, "w": "Loss of both ACSC 1 lanes renders all trim-air valves inoperative (zone temperature optimisation lost). · FCOM DSC-21-10"},
+ {"c": "Air & Pressurisation", "q": "When the Ram Air switch is selected to ON, which of the following statements is true regarding the Ram Air Valve?", "o": ["It will open only when pressure differential is less than 1.0 psi.", "It directs ambient air to the PACKS.", "It will open only when pressure differential is more than 1.0 psi.", "It should not be opened above 10,000 ft cabin altitude."], "a": 0, "w": "The emergency ram-air valve opens (outflow valve ~50%) only when ΔP is less than 1 PSI under auto control. · FCOM DSC-21-10-20"},
+ {"c": "Abnormal & Memory", "q": "In the event of sudden depressurisation at FL 300 due to structural failure, what will be the correct initial actions?", "o": ["Emer Descent -- Initiate, Both PACKS - High", "Emer Descent -- Initiate, if A/THR is off THR LEVERS - IDLE", "Emer Descent -- Initiate, AP and A/THR - OFF", "AP/FD - OFF, THR lever - IDLE, EMER Descent - Initiate"], "a": 1, "w": "Sudden depressurisation → Emergency Descent memory item: INITIATE, and if A/THR off, THR LEVERS IDLE. · QRH memory items"},
+ {"c": "Air & Pressurisation", "q": "What happens if the APU is supplying both PACK\\'s?", "o": ["Both PACK\\'s go to LO flow irrespective of the selected rate.", "Both PACK\\'s go to NORM flow irrespective of the selected rate.", "Both PACK\\'s go to HI flow irrespective of the selected rate.", "PACK 1 goes to LO flow and PACK 2 goes to HI flow irrespective of the selected rate."], "a": 2, "w": "When the APU supplies both packs, they go to HI flow regardless of the selected flow rate. · FCOM DSC-21-10"},
+ {"c": "Air & Pressurisation", "q": "Which components modulate the Trim Air Valves?", "o": ["ACSC 1 and 2.", "ACSC 1 only.", "ACSC 2 only.", "BMC 1 and 2"], "a": 0, "w": "The trim-air valves are modulated by ACSC 1 (cockpit) and ACSC 2 (cabin). · FCOM DSC-21-10-20"},
+ {"c": "Air & Pressurisation", "q": "In regard to the RAM AIR inlet flaps, they are:", "o": ["Closed during T/O and open on landing below 70 kts", "Open during T/O and landing below 70 kts", "Open during T/O and closed below 70 kts on landing", "Closed at all times."], "a": 0, "w": "The ram-air inlet flaps are closed for takeoff and open on landing below 70 kt (avionics cooling). · FCOM DSC-21 (ventilation)"},
+ {"c": "Air & Pressurisation", "q": "What is the Normal Max Cabin altitude?", "o": ["8000 ft", "9550 ft +/- 350 ft", "14000 ft", "800 ft"], "a": 0, "w": "The controller limits cabin altitude to approximately 8000 ft maximum in cruise. · FCOM DSC-21-20-30"},
+ {"c": "Aircraft General", "q": "What is the Max negative differential pressure for the cabin:", "o": ["0 PSI", "1 PSI", "2 PSI", "8.6 PSI"], "a": 1, "w": "Maximum negative cabin differential pressure is -1.0 PSI. · FCOM LIM-AIR"},
+ {"c": "Air & Pressurisation", "q": "What happens to the pack flow control valves during engine start (Eng Mode selector to ING/START):", "o": ["They must be selected off.", "They must be selected off on cold days only.", "They must be selected off on hot days only.", "They automatically close."], "a": 3, "w": "If the crossbleed is open at engine start, both pack-flow control valves automatically close. · FCOM DSC-21-10-50"},
+ {"c": "Air & Pressurisation", "q": "When will the LDG ELEV Fault trigger?", "o": ["When the LDG ELEV selector is set to AUTO and the landing field elevation of the FMGS is not available.", "When the LDG ELEV selector is set to AUTO and the landing field elevation of the CPC is not available.", "When the LDG ELEV selector is not at AUTO and the landing field elevation of the FMGS is not available.", "When the LDG ELEV selector is not at AUTO and the landing field elevation of the CPC is not available."], "a": 0, "w": "The LDG ELEV fault triggers when the selector is in AUTO and the landing-field elevation is not received. · FCOM DSC-21-20-40"},
+ {"c": "Air & Pressurisation", "q": "Cabin pressurisation begins:", "o": ["At first engine start", "With application of take-off power", "Lift off from the runway", "When thrust levers are selected to the CLB detent"], "a": 1, "w": "Cabin pressurisation (pre-pressurisation) begins with the application of takeoff power. · FCOM DSC-21-20"},
+ {"c": "Air & Pressurisation", "q": "What happens when the BLOWER is selected to OVERRIDE?", "o": ["Blower Fan keeps running + Close config + air conditioning air added.", "Blower Fan keeps running + open config", "Blower Fan stops + Close config + air conditioning air added", "Blower Fan stops + no config change"], "a": 2, "w": "BLOWER to OVRD: blower fan stops, closed configuration, A/C air added for avionics cooling. · FCOM DSC-21 (avionics vent)"},
+ {"c": "Air & Pressurisation", "q": "What happens when the Extract is selected to OVERRIDE?", "o": ["Extract Fan keeps running + Close config + air conditioning air added", "Extract Fan keeps running + open config", "Extract Fan stops + Close config + air conditioning air added", "Extract Fan stops + no config change"], "a": 0, "w": "EXTRACT to OVRD: extract fan keeps running, closed configuration. · FCOM DSC-21 (avionics vent)"},
+ {"c": "Air & Pressurisation", "q": "What happens when the Extract and Blower is selected to OVERRIDE?", "o": ["Extract and Blower Fan keeps running + Intermediate config + air conditioning air added", "Extract and Blower Fan keeps running + Open config + air conditioning air added", "Extract Fan keeps running + Blower Fan Stops + Intermediate config + air conditioning air added", "Extract Fan Stops + Blower Fan keeps running + Intermediate config + air conditioning air added"], "a": 2, "w": "EXTRACT + BLOWER to OVRD: extract fan runs, blower fan stops, intermediate configuration. · FCOM DSC-21 (avionics vent)"},
+ {"c": "Air & Pressurisation", "q": "Whilst in flight, at HIGH SKIN AIR temperature. In which configuration will the AVIONICS VENT be in?", "o": ["OPEN", "INTERMEDIATE", "CLOSE", "SMOKE"], "a": 1, "w": "At high skin temperature in flight, avionics ventilation uses the intermediate configuration. · FCOM DSC-21 (avionics vent)"},
+ {"c": "Ice & Rain", "q": "What happens if WING ANTI-ICE is selected ON when taxying for take-off?", "o": ["The Wing anti-ice valves open for 30 seconds only if ENG anti-ice is ON.", "The Wing anti-ice valves remain closed since aircraft is on Ground.", "The Wing anti-ice valves open for 30 seconds only and on lift off, the valves will re- open.", "The Wing anti-ice valves remain OPEN and remain OPEN until the switch is set to OFF."], "a": 2, "w": "On the ground, selecting WING ANTI-ICE opens the valves for 30 s (test), then closes; they reopen at liftoff. · FCOM DSC-30 (Ice & Rain)"},
+ {"c": "Ice & Rain", "q": "If a WING or ENG anti-ice valve loses electrical power, which of the following statements is true?", "o": ["The valves will remain in their present position.", "WING and ENG valves CLOSE", "WING and ENG valves OPEN", "WING valves CLOSE: ENG valves OPEN"], "a": 3, "w": "On loss of electrical power, wing anti-ice valves fail CLOSED and engine anti-ice valves fail OPEN. · FCOM DSC-30 (Ice & Rain)"},
+ {"c": "Air & Pressurisation", "q": "Following landing, in heavy rain, what is (are) the first action(s) to protect the avionics vent. system from water entry?", "o": ["Blower valve to OVRD.", "EXTRACT valve to OVRD.", "EXTRACT and Blower valves to OVR", "Ram Air Valve OPEN."], "a": 1, "w": "In heavy rain after landing, set the EXTRACT valve to OVRD. · FCOM DSC-21 / DSC-30"},
+ {"c": "Ice & Rain", "q": "The rain repellent system is inhibited :", "o": ["On the ground below 70 kts", "During Climb Phase", "When the wipers are working", "A/c on the ground and both engines shutdown"], "a": 3, "w": "Rain repellent is inhibited on the ground with both engines shut down. · FCOM DSC-30 (Ice & Rain)"},
+ {"c": "Aircraft General", "q": "What constitutes \"icing conditions\"?", "o": ["ENGINE -- IN FLIGHT: TAT between +10ºC and - 30ºC in all flight phases.", "ENGINE -- ON GROUND: OAT ≤10ºC and FOG (visibility less than 1 mile).", "WING -- IN FLIGHT: Visual evidence of ice accumulation on the wings.", "WING -- ON GROUND: OAT ≥10ºC, and contaminated taxyway or runway. (WAI must be selected ON after engine start)."], "a": 1, "w": "Icing conditions on the ground exist at OAT ≤10°C with fog/visible moisture (visibility ≤1600 m). · FCOM LIM-ICE_RAIN"},
+ {"c": "Surveillance", "q": "Which information is used in order to produce the EGPWS display?", "o": ["An FMGS database and FM1 position.", "An FMGS database and FM2 position.", "Weather radar (map mode) and baro altitude.", "Weather radar (map mode) and radio altitude."], "a": 0, "w": "The EGPWS terrain display uses the terrain database and FM (FM1) position. · FCOM DSC-34 (Surveillance)"},
+ {"c": "Surveillance", "q": "What does the Terrain Clearance Floor use in order to generate a \"TOO LOW TERRAIN\" message?", "o": ["GPWS information.", "Terrain Awareness and Display information.", "A database dedicated to a particular runway.", "A database dedicated to a particular airfield."], "a": 2, "w": "The Terrain Clearance Floor uses a runway-dedicated database to generate TOO LOW TERRAIN. · FCOM DSC-34 (Surveillance)"},
+ {"c": "Navigation", "q": "If ILS 2 receiver fails, where can ILS 1 displays be seen?", "o": ["PFD 2 and ND 2", "PFD 1 and ND 2", "PFD 1 and ND 1", "PFD 2 and ND 1"], "a": 1, "w": "With ILS 2 failed, ILS 1 can be displayed on PFD 1 and ND 2. · FCOM DSC-34 (Nav)"},
+ {"c": "Navigation", "q": "What could be the significance of an ALIGN light flashing on ADIRS panel?", "o": ["It may be possible to recover Altitude and Heading.", "The alignment has been completed.", "The system is doing a battery power test.", "The P-POS has not been entered within 10 mins of selecting NAV."], "a": 3, "w": "A flashing ALIGN light can mean the present position was not entered within 10 min of selecting NAV. · FCOM DSC-34-NAV-10-20"},
+ {"c": "Auto Flight", "q": "What does a triple click mean during an ILS approach?", "o": ["A level 3 warning to the crew", "A primary failure is occurring, prepare for a Go- Around", "Flaps are set at 3 and the landing gear is not down", "Landing capability down grading warning"], "a": 3, "w": "A triple click during an approach flags an approach/landing-capability downgrade (also used for mode reversion). · FCOM DSC-22_30-70"},
+ {"c": "Surveillance", "q": "If the TERRAIN ON ND pushbutton is switched OFF what happens if a Terrain awareness warning or caution is generated?", "o": ["The system switches on automatically: the terrain display sweeps from the centre outwards.", "The system switches on automatically: the terrain display sweeps anti-clockwise.", "The TERR ON ND \"ON\" light flashes.", "The Terrain Awareness Display pulses on the N.D."], "a": 0, "w": "Even with TERR ON ND off, the terrain display pops up automatically on a terrain alert. · FCOM DSC-34 (Surveillance)"},
+ {"c": "Abnormal & Memory", "q": "What are the correct initial actions following a \"WINDSHEAR\" warning after V1 during take-off?", "o": ["Perform Reject Take-off.", "TOGA thrust- FDs OFF: Rotate at VR.", "TOGA thrust: Reaching VR - Rotate : SRS -- follow.", "FLEX thrust: Reaching VR - Rotate : SRS -- follow."], "a": 2, "w": "Windshear after V1: TOGA, rotate at VR, follow SRS — memory item. · QRH memory items"},
+ {"c": "Abnormal & Memory", "q": "Following a GPWS \"TOO LOW GEAR\" warning, what are the correct initial actions?", "o": ["Continue Landing.", "Perform a go-around", "Landing Gear down.", "Speed check and Flap Full"], "a": 1, "w": "EGPWS 'TOO LOW GEAR' requires a go-around — memory item. · QRH memory items"},
+ {"c": "Abnormal & Memory", "q": "What is the correct immediate pitch attitude and thrust guidance in the event of unreliable IAS indications above THRUST RED ALT at FL 80?", "o": ["10º / CLB", "5º / CLB", "15º / CLB", "10º / TOGA"], "a": 0, "w": "Unreliable speed above thrust-reduction alt below FL100: 10°/CLB — memory item. · QRH memory items"},
+ {"c": "Abnormal & Memory", "q": "What are the correct initial actions on receipt of a TCAS \"CLIMB\" message?", "o": ["A/P ON: ATHR OFF: V/S to green area on PF", "A/P OFF: ATHR OFF: V/S to green area on PFD.", "A/P OFF: Both FD's OFF: V/S to 1500ft/min -- if still in red area, increase to 2500ft/min.", "A/P OFF: Both FD's OFF: V/S to green area on PFD."], "a": 3, "w": "TCAS 'CLIMB' RA: AP OFF, both FDs OFF, fly V/S into the green band — memory item. · QRH memory items"},
+ {"c": "Abnormal & Memory", "q": "What are immediate actions for STALL RECOVERY?", "o": ["TOGA : NOSE DOWN : WINGS LEVEL", "TOGA : MAINTAIN LEVEL FLIGHT WITH WINGS LEVEL", "NOSE DOWN : WINGS LEVEL", "TOGA : NOSE UP : BANK 450"], "a": 2, "w": "Stall recovery: NOSE DOWN, WINGS LEVEL — memory item (pitch first). · QRH memory items"},
+ {"c": "Abnormal & Memory", "q": "In even of STALL WARNING AT LIFT-OFF, what will be the correct initial actions?", "o": ["FDs - OFF : TOGA : PITCH ATTITUDE - 150", "FELX : PITCH ATTITUDE - 12.50 : WINGS LEVEL", "TOGA : PITCH ATTITUDE - 12.50 : WINGS LEVEL", "TOGA : PITCH ATTITUDE - 150 : WINGS LEVEL"], "a": 3, "w": "Stall warning at lift-off: TOGA, 15° pitch, wings level — memory item. · QRH memory items"},
+ {"c": "Auto Flight", "q": "On which MCDU page, can aircraft position accuracy be checked?", "o": ["PROG", "PERF", "RAD NAV", "DATA"], "a": 0, "w": "FM position accuracy (HIGH/LOW) is checked on the MCDU PROG page. · FCOM DSC-22_20-10-20"},
+ {"c": "Navigation", "q": "Regarding the ISIS, which of the following statements is true?", "o": ["It receives its information from ADIRU 1 or 3.", "It receives its information from ADIRU 3 only.", "The ILS localiser can be used for a back-course approach.", "The ATT RESET function can be used at any time."], "a": 0, "w": "NOTE — I could NOT confirm this in the DSC supplied. The ISIS is normally an independent standby instrument with its own sensors; the claim that it takes ADIRU 1/3 data is doubtful. Verify against DSC-31/DSC-34 before trusting."},
+ {"c": "Navigation", "q": "If ADIRU 2 fails, the correct action is:", "o": ["Set ATT HDG and Air Data Selectors to Capt 3", "Set ATT HDG and Air Data Selectors to F/O 3", "Set ATT HDG selectors to Capt 3, Air Data Selector to F/O 3", "Set ATT HDG selectors to F/O 3, Air Data Selector to Capt 3"], "a": 1, "w": "On ADIRU 2 failure, switch the F/O's ATT HDG and AIR DATA selectors to position 3 (use ADIRU 3). · FCOM DSC-34 (Nav)"},
+ {"c": "Navigation", "q": "Selection of the NAV key(on RMP) engages the radio navigation back up mode. This:", "o": ["Removes the NAVAIDS tuning capability from that FMGC", "Isolates the radio communication system.", "Removes the NAVAIDS tuning capability from both FMGCs", "Allows extra NAVAIDS to be tuned and displayed."], "a": 2, "w": "Selecting NAV (radio-nav backup) on the RMP removes navaid-tuning capability from both FMGCs. · FCOM DSC-23 / DSC-34"},
+ {"c": "Navigation", "q": "What is meant by CHECK ATT (amber) on the PFD's?", "o": ["If it appears on only one PFD, it indicates an impending failure of the associated system.", "If it appears on the CAPT's PFD only, select the IR SWITCHING switch to CAPT ON 3.", "Both PFD's show different attitudes: check ISIS in order to identify failed system.", "If it appears on both PFD's, select the IR SWITCHING switch to CAPT (or F/O) then ignore the other PFD."], "a": 2, "w": "CHECK ATT (amber) means the two PFDs differ by more than 5° in pitch and/or roll — cross-check the ISIS. · FCOM DSC-31-05-60"},
+ {"c": "Navigation", "q": "In \"ELEC-EMER CONFIG\", which navaids can be tuned?", "o": ["VOR 1, ADF 1 and both ILS's.", "VOR 1, ADF 1 and ILS 1.", "VOR 1 & 2 and both ILS's.", "VOR 1 & 2, ADF 1 & 2, ILS 1 & 2"], "a": 1, "w": "In the emergency electrical (EMER) configuration, only VOR 1, ADF 1 and ILS 1 can be tuned. · FCOM DSC-24 / DSC-34"},
+ {"c": "Navigation", "q": "How Long does a normal IRS Alignment take?", "o": ["10 min", "16 min", "7 min", "30 sec"], "a": 0, "w": "A normal IRS alignment takes 10 min (a fast alignment 30 s). · FCOM DSC-34-NAV-10-20"},
+ {"c": "Navigation", "q": "When does the amber ON BAT light on the ADIRS panel illuminate?", "o": ["When the aircraft battery supplies at least one IRS.", "Only when all IRSs supplied by the battery", "When aircraft battery voltage is below the sufficient voltage required to supply IRS", "It illuminates during fast alignment"], "a": 0, "w": "The ON BAT light illuminates when the batteries supply at least one ADIRU (and briefly at the start of a full alignment). · FCOM DSC-34-NAV-10-20"},
+ {"c": "Auto Flight", "q": "In which modes will the Yaw bar be displayed on PFD (LOC signal available for the runway)?", "o": ["RWY and NAV mode", "RWY and ROLL OUT mode", "LAND mode", "RWY TRK mode"], "a": 1, "w": "The yaw bar is displayed in RWY and ROLL OUT modes (LOC-based ground guidance). · FCOM DSC-22_30-40 (FG)"},
+ {"c": "Auto Flight", "q": "If both FAC\\'s fail, what happens to the rudder limiter?", "o": ["The Rudder Limiter is locked at its present deflection limit and assumes the low speed deflection limit when flap 1 is selected.", "The Rudder Travel Limiter immediately selects the low speed deflection limit.", "Maximum high speed rudder deflection can be obtained after slat extension.", "There will be no effect no effect on rudder limiter as ELAC 2 will take over the function."], "a": 0, "w": "If both FACs fail, the rudder travel limiter locks at its current deflection limit. · FCOM DSC-22 (Flight Augmentation)"},
+ {"c": "Auto Flight", "q": "With the F.D.s. and A/P's switched OFF, the ATHR is switched on: which of the following statements is correct?", "o": ["The airspeed bug is magenta, and is set by the FMGS.", "The airspeed bug is blue and defaults to the current airspeed.", "The airspeed bug is magenta, and defaults to the current airspeed.", "The airspeed bug is blue, and defaults to green dot speed."], "a": 1, "w": "With FD/AP off and A/THR on, the speed target reverts to the current speed (blue bug). · FCOM DSC-22 (FG)"},
+ {"c": "Auto Flight", "q": "During the managed descent phase and if crew pulls HDG selector knob, the FMA changes from THR IDLE / DES / NAV to.......", "o": ["SPEED / V/S / HDG.", "THR IDLE / V/S / HDG.", "THR IDLE / OP DES / HDG.", "SPEED / OP DES / NAV"], "a": 0, "w": "Pulling HDG in managed descent reverts vertical to V/S — FMA reads SPEED / V/S / HDG. · FCOM DSC-22_30-40"},
+ {"c": "Aircraft General", "q": "On the FMA in the fifth column", "o": ["A/THR in blue indicates A/THR is active.", "A/THR in white indicates A/THR is active.", "1FD1 indicates FD 2 is switched OFF.", "1FD- indicates FD 2 has failed."], "a": 1, "w": "NOTE — imprecise: on the FMA, A/THR in blue = active/controlling; white = armed. Treat 'active' loosely and verify."},
+ {"c": "Auto Flight", "q": "At high altitudes if the aircraft overfly the optimum top of descent point, what is annunciated on the FMA?", "o": ["MACH/DESC (on the top line).", "DESCEND NOW (on the third line).", "MORE DRAG (on the third line).", "DECELERATE (on the third line)."], "a": 3, "w": "Past the computed top of descent, the PFD shows DECELERATE on the third line. · FCOM DSC-22 (FMS)"},
+ {"c": "Auto Flight", "q": "LAND Mode will disengage when?", "o": ["V/S knob is pushed.", "ALT knob is pushed or pulled.", "HDG knob is pushed.", "Go-around is performed."], "a": 3, "w": "LAND mode can only be disengaged by performing a go-around. · FCOM DSC-22_30-40"},
+ {"c": "Auto Flight", "q": "SRS on a G/A will give a speed target of?", "o": ["The lower of Vapp or current speed at engagement.", "The higher of Vapp or speed at engagement.", "\"F\" speed.", "An undefined speed that depends on weight and angle of attack"], "a": 1, "w": "SRS on a go-around targets the higher of VAPP or the speed memorised at engagement. · FCOM DSC-22_30-40-90"},
+ {"c": "Auto Flight", "q": "In THR CLB / CLB / NAV mode, what will be FMA if HDG mode is selected?", "o": ["THR CLB / OP CLB / HDG", "THR CLB / V/S / HDG", "SPEED / OP CLB / HDG", "SPEED / V/S / HDG"], "a": 0, "w": "Selecting HDG drops managed NAV and reverts vertical to OP CLB: THR CLB / OP CLB / HDG. · FCOM DSC-22 (FG)"},
+ {"c": "Auto Flight", "q": "The Capt's flight Director is manually disengaged during the flight?", "o": ["The FD bars disappears from Captains PFD, with the \"2FD2\" symbol displayed", "FD bars disappear from the Captains PFD and the symbol \"-FD2\" is displayed", "An ECAM caution is generated, with \"-FD2\" on FMA", "The FD bars remain on both PFDs but the symbol \"2FD2\" is displayed"], "a": 1, "w": "Turning off the Captain's FD removes the CAPT FD bars (and shows the -FD2 status). · FCOM DSC-22 (FG)"},
+ {"c": "Auto Flight", "q": "In a climbing turn, the FD's and A/P are switched OFF, then the A/P is selected ON again. What do the FMA's indicate?", "o": ["No FMA since the FDs are not ON", "SPD / ALT / HDG", "THR CLB / OP CLB / HDG or THR CLB / FPA /TRK", "SPEED / V/S / HDG or SPEED / FPA / TRK"], "a": 3, "w": "Re-engaging the AP in a climbing turn gives SPEED / V/S / HDG (or SPEED / FPA / TRK). · FCOM DSC-22 (FG)"},
+ {"c": "Electrical", "q": "When Gen 1 & Gen 2 fails, the emergency generator supplies the aircraft. Which of the following system is available when EMER GEN powering aircraft?", "o": ["FMGC 1", "FMGC 2", "BOTH FMGC", "NO FMGC is available"], "a": 0, "w": "On the emergency generator, FMGC 1 remains powered. · FCOM DSC-24 (Electrical)"},
+ {"c": "Auto Flight", "q": "When both FDs are ON and A/THR engaged, which of the following FMGC\\'s is master?", "o": ["FMGC 1", "FMGC 2", "Both FMGCs", "No FMGC is master, as no auto pilot is active."], "a": 0, "w": "With both FDs on and A/THR engaged, FMGC 1 is the master. · FCOM DSC-22 (FG)"},
+ {"c": "Aircraft General", "q": "When is the Autopilot first available for use?", "o": ["50 ft above", "100 ft above", "Just after lift-off", "At rotate"], "a": 1, "w": "The autopilot is first available at 100 ft AGL (and at least 5 s after lift-off). · FCOM LIM-AFS-10-10"},
+ {"c": "Auto Flight", "q": "At what radio altitude is \\\"RETARD\\\" heard", "o": ["at 10 ft during Autoland", "at 20 ft during Autoland", "at 10 ft during Manual Landing", "at 20 ft during Autoland and Manual Landing"], "a": 0, "w": "The RETARD callout triggers at 10 ft RA in an autoland (20 ft in a manual landing). · FCOM DSC-22_30-50-50"},
+ {"c": "Auto Flight", "q": "What do the FMA's read if a lower altitude is selected, and the ALT knob on the FCU is Pulled?", "o": ["DES", "V/S", "OP DES", "EXP DES"], "a": 2, "w": "Selecting a lower altitude and pushing the ALT knob gives OPEN DES. · FCOM DSC-22 (FG)"},
+ {"c": "Auto Flight", "q": "Select the correct statement about Cost Index?", "o": ["Cost Index = 0 corresponds to minimum fuel consumption (Max Range)", "Cost Index = 999 corresponds to minimum fuel consumption (Max Range)", "Cost Index is the ratio of fuel cost to aircraft efficiency", "The Cost Index is used to calculate Green Dot speed."], "a": 0, "w": "Cost Index 0 corresponds to minimum fuel consumption (maximum range). · FCOM DSC-22_20-10-40"},
+ {"c": "Auto Flight", "q": "On which MCDU page would you insert the Trip Wind?", "o": ["Init A", "Init B", "Perf", "Prog"], "a": 1, "w": "The Trip Wind is inserted on the MCDU INIT B page. · FCOM DSC-22_20-10-30"},
+ {"c": "Auto Flight", "q": "With the aircraft in flight, A/THR not engaged, thrust levers on CLB gate, an alpha floor is detected:", "o": ["A/THR does not get engaged because the engines are already in CLB.", "A/THR automatically engages, but is not active.", "A/THR automatically engages and controls the engines with CLB.", "A/THR automatically engages and controls the engine with TO/GA."], "a": 3, "w": "With A/THR armed and the thrust levers in the CLB detent, A/THR automatically engages and controls thrust. · FCOM DSC-22 (FG)"},
+ {"c": "Auto Flight", "q": "What mode will the Auto Pilot revert to, if the altitude is changed from FL300 to FL200 when ALT\\*is active?", "o": ["V/S", "DES", "OP DES", "ALT"], "a": 0, "w": "Changing the target altitude during ALT capture (ALT*) reverts the mode to V/S. · FCOM DSC-22 (FG)"}
+];
+for(const x of BTC_Q){ BANK.push(x); }
+
+/* ---- Expanded system questions (verified against DSC) ---- */
+const NEW_Q = [
+ {"c": "Electrical", "q": "The normal AC electrical system is…?", "o": ["115/200 V, 400 Hz constant frequency", "28 V DC only", "230 V, 50 Hz", "115 V variable frequency"], "a": 0, "w": "A three-phase 115/200 V, 400 Hz constant-frequency AC system (plus a 28 V DC system). · FCOM DSC-24-10-10"},
+ {"c": "Electrical", "q": "Rated output of each engine-driven generator?", "o": ["45 KVA", "90 KVA", "115 KVA", "200 KVA"], "a": 1, "w": "Each GEN supplies up to 90 KVA of 115/200 V 400 Hz power. · FCOM DSC-24-10-20"},
+ {"c": "Electrical", "q": "The APU generator can replace…?", "o": ["Only GEN 1", "Only one engine generator", "Either or both engine generators, at any time", "Only external power"], "a": 2, "w": "The APU GEN produces the same output as a main gen and can replace either or both at any time. · FCOM DSC-24-10-20"},
+ {"c": "Electrical", "q": "Maximum DC output of each main transformer rectifier (TR)?", "o": ["100 A", "150 A", "200 A", "23 A"], "a": 2, "w": "TR 1 and TR 2 each supply up to 200 A of DC. The ESS TR is a third, identical unit. · FCOM DSC-24-10-20"},
+ {"c": "Electrical", "q": "Normal capacity of each main battery?", "o": ["15 Ah", "23 Ah", "40 Ah", "90 Ah"], "a": 1, "w": "Each of the two main batteries has a normal capacity of 23 Ah and is permanently connected to a hot bus. · FCOM DSC-24-10-20"},
+ {"c": "Electrical", "q": "Above 50 kt, the static inverter is automatically activated when…?", "o": ["Both BAT pb are ON", "Only the batteries are supplying power, regardless of BAT pb position", "Any generator fails", "External power is lost"], "a": 1, "w": "Above 50 kt it activates automatically if only the batteries supply the aircraft, whatever the BAT pb positions. Below 50 kt it needs both BAT pb ON. · FCOM DSC-24-10-20"},
+ {"c": "Electrical", "q": "Which source has priority in the electrical network?", "o": ["APU generator", "External power", "GEN 1 and GEN 2 (engine generators)", "The batteries"], "a": 2, "w": "Engine GEN 1 and 2 have priority over the APU gen and external power; external power beats the APU gen when EXT PWR is ON. · FCOM DSC-24-10-30-10"},
+ {"c": "Electrical", "q": "Can the generators be connected in parallel?", "o": ["Yes", "No", "Only GEN 1 and GEN 2", "Only on the ground"], "a": 1, "w": "The generators cannot be paralleled; one engine generator alone can supply the entire network. · FCOM DSC-24-10-30-10"},
+ {"c": "Electrical", "q": "The DC ESS BUS is normally supplied by…?", "o": ["TR 2", "TR 1", "The batteries", "The ESS TR"], "a": 1, "w": "TR 1 normally supplies DC BUS 1, DC BAT BUS and the DC ESS BUS; TR 2 supplies DC BUS 2. · FCOM DSC-24-10-30-20"},
+ {"c": "Electrical", "q": "The ESS TR powers the essential DC circuit from the emergency generator when…?", "o": ["Any time on ground", "All engine/APU generators fail, or TR 1 or TR 2 fails", "Only both TRs fail", "The battery is low"], "a": 1, "w": "The ESS TR can power the essential DC circuit from the emergency generator if all main generators fail, or if TR 1 or TR 2 fails. · FCOM DSC-24-10-20"},
+ {"c": "Hydraulics", "q": "Normal operating pressure of each hydraulic system?", "o": ["2500 PSI", "3000 PSI", "3500 PSI", "5000 PSI"], "a": 1, "w": "3000 PSI normal (2500 PSI when a system is powered by the RAT). Fluid cannot transfer between systems. · FCOM DSC-29-10-10"},
+ {"c": "Hydraulics", "q": "The GREEN system is pressurised by…?", "o": ["An electric pump", "A pump driven by engine 1", "A pump driven by engine 2", "The RAT"], "a": 1, "w": "Engine 1 drives the green system pump. Engine 2 drives the yellow pump; the blue system uses an electric pump. · FCOM DSC-29-10-20"},
+ {"c": "Hydraulics", "q": "In an emergency, the BLUE system is pressurised by…?", "o": ["Engine 1 pump", "The PTU", "A RAT-driven pump", "The yellow electric pump"], "a": 2, "w": "Blue is normally an electric pump; in emergency a RAT-driven pump pressurises it. · FCOM DSC-29-10-20"},
+ {"c": "Hydraulics", "q": "The yellow hand pump is used to…?", "o": ["Start the APU", "Operate the cargo doors when no electrical power is available", "Charge the accumulators", "Refill the reservoir"], "a": 1, "w": "Crew can hand-pump the yellow system to operate the cargo doors with no electrical power. · FCOM DSC-29-10-20"},
+ {"c": "Hydraulics", "q": "The fire shutoff valves are fitted to which systems, and closed how?", "o": ["All three, by the FIRE pb", "Green and yellow, by the ENG 1(2) FIRE pb", "Blue only, automatically", "Green only, by the crew"], "a": 1, "w": "Green and yellow each have a fire shutoff valve upstream of the engine pump, closed by the ENG 1(2) FIRE pb. · FCOM DSC-29-10-20"},
+ {"c": "Hydraulics", "q": "What do the priority valves do?", "o": ["Balance the three systems", "Cut off hydraulic power to heavy-load users when system pressure gets low", "Open the PTU", "Pressurise the reservoirs"], "a": 1, "w": "Priority valves shed heavy-load users to preserve pressure for essential users when a system runs low. · FCOM DSC-29-10-20"},
+ {"c": "Hydraulics", "q": "The RAT can be stowed…?", "o": ["In flight or on ground", "Only when the aircraft is on the ground", "Only above 100 kt", "Automatically"], "a": 1, "w": "The RAT is deployed manually from the overhead panel and can be stowed only on the ground. · FCOM DSC-29-10-20"},
+ {"c": "Hydraulics", "q": "The hydraulic reservoirs are normally pressurised by…?", "o": ["An electric compressor", "HP bleed air from engine 1 (crossbleed if low)", "The RAT", "Yellow electric pump"], "a": 1, "w": "HP bleed air from engine 1 normally pressurises the reservoirs (from the crossbleed duct if pressure is low) to prevent pump cavitation. · FCOM DSC-29-10-20"},
+ {"c": "Fuel", "q": "Besides feeding the engines and APU, the fuel system also…?", "o": ["Cools the brakes", "Circulates fuel to cool the IDG", "Pressurises the cabin", "Drives the PTU"], "a": 1, "w": "Fuel is circulated to cool the Integrated Drive Generator (IDG); the system also controls centre-to-wing transfer. · FCOM DSC-28-10-10"},
+ {"c": "Fuel", "q": "When refuelled to maximum capacity, the fuel can expand by how much without spilling?", "o": ["0.5%", "2% (a 20 °C temperature rise)", "5%", "10%"], "a": 1, "w": "A 2% expansion (≈20 °C temperature rise) is allowed at max fill; vent/surge tanks and overpressure protectors manage the rest. · FCOM DSC-28-10-20"},
+ {"c": "Fuel", "q": "How many fuel pumps does each wing have, and how do they run?", "o": ["One, on demand", "Two, running continuously", "Three, sequenced", "One per engine, on demand"], "a": 1, "w": "Each wing has two identical pumps that run continuously to feed the engine on that side. · FCOM DSC-28-10-30"},
+ {"c": "Fuel", "q": "If both fuel pumps in a wing fail, the engine can be fed…?", "o": ["Only by the APU", "By gravity from the wing tank below the gravity-feed ceiling", "By the centre tank only", "Not at all"], "a": 1, "w": "With both wing pumps failed, the engine gravity-feeds from the associated wing tank below the gravity-feed ceiling (QRH procedure). · FCOM DSC-28-10-30"},
+ {"c": "Fuel", "q": "The engine LP valve is controlled by…?", "o": ["The crossfeed pb", "The ENG MASTER lever", "The FADEC", "The fuel pump pb"], "a": 1, "w": "Each engine LP valve stops fuel flow to the engine and is commanded by the ENG MASTER lever. · FCOM DSC-28-10-30"},
+ {"c": "Fuel", "q": "In what sequence do the tanks empty?", "o": ["Wings, then centre, then ACTs", "ACT2 → ACT1 → centre → wings", "Centre, then wings, then ACTs", "Simultaneously"], "a": 1, "w": "Fuel transfers ACT2 then ACT1 into the centre tank, the centre tank into the wings, then the wings feed the engines. · FCOM DSC-28-10-30"},
+ {"c": "Fuel", "q": "Centre-tank-to-wing transfer is controlled by…?", "o": ["The crew manually", "The FLSCU, which controls the transfer valve (jet-pump suction)", "The FADEC", "The crossfeed valve"], "a": 1, "w": "The Fuel Level Sensing Control Unit automatically controls the transfer valve; open, wing-pump flow through a jet pump creates suction to move centre fuel to the wings. · FCOM DSC-28-10-30"},
+ {"c": "Fire Protection", "q": "Each engine and the APU fire-detection system uses…?", "o": ["A single loop", "Two identical detection loops (A and B) in parallel, plus an FDU", "Three loops", "Smoke detectors only"], "a": 1, "w": "Two identical loops (A and B) in parallel feed a Fire Detection Unit; a fault in one loop leaves the other protecting the aircraft. · FCOM DSC-26-20-10"},
+ {"c": "Fire Protection", "q": "Engine fire sensing elements are located in the…?", "o": ["Cabin and hold", "Pylon nacelle, engine core, and fan section", "Wing and tail", "Cockpit"], "a": 1, "w": "Sensing elements sit in the pylon nacelle, engine core and fan section (plus one in the APU compartment). · FCOM DSC-26-20-10"},
+ {"c": "Fire Protection", "q": "A fire warning is triggered when…?", "o": ["Only both loops agree", "Both loops detect, OR one detects with the other failed, OR both loops break within 5 s, OR a test", "Any single sensor heats", "Smoke is detected"], "a": 1, "w": "Warning logic: both loops, or one loop with the other failed, or breaks in both loops within 5 s (flame effect), or a FIRE-panel test. · FCOM DSC-26-20-10"},
+ {"c": "Fire Protection", "q": "How many fire extinguisher bottles does each engine have (and the APU)?", "o": ["1 engine / 1 APU", "2 engine / 1 APU", "2 engine / 2 APU", "1 engine / 2 APU"], "a": 1, "w": "Each engine has two bottles; the APU has one bottle (with two squibs). · FCOM DSC-26-20-10"},
+ {"c": "Fire Protection", "q": "Pushing the ENG FIRE pb does NOT do which of these?", "o": ["Silence the aural warning", "Arm the extinguisher squibs", "Increase engine idle", "Close the LP fuel valve and the hydraulic fire shutoff valve"], "a": 2, "w": "Pushing the ENG FIRE pb silences the warning, arms the squibs, and closes the LP fuel valve and hydraulic fire shutoff valve — it does not change idle. · FCOM DSC-26-20-20"},
+ {"c": "Fire Protection", "q": "Smoke detection is provided for…?", "o": ["The engines", "The cargo compartments and the avionics bay", "The wings", "The APU only"], "a": 1, "w": "Smoke detection covers the cargo compartments and avionics bay; the engines/APU use fire/overheat detection. · FCOM DSC-26-10"},
+ {"c": "Flight Controls & Flaps", "q": "How many flight-control computers are there, and of what types?", "o": ["5: 2 ELAC, 3 SEC", "7: 2 ELAC, 3 SEC, 2 FAC", "3: 3 SEC", "6: 3 ELAC, 3 SEC"], "a": 1, "w": "Seven computers: 2 ELACs, 3 SECs and 2 FACs. · FCOM DSC-27-10-10"},
+ {"c": "Flight Controls & Flaps", "q": "What does ELAC stand for and control?", "o": ["Electrical Actuator Computer — spoilers", "Elevator Aileron Computer — normal elevator/stabiliser and aileron control", "Engine Limit Computer", "Electronic Landing Computer"], "a": 1, "w": "The Elevator Aileron Computer handles normal elevator/stabiliser control and aileron control; the SEC (Spoilers Elevator Computer) drives the spoilers. · FCOM DSC-27-10-10"},
+ {"c": "Flight Controls & Flaps", "q": "How is the rudder controlled, and is it protected in normal law?", "o": ["Electrically; fully protected", "Mechanically (yaw damping/turn-coordination/trim are electrical); it has no envelope protection", "Hydraulically only; protected", "By the ELAC; protected"], "a": 1, "w": "The rudder is mechanically controlled (electrical only for yaw damping, turn coordination and trim) and, like a conventional aircraft, has no flight-envelope protection. · FCOM DSC-27-10-10"},
+ {"c": "Flight Controls & Flaps", "q": "The two sidesticks are…?", "o": ["Mechanically coupled", "Not mechanically coupled — they send separate signals to the computers", "Linked only in normal law", "Linked below 100 ft"], "a": 1, "w": "The sidesticks are not mechanically coupled; each sends its own signals (priority logic resolves dual inputs). · FCOM DSC-27-10-10"},
+ {"c": "Flight Controls & Flaps", "q": "Which axis has NO manual trim control?", "o": ["Pitch", "Yaw", "Roll (ailerons) — there is no manual aileron trim switch", "All are trimmable"], "a": 2, "w": "There is no manual aileron (roll) trim; pitch trim uses the handwheels and yaw trim uses the rudder-trim switch. · FCOM DSC-27-10-10"},
+ {"c": "Flight Controls & Flaps", "q": "Mechanical (manual) back-up is available on which axes?", "o": ["Roll and pitch", "Pitch (stabiliser) and yaw (rudder)", "Yaw only", "All three axes"], "a": 1, "w": "Only the stabiliser (pitch) and rudder (yaw) can be controlled mechanically — the basis of mechanical back-up. · FCOM DSC-27-10-10"},
+ {"c": "Air & Pressurisation", "q": "On the A321P2F the air-conditioning system controls how many zones, and which?", "o": ["Two: cockpit, cabin", "Three independently-controlled: COCKPIT, FWD MDCC, AFT MDCC", "One: whole aircraft", "Four zones"], "a": 1, "w": "Three independently-controlled zones: COCKPIT, FWD MDCC and AFT MDCC (main-deck cargo). Air comes via two pack-flow control valves, two packs and the mixing unit. · FCOM DSC-21-10-10"},
+ {"c": "Air & Pressurisation", "q": "In an emergency, ambient air is supplied to the mixing unit by…?", "o": ["The APU", "A ram-air inlet", "An electric fan", "The crossbleed"], "a": 1, "w": "A ram-air inlet can supply ambient air to the mixing unit in an emergency. · FCOM DSC-21-10-10"},
+ {"c": "Air & Pressurisation", "q": "Each air-conditioning pack cools air using…?", "o": ["A refrigerant loop", "An air-cycle machine (a water separator dries the air before the turbine)", "Electrical coolers", "Ram air only"], "a": 1, "w": "A pack is an air-cycle machine (compressor + turbine); a water separator dries the air before the turbine section. · FCOM DSC-21-10-20"},
+ {"c": "Air & Pressurisation", "q": "The two air-conditioning packs operate…?", "o": ["In series", "Automatically and independently of each other", "Only one at a time", "Manually"], "a": 1, "w": "Both packs work automatically and independently, controlled by the pack controllers/ACSC. · FCOM DSC-21-10-20"},
+ {"c": "Air & Pressurisation", "q": "Trim air adds hot air tapped…?", "o": ["Downstream of the packs", "Upstream of the packs", "From the APU", "From ram air"], "a": 1, "w": "Trim-air valves add hot air tapped upstream of the packs to the mixing-unit air to fine-tune zone temperature. · FCOM DSC-21-10-10"},
+ {"c": "Air & Pressurisation", "q": "The pneumatic (HP air) system does NOT supply…?", "o": ["Air conditioning and engine start", "Wing anti-ice and hydraulic reservoir pressurisation", "Cargo heating and fuel-tank inerting", "Cabin lighting"], "a": 3, "w": "HP air feeds air-conditioning, engine start, wing anti-ice, hydraulic reservoir pressurisation, cargo heating and the FTIS — not lighting. · FCOM DSC-36-10-10"},
+ {"c": "Air & Pressurisation", "q": "The three sources of high-pressure air are…?", "o": ["Engine bleed, APU load compressor, HP ground connection", "Engine bleed, packs, RAT", "APU, packs, ram air", "GPU, engine bleed, batteries"], "a": 0, "w": "Engine bleed systems, the APU load compressor and an HP ground connection; a crossbleed duct interconnects them. · FCOM DSC-36-10-10"},
+ {"c": "Air & Pressurisation", "q": "The pneumatic system is controlled and monitored by…?", "o": ["One BMC", "Two Bleed Monitoring Computers (BMC1, BMC2), the overhead panel and the ECAM", "The FADEC", "The ACSC only"], "a": 1, "w": "BMC1 and BMC2, plus the overhead control panel and ECAM, control and monitor the pneumatic system; a leak-detection system watches the hot-air ducts. · FCOM DSC-36-10-10"},
+ {"c": "Ice & Rain", "q": "Airframe anti-icing by HOT AIR protects…?", "o": ["The whole wing", "The three outboard leading-edge slats of each wing and the engine air intakes", "Only the engine intakes", "The tail"], "a": 1, "w": "Hot air heats the three outboard slats of each wing and the engine air intakes; electrical heating does the windows, probes and drain mast. · FCOM DSC-30-10-10"},
+ {"c": "Ice & Rain", "q": "Which items are protected by ELECTRICAL heating?", "o": ["The slats", "Flight-compartment windows, pitot/static probes and sensors, and the waste-water drain mast", "The wings", "The engine intakes"], "a": 1, "w": "Electrical heating protects the windows, pitot/static probes and sensors, and the waste-water drain mast. · FCOM DSC-30-10-10"},
+ {"c": "Ice & Rain", "q": "Wing anti-ice heats which slats on each wing?", "o": ["All slats", "The three outboard slats (3, 4, 5)", "The two inboard slats", "Slats 1 and 2"], "a": 1, "w": "Hot air from the pneumatic system heats the three outboard slats (3-4-5) of each wing, via one valve per wing. · FCOM DSC-30-20-10"},
+ {"c": "Ice & Rain", "q": "Selecting wing anti-ice ON has what effect on the engines?", "o": ["No effect", "The N1/EPR limit is automatically reduced and idle N1/EPR is automatically increased", "Idle is reduced", "Max thrust increases"], "a": 1, "w": "With wing anti-ice on, the N1/EPR takeoff limit is automatically reduced and idle N1/EPR is increased to keep enough bleed. · FCOM DSC-30-20-10"},
+ {"c": "Ice & Rain", "q": "If a leak is detected during wing anti-ice operation…?", "o": ["Both valves close", "The affected side's wing anti-ice valve closes automatically", "Nothing changes", "The packs close"], "a": 1, "w": "A leak on one side automatically closes that side's wing anti-ice valve (leak-detection logic). · FCOM DSC-30-20-10"},
+ {"c": "Gear & Brakes", "q": "The landing gear consists of…?", "o": ["Two MLG retracting forward, one NLG inboard", "Two MLG retracting inboard and one NLG retracting forward", "Three gears retracting inboard", "Two gears only"], "a": 1, "w": "Two main gears retract inboard; the nose gear retracts forward. Gear and doors are electrically controlled and hydraulically operated. · FCOM DSC-32-10-10"},
+ {"c": "Gear & Brakes", "q": "How many LGCIUs are there and what do they do?", "o": ["One, controls braking", "Two, control gear/door sequencing and provide ECAM and flight/ground signals", "Three, control steering", "One, controls antiskid"], "a": 1, "w": "Two LGCIUs sequence the gear/doors, feed the ECAM, and provide the flight/ground signal to other systems. · FCOM DSC-32-10-10"},
+ {"c": "Gear & Brakes", "q": "When does control switch from one LGCIU to the other?", "o": ["Every 10 s", "After each complete gear cycle (and on failure)", "Only at engine start", "Never automatically"], "a": 1, "w": "One LGCIU runs a complete gear cycle then hands over to the other at completion — and also on failure. · FCOM DSC-32-10-10"},
+ {"c": "Gear & Brakes", "q": "Which hydraulic system normally operates the landing gear?", "o": ["Blue", "Yellow", "Green", "Any available"], "a": 2, "w": "The green system actuates all gear and doors. · FCOM DSC-32-10-10"},
+ {"c": "Gear & Brakes", "q": "The landing-gear safety valve cuts off hydraulic supply to the gear above…?", "o": ["220 kt", "260 kt", "264 kt", "280 kt"], "a": 2, "w": "Above 264 kt the safety valve cuts off gear hydraulics; below 260 kt it stays cut off while the lever is up. · FCOM DSC-32-10-10"},
+ {"c": "Gear & Brakes", "q": "Gravity (free-fall) extension is initiated using…?", "o": ["The gear lever", "A hand crank on the centre pedestal", "The parking brake", "An overhead pushbutton"], "a": 1, "w": "A hand crank on the centre pedestal lets the crew extend the gear if hydraulics or electrical power are lost. · FCOM DSC-32-10-10"},
+ {"c": "Gear & Brakes", "q": "Each main landing gear has…?", "o": ["A single wheel", "Twin wheels, an oleo-pneumatic shock absorber and antiskid brakes", "Four wheels", "No brakes"], "a": 1, "w": "Each main gear has twin wheels, an oleo-pneumatic shock absorber and an antiskid brake on each wheel. · FCOM DSC-32-10-10"},
+ {"c": "Navigation", "q": "How many ADIRUs does the ADIRS use, and what two parts make up each?", "o": ["Two, ADR + IR", "Three, each with an ADR part and an IR part", "Three IRs only", "One combined unit"], "a": 1, "w": "Three identical ADIRUs, each split into an Air Data Reference (ADR) part and an Inertial Reference (IR) part, either of which can work if the other fails. · FCOM DSC-34-NAV-10-10"},
+ {"c": "Navigation", "q": "The ADR part of an ADIRU supplies…?", "o": ["Attitude and heading", "Barometric altitude, airspeed, Mach, angle of attack, temperature and overspeed warnings", "Position and ground speed", "Radio navaids"], "a": 1, "w": "ADR = air-data parameters (baro alt, airspeed, Mach, AoA, temperature, overspeed). The IR part gives attitude, heading, track, position and ground speed. · FCOM DSC-34-NAV-10-10"},
+ {"c": "Navigation", "q": "The three ADIRS mode-selector positions are…?", "o": ["ON / OFF / TEST", "NAV / ATT / OFF", "ALIGN / NAV / OFF", "IR / ADR / OFF"], "a": 1, "w": "NAV, ATT and OFF. ATT gives attitude/heading only (no position) after an IR failure. · FCOM DSC-34-NAV-10-10"},
+ {"c": "Navigation", "q": "How many pitot / static / AoA / TAT probes feed the ADIRS?", "o": ["2 / 4 / 2 / 1", "3 pitot, 6 static, 3 AoA, 2 TAT", "3 / 3 / 3 / 3", "1 each"], "a": 1, "w": "3 pitot, 6 static, 3 angle-of-attack and 2 total-air-temperature probes, all electrically heated. Eight ADMs convert pitot/static pneumatic data to digital. · FCOM DSC-34-NAV-10-10"},
+ {"c": "Navigation", "q": "Which probes feed each ADIRU?", "o": ["All from the captain", "ADIRU 1 = CAPT probes, ADIRU 2 = F/O probes, ADIRU 3 = STBY probes (and CAPT TAT)", "All three share one set", "ADIRU 3 = F/O probes"], "a": 1, "w": "ADIRU 1 uses the captain's probes, ADIRU 2 the first officer's, and ADIRU 3 the standby probes plus the captain's TAT. · FCOM DSC-34-NAV-10-10"},
+ {"c": "Engine & APU", "q": "On the engine displays, N1 and N2 represent…?", "o": ["Oil and fuel pressure", "The LP (fan) rotor and HP rotor speeds respectively", "Two exhaust temperatures", "Bleed pressures"], "a": 1, "w": "N1 is the LP (fan) rotor and N2 the HP rotor — it is a twin-spool engine; N1/N2 vibration is monitored per rotor. · FCOM DSC-70-10"},
+ {"c": "Engine & APU", "q": "FADEC stands for…?", "o": ["Fuel And Digital Engine Computer", "Full Authority Digital Engine Control", "Fan Assembly Drive Engine Case", "Flight Auto Data Engine Control"], "a": 1, "w": "Full Authority Digital Engine Control — it manages engine control across the whole operating range. · FCOM DSC-70-20"},
+ {"c": "Engine & APU", "q": "The thrust levers are the main interface between…?", "o": ["The crew and the brakes", "The FMGC, the FADEC and the flight crew", "The APU and the packs", "The FADEC and the FWC only"], "a": 1, "w": "Thrust levers link the FMGC, FADEC and crew; they also arm the autothrust at takeoff when FLX or TOGA is selected. · FCOM DSC-22_10-10"},
+ {"c": "Engine & APU", "q": "The autothrust is armed at takeoff when the thrust levers are set to…?", "o": ["IDLE", "CLB", "FLX or TOGA", "MCT"], "a": 2, "w": "Selecting FLX or TOGA at takeoff arms the A/THR (it becomes active later, e.g. at thrust reduction). · FCOM DSC-22_10-10"},
+ {"c": "Engine & APU", "q": "The engine LP (fuel) valve is opened/closed by…?", "o": ["The thrust lever", "The ENG MASTER lever", "The FADEC alone", "The crossfeed pb"], "a": 1, "w": "The ENG MASTER lever commands the LP valve to start or shut down the fuel supply to the engine. · FCOM DSC-70-10"},
+ {"c": "Oxygen", "q": "The cockpit fixed-oxygen mask flow selector has which positions?", "o": ["LOW / HIGH", "N (Normal) / 100% / EMERGENCY", "ON / OFF", "AUTO / MAN"], "a": 1, "w": "N (dilution) / 100% / EMERGENCY. Leaving EMERGENCY selected can deplete the crew oxygen cylinder. · FCOM DSC-35-20-10"},
+ {"c": "Oxygen", "q": "Holding the EMERGENCY selector on the oxygen mask…?", "o": ["Has no effect", "Can deplete the crew oxygen cylinder", "Increases cabin pressure", "Tests the mask only"], "a": 1, "w": "EMERGENCY provides positive pressure but, if maintained, can deplete the crew oxygen cylinder. · FCOM DSC-35-20-10"},
+ {"c": "Oxygen", "q": "The crew oxygen pressure indication turns amber when pressure is below…?", "o": ["100 PSI", "300 PSI", "1000 PSI", "1650 PSI"], "a": 1, "w": "Amber below 300 PSI in flight; on ground an amber half-frame appears below 1650 PSI (115 cu ft cylinder) prompting a min-quantity check. · FCOM DSC-35-20-20"},
+ {"c": "Surveillance", "q": "The AP/FD TCAS mode is available only when… (one condition)?", "o": ["Below 900 ft RA", "The aircraft is above 900 ft RA, TCAS is in TA/RA, and at least one AP and one FD are available", "On the ground", "In TA-only mode"], "a": 1, "w": "It needs the aircraft above 900 ft RA, TCAS in TA/RA, and at least one AP and one FD available; the FMA shows TCAS on line 3 of the vertical-modes column. · FCOM DSC-22_30-40-100"},
+ {"c": "Surveillance", "q": "GPWS Mode 3 warns of…?", "o": ["Excessive descent rate", "Altitude loss after takeoff", "Terrain closure", "Descent below glideslope"], "a": 1, "w": "Mode 3 = Altitude Loss After Takeoff (or go-around). Mode 5 is descent below glideslope, on ILS/SLS/GLS approaches. · FCOM DSC-34-NAV-40-10"},
+ {"c": "Surveillance", "q": "GPWS Mode 5 (glideslope) can be triggered only during…?", "o": ["Any approach", "ILS, SLS and GLS approaches", "VOR approaches", "Circling only"], "a": 1, "w": "Mode 5 (Descent Below Glideslope) is only active on ILS, SLS and GLS approaches. · FCOM DSC-34-SURV-40-20"},
+ {"c": "Communication", "q": "The radio press-to-talk (PTT) switch is located…?", "o": ["On the glareshield", "On each sidestick", "On the pedestal only", "On the ACP only"], "a": 1, "w": "Each sidestick has a radio PTT switch; the SELCAL code-selection panel is in the avionics compartment. · FCOM DSC-23-10-30"},
+ {"c": "Communication", "q": "The SELCAL code-selection panel is located…?", "o": ["On the overhead panel", "In the avionics compartment", "On the pedestal", "On the FCU"], "a": 1, "w": "The SELCAL code-selection panel is in the avionics compartment (set on the ground). · FCOM DSC-23-10-30"},
+ {"c": "Auto Flight", "q": "After an engine failure, to level off / cruise the live-engine thrust lever is set to…?", "o": ["TOGA", "The MCT detent", "IDLE", "The CLB detent"], "a": 1, "w": "Engine-out procedures set the live engine's thrust lever to the MCT detent (max continuous). · FCOM DSC-22_20-10-50"},
+ {"c": "Auto Flight", "q": "Pulling the altitude selector knob during a climb…?", "o": ["Levels off", "Engages OP CLB (open climb)", "Disconnects the AP", "Arms ALT"], "a": 1, "w": "Pulling ALT commands an open climb (OP CLB) to the selected altitude; pushing it commands managed vertical guidance. · FCOM DSC-22_20-10-50"}
+];
+for(const x of NEW_Q){ BANK.push(x); }
+
+/* ============ MEMORY ITEMS ============ */
+const MEM = [
+ {name:"Loss of Braking", trig:'"LOSS OF BRAKING"', head:"IF NO BRAKING",
+  steps:[["REV","MAX"],["BRAKE PEDAL","RELEASE"],["A/SKID & N/W STRG","OFF"],
+         ["BRAKE PEDALS","PRESS"],["MAX BRK PR","1000 PSI"],
+         ["If still no braking — PARKING BRAKE","SHORT & SUCCESSIVE"]],
+  note:"Release pedals before selecting A/SKID OFF, then press for max 1000 PSI."},
+ {name:"Emergency Descent", trig:'"EMERGENCY DESCENT"', head:"EMER DESCENT",
+  steps:[["CREW OXY MASKS","USE"],["SIGNS","ON"],["EMER DESCENT","INITIATE"],
+         ["If A/THR not active — THR LEVERS","IDLE"],["SPD BRK","FULL"],
+         ["When descent estab — SPEED","MAX / APPROPRIATE"],["L/G","CONSIDER EXTENSION"],
+         ["If CAB ALT >14000 — PAX MASK MAN ON","PRESS"]],
+  note:'PA: "EMERGENCY DESCENT" descending; "MASK OFF" at 10,000 ft or lower.'},
+ {name:"Stall Recovery", trig:'"STALL — I HAVE CONTROLS"', head:"STALL RECOVERY",
+  steps:[["NOSE DOWN PITCH CONTROL","APPLY"],["BANK","WINGS LEVEL"],
+         ["Out of stall — THRUST","INCREASE SMOOTHLY"],["SPEEDBRAKES","CHECK RETRACTED"],
+         ["FLIGHT PATH","RECOVER SMOOTHLY"],["If clean & below 20,000 ft — FLAP 1","SELECT"]],
+  note:"Pitch first, not thrust. If lacking pitch-down authority, reduce thrust."},
+ {name:"Stall Warning at Lift-off", trig:'"STALL TOGA 15°"', head:"STALL AT LIFT-OFF",
+  steps:[["THRUST","TOGA"],["PITCH ATTITUDE (same time)","15°"],["BANK","WINGS LEVEL"]],
+  note:"If it continues once safe speed/path achieved & maintained, treat as spurious."},
+ {name:"Unreliable Speed", trig:'"UNRELIABLE SPEED"', head:"UNRELIABLE SPEED / ADR",
+  steps:[["AP / A/THR / FD","OFF / OFF / OFF"],["Below THRUST RED ALT","15° / TOGA"],
+         ["Above RED ALT, below FL100","10° / CLB"],["Above RED ALT, above FL100","5° / CLB"],
+         ["FLAPS (if CONF 0-3)","MAINTAIN"],["FLAPS (if CONF FULL)","CONF 3 & MAINTAIN"],
+         ["SPEEDBRAKES","CHECK RETRACTED"],["L/G","UP"]],
+  note:"At/above MSA or circuit alt: level off to troubleshoot."},
+ {name:"Windshear Warning", trig:'"WINDSHEAR — TOGA"', head:"WINDSHEAR (WARNING)",
+  steps:[["After V1 — THR LEVERS","TOGA"],["Reaching VR","ROTATE"],["SRS ORDERS","FOLLOW"],
+         ["Airborne — THR AT TOGA","SET / CONFIRM"],["AP (if engaged)","KEEP"],
+         ["SRS ORDERS","FOLLOW"]],
+  note:"Before V1: reject only if big speed loss & sufficient runway. Don't change config until out."},
+ {name:"TCAS Resolution Advisory", trig:'"TCAS — I HAVE CONTROLS"', head:"TCAS RA",
+  steps:[["AP (if engaged)","OFF"],["BOTH FDs","OFF"],["FD orders / V-S","FOLLOW / ADJUST"],
+         ['At "CLEAR OF CONFLICT"',"RESUME NAV per ATC"]],
+  note:'Go-around if RA "CLIMB"/"INCREASE CLIMB" fires on final approach.'},
+ {name:"EGPWS Warning", trig:'"PULL UP — TOGA"', head:"EGPWS PULL UP",
+  steps:[["AP","OFF"],["PITCH","PULL UP"],["THRUST LEVERS","TOGA"],
+         ["SPEED BRAKES","CHECK RETRACTED"],["BANK","WINGS LEVEL / ADJUST"],["SRS ORDERS","FOLLOW"]],
+  note:"Don't change config until clear of the obstacle."},
+];
+
+/* ============ ENGINE ============ */
+const $=id=>document.getElementById(id);
+const sec={start:$("start"),quiz:$("quiz"),mem:$("mem"),results:$("results")};
+function show(name){for(const k in sec)sec[k].classList.toggle("hidden",k!==name);window.scrollTo({top:0,behavior:"instant"});}
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;};
+
+const CATS=[...new Set(BANK.map(x=>x.c))];
+let active=new Set(CATS);
+let runLen=30;
+const chips=$("chips");
+function drawChips(){
+  chips.innerHTML="";
+  const all=document.createElement("button");
+  all.className="chip"; all.textContent="All systems";
+  all.setAttribute("aria-pressed",active.size===CATS.length);
+  all.onclick=()=>{active=active.size===CATS.length?new Set():new Set(CATS);drawChips();};
+  chips.appendChild(all);
+  CATS.forEach(c=>{
+    const b=document.createElement("button");
+    b.className="chip"; b.textContent=c;
+    b.setAttribute("aria-pressed",active.has(c));
+    b.onclick=()=>{active.has(c)?active.delete(c):active.add(c);drawChips();};
+    chips.appendChild(b);
+  });
+}
+drawChips();
+
+const LENS=[["15",15],["30",30],["60",60],["All",0]];
+const lenChips=$("lenChips");
+function drawLens(){
+  lenChips.innerHTML="";
+  LENS.forEach(([lab,val])=>{
+    const b=document.createElement("button");
+    b.className="chip"; b.textContent=lab;
+    b.setAttribute("aria-pressed",runLen===val);
+    b.onclick=()=>{runLen=val;drawLens();};
+    lenChips.appendChild(b);
+  });
+}
+drawLens();
+
+$("modeMcq").onclick=()=>$("filterPanel").scrollIntoView({behavior:"smooth"});
+$("modeMem").onclick=()=>startMem();
+
+/* ---------- MCQ ---------- */
+let queue=[],qi=0,cor=0,miss=0,streak=0,missed=[];
+$("startMcqBtn").onclick=()=>{
+  const pool=BANK.filter(x=>active.has(x.c));
+  if(!pool.length){alert("Select at least one question set.");return;}
+  let deck=shuffle(pool);
+  if(runLen && deck.length>runLen) deck=deck.slice(0,runLen);
+  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[];
+  show("quiz"); renderQ();
+};
+function renderQ(){
+  const q=queue[qi];
+  $("qCat").textContent=q.c;
+  $("qText").textContent=q.q;
+  $("sPos").textContent=(qi+1)+"/"+queue.length;
+  $("sCor").textContent=cor; $("sMiss").textContent=miss; $("sStreak").textContent=streak;
+  $("bar").style.width=((qi)/queue.length*100)+"%";
+  $("ecamSlot").innerHTML=""; $("nextRow").style.display="none";
+  const opts=$("qOpts"); opts.innerHTML="";
+  const order=shuffle(q.o.map((t,i)=>({t,i})));
+  const letters=["A","B","C","D","E"];
+  order.forEach((item,idx)=>{
+    const b=document.createElement("button");
+    b.className="opt";
+    b.innerHTML='<span class="tag">'+letters[idx]+'</span><span class="txt">'+item.t+'</span>';
+    b.onclick=()=>answer(b,item.i,order);
+    opts.appendChild(b);
+  });
+}
+function answer(btn,chosen,order){
+  const q=queue[qi];
+  const correct=chosen===q.a;
+  [...$("qOpts").children].forEach((el,idx)=>{
+    el.disabled=true;
+    const oi=order[idx].i;
+    if(oi===q.a)el.classList.add("correct");
+    else if(oi===chosen)el.classList.add("wrong");
+    else el.classList.add("dim");
+  });
+  if(correct){cor++;streak++;}
+  else{miss++;streak=0;missed.push({q:q.q,a:q.o[q.a]});}
+  $("sCor").textContent=cor;$("sMiss").textContent=miss;$("sStreak").textContent=streak;
+  const e=document.createElement("div");
+  e.className="ecam "+(correct?"ok":"no");
+  e.innerHTML=
+    '<div class="head"><span class="dot"></span>'+(correct?"CORRECT":"CHECK — INCORRECT")+'</div>'+
+    '<div class="body">'+
+      '<div class="ans">ANSWER &nbsp;<b>'+q.o[q.a]+'</b></div>'+
+      (q.w
+        ? '<div class="why"><span class="lead">Reasoning</span>'+q.w+'</div>'
+        : '<div class="why"><span class="lead">Source</span>See the reasoning and FCOM chapter reference below.</div>')+
+    '</div>';
+  $("ecamSlot").appendChild(e);
+  $("nextRow").style.display="flex";
+  $("nextBtn").focus();
+}
+$("nextBtn").onclick=()=>{ qi++; if(qi>=queue.length)finishMcq(); else renderQ(); };
+$("quitBtn").onclick=()=>finishMcq();
+function finishMcq(){
+  const total=cor+miss;
+  const pct=total?Math.round(cor/total*100):0;
+  $("rEye").textContent="Limitations check — debrief";
+  $("rScore").textContent=pct+"%";
+  $("rScore").style.color=pct>=90?"var(--green)":pct>=75?"var(--cyan)":"var(--amber)";
+  const v=$("rVerdict");
+  if(pct>=90){v.textContent="Sharp — checkride ready";v.style.color="var(--green)";}
+  else if(pct>=75){v.textContent="Solid — tidy the misses";v.style.color="var(--cyan)";}
+  else{v.textContent="More reps needed";v.style.color="var(--amber)";}
+  const r=$("rReview"); r.innerHTML="";
+  if(missed.length){
+    const h=document.createElement("div");h.className="eyebrow";h.style.marginTop="18px";
+    h.textContent="Review — missed items ("+missed.length+")";r.appendChild(h);
+    missed.forEach(m=>{
+      const d=document.createElement("div");d.className="ritem";
+      d.innerHTML='<div class="rq">'+m.q+'</div><div class="ra">&#10003; '+m.a+'</div>';
+      r.appendChild(d);
+    });
+  }else if(total){
+    const d=document.createElement("div");d.className="ritem";d.style.borderTop="none";
+    d.innerHTML='<div class="ra">Clean sweep — nothing missed.</div>';r.appendChild(d);
+  }
+  lastMode="mcq"; show("results");
+}
+
+/* ---------- MEMORY DRILL ---------- */
+let mQueue=[],mi=0,mCor=0,mMiss=0;
+function startMem(){
+  mQueue=shuffle(MEM); mi=0;mCor=0;mMiss=0;
+  show("mem"); renderMem();
+}
+function renderMem(){
+  const m=mQueue[mi];
+  $("mPos").textContent=(mi+1)+"/"+mQueue.length;
+  $("mCor").textContent=mCor;$("mMiss").textContent=mMiss;
+  const done=mCor+mMiss;
+  $("mPct").textContent=done?Math.round(mCor/done*100)+"%":"—";
+  $("mBar").style.width=(mi/mQueue.length*100)+"%";
+  $("memName").textContent=m.name;
+  $("memTrig").textContent=m.trig;
+  $("memReveal").innerHTML="";
+  $("memRevealRow").style.display="flex";
+  $("memGradeRow").style.display="none";
+}
+$("revealBtn").onclick=()=>{
+  const m=mQueue[mi];
+  let html='<div class="qrh"><div class="qh">'+m.head+'</div>';
+  m.steps.forEach(s=>{
+    html+='<div class="step"><span class="l">'+s[0]+'</span><span class="d"></span><span class="r">'+s[1]+'</span></div>';
+  });
+  if(m.note)html+='<div class="note">'+m.note+'</div>';
+  html+='</div>';
+  $("memReveal").innerHTML=html;
+  $("memRevealRow").style.display="none";
+  $("memGradeRow").style.display="flex";
+  $("gotBtn").focus();
+};
+$("gotBtn").onclick=()=>gradeMem(true);
+$("missBtn").onclick=()=>gradeMem(false);
+function gradeMem(ok){ ok?mCor++:mMiss++; mi++; if(mi>=mQueue.length)finishMem(); else renderMem(); }
+$("memQuitBtn").onclick=()=>finishMem();
+function finishMem(){
+  const total=mCor+mMiss;
+  const pct=total?Math.round(mCor/total*100):0;
+  $("rEye").textContent="Memory item drill — debrief";
+  $("rScore").textContent=pct+"%";
+  $("rScore").style.color=pct>=100?"var(--green)":pct>=75?"var(--cyan)":"var(--amber)";
+  const v=$("rVerdict");
+  if(pct>=100){v.textContent="All items secure";v.style.color="var(--green)";}
+  else if(pct>=75){v.textContent="Nearly there";v.style.color="var(--cyan)";}
+  else{v.textContent="Drill again — cold";v.style.color="var(--amber)";}
+  $("rReview").innerHTML='<div class="ritem" style="border-top:none"><div class="ra">'+
+    mCor+' of '+total+' recalled cleanly. Self-graded — be honest on sequence, not just content.</div></div>';
+  lastMode="mem"; show("results");
+}
+
+/* ---------- RESULTS NAV ---------- */
+let lastMode="mcq";
+$("againBtn").onclick=()=>{ lastMode==="mem"?startMem():$("startMcqBtn").onclick(); };
+$("homeBtn").onclick=()=>show("start");
+
+/* keyboard: 1-5 to answer, Enter to advance */
+document.addEventListener("keydown",e=>{
+  if(!sec.quiz.classList.contains("hidden")){
+    if(/^[1-5]$/.test(e.key)){
+      const opts=$("qOpts").children;
+      const idx=+e.key-1;
+      if(opts[idx]&&!opts[idx].disabled)opts[idx].click();
+    }
+    if(e.key==="Enter"&&$("nextRow").style.display!=="none")$("nextBtn").click();
+  }
+});
+</script>
+</body>
+</html>
