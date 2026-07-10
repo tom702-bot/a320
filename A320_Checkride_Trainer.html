@@ -105,9 +105,6 @@
   .ecam.ok .head{color:var(--green)} .ecam.ok .head .dot{background:var(--green);box-shadow:0 0 8px var(--green)}
   .ecam.no .head{color:var(--amber)} .ecam.no .head .dot{background:var(--amber);box-shadow:0 0 8px var(--amber)}
   .ecam .body{padding:14px 16px}
-  .ecam .ans{font-family:var(--font-data); font-size:14px; color:var(--cyan);
-    margin-bottom:10px}
-  .ecam .ans b{color:var(--white)}
   .ecam .why{font-size:14px; color:#c7d3db; line-height:1.55}
   .ecam .why .lead{color:var(--muted); font-family:var(--font-data); font-size:10.5px;
     letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:4px}
@@ -773,7 +770,6 @@ function answer(btn,chosen,order){
   e.innerHTML=
     '<div class="head"><span class="dot"></span>'+(correct?"CORRECT":"CHECK — INCORRECT")+'</div>'+
     '<div class="body">'+
-      '<div class="ans">ANSWER &nbsp;<b>'+q.o[q.a]+'</b></div>'+
       (q.w
         ? '<div class="why"><span class="lead">Reasoning</span>'+q.w+'</div>'
         : '<div class="why"><span class="lead">Source</span>See the reasoning and FCOM chapter reference below.</div>')+
