@@ -146,6 +146,28 @@
     background:var(--cyan); border-radius:4px; padding:3px 6px; letter-spacing:1px}
   .mode.alt .mt .ic{background:var(--amber)}
   .mode.fill .mt .ic{background:var(--green)}
+  .mode.review .mt .ic{background:var(--cyan)}
+  .mode.lookup .mt .ic{background:#c9d4dc;color:var(--bg)}
+
+  /* ---- Progress panel ---- */
+  .prog{border:1px solid var(--edge);background:var(--panel);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+  .prog .phead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px}
+  .prog .ptitle{font-family:var(--font-data);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+  .prog .overall{font-family:var(--font-data);font-size:13px;color:var(--cyan);font-weight:700;white-space:nowrap}
+  .prog .empty{font-size:13px;color:var(--muted);line-height:1.5}
+  .pbar{display:flex;align-items:center;gap:10px;padding:4px 0;font-size:12.5px}
+  .pbar .pname{flex:0 0 44%;color:var(--white);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pbar .ptrack{flex:1;height:7px;background:var(--panel2);border-radius:4px;overflow:hidden;border:1px solid var(--edge)}
+  .pbar .pfill{height:100%;background:var(--green);width:0%}
+  .pbar .pnum{flex:0 0 74px;text-align:right;font-family:var(--font-data);font-size:11px;color:var(--muted)}
+  .pbar .pweak{color:var(--amber);font-weight:700}
+  .btn.tiny{padding:7px 12px;font-size:11px}
+
+  /* ---- Lookup ---- */
+  .lk-item{border:1px solid var(--edge);background:var(--panel);border-radius:9px;padding:12px 14px;margin-bottom:9px}
+  .lk-item .lka{font-family:var(--font-data);font-size:15px;color:var(--cyan);font-weight:700;margin-bottom:3px}
+  .lk-item .lkq{font-size:12.5px;color:var(--muted);margin-bottom:6px;line-height:1.4}
+  .lk-item .lkw{font-size:13px;color:#c7d3db;line-height:1.5}
 
   /* ---- Fill & Check table ---- */
   .fblk{border:1px solid var(--edge);background:var(--panel);border-radius:10px;overflow:hidden;margin-bottom:12px}
@@ -226,15 +248,19 @@
 
   <!-- ================= START ================= -->
   <section id="start">
-    <p class="lede">Pick a drill. The limitations check gives an ECAM-style debrief on every
-      question &mdash; the answer, reasoning and FCOM reference &mdash; right or wrong. The
-      memory-item drill is self-marked cold recall. Fill &amp; Check is a type-in limitations
-      sheet that grades each value green or amber as you go.</p>
+    <p class="lede">Pick a drill. Limitations Check gives an ECAM-style debrief with the answer,
+      reasoning and FCOM reference. Review Weak Areas re-serves only what you've missed. Memory
+      Item Drill is self-marked cold recall, Fill &amp; Check grades typed values, and Lookup lets
+      you browse every limitation by subject. Progress is saved on this device only.</p>
 
     <div class="modegrid">
       <button class="mode" id="modeMcq">
         <div class="mt"><span class="ic">MCQ</span>Limitations Check</div>
         <div class="md">Multiple-choice on limits and systems. Filter by subject below. Debrief after each answer.</div>
+      </button>
+      <button class="mode review" id="modeReview">
+        <div class="mt"><span class="ic">WEAK</span>Review Weak Areas</div>
+        <div class="md">Re-serves only questions you've missed, most-missed first. Get one right and it drops out.</div>
       </button>
       <button class="mode alt" id="modeMem">
         <div class="mt"><span class="ic">REC</span>Memory Item Drill</div>
@@ -244,7 +270,13 @@
         <div class="mt"><span class="ic">FILL</span>Fill &amp; Check</div>
         <div class="md">Type each limitation value from memory; instant green/amber grading, answers on miss.</div>
       </button>
+      <button class="mode lookup" id="modeLookup">
+        <div class="mt"><span class="ic">READ</span>Lookup</div>
+        <div class="md">Browse every limitation and fact by subject, each with its FCOM reference. No quiz.</div>
+      </button>
     </div>
+
+    <div class="prog" id="progPanel"></div>
 
     <div class="panel filters" id="filterPanel">
       <div class="eyebrow">Question sets</div>
@@ -341,6 +373,14 @@
       &ldquo;-1 to +2.5&rdquo;. A321P2F FCOM values.</p>
     <div id="fillSheet"></div>
     <div class="row"><button class="btn ghost" id="fillHome">&larr; Change drill</button></div>
+  </section>
+
+  <!-- ================= LOOKUP ================= -->
+  <section id="lookup" class="hidden">
+    <div class="eyebrow" style="margin-bottom:12px">Lookup &mdash; browse by subject</div>
+    <div class="chips" id="lkChips" style="margin-bottom:16px"></div>
+    <div id="lkList"></div>
+    <div class="row"><button class="btn ghost" id="lookupHome">&larr; Change drill</button></div>
   </section>
 
   <div class="foot">
@@ -738,8 +778,54 @@ const MEM = [
 
 /* ============ ENGINE ============ */
 const $=id=>document.getElementById(id);
-const sec={start:$("start"),quiz:$("quiz"),mem:$("mem"),results:$("results"),fill:$("fill")};
-function show(name){for(const k in sec)sec[k].classList.toggle("hidden",k!==name);window.scrollTo({top:0,behavior:"instant"});}
+const sec={start:$("start"),quiz:$("quiz"),mem:$("mem"),results:$("results"),fill:$("fill"),lookup:$("lookup")};
+function show(name){for(const k in sec)sec[k].classList.toggle("hidden",k!==name);if(name==="start")renderProgress();window.scrollTo({top:0,behavior:"instant"});}
+
+/* ---------- on-device performance memory (localStorage; never leaves this device) ---------- */
+const STORE_KEY="a320stats_v1";
+function loadStats(){ try{ return JSON.parse(localStorage.getItem(STORE_KEY))||{}; }catch(e){ return {}; } }
+function saveStats(){ try{ localStorage.setItem(STORE_KEY,JSON.stringify(STATS)); }catch(e){} }
+let STATS=loadStats();
+function recordAnswer(q,correct){
+  const k=q.q, r=STATS[k]||{s:0,c:0,w:0,lc:null};
+  r.s++; if(correct){r.c++;r.lc=true;} else {r.w++;r.lc=false;}
+  STATS[k]=r; saveStats();
+}
+function weakPool(){
+  return BANK.filter(x=>{ const r=STATS[x.q]; return r && r.lc===false; })
+             .sort((a,b)=>(STATS[b.q].w||0)-(STATS[a.q].w||0));
+}
+function renderProgress(){
+  const host=$("progPanel"); if(!host) return;
+  const subj={}; let tot=0, mastered=0, seen=0, weak=0;
+  BANK.forEach(q=>{
+    subj[q.c]=subj[q.c]||{t:0,m:0}; subj[q.c].t++; tot++;
+    const r=STATS[q.q];
+    if(r){ seen++; if(r.lc===true){subj[q.c].m++;mastered++;} else if(r.lc===false){weak++;} }
+  });
+  if(!seen){
+    host.innerHTML='<div class="phead"><span class="ptitle">Your progress</span></div>'+
+      '<div class="empty">No attempts yet. Take a Limitations Check and your mastery by subject will build here &mdash; then Review Weak Areas targets what you miss.</div>';
+    return;
+  }
+  let rows="";
+  Object.keys(subj).sort().forEach(c=>{
+    const t=subj[c].t, m=subj[c].m, pct=Math.round(m/t*100);
+    rows+='<div class="pbar"><span class="pname">'+c+'</span>'+
+      '<span class="ptrack"><span class="pfill" style="width:'+pct+'%"></span></span>'+
+      '<span class="pnum">'+m+'/'+t+'</span></div>';
+  });
+  host.innerHTML=
+    '<div class="phead"><span class="ptitle">Your progress &mdash; mastered by subject</span>'+
+      '<span class="overall">'+mastered+'/'+tot+' &middot; '+(weak?'<span class="pweak">'+weak+' weak</span>':'0 weak')+'</span></div>'+
+    rows+
+    '<div class="row" style="margin-top:12px"><button class="btn tiny ghost" id="resetProg">Reset progress</button></div>';
+  $("resetProg").onclick=()=>{
+    if(confirm("Reset all saved progress on this device? This cannot be undone.")){
+      STATS={}; saveStats(); renderProgress();
+    }
+  };
+}
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;};
 
 const CATS=[...new Set(BANK.map(x=>x.c))];
@@ -788,9 +874,18 @@ $("startMcqBtn").onclick=()=>{
   if(!pool.length){alert("Select at least one question set.");return;}
   let deck=shuffle(pool);
   if(runLen && deck.length>runLen) deck=deck.slice(0,runLen);
-  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[];
+  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[]; lastMode="mcq";
   show("quiz"); renderQ();
 };
+function startReview(){
+  const pool=weakPool();
+  if(!pool.length){ alert("No weak areas yet — take a Limitations Check first, then anything you miss shows up here."); return; }
+  let deck=pool.slice();                    // most-missed first
+  if(runLen && deck.length>runLen) deck=deck.slice(0,runLen);
+  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[]; lastMode="review";
+  show("quiz"); renderQ();
+}
+$("modeReview").onclick=()=>startReview();
 function renderQ(){
   const q=queue[qi];
   $("qCat").textContent=q.c;
@@ -822,6 +917,7 @@ function answer(btn,chosen,order){
   });
   if(correct){cor++;streak++;}
   else{miss++;streak=0;missed.push({q:q.q,a:q.o[q.a]});}
+  recordAnswer(q,correct);
   $("sCor").textContent=cor;$("sMiss").textContent=miss;$("sStreak").textContent=streak;
   const e=document.createElement("div");
   e.className="ecam "+(correct?"ok":"no");
@@ -918,7 +1014,7 @@ function finishMem(){
 
 /* ---------- RESULTS NAV ---------- */
 let lastMode="mcq";
-$("againBtn").onclick=()=>{ lastMode==="mem"?startMem():$("startMcqBtn").onclick(); };
+$("againBtn").onclick=()=>{ lastMode==="mem"?startMem():lastMode==="review"?startReview():$("startMcqBtn").onclick(); };
 $("homeBtn").onclick=()=>show("start");
 
 /* ---------- FILL & CHECK ---------- */
@@ -985,6 +1081,36 @@ $("fCheckAll").onclick=()=>fillFields.forEach(fcheck);
 $("fReset").onclick=()=>{ fillFields.forEach(f=>{f.input.value="";f.input.classList.remove("ok","no");f.rowEl.classList.remove("showans");}); fillRevealed=false; $("fReveal").textContent="Reveal answers"; fscore(); window.scrollTo({top:0}); };
 $("fReveal").onclick=(e)=>{ fillRevealed=!fillRevealed; fillFields.forEach(f=>f.rowEl.classList.toggle("showans",fillRevealed)); e.target.textContent=fillRevealed?"Hide answers":"Reveal answers"; };
 $("fillHome").onclick=()=>show("start");
+
+/* ---------- LOOKUP (browse by subject) ---------- */
+let lkActive=null;
+function buildLkChips(){
+  const host=$("lkChips"); host.innerHTML="";
+  const subs=[...new Set(BANK.map(x=>x.c))].sort();
+  if(!lkActive) lkActive=subs[0];
+  subs.forEach(c=>{
+    const b=document.createElement("button");
+    b.className="chip"; b.textContent=c;
+    b.setAttribute("aria-pressed", c===lkActive);
+    b.onclick=()=>{ lkActive=c; buildLkChips(); renderLkList(); };
+    host.appendChild(b);
+  });
+}
+function renderLkList(){
+  const host=$("lkList"); host.innerHTML="";
+  const items=BANK.filter(x=>x.c===lkActive);
+  items.forEach(q=>{
+    const d=document.createElement("div"); d.className="lk-item";
+    d.innerHTML='<div class="lka">'+q.o[q.a]+'</div>'+
+                '<div class="lkq">'+q.q+'</div>'+
+                (q.w?'<div class="lkw">'+q.w+'</div>':'');
+    host.appendChild(d);
+  });
+}
+$("modeLookup").onclick=()=>{ show("lookup"); buildLkChips(); renderLkList(); };
+$("lookupHome").onclick=()=>show("start");
+
+renderProgress();
 
 /* keyboard: 1-5 to answer, Enter to advance */
 document.addEventListener("keydown",e=>{
