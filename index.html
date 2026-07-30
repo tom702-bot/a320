@@ -922,101 +922,16 @@ $("againBtn").onclick=()=>{ lastMode==="mem"?startMem():$("startMcqBtn").onclick
 $("homeBtn").onclick=()=>show("start");
 
 /* ---------- FILL & CHECK ---------- */
-const FILL_SECTIONS=[
-{t:"GENERAL & SPEEDS",rows:[
- ["Flight manoeuvring load — CLEAN config",[["","-1g to +2.5g",["-1 to +2.5","-1/+2.5"],"±g"]]],
- ["Flight manoeuvring load — OTHER config",[["","0g to +2g",["0 to +2","0/+2"],"±g"]]],
- ["Runway slope (max)",[["","±2%",["2","±2","+/-2"],"%"]]],
- ["Runway width — nominal / minimal",[["nominal","45 m",["45"],"m"],["minimal","30 m",["30"],"m"]]],
- ["Cockpit window open — max speed",[["","200 kt",["200"],"kt"]]],
- ["VMO / MMO",[["VMO","350 kt",["350"],"kt"],["MMO","M0.82",["0.82","m0.82",".82"],"Mach"]]],
- ["Wipers — max speed",[["","230 kt",["230"],"kt"]]],
- ["Max demonstrated crosswind",[["","38 kt",["38"],"kt"]]],
- ["Max tailwind — takeoff / landing",[["takeoff","15 kt",["15"],"kt"],["landing","15 kt",["15"],"kt"]]],
- ["Max tire (ground) speed",[["","195 kt",["195"],"kt GS"]]],
- ["VMCL",[["","114 kt",["114"],"kt"]]],
-]},
-{t:"LANDING GEAR & BRAKES",rows:[
- ["VLE — gear extended",[["kt","280 kt",["280"],"kt"],["Mach","M0.67",["0.67","m0.67"],"Mach"]]],
- ["VLO — extension",[["kt","250 kt",["250"],"kt"],["Mach","M0.60",["0.60","0.6","m0.60","m0.6"],"Mach"]]],
- ["VLO — retraction",[["kt","220 kt",["220"],"kt"],["Mach","M0.54",["0.54","m0.54"],"Mach"]]],
- ["LG safety valve — cuts off at",[["","260 kt",["260"],"kt"]]],
- ["Max brake temp for takeoff (fans off)",[["","300 °C",["300"],"°C"]]],
- ["Nosewheel steering — max angle",[["","±85°",["85","±85","+/-85"],"°"]]],
- ["NWS — angle when taxiing",[["","75°",["75"],"°"]]],
- ["NWS — using rudder pedals",[["","7°",["7"],"°"]]],
- ["Taxi — one tire per gear deflated",[["","7 kt",["7"],"kt"]]],
- ["Taxi — two tires deflated (same gear)",[["","3 kt",["3"],"kt"]]],
-]},
-{t:"FLAPS / SLATS SPEEDS",rows:[
- ["CONF 1",[["","235 kt",["235"],"kt"]]],
- ["CONF 1+F",[["","225 kt",["225"],"kt"]]],
- ["CONF 2",[["","215 kt",["215"],"kt"]]],
- ["CONF 3",[["","195 kt",["195"],"kt"]]],
- ["CONF FULL",[["","190 kt",["190"],"kt"]]],
- ["Max altitude — flaps/slats extended",[["","20,000 ft",["20000"],"ft"]]],
-]},
-{t:"PRESSURISATION",rows:[
- ["Max positive differential",[["","9.0 PSI",["9","9.0"],"PSI"]]],
- ["Max negative differential",[["","-1.0 PSI",["-1","-1.0"],"PSI"]]],
- ["Safety relief valve setting",[["","8.6 PSI",["8.6"],"PSI"]]],
- ["Max operating (pressure) altitude",[["","39,800 ft",["39800"],"ft"]]],
-]},
-{t:"WEIGHTS (A321P2F)",rows:[
- ["Maximum taxi weight",[["","93,400 kg",["93400"],"kg"]]],
- ["Maximum takeoff weight (MTOW)",[["","93,000 kg",["93000"],"kg"]]],
- ["Maximum landing weight (MLW)",[["","77,800 kg",["77800"],"kg"]]],
- ["Maximum zero fuel weight (MZFW)",[["","73,800 kg",["73800"],"kg"]]],
- ["Minimum weight",[["","47,500 kg",["47500"],"kg"]]],
-]},
-{t:"POWERPLANT",rows:[
- ["EGT — Takeoff / Go-around",[["","650 °C",["650"],"°C"]]],
- ["Takeoff/GA time — all eng / one eng",[["all eng","5 min",["5"],"min"],["one eng","10 min",["10"],"min"]]],
- ["EGT — MCT",[["","610 °C",["610"],"°C"]]],
- ["EGT — Starting",[["","635 °C",["635"],"°C"]]],
- ["Max N1 / N2",[["N1","100%",["100"],"%"],["N2","100%",["100"],"%"]]],
- ["Minimum oil pressure",[["","60 PSI",["60"],"PSI"]]],
- ["Max reverse — not below",[["","70 kt",["70"],"kt"]]],
- ["Max crosswind for engine start",[["","35 kt",["35"],"kt"]]],
-]},
-{t:"APU",rows:[
- ["Wait after 3 consecutive start attempts",[["","60 min",["60"],"min"]]],
- ["APU restart on battery up to",[["","FL250",["250","fl250"],"FL"]]],
- ["APU EGT — start below 35,000 ft",[["","1090 °C",["1090"],"°C"]]],
- ["APU EGT — start above 35,000 ft",[["","1120 °C",["1120"],"°C"]]],
- ["APU EGT — running",[["","675 °C",["675"],"°C"]]],
- ["APU bleed — max alt, engine start",[["","20,000 ft",["20000"],"ft"]]],
- ["APU bleed — max alt, single pack",[["","22,500 ft",["22500"],"ft"]]],
- ["APU bleed — max alt, dual pack",[["","15,000 ft",["15000"],"ft"]]],
-]},
-{t:"FUEL",rows:[
- ["Minimum fuel for takeoff",[["","1,500 kg",["1500"],"kg"]]],
- ["Max fuel temperature",[["","54 °C",["54"],"°C"]]],
- ["Min fuel temp (JET A1)",[["","-43 °C",["-43"],"°C"]]],
- ["Max fuel imbalance (heavier tank full)",[["","600 kg",["600"],"kg"]]],
-]},
-{t:"ICE & RAIN",rows:[
- ["Icing conditions — OAT/TAT at or below",[["","10 °C",["10"],"°C"]]],
- ["Icing conditions — visibility of / less",[["","1600 m",["1600"],"m"]]],
- ["Severe ice accretion threshold",[["","5 mm",["5"],"mm"]]],
-]},
-{t:"AVIONICS VENTILATION",rows:[
- ["No limitation — OAT at or below",[["","41 °C",["41"],"°C"]]],
- ["41 °C < OAT ≤ 46 °C",[["","2 h",["2"],"h"]]],
- ["46 °C < OAT ≤ 51 °C",[["","1 h",["1"],"h"]]],
- ["51 °C < OAT ≤ 55 °C",[["","0.5 h",["0.5",".5"],"h"]]],
-]},
-{t:"CARGO DOORS (wind)",rows:[
- ["FWD / AFT cargo doors — closed before",[["","65 kt",["65"],"kt"]]],
- ["Main Deck Cargo Door — max opening",[["","40 kt",["40"],"kt"]]],
- ["Main Deck Cargo Door — closed before",[["","60 kt",["60"],"kt"]]],
-]},
-];
+const FILL_SECTIONS=[{"t": "GENERAL & SPEEDS", "rows": [["Flight manoeuvring load — CLEAN config", [["", "-1g to +2.5g", [], "±g"]]], ["Flight manoeuvring load — OTHER config", [["", "0g to +2g", [], "±g"]]], ["Runway slope (max)", [["", "±2%", [], "%"]]], ["Runway width — nominal / minimal", [["nominal", "45 m", [], "m"], ["minimal", "30 m", [], "m"]]], ["Cockpit window open — max speed", [["", "200 kt", [], "kt"]]], ["VMO / MMO", [["VMO", "350 kt", [], "kt"], ["MMO", "M0.82", [], "Mach"]]], ["Wipers — max speed", [["", "230 kt", [], "kt"]]], ["Max demonstrated crosswind", [["", "38 kt", [], "kt"]]], ["Max tailwind — takeoff / landing", [["takeoff", "15 kt", [], "kt"], ["landing", "15 kt", [], "kt"]]], ["Max tire (ground) speed", [["", "195 kt", [], "kt GS"]]], ["VMCL", [["", "114 kt", [], "kt"]]], ["VMCA — sea level", [["", "114 kt", [], "kt"]]], ["VMCG (CONF 1+F) — sea level", [["", "110 kt", [], "kt"]]], ["Contaminated x-wind — RWYCC 5 (GOOD)", [["", "38 kt", [], "kt"]]], ["Contaminated x-wind — RWYCC 4 (GOOD-MEDIUM)", [["", "29 kt", [], "kt"]]]]}, {"t": "LANDING GEAR & BRAKES", "rows": [["VLE — gear extended", [["kt", "280 kt", [], "kt"], ["Mach", "M0.67", [], "Mach"]]], ["VLO — extension", [["kt", "250 kt", [], "kt"], ["Mach", "M0.60", [], "Mach"]]], ["VLO — retraction", [["kt", "220 kt", [], "kt"], ["Mach", "M0.54", [], "Mach"]]], ["LG safety valve — cuts off at", [["", "260 kt", [], "kt"]]], ["Max brake temp for takeoff (fans off)", [["", "300 °C", [], "°C"]]], ["Nosewheel steering — max angle", [["", "±85°", [], "°"]]], ["NWS — angle when taxiing", [["", "75°", [], "°"]]], ["NWS — using rudder pedals", [["", "7°", [], "°"]]], ["NWS — max angle with a deflated tire", [["", "30°", [], "°"]]], ["Taxi — one tire per gear deflated", [["", "7 kt", [], "kt"]]], ["Taxi — two tires deflated (same gear)", [["", "3 kt", [], "kt"]]]]}, {"t": "FLAPS / SLATS SPEEDS", "rows": [["CONF 1", [["", "235 kt", [], "kt"]]], ["CONF 1+F", [["", "225 kt", [], "kt"]]], ["CONF 2", [["", "215 kt", [], "kt"]]], ["CONF 3", [["", "195 kt", [], "kt"]]], ["CONF FULL", [["", "190 kt", [], "kt"]]], ["Max altitude — flaps/slats extended", [["", "20,000 ft", [], "ft"]]]]}, {"t": "PRESSURISATION", "rows": [["Max positive differential", [["", "9.0 PSI", [], "PSI"]]], ["Max negative differential", [["", "-1.0 PSI", [], "PSI"]]], ["Safety relief valve setting", [["", "8.6 PSI", [], "PSI"]]], ["Max operating (pressure) altitude", [["", "39,800 ft", [], "ft"]]]]}, {"t": "WEIGHTS (A321P2F)", "rows": [["Maximum taxi weight", [["", "93,400 kg", [], "kg"]]], ["Maximum takeoff weight (MTOW)", [["", "93,000 kg", [], "kg"]]], ["Maximum landing weight (MLW)", [["", "77,800 kg", [], "kg"]]], ["Maximum zero fuel weight (MZFW)", [["", "73,800 kg", [], "kg"]]], ["Minimum weight", [["", "47,500 kg", [], "kg"]]]]}, {"t": "POWERPLANT", "rows": [["EGT — Takeoff / Go-around", [["", "650 °C", [], "°C"]]], ["Takeoff/GA time — all eng / one eng", [["all eng", "5 min", [], "min"], ["one eng", "10 min", [], "min"]]], ["EGT — MCT", [["", "610 °C", [], "°C"]]], ["EGT — Starting", [["", "635 °C", [], "°C"]]], ["Max N1 / N2", [["N1", "100%", [], "%"], ["N2", "100%", [], "%"]]], ["Minimum oil pressure", [["", "60 PSI", [], "PSI"]]], ["Starter — pause between ground cycles", [["", "15 s", [], "s"]]], ["Starter — cooling after 3 failed cycles", [["", "30 min", [], "min"]]], ["Starter — max manual-start cycle", [["", "2 min", [], "min"]]], ["Starter — N2 max (ground / flight)", [["ground", "10%", [], "%"], ["flight", "18%", [], "%"]]], ["Max reverse — not below", [["", "70 kt", [], "kt"]]], ["Max crosswind for engine start", [["", "35 kt", [], "kt"]]]]}, {"t": "APU", "rows": [["Maximum N speed", [["", "107%", [], "%"]]], ["Wait after 3 consecutive start attempts", [["", "60 min", [], "min"]]], ["Restart on battery up to", [["", "FL250", [], "FL"]]], ["EGT — start below 35,000 ft", [["", "1090 °C", [], "°C"]]], ["EGT — start above 35,000 ft", [["", "1120 °C", [], "°C"]]], ["EGT — running", [["", "675 °C", [], "°C"]]], ["Bleed — max alt, engine start", [["", "20,000 ft", [], "ft"]]], ["Bleed — max alt, single pack", [["", "22,500 ft", [], "ft"]]], ["Bleed — max alt, dual pack", [["", "15,000 ft", [], "ft"]]]]}, {"t": "AUTOPILOT — MIN ENGAGEMENT HEIGHT", "rows": [["Takeoff", [["", "100 ft", [], "ft AGL"]]], ["Approach — F-G/S mode", [["", "200 ft", [], "ft AGL"]]], ["FINAL APP / V/S / FPA mode", [["", "250 ft", [], "ft AGL"]]], ["Circling — cat C / cat D", [["cat C", "500 ft", [], "ft"], ["cat D", "600 ft", [], "ft"]]], ["ILS/MLS — CAT 1 on FMA", [["", "160 ft", [], "ft AGL"]]], ["PAR approach", [["", "250 ft", [], "ft AGL"]]], ["After a manual go-around", [["", "100 ft", [], "ft AGL"]]]]}, {"t": "AUTOLAND", "rows": [["CAT II — minimum DH", [["", "100 ft", [], "ft"]]], ["CAT II — manual landing, AP off by", [["", "80 ft", [], "ft AGL"]]], ["CAT III DUAL — alert height", [["", "100 ft", [], "ft"]]], ["CAT III with DH — minimum DH", [["", "22 ft", [], "ft"]]], ["CAT III without DH — minimum RVR", [["", "75 m", [], "m"]]], ["Demonstrated glide-slope range", [["", "-2.5° to -3.15°", [], "°"]]], ["Max airport elevation (VH-XF4/5/6)", [["", "5,750 ft", [], "ft"]]], ["Not allowed below pressure altitude", [["", "-1,000 ft", [], "ft"]]], ["Max headwind — CAT II / CAT III", [["CAT II", "40 kt", [], "kt"], ["CAT III", "30 kt", [], "kt"]]], ["Max tailwind", [["", "10 kt", [], "kt"]]], ["Max crosswind — CAT II / CAT III", [["CAT II", "25 kt", [], "kt"], ["CAT III", "20 kt", [], "kt"]]], ["Eng-out — procedures complete before", [["", "1,000 ft", [], "ft"]]]]}, {"t": "FUEL", "rows": [["Minimum fuel for takeoff", [["", "1,500 kg", [], "kg"]]], ["Max fuel temperature", [["", "54 °C", [], "°C"]]], ["Min fuel temp (JET A1)", [["", "-43 °C", [], "°C"]]], ["Max fuel imbalance (heavier tank full)", [["", "600 kg", [], "kg"]]], ["No imbalance limitation below", [["", "1,500 kg", [], "kg"]]]]}, {"t": "ICE & RAIN", "rows": [["Icing conditions — OAT/TAT at or below", [["", "10 °C", [], "°C"]]], ["Icing conditions — visibility of / less", [["", "1600 m", [], "m"]]], ["Severe ice accretion threshold", [["", "5 mm", [], "mm"]]]]}, {"t": "AVIONICS VENTILATION", "rows": [["No limitation — OAT at or below", [["", "41 °C", [], "°C"]]], ["41 °C < OAT ≤ 46 °C", [["", "2 h", [], "h"]]], ["46 °C < OAT ≤ 51 °C", [["", "1 h", [], "h"]]], ["51 °C < OAT ≤ 55 °C", [["", "0.5 h", [], "h"]]]]}, {"t": "CARGO DOORS (wind)", "rows": [["FWD / AFT cargo doors — closed before", [["", "65 kt", [], "kt"]]], ["Main Deck Cargo Door — max opening", [["", "40 kt", [], "kt"]]], ["Main Deck Cargo Door — closed before", [["", "60 kt", [], "kt"]]]]}, {"t": "OXYGEN", "rows": [["Min lavatory portable O2 bottle at 21 °C", [["", "1,200 PSI", [], "PSI"]]]]}, {"t": "NAVIGATION", "rows": [["IRS ground alignment — latitude limit (N/S)", [["", "82°", [], "°"]]]]}, {"t": "COMMUNICATION", "rows": [["PED WiFi — must be disabled below", [["", "10,000 ft", [], "ft AGL"]]]]}, {"t": "ROW/ROP & SURVEILLANCE", "rows": [["ROPS / predictive-GPWS may be inhibited within", [["", "15 NM", [], "NM"]]]]}, {"t": "FREIGHTER", "rows": [["Max flight-deck occupants (excl. 2 crew)", [["", "3", [], ""]]]]}];
 function fnorm(s){
-  s=(s||"").toString().toLowerCase().replace(/\bto\b|\band\b|&/g,"/");
-  s=s.replace(/[^0-9+\-/.]/g,"");
-  s=s.replace(/^\./,"0.").replace(/\/\./g,"/0.").replace(/^-\./,"-0.");
-  return s;
+  s=(s||"").toString().toLowerCase().replace(/,/g,"");
+  const nums=s.match(/[+-]?\d*\.?\d+/g)||[];
+  return nums.map(n=>{
+    n=n.replace(/^\+/,"");
+    if(n[0]===".")n="0"+n; else if(n.slice(0,2)==="-.")n="-0"+n.slice(1);
+    if(n.indexOf(".")>-1)n=n.replace(/0+$/,"").replace(/\.$/,"");
+    return n;
+  }).join("|");
 }
 let fillFields=[], fillBuilt=false, fillRevealed=false;
 function buildFill(){
@@ -1039,7 +954,7 @@ function buildFill(){
         frw.appendChild(inp);
         if(unit){const u=document.createElement("span");u.className="fin-unit";u.textContent=unit;frw.appendChild(u);}
         frw.appendChild(corr); f.appendChild(frw); fv.appendChild(f);
-        const rec={input:inp,accept:accept.map(fnorm),rowEl:row};
+        const rec={input:inp,accept:new Set([ans].concat(accept).map(fnorm)),rowEl:row};
         fillFields.push(rec);
         inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ fcheck(rec); fnext(inp); }});
         inp.addEventListener("input",()=>{ inp.classList.remove("ok","no"); row.classList.remove("showans"); fscore(); });
@@ -1053,7 +968,7 @@ function buildFill(){
 function fcheck(rec){
   rec.input.classList.remove("ok","no"); rec.rowEl.classList.remove("showans");
   if(!rec.input.value.trim()){ fscore(); return; }
-  if(rec.accept.includes(fnorm(rec.input.value))) rec.input.classList.add("ok");
+  if(rec.accept.has(fnorm(rec.input.value))) rec.input.classList.add("ok");
   else { rec.input.classList.add("no"); rec.rowEl.classList.add("showans"); }
   fscore();
 }

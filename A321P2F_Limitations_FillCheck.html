@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A321P2F Limitations — Fill & Check</title>
+<style>
+  :root{
+    --maroon:#7a2230; --maroon-dark:#5f1a26; --ink:#1a1a1a; --muted:#5f7180;
+    --blue:#b8d1e0; --blue-lite:#dcebf3; --green-lite:#d9f0e0; --grn:#1f7d42;
+    --red-lite:#fadddd; --red:#b3261e; --line:#c9c9c9; --paper:#ffffff;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#eef1f4;color:var(--ink);font-family:var(--font);line-height:1.4;
+    padding:env(safe-area-inset-top) 0 40px}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  header.top{background:var(--maroon);color:#fff;border-radius:8px;padding:14px 18px;margin-bottom:6px}
+  header.top h1{margin:0;font-size:19px;letter-spacing:.5px}
+  header.top .sub{font-size:11.5px;opacity:.85;font-family:var(--mono);letter-spacing:1px;text-transform:uppercase;margin-top:3px}
+
+  .bar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+    background:#eef1f4;padding:10px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
+  .btn{font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
+    border:1px solid var(--maroon);background:#fff;color:var(--maroon);padding:9px 14px;border-radius:7px;cursor:pointer;font-weight:600}
+  .btn.primary{background:var(--maroon);color:#fff}
+  .btn:hover{filter:brightness(.96)}
+  .score{margin-left:auto;font-family:var(--mono);font-size:14px;font-weight:700}
+  .score b{font-size:18px}
+
+  .note{font-size:12.5px;color:var(--muted);margin:2px 0 14px;line-height:1.5}
+
+  section.blk{background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:14px}
+  .blk h2{margin:0;background:var(--blue);color:#123;font-size:13px;letter-spacing:1px;
+    text-transform:uppercase;padding:8px 14px;font-weight:700}
+  .row{display:grid;grid-template-columns:1fr 1.15fr;gap:0;border-top:1px solid #e6e6e6}
+  .row:first-of-type{border-top:none}
+  .row .lbl{padding:10px 14px;font-size:13.5px;font-weight:600;display:flex;align-items:center;
+    background:var(--blue-lite)}
+  .row .vals{padding:8px 12px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+  .field{display:flex;flex-direction:column;gap:3px}
+  .field .sub{font-size:10px;font-family:var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .field .inrow{display:flex;align-items:center;gap:6px}
+  input.ans{width:118px;font-family:var(--mono);font-size:14px;padding:7px 9px;border:1.5px solid var(--line);
+    border-radius:6px;background:#fff;color:var(--ink)}
+  input.ans:focus{outline:none;border-color:var(--maroon)}
+  input.ans.ok{background:var(--green-lite);border-color:var(--grn);color:#0a4a22}
+  input.ans.no{background:var(--red-lite);border-color:var(--red);color:#7a1610}
+  .correct{font-family:var(--mono);font-size:12px;color:var(--grn);font-weight:700;display:none}
+  .row.showans .correct{display:inline}
+  .unit{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+  @media(max-width:560px){
+    .row{grid-template-columns:1fr}
+    .row .lbl{background:var(--blue-lite)}
+  }
+  @media print{
+    body{background:#fff}.bar,.note{display:none}
+    input.ans{border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>A321P2F Limitations — Fill &amp; Check</h1>
+    <div class="sub">Nutshell-style layout · verified FCOM (LIM) values</div>
+  </header>
+
+  <div class="bar">
+    <button class="btn primary" id="checkAll">Check all</button>
+    <button class="btn" id="revealAll">Reveal answers</button>
+    <button class="btn" id="reset">Reset</button>
+    <div class="score" id="score"><b>0</b> / 0</div>
+  </div>
+
+  <p class="note">Type each value and press <b>Enter</b> (or “Check all”). Correct → green,
+    wrong → red with the answer shown. Units are ignored, so “350”, “350kt”, and “350 kt” all pass;
+    ranges accept “-1 to +2.5” or “-1/+2.5”. Study aid only — verify against current FCOM/QRH.</p>
+
+  <div id="sheet"></div>
+</div>
+
+<script>
+/* accepted answers are matched after normalisation (units/spaces/case removed) */
+const SECTIONS = [{"t": "GENERAL & SPEEDS", "rows": [["Flight manoeuvring load — CLEAN config", [["", "-1g to +2.5g", [], "±g"]]], ["Flight manoeuvring load — OTHER config", [["", "0g to +2g", [], "±g"]]], ["Runway slope (max)", [["", "±2%", [], "%"]]], ["Runway width — nominal / minimal", [["nominal", "45 m", [], "m"], ["minimal", "30 m", [], "m"]]], ["Cockpit window open — max speed", [["", "200 kt", [], "kt"]]], ["VMO / MMO", [["VMO", "350 kt", [], "kt"], ["MMO", "M0.82", [], "Mach"]]], ["Wipers — max speed", [["", "230 kt", [], "kt"]]], ["Max demonstrated crosswind", [["", "38 kt", [], "kt"]]], ["Max tailwind — takeoff / landing", [["takeoff", "15 kt", [], "kt"], ["landing", "15 kt", [], "kt"]]], ["Max tire (ground) speed", [["", "195 kt", [], "kt GS"]]], ["VMCL", [["", "114 kt", [], "kt"]]], ["VMCA — sea level", [["", "114 kt", [], "kt"]]], ["VMCG (CONF 1+F) — sea level", [["", "110 kt", [], "kt"]]], ["Contaminated x-wind — RWYCC 5 (GOOD)", [["", "38 kt", [], "kt"]]], ["Contaminated x-wind — RWYCC 4 (GOOD-MEDIUM)", [["", "29 kt", [], "kt"]]]]}, {"t": "LANDING GEAR & BRAKES", "rows": [["VLE — gear extended", [["kt", "280 kt", [], "kt"], ["Mach", "M0.67", [], "Mach"]]], ["VLO — extension", [["kt", "250 kt", [], "kt"], ["Mach", "M0.60", [], "Mach"]]], ["VLO — retraction", [["kt", "220 kt", [], "kt"], ["Mach", "M0.54", [], "Mach"]]], ["LG safety valve — cuts off at", [["", "260 kt", [], "kt"]]], ["Max brake temp for takeoff (fans off)", [["", "300 °C", [], "°C"]]], ["Nosewheel steering — max angle", [["", "±85°", [], "°"]]], ["NWS — angle when taxiing", [["", "75°", [], "°"]]], ["NWS — using rudder pedals", [["", "7°", [], "°"]]], ["NWS — max angle with a deflated tire", [["", "30°", [], "°"]]], ["Taxi — one tire per gear deflated", [["", "7 kt", [], "kt"]]], ["Taxi — two tires deflated (same gear)", [["", "3 kt", [], "kt"]]]]}, {"t": "FLAPS / SLATS SPEEDS", "rows": [["CONF 1", [["", "235 kt", [], "kt"]]], ["CONF 1+F", [["", "225 kt", [], "kt"]]], ["CONF 2", [["", "215 kt", [], "kt"]]], ["CONF 3", [["", "195 kt", [], "kt"]]], ["CONF FULL", [["", "190 kt", [], "kt"]]], ["Max altitude — flaps/slats extended", [["", "20,000 ft", [], "ft"]]]]}, {"t": "PRESSURISATION", "rows": [["Max positive differential", [["", "9.0 PSI", [], "PSI"]]], ["Max negative differential", [["", "-1.0 PSI", [], "PSI"]]], ["Safety relief valve setting", [["", "8.6 PSI", [], "PSI"]]], ["Max operating (pressure) altitude", [["", "39,800 ft", [], "ft"]]]]}, {"t": "WEIGHTS (A321P2F)", "rows": [["Maximum taxi weight", [["", "93,400 kg", [], "kg"]]], ["Maximum takeoff weight (MTOW)", [["", "93,000 kg", [], "kg"]]], ["Maximum landing weight (MLW)", [["", "77,800 kg", [], "kg"]]], ["Maximum zero fuel weight (MZFW)", [["", "73,800 kg", [], "kg"]]], ["Minimum weight", [["", "47,500 kg", [], "kg"]]]]}, {"t": "POWERPLANT", "rows": [["EGT — Takeoff / Go-around", [["", "650 °C", [], "°C"]]], ["Takeoff/GA time — all eng / one eng", [["all eng", "5 min", [], "min"], ["one eng", "10 min", [], "min"]]], ["EGT — MCT", [["", "610 °C", [], "°C"]]], ["EGT — Starting", [["", "635 °C", [], "°C"]]], ["Max N1 / N2", [["N1", "100%", [], "%"], ["N2", "100%", [], "%"]]], ["Minimum oil pressure", [["", "60 PSI", [], "PSI"]]], ["Starter — pause between ground cycles", [["", "15 s", [], "s"]]], ["Starter — cooling after 3 failed cycles", [["", "30 min", [], "min"]]], ["Starter — max manual-start cycle", [["", "2 min", [], "min"]]], ["Starter — N2 max (ground / flight)", [["ground", "10%", [], "%"], ["flight", "18%", [], "%"]]], ["Max reverse — not below", [["", "70 kt", [], "kt"]]], ["Max crosswind for engine start", [["", "35 kt", [], "kt"]]]]}, {"t": "APU", "rows": [["Maximum N speed", [["", "107%", [], "%"]]], ["Wait after 3 consecutive start attempts", [["", "60 min", [], "min"]]], ["Restart on battery up to", [["", "FL250", [], "FL"]]], ["EGT — start below 35,000 ft", [["", "1090 °C", [], "°C"]]], ["EGT — start above 35,000 ft", [["", "1120 °C", [], "°C"]]], ["EGT — running", [["", "675 °C", [], "°C"]]], ["Bleed — max alt, engine start", [["", "20,000 ft", [], "ft"]]], ["Bleed — max alt, single pack", [["", "22,500 ft", [], "ft"]]], ["Bleed — max alt, dual pack", [["", "15,000 ft", [], "ft"]]]]}, {"t": "AUTOPILOT — MIN ENGAGEMENT HEIGHT", "rows": [["Takeoff", [["", "100 ft", [], "ft AGL"]]], ["Approach — F-G/S mode", [["", "200 ft", [], "ft AGL"]]], ["FINAL APP / V/S / FPA mode", [["", "250 ft", [], "ft AGL"]]], ["Circling — cat C / cat D", [["cat C", "500 ft", [], "ft"], ["cat D", "600 ft", [], "ft"]]], ["ILS/MLS — CAT 1 on FMA", [["", "160 ft", [], "ft AGL"]]], ["PAR approach", [["", "250 ft", [], "ft AGL"]]], ["After a manual go-around", [["", "100 ft", [], "ft AGL"]]]]}, {"t": "AUTOLAND", "rows": [["CAT II — minimum DH", [["", "100 ft", [], "ft"]]], ["CAT II — manual landing, AP off by", [["", "80 ft", [], "ft AGL"]]], ["CAT III DUAL — alert height", [["", "100 ft", [], "ft"]]], ["CAT III with DH — minimum DH", [["", "22 ft", [], "ft"]]], ["CAT III without DH — minimum RVR", [["", "75 m", [], "m"]]], ["Demonstrated glide-slope range", [["", "-2.5° to -3.15°", [], "°"]]], ["Max airport elevation (VH-XF4/5/6)", [["", "5,750 ft", [], "ft"]]], ["Not allowed below pressure altitude", [["", "-1,000 ft", [], "ft"]]], ["Max headwind — CAT II / CAT III", [["CAT II", "40 kt", [], "kt"], ["CAT III", "30 kt", [], "kt"]]], ["Max tailwind", [["", "10 kt", [], "kt"]]], ["Max crosswind — CAT II / CAT III", [["CAT II", "25 kt", [], "kt"], ["CAT III", "20 kt", [], "kt"]]], ["Eng-out — procedures complete before", [["", "1,000 ft", [], "ft"]]]]}, {"t": "FUEL", "rows": [["Minimum fuel for takeoff", [["", "1,500 kg", [], "kg"]]], ["Max fuel temperature", [["", "54 °C", [], "°C"]]], ["Min fuel temp (JET A1)", [["", "-43 °C", [], "°C"]]], ["Max fuel imbalance (heavier tank full)", [["", "600 kg", [], "kg"]]], ["No imbalance limitation below", [["", "1,500 kg", [], "kg"]]]]}, {"t": "ICE & RAIN", "rows": [["Icing conditions — OAT/TAT at or below", [["", "10 °C", [], "°C"]]], ["Icing conditions — visibility of / less", [["", "1600 m", [], "m"]]], ["Severe ice accretion threshold", [["", "5 mm", [], "mm"]]]]}, {"t": "AVIONICS VENTILATION", "rows": [["No limitation — OAT at or below", [["", "41 °C", [], "°C"]]], ["41 °C < OAT ≤ 46 °C", [["", "2 h", [], "h"]]], ["46 °C < OAT ≤ 51 °C", [["", "1 h", [], "h"]]], ["51 °C < OAT ≤ 55 °C", [["", "0.5 h", [], "h"]]]]}, {"t": "CARGO DOORS (wind)", "rows": [["FWD / AFT cargo doors — closed before", [["", "65 kt", [], "kt"]]], ["Main Deck Cargo Door — max opening", [["", "40 kt", [], "kt"]]], ["Main Deck Cargo Door — closed before", [["", "60 kt", [], "kt"]]]]}, {"t": "OXYGEN", "rows": [["Min lavatory portable O2 bottle at 21 °C", [["", "1,200 PSI", [], "PSI"]]]]}, {"t": "NAVIGATION", "rows": [["IRS ground alignment — latitude limit (N/S)", [["", "82°", [], "°"]]]]}, {"t": "COMMUNICATION", "rows": [["PED WiFi — must be disabled below", [["", "10,000 ft", [], "ft AGL"]]]]}, {"t": "ROW/ROP & SURVEILLANCE", "rows": [["ROPS / predictive-GPWS may be inhibited within", [["", "15 NM", [], "NM"]]]]}, {"t": "FREIGHTER", "rows": [["Max flight-deck occupants (excl. 2 crew)", [["", "3", [], ""]]]]}];
+
+function norm(s){
+  s=(s||"").toString().toLowerCase().replace(/,/g,'');
+  const nums=s.match(/[+-]?\d*\.?\d+/g)||[];
+  return nums.map(n=>{
+    n=n.replace(/^\+/,'');
+    if(n[0]==='.')n='0'+n; else if(n.slice(0,2)==='-.')n='-0'+n.slice(1);
+    if(n.indexOf('.')>-1)n=n.replace(/0+$/,'').replace(/\.$/,'');
+    return n;
+  }).join('|');
+}
+
+const sheet=document.getElementById('sheet');
+let total=0;
+const fields=[]; // {input, accept, rowEl}
+
+SECTIONS.forEach(sec=>{
+  const s=document.createElement('section'); s.className='blk';
+  s.innerHTML='<h2>'+sec.t+'</h2>';
+  sec.rows.forEach(([label,vals])=>{
+    const row=document.createElement('div'); row.className='row';
+    const lbl=document.createElement('div'); lbl.className='lbl'; lbl.textContent=label;
+    const box=document.createElement('div'); box.className='vals';
+    vals.forEach(([sub,ans,accept,unit])=>{
+      total++;
+      const f=document.createElement('div'); f.className='field';
+      if(sub) f.innerHTML='<span class="sub">'+sub+'</span>';
+      const inrow=document.createElement('div'); inrow.className='inrow';
+      const inp=document.createElement('input'); inp.className='ans'; inp.type='text';
+      inp.setAttribute('inputmode','text'); inp.autocapitalize='off'; inp.autocomplete='off';
+      if(unit){const u=document.createElement('span');u.className='unit';u.textContent=unit;}
+      const corr=document.createElement('span'); corr.className='correct'; corr.textContent='= '+ans;
+      inrow.appendChild(inp);
+      if(unit){const u=document.createElement('span');u.className='unit';u.textContent=unit;inrow.appendChild(u);}
+      inrow.appendChild(corr);
+      f.appendChild(inrow); box.appendChild(f);
+      const rec={input:inp, accept:new Set([ans].concat(accept).map(norm)), ans, rowEl:row};
+      fields.push(rec);
+      inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ check(rec); focusNext(inp); }});
+      inp.addEventListener('input',()=>{ inp.classList.remove('ok','no'); row.classList.remove('showans'); updateScore(); });
+    });
+    row.appendChild(lbl); row.appendChild(box); s.appendChild(row);
+  });
+  sheet.appendChild(s);
+});
+document.getElementById('score').innerHTML='<b>0</b> / '+total;
+
+function check(rec){
+  const v=norm(rec.input.value);
+  rec.input.classList.remove('ok','no'); rec.rowEl.classList.remove('showans');
+  if(!rec.input.value.trim()) return;
+  if(rec.accept.has(v)){ rec.input.classList.add('ok'); }
+  else { rec.input.classList.add('no'); rec.rowEl.classList.add('showans'); }
+  updateScore();
+}
+function focusNext(inp){
+  const i=fields.findIndex(f=>f.input===inp);
+  if(i>-1 && i+1<fields.length) fields[i+1].input.focus();
+}
+function updateScore(){
+  const ok=fields.filter(f=>f.input.classList.contains('ok')).length;
+  document.getElementById('score').innerHTML='<b>'+ok+'</b> / '+total;
+}
+document.getElementById('checkAll').onclick=()=>{ fields.forEach(check); };
+document.getElementById('reset').onclick=()=>{
+  fields.forEach(f=>{f.input.value='';f.input.classList.remove('ok','no');f.rowEl.classList.remove('showans');});
+  updateScore(); window.scrollTo({top:0});
+};
+let revealed=false;
+document.getElementById('revealAll').onclick=(e)=>{
+  revealed=!revealed;
+  fields.forEach(f=>f.rowEl.classList.toggle('showans',revealed));
+  e.target.textContent=revealed?'Hide answers':'Reveal answers';
+};
+</script>
+</body>
+</html>
