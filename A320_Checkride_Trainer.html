@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A320 Checkride Trainer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A320 Trainer</title>
+<meta name="theme-color" content="#0c1116">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="A320 Trainer">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
 <style>
   :root{
     --bg:#0c1116; --panel:#10161c; --panel2:#18222b; --edge:#2b3742;
@@ -24,7 +32,7 @@
     min-height:100vh; -webkit-font-smoothing:antialiased;
     line-height:1.5;
   }
-  .wrap{max-width:760px; margin:0 auto; padding:24px 18px 60px}
+  .wrap{max-width:760px; margin:0 auto; padding:calc(24px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) calc(60px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left))}
 
   /* ---- Header placard ---- */
   .placard{
@@ -105,6 +113,9 @@
   .ecam.ok .head{color:var(--green)} .ecam.ok .head .dot{background:var(--green);box-shadow:0 0 8px var(--green)}
   .ecam.no .head{color:var(--amber)} .ecam.no .head .dot{background:var(--amber);box-shadow:0 0 8px var(--amber)}
   .ecam .body{padding:14px 16px}
+  .ecam .ans{font-family:var(--font-data); font-size:14px; color:var(--cyan);
+    margin-bottom:10px}
+  .ecam .ans b{color:var(--white)}
   .ecam .why{font-size:14px; color:#c7d3db; line-height:1.55}
   .ecam .why .lead{color:var(--muted); font-family:var(--font-data); font-size:10.5px;
     letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:4px}
@@ -134,6 +145,28 @@
   .mode .mt .ic{font-family:var(--font-data); font-size:11px; color:var(--bg);
     background:var(--cyan); border-radius:4px; padding:3px 6px; letter-spacing:1px}
   .mode.alt .mt .ic{background:var(--amber)}
+  .mode.fill .mt .ic{background:var(--green)}
+
+  /* ---- Fill & Check table ---- */
+  .fblk{border:1px solid var(--edge);background:var(--panel);border-radius:10px;overflow:hidden;margin-bottom:12px}
+  .fblk h3{margin:0;background:var(--panel2);color:var(--cyan);font-family:var(--font-data);
+    font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:8px 14px;border-bottom:1px solid var(--edge)}
+  .frow{display:grid;grid-template-columns:1fr 1.05fr;border-top:1px solid var(--edge)}
+  .frow:first-of-type{border-top:none}
+  .frow .fl{padding:9px 14px;font-size:13px;display:flex;align-items:center;color:var(--white)}
+  .frow .fv{padding:7px 12px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+  .ffield{display:flex;flex-direction:column;gap:3px}
+  .ffield .fsub{font-size:9px;font-family:var(--font-data);color:var(--muted-2);text-transform:uppercase;letter-spacing:.5px}
+  .ffield .frw{display:flex;align-items:center;gap:6px}
+  input.fin{width:112px;font-family:var(--font-data);font-size:14px;padding:7px 9px;
+    border:1.5px solid var(--edge);border-radius:6px;background:var(--panel2);color:var(--white)}
+  input.fin:focus{outline:none;border-color:var(--cyan)}
+  input.fin.ok{background:rgba(55,208,106,.12);border-color:var(--green);color:#bff0cf}
+  input.fin.no{background:rgba(255,176,46,.12);border-color:var(--amber);color:#ffd98a}
+  .fin-unit{font-family:var(--font-data);font-size:11px;color:var(--muted-2)}
+  .fcorrect{font-family:var(--font-data);font-size:12px;color:var(--amber);font-weight:700;display:none}
+  .frow.showans .fcorrect{display:inline}
+  @media(max-width:560px){.frow{grid-template-columns:1fr}.frow .fl{padding-bottom:2px}}
   .mode .md{font-size:13px; color:var(--muted); line-height:1.5}
 
   .filters .eyebrow{margin-bottom:12px}
@@ -193,19 +226,23 @@
 
   <!-- ================= START ================= -->
   <section id="start">
-    <p class="lede">Pick a drill. In the limitations check you get an ECAM-style debrief on
-      every question &mdash; the answer and the reasoning &mdash; whether you're right or wrong.
-      The bank now includes your BTC progress-test questions alongside the curated set. The
-      memory-item drill is self-marked: recall the sequence cold, then reveal and grade yourself.</p>
+    <p class="lede">Pick a drill. The limitations check gives an ECAM-style debrief on every
+      question &mdash; the answer, reasoning and FCOM reference &mdash; right or wrong. The
+      memory-item drill is self-marked cold recall. Fill &amp; Check is a type-in limitations
+      sheet that grades each value green or amber as you go.</p>
 
     <div class="modegrid">
       <button class="mode" id="modeMcq">
         <div class="mt"><span class="ic">MCQ</span>Limitations Check</div>
-        <div class="md">Multiple-choice on numbers and limits. Filter by system below. Debrief after each answer.</div>
+        <div class="md">Multiple-choice on limits and systems. Filter by subject below. Debrief after each answer.</div>
       </button>
       <button class="mode alt" id="modeMem">
         <div class="mt"><span class="ic">REC</span>Memory Item Drill</div>
         <div class="md">Trigger &rarr; recall the full actioned sequence from memory &rarr; reveal &amp; self-grade.</div>
+      </button>
+      <button class="mode fill" id="modeFill">
+        <div class="mt"><span class="ic">FILL</span>Fill &amp; Check</div>
+        <div class="md">Type each limitation value from memory; instant green/amber grading, answers on miss.</div>
       </button>
     </div>
 
@@ -286,9 +323,29 @@
     </div>
   </section>
 
+  <!-- ================= FILL & CHECK ================= -->
+  <section id="fill" class="hidden">
+    <div class="strip">
+      <div class="cell"><div class="k">Filled</div><div class="v" id="fFilled">0/0</div></div>
+      <div class="cell"><div class="k">Correct</div><div class="v green" id="fCor">0</div></div>
+      <div class="cell"><div class="k">Missed</div><div class="v amber" id="fMiss">0</div></div>
+      <div class="cell"><div class="k">Score</div><div class="v" id="fPct">&mdash;</div></div>
+    </div>
+    <div class="row" style="margin-bottom:14px">
+      <button class="btn primary" id="fCheckAll">Check all</button>
+      <button class="btn" id="fReveal">Reveal answers</button>
+      <button class="btn ghost" id="fReset">Reset</button>
+    </div>
+    <p class="md" style="color:var(--muted);font-size:12.5px;margin:0 0 14px">
+      Type each value, press <b>Enter</b> to check. Units are ignored (350 = 350kt); ranges accept
+      &ldquo;-1 to +2.5&rdquo;. A321P2F FCOM values.</p>
+    <div id="fillSheet"></div>
+    <div class="row"><button class="btn ghost" id="fillHome">&larr; Change drill</button></div>
+  </section>
+
   <div class="foot">
     Study aid &mdash; NOT for flying. Verify every value against current FCOM / QRH.<br>
-    Content derived from an unofficial A320 summary (V5.0 Jan-2022).
+    Limitation values: A321P2F FCOM. Layout after A320 Nutshell V5.0.
   </div>
 </div>
 
@@ -681,7 +738,7 @@ const MEM = [
 
 /* ============ ENGINE ============ */
 const $=id=>document.getElementById(id);
-const sec={start:$("start"),quiz:$("quiz"),mem:$("mem"),results:$("results")};
+const sec={start:$("start"),quiz:$("quiz"),mem:$("mem"),results:$("results"),fill:$("fill")};
 function show(name){for(const k in sec)sec[k].classList.toggle("hidden",k!==name);window.scrollTo({top:0,behavior:"instant"});}
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;};
 
@@ -722,6 +779,7 @@ drawLens();
 
 $("modeMcq").onclick=()=>$("filterPanel").scrollIntoView({behavior:"smooth"});
 $("modeMem").onclick=()=>startMem();
+$("modeFill").onclick=()=>{ show("fill"); buildFill(); };
 
 /* ---------- MCQ ---------- */
 let queue=[],qi=0,cor=0,miss=0,streak=0,missed=[];
@@ -770,6 +828,7 @@ function answer(btn,chosen,order){
   e.innerHTML=
     '<div class="head"><span class="dot"></span>'+(correct?"CORRECT":"CHECK — INCORRECT")+'</div>'+
     '<div class="body">'+
+      '<div class="ans">ANSWER &nbsp;<b>'+q.o[q.a]+'</b></div>'+
       (q.w
         ? '<div class="why"><span class="lead">Reasoning</span>'+q.w+'</div>'
         : '<div class="why"><span class="lead">Source</span>See the reasoning and FCOM chapter reference below.</div>')+
@@ -862,6 +921,156 @@ let lastMode="mcq";
 $("againBtn").onclick=()=>{ lastMode==="mem"?startMem():$("startMcqBtn").onclick(); };
 $("homeBtn").onclick=()=>show("start");
 
+/* ---------- FILL & CHECK ---------- */
+const FILL_SECTIONS=[
+{t:"GENERAL & SPEEDS",rows:[
+ ["Flight manoeuvring load — CLEAN config",[["","-1g to +2.5g",["-1 to +2.5","-1/+2.5"],"±g"]]],
+ ["Flight manoeuvring load — OTHER config",[["","0g to +2g",["0 to +2","0/+2"],"±g"]]],
+ ["Runway slope (max)",[["","±2%",["2","±2","+/-2"],"%"]]],
+ ["Runway width — nominal / minimal",[["nominal","45 m",["45"],"m"],["minimal","30 m",["30"],"m"]]],
+ ["Cockpit window open — max speed",[["","200 kt",["200"],"kt"]]],
+ ["VMO / MMO",[["VMO","350 kt",["350"],"kt"],["MMO","M0.82",["0.82","m0.82",".82"],"Mach"]]],
+ ["Wipers — max speed",[["","230 kt",["230"],"kt"]]],
+ ["Max demonstrated crosswind",[["","38 kt",["38"],"kt"]]],
+ ["Max tailwind — takeoff / landing",[["takeoff","15 kt",["15"],"kt"],["landing","15 kt",["15"],"kt"]]],
+ ["Max tire (ground) speed",[["","195 kt",["195"],"kt GS"]]],
+ ["VMCL",[["","114 kt",["114"],"kt"]]],
+]},
+{t:"LANDING GEAR & BRAKES",rows:[
+ ["VLE — gear extended",[["kt","280 kt",["280"],"kt"],["Mach","M0.67",["0.67","m0.67"],"Mach"]]],
+ ["VLO — extension",[["kt","250 kt",["250"],"kt"],["Mach","M0.60",["0.60","0.6","m0.60","m0.6"],"Mach"]]],
+ ["VLO — retraction",[["kt","220 kt",["220"],"kt"],["Mach","M0.54",["0.54","m0.54"],"Mach"]]],
+ ["LG safety valve — cuts off at",[["","260 kt",["260"],"kt"]]],
+ ["Max brake temp for takeoff (fans off)",[["","300 °C",["300"],"°C"]]],
+ ["Nosewheel steering — max angle",[["","±85°",["85","±85","+/-85"],"°"]]],
+ ["NWS — angle when taxiing",[["","75°",["75"],"°"]]],
+ ["NWS — using rudder pedals",[["","7°",["7"],"°"]]],
+ ["Taxi — one tire per gear deflated",[["","7 kt",["7"],"kt"]]],
+ ["Taxi — two tires deflated (same gear)",[["","3 kt",["3"],"kt"]]],
+]},
+{t:"FLAPS / SLATS SPEEDS",rows:[
+ ["CONF 1",[["","235 kt",["235"],"kt"]]],
+ ["CONF 1+F",[["","225 kt",["225"],"kt"]]],
+ ["CONF 2",[["","215 kt",["215"],"kt"]]],
+ ["CONF 3",[["","195 kt",["195"],"kt"]]],
+ ["CONF FULL",[["","190 kt",["190"],"kt"]]],
+ ["Max altitude — flaps/slats extended",[["","20,000 ft",["20000"],"ft"]]],
+]},
+{t:"PRESSURISATION",rows:[
+ ["Max positive differential",[["","9.0 PSI",["9","9.0"],"PSI"]]],
+ ["Max negative differential",[["","-1.0 PSI",["-1","-1.0"],"PSI"]]],
+ ["Safety relief valve setting",[["","8.6 PSI",["8.6"],"PSI"]]],
+ ["Max operating (pressure) altitude",[["","39,800 ft",["39800"],"ft"]]],
+]},
+{t:"WEIGHTS (A321P2F)",rows:[
+ ["Maximum taxi weight",[["","93,400 kg",["93400"],"kg"]]],
+ ["Maximum takeoff weight (MTOW)",[["","93,000 kg",["93000"],"kg"]]],
+ ["Maximum landing weight (MLW)",[["","77,800 kg",["77800"],"kg"]]],
+ ["Maximum zero fuel weight (MZFW)",[["","73,800 kg",["73800"],"kg"]]],
+ ["Minimum weight",[["","47,500 kg",["47500"],"kg"]]],
+]},
+{t:"POWERPLANT",rows:[
+ ["EGT — Takeoff / Go-around",[["","650 °C",["650"],"°C"]]],
+ ["Takeoff/GA time — all eng / one eng",[["all eng","5 min",["5"],"min"],["one eng","10 min",["10"],"min"]]],
+ ["EGT — MCT",[["","610 °C",["610"],"°C"]]],
+ ["EGT — Starting",[["","635 °C",["635"],"°C"]]],
+ ["Max N1 / N2",[["N1","100%",["100"],"%"],["N2","100%",["100"],"%"]]],
+ ["Minimum oil pressure",[["","60 PSI",["60"],"PSI"]]],
+ ["Max reverse — not below",[["","70 kt",["70"],"kt"]]],
+ ["Max crosswind for engine start",[["","35 kt",["35"],"kt"]]],
+]},
+{t:"APU",rows:[
+ ["Wait after 3 consecutive start attempts",[["","60 min",["60"],"min"]]],
+ ["APU restart on battery up to",[["","FL250",["250","fl250"],"FL"]]],
+ ["APU EGT — start below 35,000 ft",[["","1090 °C",["1090"],"°C"]]],
+ ["APU EGT — start above 35,000 ft",[["","1120 °C",["1120"],"°C"]]],
+ ["APU EGT — running",[["","675 °C",["675"],"°C"]]],
+ ["APU bleed — max alt, engine start",[["","20,000 ft",["20000"],"ft"]]],
+ ["APU bleed — max alt, single pack",[["","22,500 ft",["22500"],"ft"]]],
+ ["APU bleed — max alt, dual pack",[["","15,000 ft",["15000"],"ft"]]],
+]},
+{t:"FUEL",rows:[
+ ["Minimum fuel for takeoff",[["","1,500 kg",["1500"],"kg"]]],
+ ["Max fuel temperature",[["","54 °C",["54"],"°C"]]],
+ ["Min fuel temp (JET A1)",[["","-43 °C",["-43"],"°C"]]],
+ ["Max fuel imbalance (heavier tank full)",[["","600 kg",["600"],"kg"]]],
+]},
+{t:"ICE & RAIN",rows:[
+ ["Icing conditions — OAT/TAT at or below",[["","10 °C",["10"],"°C"]]],
+ ["Icing conditions — visibility of / less",[["","1600 m",["1600"],"m"]]],
+ ["Severe ice accretion threshold",[["","5 mm",["5"],"mm"]]],
+]},
+{t:"AVIONICS VENTILATION",rows:[
+ ["No limitation — OAT at or below",[["","41 °C",["41"],"°C"]]],
+ ["41 °C < OAT ≤ 46 °C",[["","2 h",["2"],"h"]]],
+ ["46 °C < OAT ≤ 51 °C",[["","1 h",["1"],"h"]]],
+ ["51 °C < OAT ≤ 55 °C",[["","0.5 h",["0.5",".5"],"h"]]],
+]},
+{t:"CARGO DOORS (wind)",rows:[
+ ["FWD / AFT cargo doors — closed before",[["","65 kt",["65"],"kt"]]],
+ ["Main Deck Cargo Door — max opening",[["","40 kt",["40"],"kt"]]],
+ ["Main Deck Cargo Door — closed before",[["","60 kt",["60"],"kt"]]],
+]},
+];
+function fnorm(s){
+  s=(s||"").toString().toLowerCase().replace(/\bto\b|\band\b|&/g,"/");
+  s=s.replace(/[^0-9+\-/.]/g,"");
+  s=s.replace(/^\./,"0.").replace(/\/\./g,"/0.").replace(/^-\./,"-0.");
+  return s;
+}
+let fillFields=[], fillBuilt=false, fillRevealed=false;
+function buildFill(){
+  if(fillBuilt){ return; }
+  const host=$("fillSheet"); host.innerHTML=""; fillFields=[];
+  FILL_SECTIONS.forEach(secn=>{
+    const b=document.createElement("div"); b.className="fblk";
+    b.innerHTML='<h3>'+secn.t+'</h3>';
+    secn.rows.forEach(([label,vals])=>{
+      const row=document.createElement("div"); row.className="frow";
+      const fl=document.createElement("div"); fl.className="fl"; fl.textContent=label;
+      const fv=document.createElement("div"); fv.className="fv";
+      vals.forEach(([sub,ans,accept,unit])=>{
+        const f=document.createElement("div"); f.className="ffield";
+        if(sub){const s=document.createElement("span");s.className="fsub";s.textContent=sub;f.appendChild(s);}
+        const frw=document.createElement("div"); frw.className="frw";
+        const inp=document.createElement("input"); inp.className="fin"; inp.type="text";
+        inp.autocapitalize="off"; inp.autocomplete="off"; inp.spellcheck=false;
+        const corr=document.createElement("span"); corr.className="fcorrect"; corr.textContent="= "+ans;
+        frw.appendChild(inp);
+        if(unit){const u=document.createElement("span");u.className="fin-unit";u.textContent=unit;frw.appendChild(u);}
+        frw.appendChild(corr); f.appendChild(frw); fv.appendChild(f);
+        const rec={input:inp,accept:accept.map(fnorm),rowEl:row};
+        fillFields.push(rec);
+        inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ fcheck(rec); fnext(inp); }});
+        inp.addEventListener("input",()=>{ inp.classList.remove("ok","no"); row.classList.remove("showans"); fscore(); });
+      });
+      row.appendChild(fl); row.appendChild(fv); b.appendChild(row);
+    });
+    host.appendChild(b);
+  });
+  fillBuilt=true; fscore();
+}
+function fcheck(rec){
+  rec.input.classList.remove("ok","no"); rec.rowEl.classList.remove("showans");
+  if(!rec.input.value.trim()){ fscore(); return; }
+  if(rec.accept.includes(fnorm(rec.input.value))) rec.input.classList.add("ok");
+  else { rec.input.classList.add("no"); rec.rowEl.classList.add("showans"); }
+  fscore();
+}
+function fnext(inp){ const i=fillFields.findIndex(f=>f.input===inp); if(i>-1&&i+1<fillFields.length) fillFields[i+1].input.focus(); }
+function fscore(){
+  const n=fillFields.length;
+  const ok=fillFields.filter(f=>f.input.classList.contains("ok")).length;
+  const no=fillFields.filter(f=>f.input.classList.contains("no")).length;
+  const filled=fillFields.filter(f=>f.input.value.trim()).length;
+  $("fFilled").textContent=filled+"/"+n; $("fCor").textContent=ok; $("fMiss").textContent=no;
+  const graded=ok+no; $("fPct").textContent=graded?Math.round(ok/graded*100)+"%":"—";
+}
+$("fCheckAll").onclick=()=>fillFields.forEach(fcheck);
+$("fReset").onclick=()=>{ fillFields.forEach(f=>{f.input.value="";f.input.classList.remove("ok","no");f.rowEl.classList.remove("showans");}); fillRevealed=false; $("fReveal").textContent="Reveal answers"; fscore(); window.scrollTo({top:0}); };
+$("fReveal").onclick=(e)=>{ fillRevealed=!fillRevealed; fillFields.forEach(f=>f.rowEl.classList.toggle("showans",fillRevealed)); e.target.textContent=fillRevealed?"Hide answers":"Reveal answers"; };
+$("fillHome").onclick=()=>show("start");
+
 /* keyboard: 1-5 to answer, Enter to advance */
 document.addEventListener("keydown",e=>{
   if(!sec.quiz.classList.contains("hidden")){
@@ -873,6 +1082,13 @@ document.addEventListener("keydown",e=>{
     if(e.key==="Enter"&&$("nextRow").style.display!=="none")$("nextBtn").click();
   }
 });
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  });
+}
 </script>
 </body>
 </html>
