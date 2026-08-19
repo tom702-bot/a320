@@ -28,18 +28,34 @@
   .ecam{background:#000;border:1px solid var(--edge);border-radius:10px;padding:14px;box-shadow:inset 0 0 28px rgba(66,229,108,.025)}
   .ecam-title{font-family:var(--mono);font-weight:400;font-size:22px;letter-spacing:3px;text-align:center;color:var(--white);margin:0 0 4px}
   .ecam-title span{border-bottom:2px solid var(--white);padding:0 8px 2px}
-  .ecam-sub{font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-align:center;color:var(--green);margin:0 0 12px}
+  .ecam-sub{font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:1.2px;text-align:center;color:var(--green);margin:0 0 12px}
   .modes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-bottom:12px}
   .mode{min-height:44px;border:1px solid var(--edge);border-radius:5px;background:var(--panel);color:var(--white);font-family:var(--mono);font-size:11px;letter-spacing:.5px;padding:7px 5px;cursor:pointer}
   .mode[aria-pressed="true"]{border-color:var(--green);color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
   .canvas-wrap{position:relative;width:100%;max-width:600px;margin:0 auto;background:#000;border-top:1px solid #162019;border-bottom:1px solid #162019}
-  canvas{display:block;width:100%;height:auto;touch-action:manipulation}
+  canvas{display:block;width:100%;height:auto;touch-action:manipulation;cursor:pointer}
   .legend{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:10px 0 0;font:11px var(--mono);color:var(--muted)}
   .legend i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:5px}
   .lg-on{background:var(--green)}.lg-alt{background:var(--cyan)}.lg-off{background:var(--amber)}
   .detail{margin-top:13px;border-left:3px solid var(--green);padding:8px 11px;background:#070b08}
   .detail h2{font:16px var(--mono);font-weight:400;letter-spacing:1px;color:var(--green);margin:0 0 5px}
   .detail p{font:13px/1.55 var(--mono);color:var(--white);margin:0}
+  .impact{margin:7px 0 0;padding-left:18px;color:#c8d2ca;font:12px/1.55 var(--mono)}
+  .impact li+li{margin-top:3px}
+  .component-controls{margin-top:14px;border-top:1px solid var(--edge);padding-top:13px}
+  .component-controls h2{font:14px var(--mono);font-weight:400;color:var(--cyan);letter-spacing:1px;margin:0 0 4px}
+  .control-help{font:11px/1.45 var(--mono);color:var(--muted);margin:0 0 11px}
+  .control-groups{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .control-group{min-width:0}
+  .control-group h3{font:11px var(--mono);font-weight:400;color:var(--white);letter-spacing:1px;margin:0 0 6px}
+  .component-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .component{min-height:46px;text-align:left;border:1px solid var(--edge);border-radius:5px;background:#080c09;color:var(--white);font:11px/1.25 var(--mono);padding:6px 7px;cursor:pointer;touch-action:manipulation}
+  .component strong{display:block;font:11px var(--mono);font-weight:400;white-space:normal}
+  .component span{display:block;color:var(--green);font-size:10px;margin-top:3px}
+  .component[aria-pressed="false"]{border-color:#5e4516;color:#d1b472}
+  .component[aria-pressed="false"] span{color:var(--amber)}
+  .component.is-selected{box-shadow:inset 0 0 0 1px var(--cyan);border-color:var(--cyan)}
+  .component:focus-visible,.mode:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
   .sections{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
   .panel{border:1px solid var(--edge);border-radius:8px;background:var(--panel);padding:13px}
   .panel h2{font:14px var(--mono);font-weight:400;color:var(--cyan);letter-spacing:1px;margin:0 0 10px}
@@ -52,7 +68,11 @@
   .foot{color:var(--muted);font:11px/1.5 var(--mono);text-align:center;margin-top:14px}
   @media(max-width:650px){
     .page{padding-left:9px;padding-right:9px}.ecam{padding:10px 7px}.modes{grid-template-columns:repeat(3,1fr)}
-    .sections{grid-template-columns:1fr}.ecam-title{font-size:19px}.tag{font-size:9px}
+    .sections,.control-groups{grid-template-columns:1fr}.ecam-title{font-size:19px}.tag{font-size:9px}
+    .component-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media(max-width:380px){
+    .component-grid{grid-template-columns:1fr}.modes{grid-template-columns:repeat(2,1fr)}
   }
 </style>
 </head>
@@ -65,10 +85,10 @@
 
   <section class="ecam" aria-labelledby="elecTitle">
     <h1 class="ecam-title" id="elecTitle"><span>ELEC</span></h1>
-    <p class="ecam-sub">SELECT A CONFIGURATION TO TRACE THE POWER FLOW</p>
+    <p class="ecam-sub">LOAD A PRESET, THEN TAP A BOXED COMPONENT OR CONTROL TO CHANGE IT</p>
 
     <div class="modes" aria-label="Electrical configurations">
-      <button class="mode" type="button" data-mode="normal" aria-pressed="true">NORMAL</button>
+      <button class="mode" type="button" data-mode="normal" aria-pressed="true">NORMAL RESET</button>
       <button class="mode" type="button" data-mode="onegen" aria-pressed="false">ONE GEN</button>
       <button class="mode" type="button" data-mode="apu" aria-pressed="false">APU / EXT</button>
       <button class="mode" type="button" data-mode="emergency" aria-pressed="false">EMER GEN</button>
@@ -88,7 +108,23 @@
     <div class="detail" aria-live="polite">
       <h2 id="modeTitle">NORMAL CONFIGURATION</h2>
       <p id="modeText">GEN 1 supplies AC BUS 1 and GEN 2 supplies AC BUS 2. AC BUS 1 normally supplies AC ESS. Transformer rectifiers convert AC power to 28 V DC for the DC network.</p>
+      <ul class="impact" id="impactList"><li>All normal AC and DC buses are powered.</li><li>Tap a component to see its effect on the network.</li></ul>
     </div>
+
+    <section class="component-controls" aria-labelledby="controlsTitle">
+      <h2 id="controlsTitle">COMPONENT CONTROLS</h2>
+      <p class="control-help">ON / AUTO means available to the automatic electrical logic. OFF / ISOLATED removes that component from the training model. Hot buses remain directly battery-fed even when a BAT contactor is opened.</p>
+      <div class="control-groups">
+        <div class="control-group">
+          <h3>POWER SOURCES</h3>
+          <div class="component-grid" id="sourceControls"></div>
+        </div>
+        <div class="control-group">
+          <h3>CONVERSION &amp; DISTRIBUTION</h3>
+          <div class="component-grid" id="systemControls"></div>
+        </div>
+      </div>
+    </section>
   </section>
 
   <div class="sections">
@@ -121,7 +157,8 @@
   <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE</p>
 </main>
 
-<script>
+<script src="electrical-sim.js"></script>
+<script type="text/plain" id="legacy-synoptic">
 (function(){
   const canvas=document.getElementById('synoptic');
   const ctx=canvas.getContext('2d');
