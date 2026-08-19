@@ -149,6 +149,7 @@
   .mode.review .mt .ic{background:var(--cyan)}
   .mode.lookup .mt .ic{background:#c9d4dc;color:var(--bg)}
   .mode.electrical .mt .ic{background:var(--green-deep);color:#fff}
+  .mode.hydraulic .mt .ic{background:#49a7db;color:#fff}
   .mode.engine .mt .ic{background:var(--amber);color:var(--bg)}
 
   /* ---- Progress panel ---- */
@@ -278,11 +279,15 @@
       </button>
       <a class="mode electrical" href="electrical.html">
         <div class="mt"><span class="ic">ELEC</span>Electrical Synoptic</div>
-        <div class="md">Switch sources and contactors, trace power flow, and explore automatic reconfiguration.</div>
+        <div class="md">Fail any source, converter, contactor or bus; trace automatic transfers and load shedding.</div>
+      </a>
+      <a class="mode hydraulic" href="hydraulic.html">
+        <div class="mt"><span class="ic">HYD</span>Hydraulic Systems</div>
+        <div class="md">Explore green, blue and yellow generation, PTU/RAT logic, consumers and propagated failures.</div>
       </a>
       <a class="mode engine" href="engine.html">
         <div class="mt"><span class="ic">ENG</span>IAE V2500 Systems Explorer</div>
-        <div class="md">Explore a rotatable 3D cutaway, then trace engine, FADEC, fuel, oil, air/start and reverser modes.</div>
+        <div class="md">Explore the 3D cutaway, then fail any component in engine, FADEC, fuel, oil, air/start or reverser flows.</div>
       </a>
     </div>
 

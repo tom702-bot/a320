@@ -19,6 +19,9 @@
   const stateTitle=$('stateTitle');
   const stateText=$('stateText');
   const stateImpacts=$('stateImpacts');
+  const failButton=$('componentFailButton');
+  const restoreButton=$('restoreAllFailures');
+  const failureSummary=$('failureSummary');
 
   const component=(name,purpose,normal,abnormal,ref)=>({name,purpose,normal,abnormal,ref});
   const node=(id,x,y,w,h,label,detail,sub='')=>({id,x,y,w,h,label,detail,sub});
@@ -275,6 +278,7 @@
   let activeSystem='architecture';
   let activeMode='normal';
   let activeComponent=systems[activeSystem].overviewId;
+  const failedComponents=new Set();
 
   function svgEl(tag,attrs={},text=''){
     const el=document.createElementNS(NS,tag);
@@ -308,6 +312,9 @@
 
   function makeDefs(){
     const defs=svgEl('defs');
+    const gradient=svgEl('linearGradient',{id:'component-face',x1:'0',y1:'0',x2:'0',y2:'1'});
+    gradient.appendChild(svgEl('stop',{offset:'0%','stop-color':'#26322b'}));gradient.appendChild(svgEl('stop',{offset:'28%','stop-color':'#101712'}));gradient.appendChild(svgEl('stop',{offset:'100%','stop-color':'#050805'}));defs.appendChild(gradient);
+    const glow=svgEl('filter',{id:'component-glow',x:'-30%',y:'-30%',width:'160%',height:'160%'});glow.appendChild(svgEl('feDropShadow',{dx:0,dy:0,stdDeviation:3,'flood-color':'#42e56c','flood-opacity':.42}));defs.appendChild(glow);
     ['normal','control','caution','fault','inactive','white'].forEach(key=>{
       const marker=svgEl('marker',{id:'arrow-'+key,viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'});
       marker.appendChild(svgEl('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:C[key]}));defs.appendChild(marker);
@@ -315,12 +322,33 @@
     return defs;
   }
 
-  function drawEdge(item,system,selectedMode){
+  const severityRank={normal:0,control:1,inactive:2,caution:3,fault:4};
+  function stronger(a,b){return (severityRank[b]||0)>(severityRank[a]||0)?b:a}
+  function failureKey(systemId,nodeId){return systemId+':'+nodeId}
+  function failureAnalysis(system,selectedMode){
+    const direct=new Set(system.nodes.filter(n=>failedComponents.has(failureKey(activeSystem,n.id))).map(n=>n.id));
+    const adjacency=new Map(system.nodes.map(n=>[n.id,[]]));
+    const incoming=new Map(system.nodes.map(n=>[n.id,0]));
+    system.edges.forEach(e=>{if(adjacency.has(e.from)&&incoming.has(e.to)){adjacency.get(e.from).push(e.to);incoming.set(e.to,incoming.get(e.to)+1)}});
+    const roots=system.nodes.filter(n=>incoming.get(n.id)===0&&!direct.has(n.id)).map(n=>n.id);
+    const reachable=new Set(roots),queue=[...roots];
+    while(queue.length){const id=queue.shift();(adjacency.get(id)||[]).forEach(next=>{if(!direct.has(next)&&!reachable.has(next)){reachable.add(next);queue.push(next)}})}
+    const affected=new Set();
+    direct.forEach(start=>{const seen=new Set([start]),q=[start];while(q.length){const id=q.shift();(adjacency.get(id)||[]).forEach(next=>{if(!seen.has(next)){seen.add(next);affected.add(next);q.push(next)}})}});
+    const statuses={...selectedMode.states};
+    affected.forEach(id=>{statuses[id]=stronger(statuses[id]||'normal',reachable.has(id)?'caution':'inactive')});
+    direct.forEach(id=>{statuses[id]='fault'});
+    const edgeStatuses={...selectedMode.edgeStates};
+    system.edges.forEach(e=>{let status='';if(direct.has(e.from)||direct.has(e.to))status='fault';else if((statuses[e.from]||'normal')==='inactive'||(statuses[e.to]||'normal')==='inactive')status='inactive';else if((statuses[e.from]||'normal')==='caution'||(statuses[e.to]||'normal')==='caution')status='caution';if(status)edgeStatuses[e.id]=stronger(edgeStatuses[e.id]||'normal',status)});
+    return{direct,affected,statuses,edgeStatuses,reachable};
+  }
+
+  function drawEdge(item,system,selectedMode,analysis){
     const a=findNode(system,item.from),b=findNode(system,item.to);if(!a||!b)return;
     const points=endPoints(a,b);
     const route=[{x:points.x1,y:points.y1},...item.route.map(p=>({x:p[0],y:p[1]})),{x:points.x2,y:points.y2}];
     let d='M '+route[0].x+' '+route[0].y;for(let i=1;i<route.length;i++)d+=' L '+route[i].x+' '+route[i].y;
-    const status=selectedMode.edgeStates[item.id]||'';
+    const status=analysis.edgeStatuses[item.id]||'';
     const color=colorFor(status,item.type);
     const markerKey=status&&C[status]?status:item.type==='control'?'control':item.type==='mechanical'?'white':'normal';
     const path=svgEl('path',{d,fill:'none',stroke:color,'stroke-width':status==='fault'?4:3,'stroke-linecap':'round','stroke-linejoin':'round','marker-end':'url(#arrow-'+markerKey+')'});
@@ -334,13 +362,14 @@
     }
   }
 
-  function nodeStatus(id,selectedMode){return selectedMode.states[id]||'normal'}
+  function nodeStatus(id,selectedMode,analysis){return analysis.statuses[id]||selectedMode.states[id]||'normal'}
 
-  function drawNode(item,selectedMode){
-    const status=nodeStatus(item.id,selectedMode);const color=colorFor(status);
-    const group=svgEl('g',{role:'button',tabindex:'0','aria-label':item.detail.name+'. Select for details.','data-node':item.id,style:'cursor:pointer'});
+  function drawNode(item,selectedMode,analysis){
+    const status=nodeStatus(item.id,selectedMode,analysis);const color=colorFor(status);
+    const group=svgEl('g',{role:'button',tabindex:'0','aria-label':item.detail.name+'. '+(analysis.direct.has(item.id)?'Failed. ':'')+'Select for details and failure control.','data-node':item.id,style:'cursor:pointer'});
     const selected=item.id===activeComponent;
-    group.appendChild(svgEl('rect',{x:item.x,y:item.y,width:item.w,height:item.h,rx:4,fill:C.panel,stroke:selected?C.control:color,'stroke-width':selected?4:2}));
+    group.appendChild(svgEl('rect',{x:item.x,y:item.y,width:item.w,height:item.h,rx:6,fill:'url(#component-face)',stroke:selected?C.control:color,'stroke-width':selected?4:2,filter:status==='normal'||status==='control'?'url(#component-glow)':''}));
+    group.appendChild(svgEl('path',{d:'M '+(item.x+3)+' '+(item.y+3)+' H '+(item.x+item.w-3),stroke:'rgba(255,255,255,.25)','stroke-width':1}));
     if(selected)group.appendChild(svgEl('rect',{x:item.x-5,y:item.y-5,width:item.w+10,height:item.h+10,rx:7,fill:'none',stroke:C.control,'stroke-width':1,'stroke-dasharray':'5 4'}));
     const lines=item.label.split('\n');
     const start=item.y+item.h/2-(lines.length-1)*9;
@@ -353,14 +382,15 @@
 
   function renderDiagram(){
     const {system,selectedMode}=current();
+    const analysis=failureAnalysis(system,selectedMode);
     const title=svgEl('title',{id:'svgTitle'},system.title+' — '+selectedMode.title);
     const desc=svgEl('desc',{id:'svgDesc'},selectedMode.text+' Tap a component for details.');
     svg.replaceChildren(title,desc,makeDefs(),svgEl('rect',{x:0,y:0,width:900,height:560,fill:C.bg}));
-    system.edges.forEach(item=>drawEdge(item,system,selectedMode));
-    system.nodes.forEach(item=>drawNode(item,selectedMode));
+    system.edges.forEach(item=>drawEdge(item,system,selectedMode,analysis));
+    system.nodes.forEach(item=>drawNode(item,selectedMode,analysis));
     titleEl.textContent=system.title;
-    statusEl.textContent=selectedMode.title;
-    statusEl.style.color=colorFor(selectedMode.severity);
+    statusEl.textContent=analysis.direct.size?analysis.direct.size+' COMPONENT FAILURE'+(analysis.direct.size===1?'':'S'):selectedMode.title;
+    statusEl.style.color=colorFor(analysis.direct.size?'fault':selectedMode.severity);
   }
 
   function renderTabs(){
@@ -382,9 +412,9 @@
   }
 
   function renderGrid(){
-    const {system,selectedMode}=current();gridEl.replaceChildren();
+    const {system,selectedMode}=current();const analysis=failureAnalysis(system,selectedMode);gridEl.replaceChildren();
     system.nodes.forEach(item=>{
-      const status=nodeStatus(item.id,selectedMode);const button=document.createElement('button');button.type='button';button.className='component-card';button.dataset.component=item.id;
+      const status=nodeStatus(item.id,selectedMode,analysis);const button=document.createElement('button');button.type='button';button.className='component-card';button.dataset.component=item.id;
       button.setAttribute('aria-pressed',String(item.id===activeComponent));button.innerHTML='<strong></strong><span></span>';
       button.querySelector('strong').textContent=item.detail.name;
       const statusLine=button.querySelector('span');statusLine.textContent=status==='normal'?'OPERATING / AVAILABLE':status==='control'?'ACTIVE CONTROL':status==='caution'?'DEGRADED / CAUTION':status==='fault'?'FAULT / UNAVAILABLE':'INACTIVE / STANDBY';statusLine.className='status-'+status;
@@ -393,11 +423,14 @@
   }
 
   function renderInfo(){
-    const {system,selectedMode}=current();const selected=findNode(system,activeComponent)||findNode(system,system.overviewId);const detail=selected.detail;
+    const {system,selectedMode}=current();const analysis=failureAnalysis(system,selectedMode);const selected=findNode(system,activeComponent)||findNode(system,system.overviewId);const detail=selected.detail;const isFailed=analysis.direct.has(selected.id),isAffected=analysis.affected.has(selected.id);
     nameEl.textContent=detail.name;purposeEl.textContent=detail.purpose;normalEl.textContent=detail.normal;abnormalEl.textContent=detail.abnormal;refEl.textContent='FCOM REFERENCE: '+detail.ref+' — SUPPLIED ENGINEERING-USE IAE APPENDIX';
-    stateTitle.textContent=selectedMode.title;stateText.textContent=selectedMode.text;stateImpacts.replaceChildren();
-    selectedMode.impacts.forEach(text=>{const li=document.createElement('li');li.textContent=text;stateImpacts.appendChild(li)});
-    stateCard.className='state-card'+(selectedMode.severity==='normal'?'':' '+selectedMode.severity);
+    stateTitle.textContent=isFailed?'COMPONENT FAILED':isAffected?'DOWNSTREAM EFFECT':selectedMode.title;stateText.textContent=isFailed?detail.abnormal:isAffected?'An upstream component failure has degraded or interrupted this component. Alternate paths are shown amber; lost paths are grey.':selectedMode.text;stateImpacts.replaceChildren();
+    let impactText=[...selectedMode.impacts];
+    if(analysis.direct.size){const names=[...analysis.direct].map(id=>findNode(system,id)?.detail.name||id);const affected=[...analysis.affected].filter(id=>!analysis.direct.has(id)).map(id=>findNode(system,id)?.detail.name||id);impactText=['Failed: '+names.join(', ')+'.',affected.length?'Affected downstream: '+affected.slice(0,8).join(', ')+(affected.length>8?' and '+(affected.length-8)+' more.':'.'):'The selected failure has no downstream node on this diagram.',...impactText.slice(0,2)]}
+    impactText.forEach(text=>{const li=document.createElement('li');li.textContent=text;stateImpacts.appendChild(li)});
+    const severity=isFailed?'fault':isAffected?'caution':selectedMode.severity;stateCard.className='state-card'+(severity==='normal'?'':' '+severity);
+    const key=failureKey(activeSystem,selected.id);if(failButton){failButton.textContent=failedComponents.has(key)?'RESTORE SELECTED':'FAIL SELECTED';failButton.disabled=!selected}if(failureSummary)failureSummary.textContent=failedComponents.size?failedComponents.size+' ACTIVE COMPONENT FAILURE'+(failedComponents.size===1?'':'S')+' ACROSS ENGINE DIAGRAMS':'NO ACTIVE COMPONENT FAILURES';
   }
 
   function renderAll(){renderTabs();renderModes();renderDiagram();renderGrid();renderInfo()}
@@ -414,9 +447,15 @@
     const system=systems[activeSystem];if(!findNode(system,id))return;activeComponent=id;renderDiagram();renderGrid();renderInfo();
   }
 
+  function toggleFailure(id=activeComponent){
+    const system=systems[activeSystem];if(!findNode(system,id))return;const key=failureKey(activeSystem,id);if(failedComponents.has(key))failedComponents.delete(key);else failedComponents.add(key);renderDiagram();renderGrid();renderInfo();
+  }
+  function restoreAllFailures(){failedComponents.clear();renderAll()}
+  if(failButton)failButton.addEventListener('click',()=>toggleFailure());if(restoreButton)restoreButton.addEventListener('click',restoreAllFailures);
+
   window.V2500Trainer={
-    selectSystem,selectMode,selectComponent,
-    getState:()=>({system:activeSystem,mode:activeMode,component:activeComponent}),
+    selectSystem,selectMode,selectComponent,failComponent:id=>{const system=systems[activeSystem];if(findNode(system,id)){failedComponents.add(failureKey(activeSystem,id));renderAll()}},restoreComponent:id=>{failedComponents.delete(failureKey(activeSystem,id));renderAll()},restoreAllFailures,
+    getState:()=>({system:activeSystem,mode:activeMode,component:activeComponent,failures:[...failedComponents]}),
     getSystems:()=>Object.keys(systems),
     getModes:id=>(systems[id]||systems[activeSystem]).modes.map(item=>item.id),
     getComponents:id=>(systems[id]||systems[activeSystem]).nodes.map(item=>item.id)

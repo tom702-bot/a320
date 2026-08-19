@@ -88,7 +88,7 @@
     <p class="ecam-sub">LOAD A PRESET, THEN TAP A BOXED COMPONENT OR CONTROL TO CHANGE IT</p>
 
     <div class="modes" aria-label="Electrical configurations">
-      <button class="mode" type="button" data-mode="normal" aria-pressed="true">NORMAL RESET</button>
+      <button class="mode" type="button" data-mode="normal" aria-pressed="true">RESTORE ALL</button>
       <button class="mode" type="button" data-mode="onegen" aria-pressed="false">ONE GEN</button>
       <button class="mode" type="button" data-mode="apu" aria-pressed="false">APU / EXT</button>
       <button class="mode" type="button" data-mode="emergency" aria-pressed="false">EMER GEN</button>
@@ -113,7 +113,7 @@
 
     <section class="component-controls" aria-labelledby="controlsTitle">
       <h2 id="controlsTitle">COMPONENT CONTROLS</h2>
-      <p class="control-help">ON / AUTO means available to the automatic electrical logic. OFF / ISOLATED removes that component from the training model. Hot buses remain directly battery-fed even when a BAT contactor is opened.</p>
+      <p class="control-help">Tap any source, converter, contactor or bus to FAIL / RESTORE it. The model immediately recalculates alternate feeds, unpowered buses and shed loads. Hot buses remain directly battery-fed when only a BAT contactor is opened.</p>
       <div class="control-groups">
         <div class="control-group">
           <h3>POWER SOURCES</h3>

@@ -11,6 +11,9 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `A320_Checkride_Trainer.html` | Standalone twin of `index.html`; keep it byte-for-byte identical. |
 | `A321P2F_Limitations_FillCheck.html` | Legacy filename for the standalone A320 fill-and-check page. Its visible title and data are A320-specific. |
 | `electrical.html` | Interactive ECAM-style A320 electrical-system synoptic and configuration explainer. |
+| `electrical-sim.js` | Electrical network evaluation, component failures, transfers and dimensional canvas rendering. |
+| `hydraulic.html` | Interactive green/blue/yellow A320 hydraulic generation and distribution trainer. |
+| `hydraulic-sim.js` | Hydraulic source, PTU, RAT, priority-valve, isolation and component-failure model. |
 | `engine.html` | Provisional interactive IAE V2500 engine-systems study assistant. |
 | `engine-sim.js` | System layouts, normal/abnormal modes and ECAM-style SVG rendering for the IAE engine explorer. |
 | `engine-3d.js` | Lightweight procedural 3D cutaway renderer, touch controls and component-to-system links. |
@@ -55,6 +58,7 @@ source.
 - Existing DSC systems and QRH memory-item questions were outside that limitations-only audit.
   They must be checked against the relevant supplied DSC/QRH source before being described as
   revalidated.
+- The hydraulic trainer is sourced from the supplied active A/C 21-CMHT DSC-29-10 and DSC-29-20 pages dated 22 MAY 24. Keep the three fluid systems independent: the PTU transfers mechanical power, never hydraulic fluid.
 - Cite limitation questions with the relevant `FCOM LIM-...` reference.
 - Never invent a source reference. If the source is unavailable or ambiguous, flag the item.
 - The app is a study aid; the current approved FCOM, QRH and company procedures are authoritative.
@@ -74,7 +78,7 @@ source.
 5. Search correct answers and explanations—not just distractors—for superseded A321P2F or
    engineering-only values.
 6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v17`.
+   `a320-trainer-v18`.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is

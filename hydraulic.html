@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A320 Hydraulic Systems Trainer</title>
+<meta name="theme-color" content="#050806">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--bg:#050806;--panel:#0a0e0b;--edge:#29342d;--green:#42e56c;--blue:#51b7ff;--yellow:#ffd43b;--amber:#ffb327;--red:#ff5757;--cyan:#45d7ec;--white:#eef5ef;--muted:#829188;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--ui:system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white)}body{font-family:var(--ui);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.page{max-width:1120px;margin:auto;padding:16px 13px 42px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.back{color:var(--cyan);font:13px var(--mono);text-decoration:none;padding:9px 0}.tag{color:var(--muted);font:11px var(--mono);letter-spacing:1px;text-align:right}
+.trainer{border:1px solid var(--edge);border-radius:10px;background:#000;padding:14px;box-shadow:inset 0 0 42px rgba(66,229,108,.025)}h1{font:400 22px var(--mono);letter-spacing:3px;text-align:center;margin:0 0 4px}h1 span{border-bottom:2px solid var(--white);padding:0 9px 2px}.sub{text-align:center;color:var(--green);font:11px/1.45 var(--mono);letter-spacing:1px;margin:0 0 12px}
+.modes{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-bottom:12px}.mode,.action{min-height:44px;border:1px solid var(--edge);border-radius:5px;background:#090d0a;color:var(--white);font:10px/1.25 var(--mono);padding:6px;cursor:pointer;touch-action:manipulation}.mode[aria-pressed=true]{border-color:var(--green);color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+.stage{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(270px,.65fr);border:1px solid #1e2922;border-radius:8px;overflow:hidden}.canvas-wrap{min-width:0;background:radial-gradient(circle at 50% 44%,#18231d 0,#080b09 50%,#000 85%)}canvas{display:block;width:100%;height:auto;touch-action:manipulation}.info{border-left:1px solid var(--edge);padding:13px;background:linear-gradient(180deg,#0b100d,#070a08)}.eyebrow{color:var(--muted);font:9px var(--mono);letter-spacing:1.2px}.info h2{font:400 17px/1.2 var(--mono);color:var(--cyan);margin:5px 0 9px}.info h3{font:400 10px var(--mono);color:var(--amber);letter-spacing:.7px;margin:12px 0 3px}.info p{font:12px/1.5 var(--ui);color:#d1dbd3;margin:0}.state{margin-top:12px;border-left:3px solid var(--green);padding:9px;background:#050805}.state.fault{border-color:var(--red)}.state.caution{border-color:var(--amber)}.state strong{color:var(--green);font:12px var(--mono)}.state.fault strong{color:var(--red)}.state.caution strong{color:var(--amber)}.state ul{padding-left:17px;margin:6px 0 0;color:#cbd5cd;font:11px/1.45 var(--mono)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}.action.fail{border-color:var(--red);color:var(--red)}.action.restore{border-color:var(--cyan);color:var(--cyan)}.action[disabled]{opacity:.35;cursor:not-allowed}.failure-count{margin-top:7px;color:var(--muted);font:10px var(--mono)}
+.legend{display:flex;justify-content:center;flex-wrap:wrap;gap:11px;margin:9px 0 0;color:var(--muted);font:10px var(--mono)}.legend i{display:inline-block;width:15px;height:3px;margin-right:5px;vertical-align:middle}.lg-g{background:var(--green)}.lg-b{background:var(--blue)}.lg-y{background:var(--yellow)}.lg-f{background:var(--red)}
+.components{margin-top:14px;border-top:1px solid var(--edge);padding-top:12px}.section-head{display:flex;justify-content:space-between;gap:12px;align-items:end}.section-head h2,.reference h2{font:400 14px var(--mono);color:var(--cyan);letter-spacing:1px;margin:0}.section-head p{font:10px var(--mono);color:var(--muted);margin:0;text-align:right}.component-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:9px}.component{min-height:51px;text-align:left;border:1px solid var(--edge);border-radius:5px;background:#080c09;color:var(--white);font:10px/1.2 var(--mono);padding:7px;cursor:pointer;touch-action:manipulation}.component strong{display:block;font-weight:400}.component span{display:block;color:var(--green);font-size:9px;margin-top:4px}.component.failed{border-color:var(--red);color:#ffb2b2}.component.failed span{color:var(--red)}.component.selected{box-shadow:inset 0 0 0 1px var(--cyan);border-color:var(--cyan)}
+.refs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.reference{border:1px solid var(--edge);border-radius:8px;background:var(--panel);padding:13px}.item{border-top:1px solid #1d261f;padding:8px 0}.item:first-of-type{border-top:0}.item b{display:block;color:var(--green);font:12px var(--mono);font-weight:400;margin-bottom:3px}.item p{margin:0;color:#c9d2cb;font:12px/1.48 var(--ui)}.item.limit b{color:var(--amber)}.scope{margin-top:13px;border:1px solid #654914;border-radius:7px;background:#120e06;padding:10px;color:#e3c47e;font:11px/1.5 var(--mono)}.foot{text-align:center;color:var(--muted);font:10px var(--mono);margin-top:13px}
+button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+@media(max-width:820px){.modes{grid-template-columns:repeat(4,1fr)}.stage{grid-template-columns:1fr}.info{border-left:0;border-top:1px solid var(--edge)}.component-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.page{padding-left:8px;padding-right:8px}.trainer{padding:9px 6px}.modes{grid-template-columns:repeat(2,1fr)}.component-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.refs{grid-template-columns:1fr}.section-head{display:block}.section-head p{text-align:left;margin-top:4px}.tag{font-size:9px}h1{font-size:19px}.info{padding:11px}}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="top"><a class="back" href="index.html">&larr; TRAINER</a><div class="tag">A320 &middot; ATA 29 &middot; 21-CMHT</div></div>
+  <section class="trainer">
+    <h1><span>HYD</span></h1>
+    <p class="sub">CHOOSE A CONFIGURATION, SELECT ANY COMPONENT, THEN FAIL IT TO TRACE THE CONSEQUENCES</p>
+    <div class="modes" aria-label="Hydraulic configurations">
+      <button class="mode" data-mode="normal" aria-pressed="true">NORMAL / RESET</button>
+      <button class="mode" data-mode="eng1">ENG 1 PUMP FAIL</button>
+      <button class="mode" data-mode="eng2">ENG 2 PUMP FAIL</button>
+      <button class="mode" data-mode="ptuoff">PTU FAILED</button>
+      <button class="mode" data-mode="bluepump">BLUE ELEC FAIL</button>
+      <button class="mode" data-mode="yellowpump">YELLOW ELEC FAIL</button>
+      <button class="mode" data-mode="rat">RAT / EMERGENCY</button>
+    </div>
+    <div class="stage">
+      <div class="canvas-wrap"><canvas id="hydraulicDiagram" role="img" aria-label="Interactive A320 green, blue and yellow hydraulic generation and distribution diagram"></canvas></div>
+      <aside class="info" aria-live="polite">
+        <div class="eyebrow">SELECTED COMPONENT</div><h2 id="componentName">HYDRAULIC SYSTEM OVERVIEW</h2>
+        <h3>FUNCTION</h3><p id="componentPurpose"></p>
+        <h3>NORMAL / ABNORMAL OPERATION</h3><p id="componentOperation"></p>
+        <div class="state" id="stateCard"><strong id="stateTitle">NORMAL CONFIGURATION</strong><p id="stateText"></p><ul id="stateImpacts"></ul></div>
+        <div class="actions"><button class="action fail" id="failSelected">FAIL SELECTED</button><button class="action restore" id="restoreAll">RESTORE ALL</button></div>
+        <div class="failure-count" id="failureCount">NO ACTIVE COMPONENT FAILURES</div>
+      </aside>
+    </div>
+    <div class="legend" aria-hidden="true"><span><i class="lg-g"></i>GREEN</span><span><i class="lg-b"></i>BLUE</span><span><i class="lg-y"></i>YELLOW</span><span><i class="lg-f"></i>FAILED / LOST</span></div>
+    <section class="components"><div class="section-head"><h2>COMPONENT FAILURE PANEL</h2><p>Tap a card to select it; tap again or use FAIL SELECTED to fail / restore it.</p></div><div class="component-grid" id="componentGrid"></div></section>
+  </section>
+  <div class="refs">
+    <section class="reference"><h2>SYSTEM ARCHITECTURE</h2>
+      <div class="item"><b>THREE INDEPENDENT SYSTEMS</b><p>Green, blue and yellow each have their own reservoir. Hydraulic fluid cannot transfer between systems.</p></div>
+      <div class="item"><b>GREEN / YELLOW</b><p>Engine 1 drives the green pump and engine 2 drives the yellow pump. The bidirectional PTU transfers mechanical power between these systems, not fluid.</p></div>
+      <div class="item"><b>BLUE / RAT</b><p>The blue electric pump normally pressurises the blue system. The RAT-driven pump supplies blue hydraulics after loss of both AC buses or manual deployment.</p></div>
+      <div class="item"><b>YELLOW AUXILIARIES</b><p>The yellow electric pump permits ground operation with engines stopped. A hand pump operates the cargo doors without electrical power.</p></div>
+    </section>
+    <section class="reference"><h2>LIMITS &amp; AUTOMATIC LOGIC</h2>
+      <div class="item limit"><b>NORMAL PRESSURE &mdash; 3,000 PSI</b><p>RAT-powered blue pressure is 2,500 PSI. ECAM pressure indications become amber below 1,450 PSI.</p></div>
+      <div class="item limit"><b>PTU &mdash; 500 PSI DIFFERENTIAL</b><p>The PTU runs automatically when green/yellow differential pressure exceeds 500 PSI. It is inhibited during the first engine start and tested during the second.</p></div>
+      <div class="item"><b>PRIORITY VALVES</b><p>When system pressure is low, priority valves remove heavy-load users to preserve the primary hydraulic services.</p></div>
+      <div class="item"><b>RESERVOIR PRESSURISATION</b><p>Engine 1 HP bleed normally pressurises all three reservoirs; the crossbleed duct supplies them if that pressure is too low.</p></div>
+    </section>
+  </div>
+  <p class="scope"><b>SOURCE:</b> Supplied Ansett/Navblue A320 FCOM for A/C 21-CMHT, DSC-29-10 and DSC-29-20, dated 22 MAY 24. Diagram behaviour is a study abstraction: ECAM, QRH and the current approved FCOM remain authoritative.</p>
+  <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE</p>
+</main>
+<script src="hydraulic-sim.js"></script>
+</body></html>
+

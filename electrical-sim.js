@@ -27,10 +27,21 @@
     dcTie:{label:'DC TIE',group:'system',on:'AUTO',off:'OFF',offText:'Both DC-tie contactors were selected OFF. DC BUS 1 and DC BUS 2 can no longer feed the DC BAT BUS.',onText:'The DC-tie contactors were returned to AUTO, allowing an available main DC bus to feed the DC BAT BUS.'},
     acEssFeed:{label:'AC ESS FEED',group:'system',on:'AUTO',off:'OFF',offText:'The normal and alternate AC ESS feed path was isolated. AC ESS now depends on the emergency generator or static inverter.',onText:'AC ESS FEED was returned to AUTO. AC BUS 1 is preferred, with AC BUS 2 used as the alternate main-bus source.'},
     batCont1:{label:'BAT 1 CONT',group:'system',on:'AUTO',off:'OFF',offText:'The BAT 1 contactor opened. BAT 1 is isolated from the DC BAT BUS, but HOT BUS 1 remains directly battery-fed.',onText:'The BAT 1 contactor was returned to AUTO, allowing BAT 1 to connect to the DC BAT BUS when required.'},
-    batCont2:{label:'BAT 2 CONT',group:'system',on:'AUTO',off:'OFF',offText:'The BAT 2 contactor opened. BAT 2 is isolated from the DC BAT BUS, but HOT BUS 2 remains directly battery-fed.',onText:'The BAT 2 contactor was returned to AUTO, allowing BAT 2 to connect to the DC BAT BUS when required.'}
+    batCont2:{label:'BAT 2 CONT',group:'system',on:'AUTO',off:'FAILED / OPEN',offText:'The BAT 2 contactor opened. BAT 2 is isolated from the DC BAT BUS, but HOT BUS 2 remains directly battery-fed.',onText:'The BAT 2 contactor was returned to AUTO, allowing BAT 2 to connect to the DC BAT BUS when required.'},
+    acBus1:{label:'AC BUS 1',group:'system',on:'HEALTHY',off:'FAILED',offText:'AC BUS 1 failed. GEN 1 cannot feed it and AC ESS automatically seeks the AC BUS 2 alternate path.',onText:'AC BUS 1 was restored and can again accept its normal or transferred source.'},
+    acBus2:{label:'AC BUS 2',group:'system',on:'HEALTHY',off:'FAILED',offText:'AC BUS 2 failed. GEN 2 cannot feed it; the remaining AC network continues independently.',onText:'AC BUS 2 was restored and can again accept its normal or transferred source.'},
+    acEssBus:{label:'AC ESS BUS',group:'system',on:'HEALTHY',off:'FAILED',offText:'The AC ESS BUS failed. Its normal, alternate, emergency-generator and static-inverter feeds cannot restore the bus itself.',onText:'The AC ESS BUS was restored and can accept the highest-priority available feed.'},
+    acEssShedBus:{label:'AC ESS SHED',group:'system',on:'HEALTHY',off:'FAILED',offText:'The AC ESS SHED BUS failed, removing its lower-priority essential loads.',onText:'The AC ESS SHED BUS was restored; it is powered whenever AC ESS and a main AC bus are available.'},
+    dcBus1:{label:'DC BUS 1',group:'system',on:'HEALTHY',off:'FAILED',offText:'DC BUS 1 failed. TR 1 may be energised but cannot power that distribution bus.',onText:'DC BUS 1 was restored and can again receive TR 1 output.'},
+    dcBus2:{label:'DC BUS 2',group:'system',on:'HEALTHY',off:'FAILED',offText:'DC BUS 2 failed. TR 2 may be energised but cannot power that distribution bus.',onText:'DC BUS 2 was restored and can again receive TR 2 output.'},
+    dcBatBus:{label:'DC BAT BUS',group:'system',on:'HEALTHY',off:'FAILED',offText:'The DC BAT BUS failed, interrupting normal DC-tie and battery-contactor distribution to DC ESS.',onText:'The DC BAT BUS was restored and can again accept a main DC or battery feed.'},
+    dcEssBus:{label:'DC ESS BUS',group:'system',on:'HEALTHY',off:'FAILED',offText:'The DC ESS BUS failed. Normal DC, ESS TR and battery paths cannot restore the bus itself.',onText:'The DC ESS BUS was restored and can accept the available essential DC feed.'},
+    dcEssShedBus:{label:'DC ESS SHED',group:'system',on:'HEALTHY',off:'FAILED',offText:'The DC ESS SHED BUS failed, removing its lower-priority essential loads.',onText:'The DC ESS SHED BUS was restored; it remains automatically shed in reduced-power configurations.'},
+    hotBus1:{label:'HOT BUS 1',group:'system',on:'HEALTHY',off:'FAILED',offText:'HOT BUS 1 failed despite BAT 1 availability.',onText:'HOT BUS 1 was restored to its direct BAT 1 supply.'},
+    hotBus2:{label:'HOT BUS 2',group:'system',on:'HEALTHY',off:'FAILED',offText:'HOT BUS 2 failed despite BAT 2 availability.',onText:'HOT BUS 2 was restored to its direct BAT 2 supply.'}
   };
 
-  const normalState={gen1:true,gen2:true,apu:false,ext:false,emer:true,bat1:true,bat2:true,tr1:true,tr2:true,essTr:true,statInv:true,busTie:true,dcTie:true,acEssFeed:true,batCont1:true,batCont2:true};
+  const normalState={gen1:true,gen2:true,apu:false,ext:false,emer:true,bat1:true,bat2:true,tr1:true,tr2:true,essTr:true,statInv:true,busTie:true,dcTie:true,acEssFeed:true,batCont1:true,batCont2:true,acBus1:true,acBus2:true,acEssBus:true,acEssShedBus:true,dcBus1:true,dcBus2:true,dcBatBus:true,dcEssBus:true,dcEssShedBus:true,hotBus1:true,hotBus2:true};
   const presets={
     normal:{title:'NORMAL CONFIGURATION RESET',text:'GEN 1 supplies AC BUS 1 and GEN 2 supplies AC BUS 2. All automatic contactors and conversion components are available.',changes:{}},
     onegen:{title:'ONE GENERATOR AVAILABLE',text:'GEN 2 is removed. The automatic bus-tie network lets GEN 1 supply both main AC buses.',changes:{gen2:false}},
@@ -59,20 +70,23 @@
       if(ac1&&!ac2){ac2=true;ac2Source=ac1Source+' VIA BUS TIE';tieClosed=true}
       else if(ac2&&!ac1){ac1=true;ac1Source=ac2Source+' VIA BUS TIE';tieClosed=true}
     }
+    ac1=ac1&&st.acBus1!==false;if(!ac1)ac1Source='';
+    ac2=ac2&&st.acBus2!==false;if(!ac2)ac2Source='';
 
     let acEss=false,acEssSource='';
     if(st.acEssFeed&&ac1){acEss=true;acEssSource='AC BUS 1'}
     else if(st.acEssFeed&&ac2){acEss=true;acEssSource='AC BUS 2 ALT FEED'}
     else if(st.emer){acEss=true;acEssSource='EMER GEN'}
     else if(st.statInv&&st.bat1){acEss=true;acEssSource='BAT 1 VIA STAT INV'}
+    acEss=acEss&&st.acEssBus!==false;if(!acEss)acEssSource='';
 
     const tr1Active=st.tr1&&ac1;
     const tr2Active=st.tr2&&ac2;
-    const dc1=tr1Active;
-    const dc2=tr2Active;
+    const dc1=tr1Active&&st.dcBus1!==false;
+    const dc2=tr2Active&&st.dcBus2!==false;
     const normalDcFeed=st.dcTie&&(dc1||dc2);
     const batteryDcFeed=(st.batCont1&&st.bat1)||(st.batCont2&&st.bat2);
-    const dcBat=normalDcFeed||batteryDcFeed;
+    const dcBat=(normalDcFeed||batteryDcFeed)&&st.dcBatBus!==false;
     let dcBatSource='';
     if(st.dcTie&&dc1)dcBatSource='DC BUS 1';
     else if(st.dcTie&&dc2)dcBatSource='DC BUS 2';
@@ -84,12 +98,13 @@
     if(normalDcFeed){dcEss=true;dcEssSource='DC BAT BUS'}
     else if(essTrActive){dcEss=true;dcEssSource='ESS TR'}
     else if(dcBat){dcEss=true;dcEssSource='DC BAT BUS / BATTERY'}
+    dcEss=dcEss&&st.dcEssBus!==false;if(!dcEss)dcEssSource='';
 
     const mainAcAvailable=ac1||ac2;
-    const acEssShed=acEss&&mainAcAvailable;
-    const dcEssShed=dcEss&&mainAcAvailable;
+    const acEssShed=acEss&&mainAcAvailable&&st.acEssShedBus!==false;
+    const dcEssShed=dcEss&&mainAcAvailable&&st.dcEssShedBus!==false;
     return{
-      ac1,ac2,acEss,acEssShed,dc1,dc2,dcBat,dcEss,dcEssShed,hot1:st.bat1,hot2:st.bat2,
+      ac1,ac2,acEss,acEssShed,dc1,dc2,dcBat,dcEss,dcEssShed,hot1:st.bat1&&st.hotBus1!==false,hot2:st.bat2&&st.hotBus2!==false,
       ac1Source,ac2Source,acEssSource,dcBatSource,dcEssSource,tr1Active,tr2Active,essTrActive,
       tieClosed,mainAcAvailable,
       gen1Line:st.gen1&&ac1Source==='GEN 1',gen2Line:st.gen2&&ac2Source==='GEN 2',
@@ -162,7 +177,7 @@
     document.querySelectorAll('[data-component]').forEach(button=>{
       const key=button.dataset.component;
       button.setAttribute('aria-pressed',String(state[key]));
-      button.setAttribute('aria-label',components[key].label+', '+componentStatus(key)+'. Tap to change.');
+      button.setAttribute('aria-label',components[key].label+', '+componentStatus(key)+'. Tap to fail or restore.');
       button.querySelector('span').textContent=componentStatus(key);
       button.classList.toggle('is-selected',selectedKey===key);
     });
@@ -192,8 +207,8 @@
 
   function font(px){return Math.max(10,Math.round(px*scale))+'px ui-monospace,"SF Mono",Menlo,Consolas,monospace'}
   function pathBox(x,y,w,h){ctx.beginPath();ctx.rect(x-w/2,y-h/2,w,h)}
-  function line(x1,y1,x2,y2,color,width=1.5,dash=[]){ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.restore()}
-  function wire(x1,y1,x2,y2,on){line(x1,y1,x2,y2,on?C.green:C.dim,on?2:1,on?[]:[4,5])}
+  function line(x1,y1,x2,y2,color,width=1.5,dash=[]){ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash);if(color===C.green){ctx.shadowColor=C.green;ctx.shadowBlur=6}ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.restore()}
+  function wire(x1,y1,x2,y2,on){line(x1,y1,x2,y2,on?C.green:C.dim,on?2.6:1,on?[]:[4,5])}
   function label(str,x,y,color=C.white,size=14,align='center'){
     ctx.save();ctx.fillStyle=color;ctx.font=font(size);ctx.textAlign=align;ctx.textBaseline='middle';ctx.fillText(str,x,y);ctx.restore();
   }
@@ -201,7 +216,7 @@
   function selectedOutline(key,x,y,w,h){if(selectedKey===key){ctx.save();ctx.strokeStyle=C.cyan;ctx.lineWidth=2;ctx.strokeRect(x-w/2-3,y-h/2-3,w+6,h+6);ctx.restore()}}
   function equipmentBox(x,y,w,h,name,values,powerState='on',key=''){
     const valueColor=powerState==='on'?C.green:powerState==='active'?C.green:powerState==='available'?C.cyan:powerState==='isolated'?C.amber:C.grey;
-    ctx.save();pathBox(x,y,w,h);ctx.strokeStyle=powerState==='isolated'?C.amber:C.grey;ctx.lineWidth=1.3;ctx.stroke();ctx.restore();
+    ctx.save();const g=ctx.createLinearGradient(x,y-h/2,x,y+h/2);g.addColorStop(0,'#243029');g.addColorStop(.25,'#0b110d');g.addColorStop(1,'#050805');ctx.fillStyle=g;pathBox(x,y,w,h);ctx.fill();ctx.strokeStyle=powerState==='isolated'?C.amber:powerState==='on'||powerState==='active'?C.green:C.grey;ctx.lineWidth=1.5;if(powerState==='on'||powerState==='active'){ctx.shadowColor=C.green;ctx.shadowBlur=7}ctx.stroke();ctx.strokeStyle='rgba(255,255,255,.24)';ctx.beginPath();ctx.moveTo(x-w/2+2,y-h/2+2);ctx.lineTo(x+w/2-2,y-h/2+2);ctx.stroke();ctx.restore();
     label(name,x,y-h*.31,powerState==='isolated'?C.amber:C.white,14);
     if(values&&values.length){
       const gap=Math.max(11,h*.22);const start=y-h*.02-(values.length-1)*gap/2;
@@ -209,9 +224,10 @@
     }
     addHit(key,x,y,w,h);selectedOutline(key,x,y,w,h);
   }
-  function busBox(x,y,w,name,on,size=14){
-    ctx.save();pathBox(x,y,w,25);ctx.strokeStyle=C.grey;ctx.lineWidth=1.2;ctx.stroke();ctx.restore();
+  function busBox(x,y,w,name,on,size=14,key=''){
+    ctx.save();const g=ctx.createLinearGradient(x,y-13,x,y+13);g.addColorStop(0,'#26332b');g.addColorStop(.5,'#060906');g.addColorStop(1,'#111812');ctx.fillStyle=g;pathBox(x,y,w,25);ctx.fill();ctx.strokeStyle=on?C.green:C.amber;ctx.lineWidth=1.5;if(on){ctx.shadowColor=C.green;ctx.shadowBlur=6}ctx.stroke();ctx.restore();
     label(name,x,y,on?C.green:C.amber,size);
+    addHit(key,x,y,w,25);selectedOutline(key,x,y,w,25);
   }
   function contactor(x,y,closed,enabled,key='',caption='',side='right'){
     const color=!enabled?C.amber:closed?C.green:C.grey;
@@ -276,17 +292,17 @@
     wire(xC+centerW/2,dcEssY,xC+centerW/2,dcShedY,s.dcEssShed);wire(xC+centerW/2,dcShedY,dcShedX-shedW/2,dcShedY,s.dcEssShed);
     wire(xC-centerW/2,acY,xC-centerW/2,acShedY,s.acEssShed);wire(xC-centerW/2,acShedY,acShedX+shedW/2,acShedY,s.acEssShed);
 
-    busBox(xC,dcBatY,Math.min(300,W*.60),'DC BAT BUS',s.dcBat,13);
+    busBox(xC,dcBatY,Math.min(300,W*.60),'DC BAT BUS',s.dcBat,13,'dcBatBus');
     equipmentBox(xB1,batY,batW,batH,'BAT 1',state.bat1?['29 V','1 A']:['OFF'],state.bat1?'on':'isolated','bat1');
     equipmentBox(xB2,batY,batW,batH,'BAT 2',state.bat2?['29 V','1 A']:['OFF'],state.bat2?'on':'isolated','bat2');
-    busBox(xB1,hotY,hotW,'HOT BUS 1',s.hot1,11);busBox(xB2,hotY,hotW,'HOT BUS 2',s.hot2,11);
-    busBox(xL,dcY,sideW,'DC BUS 1',s.dc1,12);busBox(xR,dcY,sideW,'DC BUS 2',s.dc2,12);busBox(xC,dcEssY,centerW,'DC ESS BUS',s.dcEss,11);busBox(dcShedX,dcShedY,shedW,'DC ESS SHED',s.dcEssShed,10);
+    busBox(xB1,hotY,hotW,'HOT BUS 1',s.hot1,11,'hotBus1');busBox(xB2,hotY,hotW,'HOT BUS 2',s.hot2,11,'hotBus2');
+    busBox(xL,dcY,sideW,'DC BUS 1',s.dc1,12,'dcBus1');busBox(xR,dcY,sideW,'DC BUS 2',s.dc2,12,'dcBus2');busBox(xC,dcEssY,centerW,'DC ESS BUS',s.dcEss,11,'dcEssBus');busBox(dcShedX,dcShedY,shedW,'DC ESS SHED',s.dcEssShed,10,'dcEssShedBus');
     equipmentBox(xL,midY,sideW,trH,'TR 1',!state.tr1?['ISOLATED']:s.tr1Active?['28 V','68 A']:['0 V','0 A'],!state.tr1?'isolated':s.tr1Active?'on':'off','tr1');
     equipmentBox(xR,midY,sideW,trH,'TR 2',!state.tr2?['ISOLATED']:s.tr2Active?['28 V','68 A']:['0 V','0 A'],!state.tr2?'isolated':s.tr2Active?'on':'off','tr2');
     equipmentBox(xInv,midY,Math.min(74,W*.14),45,'STAT INV',[!state.statInv?'ISOLATED':s.staticInvActive?'ACTIVE':'READY'],!state.statInv?'isolated':s.staticInvActive?'active':'available','statInv');
     equipmentBox(xEss,midY,Math.min(68,W*.13),45,'ESS TR',[!state.essTr?'ISOLATED':s.essTrActive?'ACTIVE':'READY'],!state.essTr?'isolated':s.essTrActive?'active':'available','essTr');
     equipmentBox(xEmer,midY,Math.min(82,W*.15),48,'EMER GEN',[!state.emer?'ISOLATED':s.emerActive?'ACTIVE':'READY'],!state.emer?'isolated':s.emerActive?'active':'available','emer');
-    busBox(xL,acY,sideW,'AC BUS 1',s.ac1,12);busBox(xC,acY,centerW,'AC ESS BUS',s.acEss,11);busBox(xR,acY,sideW,'AC BUS 2',s.ac2,12);busBox(acShedX,acShedY,shedW,'AC ESS SHED',s.acEssShed,10);
+    busBox(xL,acY,sideW,'AC BUS 1',s.ac1,12,'acBus1');busBox(xC,acY,centerW,'AC ESS BUS',s.acEss,11,'acEssBus');busBox(xR,acY,sideW,'AC BUS 2',s.ac2,12,'acBus2');busBox(acShedX,acShedY,shedW,'AC ESS SHED',s.acEssShed,10,'acEssShedBus');
 
     const g1vals=state.gen1?(s.gen1Line?['32 %','115 V','400 HZ']:['AVAILABLE']):['OFF'];
     const g2vals=state.gen2?(s.gen2Line?['24 %','115 V','400 HZ']:['AVAILABLE']):['OFF'];
@@ -314,6 +330,7 @@
   });
   presetButtons.forEach(button=>button.addEventListener('click',()=>loadPreset(button.dataset.mode)));
   if('ResizeObserver' in window)new ResizeObserver(draw).observe(canvas.parentElement);else window.addEventListener('resize',draw);
+  window.A320ElectricalTrainer={loadPreset,toggleComponent,restoreAll:()=>loadPreset('normal'),getState:()=>({preset:activePreset,components:{...state},network:evaluate(state)}),getComponents:()=>Object.keys(components)};
   renderControls();loadPreset('normal');
 })();
 

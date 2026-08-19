@@ -87,6 +87,10 @@
   .state-card.caution{border-left-color:var(--amber)}.state-card.fault{border-left-color:var(--red)}
   .state-card strong{display:block;color:var(--green);font:12px var(--mono);font-weight:400;margin-bottom:4px}
   .state-card.caution strong{color:var(--amber)}.state-card.fault strong{color:var(--red)}
+  .failure-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+  .failure-action{min-height:42px;border:1px solid var(--edge);border-radius:5px;background:#070a08;font:10px var(--mono);cursor:pointer;touch-action:manipulation}
+  .failure-action.fail{color:var(--red);border-color:#713434}.failure-action.restore{color:var(--cyan);border-color:#2a6470}.failure-action[disabled]{opacity:.35;cursor:not-allowed}
+  .failure-summary{color:var(--muted);font:9px/1.4 var(--mono);margin-top:6px}
   .source-ref{margin-top:11px;color:var(--muted);font:9px/1.4 var(--mono)}
   .component-section{margin-top:12px;border-top:1px solid var(--edge);padding-top:12px}
   .section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:8px}
@@ -103,7 +107,7 @@
   .limit{padding:8px 0;border-top:1px solid #1c251f}.limit:first-of-type{border-top:0;padding-top:8px}
   .limit b{display:block;color:var(--amber);font:11px var(--mono);font-weight:400;margin-bottom:3px}.limit p{margin:0;color:#c8d2ca;font:11px/1.5 var(--ui)}
   .source{color:var(--muted);font:10px/1.5 var(--mono);text-align:center;margin:14px auto 0;max-width:900px}
-  .tab:focus-visible,.mode:focus-visible,.component-card:focus-visible,.back:focus-visible,.model-action:focus-visible,.model-part:focus-visible,.model-system-link:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  .tab:focus-visible,.mode:focus-visible,.component-card:focus-visible,.back:focus-visible,.model-action:focus-visible,.model-part:focus-visible,.model-system-link:focus-visible,.failure-action:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
   @media(max-width:900px){
     .stage{grid-template-columns:1fr}.info-panel{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.info-panel .state-card,.info-panel .source-ref{grid-column:1/-1}.tabs{grid-template-columns:repeat(3,1fr)}.model3d-grid{grid-template-columns:1fr}.model-detail{border-left:0;border-top:1px solid var(--edge);display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.model-detail .eyebrow,.model-detail h2,.model-detail .model-system-link{grid-column:1/-1}.model-parts{grid-template-columns:repeat(4,minmax(0,1fr))}
   }
@@ -185,6 +189,11 @@
           <p id="stateText"></p>
           <ul id="stateImpacts"></ul>
         </div>
+        <div class="failure-actions">
+          <button class="failure-action fail" id="componentFailButton" type="button">FAIL SELECTED</button>
+          <button class="failure-action restore" id="restoreAllFailures" type="button">RESTORE ALL</button>
+        </div>
+        <div class="failure-summary" id="failureSummary">NO ACTIVE COMPONENT FAILURES</div>
         <div class="source-ref" id="componentRef"></div>
       </aside>
     </div>
@@ -192,7 +201,7 @@
     <section class="component-section" aria-labelledby="componentsTitle">
       <div class="section-head">
         <h2 id="componentsTitle">COMPONENT INDEX</h2>
-        <p>Same components as the diagram; buttons make selection easier on a phone.</p>
+        <p>Select any component, then use FAIL SELECTED to see the propagated consequence.</p>
       </div>
       <div class="component-grid" id="componentGrid"></div>
     </section>
