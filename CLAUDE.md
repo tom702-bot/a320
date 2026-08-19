@@ -11,6 +11,8 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `A320_Checkride_Trainer.html` | Standalone twin of `index.html`; keep it byte-for-byte identical. |
 | `A321P2F_Limitations_FillCheck.html` | Legacy filename for the standalone A320 fill-and-check page. Its visible title and data are A320-specific. |
 | `electrical.html` | Interactive ECAM-style A320 electrical-system synoptic and configuration explainer. |
+| `engine.html` | Provisional interactive IAE V2500 engine-start and FADEC response trainer. |
+| `engine-sim.js` | State model and ECAM-style rendering for the IAE engine trainer. |
 | `sw.js` | Offline cache. Bump `CACHE` whenever app content changes. |
 | `manifest.webmanifest` | Installable-app metadata. |
 | `icon-180.png`, `icon-192.png`, `icon-512.png` | App icons. |
@@ -46,8 +48,9 @@ source.
 
 - Limitations source used for the August 2026 audit: Ansett/Navblue A320 FCOM limitations extract,
   active aircraft header `NVB A320 For A/C: 21-CMHT`, dated `22 MAY 24`.
-- Use the active `CFM & PW` engine limitations pages.
-- Do not use the separate IAE engine pages stamped `FOR ENGINEERING USE ONLY`.
+- Use the active `CFM & PW` engine limitations pages for the audited quiz bank.
+- Do not mix the separate IAE engine pages stamped `FOR ENGINEERING USE ONLY` into the active A/C 21-CMHT quiz content.
+- The standalone IAE engine simulator is an explicit exception requested by the user. Keep its source/effectivity warning prominent and describe it as provisional. Its source is the supplied A/C 20-IMHT / 19-IMHE IAE engineering appendix (2015-2018), not the active A/C 21-CMHT CFM/PW section.
 - Existing DSC systems and QRH memory-item questions were outside that limitations-only audit.
   They must be checked against the relevant supplied DSC/QRH source before being described as
   revalidated.
@@ -70,7 +73,7 @@ source.
 5. Search correct answers and explanations—not just distractors—for superseded A321P2F or
    engineering-only values.
 6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v14`.
+   `a320-trainer-v15`.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is

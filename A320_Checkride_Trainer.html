@@ -149,6 +149,7 @@
   .mode.review .mt .ic{background:var(--cyan)}
   .mode.lookup .mt .ic{background:#c9d4dc;color:var(--bg)}
   .mode.electrical .mt .ic{background:var(--green-deep);color:#fff}
+  .mode.engine .mt .ic{background:var(--amber);color:var(--bg)}
 
   /* ---- Progress panel ---- */
   .prog{border:1px solid var(--edge);background:var(--panel);border-radius:12px;padding:16px 18px;margin-bottom:16px}
@@ -277,7 +278,11 @@
       </button>
       <a class="mode electrical" href="electrical.html">
         <div class="mt"><span class="ic">ELEC</span>Electrical Synoptic</div>
-        <div class="md">Trace normal, single-generator, APU, emergency-generator and battery-only power flow.</div>
+        <div class="md">Switch sources and contactors, trace power flow, and explore automatic reconfiguration.</div>
+      </a>
+      <a class="mode engine" href="engine.html">
+        <div class="mt"><span class="ic">ENG</span>IAE V2500 Start Trainer</div>
+        <div class="md">Operate an ECAM-style engine start, inject faults, isolate components and watch FADEC respond.</div>
       </a>
     </div>
 
