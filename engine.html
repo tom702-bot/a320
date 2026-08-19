@@ -32,6 +32,29 @@
   h1{font:22px var(--mono);font-weight:400;letter-spacing:2px;text-align:center;margin:0 0 4px}
   h1 span{border-bottom:2px solid var(--white);padding:0 8px 2px}
   .sub{font:11px/1.45 var(--mono);letter-spacing:1px;text-align:center;color:var(--green);margin:0 0 14px}
+  .model3d{border:1px solid var(--edge);border-radius:8px;background:#000;margin-bottom:14px;overflow:hidden}
+  .model3d-head{display:flex;justify-content:space-between;gap:10px;padding:9px 11px;border-bottom:1px solid var(--edge);font:11px var(--mono)}
+  .model3d-head span:first-child{color:var(--white);border-bottom:1px solid var(--white)}
+  .model3d-head span:last-child{color:var(--cyan);text-align:right}
+  .model3d-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,.65fr)}
+  .model-canvas-wrap{position:relative;min-width:0;background:radial-gradient(circle at 52% 42%,#142019 0,#050806 48%,#000 78%);overflow:hidden}
+  #engine3d{display:block;width:100%;aspect-ratio:16/9;min-height:330px;touch-action:none;cursor:grab}
+  #engine3d.dragging{cursor:grabbing}
+  .model-toolbar{position:absolute;top:9px;left:9px;display:flex;gap:6px;z-index:2}
+  .model-action,.model-system-link{border:1px solid #526158;border-radius:4px;background:rgba(4,8,5,.88);color:var(--white);font:9px var(--mono);min-height:38px;padding:6px 9px;cursor:pointer;touch-action:manipulation}
+  .model-action[aria-pressed="true"]{border-color:var(--green);color:var(--green)}
+  .model-hint{position:absolute;left:10px;bottom:8px;color:#9caaa0;background:rgba(0,0,0,.72);font:9px var(--mono);padding:4px 6px;pointer-events:none}
+  .model-detail{border-left:1px solid var(--edge);padding:12px;background:linear-gradient(180deg,#0b110d,#070a08)}
+  .model-detail .eyebrow{margin-bottom:5px}
+  .model-detail h2{font:17px/1.2 var(--mono);font-weight:400;color:var(--cyan);margin:0 0 8px}
+  .model-detail h3{font:10px var(--mono);font-weight:400;color:var(--amber);margin:11px 0 3px;letter-spacing:.7px}
+  .model-detail p{font:11px/1.45 var(--ui);color:#d0dad2;margin:0}
+  .model-system-link{margin-top:12px;width:100%;border-color:var(--cyan);color:var(--cyan)}
+  .model-parts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;padding:8px;border-top:1px solid var(--edge)}
+  .model-part{border:1px solid #28342c;border-radius:4px;background:#080c09;color:#bbc7be;min-height:42px;padding:5px 4px;font:9px/1.2 var(--mono);cursor:pointer;touch-action:manipulation}
+  .model-part[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan);box-shadow:inset 0 0 0 1px var(--cyan)}
+  .systems-label{display:flex;align-items:center;gap:9px;color:var(--green);font:10px var(--mono);letter-spacing:1px;margin:2px 0 8px}
+  .systems-label::before,.systems-label::after{content:"";height:1px;background:#203027;flex:1}
   .tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-bottom:10px}
   .tab,.mode,.component-card{border:1px solid var(--edge);border-radius:5px;background:var(--panel);color:var(--white);cursor:pointer;touch-action:manipulation}
   .tab{min-height:49px;padding:7px 5px;font:10px/1.2 var(--mono);letter-spacing:.3px}
@@ -80,12 +103,12 @@
   .limit{padding:8px 0;border-top:1px solid #1c251f}.limit:first-of-type{border-top:0;padding-top:8px}
   .limit b{display:block;color:var(--amber);font:11px var(--mono);font-weight:400;margin-bottom:3px}.limit p{margin:0;color:#c8d2ca;font:11px/1.5 var(--ui)}
   .source{color:var(--muted);font:10px/1.5 var(--mono);text-align:center;margin:14px auto 0;max-width:900px}
-  .tab:focus-visible,.mode:focus-visible,.component-card:focus-visible,.back:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  .tab:focus-visible,.mode:focus-visible,.component-card:focus-visible,.back:focus-visible,.model-action:focus-visible,.model-part:focus-visible,.model-system-link:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
   @media(max-width:900px){
-    .stage{grid-template-columns:1fr}.info-panel{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.info-panel .state-card,.info-panel .source-ref{grid-column:1/-1}.tabs{grid-template-columns:repeat(3,1fr)}
+    .stage{grid-template-columns:1fr}.info-panel{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.info-panel .state-card,.info-panel .source-ref{grid-column:1/-1}.tabs{grid-template-columns:repeat(3,1fr)}.model3d-grid{grid-template-columns:1fr}.model-detail{border-left:0;border-top:1px solid var(--edge);display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.model-detail .eyebrow,.model-detail h2,.model-detail .model-system-link{grid-column:1/-1}.model-parts{grid-template-columns:repeat(4,minmax(0,1fr))}
   }
   @media(max-width:680px){
-    .page{padding-left:8px;padding-right:8px}.trainer{padding:10px 7px}.component-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.reference-grid{grid-template-columns:1fr}.tag{font-size:9px}.section-head{display:block}.section-head p{text-align:left;margin-top:4px}.info-panel{display:block}
+    .page{padding-left:8px;padding-right:8px}.trainer{padding:10px 7px}.component-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.reference-grid{grid-template-columns:1fr}.tag{font-size:9px}.section-head{display:block}.section-head p{text-align:left;margin-top:4px}.info-panel,.model-detail{display:block}.model-parts{grid-template-columns:repeat(3,minmax(0,1fr))}#engine3d{aspect-ratio:4/3;min-height:300px}.model-hint{font-size:8px}.model-action{min-height:36px;padding:5px 7px}
   }
   @media(max-width:430px){h1{font-size:18px}.tabs{grid-template-columns:repeat(2,1fr)}.tab{font-size:9px}.diagram-scroll{margin:0 -1px}.component-card{min-height:62px}}
 </style>
@@ -102,6 +125,30 @@
   <section class="trainer" aria-labelledby="engineTitle">
     <h1 id="engineTitle"><span>IAE V2500 ENGINE SYSTEMS</span></h1>
     <p class="sub">SELECT A SYSTEM, CHOOSE AN OPERATING MODE, THEN TAP ANY COMPONENT</p>
+
+    <section class="model3d" aria-labelledby="model3dTitle">
+      <div class="model3d-head"><span id="model3dTitle">INTERACTIVE 3D CUTAWAY</span><span id="model3dStatus">FAN &amp; LP ROTOR</span></div>
+      <div class="model3d-grid">
+        <div class="model-canvas-wrap">
+          <canvas id="engine3d" role="img" aria-label="Rotatable three-dimensional cutaway model of an IAE V2500 engine. Drag to rotate, pinch or scroll to zoom, and tap a component for details."></canvas>
+          <div class="model-toolbar">
+            <button class="model-action" id="cutawayToggle" type="button" aria-pressed="true">CUTAWAY</button>
+            <button class="model-action" id="modelReset" type="button">RESET VIEW</button>
+          </div>
+          <div class="model-hint">DRAG TO ROTATE &middot; PINCH / SCROLL TO ZOOM &middot; TAP A PART</div>
+        </div>
+        <aside class="model-detail" aria-live="polite">
+          <div class="eyebrow">SELECTED 3D COMPONENT</div>
+          <h2 id="modelPartName">FAN &amp; LP ROTOR</h2>
+          <div><h3>FUNCTION</h3><p id="modelPartPurpose"></p></div>
+          <div><h3>OPERATION / LIMIT</h3><p id="modelPartOperation"></p></div>
+          <button class="model-system-link" id="modelSystemLink" type="button">OPEN RELATED SYSTEM VIEW</button>
+        </aside>
+      </div>
+      <div class="model-parts" id="modelParts" aria-label="3D engine components"></div>
+    </section>
+
+    <div class="systems-label">SYSTEM FLOW &amp; FAILURE DIAGRAMS</div>
 
     <div class="tabs" id="systemTabs" role="tablist" aria-label="Engine systems"></div>
 
@@ -171,6 +218,7 @@
   <p class="source">SOURCE: SUPPLIED ENGINEERING-USE IAE APPENDIX &mdash; DSC-70-05/10/20/35/45/50/65/70/80/95 AND LIM-ENG. DIAGRAMS ARE SIMPLIFIED STUDY REPRESENTATIONS, NOT MAINTENANCE SCHEMATICS. STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE.</p>
 </main>
 <script src="engine-sim.js"></script>
+<script src="engine-3d.js"></script>
 </body>
 </html>
 

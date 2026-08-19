@@ -13,6 +13,7 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `electrical.html` | Interactive ECAM-style A320 electrical-system synoptic and configuration explainer. |
 | `engine.html` | Provisional interactive IAE V2500 engine-systems study assistant. |
 | `engine-sim.js` | System layouts, normal/abnormal modes and ECAM-style SVG rendering for the IAE engine explorer. |
+| `engine-3d.js` | Lightweight procedural 3D cutaway renderer, touch controls and component-to-system links. |
 | `sw.js` | Offline cache. Bump `CACHE` whenever app content changes. |
 | `manifest.webmanifest` | Installable-app metadata. |
 | `icon-180.png`, `icon-192.png`, `icon-512.png` | App icons. |
@@ -73,7 +74,7 @@ source.
 5. Search correct answers and explanations—not just distractors—for superseded A321P2F or
    engineering-only values.
 6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v16`.
+   `a320-trainer-v17`.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is
