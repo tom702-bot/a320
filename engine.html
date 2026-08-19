@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>IAE V2500 Engine Trainer</title>
+<title>IAE V2500 Engine Systems Explorer</title>
 <meta name="theme-color" content="#050806">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="V2500 ENG">
+<meta name="apple-mobile-web-app-title" content="V2500 Systems">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
 <style>
   :root{
-    --black:#050806;--panel:#0a0e0b;--panel2:#0e1510;--edge:#26312a;--green:#42e56c;
-    --amber:#ffb327;--cyan:#45d7ec;--white:#eef5ef;--muted:#839388;--red:#ff5757;
+    --black:#050806;--panel:#0a0e0b;--panel2:#0e1510;--edge:#29352d;--green:#42e56c;
+    --amber:#ffb327;--cyan:#45d7ec;--white:#eef5ef;--muted:#8c9b91;--red:#ff5757;
     --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
     --ui:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
   }
@@ -22,69 +22,72 @@
   html,body{margin:0;min-height:100%;background:var(--black);color:var(--white)}
   body{font-family:var(--ui);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
   button{font:inherit}
-  .page{max-width:980px;margin:0 auto;padding:16px 14px 42px}
+  .page{max-width:1180px;margin:0 auto;padding:16px 14px 48px}
   .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-  .back{color:var(--cyan);font:13px var(--mono);text-decoration:none;padding:9px 0}
+  .back{color:var(--cyan);font:13px var(--mono);text-decoration:none;padding:9px 0;min-height:44px;display:flex;align-items:center}
   .tag{color:var(--muted);font:11px var(--mono);letter-spacing:1px;text-align:right}
   .warning{border:1px solid #71521c;background:#171106;color:#efce8a;border-radius:8px;padding:10px 12px;font:12px/1.5 var(--mono);margin-bottom:12px}
   .warning b{color:var(--amber);font-weight:400}
   .trainer{background:#000;border:1px solid var(--edge);border-radius:10px;padding:14px;box-shadow:inset 0 0 28px rgba(66,229,108,.025)}
   h1{font:22px var(--mono);font-weight:400;letter-spacing:2px;text-align:center;margin:0 0 4px}
   h1 span{border-bottom:2px solid var(--white);padding:0 8px 2px}
-  .sub{font:11px/1.45 var(--mono);letter-spacing:1px;text-align:center;color:var(--green);margin:0 0 12px}
-  .scenario-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:12px}
-  .scenario,.action,.selector,.component{border:1px solid var(--edge);border-radius:5px;background:var(--panel);color:var(--white);cursor:pointer;touch-action:manipulation}
-  .scenario{min-height:44px;font:11px var(--mono);letter-spacing:.4px;padding:7px 5px}
-  .scenario[aria-pressed="true"]{border-color:var(--amber);color:var(--amber);box-shadow:inset 0 0 0 1px var(--amber)}
-  .display-wrap{width:100%;max-width:620px;margin:0 auto;background:#000;border-top:1px solid #162019;border-bottom:1px solid #162019}
-  canvas{display:block;width:100%;height:auto;touch-action:manipulation}
-  .legend{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:9px 0 0;color:var(--muted);font:10px var(--mono)}
+  .sub{font:11px/1.45 var(--mono);letter-spacing:1px;text-align:center;color:var(--green);margin:0 0 14px}
+  .tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-bottom:10px}
+  .tab,.mode,.component-card{border:1px solid var(--edge);border-radius:5px;background:var(--panel);color:var(--white);cursor:pointer;touch-action:manipulation}
+  .tab{min-height:49px;padding:7px 5px;font:10px/1.2 var(--mono);letter-spacing:.3px}
+  .tab .ata{display:block;color:var(--muted);font-size:9px;margin-bottom:3px}
+  .tab[aria-selected="true"]{border-color:var(--cyan);color:var(--cyan);box-shadow:inset 0 -2px var(--cyan)}
+  .mode-strip{border:1px solid #1e2922;background:#070a08;border-radius:7px;padding:8px;margin-bottom:10px}
+  .mode-label{font:10px var(--mono);color:var(--muted);letter-spacing:1px;margin:0 0 6px}
+  .modes{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-color:#344339 #080b09}
+  .mode{flex:0 0 auto;min-height:42px;padding:7px 11px;font:10px var(--mono);white-space:nowrap}
+  .mode[aria-pressed="true"]{border-color:var(--amber);color:var(--amber);box-shadow:inset 0 0 0 1px var(--amber)}
+  .mode[data-severity="normal"][aria-pressed="true"]{border-color:var(--green);color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+  .stage{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(285px,.75fr);gap:10px}
+  .diagram-panel,.info-panel{border:1px solid var(--edge);border-radius:8px;background:#000;min-width:0}
+  .display-header{display:flex;justify-content:space-between;gap:10px;padding:9px 11px;border-bottom:1px solid var(--edge);font:11px var(--mono)}
+  .display-header span:first-child{color:var(--white);border-bottom:1px solid var(--white)}
+  .display-header span:last-child{color:var(--green);text-align:right}
+  .diagram-scroll{overflow-x:auto;overscroll-behavior-x:contain}
+  #systemDiagram{display:block;width:100%;min-width:620px;height:auto;aspect-ratio:900/560;background:#000;touch-action:manipulation}
+  .legend{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;padding:8px;border-top:1px solid #18211b;color:var(--muted);font:9px var(--mono)}
   .legend i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:5px}
-  .lg-normal{background:var(--green)}.lg-action{background:var(--cyan)}.lg-caution{background:var(--amber)}.lg-warning{background:var(--red)}
-  .cockpit{display:grid;grid-template-columns:1.1fr .9fr;gap:10px;margin-top:14px}
-  .control-panel{border:1px solid var(--edge);border-radius:8px;background:var(--panel);padding:12px}
-  .control-panel h2,.component-panel h2,.reference h2{font:14px var(--mono);font-weight:400;color:var(--cyan);letter-spacing:1px;margin:0 0 8px}
-  .control-label{font:10px var(--mono);letter-spacing:1px;color:var(--muted);margin:10px 0 5px}
-  .control-label:first-of-type{margin-top:0}
-  .selector-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-  .selector{min-height:44px;padding:6px;font:11px var(--mono)}
-  .selector[aria-pressed="true"]{border-color:var(--green);color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
-  .selector.master[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan);box-shadow:inset 0 0 0 1px var(--cyan)}
-  .action-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:11px}
-  .action{min-height:46px;padding:7px;font:11px var(--mono)}
-  .action.primary{border-color:var(--green);color:var(--green)}
-  .action.stop{border-color:#704646;color:#ff9797}
-  .action:disabled{opacity:.45;cursor:not-allowed}
-  .sequence{margin:0;padding:0;list-style:none;counter-reset:steps}
-  .sequence li{position:relative;padding:7px 7px 7px 30px;border-top:1px solid #1d271f;color:var(--muted);font:11px/1.4 var(--mono)}
-  .sequence li:first-child{border-top:0}
-  .sequence li::before{counter-increment:steps;content:counter(steps);position:absolute;left:5px;top:7px;width:17px;height:17px;border:1px solid var(--edge);border-radius:50%;text-align:center;line-height:16px}
-  .sequence li.done{color:var(--green)}.sequence li.active{color:var(--white);background:#101b13}.sequence li.fault{color:var(--red)}
-  .explain{margin-top:12px;border-left:3px solid var(--green);padding:9px 11px;background:#070b08}
-  .explain.fault{border-left-color:var(--red)}
-  .explain h2{font:16px var(--mono);font-weight:400;letter-spacing:.8px;color:var(--green);margin:0 0 5px}
-  .explain.fault h2{color:var(--red)}
-  .explain p{font:13px/1.5 var(--mono);margin:0;color:var(--white)}
-  .impact{margin:7px 0 0;padding-left:18px;color:#c8d2ca;font:12px/1.5 var(--mono)}
-  .impact li+li{margin-top:3px}
-  .component-panel{margin-top:14px;border-top:1px solid var(--edge);padding-top:13px}
-  .control-help{font:11px/1.45 var(--mono);color:var(--muted);margin:0 0 10px}
+  .lg-normal{background:var(--green)}.lg-control{background:var(--cyan)}.lg-caution{background:var(--amber)}.lg-fault{background:var(--red)}.lg-inactive{background:#6f7d73}
+  .info-panel{padding:12px;background:var(--panel)}
+  .eyebrow{color:var(--muted);font:9px var(--mono);letter-spacing:1.2px;margin-bottom:5px}
+  .info-panel h2{font:18px/1.2 var(--mono);font-weight:400;color:var(--cyan);margin:0 0 8px}
+  .info-panel h3{font:11px var(--mono);font-weight:400;color:var(--amber);margin:13px 0 4px;letter-spacing:.7px}
+  .info-panel p{font:12px/1.5 var(--ui);color:#d0dad2;margin:0}
+  .info-panel ul{margin:5px 0 0;padding-left:18px;color:#cbd5cd;font:11px/1.45 var(--ui)}
+  .info-panel li+li{margin-top:4px}
+  .state-card{margin-top:11px;border-left:3px solid var(--green);background:#070b08;padding:9px 10px}
+  .state-card.caution{border-left-color:var(--amber)}.state-card.fault{border-left-color:var(--red)}
+  .state-card strong{display:block;color:var(--green);font:12px var(--mono);font-weight:400;margin-bottom:4px}
+  .state-card.caution strong{color:var(--amber)}.state-card.fault strong{color:var(--red)}
+  .source-ref{margin-top:11px;color:var(--muted);font:9px/1.4 var(--mono)}
+  .component-section{margin-top:12px;border-top:1px solid var(--edge);padding-top:12px}
+  .section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:8px}
+  .section-head h2,.reference h2{font:14px var(--mono);font-weight:400;color:var(--cyan);letter-spacing:1px;margin:0}
+  .section-head p{font:10px var(--mono);color:var(--muted);margin:0;text-align:right}
   .component-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
-  .component{min-height:48px;text-align:left;padding:7px;font:11px/1.25 var(--mono)}
-  .component strong,.component span{display:block;font-weight:400}
-  .component span{color:var(--green);font-size:10px;margin-top:3px}
-  .component[aria-pressed="false"]{border-color:#5e4516;color:#d1b472}.component[aria-pressed="false"] span{color:var(--amber)}
-  .component.is-selected{box-shadow:inset 0 0 0 1px var(--cyan);border-color:var(--cyan)}
+  .component-card{min-height:68px;text-align:left;padding:8px;font:10px/1.3 var(--mono)}
+  .component-card strong,.component-card span{display:block;font-weight:400}
+  .component-card span{color:var(--muted);font-size:9px;margin-top:5px}
+  .component-card[aria-pressed="true"]{border-color:var(--cyan);box-shadow:inset 0 0 0 1px var(--cyan);color:var(--cyan)}
+  .component-card .status-normal{color:var(--green)}.component-card .status-caution{color:var(--amber)}.component-card .status-fault{color:var(--red)}.component-card .status-inactive{color:var(--muted)}
   .reference-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
   .reference{border:1px solid var(--edge);border-radius:8px;background:var(--panel);padding:13px}
-  .limit{padding:8px 0;border-top:1px solid #1c251f}.limit:first-of-type{border-top:0;padding-top:0}
-  .limit b{display:block;color:var(--amber);font:12px var(--mono);font-weight:400;margin-bottom:3px}.limit p{margin:0;color:#c8d2ca;font:12px/1.5 var(--ui)}
-  .source{color:var(--muted);font:11px/1.5 var(--mono);text-align:center;margin-top:14px}
-  .scenario:focus-visible,.action:focus-visible,.selector:focus-visible,.component:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
-  @media(max-width:720px){
-    .page{padding-left:9px;padding-right:9px}.trainer{padding:10px 7px}.cockpit,.reference-grid{grid-template-columns:1fr}.component-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tag{font-size:9px}
+  .limit{padding:8px 0;border-top:1px solid #1c251f}.limit:first-of-type{border-top:0;padding-top:8px}
+  .limit b{display:block;color:var(--amber);font:11px var(--mono);font-weight:400;margin-bottom:3px}.limit p{margin:0;color:#c8d2ca;font:11px/1.5 var(--ui)}
+  .source{color:var(--muted);font:10px/1.5 var(--mono);text-align:center;margin:14px auto 0;max-width:900px}
+  .tab:focus-visible,.mode:focus-visible,.component-card:focus-visible,.back:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  @media(max-width:900px){
+    .stage{grid-template-columns:1fr}.info-panel{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.info-panel .state-card,.info-panel .source-ref{grid-column:1/-1}.tabs{grid-template-columns:repeat(3,1fr)}
   }
-  @media(max-width:430px){.scenario-row{grid-template-columns:repeat(2,1fr)}h1{font-size:19px}.action-row{grid-template-columns:1fr}.component-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:680px){
+    .page{padding-left:8px;padding-right:8px}.trainer{padding:10px 7px}.component-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.reference-grid{grid-template-columns:1fr}.tag{font-size:9px}.section-head{display:block}.section-head p{text-align:left;margin-top:4px}.info-panel{display:block}
+  }
+  @media(max-width:430px){h1{font-size:18px}.tabs{grid-template-columns:repeat(2,1fr)}.tab{font-size:9px}.diagram-scroll{margin:0 -1px}.component-card{min-height:62px}}
 </style>
 </head>
 <body>
@@ -94,71 +97,56 @@
     <div class="tag">A320 &middot; IAE V2500-A5 &middot; ATA 70</div>
   </div>
 
-  <div class="warning"><b>SOURCE EFFECTIVITY:</b> This provisional module uses the supplied IAE V2500 engineering appendix (A/C 20-IMHT / 19-IMHE, 2015-2018), which is marked FOR ENGINEERING USE ONLY. It is deliberately kept separate from the active A/C 21-CMHT CFM/PW quiz content. Confirm all values and procedures against the current approved IAE FCOM, QRH and ECAM.</div>
+  <div class="warning"><b>SOURCE EFFECTIVITY:</b> This provisional module uses the supplied IAE V2500 engineering appendix (A/C 20-IMHT / 19-IMHE, 2015&ndash;2018), which is marked FOR ENGINEERING USE ONLY. It is deliberately kept separate from the active A/C 21-CMHT CFM/PW quiz content. Confirm every item against the current approved IAE FCOM, QRH and ECAM before operational use.</div>
 
   <section class="trainer" aria-labelledby="engineTitle">
-    <h1 id="engineTitle"><span>IAE V2500 ENG START</span></h1>
-    <p class="sub">OPERATE THE COCKPIT CONTROLS, STEP THE SEQUENCE, OR ISOLATE A COMPONENT</p>
+    <h1 id="engineTitle"><span>IAE V2500 ENGINE SYSTEMS</span></h1>
+    <p class="sub">SELECT A SYSTEM, CHOOSE AN OPERATING MODE, THEN TAP ANY COMPONENT</p>
 
-    <div class="scenario-row" aria-label="Start scenarios">
-      <button class="scenario" type="button" data-scenario="normal" aria-pressed="true">NORMAL START</button>
-      <button class="scenario" type="button" data-scenario="hot" aria-pressed="false">HOT START</button>
-      <button class="scenario" type="button" data-scenario="hung" aria-pressed="false">HUNG START</button>
-      <button class="scenario" type="button" data-scenario="nolight" aria-pressed="false">NO LIGHT UP</button>
-    </div>
+    <div class="tabs" id="systemTabs" role="tablist" aria-label="Engine systems"></div>
 
-    <div class="display-wrap">
-      <canvas id="engineDisplay" role="img" aria-label="Interactive IAE V2500 ECAM-style engine and start-system display."></canvas>
-    </div>
-    <div class="legend" aria-hidden="true">
-      <span><i class="lg-normal"></i>NORMAL</span><span><i class="lg-action"></i>SELECTED</span><span><i class="lg-caution"></i>CAUTION</span><span><i class="lg-warning"></i>WARNING</span>
-    </div>
+    <section class="mode-strip" aria-labelledby="modeLabel">
+      <p class="mode-label" id="modeLabel">OPERATING MODE / FAILURE</p>
+      <div class="modes" id="modeButtons"></div>
+    </section>
 
-    <div class="cockpit">
-      <section class="control-panel" aria-labelledby="cockpitControls">
-        <h2 id="cockpitControls">COCKPIT CONTROLS</h2>
-        <div class="control-label">ENG MODE SELECTOR</div>
-        <div class="selector-row">
-          <button class="selector" type="button" data-mode="crank" aria-pressed="false">CRANK</button>
-          <button class="selector" type="button" data-mode="norm" aria-pressed="true">NORM</button>
-          <button class="selector" type="button" data-mode="start" aria-pressed="false">IGN / START</button>
+    <div class="stage">
+      <section class="diagram-panel" aria-label="Interactive system flow diagram">
+        <div class="display-header"><span id="diagramTitle">ENGINE ARCHITECTURE</span><span id="diagramStatus">NORMAL OPERATION</span></div>
+        <div class="diagram-scroll">
+          <svg id="systemDiagram" viewBox="0 0 900 560" role="img" aria-labelledby="svgTitle svgDesc">
+            <title id="svgTitle">IAE V2500 engine system diagram</title>
+            <desc id="svgDesc">Select a system and operating mode, then tap a component to study its function.</desc>
+          </svg>
         </div>
-        <div class="control-label">ENG 2 MASTER</div>
-        <div class="selector-row">
-          <button class="selector master" type="button" data-master="off" aria-pressed="true">OFF</button>
-          <button class="selector master" type="button" data-master="on" aria-pressed="false">ON</button>
-          <button class="selector" id="manualStart" type="button" aria-pressed="false">MAN START</button>
-        </div>
-        <div class="action-row">
-          <button class="action primary" id="stepButton" type="button">NEXT STEP</button>
-          <button class="action primary" id="autoButton" type="button">AUTO RUN</button>
-          <button class="action stop" id="resetButton" type="button">RESET</button>
+        <div class="legend" aria-hidden="true">
+          <span><i class="lg-normal"></i>OPERATING / FLOW</span><span><i class="lg-control"></i>CONTROL</span><span><i class="lg-caution"></i>DEGRADED</span><span><i class="lg-fault"></i>FAULT</span><span><i class="lg-inactive"></i>INACTIVE</span>
         </div>
       </section>
 
-      <section class="control-panel" aria-labelledby="sequenceTitle">
-        <h2 id="sequenceTitle">AUTOMATIC START SEQUENCE</h2>
-        <ol class="sequence" id="sequenceList">
-          <li data-seq="0">ENG MODE to IGN/START; ENG SD page appears and packs close.</li>
-          <li data-seq="1">ENG MASTER ON; LP fuel valve and start valve open.</li>
-          <li data-seq="2">Starter accelerates N2; dry crank completes if required.</li>
-          <li data-seq="3">At 10-16% N2, HP fuel opens and one igniter operates.</li>
-          <li data-seq="4">Light-up: EGT and N1 rise as the engine accelerates.</li>
-          <li data-seq="5">Above 43% N2, start valve closes and ignition stops.</li>
-          <li data-seq="6">Engine stabilises at idle; AVAIL is displayed.</li>
-        </ol>
-      </section>
+      <aside class="info-panel" aria-live="polite">
+        <div class="eyebrow">SELECTED COMPONENT</div>
+        <h2 id="componentName">V2500-A5 OVERVIEW</h2>
+        <h3>WHAT IT IS / DOES</h3>
+        <p id="componentPurpose"></p>
+        <h3>NORMAL OPERATION</h3>
+        <p id="componentNormal"></p>
+        <h3>ABNORMAL OR ISOLATED</h3>
+        <p id="componentAbnormal"></p>
+        <div class="state-card" id="stateCard">
+          <strong id="stateTitle">NORMAL OPERATION</strong>
+          <p id="stateText"></p>
+          <ul id="stateImpacts"></ul>
+        </div>
+        <div class="source-ref" id="componentRef"></div>
+      </aside>
     </div>
 
-    <div class="explain" id="explainBox" aria-live="polite">
-      <h2 id="eventTitle">READY FOR ENGINE START</h2>
-      <p id="eventText">Select IGN/START, then move ENG 2 MASTER to ON. Use NEXT STEP to study each action or AUTO RUN for a continuous demonstration.</p>
-      <ul class="impact" id="impactList"><li>The fault selector changes what FADEC encounters during the start.</li><li>Component isolations override the selected scenario.</li></ul>
-    </div>
-
-    <section class="component-panel" aria-labelledby="componentTitle">
-      <h2 id="componentTitle">COMPONENT AVAILABILITY</h2>
-      <p class="control-help">AVAILABLE means the component can respond to FADEC or cockpit commands. ISOLATED removes it from the model. Selecting both FADEC channels off prevents automatic start control.</p>
+    <section class="component-section" aria-labelledby="componentsTitle">
+      <div class="section-head">
+        <h2 id="componentsTitle">COMPONENT INDEX</h2>
+        <p>Same components as the diagram; buttons make selection easier on a phone.</p>
+      </div>
       <div class="component-grid" id="componentGrid"></div>
     </section>
   </section>
@@ -166,22 +154,21 @@
   <div class="reference-grid">
     <section class="reference">
       <h2>IAE V2500 ENGINE LIMITS</h2>
-      <div class="limit"><b>EGT</b><p>Takeoff/go-around and starting: 635 &deg;C. Maximum continuous thrust: 610 &deg;C. Takeoff/go-around time: 5 minutes normally, 10 minutes with one engine inoperative.</p></div>
+      <div class="limit"><b>EGT / THRUST TIME</b><p>Takeoff, go-around and starting: 635 &deg;C. MCT: 610 &deg;C. Takeoff/go-around: 5 minutes normally or 10 minutes with one engine inoperative.</p></div>
       <div class="limit"><b>SHAFT SPEED</b><p>Maximum N1: 100%. Maximum N2: 100%.</p></div>
-      <div class="limit"><b>OIL</b><p>Maximum continuous temperature: 155 &deg;C. Maximum transient: 165 &deg;C for 15 minutes. Minimum starting temperature: -40 &deg;C; minimum before idle is exceeded: -10 &deg;C; minimum before takeoff: 50 &deg;C. Minimum oil pressure: 60 PSI.</p></div>
-      <div class="limit"><b>REVERSE</b><p>Reverse selection is prohibited in flight and must not be used to back the aircraft. Maximum reverse should not be used below 70 kt; idle reverse is permitted to a stop.</p></div>
+      <div class="limit"><b>OIL</b><p>Maximum continuous temperature: 155 &deg;C. Maximum transient: 165 &deg;C for 15 minutes. Minimum: &minus;40 &deg;C for start, &minus;10 &deg;C before exceeding idle and 50 &deg;C before takeoff. Minimum pressure: 60 PSI.</p></div>
+      <div class="limit"><b>REVERSE</b><p>Reverse is prohibited in flight and must not be used to back the aircraft. Maximum reverse must not be used below 70 kt; idle reverse is permitted to a stop.</p></div>
     </section>
     <section class="reference">
-      <h2>STARTER &amp; FADEC LOGIC</h2>
-      <div class="limit"><b>STARTER CYCLES</b><p>One automatic attempt is one cycle. Allow 15 seconds between ground-start cycles and 30 minutes after three failed cycles or five minutes of continuous cranking.</p></div>
-      <div class="limit"><b>MANUAL / CRANK</b><p>Maximum manual-start cycle: 2 minutes. Maximum crank cycle: 5 minutes. Do not run the starter above 10% N2 on the ground or 18% in flight.</p></div>
-      <div class="limit"><b>AUTOMATIC PROTECTION</b><p>During an automatic ground start below 50% N2, FADEC detects hot, hung, stall or no-light-up conditions, closes the HP fuel and start valves, stops ignition and commands a dry crank of approximately 30 seconds.</p></div>
-      <div class="limit"><b>MANUAL START</b><p>FADEC monitors a manual start but does not automatically abort it. The flight crew must respond to the ECAM warning and interrupt the sequence.</p></div>
-      <div class="limit"><b>GROUND CROSSWIND</b><p>The supplied IAE engineering limitation states that the engine can be started in crosswind up to 35 kt.</p></div>
+      <h2>CONTROL &amp; PROTECTION NOTES</h2>
+      <div class="limit"><b>EPR / N1 REVERSION</b><p>EPR is the normal thrust-control mode. Loss of sensed EPR produces rated N1 mode; loss of computed EPR produces degraded N1 mode. Autothrust and alpha-floor protection are lost in either N1 reversion.</p></div>
+      <div class="limit"><b>AUTOMATIC START</b><p>Below 50% N2 on the ground, FADEC can abort a hot, hung, stalled or no-light-up automatic start and command approximately 30 seconds of dry cranking. A manual start is monitored but not automatically aborted.</p></div>
+      <div class="limit"><b>STARTER</b><p>Allow 15 seconds between cycles and 30 minutes after three failed cycles or five minutes of continuous cranking. Maximum manual-start cycle: 2 minutes; crank: 5 minutes. Starter use is prohibited above 10% N2 on the ground or 18% in flight.</p></div>
+      <div class="limit"><b>GROUND START</b><p>The supplied IAE engineering limitation states that the engine can be started in crosswind up to 35 kt.</p></div>
     </section>
   </div>
 
-  <p class="source">SOURCE: SUPPLIED ENGINEERING-USE IAE APPENDIX &mdash; DSC-70-20, DSC-70-35, DSC-70-80, DSC-70-95 AND LIM-ENG. STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE.</p>
+  <p class="source">SOURCE: SUPPLIED ENGINEERING-USE IAE APPENDIX &mdash; DSC-70-05/10/20/35/45/50/65/70/80/95 AND LIM-ENG. DIAGRAMS ARE SIMPLIFIED STUDY REPRESENTATIONS, NOT MAINTENANCE SCHEMATICS. STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE.</p>
 </main>
 <script src="engine-sim.js"></script>
 </body>

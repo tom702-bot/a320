@@ -1,4 +1,4 @@
-const CACHE = 'a320-trainer-v15';
+const CACHE = 'a320-trainer-v16';
 const ASSETS = ['./','./index.html','./manifest.webmanifest',
   './electrical.html','./electrical-sim.js','./engine.html','./engine-sim.js',
   './icon-180.png','./icon-192.png','./icon-512.png'];
