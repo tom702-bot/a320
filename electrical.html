@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A320 ELEC Synoptic</title>
+<meta name="theme-color" content="#050806">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="A320 ELEC">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  :root{
+    --black:#050806;--panel:#0a0e0b;--edge:#26312a;--green:#42e56c;--amber:#ffb327;
+    --cyan:#45d7ec;--white:#eef5ef;--muted:#839388;--red:#ff5757;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --ui:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:var(--black);color:var(--white)}
+  body{font-family:var(--ui);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .page{max-width:900px;margin:0 auto;padding:16px 14px 42px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+  .back{color:var(--cyan);font-family:var(--mono);font-size:13px;text-decoration:none;padding:9px 0}
+  .tag{color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:1px;text-align:right}
+  .ecam{background:#000;border:1px solid var(--edge);border-radius:10px;padding:14px;box-shadow:inset 0 0 28px rgba(66,229,108,.025)}
+  .ecam-title{font-family:var(--mono);font-weight:400;font-size:22px;letter-spacing:3px;text-align:center;color:var(--white);margin:0 0 4px}
+  .ecam-title span{border-bottom:2px solid var(--white);padding:0 8px 2px}
+  .ecam-sub{font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-align:center;color:var(--green);margin:0 0 12px}
+  .modes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-bottom:12px}
+  .mode{min-height:44px;border:1px solid var(--edge);border-radius:5px;background:var(--panel);color:var(--white);font-family:var(--mono);font-size:11px;letter-spacing:.5px;padding:7px 5px;cursor:pointer}
+  .mode[aria-pressed="true"]{border-color:var(--green);color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+  .canvas-wrap{position:relative;width:100%;background:#000;border-top:1px solid #162019;border-bottom:1px solid #162019}
+  canvas{display:block;width:100%;height:auto;touch-action:manipulation}
+  .legend{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:10px 0 0;font:11px var(--mono);color:var(--muted)}
+  .legend i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:5px}
+  .lg-on{background:var(--green)}.lg-alt{background:var(--cyan)}.lg-off{background:var(--amber)}
+  .detail{margin-top:13px;border-left:3px solid var(--green);padding:8px 11px;background:#070b08}
+  .detail h2{font:16px var(--mono);font-weight:400;letter-spacing:1px;color:var(--green);margin:0 0 5px}
+  .detail p{font:13px/1.55 var(--mono);color:var(--white);margin:0}
+  .sections{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  .panel{border:1px solid var(--edge);border-radius:8px;background:var(--panel);padding:13px}
+  .panel h2{font:14px var(--mono);font-weight:400;color:var(--cyan);letter-spacing:1px;margin:0 0 10px}
+  .item{padding:8px 0;border-top:1px solid #1c251f}
+  .item:first-of-type{border-top:0;padding-top:0}
+  .item b{display:block;font:13px var(--mono);font-weight:400;color:var(--green);margin-bottom:3px}
+  .item p{margin:0;color:#c8d2ca;font:12.5px/1.5 var(--ui)}
+  .item.limit b{color:var(--amber)}
+  .scope{margin:14px 0 0;padding:11px;border:1px solid #5e4516;background:#120e06;border-radius:7px;color:#e5c785;font:12px/1.5 var(--mono)}
+  .foot{color:var(--muted);font:11px/1.5 var(--mono);text-align:center;margin-top:14px}
+  @media(max-width:650px){
+    .page{padding-left:9px;padding-right:9px}.ecam{padding:10px 7px}.modes{grid-template-columns:repeat(3,1fr)}
+    .sections{grid-template-columns:1fr}.ecam-title{font-size:19px}.tag{font-size:9px}
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="top">
+    <a class="back" href="index.html">&larr; TRAINER</a>
+    <div class="tag">A320 &middot; ATA 24 &middot; TRAINING SYNOPTIC</div>
+  </div>
+
+  <section class="ecam" aria-labelledby="elecTitle">
+    <h1 class="ecam-title" id="elecTitle"><span>ELEC</span></h1>
+    <p class="ecam-sub">SELECT A CONFIGURATION TO TRACE THE POWER FLOW</p>
+
+    <div class="modes" aria-label="Electrical configurations">
+      <button class="mode" type="button" data-mode="normal" aria-pressed="true">NORMAL</button>
+      <button class="mode" type="button" data-mode="onegen" aria-pressed="false">ONE GEN</button>
+      <button class="mode" type="button" data-mode="apu" aria-pressed="false">APU / EXT</button>
+      <button class="mode" type="button" data-mode="emergency" aria-pressed="false">EMER GEN</button>
+      <button class="mode" type="button" data-mode="battery" aria-pressed="false">BAT ONLY</button>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="synoptic" role="img" aria-label="A320 electrical power distribution synoptic showing generators, AC and DC buses, transformer rectifiers, essential buses, batteries, static inverter, ram air turbine and emergency generator."></canvas>
+    </div>
+
+    <div class="legend" aria-hidden="true">
+      <span><i class="lg-on"></i>POWERED</span>
+      <span><i class="lg-alt"></i>AVAILABLE / ALTERNATE</span>
+      <span><i class="lg-off"></i>FAULT / NOT POWERED</span>
+    </div>
+
+    <div class="detail" aria-live="polite">
+      <h2 id="modeTitle">NORMAL CONFIGURATION</h2>
+      <p id="modeText">GEN 1 supplies AC BUS 1 and GEN 2 supplies AC BUS 2. AC BUS 1 normally supplies AC ESS. Transformer rectifiers convert AC power to 28 V DC for the DC network.</p>
+    </div>
+  </section>
+
+  <div class="sections">
+    <section class="panel">
+      <h2>HOW EACH SECTION WORKS</h2>
+      <div class="item"><b>IDG / ENGINE GENERATOR</b><p>The constant-speed drive turns changing engine speed into constant-frequency AC. The GCU regulates and protects generator output.</p></div>
+      <div class="item"><b>AC BUS 1 / AC BUS 2</b><p>The main 115/200 V, 400 Hz distribution buses. Bus-tie contactors let one available source supply both buses when required.</p></div>
+      <div class="item"><b>AC ESS BUS</b><p>Feeds priority AC equipment. It normally takes power from AC BUS 1 and has an alternate supply path.</p></div>
+      <div class="item"><b>TR 1 / TR 2 / ESS TR</b><p>Transformer rectifiers convert AC into 28 V DC. The ESS TR provides an alternate or emergency path to the essential DC network.</p></div>
+      <div class="item"><b>DC BUS 1 / DC BUS 2</b><p>Distribute normal DC power. DC ESS preserves priority DC equipment when the main network is degraded.</p></div>
+      <div class="item"><b>RAT / EMER GEN</b><p>After loss of both main AC buses in flight, the RAT provides hydraulic power to the emergency generator, which supplies the essential network.</p></div>
+      <div class="item"><b>BATTERIES / STATIC INVERTER</b><p>The hot buses remain directly battery-connected. In battery-only operation, the static inverter converts battery DC into essential AC power.</p></div>
+    </section>
+
+    <section class="panel">
+      <h2>RATINGS &amp; OPERATING CONSTRAINTS</h2>
+      <div class="item"><b>MAIN GENERATORS</b><p>Each engine-driven generator is rated at 90 kVA and supplies 115/200 V, 400 Hz AC. The APU generator can replace either or both main generators.</p></div>
+      <div class="item"><b>TRANSFORMER RECTIFIERS</b><p>TR 1, TR 2 and the ESS TR convert AC to 28 V DC; each main TR is rated to 200 A.</p></div>
+      <div class="item limit"><b>IDG DISCONNECT &mdash; MAX 3 SECONDS</b><p>Do not hold the IDG disconnect pushbutton for more than 3 seconds. An IDG disconnected in flight cannot be reconnected by the crew.</p></div>
+      <div class="item limit"><b>CIRCUIT BREAKER RESET</b><p>A circuit breaker may be reset only once and only when an approved procedure authorises the reset.</p></div>
+      <div class="item limit"><b>LOSS OF BOTH MAIN AC BUSES</b><p>Above 100 kt, the RAT automatically deploys and the aircraft changes to the emergency electrical configuration. Essential loads only remain supplied.</p></div>
+      <div class="item limit"><b>SINGLE GENERATOR FAILURE</b><p>Follow ECAM. Starting the APU restores generator redundancy if the failed engine generator cannot be recovered.</p></div>
+    </section>
+  </div>
+
+  <p class="scope"><b>SOURCE SCOPE:</b> The supplied Ansett A320 limitations extract for A/C 21-CMHT contains no dedicated ATA 24 limitations section. Electrical ratings, architecture and procedural constraints shown here come from the trainer's existing DSC-24 / QRH-referenced material and must be checked against the current approved Ansett FCOM DSC, QRH and ECAM before operational use.</p>
+  <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE</p>
+</main>
+
+<script>
+(function(){
+  const canvas=document.getElementById('synoptic');
+  const ctx=canvas.getContext('2d');
+  const buttons=[...document.querySelectorAll('[data-mode]')];
+  const title=document.getElementById('modeTitle');
+  const text=document.getElementById('modeText');
+  const C={bg:'#000000',green:'#42e56c',amber:'#ffb327',cyan:'#45d7ec',white:'#eef5ef',muted:'#627067'};
+  const modes={
+    normal:{title:'NORMAL CONFIGURATION',text:'GEN 1 supplies AC BUS 1 and GEN 2 supplies AC BUS 2. AC BUS 1 normally supplies AC ESS. Transformer rectifiers convert AC power to 28 V DC for the DC network.'},
+    onegen:{title:'ONE GENERATOR AVAILABLE',text:'The bus-tie contactors close so the remaining engine generator supplies both AC buses. Start the APU as directed to restore generator redundancy.'},
+    apu:{title:'APU OR EXTERNAL POWER',text:'With the main engine generators unavailable, the selected APU or external source connects through the bus ties and supplies both main AC buses and their downstream DC network.'},
+    emergency:{title:'EMERGENCY GENERATOR',text:'Loss of both main AC buses in flight deploys the RAT above 100 kt. The emergency generator supplies AC ESS; the ESS TR then supplies DC ESS. Non-essential buses are shed.'},
+    battery:{title:'BATTERY-ONLY CONFIGURATION',text:'BAT 1 supplies essential AC through the static inverter and BAT 2 supports essential DC. Only a reduced essential network remains available until another source is recovered.'}
+  };
+  let current='normal';
+
+  function rounded(x,y,w,h,r){
+    const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.lineTo(x+w-rr,y);
+    ctx.quadraticCurveTo(x+w,y,x+w,y+rr);ctx.lineTo(x+w,y+h-rr);ctx.quadraticCurveTo(x+w,y+h,x+w-rr,y+h);
+    ctx.lineTo(x+rr,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-rr);ctx.lineTo(x,y+rr);ctx.quadraticCurveTo(x,y,x+rr,y);ctx.closePath();
+  }
+  function line(x1,y1,x2,y2,color,width=2,dash=[]){ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.restore();}
+  function node(x,y,w,h,label,state='standby',small=''){
+    const color=state==='on'?C.green:state==='fault'?C.amber:state==='available'?C.cyan:C.white;
+    ctx.save();rounded(x-w/2,y-h/2,w,h,4);ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle=color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=`${Math.max(10,Math.min(13,w/8))}px ui-monospace,Consolas,monospace`;
+    ctx.fillText(label,x,y-(small?6:0));
+    if(small){ctx.fillStyle=state==='fault'?C.amber:C.muted;ctx.font='9px ui-monospace,Consolas,monospace';ctx.fillText(small,x,y+10)}
+    ctx.restore();
+  }
+  function bus(x,y,w,label,state='on'){
+    const color=state==='on'?C.green:state==='fault'?C.amber:state==='available'?C.cyan:C.white;
+    line(x-w/2,y,x+w/2,y,color,4);
+    ctx.save();ctx.fillStyle=color;ctx.font='12px ui-monospace,Consolas,monospace';ctx.textAlign='center';ctx.fillText(label,x,y-9);ctx.restore();
+  }
+  function statusFor(name){
+    const m=current;
+    if(m==='normal') return ['GEN1','GEN2','AC1','AC2','ACESS','TR1','TR2','DC1','DC2','DCESS'].includes(name)?'on':['APU','EXT','RAT','EMER','INV'].includes(name)?'available':'standby';
+    if(m==='onegen') return name==='GEN2'?'fault':['GEN1','AC1','AC2','ACESS','TR1','TR2','DC1','DC2','DCESS','TIE'].includes(name)?'on':['APU','EXT','RAT','EMER','INV'].includes(name)?'available':'standby';
+    if(m==='apu') return ['APU','AC1','AC2','ACESS','TR1','TR2','DC1','DC2','DCESS','TIE'].includes(name)?'on':['GEN1','GEN2'].includes(name)?'standby':['RAT','EMER','INV'].includes(name)?'available':'standby';
+    if(m==='emergency') return ['GEN1','GEN2','AC1','AC2'].includes(name)?'fault':['RAT','EMER','ACESS','ESSTR','DCESS'].includes(name)?'on':['BAT1','BAT2','INV'].includes(name)?'available':'standby';
+    return ['GEN1','GEN2','AC1','AC2','RAT','EMER'].includes(name)?'fault':['BAT1','BAT2','INV','ACESS','DCESS'].includes(name)?'on':'standby';
+  }
+  function edge(x1,y1,x2,y2,names,alternate=false){
+    const active=names.every(n=>statusFor(n)==='on');
+    const color=active?C.green:alternate?C.cyan:C.muted;
+    line(x1,y1,x2,y2,color,active?2.5:1.3,active?[]:[5,5]);
+  }
+  function draw(){
+    const cssW=Math.max(300,canvas.clientWidth||700);
+    const cssH=cssW<520?650:590;
+    const dpr=Math.min(2,window.devicePixelRatio||1);
+    canvas.width=Math.round(cssW*dpr);canvas.height=Math.round(cssH*dpr);canvas.style.height=cssH+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,cssW,cssH);ctx.fillStyle=C.bg;ctx.fillRect(0,0,cssW,cssH);
+    const x1=cssW*.18,x2=cssW*.50,x3=cssW*.82;
+    const nw=Math.min(116,cssW*.25),nh=42;
+    const yS=48,yAC=145,yEss=232,yTR=315,yDC=400,yE=cssH-82;
+
+    edge(x1,yS+nh/2,x1,yAC-5,['GEN1','AC1']);edge(x3,yS+nh/2,x3,yAC-5,['GEN2','AC2']);
+    const centerOn=current==='apu';line(x2,yS+nh/2,x2,yAC,C[centerOn?'green':'muted'],centerOn?2.5:1.3,centerOn?[]:[5,5]);
+    line(x1,yAC,x3,yAC,statusFor('AC1')==='on'&&statusFor('AC2')==='on'?C.green:C.muted,current==='onegen'||current==='apu'?2.5:1.2,current==='onegen'||current==='apu'?[]:[5,5]);
+    edge(x1,yAC,x2,yEss-21,['AC1','ACESS']);edge(x3,yAC,x2,yEss-21,['AC2','ACESS'],true);
+    edge(x1,yAC,x1,yTR-21,['AC1','TR1']);edge(x3,yAC,x3,yTR-21,['AC2','TR2']);
+    edge(x1,yTR+21,x1,yDC-5,['TR1','DC1']);edge(x3,yTR+21,x3,yDC-5,['TR2','DC2']);
+    edge(x2,yEss+21,x2,yTR-21,['ACESS','ESSTR']);edge(x2,yTR+21,x2,yDC-5,['ESSTR','DCESS']);
+    edge(x1,yDC,x2,yDC,['DC1','DCESS']);
+    if(current==='emergency'){edge(x1,yE-20,x2,yEss+21,['RAT','EMER','ACESS']);}
+    if(current==='battery'){edge(x1,yE-20,x2,yEss+21,['BAT1','INV','ACESS']);edge(x3,yE-20,x2,yDC+5,['BAT2','DCESS']);}
+
+    node(x1,yS,nw,nh,'GEN 1',statusFor('GEN1'),'90 KVA');
+    node(x2,yS,nw,nh,current==='apu'?'APU GEN':'APU / EXT',statusFor('APU'),'AC SOURCE');
+    node(x3,yS,nw,nh,'GEN 2',statusFor('GEN2'),'90 KVA');
+    bus(x1,yAC,nw,'AC BUS 1',statusFor('AC1'));bus(x3,yAC,nw,'AC BUS 2',statusFor('AC2'));
+    node(x2,yAC,58,28,'TIE',statusFor('TIE'));
+    node(x2,yEss,nw,42,'AC ESS',statusFor('ACESS'),'PRIORITY AC');
+    node(x1,yTR,Math.min(92,nw),42,'TR 1',statusFor('TR1'),'AC → DC');
+    node(x2,yTR,Math.min(92,nw),42,'ESS TR',statusFor('ESSTR'),'AC → DC');
+    node(x3,yTR,Math.min(92,nw),42,'TR 2',statusFor('TR2'),'AC → DC');
+    bus(x1,yDC,nw,'DC BUS 1',statusFor('DC1'));bus(x2,yDC,nw,'DC ESS',statusFor('DCESS'));bus(x3,yDC,nw,'DC BUS 2',statusFor('DC2'));
+
+    if(current==='emergency'){
+      node(x1,yE,nw,42,'RAT',statusFor('RAT'),'BLUE HYD');node(x2,yE,nw,42,'EMER GEN',statusFor('EMER'),'ESSENTIAL');node(x3,yE,nw,42,'BAT 1 / 2',statusFor('BAT1'),'HOT BUSES');
+      edge(x1+nw/2,yE,x2-nw/2,yE,['RAT','EMER']);
+    }else if(current==='battery'){
+      node(x1,yE,nw,42,'BAT 1',statusFor('BAT1'),'28 V DC');node(x2,yE,nw,42,'STATIC INV',statusFor('INV'),'DC → AC');node(x3,yE,nw,42,'BAT 2',statusFor('BAT2'),'28 V DC');
+      edge(x1+nw/2,yE,x2-nw/2,yE,['BAT1','INV']);
+    }else{
+      node(x1,yE,nw,42,'RAT / EMER',statusFor('RAT'),'STANDBY');node(x2,yE,nw,42,'BAT 1 / 2','available','CHARGED');node(x3,yE,nw,42,'STATIC INV',statusFor('INV'),'STANDBY');
+    }
+  }
+  function select(mode){current=mode;buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));title.textContent=modes[mode].title;text.textContent=modes[mode].text;draw();}
+  buttons.forEach(b=>b.addEventListener('click',()=>select(b.dataset.mode)));
+  if('ResizeObserver' in window)new ResizeObserver(draw).observe(canvas.parentElement);
+  else window.addEventListener('resize',draw);
+  select('normal');
+})();
+</script>
+</body>
+</html>
+

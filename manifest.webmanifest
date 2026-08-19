@@ -1,7 +1,7 @@
 {
   "name": "Ansett A320 Checkride Trainer",
   "short_name": "Ansett A320",
-  "description": "Offline Ansett A320 limitations, memory items and BTC question trainer.",
+  "description": "Offline Ansett A320 limitations, memory items, questions and electrical-system trainer.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

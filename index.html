@@ -138,7 +138,7 @@
   @media(max-width:560px){.modegrid{grid-template-columns:1fr}}
   .mode{border:1px solid var(--edge); background:var(--panel2); border-radius:11px;
     padding:18px; cursor:pointer; text-align:left; color:var(--white);
-    font-family:var(--font-ui); transition:border-color .15s, background .15s}
+    font-family:var(--font-ui); transition:border-color .15s, background .15s; text-decoration:none}
   .mode:hover{border-color:var(--brand); background:#1d2831}
   .mode .mt{font-size:16px; font-weight:600; margin-bottom:6px; display:flex;
     align-items:center; gap:9px}
@@ -148,6 +148,7 @@
   .mode.fill .mt .ic{background:var(--green)}
   .mode.review .mt .ic{background:var(--cyan)}
   .mode.lookup .mt .ic{background:#c9d4dc;color:var(--bg)}
+  .mode.electrical .mt .ic{background:var(--green-deep);color:#fff}
 
   /* ---- Progress panel ---- */
   .prog{border:1px solid var(--edge);background:var(--panel);border-radius:12px;padding:16px 18px;margin-bottom:16px}
@@ -250,8 +251,8 @@
   <section id="start">
     <p class="lede">Pick a drill. Limitations Check gives an ECAM-style debrief with the answer,
       reasoning and FCOM reference. Review Weak Areas re-serves only what you've missed. Memory
-      Item Drill is self-marked cold recall, Fill &amp; Check grades typed values, and Lookup lets
-      you browse every limitation by subject. Progress is saved on this device only.</p>
+      Item Drill is self-marked cold recall, Fill &amp; Check grades typed values, Lookup lets
+      you browse every limitation, and ELEC opens an interactive electrical synoptic. Progress is saved on this device only.</p>
 
     <div class="modegrid">
       <button class="mode" id="modeMcq">
@@ -274,6 +275,10 @@
         <div class="mt"><span class="ic">READ</span>Lookup</div>
         <div class="md">Browse every limitation and fact by subject, each with its FCOM reference. No quiz.</div>
       </button>
+      <a class="mode electrical" href="electrical.html">
+        <div class="mt"><span class="ic">ELEC</span>Electrical Synoptic</div>
+        <div class="md">Trace normal, single-generator, APU, emergency-generator and battery-only power flow.</div>
+      </a>
     </div>
 
     <div class="prog" id="progPanel"></div>

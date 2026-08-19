@@ -10,6 +10,7 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `index.html` | Main app: HTML, CSS, JavaScript and question data in one file. |
 | `A320_Checkride_Trainer.html` | Standalone twin of `index.html`; keep it byte-for-byte identical. |
 | `A321P2F_Limitations_FillCheck.html` | Legacy filename for the standalone A320 fill-and-check page. Its visible title and data are A320-specific. |
+| `electrical.html` | Interactive ECAM-style A320 electrical-system synoptic and configuration explainer. |
 | `sw.js` | Offline cache. Bump `CACHE` whenever app content changes. |
 | `manifest.webmanifest` | Installable-app metadata. |
 | `icon-180.png`, `icon-192.png`, `icon-512.png` | App icons. |
@@ -69,7 +70,7 @@ source.
 5. Search correct answers and explanations—not just distractors—for superseded A321P2F or
    engineering-only values.
 6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v11`.
+   `a320-trainer-v12`.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is
