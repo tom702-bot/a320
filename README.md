@@ -6,7 +6,7 @@ The limitations content was audited against the supplied Ansett/Navblue A320 FCO
 
 The supplied document contains limitations only. Existing systems and memory-item material remains in the trainer but was not revalidated in this audit.
 
-The electrical page traces normal, single-generator, APU/external, emergency-generator and battery-only configurations. Its architecture and procedural constraints come from the trainer's existing DSC-24 / QRH-referenced content and require confirmation against the current approved Ansett DSC and QRH.
+The ECAM-style electrical page traces normal, single-generator, APU/external, emergency-generator and battery-only configurations, including hot and shed buses, static inverter, transformer rectifiers and the principal source/bus contactors. Its architecture and procedural constraints come from the trainer's existing DSC-24 / QRH-referenced content and require confirmation against the current approved Ansett DSC and QRH.
 
 This is a study aid only. The current approved FCOM, QRH and company procedures remain authoritative.
 

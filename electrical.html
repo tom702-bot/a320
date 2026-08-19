@@ -32,7 +32,7 @@
   .modes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-bottom:12px}
   .mode{min-height:44px;border:1px solid var(--edge);border-radius:5px;background:var(--panel);color:var(--white);font-family:var(--mono);font-size:11px;letter-spacing:.5px;padding:7px 5px;cursor:pointer}
   .mode[aria-pressed="true"]{border-color:var(--green);color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
-  .canvas-wrap{position:relative;width:100%;background:#000;border-top:1px solid #162019;border-bottom:1px solid #162019}
+  .canvas-wrap{position:relative;width:100%;max-width:600px;margin:0 auto;background:#000;border-top:1px solid #162019;border-bottom:1px solid #162019}
   canvas{display:block;width:100%;height:auto;touch-action:manipulation}
   .legend{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:10px 0 0;font:11px var(--mono);color:var(--muted)}
   .legend i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:5px}
@@ -76,7 +76,7 @@
     </div>
 
     <div class="canvas-wrap">
-      <canvas id="synoptic" role="img" aria-label="A320 electrical power distribution synoptic showing generators, AC and DC buses, transformer rectifiers, essential buses, batteries, static inverter, ram air turbine and emergency generator."></canvas>
+      <canvas id="synoptic" role="img" aria-label="A320 electrical power distribution synoptic showing generators, AC and DC buses, hot and shed buses, contactors, transformer rectifiers, batteries, static inverter, ram air turbine and emergency generator."></canvas>
     </div>
 
     <div class="legend" aria-hidden="true">
@@ -99,6 +99,9 @@
       <div class="item"><b>AC ESS BUS</b><p>Feeds priority AC equipment. It normally takes power from AC BUS 1 and has an alternate supply path.</p></div>
       <div class="item"><b>TR 1 / TR 2 / ESS TR</b><p>Transformer rectifiers convert AC into 28 V DC. The ESS TR provides an alternate or emergency path to the essential DC network.</p></div>
       <div class="item"><b>DC BUS 1 / DC BUS 2</b><p>Distribute normal DC power. DC ESS preserves priority DC equipment when the main network is degraded.</p></div>
+      <div class="item"><b>HOT BUSES / DC BAT BUS</b><p>Each hot bus remains directly connected to its battery. The DC BAT BUS links battery charging and essential battery-fed distribution through the battery and DC-tie contactors.</p></div>
+      <div class="item"><b>AC/DC ESS SHED BUSES</b><p>Feed lower-priority essential loads in normal operation. They are automatically shed when the aircraft is reduced to emergency or battery-only power.</p></div>
+      <div class="item"><b>CONTACTORS</b><p>Generator-line, bus-tie, battery, DC-tie and AC ESS-feed contactors automatically connect or isolate sources and buses during reconfiguration.</p></div>
       <div class="item"><b>RAT / EMER GEN</b><p>After loss of both main AC buses in flight, the RAT provides hydraulic power to the emergency generator, which supplies the essential network.</p></div>
       <div class="item"><b>BATTERIES / STATIC INVERTER</b><p>The hot buses remain directly battery-connected. In battery-only operation, the static inverter converts battery DC into essential AC power.</p></div>
     </section>
@@ -125,7 +128,7 @@
   const buttons=[...document.querySelectorAll('[data-mode]')];
   const title=document.getElementById('modeTitle');
   const text=document.getElementById('modeText');
-  const C={bg:'#000000',green:'#42e56c',amber:'#ffb327',cyan:'#45d7ec',white:'#eef5ef',muted:'#627067'};
+  const C={bg:'#000000',green:'#42ff48',amber:'#ffb327',cyan:'#48d9ed',white:'#f3f5f3',grey:'#aeb8b1',dim:'#233028'};
   const modes={
     normal:{title:'NORMAL CONFIGURATION',text:'GEN 1 supplies AC BUS 1 and GEN 2 supplies AC BUS 2. AC BUS 1 normally supplies AC ESS. Transformer rectifiers convert AC power to 28 V DC for the DC network.'},
     onegen:{title:'ONE GENERATOR AVAILABLE',text:'The bus-tie contactors close so the remaining engine generator supplies both AC buses. Start the APU as directed to restore generator redundancy.'},
@@ -133,89 +136,128 @@
     emergency:{title:'EMERGENCY GENERATOR',text:'Loss of both main AC buses in flight deploys the RAT above 100 kt. The emergency generator supplies AC ESS; the ESS TR then supplies DC ESS. Non-essential buses are shed.'},
     battery:{title:'BATTERY-ONLY CONFIGURATION',text:'BAT 1 supplies essential AC through the static inverter and BAT 2 supports essential DC. Only a reduced essential network remains available until another source is recovered.'}
   };
-  let current='normal';
+  let current='normal',scale=1,W=500,H=515;
 
-  function rounded(x,y,w,h,r){
-    const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.lineTo(x+w-rr,y);
-    ctx.quadraticCurveTo(x+w,y,x+w,y+rr);ctx.lineTo(x+w,y+h-rr);ctx.quadraticCurveTo(x+w,y+h,x+w-rr,y+h);
-    ctx.lineTo(x+rr,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-rr);ctx.lineTo(x,y+rr);ctx.quadraticCurveTo(x,y,x+rr,y);ctx.closePath();
+  function font(px){return Math.max(10,Math.round(px*scale))+'px ui-monospace,"SF Mono",Menlo,Consolas,monospace'}
+  function pathBox(x,y,w,h){ctx.beginPath();ctx.rect(x-w/2,y-h/2,w,h)}
+  function line(x1,y1,x2,y2,color,width=1.5,dash=[]){ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.restore()}
+  function wire(x1,y1,x2,y2,on){line(x1,y1,x2,y2,on?C.green:C.dim,on?2:1,on?[]:[4,5])}
+  function label(str,x,y,color=C.white,size=14,align='center'){
+    ctx.save();ctx.fillStyle=color;ctx.font=font(size);ctx.textAlign=align;ctx.textBaseline='middle';ctx.fillText(str,x,y);ctx.restore();
   }
-  function line(x1,y1,x2,y2,color,width=2,dash=[]){ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.restore();}
-  function node(x,y,w,h,label,state='standby',small=''){
-    const color=state==='on'?C.green:state==='fault'?C.amber:state==='available'?C.cyan:C.white;
-    ctx.save();rounded(x-w/2,y-h/2,w,h,4);ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.stroke();
-    ctx.fillStyle=color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=`${Math.max(10,Math.min(13,w/8))}px ui-monospace,Consolas,monospace`;
-    ctx.fillText(label,x,y-(small?6:0));
-    if(small){ctx.fillStyle=state==='fault'?C.amber:C.muted;ctx.font='9px ui-monospace,Consolas,monospace';ctx.fillText(small,x,y+10)}
-    ctx.restore();
-  }
-  function bus(x,y,w,label,state='on'){
-    const color=state==='on'?C.green:state==='fault'?C.amber:state==='available'?C.cyan:C.white;
-    line(x-w/2,y,x+w/2,y,color,4);
-    ctx.save();ctx.fillStyle=color;ctx.font='12px ui-monospace,Consolas,monospace';ctx.textAlign='center';ctx.fillText(label,x,y-9);ctx.restore();
-  }
-  function statusFor(name){
-    const m=current;
-    if(m==='normal') return ['GEN1','GEN2','AC1','AC2','ACESS','TR1','TR2','DC1','DC2','DCESS'].includes(name)?'on':['APU','EXT','RAT','EMER','INV'].includes(name)?'available':'standby';
-    if(m==='onegen') return name==='GEN2'?'fault':['GEN1','AC1','AC2','ACESS','TR1','TR2','DC1','DC2','DCESS','TIE'].includes(name)?'on':['APU','EXT','RAT','EMER','INV'].includes(name)?'available':'standby';
-    if(m==='apu') return ['APU','AC1','AC2','ACESS','TR1','TR2','DC1','DC2','DCESS','TIE'].includes(name)?'on':['GEN1','GEN2'].includes(name)?'standby':['RAT','EMER','INV'].includes(name)?'available':'standby';
-    if(m==='emergency') return ['GEN1','GEN2','AC1','AC2'].includes(name)?'fault':['RAT','EMER','ACESS','ESSTR','DCESS'].includes(name)?'on':['BAT1','BAT2','INV'].includes(name)?'available':'standby';
-    return ['GEN1','GEN2','AC1','AC2','RAT','EMER'].includes(name)?'fault':['BAT1','BAT2','INV','ACESS','DCESS'].includes(name)?'on':'standby';
-  }
-  function edge(x1,y1,x2,y2,names,alternate=false){
-    const active=names.every(n=>statusFor(n)==='on');
-    const color=active?C.green:alternate?C.cyan:C.muted;
-    line(x1,y1,x2,y2,color,active?2.5:1.3,active?[]:[5,5]);
-  }
-  function draw(){
-    const cssW=Math.max(300,canvas.clientWidth||700);
-    const cssH=cssW<520?650:590;
-    const dpr=Math.min(2,window.devicePixelRatio||1);
-    canvas.width=Math.round(cssW*dpr);canvas.height=Math.round(cssH*dpr);canvas.style.height=cssH+'px';
-    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,cssW,cssH);ctx.fillStyle=C.bg;ctx.fillRect(0,0,cssW,cssH);
-    const x1=cssW*.18,x2=cssW*.50,x3=cssW*.82;
-    const nw=Math.min(116,cssW*.25),nh=42;
-    const yS=48,yAC=145,yEss=232,yTR=315,yDC=400,yE=cssH-82;
-
-    edge(x1,yS+nh/2,x1,yAC-5,['GEN1','AC1']);edge(x3,yS+nh/2,x3,yAC-5,['GEN2','AC2']);
-    const centerOn=current==='apu';line(x2,yS+nh/2,x2,yAC,C[centerOn?'green':'muted'],centerOn?2.5:1.3,centerOn?[]:[5,5]);
-    line(x1,yAC,x3,yAC,statusFor('AC1')==='on'&&statusFor('AC2')==='on'?C.green:C.muted,current==='onegen'||current==='apu'?2.5:1.2,current==='onegen'||current==='apu'?[]:[5,5]);
-    edge(x1,yAC,x2,yEss-21,['AC1','ACESS']);edge(x3,yAC,x2,yEss-21,['AC2','ACESS'],true);
-    edge(x1,yAC,x1,yTR-21,['AC1','TR1']);edge(x3,yAC,x3,yTR-21,['AC2','TR2']);
-    edge(x1,yTR+21,x1,yDC-5,['TR1','DC1']);edge(x3,yTR+21,x3,yDC-5,['TR2','DC2']);
-    edge(x2,yEss+21,x2,yTR-21,['ACESS','ESSTR']);edge(x2,yTR+21,x2,yDC-5,['ESSTR','DCESS']);
-    edge(x1,yDC,x2,yDC,['DC1','DCESS']);
-    if(current==='emergency'){edge(x1,yE-20,x2,yEss+21,['RAT','EMER','ACESS']);}
-    if(current==='battery'){edge(x1,yE-20,x2,yEss+21,['BAT1','INV','ACESS']);edge(x3,yE-20,x2,yDC+5,['BAT2','DCESS']);}
-
-    node(x1,yS,nw,nh,'GEN 1',statusFor('GEN1'),'90 KVA');
-    node(x2,yS,nw,nh,current==='apu'?'APU GEN':'APU / EXT',statusFor('APU'),'AC SOURCE');
-    node(x3,yS,nw,nh,'GEN 2',statusFor('GEN2'),'90 KVA');
-    bus(x1,yAC,nw,'AC BUS 1',statusFor('AC1'));bus(x3,yAC,nw,'AC BUS 2',statusFor('AC2'));
-    node(x2,yAC,58,28,'TIE',statusFor('TIE'));
-    node(x2,yEss,nw,42,'AC ESS',statusFor('ACESS'),'PRIORITY AC');
-    node(x1,yTR,Math.min(92,nw),42,'TR 1',statusFor('TR1'),'AC → DC');
-    node(x2,yTR,Math.min(92,nw),42,'ESS TR',statusFor('ESSTR'),'AC → DC');
-    node(x3,yTR,Math.min(92,nw),42,'TR 2',statusFor('TR2'),'AC → DC');
-    bus(x1,yDC,nw,'DC BUS 1',statusFor('DC1'));bus(x2,yDC,nw,'DC ESS',statusFor('DCESS'));bus(x3,yDC,nw,'DC BUS 2',statusFor('DC2'));
-
-    if(current==='emergency'){
-      node(x1,yE,nw,42,'RAT',statusFor('RAT'),'BLUE HYD');node(x2,yE,nw,42,'EMER GEN',statusFor('EMER'),'ESSENTIAL');node(x3,yE,nw,42,'BAT 1 / 2',statusFor('BAT1'),'HOT BUSES');
-      edge(x1+nw/2,yE,x2-nw/2,yE,['RAT','EMER']);
-    }else if(current==='battery'){
-      node(x1,yE,nw,42,'BAT 1',statusFor('BAT1'),'28 V DC');node(x2,yE,nw,42,'STATIC INV',statusFor('INV'),'DC → AC');node(x3,yE,nw,42,'BAT 2',statusFor('BAT2'),'28 V DC');
-      edge(x1+nw/2,yE,x2-nw/2,yE,['BAT1','INV']);
-    }else{
-      node(x1,yE,nw,42,'RAT / EMER',statusFor('RAT'),'STANDBY');node(x2,yE,nw,42,'BAT 1 / 2','available','CHARGED');node(x3,yE,nw,42,'STATIC INV',statusFor('INV'),'STANDBY');
+  function equipmentBox(x,y,w,h,name,values,state='on'){
+    const valueColor=state==='on'?C.green:state==='fault'?C.amber:state==='available'?C.cyan:C.grey;
+    ctx.save();pathBox(x,y,w,h);ctx.strokeStyle=C.grey;ctx.lineWidth=1.3;ctx.stroke();ctx.restore();
+    label(name,x,y-h*.31,C.white,14);
+    if(values&&values.length){
+      const gap=Math.max(11,h*.22);const start=y-h*.02-(values.length-1)*gap/2;
+      values.forEach((v,i)=>label(v,x,start+i*gap,valueColor,13));
     }
   }
-  function select(mode){current=mode;buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));title.textContent=modes[mode].title;text.textContent=modes[mode].text;draw();}
+  function busBox(x,y,w,name,on,size=14){
+    ctx.save();pathBox(x,y,w,25);ctx.strokeStyle=C.grey;ctx.lineWidth=1.2;ctx.stroke();ctx.restore();
+    label(name,x,y,on?C.green:C.amber,size);
+  }
+  function contactor(x,y,on,caption='',side='right'){
+    const color=on?C.green:C.grey;ctx.save();ctx.strokeStyle=color;ctx.lineWidth=1.1;ctx.beginPath();
+    ctx.moveTo(x-5,y-6);ctx.lineTo(x,y-1);ctx.lineTo(x+5,y-6);ctx.moveTo(x-5,y+6);ctx.lineTo(x,y+1);ctx.lineTo(x+5,y+6);ctx.stroke();ctx.restore();
+    if(caption)label(caption,x+(side==='right'?9:-9),y,color,9,side==='right'?'left':'right');
+  }
+  function arrowTriangle(x,y,on,down=true){
+    ctx.save();ctx.strokeStyle=on?C.green:C.grey;ctx.lineWidth=1.4;ctx.beginPath();
+    if(down){ctx.moveTo(x-8,y-5);ctx.lineTo(x+8,y-5);ctx.lineTo(x,y+6)}
+    else{ctx.moveTo(x-8,y+5);ctx.lineTo(x+8,y+5);ctx.lineTo(x,y-6)}
+    ctx.closePath();ctx.stroke();ctx.restore();
+  }
+  function system(){
+    if(current==='normal')return{g1:1,g2:1,apu:0,ext:0,tie:0,ac1:1,ac2:1,ace:1,acshed:1,tr1:1,tr2:1,dc1:1,dc2:1,dcb:1,dce:1,dcshed:1,ess:0,emer:0,bat:1,inv:0};
+    if(current==='onegen')return{g1:1,g2:0,apu:0,ext:0,tie:1,ac1:1,ac2:1,ace:1,acshed:1,tr1:1,tr2:1,dc1:1,dc2:1,dcb:1,dce:1,dcshed:1,ess:0,emer:0,bat:1,inv:0};
+    if(current==='apu')return{g1:0,g2:0,apu:1,ext:0,tie:1,ac1:1,ac2:1,ace:1,acshed:1,tr1:1,tr2:1,dc1:1,dc2:1,dcb:1,dce:1,dcshed:1,ess:0,emer:0,bat:1,inv:0};
+    if(current==='emergency')return{g1:0,g2:0,apu:0,ext:0,tie:0,ac1:0,ac2:0,ace:1,acshed:0,tr1:0,tr2:0,dc1:0,dc2:0,dcb:1,dce:1,dcshed:0,ess:1,emer:1,bat:1,inv:0};
+    return{g1:0,g2:0,apu:0,ext:0,tie:0,ac1:0,ac2:0,ace:1,acshed:0,tr1:0,tr2:0,dc1:0,dc2:0,dcb:1,dce:1,dcshed:0,ess:0,emer:0,bat:1,inv:1};
+  }
+  function drawFooter(y){
+    line(10,y,W-10,y,C.grey,1.2);line(W*.34,y,W*.34,H-6,C.grey,1.1);line(W*.66,y,W*.66,H-6,C.grey,1.1);
+    const now=new Date();const hh=String(now.getUTCHours()).padStart(2,'0');const mm=String(now.getUTCMinutes()).padStart(2,'0');
+    label('TAT',W*.07,y+(H-y)*.30,C.grey,12,'left');label('+15',W*.20,y+(H-y)*.30,C.green,13,'center');label('°C',W*.30,y+(H-y)*.30,C.cyan,12,'center');
+    label('SAT',W*.07,y+(H-y)*.68,C.grey,12,'left');label('+15',W*.20,y+(H-y)*.68,C.green,13,'center');label('°C',W*.30,y+(H-y)*.68,C.cyan,12,'center');
+    label(hh+' H '+mm,W*.50,y+(H-y)*.58,C.green,14);
+    label('GW',W*.69,y+(H-y)*.34,C.grey,12,'left');label('----- KG',W*.83,y+(H-y)*.34,C.green,12,'center');
+    label('TRAINING',W*.83,y+(H-y)*.72,C.cyan,11,'center');
+  }
+  function draw(){
+    W=Math.max(300,canvas.clientWidth||520);H=Math.round(W*1.20);scale=Math.max(.82,Math.min(1.12,W/500));
+    const dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);canvas.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle=C.bg;ctx.fillRect(0,0,W,H);
+    const s=system();
+    const xL=W*.13,xC=W*.50,xR=W*.87,xB1=W*.30,xB2=W*.70,xInv=W*.35,xEss=W*.55,xEmer=W*.73;
+    const titleY=H*.035,dcBatY=H*.085,batY=H*.18,hotY=H*.28,dcY=H*.36,dcEssY=H*.40,midY=H*.50,acY=H*.61,genY=H*.78,footerY=H*.92;
+    const sideW=Math.min(105,W*.20),centerW=Math.min(100,W*.18),shedW=Math.min(112,W*.22),hotW=Math.min(100,W*.19),batW=Math.min(78,W*.16),genW=Math.min(100,W*.19);
+    const batH=Math.min(60,H*.12),trH=Math.min(72,H*.14),genH=Math.min(95,H*.16);
+    const dc1Right=xL+sideW/2,dc2Left=xR-sideW/2;
+
+    label('ELEC',W*.045,titleY,C.white,16,'left');line(W*.045,titleY+9,W*.14,titleY+9,C.cyan,1.6);
+
+    wire(xB1,dcBatY+13,xB1,batY-batH/2,s.dcb);wire(xB2,dcBatY+13,xB2,batY-batH/2,s.dcb);
+    wire(xC,dcBatY+13,xC,dcY,s.dcb);contactor(xC,(dcBatY+batY)/2,s.dcb,'BAT CONT','right');
+    wire(xB1,batY+batH/2,xB1,hotY-13,s.bat);wire(xB2,batY+batH/2,xB2,hotY-13,s.bat);
+    wire(xB1+hotW/2,hotY,xC,hotY,s.bat&&s.dcb);wire(xC,hotY,xB2-hotW/2,hotY,s.bat&&s.dcb);
+    wire(dc1Right,dcY,xC,dcY,s.dc1&&s.dcb);wire(xC,dcY,dc2Left,dcY,s.dc2&&s.dcb);
+    contactor((dc1Right+xC)/2,dcY,s.dc1&&s.dcb,'DC TIE','left');contactor((xC+dc2Left)/2,dcY,s.dc2&&s.dcb,'DC TIE','right');
+    wire(xC,dcY+13,xC,dcEssY-13,s.dcb&&s.dce&&!s.ess);wire(xL,dcY+13,xL,midY-trH/2,s.dc1&&s.tr1);wire(xR,dcY+13,xR,midY-trH/2,s.dc2&&s.tr2);
+    wire(xL,midY+trH/2,xL,acY-13,s.tr1&&s.ac1);wire(xR,midY+trH/2,xR,acY-13,s.tr2&&s.ac2);
+    wire(xL,acY+13,xL,genY-genH/2,s.g1&&s.ac1);wire(xR,acY+13,xR,genY-genH/2,s.g2&&s.ac2);
+    contactor(xL,(acY+13+genY-genH/2)/2,s.g1&&s.ac1,'GEN LINE','right');contactor(xR,(acY+13+genY-genH/2)/2,s.g2&&s.ac2,'GEN LINE','left');
+    wire(xL+sideW/2,acY,xC-centerW/2,acY,s.ac1&&s.ace&&!s.emer&&!s.inv);
+
+    if(s.tie){
+      const tieY=acY+25;wire(xL,tieY,xR,tieY,true);wire(xL,acY+13,xL,tieY,true);wire(xR,acY+13,xR,tieY,true);
+      wire(xC,genY-genH*.16,xC,tieY,s.apu||s.ext);
+      contactor(xL+(xC-xL)*.45,tieY,true,'BUS TIE','left');contactor(xR-(xR-xC)*.45,tieY,true,'BUS TIE','right');
+    }
+    if(s.ess){
+      wire(xC-centerW/2,acY,xEss,midY+12,true);wire(xEss,midY-12,xC,dcEssY+13,true);
+    }
+    if(s.emer){wire(xEmer,midY+12,xC+centerW/2,acY,true)}
+    if(s.inv){wire(xB1+hotW/2,hotY,xInv,midY-12,true);wire(xInv,midY+12,xC+centerW/2,acY,true)}
+
+    const dcShedX=W*.71,dcShedY=dcEssY+Math.max(18,H*.035),acShedX=W*.27,acShedY=acY+31;
+    wire(xC+centerW/2,dcEssY,xC+centerW/2,dcShedY,s.dcshed);wire(xC+centerW/2,dcShedY,dcShedX-shedW/2,dcShedY,s.dcshed);
+    wire(xC-centerW/2,acY,xC-centerW/2,acShedY,s.acshed);wire(xC-centerW/2,acShedY,acShedX+shedW/2,acShedY,s.acshed);
+    busBox(xC,dcBatY,Math.min(300,W*.60),'DC BAT BUS',s.dcb,13);
+    equipmentBox(xB1,batY,batW,batH,'BAT 1',['29 V','1 A'],'on');equipmentBox(xB2,batY,batW,batH,'BAT 2',['29 V','1 A'],'on');
+    busBox(xB1,hotY,hotW,'HOT BUS 1',s.bat,11);busBox(xB2,hotY,hotW,'HOT BUS 2',s.bat,11);
+    busBox(xL,dcY,sideW,'DC BUS 1',s.dc1,12);busBox(xR,dcY,sideW,'DC BUS 2',s.dc2,12);busBox(xC,dcEssY,centerW,'DC ESS BUS',s.dce,11);busBox(dcShedX,dcShedY,shedW,'DC ESS SHED',s.dcshed,10);
+    equipmentBox(xL,midY,sideW,trH,'TR 1',s.tr1?['28 V','68 A']:['0 V','0 A'],s.tr1?'on':'fault');
+    equipmentBox(xR,midY,sideW,trH,'TR 2',s.tr2?['28 V','68 A']:['0 V','0 A'],s.tr2?'on':'fault');
+    busBox(xInv,midY,Math.min(72,W*.14),'STAT INV',s.inv,10);
+    label('ESS TR',xEss,midY,C.white,12);arrowTriangle(xEss,midY+15,s.ess,true);
+    label('EMER GEN',xEmer,midY,s.emer?C.green:C.white,12);arrowTriangle(xEmer,midY+15,s.emer,true);
+    busBox(xL,acY,sideW,'AC BUS 1',s.ac1,12);busBox(xC,acY,centerW,'AC ESS BUS',s.ace,11);busBox(xR,acY,sideW,'AC BUS 2',s.ac2,12);busBox(acShedX,acShedY,shedW,'AC ESS SHED',s.acshed,10);
+    contactor(xC,acY-20,s.ace,'AC ESS FEED','right');
+
+    const g1vals=s.g1?(current==='onegen'?['68 %','115 V','400 HZ']:['32 %','115 V','400 HZ']):['XX','0 V','0 HZ'];
+    const g2vals=s.g2?['24 %','115 V','400 HZ']:['XX','0 V','0 HZ'];
+    equipmentBox(xL,genY,genW,genH,'GEN 1',g1vals,s.g1?'on':'fault');equipmentBox(xR,genY,genW,genH,'GEN 2',g2vals,s.g2?'on':'fault');
+    label('IDG1',xL-genW*.45,genY+genH*.66,C.white,11,'left');label(s.g1?'105 °C':'--- °C',xL+genW*.28,genY+genH*.66,s.g1?C.green:C.amber,11);
+    label('IDG2',xR+genW*.45,genY+genH*.66,C.white,11,'right');label(s.g2?'105 °C':'--- °C',xR-genW*.28,genY+genH*.66,s.g2?C.green:C.amber,11);
+    label('APU GEN',xC,genY-genH*.28,C.white,13);if(s.apu){label('54 %',xC,genY-genH*.04,C.green,12);label('115 V',xC,genY+genH*.14,C.green,12);label('400 HZ',xC,genY+genH*.31,C.green,12)}
+    equipmentBox(W*.68,genY,Math.min(84,W*.15),genH*.72,'EXT',s.ext?['115 V','400 HZ']:['AVAIL'],s.ext?'on':'available');
+    if(s.emer)label('RAT',xEmer,midY+35,C.green,11);if(s.inv)label('BAT 1 → AC ESS',xInv,midY+35,C.green,10);
+    drawFooter(footerY);
+  }
+  function select(mode){
+    current=mode;buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
+    title.textContent=modes[mode].title;text.textContent=modes[mode].text;
+    canvas.setAttribute('aria-label','A320 ELEC training synoptic. '+modes[mode].text);draw();
+  }
   buttons.forEach(b=>b.addEventListener('click',()=>select(b.dataset.mode)));
-  if('ResizeObserver' in window)new ResizeObserver(draw).observe(canvas.parentElement);
-  else window.addEventListener('resize',draw);
+  if('ResizeObserver' in window)new ResizeObserver(draw).observe(canvas.parentElement);else window.addEventListener('resize',draw);
   select('normal');
 })();
 </script>
+
+
 </body>
 </html>
 
