@@ -16,8 +16,8 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `hydraulic.html` | Interactive green/blue/yellow A320 hydraulic generation and distribution trainer. |
 | `hydraulic-sim.js` | Hydraulic source, PTU, RAT, priority-valve, isolation and component-failure model. |
 | `engine.html` | Provisional interactive IAE V2500 engine-systems study assistant. |
-| `engine-sim.js` | System layouts, normal/abnormal modes and ECAM-style SVG rendering for the IAE engine explorer. |
-| `engine-3d.js` | Lightweight procedural 3D cutaway renderer, touch controls and component-to-system links. |
+| `engine-sim.js` | Eight system layouts, normal/abnormal modes, component failures and ECAM-style SVG rendering for the IAE engine explorer. |
+| `engine-3d.js` | Lightweight procedural 3D cutaway renderer with 23 selectable parts, airflow overlays, touch controls and component-to-system links. |
 | `sw.js` | Offline cache. Bump `CACHE` whenever app content changes. |
 | `manifest.webmanifest` | Installable-app metadata. |
 | `icon-180.png`, `icon-192.png`, `icon-512.png` | App icons. |
@@ -63,7 +63,7 @@ source.
   active aircraft header `NVB A320 For A/C: 21-CMHT`, dated `22 MAY 24`.
 - Use the active `CFM & PW` engine limitations pages for the audited quiz bank.
 - Do not mix the separate IAE engine pages stamped `FOR ENGINEERING USE ONLY` into the active A/C 21-CMHT quiz content.
-- The standalone IAE engine systems explorer is an explicit exception requested by the user. Keep its source/effectivity warning prominent and describe it as provisional. Its source is the supplied A/C 20-IMHT / 19-IMHE IAE engineering appendix (2015-2018), not the active A/C 21-CMHT CFM/PW section.
+- The standalone IAE engine systems explorer is an explicit exception requested by the user. Keep its source/effectivity warning prominent and describe it as provisional. Engine-specific logic and limits come from the supplied A/C 20-IMHT / 19-IMHE IAE engineering appendix (2015-2018), not the active A/C 21-CMHT CFM/PW section. Physical engine, instrumentation and compressor-stability teaching detail also uses the supplied 2022 Gas Turbine Engines A320 Self Study Guides Parts 1 and 2; keep their slide references visible.
 - The three course tests in `self-study-quizzes.js` are separately sourced from the supplied self-study guides. Keep their explanations and slide references visible, and do not describe them as part of the FCOM limitations audit.
 - Existing DSC systems and QRH memory-item questions were outside that limitations-only audit.
   They must be checked against the relevant supplied DSC/QRH source before being described as
@@ -85,11 +85,13 @@ source.
    - every question has a non-empty explanation/reference;
    - normalized question text contains no duplicates;
    - both main HTML files are identical;
-   - the fill-in datasets are identical.
+   - the fill-in datasets are identical;
+   - the engine explorer exposes 8 system tabs and 23 selectable 3D parts;
+   - every 3D part links to an existing system tab and every system has at least one operating mode.
 5. Search correct answers and explanations—not just distractors—for superseded A321P2F or
    engineering-only values.
 6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v20`.
+   `a320-trainer-v21`.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is

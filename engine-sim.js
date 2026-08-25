@@ -232,6 +232,90 @@
       ]
     },
 
+    instrumentation:{
+      tab:'INDICATIONS / ECAM',ata:'GTE P2 3-13',title:'ENGINE SENSING & ECAM INDICATIONS',overviewId:'upper',
+      overview:'Engine pressure, speed, temperature, flow, oil and vibration sensors feed FADEC and the EIU. Primary information is presented on upper ECAM and secondary information on the engine system page.',
+      nodes:[
+        node('p2',25,45,120,68,'INLET P2',component('INLET PRESSURE P2','Measures pressure in the inlet region ahead of the fan.','P2 combines with exhaust pressure P5 to provide sensed EPR for normal V2500 thrust control.','Loss of valid P2 and/or P5 removes sensed EPR and causes rated N1 reversion.','GTE PART 2 SLIDE 4; DSC-70-35-20')),
+        node('p5',25,145,120,68,'EXHAUST P5',component('EXHAUST PRESSURE P5','Measures pressure downstream of the last turbine stage.','P5 divided by P2 is the engine pressure ratio used as the normal thrust-setting parameter.','Loss of the P5 sensing path causes the same rated N1 reversion as loss of P2.','GTE PART 2 SLIDE 4; DSC-70-35-20')),
+        node('n1',25,260,120,68,'N1 SPEED\nPICKUP',component('N1 SPEED SENSING','Measures fan and LP-spool rotational speed and sends an electrical speed signal for control and display.','N1 is displayed as a percentage and becomes the control parameter after EPR reversion.','A lost or invalid signal removes a key control and monitoring input; use current ECAM/QRH for the exact effect.','GTE PART 2 SLIDE 5; DSC-70-20')),
+        node('n2',25,375,120,68,'N2 SPEED\nPICKUP',component('N2 SPEED SENSING','Measures HP-spool rotational speed for start sequencing, fuel scheduling and monitoring.','N2 is displayed as a percentage. FADEC uses it throughout start and running operation.','Invalid N2 removes a critical start/control input; the diagram does not substitute for current ECAM logic.','GTE PART 2 SLIDE 6; DSC-70-20/80')),
+        node('egt',190,45,135,68,'EGT THERMO-\nCOUPLES',component('EGT THERMOCOUPLE HARNESS','A circumferential set of thermocouples senses gas temperature in the jet-pipe region downstream of the turbine stages.','The combined electrical signal provides EGT for primary indication and start/limit monitoring.','A high or rapidly rising EGT can indicate an abnormal start or compressor instability; use current ECAM/QRH for response.','GTE PART 2 SLIDES 7-8')),
+        node('ff',190,145,135,68,'FUEL FLOW\nTRANSMITTER',component('FUEL FLOW TRANSMITTER','Measures fuel flow in the delivery line to the combustion fuel nozzles.','Its electrical signal provides instantaneous fuel-flow indication and supports fuel-used computation.','A failed signal affects the indication, while an actual fuel-flow interruption affects combustion through the separate fuel system.','GTE PART 2 SLIDE 10')),
+        node('vib',190,260,135,68,'N1 / N2 / TURB\nVIB SENSORS',component('ENGINE VIBRATION SENSORS','Sense vibration in the compressor spools and turbine region as an engine-health parameter.','Electrical signals are displayed with the secondary engine information.','High vibration can accompany compressor damage or stall and requires current ECAM/QRH assessment.','GTE PART 2 SLIDE 11')),
+        node('oil',190,375,135,78,'OIL P / T / Q\n+ FILTER',component('OIL SYSTEM SENSORS','Measure delivery pressure, temperature downstream of the fuel/oil heat exchanger, tank quantity and filter restriction.','The data is supplied for secondary engine indication and alerting.','An out-of-range parameter or clog input produces the applicable indication; limits and crew action come from current approved data.','GTE PART 2 SLIDES 12-13; DSC-70-50')),
+        node('airdata',365,455,145,68,'T2 + AMBIENT\nAIR DATA',component('COMPUTED EPR AIR DATA','Supplies inlet temperature T2 and ambient-pressure information used when FADEC computes EPR and rated schedules.','With valid air data, FADEC can calculate the reference information required for normal control.','Loss of computed-EPR inputs produces degraded N1 mode, with autothrust and alpha-floor protection lost.','DSC-70-35-20')),
+        node('fadec',405,190,150,100,'FADEC\nCH A / B',component('FADEC SENSOR PROCESSING','Validates engine signals, controls the engine and generates parameters and fault states for aircraft interfaces.','One channel controls and the other stands by. Both receive the sensing required for control and monitoring.','Sensor combinations determine whether FADEC remains in EPR mode or reverts to rated or degraded N1.','DSC-70-20/35')),
+        node('eiu',605,205,120,78,'EIU',component('ENGINE INTERFACE UNIT','Transfers engine data between FADEC and the aircraft display, warning and recording systems.','The EIU passes engine parameters and fault information to the ECAM architecture.','Loss of an interface can remove displayed or aircraft-system data even when the physical engine sensor remains available to FADEC.','DSC-70-20')),
+        node('upper',755,60,120,135,'UPPER ECAM\nEPR · N1 · EGT',component('PRIMARY ENGINE INDICATION','Presents the principal thrust and temperature parameters in the normal crew scan.','The presentation identifies EPR, N1 and EGT as primary engine information on the upper screen.','Out-of-tolerance data changes the display and can be accompanied by the applicable alert; use current ECAM/QRH.','GTE PART 2 SLIDE 3')),
+        node('lower',755,315,120,145,'ENGINE SD\nOIL · FF · VIB',component('SECONDARY ENGINE INDICATION','Presents detailed engine-system information when the engine page is displayed.','The presentation groups oil pressure/temperature, fuel flow and vibration with the secondary information.','Abnormal values aid diagnosis but do not by themselves replace the ECAM procedure.','GTE PART 2 SLIDES 3, 10-13'))
+      ],
+      edges:[
+        edge('p2f','p2','fadec','control','P2',[[345,79],[345,225]]),edge('p5f','p5','fadec','control','P5',[[365,179],[365,235]]),edge('n1f','n1','fadec','control','N1',[[350,294],[350,245]]),edge('n2f','n2','fadec','control','N2',[[380,409],[380,255]]),
+        edge('egtf','egt','fadec','control','EGT'),edge('fff','ff','fadec','control','FF'),edge('vibf','vib','fadec','control','VIB'),edge('oilf','oil','fadec','control','OIL'),edge('airf','airdata','fadec','control','T2 / P0'),
+        edge('feiu','fadec','eiu','control','ENGINE DATA'),edge('eiuup','eiu','upper','control','PRIMARY'),edge('eiulow','eiu','lower','control','SECONDARY')
+      ],
+      modes:[
+        mode('normal','NORMAL INDICATIONS','normal','VALID ENGINE SENSING','Pressure, speed, temperature, flow, oil and vibration inputs are valid and reach the appropriate ECAM presentation.',[
+          'Upper ECAM carries the primary EPR, N1 and EGT scan.','The engine system page carries the more detailed secondary information.'
+        ],{fadec:'control',eiu:'control',upper:'normal',lower:'normal'}),
+        mode('rated','P2 / P5 LOST','caution','RATED N1 REVERSION','Sensed EPR is unavailable because one or both pressure-sensing inputs are invalid.',[
+          'FADEC automatically reverts from EPR to rated N1 mode.','Equivalent thrust is initially provided until the thrust lever is moved.','Autothrust and alpha-floor protection are lost.'
+        ],{p2:'fault',p5:'fault',fadec:'caution',upper:'caution'},{p2f:'fault',p5f:'fault',feiu:'caution',eiuup:'caution'}),
+        mode('degraded','T2 / AIR DATA LOST','fault','DEGRADED N1 REVERSION','Computed EPR is unavailable because the required inlet-temperature or ambient-pressure data is invalid.',[
+          'FADEC uses degraded N1 mode.','Equivalent thrust is initially held until a thrust-lever change.','Autothrust and alpha-floor protection are lost.'
+        ],{airdata:'fault',fadec:'fault',upper:'caution'},{airf:'fault',feiu:'caution',eiuup:'caution'}),
+        mode('highegt','HIGH / RAPID EGT','fault','HIGH OR RAPIDLY RISING EGT','The thermocouple harness reports an EGT condition outside the expected trend or limit region.',[
+          'A rapid EGT rise can accompany a hot start or compressor stall.','FADEC start protection uses EGT together with speed and fuel-flow inputs.','Use the active ECAM/QRH; this mode is an indication study aid.'
+        ],{egt:'fault',fadec:'caution',upper:'fault'},{egtf:'fault',feiu:'caution',eiuup:'fault'}),
+        mode('highvib','HIGH VIBRATION','caution','ENGINE VIBRATION HIGH','One or more vibration channels report an abnormal level in a compressor spool or turbine region.',[
+          'Vibration is a useful engine-health indicator.','It can accompany contamination, foreign-object damage or compressor stall.','Confirm the exact affected channel and current procedure on ECAM/QRH.'
+        ],{vib:'fault',fadec:'caution',lower:'caution'},{vibf:'fault',feiu:'caution',eiulow:'caution'}),
+        mode('oilalert','OIL PARAMETER ALERT','fault','OIL INDICATION OUT OF RANGE','An oil pressure, temperature, quantity or filter input is outside the expected condition.',[
+          'The lower engine page provides the detailed oil indication.','A sensed alert can represent pressure, temperature, quantity or filter restriction.','Use the separate oil diagram and current ECAM/QRH for assessment.'
+        ],{oil:'fault',fadec:'caution',lower:'fault'},{oilf:'fault',feiu:'caution',eiulow:'fault'})
+      ]
+    },
+
+    stability:{
+      tab:'COMPRESSOR / STALL',ata:'GTE P2 15-21',title:'COMPRESSOR STABILITY & STALL',overviewId:'vsv',
+      overview:'Compressor stability depends on matching inlet airflow, axial velocity and spool speed. FADEC schedules variable stators and bleed valves to preserve margin, while the crew sees changes in thrust, EGT, N1/N2, noise and vibration.',
+      nodes:[
+        node('inlet',25,180,125,92,'INLET FLOW\nFOD · ICE · GUST',component('INLET AIRFLOW CONDITION','Represents the quality and axial velocity of air arriving at the fan and compressor.','Smooth, undistorted inlet flow helps keep rotor-blade angle of attack inside the stable range.','Turbulence, disrupted flow, foreign objects, icing or operation outside the design envelope can reduce stall margin.','GTE PART 2 SLIDES 15-19')),
+        node('fan',185,160,120,110,'FAN / LP SPOOL\nN1',component('FAN AND LP SPOOL','The front spool establishes the first compressor stages and supplies air to both the bypass and core paths.','Its independent speed is displayed as N1 and is matched to the rear HP spool by the control system.','Distorted inlet flow or damaged/contaminated blading can produce vibration and unstable delivery to the core.','GTE PART 2 SLIDES 17-20')),
+        node('lpc',345,70,120,90,'LP COMP\n4 STAGES',component('LOW-PRESSURE COMPRESSOR STAGES','Raise core-air pressure through alternating rotor and stator rows on the LP spool.','Rotor motion adds velocity; divergent rotor/stator passages convert velocity into pressure.','A local blade stall can disturb the following stages and contribute to a wider compressor surge.','GTE PART 1 SLIDES 28-31; GTE PART 2 SLIDES 15-20')),
+        node('hpc',520,70,125,90,'HP COMP\n10 STAGES · N2',component('HIGH-PRESSURE COMPRESSOR STAGES','Further compress the core flow on an independently rotating HP spool.','The rear compressor can rotate at the speed required to process the air delivered by the front stages.','Mismatch between axial airflow and rotor speed raises blade angle of attack and can cause stall.','GTE PART 2 SLIDES 17-18; DSC-70-10')),
+        node('combustor',700,75,145,100,'ANNULAR\nCOMBUSTOR',component('COMBUSTOR BACK-PRESSURE','Burns metered fuel in the compressed core airflow and delivers hot gas to the turbines.','Stable compressor delivery and scheduled fuel keep the pressure/flow relationship within the operating envelope.','When compressor delivery breaks down, an over-rich local mixture and higher combustion/turbine temperature can follow.','GTE PART 2 SLIDES 15-16')),
+        node('tla',25,390,125,72,'THRUST\nCOMMAND',component('THRUST COMMAND / TRANSIENT','A thrust change requests a new engine airflow, fuel flow and spool-speed condition.','FADEC schedules acceleration and deceleration so the compressors remain inside their stable operating range.','Abrupt acceleration can create excessive fuel flow for the available air; abrupt deceleration can create an excessive-air mismatch.','GTE PART 2 SLIDE 16')),
+        node('vsv',330,315,165,110,'VSV + 2.5 / 7 / 10\nBLEED VALVES',component('VARIABLE STATORS AND BLEED VALVES','Match compressor incidence and unload selected stages when more stall margin is required.','FADEC schedules variable stator vanes and opens stability bleeds during starting, low power and transients.','The stability bleed valves fail open. An unavailable or mispositioned device can reduce performance or margin.','DSC-70-20/65')),
+        node('fadec',555,330,135,92,'FADEC\nSTABILITY CTRL',component('FADEC STABILITY CONTROL','Coordinates fuel, variable stators and bleed valves with spool speed and ambient conditions.','Acceleration/deceleration schedules avoid stall and flameout while N1/N2 protection remains active.','Control cannot prevent every inlet-distortion, damage or severe out-of-envelope stall event.','DSC-70-20/45/65')),
+        node('indication',720,300,145,120,'INDICATIONS\nBANG · EGT · N1/N2\nVIB · THRUST',component('COMPRESSOR STALL INDICATIONS','Combines the presentation signs that may accompany compressor stall or surge.','Expected stable operation produces smooth parameters, normal vibration and proportional thrust response.','Possible signs include abnormal noises/bangs, inlet or exhaust flame, fluctuating EGT/N1/N2, vibration, sluggish thrust response and high or rapidly rising EGT.','GTE PART 2 SLIDE 20')),
+        node('thrust',745,480,120,60,'NET THRUST',component('AVAILABLE ENGINE THRUST','Represents the usable result of stable fan bypass and core operation.','With both spools stable, thrust responds predictably to the command.','A compressor stall reduces airflow and can cause a substantial or fluctuating loss of thrust.','GTE PART 2 SLIDES 15, 20'))
+      ],
+      edges:[
+        edge('air1','inlet','fan'),edge('air2','fan','lpc'),edge('air3','lpc','hpc'),edge('air4','hpc','combustor'),edge('thrustflow','combustor','thrust','flow','GAS / FAN THRUST',[[790,190],[790,455]]),
+        edge('cmd','tla','fadec','control','DEMAND'),edge('schedule','fadec','vsv','control','SCHEDULE'),edge('lpcstab','vsv','lpc','control','2.5 BLEED',[[412,300],[405,160]]),edge('hpcstab','vsv','hpc','control','VSV / 7 / 10',[[485,370],[585,300],[585,160]]),
+        edge('monitor','hpc','fadec','control','N2 / FLOW'),edge('sense','combustor','indication','control','EGT / PERFORMANCE'),edge('surge','combustor','hpc','fault','REVERSE PRESSURE WAVE',[[675,40],[585,40]])
+      ],
+      modes:[
+        mode('normal','NORMAL MARGIN','normal','STABLE COMPRESSOR OPERATION','Inlet flow, axial velocity, rotor speed, fuel flow and control-device position remain matched across both spools.',[
+          'The twin-spool arrangement lets the rear compressor rotate faster than the front spool when required.','VSV and bleed schedules preserve margin through starts and transients.'
+        ],{fadec:'control',vsv:'control',thrust:'normal'},{surge:'inactive'}),
+        mode('distortion','FOD / ICE / GUST','fault','INLET FLOW DISTURBED','The air arriving at the fan is distorted by turbulence, icing, contamination or foreign-object damage.',[
+          'Fan or compressor blade incidence can move toward stall.','Vibration and parameter fluctuation may appear before or with a larger instability.','Advanced control reduces risk but cannot remove physical damage or severe distortion.'
+        ],{inlet:'fault',fan:'caution',lpc:'caution',hpc:'caution',fadec:'control',vsv:'control',indication:'caution',thrust:'caution'},{air1:'fault',air2:'caution',air3:'caution',surge:'inactive'}),
+        mode('accel','RAPID ACCELERATION','caution','AIRFLOW / FUEL TRANSIENT MISMATCH','A rapid thrust demand increases fuel and required airflow while both spools are still accelerating.',[
+          'FADEC acceleration schedules and variable geometry protect compressor margin.','Excessive fuel for the available air can promote an over-rich condition and higher temperature.','The diagram demonstrates the relationship, not a permitted control technique.'
+        ],{tla:'caution',fadec:'control',vsv:'control',hpc:'caution',combustor:'caution',indication:'caution'},{cmd:'caution',schedule:'control',hpcstab:'control',surge:'inactive'}),
+        mode('stall','STALL / SURGE','fault','COMPRESSOR STALL OR SURGE','One or more compressor blade rows are stalled and the pressure/flow relationship has broken down.',[
+          'A pressure wave may move forward through the compressor and can produce inlet or exhaust flame.','Possible indications are bangs, fluctuating EGT/N1/N2, vibration, sluggish thrust and a rapid EGT rise.','Internal damage is possible; use the active ECAM/QRH.'
+        ],{fan:'caution',lpc:'fault',hpc:'fault',combustor:'fault',fadec:'caution',indication:'fault',thrust:'fault'},{air2:'caution',air3:'fault',air4:'fault',thrustflow:'fault',surge:'fault'}),
+        mode('recovery','THRUST REDUCED','caution','STALL-RECOVERY STUDY STATE','The presentation describes immediate, steady thrust reduction as the usual first means of moving away from a stall condition, while the applicable engine procedure remains authoritative.',[
+          'Reducing fuel demand can help re-match compressor airflow and rotor speed.','Modern control may avoid some causes, but the crew must still recognise indications and follow current ECAM/QRH.','This state is explanatory and is not a replacement checklist.'
+        ],{tla:'control',fadec:'control',vsv:'control',lpc:'caution',hpc:'caution',combustor:'caution',indication:'caution',thrust:'caution'},{cmd:'control',schedule:'control',surge:'inactive',thrustflow:'caution'})
+      ]
+    },
+
     reverser:{
       tab:'REVERSER / HYD',ata:'DSC 70-70',title:'THRUST REVERSER & HYDRAULICS',overviewId:'sleeves',
       overview:'Each engine has an independent FADEC-controlled, hydraulically actuated thrust reverser. Engine 1 uses green hydraulics and Engine 2 uses yellow hydraulics.',
@@ -424,7 +508,7 @@
 
   function renderInfo(){
     const {system,selectedMode}=current();const analysis=failureAnalysis(system,selectedMode);const selected=findNode(system,activeComponent)||findNode(system,system.overviewId);const detail=selected.detail;const isFailed=analysis.direct.has(selected.id),isAffected=analysis.affected.has(selected.id);
-    nameEl.textContent=detail.name;purposeEl.textContent=detail.purpose;normalEl.textContent=detail.normal;abnormalEl.textContent=detail.abnormal;refEl.textContent='FCOM REFERENCE: '+detail.ref+' — SUPPLIED ENGINEERING-USE IAE APPENDIX';
+    nameEl.textContent=detail.name;purposeEl.textContent=detail.purpose;normalEl.textContent=detail.normal;abnormalEl.textContent=detail.abnormal;refEl.textContent='SOURCE REFERENCE: '+detail.ref+' — SUPPLIED IAE APPENDIX / GTE SELF-STUDY PRESENTATIONS';
     stateTitle.textContent=isFailed?'COMPONENT FAILED':isAffected?'DOWNSTREAM EFFECT':selectedMode.title;stateText.textContent=isFailed?detail.abnormal:isAffected?'An upstream component failure has degraded or interrupted this component. Alternate paths are shown amber; lost paths are grey.':selectedMode.text;stateImpacts.replaceChildren();
     let impactText=[...selectedMode.impacts];
     if(analysis.direct.size){const names=[...analysis.direct].map(id=>findNode(system,id)?.detail.name||id);const affected=[...analysis.affected].filter(id=>!analysis.direct.has(id)).map(id=>findNode(system,id)?.detail.name||id);impactText=['Failed: '+names.join(', ')+'.',affected.length?'Affected downstream: '+affected.slice(0,8).join(', ')+(affected.length>8?' and '+(affected.length-8)+' more.':'.'):'The selected failure has no downstream node on this diagram.',...impactText.slice(0,2)]}

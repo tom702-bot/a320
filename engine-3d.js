@@ -11,48 +11,88 @@
   const statusEl=document.getElementById('model3dStatus');
   const systemLink=document.getElementById('modelSystemLink');
   const cutawayButton=document.getElementById('cutawayToggle');
+  const flowButton=document.getElementById('flowToggle');
+  const flowKey=document.getElementById('modelFlowKey');
+  const factsEl=document.getElementById('modelPartFacts');
   const resetButton=document.getElementById('modelReset');
 
   const TAU=Math.PI*2;
   const PARTS={
     nacelle:{label:'NACELLE & CASES',short:'NACELLE',system:'architecture',center:[-1.0,1.8,0],
       purpose:'The nacelle forms the aerodynamic outer body while internal cases support and contain the fan, compressors, combustor and turbines.',
-      operation:'CUTAWAY removes a section of the cases to expose the gas path. The cases shown are a simplified study representation, not a maintenance model.'},
+      operation:'CUTAWAY removes a section of the cases to expose the gas path. The cases shown are a simplified study representation, not a maintenance model.',facts:['BYPASS DUCT','ENGINE CASES','PART 1 · SLIDE 55']},
+    intake:{label:'INLET LIP & DIFFUSING INTAKE',short:'INLET',system:'architecture',center:[-4.48,1.45,.45],
+      purpose:'The intake captures and decelerates ambient air before it reaches the fan, helping deliver smooth subsonic flow to the compressor.',
+      operation:'Inlet distortion, turbulence, icing or foreign-object damage can reduce compressor stability margin. P2 is sensed in the inlet region for EPR control.',facts:['CAPTURE + DIFFUSE','P2 SENSING','PART 1 · SLIDE 22']},
     fan:{label:'FAN & LP ROTOR',short:'FAN / N1',system:'architecture',center:[-3.7,.85,.55],
       purpose:'The fan and low-pressure compressor are driven by the five-stage LP turbine through the LP shaft. Fan speed is displayed as N1.',
-      operation:'Most fan air bypasses the core and produces most of the thrust. Maximum N1 in the supplied IAE engineering limitation is 100%.'},
+      operation:'Most fan air bypasses the core and produces most of the thrust. Maximum N1 in the supplied IAE engineering limitation is 100%.',facts:['LP SPOOL','N1 % RPM','HIGH BYPASS']},
     lpc:{label:'LOW-PRESSURE COMPRESSOR',short:'LP COMP',system:'architecture',center:[-2.35,.65,.38],
       purpose:'The LP compressor includes the fan and four compressor stages before the airflow divides into bypass and core streams.',
-      operation:'The 2.5 bleed valve improves stall margin during starting, low power and transients. Its fail-safe position is open.'},
+      operation:'The 2.5 bleed valve improves stall margin during starting, low power and transients. Its fail-safe position is open.',facts:['FAN + 4 STAGES','LP SHAFT','PART 1 · SLIDE 57']},
+    stability:{label:'VARIABLE STATORS & STABILITY BLEEDS',short:'VSV / BLEEDS',system:'stability',center:[-1.45,1.12,.48],
+      purpose:'Variable stator vanes match compressor airflow to rotor speed while the 2.5, 7th and 10th-stage bleed valves unload compressor stages when extra stall margin is required.',
+      operation:'FADEC schedules these devices during starting, low power and transients. The three bleed valves fail open; open bleeds preserve stability with a performance cost.',facts:['2.5 / 7 / 10 BLEEDS','VSV SCHEDULE','FAIL-SAFE OPEN']},
     hpc:{label:'HIGH-PRESSURE COMPRESSOR',short:'HP COMP',system:'architecture',center:[-.45,.55,.35],
       purpose:'Ten HP-compressor stages raise core-air pressure before combustion. The HP compressor is connected to the two-stage HP turbine.',
-      operation:'FADEC schedules variable stator vanes and bleed valves for stability. The HP-rotor speed is N2; the supplied maximum is 100%.'},
+      operation:'FADEC schedules variable stator vanes and bleed valves for stability. The HP-rotor speed is N2; the supplied maximum is 100%.',facts:['10 STAGES','HP SPOOL','N2 % RPM']},
+    diffuser:{label:'COMPRESSOR DIFFUSER',short:'DIFFUSER',system:'architecture',center:[.72,.68,.42],
+      purpose:'A divergent diffuser reduces compressor-discharge velocity and raises static pressure before the air enters the combustion chamber.',
+      operation:'The presentations describe compressor-discharge air slowing from roughly 500 ft/s toward the much lower flame-zone velocity needed for stable combustion.',facts:['DIVERGENT DUCT','VELOCITY ↓','PRESSURE ↑']},
     combustor:{label:'ANNULAR COMBUSTION CHAMBER',short:'COMBUSTOR',system:'air',center:[1.25,.42,.42],
       purpose:'Fuel from 20 injectors mixes with HP-compressor air and burns in the annular chamber. Two igniters provide ignition.',
-      operation:'FADEC controls the fuel/air mixture. Starting EGT maximum in the supplied IAE engineering limitation is 635°C.'},
+      operation:'The primary zone anchors the flame; dilution air produces a more uniform turbine-inlet temperature. Starting EGT maximum in the supplied IAE engineering limitation is 635°C.',facts:['ANNULAR','PRIMARY + DILUTION','PART 1 · SLIDES 34-41']},
+    injectors:{label:'20 FUEL INJECTORS',short:'20 INJECTORS',system:'fuel',center:[1.00,.72,.45],
+      purpose:'Twenty injectors atomise metered high-pressure fuel around the annular combustor for even delivery to the flame zone.',
+      operation:'Fuel flow is measured upstream and commanded by FADEC through the FMU. Loss of delivery prevents light-up or interrupts established combustion.',facts:['20 NOZZLES','FMU METERED','ANNULAR DELIVERY']},
+    igniters:{label:'TWO IGNITER PLUGS',short:'2 IGNITERS',system:'air',center:[1.35,1.00,.70],
+      purpose:'Two independent igniters provide the electrical energy that lights the fuel-air mixture during start and when commanded in flight.',
+      operation:'Automatic start normally uses one igniter; manual start uses both. FADEC removes normal start ignition above 43% N2.',facts:['IGNITER A + B','AUTO: ONE','MANUAL: BOTH']},
+    ngv:{label:'TURBINE NOZZLE GUIDE VANES',short:'TURBINE NGV',system:'architecture',center:[2.02,.64,.45],
+      purpose:'Stationary nozzle guide vanes accelerate and turn the hot gas so it strikes each turbine rotor at the required angle.',
+      operation:'An NGV and following turbine wheel form a turbine stage. The vanes convert pressure energy into directed kinetic energy before the rotor.',facts:['STATOR ROW','PRESSURE → VELOCITY','PART 1 · SLIDE 45']},
     hpt:{label:'HIGH-PRESSURE TURBINE',short:'HP TURB',system:'architecture',center:[2.25,.55,.38],
       purpose:'Two HP-turbine stages extract combustion-gas energy to drive the HP compressor and accessory gearbox path.',
-      operation:'FADEC monitors N2 and protects against overspeed by controlling fuel flow through the FMU.'},
+      operation:'FADEC monitors N2 and protects against overspeed by controlling fuel flow through the FMU.',facts:['2 STAGES','DRIVES HP SPOOL','HOT SECTION']},
+    cooling:{label:'TURBINE BLADE COOLING',short:'TURB COOLING',system:'air',center:[2.42,.92,.55],
+      purpose:'Relatively cool compressor bleed air passes through turbine vanes and blades, then exits through small film-cooling holes.',
+      operation:'Cooling lets hot-section hardware survive gas temperatures above its uncooled material limit. FADEC also schedules turbine-clearance control.',facts:['COMPRESSOR BLEED','FILM COOLING','CLEARANCE CONTROL']},
     lpt:{label:'LOW-PRESSURE TURBINE',short:'LP TURB',system:'architecture',center:[3.35,.7,.4],
       purpose:'Five LP-turbine stages extract the remaining core-gas energy to drive the fan and LP compressor.',
-      operation:'P5 at the LP-turbine exhaust is used with inlet pressure P2 for normal EPR thrust control.'},
+      operation:'P5 at the LP-turbine exhaust is used with inlet pressure P2 for normal EPR thrust control.',facts:['5 STAGES','DRIVES LP SPOOL','P5 DOWNSTREAM']},
     shafts:{label:'CONCENTRIC SHAFTS',short:'SHAFTS',system:'architecture',center:[.3,.05,.25],
       purpose:'Concentric LP and HP shafts allow the fan/LP spool and HP spool to rotate at their own speeds.',
-      operation:'N1 is the fan/LP-rotor speed; N2 is the HP-rotor speed. Both parameters are used by FADEC for control and monitoring.'},
+      operation:'Splitting the compressor into independently rotating spools helps match rear-compressor speed to airflow and improves stall margin.',facts:['TWIN SPOOL','N1 + N2','PART 2 · SLIDE 17']},
+    bearings:{label:'SHAFT BEARINGS & SUMPS',short:'BEARINGS',system:'oil',center:[-.08,.18,.12],
+      purpose:'Bearings support the concentric rotors while oil jets lubricate and cool the bearing compartments; seals contain the oil and air systems.',
+      operation:'The pressure system feeds the bearings and scavenge elements return used oil to the tank. Binding bearings can contribute to a hung start.',facts:['PRESSURE FEED','SCAVENGE RETURN','VIBRATION SOURCE']},
     gearbox:{label:'ACCESSORY GEARBOX',short:'GEARBOX',system:'architecture',center:[-.7,-1.3,.35],
       purpose:'The HP-shaft-driven gearbox operates the oil feed pump, main fuel pump, hydraulic pump, generator and FADEC alternator, and interfaces with the starter.',
-      operation:'Engine 1 drives the green hydraulic pump and Engine 2 the yellow hydraulic pump. Each engine-driven generator is a primary electrical source.'},
+      operation:'Engine 1 drives the green hydraulic pump and Engine 2 the yellow hydraulic pump. Each engine-driven generator is a primary electrical source.',facts:['HP SHAFT DRIVE','MULTIPLE ACCESSORIES','PART 1 · SLIDE 58']},
+    accessories:{label:'GEARBOX-DRIVEN ACCESSORIES',short:'ACCESSORIES',system:'architecture',center:[-.45,-1.72,.48],
+      purpose:'Separate accessory pads drive the oil feed pump, main fuel pump, hydraulic pump, electrical generator and FADEC magnetic alternator.',
+      operation:'Each accessory uses HP-spool mechanical power through the gearbox. A failed accessory affects its own fuel, oil, hydraulic, electrical or FADEC supply path.',facts:['OIL PUMP','FUEL PUMP','HYD + GEN + ALT']},
+    starter:{label:'AIR-TURBINE STARTER & CLUTCH',short:'STARTER',system:'air',center:[-1.30,-1.75,.54],
+      purpose:'Pneumatic air accelerates a small turbine; reduction gearing and a clutch transmit high-torque rotation through the gearbox to the HP spool.',
+      operation:'The clutch disengages when the engine becomes self-sustaining. Failure to disengage can overspeed and damage the starter.',facts:['PNEUMATIC','REDUCTION GEAR','CLUTCH']},
     fadec:{label:'FADEC / EEC',short:'FADEC',system:'fadec',center:[-2.55,-1.55,.65],
       purpose:'The two-channel Full Authority Digital Engine Control manages thrust, fuel, air, starting, indications, protection and thrust-reverser control.',
-      operation:'One channel is active and one standby. A single channel can control the complete engine; the other automatically takes over after a channel failure.'},
+      operation:'One channel is active and one standby. A single channel can control the complete engine; the other automatically takes over after a channel failure.',facts:['CHANNEL A + B','EPR NORMAL','N1 REVERSION']},
+    sensors:{label:'ENGINE SENSORS & EGT HARNESS',short:'SENSORS',system:'instrumentation',center:[3.95,.98,.62],
+      purpose:'Pressure, speed, temperature, fuel-flow, oil and vibration sensors convert engine condition into electrical signals for FADEC, the EIU and ECAM.',
+      operation:'The EGT thermocouples are arranged around the jet-pipe region. N1/N2 speed pickups and vibration sensors monitor both spools and the turbine region.',facts:['P2 / P5','N1 / N2 / EGT','VIB + OIL + FF']},
+    reverser:{label:'TRANSLATING SLEEVE & CASCADES',short:'REVERSER',system:'reverser',center:[2.95,1.50,.48],
+      purpose:'The translating sleeve exposes cascades and positions blocker doors so fan bypass air is redirected forward during ground reverse.',
+      operation:'FADEC monitors sleeve position and lock feedback and protects against inadvertent deployment or stowage by reducing thrust toward idle.',facts:['BYPASS FLOW ONLY','HYDRAULIC ACTUATION','GROUND USE']},
     exhaust:{label:'EXHAUST & P5',short:'EXHAUST',system:'fadec',center:[4.45,.35,.25],
       purpose:'Core gas leaves the LP turbine through the exhaust. P5 is the LP-turbine exhaust pressure used in EPR = P5 / P2.',
-      operation:'Loss of valid P2 and/or P5 causes automatic reversion from EPR control to rated N1 mode.'}
+      operation:'Exhaust struts support the rear bearing area and straighten gas flow toward the nozzle. Loss of valid P2 and/or P5 causes rated N1 reversion.',facts:['P5 SENSING','FLOW STRAIGHTENING','EPR = P5 / P2']}
   };
 
   let faces=[];
   let selected='fan';
   let cutaway=true;
+  let airflow=true;
   let yaw=-0.20;
   let pitch=-0.08;
   let zoom=1;
@@ -158,6 +198,10 @@
 
     addCylinder('shafts',-3.95,4.55,.17,.15,'#89938e',{segments:24,caps:true,stroke:'#c9cfcc'});
     addCylinder('shafts',-1.55,2.62,.31,.27,'#535e58',{segments:24,caps:true,stroke:'#a9b2ad'});
+    [-3.28,-1.62,2.62,4.02].forEach((x,index)=>addRing('bearings',x,.14,index===1||index===2?.42:.31,.16,'#8b9b92',{innerColor:'#303a35',stroke:'#d3ddd6'}));
+
+    addShell('intake',[[-4.78,2.30],[-4.50,2.60],[-4.18,2.58]],.16,'#8b9690',{start:shellStart,end:shellEnd,segments:shellSegments,innerColor:'#26312b',edgeColor:'#edf1ee',stroke:'#d6ddd9'});
+    addRing('intake',-4.48,2.31,2.62,.12,'#8d9892',{stroke:'#e5ebe7'});
 
     addCylinder('fan',-4.75,-3.87,.02,.55,'#cbd2ce',{segments:30,caps:true,stroke:'#f2f5f3'});
     addCylinder('fan',-3.90,-3.48,.56,.58,'#68736d',{segments:28,caps:true,stroke:'#c9d0cc'});
@@ -179,18 +223,33 @@
       if(i%2===1)addRing('hpc',x+.08,inner-.03,outer+.035,.045,'#525d57');
     }
 
+    addBlades('stability',-1.54,.35,1.12,18,'#5a9e83',{chord:.10,twist:-.14,thickness:.045,stroke:'#8fe0b7'});
+    addRing('stability',-1.67,.90,1.22,.12,'#426c58',{stroke:'#76c99d'});
+    addBox('stability',-2.10,1.38,.46,.34,.22,.28,'#376f55',{stroke:'#66d08e'});
+    addBox('stability',-.48,1.23,.48,.34,.20,.26,'#376f55',{stroke:'#66d08e'});
+    addBox('stability',.25,1.10,.45,.30,.18,.24,'#376f55',{stroke:'#66d08e'});
+
+    addShell('diffuser',[[.66,1.02],[.92,.90],[1.08,.86]],.14,'#68766e',{start:shellStart,end:shellEnd,segments:shellSegments,innerColor:'#2f3c35',edgeColor:'#bac8bf',stroke:'#9fada4'});
+
     addShell('combustor',[[.92,.90],[1.25,.98],[1.92,.83]],.25,'#9a7040',{start:shellStart,end:shellEnd,segments:shellSegments,innerColor:'#4b2c1a',edgeColor:'#d5b078',stroke:'#d2b080'});
     addCylinder('combustor',1.05,1.83,.53,.47,'#ff9c42',{segments:26,start:2.35,end:6.12,opacity:.42,stroke:'#ffcf7a',pickable:false});
     for(let i=0;i<20;i++){
       const a=TAU*i/20;
       const y=.73*Math.cos(a),z=.73*Math.sin(a);
-      addBox('combustor',.98,y,z,.18,.10,.10,'#b48952',{stroke:'#e0c292'});
+      addBox('injectors',.98,y,z,.18,.10,.10,'#b48952',{stroke:'#e0c292'});
     }
+    addBox('igniters',1.30,.82,.80,.26,.14,.18,'#d9d7bd',{stroke:'#fff7c7'});
+    addBox('igniters',1.48,-.04,.95,.26,.14,.18,'#d9d7bd',{stroke:'#fff7c7'});
+
+    addBlades('ngv',1.96,.33,.92,22,'#c4aa75',{chord:.13,sweep:-.02,twist:.16,thickness:.052,stroke:'#f1d59a'});
+    addRing('ngv',2.00,.30,.96,.055,'#695f4f',{stroke:'#cdbb92'});
 
     [2.13,2.46].forEach((x,index)=>{
       addBlades('hpt',x,.31,.91,18,index?'#81796d':'#a69c8d',{chord:.20,sweep:-.04,twist:index?.14:-.10,thickness:.06,offset:index*.13,stroke:'#d4c6ad'});
       addRing('hpt',x+.10,.28,.96,.055,'#4b504c');
     });
+    addRing('cooling',2.18,.88,1.01,.07,'#3c7180',{stroke:'#62d7f0'});
+    addRing('cooling',2.50,.90,1.03,.07,'#3c7180',{stroke:'#62d7f0'});
 
     for(let i=0;i<5;i++){
       const x=2.72+i*.34;
@@ -201,14 +260,22 @@
 
     addShell('exhaust',[[4.05,1.13],[4.48,1.02],[4.88,.77]],.12,'#6e7873',{start:shellStart,end:shellEnd,segments:shellSegments,innerColor:'#272e2a',edgeColor:'#bcc5c0',stroke:'#aeb8b2'});
     addRing('exhaust',4.77,.52,.78,.10,'#414a45',{stroke:'#bbc4bf'});
+    addRing('sensors',4.10,.97,1.17,.075,'#315b64',{stroke:'#45d7ec'});
+    addBox('sensors',-3.35,.66,.76,.20,.15,.16,'#183e46',{stroke:'#45d7ec'});
+    addBox('sensors',-.72,.51,.67,.20,.15,.16,'#183e46',{stroke:'#45d7ec'});
 
     addShell('nacelle',[[-4.48,2.58],[-3.98,2.66],[-3.15,2.48],[-2.20,2.30],[-1.10,2.20],[.40,2.08],[1.85,1.92],[3.30,1.63],[4.18,1.36]],.13,'#77827c',{start:shellStart,end:shellEnd,segments:shellSegments,innerColor:'#26302a',edgeColor:'#d9dfdb',stroke:'#aeb9b2'});
     addShell('nacelle',[[-3.35,1.55],[-2.20,1.43],[-1.05,1.24],[.30,1.12],[1.85,1.03],[3.25,1.14],[4.12,1.17]],.09,'#4f5a54',{start:shellStart,end:shellEnd,segments:shellSegments,innerColor:'#202722',edgeColor:'#aeb8b2',stroke:'#77827c'});
+    addShell('reverser',[[1.82,1.93],[2.35,1.82],[3.28,1.64]],.08,'#4f685b',{start:shellStart,end:shellEnd,segments:shellSegments,innerColor:'#24312a',edgeColor:'#89aa96',stroke:'#75a087'});
+    [2.04,2.26,2.48,2.70,2.92].forEach(x=>addRing('reverser',x,1.66,1.84,.05,'#385947',{start:shellStart,end:shellEnd,stroke:'#6db589'}));
 
     addBox('gearbox',-.72,-1.34,.18,1.38,.72,.70,'#58625d',{stroke:'#b2bbb6'});
     addCylinder('gearbox',-1.35,-.12,.22,.22,'#747e79',{segments:18,caps:true,stroke:'#bdc5c1'});
-    addBox('gearbox',-.25,-1.72,.15,.48,.42,.48,'#404a45',{stroke:'#919b95'});
-    addBox('gearbox',-1.17,-1.74,.20,.42,.38,.44,'#48524d',{stroke:'#919b95'});
+    addBox('accessories',-.25,-1.72,.15,.48,.42,.48,'#404a45',{stroke:'#919b95'});
+    addBox('accessories',.32,-1.54,.14,.42,.36,.42,'#46514b',{stroke:'#919b95'});
+    addBox('accessories',-.72,-1.88,.18,.44,.34,.42,'#46514b',{stroke:'#919b95'});
+    addBox('starter',-1.27,-1.74,.20,.50,.40,.46,'#48524d',{stroke:'#b8c2bc'});
+    addCylinder('starter',-1.66,-1.13,.18,.18,'#5d6962',{segments:18,caps:true,stroke:'#c6d0ca'});
     addBox('fadec',-2.52,-1.64,.78,1.20,.56,.25,'#313a35',{stroke:'#62c879'});
     addBox('fadec',-2.52,-1.64,.93,.86,.28,.08,'#14291b',{stroke:'#42e56c'});
   }
@@ -269,6 +336,22 @@
     for(let y=0;y<height;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(width,y);ctx.stroke()}
   }
 
+  function drawFlowPath(points,color,label){
+    const projected=points.map(projectPoint);
+    ctx.save();ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=2.2;ctx.setLineDash([8,6]);ctx.globalAlpha=.88;
+    ctx.beginPath();ctx.moveTo(projected[0].x,projected[0].y);for(let i=1;i<projected.length;i++)ctx.lineTo(projected[i].x,projected[i].y);ctx.stroke();ctx.setLineDash([]);
+    const last=projected[projected.length-1],before=projected[projected.length-2];const angle=Math.atan2(last.y-before.y,last.x-before.x);
+    ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(last.x-10*Math.cos(angle-.45),last.y-10*Math.sin(angle-.45));ctx.lineTo(last.x-10*Math.cos(angle+.45),last.y-10*Math.sin(angle+.45));ctx.closePath();ctx.fill();
+    const middle=projected[Math.floor(projected.length/2)];ctx.font='9px ui-monospace, Menlo, Consolas, monospace';ctx.textAlign='center';ctx.textBaseline='bottom';ctx.fillText(label,middle.x,middle.y-5);ctx.restore();
+  }
+
+  function drawFlowOverlay(){
+    if(!airflow)return;
+    drawFlowPath([[-4.72,1.38,.38],[-3.72,1.62,.42],[-2.10,1.53,.43],[-.30,1.42,.42],[1.55,1.30,.38],[3.15,1.10,.30],[4.36,.84,.22]],'#45d7ec','BYPASS AIR');
+    drawFlowPath([[-4.72,.34,.50],[-3.55,.35,.50],[-2.20,.34,.48],[-.70,.32,.46],[.80,.31,.44],[1.08,.31,.42]],'#42e56c','CORE AIR');
+    drawFlowPath([[1.18,.31,.42],[1.72,.31,.40],[2.45,.32,.38],[3.35,.31,.34],[4.25,.29,.28],[4.78,.25,.20]],'#ffb327','HOT GAS');
+  }
+
   function drawCallout(){
     const part=PARTS[selected];if(!part)return;
     const point=projectPoint(part.center);
@@ -309,7 +392,7 @@
       }
       if(item.pickable&&item.component)renderedFaces.push({points:projected,component:item.component,depth:entry.depth});
     });
-    drawCallout();
+    drawFlowOverlay();drawCallout();
   }
 
   function scheduleRender(){
@@ -331,6 +414,7 @@
     if(!PARTS[id])return;
     selected=id;const part=PARTS[id];
     nameEl.textContent=part.label;purposeEl.textContent=part.purpose;operationEl.textContent=part.operation;statusEl.textContent=part.short;
+    if(factsEl){factsEl.replaceChildren();(part.facts||[]).forEach(fact=>{const chip=document.createElement('span');chip.textContent=fact;factsEl.appendChild(chip)})}
     systemLink.dataset.system=part.system;systemLink.textContent='OPEN '+part.system.toUpperCase()+' SYSTEM VIEW';
     renderPartButtons();render();
   }
@@ -376,6 +460,7 @@
   canvas.addEventListener('pointercancel',pointerUp);
   canvas.addEventListener('wheel',event=>{event.preventDefault();zoom=clamp(zoom*Math.exp(-event.deltaY*.0012),.72,1.65);scheduleRender()},{passive:false});
   cutawayButton.addEventListener('click',()=>{cutaway=!cutaway;cutawayButton.setAttribute('aria-pressed',String(cutaway));cutawayButton.textContent=cutaway?'CUTAWAY':'COMPLETE';buildModel();render()});
+  if(flowButton)flowButton.addEventListener('click',()=>{airflow=!airflow;flowButton.setAttribute('aria-pressed',String(airflow));flowButton.textContent=airflow?'AIRFLOW':'AIRFLOW OFF';if(flowKey)flowKey.hidden=!airflow;render()});
   resetButton.addEventListener('click',resetView);
   systemLink.addEventListener('click',()=>{
     const system=PARTS[selected].system;
@@ -384,7 +469,7 @@
   });
   if('ResizeObserver' in window)new ResizeObserver(scheduleRender).observe(canvas);else window.addEventListener('resize',scheduleRender);
 
-  window.V25003D={selectPart,getState:()=>({part:selected,cutaway,yaw,pitch,zoom}),setCutaway:value=>{cutaway=!!value;cutawayButton.setAttribute('aria-pressed',String(cutaway));buildModel();render()},reset:resetView,getParts:()=>Object.keys(PARTS)};
+  window.V25003D={selectPart,getState:()=>({part:selected,cutaway,airflow,yaw,pitch,zoom}),setCutaway:value=>{cutaway=!!value;cutawayButton.setAttribute('aria-pressed',String(cutaway));buildModel();render()},setAirflow:value=>{airflow=!!value;if(flowButton){flowButton.setAttribute('aria-pressed',String(airflow));flowButton.textContent=airflow?'AIRFLOW':'AIRFLOW OFF'}if(flowKey)flowKey.hidden=!airflow;render()},reset:resetView,getParts:()=>Object.keys(PARTS)};
   buildModel();selectPart('fan');
 })();
 
