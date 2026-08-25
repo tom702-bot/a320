@@ -9,7 +9,7 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 |---|---|
 | `index.html` | Main app: HTML, CSS, JavaScript and question data in one file. |
 | `A320_Checkride_Trainer.html` | Standalone twin of `index.html`; keep it byte-for-byte identical. |
-| `self-study-quizzes.js` | Three source-grounded 30-question course tests in fixed A-D order. |
+| `self-study-quizzes.js` | Nine source-grounded 30-question banks (270 questions) in fixed A-D order. |
 | `A321P2F_Limitations_FillCheck.html` | Legacy filename for the standalone A320 fill-and-check page. Its visible title and data are A320-specific. |
 | `electrical.html` | Interactive ECAM-style A320 electrical-system synoptic and configuration explainer. |
 | `electrical-sim.js` | Electrical network evaluation, component failures, transfers and dimensional canvas rendering. |
@@ -46,9 +46,11 @@ source. Subject chips are generated from each question's `c` value.
 Current audited state: 330 multiple-choice questions and 8 separate memory-item cards. Recount
 after every question edit; do not rely on these figures if validation reports something else.
 
-`self-study-quizzes.js` separately defines 90 course-test questions as
-`window.SELF_STUDY_QUIZZES`. Each quiz has 30 questions, every question has exactly four fixed
-options, and `a` is a zero-based answer index from 0 through 3. These tests are sourced from the
+`self-study-quizzes.js` separately defines 270 course-test questions as
+`window.SELF_STUDY_QUIZZES`. Each of the three course areas has three banks of 30 questions.
+Every question has exactly four fixed options, and `a` is a zero-based answer index from 0 through 3.
+The app selects 30 questions per attempt, prioritises unseen question keys from the 90-question
+course pool, and only reuses the oldest keys after all 90 have been served. These tests are sourced from the
 supplied Gas Turbine Engines A320 Self Study Guides (Parts 1 and 2) and Pressurisation A320 Self
 Study Guide; each rationale includes its source slide number in the UI.
 
@@ -78,7 +80,7 @@ source.
 3. Keep the standalone fill page's `SECTIONS` data aligned with `FILL_SECTIONS`.
 4. Validate JavaScript syntax and check that:
    - the main-bank total is 330 unless a deliberate addition/removal changes it;
-   - the self-study bank contains 3 quizzes, 30 questions per quiz, and 4 options per question;
+   - the self-study bank contains 3 courses, 3 banks per course, 30 questions per bank, and 4 options per question;
    - every answer index is valid;
    - every question has a non-empty explanation/reference;
    - normalized question text contains no duplicates;
@@ -87,7 +89,7 @@ source.
 5. Search correct answers and explanations—not just distractors—for superseded A321P2F or
    engineering-only values.
 6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v19`.
+   `a320-trainer-v20`.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is

@@ -1,8 +1,8 @@
 # Ansett A320 Checkride Trainer
 
-An installable, iPhone-friendly study app for A320 limitations, systems questions, memory items, fill-in practice, three self-marking course quizzes, interactive ECAM-style electrical and hydraulic trainers, and a provisional IAE V2500 engine-systems explorer.
+An installable, iPhone-friendly study app for A320 limitations, systems questions, memory items, fill-in practice, 270 self-study course questions across nine banks, interactive ECAM-style electrical and hydraulic trainers, and a provisional IAE V2500 engine-systems explorer.
 
-The dedicated Self-Study Quizzes section contains three 30-question tests drawn from the supplied Gas Turbine Engines A320 Self Study Guides (Parts 1 and 2) and Pressurisation A320 Self Study Guide. These course quizzes are separate from the FCOM limitations audit. Every question uses four fixed A-D choices. The app marks each answer, gives an explanation and slide reference, calculates the final score, and stores completed best scores locally on the learner's device.
+The dedicated Self-Study Quizzes section contains three course areas drawn from the supplied Gas Turbine Engines A320 Self Study Guides (Parts 1 and 2) and Pressurisation A320 Self Study Guide. Each course has three independent 30-question banks, giving a 90-question pool and 270 questions overall. Every attempt serves 30 questions, prioritises questions not yet seen on that device, and only recycles the oldest questions after the course pool is exhausted. These course quizzes are separate from the FCOM limitations audit. Every question uses four fixed A-D choices. The app marks each answer, gives an explanation and slide reference, calculates the final score, and stores completed best scores locally on the learner's device.
 
 The limitations quiz content was audited against the supplied Ansett/Navblue A320 FCOM limitations extract for active aircraft A/C 21-CMHT, dated 22 MAY 24. Engine quiz questions use the active CFM & PW section; engineering-only IAE values are not mixed into that audited question bank.
 

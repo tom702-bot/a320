@@ -278,7 +278,7 @@
     <p class="lede">Pick a drill. Limitations Check gives an ECAM-style debrief with the answer,
       reasoning and FCOM reference. Review Weak Areas re-serves only what you've missed. Memory
       Item Drill is self-marked cold recall, Fill &amp; Check grades typed values, and Self-Study
-      Quizzes adds three complete 30-question course tests. Progress is saved on this device only.</p>
+      Quizzes draws each 30-question test from larger rotating banks. Progress is saved on this device only.</p>
 
     <div class="modegrid">
       <button class="mode" id="modeMcq">
@@ -299,7 +299,7 @@
       </button>
       <button class="mode study" id="modeStudy">
         <div class="mt"><span class="ic">TEST</span>Self-Study Quizzes</div>
-        <div class="md">Three complete 30-question tests on gas turbines and pressurisation, with fixed A&ndash;D choices and automatic scoring.</div>
+        <div class="md">Three course areas with three banks each: 270 questions in total, fixed A&ndash;D choices, recent-question avoidance and automatic scoring.</div>
       </button>
       <button class="mode lookup" id="modeLookup">
         <div class="mt"><span class="ic">READ</span>Lookup</div>
@@ -359,8 +359,9 @@
     <div class="panel">
       <div class="eyebrow">Self-study quiz centre</div>
       <div class="question" style="margin-bottom:10px">Choose a practice test</div>
-      <p class="studynote">Each test contains 30 questions with four choices shown in fixed A&ndash;D order.
-        Select an answer to mark it, review the explanation, then continue. Completed scores are saved on this device.</p>
+      <p class="studynote">Each course has three independent 30-question banks. Every attempt draws 30 questions,
+        prioritising ones not yet served on this device and recycling the oldest only after the 90-question pool is exhausted.
+        Choices remain in fixed A&ndash;D order, and completed scores are saved on this device.</p>
       <div class="studygrid" id="studyCards"></div>
     </div>
     <div class="row"><button class="btn ghost" id="studyHome">&larr; Change drill</button></div>
@@ -968,12 +969,40 @@ $("modeFill").onclick=()=>{ show("fill"); buildFill(); };
 const STUDY_QUIZZES=window.SELF_STUDY_QUIZZES||[];
 const STUDY_STORE_KEY="a320selfstudy_v1";
 const STUDY_LETTERS=["A","B","C","D"];
+const STUDY_RUN_SIZE=30;
 function loadStudyStats(){try{return JSON.parse(localStorage.getItem(STUDY_STORE_KEY))||{};}catch(e){return {};}}
 function saveStudyStats(){try{localStorage.setItem(STUDY_STORE_KEY,JSON.stringify(STUDY_STATS));}catch(e){}}
 let STUDY_STATS=loadStudyStats();
-let studyActive=null,studyIndex=0,studyCorrect=0,studyMissed=[];
+let studyActive=null,studyQueue=[],studyIndex=0,studyCorrect=0,studyMissed=[];
 
 function studyShortTitle(title){return title.replace(/^Quiz\s+\d+\s+-\s+/i,"");}
+function studyBanks(quiz){
+  return Array.isArray(quiz.banks)?quiz.banks:[{id:"A",questions:quiz.questions||[]}];
+}
+function studyQuestionPool(quiz){
+  return studyBanks(quiz).flatMap(bank=>bank.questions.map((question,index)=>
+    Object.assign({key:bank.id+":"+index},question)));
+}
+function selectStudyQuestions(quiz){
+  const pool=studyQuestionPool(quiz);
+  const stat=STUDY_STATS[quiz.id]||{};
+  const history=Array.isArray(stat.history)?stat.history.filter(key=>pool.some(q=>q.key===key)):[];
+  const seen=new Set(history);
+  const unseen=shuffle(pool.filter(question=>!seen.has(question.key)));
+  const selected=unseen.slice(0,STUDY_RUN_SIZE);
+  if(selected.length<STUDY_RUN_SIZE){
+    const selectedKeys=new Set(selected.map(question=>question.key));
+    const byKey=new Map(pool.map(question=>[question.key,question]));
+    const oldest=history.map(key=>byKey.get(key)).filter(question=>question&&!selectedKeys.has(question.key));
+    selected.push(...oldest.slice(0,STUDY_RUN_SIZE-selected.length));
+  }
+  const queue=shuffle(selected);
+  const served=new Set(queue.map(question=>question.key));
+  const updatedHistory=history.filter(key=>!served.has(key)).concat(queue.map(question=>question.key));
+  STUDY_STATS[quiz.id]=Object.assign({attempts:0,best:0,last:0},stat,{history:updatedHistory.slice(-pool.length)});
+  saveStudyStats();
+  return queue;
+}
 function renderStudyCards(){
   const host=$("studyCards"); host.innerHTML="";
   if(!STUDY_QUIZZES.length){
@@ -990,10 +1019,10 @@ function renderStudyCards(){
     const title=document.createElement("div");title.className="sttitle";title.textContent=studyShortTitle(quiz.title);
     name.appendChild(num);name.appendChild(title);
     const score=document.createElement("div");score.className="stscore";
-    score.textContent=stat?"Best "+stat.best+"%":"Not attempted";
+    score.textContent=stat&&stat.attempts?"Best "+stat.best+"%":"Not attempted";
     top.appendChild(name);top.appendChild(score);card.appendChild(top);
     const meta=document.createElement("div");meta.className="stmeta";
-    meta.textContent=quiz.questions.length+" questions · A–D · "+quiz.source;
+    meta.textContent=studyQuestionPool(quiz).length+"-question pool · "+studyBanks(quiz).length+" banks · 30 per attempt · A–D · "+quiz.source;
     card.appendChild(meta);card.onclick=()=>startStudyQuiz(quiz.id);host.appendChild(card);
   });
 }
@@ -1004,18 +1033,20 @@ $("studyHome").onclick=()=>show("start");
 function startStudyQuiz(id){
   studyActive=STUDY_QUIZZES.find(q=>q.id===id);
   if(!studyActive){alert("That quiz could not be loaded.");return;}
+  studyQueue=selectStudyQuestions(studyActive);
+  if(studyQueue.length!==STUDY_RUN_SIZE){alert("That quiz bank is incomplete.");return;}
   studyIndex=0;studyCorrect=0;studyMissed=[];
   show("studyQuiz");renderStudyQuestion();
 }
 function renderStudyQuestion(){
-  const q=studyActive.questions[studyIndex];
+  const q=studyQueue[studyIndex];
   $("ssTitle").textContent=studyShortTitle(studyActive.title);
   $("ssText").textContent=q.q;
-  $("ssPos").textContent=(studyIndex+1)+"/"+studyActive.questions.length;
+  $("ssPos").textContent=(studyIndex+1)+"/"+studyQueue.length;
   $("ssCor").textContent=studyCorrect;$("ssMiss").textContent=studyMissed.length;
   const attempted=studyCorrect+studyMissed.length;
   $("ssPct").textContent=attempted?Math.round(studyCorrect/attempted*100)+"%":"—";
-  $("ssBar").style.width=(studyIndex/studyActive.questions.length*100)+"%";
+  $("ssBar").style.width=(studyIndex/studyQueue.length*100)+"%";
   $("ssFeedback").innerHTML="";$("ssNextRow").style.display="none";
   const opts=$("ssOpts");opts.innerHTML="";
   q.o.forEach((option,index)=>{
@@ -1027,7 +1058,7 @@ function renderStudyQuestion(){
   });
 }
 function markStudyAnswer(chosen){
-  const q=studyActive.questions[studyIndex];
+  const q=studyQueue[studyIndex];
   const correct=chosen===q.a;
   [...$("ssOpts").children].forEach((button,index)=>{
     button.disabled=true;
@@ -1056,19 +1087,19 @@ function markStudyAnswer(chosen){
 }
 $("ssNext").onclick=()=>{
   studyIndex++;
-  if(studyIndex>=studyActive.questions.length)finishStudyQuiz(true);
+  if(studyIndex>=studyQueue.length)finishStudyQuiz(true);
   else renderStudyQuestion();
 };
 $("ssQuit").onclick=()=>{
   if(confirm("End this attempt? Incomplete attempts are not saved to your best score."))finishStudyQuiz(false);
 };
 function finishStudyQuiz(completed){
-  const total=studyActive.questions.length;
+  const total=studyQueue.length;
   const answered=studyCorrect+studyMissed.length;
   const pct=answered?Math.round(studyCorrect/(completed?total:answered)*100):0;
   if(completed){
     const prev=STUDY_STATS[studyActive.id]||{attempts:0,best:0,last:0};
-    STUDY_STATS[studyActive.id]={attempts:prev.attempts+1,best:Math.max(prev.best,pct),last:pct};
+    STUDY_STATS[studyActive.id]=Object.assign({},prev,{attempts:(prev.attempts||0)+1,best:Math.max(prev.best||0,pct),last:pct});
     saveStudyStats();
   }
   $("ssResultEye").textContent=studyShortTitle(studyActive.title)+" — result";
@@ -1087,7 +1118,7 @@ function finishStudyQuiz(completed){
     const heading=document.createElement("div");heading.className="eyebrow";heading.style.marginTop="18px";
     heading.textContent="Review — missed items ("+studyMissed.length+")";review.appendChild(heading);
     studyMissed.forEach(miss=>{
-      const q=studyActive.questions[miss.index];
+      const q=studyQueue[miss.index];
       const item=document.createElement("div");item.className="ritem";
       const question=document.createElement("div");question.className="rq";
       question.textContent=(miss.index+1)+". "+q.q;
