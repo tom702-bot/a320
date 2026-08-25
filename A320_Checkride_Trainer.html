@@ -148,9 +148,33 @@
   .mode.fill .mt .ic{background:var(--green)}
   .mode.review .mt .ic{background:var(--cyan)}
   .mode.lookup .mt .ic{background:#c9d4dc;color:var(--bg)}
+  .mode.study .mt .ic{background:#9b8cff;color:var(--bg)}
   .mode.electrical .mt .ic{background:var(--green-deep);color:#fff}
   .mode.hydraulic .mt .ic{background:#49a7db;color:#fff}
   .mode.engine .mt .ic{background:var(--amber);color:var(--bg)}
+
+  /* ---- Self-study quiz centre ---- */
+  .studygrid{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+  .studycard{width:100%;text-align:left;border:1px solid var(--edge);background:var(--panel2);
+    color:var(--white);border-radius:11px;padding:17px;cursor:pointer;font-family:var(--font-ui);
+    transition:border-color .15s,background .15s,transform .05s}
+  .studycard:hover{border-color:#9b8cff;background:#1d2831}
+  .studycard:active{transform:translateY(1px)}
+  .studycard .sttop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .studycard .stnum{font-family:var(--font-data);font-size:10px;letter-spacing:1.4px;
+    text-transform:uppercase;color:#b9b0ff;margin-bottom:5px}
+  .studycard .sttitle{font-size:15.5px;font-weight:650;line-height:1.35}
+  .studycard .stscore{font-family:var(--font-data);font-size:12px;color:var(--cyan);
+    white-space:nowrap;border:1px solid var(--edge);border-radius:6px;padding:5px 7px}
+  .studycard .stmeta{font-family:var(--font-data);font-size:11px;color:var(--muted);
+    line-height:1.5;margin-top:9px}
+  .studynote{font-size:13.5px;color:var(--muted);line-height:1.6;margin:0}
+  .studyresult{font-family:var(--font-data);font-size:13px;color:var(--muted);
+    text-align:center;margin:8px 0 18px}
+  .study-review .ritem{border-top:1px solid var(--edge);padding:13px 0;font-size:14px}
+  .study-review .rq{color:var(--white);margin-bottom:5px}
+  .study-review .ra{font-family:var(--font-data);font-size:13px;color:var(--green);line-height:1.5}
+  .study-review .rw{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:5px}
 
   /* ---- Progress panel ---- */
   .prog{border:1px solid var(--edge);background:var(--panel);border-radius:12px;padding:16px 18px;margin-bottom:16px}
@@ -253,8 +277,8 @@
   <section id="start">
     <p class="lede">Pick a drill. Limitations Check gives an ECAM-style debrief with the answer,
       reasoning and FCOM reference. Review Weak Areas re-serves only what you've missed. Memory
-      Item Drill is self-marked cold recall, Fill &amp; Check grades typed values, Lookup lets
-      you browse every limitation, and ELEC opens an interactive electrical synoptic. Progress is saved on this device only.</p>
+      Item Drill is self-marked cold recall, Fill &amp; Check grades typed values, and Self-Study
+      Quizzes adds three complete 30-question course tests. Progress is saved on this device only.</p>
 
     <div class="modegrid">
       <button class="mode" id="modeMcq">
@@ -272,6 +296,10 @@
       <button class="mode fill" id="modeFill">
         <div class="mt"><span class="ic">FILL</span>Fill &amp; Check</div>
         <div class="md">Type each limitation value from memory; instant green/amber grading, answers on miss.</div>
+      </button>
+      <button class="mode study" id="modeStudy">
+        <div class="mt"><span class="ic">TEST</span>Self-Study Quizzes</div>
+        <div class="md">Three complete 30-question tests on gas turbines and pressurisation, with fixed A&ndash;D choices and automatic scoring.</div>
       </button>
       <button class="mode lookup" id="modeLookup">
         <div class="mt"><span class="ic">READ</span>Lookup</div>
@@ -324,6 +352,56 @@
       </div>
     </div>
     <div class="row"><button class="btn ghost" id="quitBtn">&larr; End &amp; score</button></div>
+  </section>
+
+  <!-- ================= SELF-STUDY QUIZ CENTRE ================= -->
+  <section id="study" class="hidden">
+    <div class="panel">
+      <div class="eyebrow">Self-study quiz centre</div>
+      <div class="question" style="margin-bottom:10px">Choose a practice test</div>
+      <p class="studynote">Each test contains 30 questions with four choices shown in fixed A&ndash;D order.
+        Select an answer to mark it, review the explanation, then continue. Completed scores are saved on this device.</p>
+      <div class="studygrid" id="studyCards"></div>
+    </div>
+    <div class="row"><button class="btn ghost" id="studyHome">&larr; Change drill</button></div>
+  </section>
+
+  <!-- ================= SELF-STUDY QUIZ ================= -->
+  <section id="studyQuiz" class="hidden">
+    <div class="strip">
+      <div class="cell"><div class="k">Item</div><div class="v" id="ssPos">0/30</div></div>
+      <div class="cell"><div class="k">Correct</div><div class="v green" id="ssCor">0</div></div>
+      <div class="cell"><div class="k">Missed</div><div class="v amber" id="ssMiss">0</div></div>
+      <div class="cell"><div class="k">Score</div><div class="v" id="ssPct">&mdash;</div></div>
+    </div>
+    <div class="progress"><i id="ssBar"></i></div>
+
+    <div class="panel">
+      <div class="eyebrow" id="ssTitle">Self-study quiz</div>
+      <div class="question" id="ssText">&nbsp;</div>
+      <div class="options" id="ssOpts"></div>
+      <div id="ssFeedback" aria-live="polite"></div>
+      <div class="row end" id="ssNextRow" style="display:none">
+        <button class="btn primary" id="ssNext">Next &rarr;</button>
+      </div>
+    </div>
+    <div class="row"><button class="btn ghost" id="ssQuit">&larr; End attempt</button></div>
+  </section>
+
+  <!-- ================= SELF-STUDY RESULTS ================= -->
+  <section id="studyResults" class="hidden">
+    <div class="panel">
+      <div class="eyebrow" id="ssResultEye">Self-study quiz &mdash; result</div>
+      <div class="bigscore" id="ssResultScore">0%</div>
+      <div class="verdict" id="ssResultVerdict">&nbsp;</div>
+      <div class="studyresult" id="ssResultMeta"></div>
+      <div class="study-review" id="ssReview"></div>
+      <div class="row" style="margin-top:20px">
+        <button class="btn primary" id="ssRetake">Retake quiz</button>
+        <button class="btn" id="ssChoose">Choose another</button>
+        <button class="btn ghost" id="ssResultHome">Change drill</button>
+      </div>
+    </div>
   </section>
 
   <!-- ================= MEMORY DRILL ================= -->
@@ -402,10 +480,11 @@
     Study aid &mdash; NOT for flying. Verify every value against current FCOM / QRH.<br>
     Limitation values verified against the Ansett A320 FCOM, A/C 21-CMHT, dated 22 MAY 24.
     Active CFM &amp; PW engine limits are used; the engineering-only IAE section is excluded.
-    Systems and memory-item content was not covered by this limitations-only audit.
+    Systems, memory items and the separately sourced self-study course quizzes were not covered by this limitations-only audit.
   </div>
 </div>
 
+<script src="self-study-quizzes.js"></script>
 <script>
 /* ============ QUESTION BANK ============ */
 const BANK = [
@@ -795,7 +874,8 @@ const MEM = [
 
 /* ============ ENGINE ============ */
 const $=id=>document.getElementById(id);
-const sec={start:$("start"),quiz:$("quiz"),mem:$("mem"),results:$("results"),fill:$("fill"),lookup:$("lookup")};
+const sec={start:$("start"),quiz:$("quiz"),study:$("study"),studyQuiz:$("studyQuiz"),
+  studyResults:$("studyResults"),mem:$("mem"),results:$("results"),fill:$("fill"),lookup:$("lookup")};
 function show(name){for(const k in sec)sec[k].classList.toggle("hidden",k!==name);if(name==="start")renderProgress();window.scrollTo({top:0,behavior:"instant"});}
 
 /* ---------- on-device performance memory (localStorage; never leaves this device) ---------- */
@@ -883,6 +963,150 @@ drawLens();
 $("modeMcq").onclick=()=>$("filterPanel").scrollIntoView({behavior:"smooth"});
 $("modeMem").onclick=()=>startMem();
 $("modeFill").onclick=()=>{ show("fill"); buildFill(); };
+
+/* ---------- SELF-STUDY QUIZZES ---------- */
+const STUDY_QUIZZES=window.SELF_STUDY_QUIZZES||[];
+const STUDY_STORE_KEY="a320selfstudy_v1";
+const STUDY_LETTERS=["A","B","C","D"];
+function loadStudyStats(){try{return JSON.parse(localStorage.getItem(STUDY_STORE_KEY))||{};}catch(e){return {};}}
+function saveStudyStats(){try{localStorage.setItem(STUDY_STORE_KEY,JSON.stringify(STUDY_STATS));}catch(e){}}
+let STUDY_STATS=loadStudyStats();
+let studyActive=null,studyIndex=0,studyCorrect=0,studyMissed=[];
+
+function studyShortTitle(title){return title.replace(/^Quiz\s+\d+\s+-\s+/i,"");}
+function renderStudyCards(){
+  const host=$("studyCards"); host.innerHTML="";
+  if(!STUDY_QUIZZES.length){
+    const p=document.createElement("p");p.className="studynote";
+    p.textContent="The quiz bank could not be loaded. Refresh once while online to update the offline copy.";
+    host.appendChild(p);return;
+  }
+  STUDY_QUIZZES.forEach((quiz,index)=>{
+    const stat=STUDY_STATS[quiz.id];
+    const card=document.createElement("button");card.className="studycard";card.type="button";
+    const top=document.createElement("div");top.className="sttop";
+    const name=document.createElement("div");
+    const num=document.createElement("div");num.className="stnum";num.textContent="Quiz "+(index+1);
+    const title=document.createElement("div");title.className="sttitle";title.textContent=studyShortTitle(quiz.title);
+    name.appendChild(num);name.appendChild(title);
+    const score=document.createElement("div");score.className="stscore";
+    score.textContent=stat?"Best "+stat.best+"%":"Not attempted";
+    top.appendChild(name);top.appendChild(score);card.appendChild(top);
+    const meta=document.createElement("div");meta.className="stmeta";
+    meta.textContent=quiz.questions.length+" questions · A–D · "+quiz.source;
+    card.appendChild(meta);card.onclick=()=>startStudyQuiz(quiz.id);host.appendChild(card);
+  });
+}
+function openStudyCentre(){renderStudyCards();show("study");}
+$("modeStudy").onclick=()=>openStudyCentre();
+$("studyHome").onclick=()=>show("start");
+
+function startStudyQuiz(id){
+  studyActive=STUDY_QUIZZES.find(q=>q.id===id);
+  if(!studyActive){alert("That quiz could not be loaded.");return;}
+  studyIndex=0;studyCorrect=0;studyMissed=[];
+  show("studyQuiz");renderStudyQuestion();
+}
+function renderStudyQuestion(){
+  const q=studyActive.questions[studyIndex];
+  $("ssTitle").textContent=studyShortTitle(studyActive.title);
+  $("ssText").textContent=q.q;
+  $("ssPos").textContent=(studyIndex+1)+"/"+studyActive.questions.length;
+  $("ssCor").textContent=studyCorrect;$("ssMiss").textContent=studyMissed.length;
+  const attempted=studyCorrect+studyMissed.length;
+  $("ssPct").textContent=attempted?Math.round(studyCorrect/attempted*100)+"%":"—";
+  $("ssBar").style.width=(studyIndex/studyActive.questions.length*100)+"%";
+  $("ssFeedback").innerHTML="";$("ssNextRow").style.display="none";
+  const opts=$("ssOpts");opts.innerHTML="";
+  q.o.forEach((option,index)=>{
+    const button=document.createElement("button");button.className="opt";button.type="button";
+    const tag=document.createElement("span");tag.className="tag";tag.textContent=STUDY_LETTERS[index];
+    const text=document.createElement("span");text.className="txt";text.textContent=option;
+    button.appendChild(tag);button.appendChild(text);
+    button.onclick=()=>markStudyAnswer(index);opts.appendChild(button);
+  });
+}
+function markStudyAnswer(chosen){
+  const q=studyActive.questions[studyIndex];
+  const correct=chosen===q.a;
+  [...$("ssOpts").children].forEach((button,index)=>{
+    button.disabled=true;
+    if(index===q.a)button.classList.add("correct");
+    else if(index===chosen)button.classList.add("wrong");
+    else button.classList.add("dim");
+  });
+  if(correct)studyCorrect++;
+  else studyMissed.push({index:studyIndex,chosen});
+  const attempted=studyCorrect+studyMissed.length;
+  $("ssCor").textContent=studyCorrect;$("ssMiss").textContent=studyMissed.length;
+  $("ssPct").textContent=Math.round(studyCorrect/attempted*100)+"%";
+
+  const feedback=document.createElement("div");feedback.className="ecam "+(correct?"ok":"no");
+  const head=document.createElement("div");head.className="head";
+  const dot=document.createElement("span");dot.className="dot";head.appendChild(dot);
+  head.appendChild(document.createTextNode(correct?"CORRECT":"CHECK — INCORRECT"));
+  const body=document.createElement("div");body.className="body";
+  const answer=document.createElement("div");answer.className="ans";
+  answer.textContent="ANSWER  "+STUDY_LETTERS[q.a]+". "+q.o[q.a];
+  const why=document.createElement("div");why.className="why";
+  const lead=document.createElement("span");lead.className="lead";lead.textContent="Explanation";
+  why.appendChild(lead);why.appendChild(document.createTextNode(q.w+" · "+studyActive.source+", slide "+q.slide));
+  body.appendChild(answer);body.appendChild(why);feedback.appendChild(head);feedback.appendChild(body);
+  $("ssFeedback").appendChild(feedback);$("ssNextRow").style.display="flex";$("ssNext").focus();
+}
+$("ssNext").onclick=()=>{
+  studyIndex++;
+  if(studyIndex>=studyActive.questions.length)finishStudyQuiz(true);
+  else renderStudyQuestion();
+};
+$("ssQuit").onclick=()=>{
+  if(confirm("End this attempt? Incomplete attempts are not saved to your best score."))finishStudyQuiz(false);
+};
+function finishStudyQuiz(completed){
+  const total=studyActive.questions.length;
+  const answered=studyCorrect+studyMissed.length;
+  const pct=answered?Math.round(studyCorrect/(completed?total:answered)*100):0;
+  if(completed){
+    const prev=STUDY_STATS[studyActive.id]||{attempts:0,best:0,last:0};
+    STUDY_STATS[studyActive.id]={attempts:prev.attempts+1,best:Math.max(prev.best,pct),last:pct};
+    saveStudyStats();
+  }
+  $("ssResultEye").textContent=studyShortTitle(studyActive.title)+" — result";
+  $("ssResultScore").textContent=pct+"%";
+  $("ssResultScore").style.color=pct>=90?"var(--green)":pct>=75?"var(--cyan)":"var(--amber)";
+  const verdict=$("ssResultVerdict");
+  if(!completed){verdict.textContent="Incomplete attempt";verdict.style.color="var(--amber)";}
+  else if(pct>=90){verdict.textContent="Excellent — strong recall";verdict.style.color="var(--green)";}
+  else if(pct>=75){verdict.textContent="Solid — review the misses";verdict.style.color="var(--cyan)";}
+  else{verdict.textContent="More study and another run";verdict.style.color="var(--amber)";}
+  $("ssResultMeta").textContent=completed
+    ? studyCorrect+" of "+total+" correct · Score saved on this device"
+    : answered+" of "+total+" answered · Partial accuracy shown · Score not saved";
+  const review=$("ssReview");review.innerHTML="";
+  if(studyMissed.length){
+    const heading=document.createElement("div");heading.className="eyebrow";heading.style.marginTop="18px";
+    heading.textContent="Review — missed items ("+studyMissed.length+")";review.appendChild(heading);
+    studyMissed.forEach(miss=>{
+      const q=studyActive.questions[miss.index];
+      const item=document.createElement("div");item.className="ritem";
+      const question=document.createElement("div");question.className="rq";
+      question.textContent=(miss.index+1)+". "+q.q;
+      const answer=document.createElement("div");answer.className="ra";
+      answer.textContent="✓ "+STUDY_LETTERS[q.a]+". "+q.o[q.a];
+      const why=document.createElement("div");why.className="rw";
+      why.textContent=q.w+" · "+studyActive.source+", slide "+q.slide;
+      item.appendChild(question);item.appendChild(answer);item.appendChild(why);review.appendChild(item);
+    });
+  }else if(completed){
+    const item=document.createElement("div");item.className="ritem";
+    const answer=document.createElement("div");answer.className="ra";answer.textContent="Clean sweep — nothing missed.";
+    item.appendChild(answer);review.appendChild(item);
+  }
+  show("studyResults");
+}
+$("ssRetake").onclick=()=>startStudyQuiz(studyActive.id);
+$("ssChoose").onclick=()=>openStudyCentre();
+$("ssResultHome").onclick=()=>show("start");
 
 /* ---------- MCQ ---------- */
 let queue=[],qi=0,cor=0,miss=0,streak=0,missed=[];
@@ -1129,7 +1353,7 @@ $("lookupHome").onclick=()=>show("start");
 
 renderProgress();
 
-/* keyboard: 1-5 to answer, Enter to advance */
+/* keyboard: number keys to answer, Enter to advance */
 document.addEventListener("keydown",e=>{
   if(!sec.quiz.classList.contains("hidden")){
     if(/^[1-5]$/.test(e.key)){
@@ -1138,6 +1362,13 @@ document.addEventListener("keydown",e=>{
       if(opts[idx]&&!opts[idx].disabled)opts[idx].click();
     }
     if(e.key==="Enter"&&$("nextRow").style.display!=="none")$("nextBtn").click();
+  }else if(!sec.studyQuiz.classList.contains("hidden")){
+    if(/^[1-4]$/.test(e.key)){
+      const opts=$("ssOpts").children;
+      const idx=+e.key-1;
+      if(opts[idx]&&!opts[idx].disabled)opts[idx].click();
+    }
+    if(e.key==="Enter"&&$("ssNextRow").style.display!=="none")$("ssNext").click();
   }
 });
 </script>

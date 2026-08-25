@@ -1,5 +1,6 @@
-const CACHE = 'a320-trainer-v18';
+const CACHE = 'a320-trainer-v19';
 const ASSETS = ['./','./index.html','./manifest.webmanifest',
+  './self-study-quizzes.js',
   './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js',
   './icon-180.png','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', function(e){
