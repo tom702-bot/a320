@@ -21,24 +21,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 4
           },
           {
-            "q": "Which statement best applies Newton's third law to jet propulsion?",
+            "q": "An engine accelerates its intake airflow rearwards. Which reaction produces thrust?",
             "o": [
-              "Thrust is created only by increasing fuel pressure.",
-              "The engine pulls atmospheric air forward through the intake.",
-              "Accelerating air rearwards produces an equal reaction that accelerates the aircraft forwards.",
-              "The turbine pushes directly against the fuselage to create thrust."
+              "The compressor pressure rise acts forward on the engine casing.",
+              "The intake momentum pulls the aircraft towards the oncoming airflow.",
+              "The rearward change in air momentum produces an equal forward reaction.",
+              "The turbine torque is transferred through the mounts as forward force."
             ],
             "a": 2,
             "w": "The engine accelerates atmospheric air, producing an equal force in the opposite direction.",
             "slide": 6
           },
           {
-            "q": "How do propeller and jet engines differ in the way they produce thrust?",
+            "q": "For a similar thrust requirement, which airflow strategy distinguishes a propeller from a jet?",
             "o": [
-              "A propeller gives a small acceleration to a large mass of air; a jet gives a large acceleration to a smaller mass of air.",
-              "A propeller gives a large acceleration to a small mass of air; a jet does the opposite.",
-              "Both accelerate the same mass of air by the same amount.",
-              "A jet produces thrust without accelerating air."
+              "A propeller accelerates a large air mass slightly; a jet accelerates a smaller air mass more.",
+              "A propeller accelerates a small air mass greatly; a jet accelerates a larger air mass less.",
+              "A propeller and jet use similar mass flow, but the propeller creates the larger velocity change.",
+              "A propeller relies on pressure change, whereas a jet relies on mass flow without acceleration."
             ],
             "a": 0,
             "w": "The presentation contrasts high-mass/low-acceleration propeller thrust with low-mass/high-acceleration jet thrust.",
@@ -69,24 +69,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 9
           },
           {
-            "q": "Which statement about the Brayton cycle in an operating jet engine is correct?",
+            "q": "How are the Brayton-cycle processes arranged in a running gas turbine?",
             "o": [
-              "The inlet, compression, combustion, turbine and exhaust stages operate simultaneously.",
-              "Compression begins only after the exhaust stage has finished.",
-              "Combustion stops whenever the turbine is extracting energy.",
-              "Only one engine stage is active at any given time."
+              "Each section performs its process continuously while the other sections operate at the same time.",
+              "The engine completes compression and combustion alternately during successive shaft revolutions.",
+              "Combustion pauses during turbine work so pressure can recover ahead of the nozzle.",
+              "Each process moves sequentially through the engine after the preceding process is complete."
             ],
             "a": 0,
             "w": "Unlike the separate events of a piston-engine cycle, all gas-turbine stages operate continuously at the same time.",
             "slide": 10
           },
           {
-            "q": "Which statement best describes a turboprop engine?",
+            "q": "Where does a turboprop direct most of the energy extracted by its turbine?",
             "o": [
-              "It relies entirely on exhaust jet velocity for thrust.",
-              "It transfers most of the turbine energy through a shaft and reduction gears to a propeller.",
-              "It has no turbine section downstream of the combustor.",
-              "It is intended only for supersonic aircraft."
+              "Into residual exhaust velocity through a propelling nozzle.",
+              "Through a shaft and reduction gearbox to the propeller.",
+              "Into bypass airflow driven directly by the compressor.",
+              "Through the accessory gearbox to produce propeller thrust."
             ],
             "a": 1,
             "w": "A turboprop uses turbine power, a shaft, and reduction gearing to drive the propeller; the exhaust provides little thrust.",
@@ -119,10 +119,10 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which bypass-ratio category is dominant in commercial passenger aircraft?",
             "o": [
-              "Zero bypass",
-              "Low bypass",
-              "High bypass",
-              "Reverse bypass"
+              "Very-low bypass turbofan",
+              "Low-bypass turbofan",
+              "High-bypass turbofan",
+              "Medium-bypass turbofan"
             ],
             "a": 2,
             "w": "The slide identifies high-bypass turbofans as the dominant commercial passenger-aircraft type.",
@@ -141,24 +141,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 18
           },
           {
-            "q": "What is the purpose of a diffuser ahead of the combustion chamber?",
+            "q": "What change should the diffuser produce before airflow enters the combustion chamber?",
             "o": [
-              "To increase velocity and reduce pressure",
-              "To ignite the fuel-air mixture",
-              "To divert all airflow around the engine core",
-              "To decrease velocity and increase pressure"
+              "Raise velocity while lowering static pressure.",
+              "Lower both velocity and static pressure.",
+              "Raise both velocity and static pressure.",
+              "Lower velocity while raising static pressure."
             ],
             "a": 3,
             "w": "A diffuser is a divergent duct that slows the gas stream and raises its pressure.",
             "slide": 20
           },
           {
-            "q": "Why must intake air reach the compressor below the speed of sound, even on a supersonic aircraft?",
+            "q": "Why does the intake decelerate even supersonic flight airflow before the compressor?",
             "o": [
-              "To maintain smooth flow through the compressor and turbine blades",
-              "To eliminate the need for compression",
-              "To ensure the exhaust remains subsonic",
-              "To prevent the fan from producing bypass thrust"
+              "The compressor and turbine blade rows require smooth subsonic flow.",
+              "Subsonic inlet flow removes most of the compressor's pressure-rise requirement.",
+              "The exhaust nozzle requires the compressor inlet flow to remain subsonic.",
+              "The fan's bypass-thrust efficiency depends on an inlet Mach number below one."
             ],
             "a": 0,
             "w": "The inlet decelerates the air so it can flow smoothly through the compressor and turbine blade rows.",
@@ -179,10 +179,10 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which is an advantage of a centrifugal compressor identified in the guide?",
             "o": [
-              "Very small frontal area for a given airflow",
-              "A high pressure rise per stage, up to about 8:1",
-              "Lower susceptibility to leakage than all axial designs",
-              "The highest overall compression ratio with one stage"
+              "A small frontal area for a given mass flow.",
+              "A pressure rise of up to about 8:1 from one stage.",
+              "A smaller leakage path between rotating and stationary parts.",
+              "A higher multi-stage compression ratio than the axial type."
             ],
             "a": 1,
             "w": "A centrifugal compressor can achieve a high pressure rise per stage, listed as up to approximately 8:1.",
@@ -201,12 +201,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 29
           },
           {
-            "q": "What do axial-compressor stator vanes do?",
+            "q": "After an axial-compressor rotor accelerates the air, what is the stator row intended to do?",
             "o": [
-              "Add fuel and ignite the airflow",
-              "Drive the rotor blades mechanically",
-              "Convert kinetic energy into pressure and direct airflow to the next rotor",
-              "Convert pressure into bypass thrust only"
+              "Add heat while turning the air towards the combustor.",
+              "Add shaft work and increase the air's tangential velocity.",
+              "Recover pressure from velocity and set the angle for the next rotor.",
+              "Convert static pressure into velocity for the next rotor."
             ],
             "a": 2,
             "w": "Stators recover pressure from airflow velocity and set the correct angle for the following rotor row.",
@@ -227,10 +227,10 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which feature is an advantage of axial compressors over centrifugal compressors?",
             "o": [
-              "Lower manufacturing complexity",
-              "Lower starting-power requirement",
-              "Higher pressure rise from a single stage",
-              "Higher overall compression ratios and a smaller engine diameter"
+              "Simpler construction with lower manufacturing cost.",
+              "Lower starting power with a wider efficient speed range.",
+              "Greater pressure rise from each individual stage.",
+              "Higher overall pressure ratio with a smaller frontal diameter."
             ],
             "a": 3,
             "w": "Axial compressors support high overall pressure ratios and a smaller diameter, reducing drag.",
@@ -249,12 +249,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 34
           },
           {
-            "q": "What is the main role of the combustion chamber's dilution zone?",
+            "q": "Why is dilution air introduced in the final zone of the combustion chamber?",
             "o": [
-              "To provide a uniform, acceptable turbine-entry temperature and protect the chamber structure",
-              "To create the initial ignition spark",
-              "To raise airflow velocity to 500 ft/s before combustion",
-              "To prevent all compressor bleed-air use"
+              "To even and reduce gas temperature before the turbine while cooling the liner.",
+              "To establish the primary recirculation zone immediately around the igniter.",
+              "To accelerate the primary-zone flow to compressor-delivery velocity.",
+              "To increase the local fuel-air ratio before the turbine nozzle guide vanes."
             ],
             "a": 0,
             "w": "Dilution air evens and reduces the gas temperature before it reaches the turbine and protects the chamber structure.",
@@ -287,22 +287,22 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which is an advantage of an annular combustion chamber?",
             "o": [
-              "It uses only two fuel nozzles.",
-              "It is the easiest design for individual can replacement.",
-              "It is best suited only to centrifugal compressors.",
-              "It has high combustion efficiency, reduced emissions, and a shorter length."
+              "Its separate flame tubes make individual chamber replacement straightforward.",
+              "Its reverse-flow gas path gives the smallest engine package.",
+              "Its separated cans reduce interaction between adjacent flame zones.",
+              "Its continuous flame annulus gives efficient combustion in a short chamber."
             ],
             "a": 3,
             "w": "The annular design provides an unbroken flame, high combustion efficiency, lower emissions, and a shorter arrangement.",
             "slide": 41
           },
           {
-            "q": "What is the main packaging advantage of a reverse-flow annular combustor?",
+            "q": "Why is the gas path folded through a reverse-flow annular combustor?",
             "o": [
-              "It significantly reduces engine length.",
-              "It eliminates all pressure losses.",
-              "It permits the highest mass airflow in large engines.",
-              "It removes the need for turbine nozzle guide vanes."
+              "To shorten the engine package substantially.",
+              "To reduce pressure loss through the chamber to negligible levels.",
+              "To accommodate greater mass flow than a straight annular chamber.",
+              "To replace the need for turbine nozzle guide vanes."
             ],
             "a": 0,
             "w": "Turning the gas path through an S-bend allows a substantially shorter engine.",
@@ -321,12 +321,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 44
           },
           {
-            "q": "How are turbine blades and nozzle guide vanes commonly cooled?",
+            "q": "Which cooling path is used for turbine blades and nozzle guide vanes?",
             "o": [
-              "By circulating engine oil over their outer surfaces",
-              "By routing bypass air around the exhaust cone only",
-              "By spraying fuel through the blade root",
-              "By passing relatively cool compressor bleed air through the blade and out small holes"
+              "Scavenge oil is routed through internal passages and returned at the blade root.",
+              "Fan discharge air is directed externally across the exhaust cone and blade tips.",
+              "Fuel passes through the blade root before entering the combustion chamber.",
+              "Compressor bleed air passes internally and exits through small surface holes."
             ],
             "a": 3,
             "w": "Compressor bleed air passes internally through the blades and exits via small cooling holes.",
@@ -335,10 +335,10 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which statement correctly describes the IAE V2500 low-pressure system?",
             "o": [
-              "The LP compressor has a fan plus four stages, and the LP turbine has five stages.",
-              "The LP compressor has five stages and no fan, while the LP turbine has four stages.",
-              "Both the LP compressor and LP turbine have two stages.",
-              "The LP turbine drives only the accessory gearbox."
+              "The LP compressor comprises the fan plus four stages, driven by a five-stage LP turbine.",
+              "The LP compressor comprises five stages after the fan, driven by a four-stage LP turbine.",
+              "The LP compressor and LP turbine each comprise four stages in addition to the fan.",
+              "The fan and four-stage LP compressor are driven through the HP turbine shaft."
             ],
             "a": 0,
             "w": "The V2500 slide identifies a fan plus four LP-compressor stages and five LP-turbine stages.",
@@ -357,12 +357,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 58
           },
           {
-            "q": "If EPR becomes unavailable and the FADEC reverts to N1 mode, which functions are lost according to the guide?",
+            "q": "Following EPR loss and reversion to N1 thrust control, which protections become unavailable?",
             "o": [
-              "All engine indication and fuel control",
-              "Only engine-start capability",
-              "Autothrust and alpha-floor protection",
-              "Hydraulic and electrical generation"
+              "Thrust-limit computation and engine overspeed protection.",
+              "Automatic relight and start-sequence monitoring.",
+              "Autothrust and alpha-floor protection.",
+              "Generator-load control and hydraulic-pump control."
             ],
             "a": 2,
             "w": "N1 reversion maintains equivalent thrust until lever movement, but autothrust and alpha-floor protection are lost.",
@@ -376,22 +376,22 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "According to Newton's third law, how do the forces produced when two bodies interact compare?",
             "o": [
-              "They are unequal and act in the same direction",
-              "They are equal in magnitude and opposite in direction",
-              "Only the heavier body experiences a force",
-              "They cancel before either body accelerates"
+              "They are unequal in magnitude and oppose one another.",
+              "They are equal in magnitude and opposite in direction.",
+              "They are equal in magnitude and act in the same direction.",
+              "Their magnitudes depend on which body begins the interaction."
             ],
             "a": 1,
             "w": "Newton's third law describes equal-magnitude forces acting in opposite directions.",
             "slide": 5
           },
           {
-            "q": "What does the combustion chamber add to the compressed airflow?",
+            "q": "What change does combustion add to the compressed core airflow?",
             "o": [
-              "Energy through heating and expansion",
-              "Only mechanical shaft speed",
-              "Cold bypass air only",
-              "Lubricating oil pressure"
+              "Heat energy that produces expansion.",
+              "Shaft work that produces compression.",
+              "Pressure recovery that reduces volume.",
+              "Kinetic energy recovered by diffusion."
             ],
             "a": 0,
             "w": "Combustion adds energy by heating and expanding the compressed air.",
@@ -412,22 +412,22 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "In the Brayton-cycle diagram, useful output may appear in which forms?",
             "o": [
-              "Electrical power or hydraulic pressure only",
-              "Cabin pressure or bleed-air flow",
-              "Oil pressure or fuel pressure",
-              "Jet reaction thrust or shaft horsepower"
+              "Compressor pressure rise or turbine temperature drop.",
+              "Bleed-air pressure or accessory gearbox torque.",
+              "Fuel-flow energy or exhaust static pressure.",
+              "Jet reaction thrust or shaft horsepower."
             ],
             "a": 3,
             "w": "The enclosed Brayton-cycle area represents useful output as jet reaction or shaft horsepower.",
             "slide": 10
           },
           {
-            "q": "Why are pure turbojets principally associated with higher-speed aircraft?",
+            "q": "Why does the guide associate the basic turbojet with flight above roughly 450 mph?",
             "o": [
-              "They cannot operate above 350 mph",
-              "They are designed for speeds above about 450 mph, where propeller efficiency falls",
-              "They require a propeller at low altitude",
-              "Their thrust is independent of forward speed"
+              "Its propulsive efficiency peaks below the speed range used by propellers.",
+              "Propeller efficiency falls as blade-tip airflow is disturbed at higher speeds.",
+              "Its compressor requires a propeller slipstream at lower forward speeds.",
+              "Its thrust remains constant with forward speed while propeller thrust increases."
             ],
             "a": 1,
             "w": "The guide associates turbojets with speeds exceeding about 450 mph as propeller efficiency falls at high blade-tip speeds.",
@@ -436,22 +436,22 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which operating characteristic is listed as a turboprop advantage over a comparable piston engine?",
             "o": [
-              "Smooth running and easier starting at low temperatures",
-              "Zero maintenance cost",
-              "All thrust comes from the exhaust",
-              "Best efficiency only above supersonic speed"
+              "Smoother running and easier starting in low temperatures.",
+              "Lower fuel consumption and lower replacement cost at every speed.",
+              "A larger share of thrust produced by the exhaust stream.",
+              "Peak efficiency at speeds well above the propeller operating range."
             ],
             "a": 0,
             "w": "The guide lists smooth running, lower weight, easier cold starting, and easier maintenance as turboprop advantages.",
             "slide": 13
           },
           {
-            "q": "For what kind of operation are turboprops described as particularly suitable?",
+            "q": "Which operation best matches the turboprop use described in the guide?",
             "o": [
-              "Long-range supersonic transport",
-              "Only hovering flight",
-              "Short-range regional operation at speeds above about 300 mph",
-              "Space-launch vehicles"
+              "Long-range transport above the efficient propeller speed range.",
+              "Low-speed vertical-lift operation below regional cruise speeds.",
+              "Short-range regional flight at speeds above roughly 300 mph.",
+              "High-altitude supersonic flight where exhaust thrust dominates."
             ],
             "a": 2,
             "w": "Turboprops are described as appropriate above about 300 mph and well suited to short-range regional aircraft.",
@@ -460,10 +460,10 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which additional benefit accompanies the turbofan's fuel-efficiency advantage?",
             "o": [
-              "Higher propeller-tip noise",
-              "Elimination of the turbine",
-              "A larger frontal area than every other engine",
-              "Reduced noise"
+              "A higher exhaust velocity for the same core fuel flow.",
+              "A smaller fan mass flow for the same thrust.",
+              "A higher proportion of thrust from the core jet.",
+              "Reduced noise compared with a basic turbojet."
             ],
             "a": 3,
             "w": "Reduced noise is identified as an added turbofan benefit.",
@@ -472,22 +472,22 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which pairing of bypass ratio and aircraft category matches the guide?",
             "o": [
-              "Medium bypass - business jets",
-              "High bypass - combat aircraft",
-              "Low bypass - commercial transports only",
-              "Zero bypass - regional turboprops"
+              "Medium bypass — business jets.",
+              "High bypass — combat aircraft requiring afterburning.",
+              "Low bypass — commercial passenger aircraft.",
+              "Medium bypass — regional turboprops."
             ],
             "a": 0,
             "w": "The guide associates medium-bypass turbofans with business jets and low-bypass engines with combat aircraft.",
             "slide": 17
           },
           {
-            "q": "Why are turbine nozzle guide vanes formed as convergent ducts?",
+            "q": "What is the aerodynamic purpose of the convergent passages formed by turbine nozzle guide vanes?",
             "o": [
-              "To slow the gas before the turbine",
-              "To accelerate the gas stream before it strikes the turbine blades",
-              "To increase static pressure without changing velocity",
-              "To divert all gas around the turbine"
+              "Diffuse the gas and increase static pressure before the blades.",
+              "Accelerate the gas before it reaches the turbine blades.",
+              "Hold gas velocity constant while turning it onto the blades.",
+              "Reduce gas temperature while bypassing the first turbine stage."
             ],
             "a": 1,
             "w": "The convergent nozzle guide vanes accelerate the gas stream so the turbine can rotate at high speed.",
@@ -496,10 +496,10 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "How is gas pressure intended to behave through the combustion chamber?",
             "o": [
-              "Rise continuously to the exhaust",
-              "Fall to zero before ignition",
-              "Remain reasonably constant",
-              "Oscillate once per turbine revolution"
+              "Increase progressively as combustion adds heat.",
+              "Fall sharply as fuel is introduced.",
+              "Remain reasonably constant through the chamber.",
+              "Fall and recover with each combustion zone."
             ],
             "a": 2,
             "w": "The guide shows pressure being held reasonably constant through the combustion chamber.",
@@ -508,10 +508,10 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Besides capturing and decelerating air, what does the intake contribute?",
             "o": [
-              "Some compression",
-              "Fuel atomisation",
-              "Turbine cooling only",
-              "Ignition energy"
+              "A degree of compression through its duct shape.",
+              "Fuel-air mixing before the compressor.",
+              "Cooling air for the turbine section.",
+              "Pressure-to-velocity conversion before the compressor."
             ],
             "a": 0,
             "w": "The inlet duct shape also performs some compression before the compressor.",
@@ -530,12 +530,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 24
           },
           {
-            "q": "Why is a centrifugal compressor relatively tolerant of foreign-object damage?",
+            "q": "Which design characteristic gives a centrifugal compressor comparatively good FOD resistance?",
             "o": [
-              "It has no moving components",
-              "Its structure is more robust than the axial type",
-              "Its blades are made of rubber",
-              "All inlet air bypasses the impeller"
+              "Its impeller has fewer rotating elements than an axial stage.",
+              "Its structure is more robust than the axial type.",
+              "Its diffuser shields the impeller from incoming objects.",
+              "Its radial flow turns debris away before it reaches the impeller."
             ],
             "a": 1,
             "w": "The guide identifies the centrifugal compressor's robust structure as giving better FOD resistance.",
@@ -554,24 +554,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 27
           },
           {
-            "q": "What can result if centrifugal-compressor impeller vane clearance is made too small?",
+            "q": "What is the likely consequence of making centrifugal-compressor impeller clearance excessively small?",
             "o": [
-              "Perfectly steady flow at all speeds",
-              "Higher bypass ratio",
-              "Aerodynamic buffeting, unsteady flow, and vibration",
-              "Automatic ignition"
+              "Reduced leakage with steadier flow throughout the speed range.",
+              "A lower pressure rise as the diffuser throat area increases.",
+              "Aerodynamic buffeting that produces unsteady flow and vibration.",
+              "Reduced impeller speed caused by diffuser pressure recovery."
             ],
             "a": 2,
             "w": "Excessively small clearance can cause buffeting that produces unsteady airflow and vibration.",
             "slide": 27
           },
           {
-            "q": "Why do large jet aircraft normally use axial compressors?",
+            "q": "Why is the axial compressor suited to the thrust requirement of large jet aircraft?",
             "o": [
-              "They require no turbine drive",
-              "They have only one compressor stage",
-              "They are immune to FOD",
-              "They can provide the high thrust per engine required"
+              "It obtains a high pressure rise without turbine shaft work.",
+              "It obtains the required pressure ratio from a single stage.",
+              "Its rotor arrangement makes it less vulnerable to FOD.",
+              "Its multi-stage flow capacity supports high thrust per engine."
             ],
             "a": 3,
             "w": "The axial compressor's high overall compression and airflow capability supports the thrust required by large aircraft.",
@@ -614,12 +614,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 32
           },
           {
-            "q": "Which is a stated requirement of a combustion chamber?",
+            "q": "Which performance requirement applies to a combustion chamber across the engine operating range?",
             "o": [
-              "Leave a controlled amount of fuel unburnt",
-              "Operate only at one fuel flow",
-              "Produce maximum smoke for visibility",
-              "Mix and burn large quantities of fuel and air across the operating range"
+              "Retain a small fuel fraction to sustain relight downstream.",
+              "Maintain a fixed fuel flow as compressor airflow changes.",
+              "Trade combustion efficiency for a stable visible flame.",
+              "Mix and burn large, changing quantities of fuel and air efficiently."
             ],
             "a": 3,
             "w": "The chamber must mix and burn large fuel and airflow quantities throughout the operating range while limiting waste and emissions.",
@@ -638,36 +638,36 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 34
           },
           {
-            "q": "What is the purpose of the primary-zone swirl vane?",
+            "q": "How does the primary-zone swirl vane assist stable combustion?",
             "o": [
-              "Measure EGT",
-              "Promote mixing and help anchor the flame",
-              "Drive the compressor shaft",
-              "Cool the oil tank"
+              "It measures the temperature profile near the flame.",
+              "It promotes fuel-air mixing and supports flame-anchoring recirculation.",
+              "It extracts shaft work to turn the compressor.",
+              "It meters cooling flow into the dilution zone."
             ],
             "a": 1,
             "w": "Swirling promotes efficient fuel-air mixing and helps maintain the recirculation that anchors the flame.",
             "slide": 34
           },
           {
-            "q": "What is the function of the perforated flare in the primary combustion zone?",
+            "q": "What does airflow through the perforated flare do in the primary zone?",
             "o": [
-              "It blocks all primary air",
-              "It supports the turbine wheel",
-              "Its holes create turbulence for efficient fuel-air mixing",
-              "It meters engine oil"
+              "Forms a low-turbulence cooling film around the flame.",
+              "Supports the liner against turbine-entry pressure.",
+              "Creates turbulence that improves fuel-air mixing.",
+              "Meters the secondary air that sets turbine-entry temperature."
             ],
             "a": 2,
             "w": "The perforated flare admits primary air and creates turbulence for effective mixing.",
             "slide": 35
           },
           {
-            "q": "Which condition is most closely associated with a rich flameout?",
+            "q": "Which operating change can create the mixture condition for a rich flameout?",
             "o": [
-              "Low fuel pressure during descent",
-              "A steady optimum mixture",
-              "Low airspeed with no throttle movement",
-              "Rapid engine acceleration producing an over-rich mixture"
+              "Reducing fuel pressure during a high-speed descent.",
+              "Holding the mixture near its optimum ratio.",
+              "Reducing engine speed while maintaining the same airflow.",
+              "Accelerating rapidly so fuel temporarily exceeds the available airflow."
             ],
             "a": 3,
             "w": "Rapid acceleration can produce an over-rich mixture, over-pressure, airflow stagnation, and flame extinction.",
@@ -686,48 +686,48 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 39
           },
           {
-            "q": "What maintenance advantage does a can-annular combustor have over a fully annular design?",
+            "q": "Why is a can-annular combustor comparatively convenient to repair on the wing?",
             "o": [
-              "It has no flame tubes",
-              "Its modular flame tubes are easier to repair or replace on the wing",
-              "It requires no cooling air",
-              "It eliminates all pressure loss"
+              "Its continuous liner can be removed as one short assembly.",
+              "Its modular flame tubes can be repaired or replaced individually.",
+              "Its cooling system is separate from compressor delivery air.",
+              "Its pressure loss is lower because adjacent cans are isolated."
             ],
             "a": 1,
             "w": "The modular can-annular arrangement is easier to repair or replace on the wing.",
             "slide": 40
           },
           {
-            "q": "After the turbine drives the compressor and accessories, how can residual gas-stream energy propel the aircraft?",
+            "q": "Once the turbine has supplied the compressor and accessories, how can the remaining gas energy produce propulsion?",
             "o": [
-              "Only through a hydraulic pump",
-              "Only through an electrical generator",
-              "Through a fan, propeller, or jet efflux",
-              "By pressurising the cabin"
+              "It can drive a hydraulic motor coupled to the fan.",
+              "It can drive a generator coupled to the propelling nozzle.",
+              "It can drive a fan or propeller, or remain as jet efflux.",
+              "It can be recovered as cabin-pressure work through bleed air."
             ],
             "a": 2,
             "w": "Residual energy can drive a fan or propeller or remain as jet efflux in a pure jet.",
             "slide": 43
           },
           {
-            "q": "What two functions do turbine nozzle guide vanes perform?",
+            "q": "Which two aerodynamic jobs are performed by turbine nozzle guide vanes?",
             "o": [
-              "Add fuel and ignite the gas",
-              "Reduce compressor rpm and raise oil pressure",
-              "Cool the cabin and exhaust",
-              "Direct gas at the optimum blade angle and convert pressure energy to kinetic energy"
+              "Meter fuel and stabilise the combustion flame.",
+              "Reduce turbine speed and recover exhaust pressure.",
+              "Cool the gas and straighten it into the exhaust.",
+              "Aim the gas at the blades and convert pressure into velocity."
             ],
             "a": 3,
             "w": "NGVs aim the flow at the turbine blades while accelerating it by converting pressure energy into kinetic energy.",
             "slide": 45
           },
           {
-            "q": "Why is the turbine-blade root commonly attached with a fir-tree form?",
+            "q": "Why are turbine blades commonly retained by a fir-tree root?",
             "o": [
-              "To distribute centrifugal loading among several serrations",
-              "To increase fuel flow",
-              "To seal the combustion chamber",
-              "To measure blade temperature"
+              "Its serrations distribute the large centrifugal load.",
+              "Its passages meter cooling flow into the blade tip.",
+              "Its shape seals the gas path between adjacent blades.",
+              "Its contact faces sense blade temperature through the disc."
             ],
             "a": 0,
             "w": "The fir-tree serrations share the large centrifugal load at turbine speed.",
@@ -751,36 +751,36 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 10
           },
           {
-            "q": "How does a basic turbojet create its thrust?",
+            "q": "Which mass-flow and velocity-change combination characterises basic turbojet thrust?",
             "o": [
-              "By giving a small acceleration to a very large air mass",
-              "By driving a propeller with nearly all turbine energy",
-              "By high acceleration of a relatively small air mass",
-              "By extracting all exhaust energy as shaft power"
+              "A relatively large air mass given a small velocity increase.",
+              "A large propeller mass flow using most of the turbine energy.",
+              "A relatively small air mass given a large velocity increase.",
+              "A small exhaust mass flow with most energy converted to shaft power."
             ],
             "a": 2,
             "w": "A turbojet relies on a high acceleration applied to a relatively small mass of air.",
             "slide": 12
           },
           {
-            "q": "In a turboprop, how much of the total thrust normally comes from the exhaust stream?",
+            "q": "In a turboprop, what share of useful propulsive output normally comes from the exhaust jet?",
             "o": [
-              "Only a minor amount",
-              "Exactly half",
-              "Almost all",
-              "None of the turbine energy reaches the propeller"
+              "A minor share; most turbine energy reaches the propeller.",
+              "Roughly half, with the remainder reaching the propeller.",
+              "The major share, with the propeller contributing less.",
+              "A variable share that exceeds the propeller output above 300 mph."
             ],
             "a": 0,
             "w": "Almost all useful energy is transferred to the propeller, so exhaust contributes little thrust.",
             "slide": 13
           },
           {
-            "q": "Why can an enclosed turbofan fan operate efficiently at higher speeds than an open propeller?",
+            "q": "Which installation feature helps a turbofan fan remain efficient at speeds that challenge an open propeller?",
             "o": [
-              "It has only one blade",
-              "It turns more slowly than all propellers",
-              "It operates without an inlet",
-              "The inlet encloses the fan and it uses many blades"
+              "A low blade count that reduces fan-tip disturbance.",
+              "A fan rotational speed below that of comparable propellers.",
+              "An uncontained fan that captures a wider free-stream area.",
+              "An inlet-enclosed fan with many blades."
             ],
             "a": 3,
             "w": "The enclosed, many-bladed fan avoids some high-speed propeller limitations.",
@@ -789,10 +789,10 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "For the same thrust, what benefit does bypass airflow provide?",
             "o": [
-              "Higher fuel consumption",
-              "Lower fuel consumption",
-              "No need for a turbine",
-              "Higher compressor leakage"
+              "A higher exhaust velocity for the same mass flow.",
+              "Lower fuel consumption for the same thrust.",
+              "Less turbine work required to drive the fan.",
+              "A higher core pressure ratio for the same fan speed."
             ],
             "a": 1,
             "w": "The guide states that bypass flow reduces fuel consumption for the same thrust.",
@@ -801,46 +801,46 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "What defines a divergent duct?",
             "o": [
-              "Its cross-section becomes wider in the direction of flow",
-              "Its cross-section narrows continuously",
-              "Its area remains constant",
-              "It contains rotating blades"
+              "Its flow area increases in the direction of flow.",
+              "Its flow area decreases in the direction of flow.",
+              "Its flow area remains constant while its shape changes.",
+              "Its flow area alternates through rotating and stationary rows."
             ],
             "a": 0,
             "w": "A divergent duct widens in the direction of flow.",
             "slide": 18
           },
           {
-            "q": "What pressure pattern is shown immediately before and at the exhaust?",
+            "q": "How is remaining exhaust pressure treated as the gas approaches the propelling nozzle?",
             "o": [
-              "Pressure rises markedly at the exhaust",
-              "Pressure remains at compressor-delivery value",
-              "Pressure drops, with exhaust velocity then increased by a convergent duct",
-              "Pressure becomes independent of velocity"
+              "Static pressure rises and velocity falls through the nozzle.",
+              "Static pressure is held near compressor-delivery pressure.",
+              "Pressure falls and the convergent nozzle converts more of it into velocity.",
+              "Pressure and velocity change independently through the exhaust."
             ],
             "a": 2,
             "w": "Pressure falls through the turbine and markedly at the exhaust as the propelling nozzle converts pressure to velocity.",
             "slide": 21
           },
           {
-            "q": "What common purpose do centrifugal and axial compressors serve?",
+            "q": "Despite their different flow paths, what output must both centrifugal and axial compressors provide?",
             "o": [
-              "Cool exhaust gas",
-              "Compress air before delivery to the combustion chamber",
-              "Meter oil into the bearings",
-              "Reverse the thrust after landing"
+              "Cooled gas for the exhaust section.",
+              "Compressed air for the combustion chamber.",
+              "Metered oil for the main bearings.",
+              "Reversed flow for landing deceleration."
             ],
             "a": 1,
             "w": "Both compressor types raise air pressure before combustion.",
             "slide": 23
           },
           {
-            "q": "Where is centrifugal-compressor leakage particularly likely?",
+            "q": "Which clearances create the leakage concern identified for a centrifugal compressor?",
             "o": [
-              "Between the exhaust cone and tailpipe",
-              "At the fuel nozzles only",
-              "Inside the oil tank",
-              "Across clearances between the impeller, diffuser, and casing"
+              "The clearance between the exhaust cone and tailpipe.",
+              "The clearance between fuel nozzles and the chamber liner.",
+              "The clearance between the impeller eye and intake lip.",
+              "The gaps among the impeller, diffuser and compressor casing."
             ],
             "a": 3,
             "w": "The guide identifies the small impeller-to-diffuser-and-casing gaps as leakage paths.",
@@ -849,10 +849,10 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which group contains disadvantages of an axial compressor?",
             "o": [
-              "Manufacturing complexity, high cost, and greater FOD susceptibility",
-              "Low thrust capability and large frontal area only",
-              "No ability to use multiple stages",
-              "Low weight and low starting power"
+              "Complex manufacture, high cost and greater FOD susceptibility.",
+              "Large frontal area, low thrust capability and high leakage.",
+              "Limited staging, low overall pressure ratio and high drag.",
+              "High starting power, low stage pressure rise and simpler manufacture."
             ],
             "a": 0,
             "w": "Axial compressors are more complex and costly and are more vulnerable to foreign-object damage.",
@@ -921,82 +921,82 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which statement about a multi-can combustor is correct?",
             "o": [
-              "It is the most space-efficient modern design",
-              "It is best matched only to axial compressors",
-              "Individual cans can be replaced relatively easily",
-              "Every can must have its own igniter"
+              "Its individual cans give the shortest and most space-efficient chamber.",
+              "Its can layout is normally paired with a single axial compressor stage.",
+              "Its individual flame tubes can be replaced comparatively easily.",
+              "Each can uses a dedicated igniter rather than interconnecting tubes."
             ],
             "a": 2,
             "w": "A multi-can system is modular and individual cans are comparatively easy to replace.",
             "slide": 39
           },
           {
-            "q": "What flame pattern is produced by an annular combustion chamber?",
+            "q": "How does combustion extend around a fully annular chamber?",
             "o": [
-              "Separate flames that cannot communicate",
-              "One flame only at the bottom",
-              "A flame confined to two cans",
-              "An unbroken sheet of flame around the engine periphery"
+              "As separate flame fronts divided by the liner supports.",
+              "As two arcs extending from the igniter locations.",
+              "As linked flames confined within individual cans.",
+              "As a continuous sheet of flame around the engine."
             ],
             "a": 3,
             "w": "The continuous annular passage supports an unbroken peripheral flame sheet.",
             "slide": 41
           },
           {
-            "q": "Why is a reverse-flow annular combustor unsuitable for a large, high-mass-flow engine?",
+            "q": "What limits use of a reverse-flow annular combustor in a large, high-mass-flow engine?",
             "o": [
-              "Its S-bend creates efficiency losses and does not suit high mass airflow",
-              "It cannot contain igniters",
-              "It has no turbine outlet",
-              "It requires a longer engine"
+              "The S-bend adds efficiency loss and restricts very high mass flow.",
+              "The folded liner leaves insufficient space for standard igniter locations.",
+              "The layout leaves no direct flow path to the turbine inlet.",
+              "The folded gas path increases overall engine length."
             ],
             "a": 0,
             "w": "The reversing gas path shortens the engine but costs efficiency and is not suited to high mass flow.",
             "slide": 42
           },
           {
-            "q": "What determines how many turbine stages an engine requires?",
+            "q": "What design requirement drives the number of turbine stages?",
             "o": [
-              "The cabin altitude",
-              "The amount of power that must be extracted",
-              "The number of fuel tanks",
-              "The aircraft tyre pressure"
+              "The turbine-entry pressure permitted by the combustion liner.",
+              "The amount of shaft power that must be extracted.",
+              "The number of compressor bleed-air services supplied.",
+              "The exhaust velocity required at idle thrust."
             ],
             "a": 1,
             "w": "Additional stages are used when more power must be extracted from the gas stream.",
             "slide": 44
           },
           {
-            "q": "How are impulse-reaction turbine blades commonly distributed along blade length?",
+            "q": "How does a typical turbine blade's aerodynamic form vary from root to tip?",
             "o": [
-              "Reaction at the root only",
-              "Impulse at the tip only",
-              "Impulse near the root, changing toward reaction near the tip",
-              "Reaction and impulse alternate every revolution"
+              "Reaction at the root, becoming impulse at the tip.",
+              "Impulse at both root and tip, with reaction at mid-span.",
+              "Impulse near the root, becoming more reaction-like towards the tip.",
+              "Reaction near the root, alternating with impulse each stage."
             ],
             "a": 2,
             "w": "A typical blade blends impulse characteristics at the root into reaction characteristics toward the tip.",
             "slide": 47
           },
           {
-            "q": "What is one purpose of twisting a turbine blade?",
+            "q": "Why is the aerofoil section of a turbine blade twisted along its span?",
             "o": [
-              "Make the root carry all aerodynamic work",
-              "Increase fuel-nozzle pressure",
-              "Block axial exhaust flow",
-              "Make the gas perform equal work along the blade and leave with uniform axial velocity"
+              "To concentrate aerodynamic loading near the root.",
+              "To raise fuel-nozzle pressure through the turbine disc.",
+              "To turn the discharge away from the axial direction.",
+              "To equalise work along the blade and produce uniform axial discharge."
             ],
             "a": 3,
             "w": "Blade twist balances work across the span and promotes uniform axial exit flow.",
             "slide": 48
           },
           {
-            "q": "What does the turbine-blade shroud ring do?",
+            "q": "Which combination describes the function of a turbine-blade shroud ring?",
             "o": [
-              "Stiffens blade tips, reduces vibration, and limits tip leakage",
-              "Supplies fuel to the combustor",
-              "Disconnects the starter clutch",
-              "Measures EPR"
+              "Stiffen the tips, reduce vibration and restrict tip leakage.",
+              "Feed cooling air, seal the root and retain the blade axially.",
+              "Disconnect the starter, damp shaft vibration and support the bearing.",
+              "Measure turbine speed, temperature and pressure ratio."
             ],
             "a": 0,
             "w": "The shroud stiffens the tips and carries knife-edge seals that reduce leakage.",
@@ -1015,36 +1015,36 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 52
           },
           {
-            "q": "What does the divergent passage between the exhaust walls and cone achieve?",
+            "q": "What flow change is produced by the divergent exhaust passage around the cone?",
             "o": [
-              "Accelerates gas and lowers pressure",
-              "Ignites residual fuel",
-              "Reduces velocity and raises pressure, helping reduce turbulence",
-              "Drives the starter"
+              "Velocity rises and static pressure falls, increasing turbulence.",
+              "Velocity and pressure fall together as the gas cools.",
+              "Velocity falls and pressure rises, helping reduce turbulence.",
+              "Velocity is held constant while swirl is increased."
             ],
             "a": 2,
             "w": "The divergent exhaust passage slows the gas and recovers pressure, reducing downstream turbulence.",
             "slide": 53
           },
           {
-            "q": "Besides supporting a rear shaft bearing, what do exhaust struts do?",
+            "q": "What aerodynamic function accompanies the exhaust struts' bearing-support role?",
             "o": [
-              "Meter fuel flow",
-              "Cool the cabin",
-              "Drive the fan",
-              "Straighten turbine discharge into axial flow"
+              "Meter the exhaust mass flow.",
+              "Diffuse the exhaust to recover pressure.",
+              "Drive the fan through the rear bearing.",
+              "Straighten turbine discharge towards axial flow."
             ],
             "a": 3,
             "w": "Exhaust struts help straighten the flow after it leaves the turbine.",
             "slide": 54
           },
           {
-            "q": "How does the tailpipe propelling nozzle maximise design thrust?",
+            "q": "How does a convergent tailpipe nozzle use the pressure remaining after the turbine?",
             "o": [
-              "Its convergent shape converts remaining pressure into velocity",
-              "It diffuses the exhaust to zero speed",
-              "It drives the HP compressor mechanically",
-              "It closes during takeoff"
+              "It converts the remaining pressure into exhaust velocity.",
+              "It diffuses the exhaust and recovers static pressure.",
+              "It transfers the pressure mechanically to the HP compressor.",
+              "It varies area to hold exhaust velocity constant at takeoff."
             ],
             "a": 0,
             "w": "The convergent tailpipe gives the gas a final acceleration by converting pressure to velocity.",
@@ -1053,10 +1053,10 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which control feature is fitted to the IAE V2500-A5?",
             "o": [
-              "Manual fuel control only",
-              "Full Authority Digital Engine Control",
-              "No electronic engine control",
-              "A mechanical propeller governor"
+              "A hydromechanical fuel control with electronic trimming.",
+              "Full Authority Digital Engine Control.",
+              "A supervisory electronic control retaining manual fuel metering.",
+              "A mechanical propeller and turbine governor."
             ],
             "a": 1,
             "w": "The V2500-A5 installation includes a FADEC along with fuel, oil, air, ignition, start, and reverser systems.",
@@ -1087,12 +1087,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 58
           },
           {
-            "q": "Which variable is included when the V2500 FADEC computes command EPR?",
+            "q": "Which crew input is one of the variables used by V2500 FADEC to compute command EPR?",
             "o": [
-              "Thrust lever angle",
-              "Cabin vertical speed only",
-              "Brake temperature",
-              "Landing-gear position only"
+              "Thrust lever angle.",
+              "Selected cabin vertical speed.",
+              "Brake temperature.",
+              "Landing-gear position."
             ],
             "a": 0,
             "w": "Command EPR uses TLA plus altitude, Mach, ambient and inlet temperatures, and extracted bleed air.",
@@ -1123,84 +1123,84 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 3
           },
           {
-            "q": "Which information is normally associated with the lower engine display?",
+            "q": "Which group belongs primarily on the lower engine display rather than the primary upper display?",
             "o": [
-              "Oil temperature, oil pressure, fuel flow, and engine vibration",
-              "Attitude, altitude, airspeed, and heading",
-              "Only N1 and EPR",
-              "Cabin altitude and differential pressure only"
+              "Oil temperature and pressure, fuel flow and engine vibration.",
+              "N1, EPR, EGT and the thrust-limit reference.",
+              "N1 and EPR with the commanded thrust mode.",
+              "N2, EGT, fuel-on-board and the thrust-limit reference."
             ],
             "a": 0,
             "w": "Secondary engine information includes oil temperature, oil pressure, fuel flow, and vibration.",
             "slide": 3
           },
           {
-            "q": "Between which locations is engine pressure ratio (EPR) measured?",
+            "q": "Which pair of pressure-sensing locations forms the EPR comparison?",
             "o": [
-              "Across the fuel pump and fuel nozzles",
-              "Across the oil pump and oil filter",
-              "Between the inlet before the fan and the area downstream of the last turbine stage",
-              "Between the LP and HP compressor shafts"
+              "Compressor delivery and combustion-chamber outlet.",
+              "Fan discharge and HP-compressor delivery.",
+              "Ahead of the fan and downstream of the final turbine stage.",
+              "LP-compressor inlet and HP-compressor outlet."
             ],
             "a": 2,
             "w": "EPR compares inlet pressure just before the fan with pressure downstream of the last turbine stage.",
             "slide": 4
           },
           {
-            "q": "How can an N1 rotational-speed signal be generated?",
+            "q": "Which sensing arrangement can provide the N1 speed signal?",
             "o": [
-              "Only by an oil-pressure capsule",
-              "By a small AC generator on the N1 shaft or a magnetic pickup",
-              "By the cabin pressure controller",
-              "By comparing EGT with fuel quantity"
+              "A pressure capsule connected to the fan discharge.",
+              "A small AC generator on the N1 shaft or a magnetic pickup.",
+              "A thermocouple ring downstream of the turbine.",
+              "A resolver comparing N1 with the fuel-flow transmitter."
             ],
             "a": 1,
             "w": "The slide identifies a small shaft-mounted AC generator or a magnetic pickup as N1 speed sources.",
             "slide": 5
           },
           {
-            "q": "Although N1 may be used to set thrust, which shaft speed governs the fuel quantity required to produce that thrust?",
+            "q": "If thrust is referenced to N1, which spool speed does the fuel control still use to schedule the required fuel?",
             "o": [
-              "N1",
-              "Propeller RPM",
-              "N2",
-              "Starter RPM only"
+              "Corrected N1.",
+              "Starter turbine speed.",
+              "N2.",
+              "Accessory gearbox speed."
             ],
             "a": 2,
             "w": "The guide states that required fuel quantity is governed by the N2 shaft speed.",
             "slide": 6
           },
           {
-            "q": "Where is the EGT sensing probe located for the indication described in the guide?",
+            "q": "For the temperature indication described as EGT, where are the sensing probes positioned?",
             "o": [
-              "In the inlet ahead of the fan",
-              "Inside the fuel tank",
-              "Upstream of the compressor",
-              "In the jet-pipe area downstream of the last turbine stage"
+              "At compressor delivery, immediately before fuel is introduced.",
+              "Between the HP-compressor stages near maximum air temperature.",
+              "At the first-stage turbine inlet ahead of the nozzle guide vanes.",
+              "In the jet pipe downstream of the last turbine stage."
             ],
             "a": 3,
             "w": "EGT, TGT, and JPT refer to temperature measured in the jet-pipe area after the final turbine stage.",
             "slide": 7
           },
           {
-            "q": "Why is turbine inlet temperature not normally measured directly at the first-stage turbine inlet?",
+            "q": "Why is first-stage turbine inlet temperature normally inferred from a cooler sensing location?",
             "o": [
-              "The temperature is too high for the sensor to survive reliably.",
-              "The airflow is too slow to obtain a reading.",
-              "The location is outside the engine core.",
-              "The FADEC cannot use a temperature signal."
+              "The first-stage inlet temperature is too high for reliable sensor survival.",
+              "The flow at the first-stage inlet is too slow for thermocouple response.",
+              "The first-stage inlet lies outside the gas path used for thrust control.",
+              "Temperature signals ahead of the turbine are unsuitable for pressure correction."
             ],
             "a": 0,
             "w": "The first-stage inlet is so hot that a temperature sensor would have a very short life.",
             "slide": 8
           },
           {
-            "q": "How is aircraft fuel quantity normally displayed?",
+            "q": "How does the indication convert sensed tank volume into the normal cockpit fuel-quantity display?",
             "o": [
-              "Only as tank volume in litres",
-              "As pressure in psi",
-              "As fuel weight, with volume converted using specific gravity and temperature",
-              "As a percentage of engine RPM"
+              "It displays corrected tank volume after thermal expansion.",
+              "It converts volume to pressure using tank-head height.",
+              "It converts volume to fuel weight using specific gravity and temperature.",
+              "It converts volume to endurance using current engine RPM."
             ],
             "a": 2,
             "w": "Fuel quantity is normally shown as mass; the computer converts measured volume using fuel density information.",
@@ -1231,48 +1231,48 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 11
           },
           {
-            "q": "Where is engine oil pressure measured?",
+            "q": "At which point is engine oil delivery pressure sensed?",
             "o": [
-              "In the delivery line between the pump and the engine",
-              "In the exhaust tailpipe",
-              "At the fan inlet",
-              "Inside the hydraulic reservoir"
+              "In the delivery line between the pressure pump and the engine.",
+              "In the scavenge line between the bearings and the tank.",
+              "At the oil-tank outlet upstream of the pressure pump.",
+              "Across the fuel-oil heat exchanger in the return line."
             ],
             "a": 0,
             "w": "The oil-pressure sensing point is in the delivery line between the pump and the engine.",
             "slide": 12
           },
           {
-            "q": "Why can increasing power on an affected engine help reduce high oil temperature?",
+            "q": "Why may a power increase lower excessive oil temperature on the affected engine?",
             "o": [
-              "It closes the oil filter bypass.",
-              "It stops the oil pump temporarily.",
-              "It increases fuel flow through the fuel-oil heat exchanger, increasing oil cooling.",
-              "It lowers N2 to zero."
+              "Higher pressure closes the filter bypass and sends oil through the cooler.",
+              "Higher shaft speed increases scavenge flow while stopping delivery flow.",
+              "Higher fuel flow absorbs more oil heat in the fuel-oil heat exchanger.",
+              "Higher N2 reduces bearing loading enough to remove the heat source."
             ],
             "a": 2,
             "w": "Higher power increases fuel flow, allowing more heat to be removed from the oil in the fuel-oil heat exchanger.",
             "slide": 13
           },
           {
-            "q": "A torquemeter on a turboprop is roughly equivalent in importance to which jet-engine indication?",
+            "q": "For a turboprop, the torquemeter is the closest performance counterpart to which jet-engine indication?",
             "o": [
-              "Cabin altitude",
-              "N1 or EPR",
-              "Oil quantity only",
-              "Differential pressure"
+              "Fuel-flow or EGT indication.",
+              "N1 or EPR indication.",
+              "Oil-pressure or oil-quantity indication.",
+              "N2 or starter-valve indication."
             ],
             "a": 1,
             "w": "Torque is used to set turboprop power and is compared with the role of N1 or EPR in a jet engine.",
             "slide": 14
           },
           {
-            "q": "Where is compressor surge most likely to begin when compressed air is no longer held back effectively?",
+            "q": "When compressor discharge pressure is no longer contained effectively, where does surge tend to originate?",
             "o": [
-              "At the exhaust nozzle",
-              "At the most forward fan blade only",
-              "At the fuel nozzles",
-              "At the most rearward compressor rotors, progressing forwards"
+              "At the fan and then progress rearwards through the compressor.",
+              "At the first LP-compressor stator and remain locally contained.",
+              "At the diffuser and progress downstream into the combustion chamber.",
+              "At the rear compressor rotors and progress forwards."
             ],
             "a": 3,
             "w": "The most highly compressed air is near the rear, so flow breakdown tends to begin at the rearward rotors and move forward.",
@@ -1291,72 +1291,72 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 16
           },
           {
-            "q": "Which is a listed cause of compressor stall?",
+            "q": "Which condition can disturb compressor airflow enough to initiate a stall?",
             "o": [
-              "Correctly matched axial airflow and rotor speed",
-              "Foreign-object damage, in-flight icing, or operation outside the design envelope",
-              "Normal use of the automatic start sequence",
-              "A fully open outflow valve"
+              "A matched rotor speed and axial airflow within the design envelope.",
+              "Foreign-object damage, inlet icing or operation outside the design envelope.",
+              "A normal automatic start with stable fuel scheduling.",
+              "A steady thrust reduction with uniform inlet airflow."
             ],
             "a": 1,
             "w": "FOD, contamination, icing, extreme manoeuvres, and improper handling are all listed causes.",
             "slide": 19
           },
           {
-            "q": "Which group of indications is most consistent with a compressor stall?",
+            "q": "Which combination most strongly indicates a compressor stall rather than a normal thrust transient?",
             "o": [
-              "Quiet operation, steady parameters, and normal thrust response",
-              "Only a low cabin-altitude indication",
-              "Bangs, possible flame, fluctuating parameters, vibration, and high or rapidly rising EGT",
-              "A gradual increase in fuel quantity"
+              "A steady EGT rise, smooth acceleration and stable vibration.",
+              "A low N1 response with otherwise stable parameters and no noise.",
+              "Bangs, fluctuating indications, vibration and high or rapidly rising EGT.",
+              "A fuel-flow increase followed by a proportional, stable EGT rise."
             ],
             "a": 2,
             "w": "The presentation lists abnormal noises, possible flame, parameter fluctuations, vibration, sluggish response, and high EGT.",
             "slide": 20
           },
           {
-            "q": "What is the usual immediate response for clearing a compressor stall, subject to the engine type and situation?",
+            "q": "Subject to the engine type and situation, which initial thrust-lever action is used to clear a compressor stall?",
             "o": [
-              "Immediately and steadily reduce thrust on the affected engine.",
-              "Advance the affected thrust lever rapidly to maximum.",
-              "Switch off all engine indications.",
-              "Increase aircraft angle of attack."
+              "Reduce thrust on the affected engine immediately but steadily.",
+              "Advance thrust slowly until rotor speed overtakes the airflow disturbance.",
+              "Hold the lever fixed while selecting continuous ignition.",
+              "Retard thrust abruptly to shut off fuel before rotor speed changes."
             ],
             "a": 0,
             "w": "The guide says the usual response is an immediate, steady thrust reduction on the affected engine.",
             "slide": 21
           },
           {
-            "q": "How does a multi-spool compressor reduce the tendency to surge?",
+            "q": "Why does dividing the compressor into separately driven spools improve surge margin?",
             "o": [
-              "It locks all compressor stages to one speed.",
-              "It removes the rear compressor stages.",
-              "It routes all air around the core.",
-              "It allows separate compressor groups, each with its own turbine, to rotate at different speeds."
+              "Each compressor group is locked to a common optimum shaft speed.",
+              "Rear stages are bypassed whenever front-stage airflow decreases.",
+              "The spools share one turbine but use different reduction ratios.",
+              "Each compressor group can rotate at the speed suited to its airflow."
             ],
             "a": 3,
             "w": "Separate spools can rotate at the speeds best suited to their compressor stages.",
             "slide": 17
           },
           {
-            "q": "Which sources can normally supply pneumatic bleed air for starting?",
+            "q": "Which combination lists the normal pneumatic sources available for engine starting?",
             "o": [
-              "Only the aircraft batteries",
-              "A ground source, another operating engine, or the APU",
-              "Only ram air",
-              "The hydraulic accumulators"
+              "Aircraft batteries, external electrical power and the APU generator.",
+              "A ground air source, another operating engine or the APU.",
+              "Ram air, pack discharge air or hydraulic accumulator pressure.",
+              "Cabin differential pressure, crossbleed air or reservoir air."
             ],
             "a": 1,
             "w": "The guide lists a ground source, another running engine, and the APU as pneumatic start-air sources.",
             "slide": 22
           },
           {
-            "q": "What does the air-starter reduction gearbox do?",
+            "q": "What mechanical change does the air-starter reduction gearbox make before driving N2?",
             "o": [
-              "Converts low-RPM/high-torque input into high-RPM/low-torque output",
-              "Converts air pressure directly into fuel pressure",
-              "Converts high-RPM/low-torque turbine output into lower-RPM/higher-torque drive for N2",
-              "Drives the N1 fan without involving N2"
+              "It increases starter turbine speed while reducing available torque.",
+              "It converts pneumatic pressure directly into HP-fuel pressure.",
+              "It reduces starter turbine speed and increases torque at the N2 drive.",
+              "It transfers starter torque to N1 before coupling N1 to N2."
             ],
             "a": 2,
             "w": "The small air turbine runs at high speed; reduction gearing supplies lower-speed, higher-torque drive to the engine shaft.",
@@ -1375,84 +1375,84 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 24
           },
           {
-            "q": "Which items are under FADEC control during the A320 start sequence?",
+            "q": "Which set of components is sequenced directly by FADEC during an A320 engine start?",
             "o": [
-              "The start valve, igniters, and HP fuel valves",
-              "Only the pack valves",
-              "The landing gear and spoilers",
-              "The outflow valve and safety valves"
+              "Start valve, igniters and HP fuel valves.",
+              "Pack valves, crossbleed valve and APU inlet door.",
+              "LP fuel pumps, generator contactor and hydraulic pump.",
+              "Outflow valve, safety valves and ram-air inlet."
             ],
             "a": 0,
             "w": "The FADEC controls the start valve, ignition, and high-pressure fuel valves during starting.",
             "slide": 26
           },
           {
-            "q": "What happens when the ENG MODE selector is placed to IGN/START?",
+            "q": "Before ENG MASTER is selected ON, what does selecting ENG MODE to IGN/START do?",
             "o": [
-              "The HP fuel valve opens immediately and N2 stops.",
-              "The ENG system display appears, engine parameters become available, and the pack valves close.",
-              "The start valve closes and both igniters stop.",
-              "The outflow valve moves fully closed."
+              "It opens HP fuel, energises ignition and begins N2 rotation.",
+              "It calls up engine information and closes the pack valves.",
+              "It opens the start valve while keeping the system display unchanged.",
+              "It closes the crossbleed path and commands the outflow valve closed."
             ],
             "a": 1,
             "w": "IGN/START calls up the ENG SD page, makes engine parameters available, and closes the pack valves.",
             "slide": 27
           },
           {
-            "q": "During the automatic start, what occurs when N2 exceeds approximately 43%?",
+            "q": "At about 43% N2 during an automatic start, which transition should occur?",
             "o": [
-              "The HP fuel valve closes and dry cranking begins.",
-              "The LP fuel valve closes and the pack valves remain closed permanently.",
-              "The engine start valve closes and ignition stops.",
-              "The FADEC removes all engine indications."
+              "HP fuel closes and the engine begins a dry-crank sequence.",
+              "LP fuel closes while the starter remains engaged to idle.",
+              "The start valve closes and ignition is discontinued.",
+              "The pack valves reopen while the start valve remains open."
             ],
             "a": 2,
             "w": "At N2 above about 43%, the start valve closes and ignition is discontinued.",
             "slide": 28
           },
           {
-            "q": "What are the first indications of successful ignition during an engine start?",
+            "q": "Which parameter sequence provides the earliest confirmation that fuel has ignited?",
             "o": [
-              "A rise in EGT and continued engine acceleration",
-              "A decrease in N2 and zero fuel flow",
-              "An immediate drop in oil temperature only",
-              "A compressor-stall warning"
+              "EGT begins to rise and engine acceleration continues.",
+              "N2 decreases as fuel flow rises and EGT remains stable.",
+              "Oil temperature falls before either fuel flow or EGT changes.",
+              "N1 stabilises while EGT decreases and the starter remains engaged."
             ],
             "a": 0,
             "w": "Successful light-off is first shown by increasing EGT together with continued acceleration.",
             "slide": 29
           },
           {
-            "q": "Which combination correctly states A320 start limitations from the presentation?",
+            "q": "Which set of timing limits matches the start limitations shown in the guide?",
             "o": [
-              "No pause between starts; manual start unlimited; crank limited to 30 minutes",
-              "15-second pause between ground-start cycles; two-minute manual-start limit; five-minute crank limit",
-              "One-minute pause; five-minute manual-start limit; two-minute crank limit",
-              "Starter permitted at any N2 on the ground or in flight"
+              "30-second pause between cycles; five-minute manual start; two-minute crank.",
+              "15-second pause between cycles; two-minute manual start; five-minute crank.",
+              "15-second pause between cycles; five-minute manual start; two-minute crank.",
+              "Two-minute pause between cycles; 15-second manual start; five-minute crank."
             ],
             "a": 1,
             "w": "The stated limits include a 15-second pause, a two-minute manual-start cycle, and a five-minute crank cycle.",
             "slide": 31
           },
           {
-            "q": "Which statement correctly distinguishes a hung start from a hot start?",
+            "q": "Which indication pattern separates a hung start from a hot start?",
             "o": [
-              "A hung start has normal acceleration and low EGT; a hot start has no fuel flow.",
-              "A hung start is an oil-pressure problem only; a hot start is a cabin-pressure problem.",
-              "A hung start shows RPM near-static and too low; a hot start shows acceleration with a dramatic EGT rise.",
-              "They have identical indications and causes."
+              "Hung: normal RPM rise with high EGT; hot: RPM remains near static.",
+              "Hung: N2 rises but fuel flow does not appear; hot: N2 rises with low EGT.",
+              "Hung: RPM remains near-static and low; hot: RPM rises with a dramatic EGT increase.",
+              "Hung: EGT rises before fuel flow; hot: fuel flow rises before EGT."
             ],
             "a": 2,
             "w": "Hung starts fail to accelerate adequately, while hot starts accelerate but develop excessive temperature.",
             "slide": 33
           },
           {
-            "q": "What automatic recovery action does FADEC take after detecting a hot or hung start?",
+            "q": "After FADEC identifies a hot or hung start, what recovery sequence does it command?",
             "o": [
-              "It shuts the engine down permanently and displays no parameters.",
-              "It opens the outflow valve and starts the packs.",
-              "It selects only one igniter and increases fuel continuously.",
-              "It applies dual ignition, commands fuel off, then re-commands fuel on within about 0.5 seconds."
+              "Fuel off, starter off and parameters removed until crew reset.",
+              "Fuel held on with one igniter while starter airflow is increased.",
+              "Fuel off followed by a 30-second dry crank before crew relight.",
+              "Dual ignition, fuel off, then fuel re-commanded after about 0.5 seconds."
             ],
             "a": 3,
             "w": "FADEC uses dual ignition and a brief automatic fuel interruption/reintroduction recovery sequence.",
@@ -1476,36 +1476,36 @@ window.SELF_STUDY_QUIZZES = [
         "id": "B",
         "questions": [
           {
-            "q": "When does the normally minimal or selected-off lower engine display automatically become useful?",
+            "q": "Under what condition does the lower engine display appear or become relevant without routine crew selection?",
             "o": [
-              "Only after landing",
-              "When a fault or out-of-tolerance parameter occurs",
-              "Only during refuelling",
-              "Whenever the landing gear is down"
+              "After touchdown when reverse thrust is selected.",
+              "When an engine fault or out-of-tolerance parameter occurs.",
+              "During refuelling when tank quantity is changing.",
+              "Whenever the landing gear is extended below 10,000 ft."
             ],
             "a": 1,
             "w": "The lower display normally carries little information but presents secondary data when a fault or abnormal parameter occurs.",
             "slide": 3
           },
           {
-            "q": "What does a higher engine pressure ratio indicate about engine work?",
+            "q": "If EPR increases, what does the pressure comparison indicate?",
             "o": [
-              "EPR is unrelated to work",
-              "Work falls as EPR rises",
-              "Pressure difference, and therefore work done, has increased",
-              "Only oil pressure has changed"
+              "The inlet-to-exhaust pressure difference has decreased.",
+              "The work indication is unchanged because EPR measures speed.",
+              "The inlet-to-exhaust pressure difference and indicated work have increased.",
+              "Oil-delivery pressure has increased relative to fuel pressure."
             ],
             "a": 2,
             "w": "The pressure difference represented by EPR is directly proportional to the work being done.",
             "slide": 4
           },
           {
-            "q": "The EPR sensing arrangement is compared with which familiar flight instrument system?",
+            "q": "The use of two pressure sources for EPR is analogous to which flight instrument?",
             "o": [
-              "Airspeed indication using pitot and static sensing",
-              "Magnetic compass",
-              "Radio altimeter",
-              "Vertical-speed inertial sensing"
+              "Airspeed indication using pitot and static pressures.",
+              "Altitude indication using static pressure and barometric setting.",
+              "Vertical-speed indication using calibrated static leakage.",
+              "Mach indication using air-data temperature correction."
             ],
             "a": 0,
             "w": "The guide likens EPR to an airspeed-indicator pressure system using pitot and static sensing.",
@@ -1526,34 +1526,34 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "How are N1 and N2 rotational speeds normally presented?",
             "o": [
-              "As degrees per second",
-              "As percentages",
-              "As shaft horsepower only",
-              "As fuel mass"
+              "As corrected revolutions per minute.",
+              "As percentages of reference speed.",
+              "As shaft horsepower values.",
+              "As pressure-ratio values."
             ],
             "a": 1,
             "w": "Both spool speeds are displayed as percentage values.",
             "slide": 6
           },
           {
-            "q": "Approximately how much engine power is developed in the upper 10% of the gas turbine's speed range?",
+            "q": "What proportion of total engine power is developed in the upper 10% of gas-turbine speed?",
             "o": [
-              "About 30%",
-              "About 5%",
-              "About 75%",
-              "All of it"
+              "About 30%.",
+              "About 10%.",
+              "About 60%.",
+              "About 90%."
             ],
             "a": 0,
             "w": "The slide states that roughly 30% of developed power occurs in the upper 10% of engine speed.",
             "slide": 6
           },
           {
-            "q": "Which abbreviations may describe the same downstream turbine temperature indication as EGT?",
+            "q": "Which alternative labels can refer to the same downstream temperature-sensing region as EGT?",
             "o": [
-              "N1 and N2",
-              "EPR and SHP",
-              "TGT and JPT",
-              "ITT and TIT only"
+              "TIT and ITT.",
+              "EPR and JPT.",
+              "TGT and JPT.",
+              "TIT and TGT."
             ],
             "a": 2,
             "w": "Turbine gas temperature and jet pipe temperature are alternative names for the EGT-type sensing location.",
@@ -1572,36 +1572,36 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 8
           },
           {
-            "q": "How is the first-stage turbine temperature limit established when TIT cannot be sensed directly?",
+            "q": "How is the first-stage turbine temperature limit protected when the temperature cannot be measured there directly?",
             "o": [
-              "Sensors elsewhere are used with an allowance for known temperature drop",
-              "Oil temperature is used without correction",
-              "The value is assumed to equal outside air temperature",
-              "TIT is ignored entirely"
+              "A cooler downstream reading is limited using a known temperature-drop allowance.",
+              "Oil temperature is converted to turbine temperature with an RPM correction.",
+              "EGT is assumed to equal turbine inlet temperature at takeoff thrust.",
+              "A computed limit is based on outside air temperature without gas-path sensing."
             ],
             "a": 0,
             "w": "More survivable probe locations are used and corrected for the known temperature reduction across stages.",
             "slide": 8
           },
           {
-            "q": "How are turbine-temperature thermocouples arranged in the jetpipe?",
+            "q": "How is a representative turbine-exhaust temperature obtained across the jetpipe?",
             "o": [
-              "One probe in the oil tank",
-              "In a ring around the inner walls",
-              "Only on the outside cowling",
-              "Inside the starter gearbox"
+              "A probe is placed at the hottest point identified during engine test.",
+              "Thermocouples are distributed in a ring around the inner walls.",
+              "Two probes are mounted opposite one another on the outer cowling.",
+              "A temperature sensor is fitted in the starter gearbox oil return."
             ],
             "a": 1,
             "w": "Multiple thermocouples are distributed circumferentially around the jetpipe inner wall.",
             "slide": 8
           },
           {
-            "q": "What does the aircraft computer use when converting fuel volume into displayed fuel weight?",
+            "q": "Which correction allows tank volume to be displayed as fuel weight?",
             "o": [
-              "Only aircraft altitude",
-              "Only engine rpm",
-              "Fuel specific gravity at the current temperature",
-              "Cabin differential pressure"
+              "Aircraft altitude and tank pressure.",
+              "Engine RPM and current fuel flow.",
+              "Fuel specific gravity at the current temperature.",
+              "Cabin differential pressure and outside air temperature."
             ],
             "a": 2,
             "w": "Volume is converted to kg or lb using fuel density/specific gravity adjusted for fuel temperature.",
@@ -1620,84 +1620,84 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 9
           },
           {
-            "q": "How may ECAM/EICAS present fuel quantity?",
+            "q": "Which fuel-quantity presentation is described for ECAM/EICAS?",
             "o": [
-              "By individual tanks or as total fuel on board",
-              "Only as litres in the centre tank",
-              "Only as estimated endurance",
-              "Only when a fuel fault exists"
+              "Individual tank quantities or total fuel on board.",
+              "Tank volume with centre-tank quantity highlighted.",
+              "Estimated endurance with fuel flow replacing tank quantity.",
+              "Total fuel on board displayed when a tank imbalance exists."
             ],
             "a": 0,
             "w": "The display may show separate tank quantities or a total fuel-on-board value.",
             "slide": 9
           },
           {
-            "q": "Where is the engine fuel-flow transmitter located?",
+            "q": "Where is fuel flow sensed for the engine display?",
             "o": [
-              "In the oil return line",
-              "In the fuel line feeding the combustion-chamber spray nozzles",
-              "At the fan inlet",
-              "In the cabin recirculation duct"
+              "In the return line from the fuel-oil heat exchanger.",
+              "In the line feeding the combustion-chamber spray nozzles.",
+              "At the LP-pump inlet before the main fuel filter.",
+              "In the manifold between the tanks and the engine spar valve."
             ],
             "a": 1,
             "w": "The transmitter sits in the fuel line supplying the burner fuel spray nozzles.",
             "slide": 10
           },
           {
-            "q": "Which two presentations of fuel flow are described on the engine display?",
+            "q": "Which pair of fuel-flow indications is shown in the guide?",
             "o": [
-              "Only an analogue pointer",
-              "Only a totaliser",
-              "A needle/pointer and a digital readout",
-              "A coloured warning lamp only"
+              "An analogue pointer and a fuel-used totaliser.",
+              "A digital rate and an estimated endurance value.",
+              "A pointer and a digital flow-rate readout.",
+              "A digital rate and a low-flow warning light."
             ],
             "a": 2,
             "w": "The fuel-flow indication combines a pointer or needle with a digital value.",
             "slide": 10
           },
           {
-            "q": "Why is engine fuel flow expressed in kg or lb rather than litres or gallons?",
+            "q": "Why is engine fuel flow normally stated in kilograms or pounds per unit time?",
             "o": [
-              "Volume never changes with temperature",
-              "The FMS cannot process volume",
-              "All fuel has a specific gravity of 1",
-              "The measurement represents fuel mass delivered to the engine"
+              "Mass flow stays proportional to tank volume as temperature changes.",
+              "Pressure-line volume sensing would be less accurate than mass sensing.",
+              "Specific gravity is fixed, so mass and volume are interchangeable.",
+              "The useful measurement is the mass of fuel delivered to the engine."
             ],
             "a": 3,
             "w": "Fuel flow is measured as weight/mass per time rather than volume per time.",
             "slide": 10
           },
           {
-            "q": "Where are sensors placed to monitor engine vibration?",
+            "q": "Which engine regions are instrumented to provide vibration indications?",
             "o": [
-              "Around N1, N2, and turbine regions",
-              "Only in the cockpit",
-              "Only in the fuel tanks",
-              "On the landing gear"
+              "N1, N2 and turbine regions.",
+              "N1 and N2 regions, with turbine vibration derived from EGT.",
+              "Fan and accessory gearbox regions, with N2 inferred from oil pressure.",
+              "Engine mounts and pylon structure rather than the rotating assemblies."
             ],
             "a": 0,
             "w": "Sensors in the compressor spools and turbine area convert vibration into electrical indications.",
             "slide": 11
           },
           {
-            "q": "Where are maximum engine-vibration limits normally found?",
+            "q": "Where should the crew find the approved maximum engine-vibration limits?",
             "o": [
-              "In the passenger briefing card",
-              "In the AFM and often as an amber gauge band",
-              "Only on the fuel panel",
-              "In the airport chart"
+              "In the abnormal procedure, with no indication marking.",
+              "In the AFM and commonly as an amber band on the indication.",
+              "In the maintenance manual and on the fuel-control panel.",
+              "In the engine-start limitations table beside starter duty cycles."
             ],
             "a": 1,
             "w": "The AFM contains vibration limits and the display may also show an amber caution band.",
             "slide": 11
           },
           {
-            "q": "What action reference is associated with a vibration indication of 5 or greater?",
+            "q": "A vibration value of 5 or greater directs the crew to which reference?",
             "o": [
-              "No action is required",
-              "Refer only to the MEL after landing",
-              "Refer to the HIGH ENGINE VIBRATION abnormal procedure",
-              "Immediately discharge the fire bottle"
+              "The engine-stall recovery memory item.",
+              "The dispatch deviation procedure after landing.",
+              "The HIGH ENGINE VIBRATION abnormal procedure.",
+              "The engine fire procedure and immediate agent discharge."
             ],
             "a": 2,
             "w": "The slide directs VIB 5 or greater to the QRH/PRO-ABN-ENG high-engine-vibration procedure.",
@@ -1716,60 +1716,60 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 12
           },
           {
-            "q": "Where is the oil-temperature sensor located in the delivery system?",
+            "q": "Where is oil temperature sensed relative to the fuel-oil heat exchanger?",
             "o": [
-              "Downstream of the fuel/oil heat exchanger",
-              "Before the oil pump inlet only",
-              "Inside the combustion chamber",
-              "At the exhaust cone"
+              "Downstream of the heat exchanger in the delivery system.",
+              "Upstream of the heat exchanger at the pressure-pump inlet.",
+              "Across the heat exchanger using delivery and scavenge probes.",
+              "In the oil tank before the oil enters the delivery system."
             ],
             "a": 0,
             "w": "Oil temperature is sensed on the delivery side after the fuel/oil heat exchanger.",
             "slide": 13
           },
           {
-            "q": "What is the caution associated with the oil-quantity indication?",
+            "q": "What operating caution follows from the way oil quantity is indicated?",
             "o": [
-              "It is calibrated only in pressure",
-              "It shows tank volume and the tank must not be overfilled",
-              "It is valid only in flight",
-              "It measures bearing temperature"
+              "The indication shows pressure-equivalent quantity and varies with N2.",
+              "It represents tank volume, so the tank must not be overfilled.",
+              "It is unreliable until the oil reaches operating temperature in flight.",
+              "It represents total system oil, including oil distributed through the engine."
             ],
             "a": 1,
             "w": "Oil quantity is a volume measurement of the tank contents; the guide warns not to overfill it.",
             "slide": 13
           },
           {
-            "q": "What physical quantity does a turboprop torquemeter sense?",
+            "q": "What does a turboprop torquemeter measure to derive shaft horsepower?",
             "o": [
-              "Exhaust temperature",
-              "Fuel specific gravity",
-              "Turning force delivered to the propeller shaft, expressed as SHP",
-              "Cabin vertical speed"
+              "Propeller rotational speed without shaft loading.",
+              "Gas-generator pressure ratio across the turbine.",
+              "Turning force delivered through the propeller shaft.",
+              "Fuel flow corrected for propeller RPM."
             ],
             "a": 2,
             "w": "The torquemeter measures propeller-shaft turning force and relates it to shaft horsepower.",
             "slide": 14
           },
           {
-            "q": "If highly compressed air breaks away at the rear axial-compressor stages, how can the disturbance progress?",
+            "q": "How can rear-stage airflow separation develop into a full axial-compressor surge?",
             "o": [
-              "It can affect stages progressively farther forward",
-              "It remains confined to the exhaust",
-              "It increases fuel quantity only",
-              "It automatically stops the turbine"
+              "The disturbance can propagate progressively towards the front stages.",
+              "The disturbance moves downstream through the combustor and turbine stages.",
+              "The affected rear stage accelerates until front-stage airflow catches up.",
+              "The disturbance remains at the rear while pressure rises in the front stages."
             ],
             "a": 0,
             "w": "Surge commonly begins at the highly loaded rear rotors and can propagate forward.",
             "slide": 15
           },
           {
-            "q": "Why does compressor surge reduce thrust?",
+            "q": "What directly causes the thrust loss during compressor surge?",
             "o": [
-              "It increases propeller pitch",
-              "Less stable compressed airflow reaches the combustion chambers",
-              "It raises cabin pressure",
-              "It increases bypass mass flow"
+              "The turbine absorbs more work as propeller pitch increases.",
+              "Stable compressed airflow to the combustion chambers is reduced.",
+              "Bypass mass flow increases while core speed remains constant.",
+              "Exhaust-nozzle pressure rises enough to reduce gas velocity."
             ],
             "a": 1,
             "w": "Airflow breakdown reduces the mass of compressed air supplied for combustion and therefore reduces thrust.",
@@ -1800,12 +1800,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 16
           },
           {
-            "q": "Why were older single-spool compressors particularly vulnerable to surge?",
+            "q": "What speed-matching problem made the older single-spool compressor vulnerable to surge?",
             "o": [
-              "Rear stages ideally need a different, often higher speed than front stages",
-              "Their rear stages had no blades",
-              "They had independent turbines for each stage",
-              "They always received too little fuel"
+              "Rear stages often needed a different, higher speed than the front stages.",
+              "Front stages needed to stop rotating while rear stages accelerated.",
+              "Each stage was driven by a separate turbine at an unrelated speed.",
+              "Rear-stage speed varied with fuel flow while front-stage speed stayed fixed."
             ],
             "a": 0,
             "w": "One shaft cannot independently optimise the front and rear rotor speeds across the operating range.",
@@ -1824,12 +1824,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 17
           },
           {
-            "q": "Which two variables determine compressor-rotor blade angle of attack?",
+            "q": "Which velocity relationship sets compressor-rotor blade angle of attack?",
             "o": [
-              "Fuel temperature and oil pressure",
-              "Aircraft weight and cabin altitude",
-              "Rotor speed and axial airflow velocity",
-              "EPR and outside humidity only"
+              "Fuel-flow velocity relative to rotor speed.",
+              "Aircraft forward speed relative to fan-tip speed.",
+              "Rotor speed relative to axial airflow velocity.",
+              "Exhaust velocity relative to compressor-delivery pressure."
             ],
             "a": 2,
             "w": "Blade AoA depends on the relationship between rotational speed and axial airflow through the compressor.",
@@ -1841,24 +1841,24 @@ window.SELF_STUDY_QUIZZES = [
         "id": "C",
         "questions": [
           {
-            "q": "Which combination contains recognised compressor-stall causes?",
+            "q": "Which set contains conditions capable of upsetting the compressor's rotor-speed/airflow match?",
             "o": [
-              "FOD, contamination, icing, extreme manoeuvres, or improper handling",
-              "Low cabin altitude and high oil quantity",
-              "A correctly matched rotor speed and airflow",
-              "Normal steady-state operation"
+              "FOD, contamination, icing, extreme manoeuvres or improper handling.",
+              "Low cabin altitude, high oil quantity or pack-valve closure.",
+              "A steady inlet, matched shaft speed and scheduled fuel flow.",
+              "Normal acceleration, stable bleed demand and clean compressor blades."
             ],
             "a": 0,
             "w": "The guide lists FOD, worn or contaminated components, icing, operation outside the design envelope, and poor handling.",
             "slide": 19
           },
           {
-            "q": "In a severe compressor stall, where may flame become visible?",
+            "q": "During a severe compressor stall, where may flame be observed?",
             "o": [
-              "Only at the wing tip",
-              "At the exhaust and possibly the inlet",
-              "Only inside the oil tank",
-              "At the pneumatic starter"
+              "At the exhaust nozzle but not at the inlet.",
+              "At the exhaust and, in severe cases, at the inlet.",
+              "At the inlet but not downstream of the turbine.",
+              "At the pneumatic-starter exhaust and accessory gearbox vent."
             ],
             "a": 1,
             "w": "Severe airflow reversal and rich combustion may produce flame at the exhaust and even the inlet.",
@@ -1901,12 +1901,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 22
           },
           {
-            "q": "What is a starter/generator?",
+            "q": "How does a starter/generator change function after engine start?",
             "o": [
-              "A pneumatic starter that never disengages",
-              "An electrical machine that starts the engine and then operates as a generator",
-              "A turbine nozzle that powers the fan",
-              "A manual fuel pump"
+              "It remains engaged as an electrical starter and regulates N2.",
+              "It drives the engine electrically, then is driven to generate power.",
+              "It starts pneumatically, then drives the fan mechanically.",
+              "It supplies ignition current, then becomes the engine fuel pump."
             ],
             "a": 1,
             "w": "Some turboprops use one electrical machine as the starter and then as the generator after the engine starts.",
@@ -1973,24 +1973,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 24
           },
           {
-            "q": "What causes the starter clutch to disengage after self-sustaining speed?",
+            "q": "Which event removes starter torque after the engine reaches self-sustaining speed?",
             "o": [
-              "The fuel tank empties",
-              "The turbine stops instantly",
-              "The gearbox reverses",
-              "The solenoid closes the air valve and starter air is removed"
+              "Fuel pressure releases the clutch while starter air continues.",
+              "Centrifugal force reverses the reduction gearbox.",
+              "The clutch disengages as the starter turbine reaches maximum speed.",
+              "The air-valve solenoid de-energises, removing air from the starter."
             ],
             "a": 3,
             "w": "At self-sustaining speed the valve closes; without driving air, the clutch releases.",
             "slide": 24
           },
           {
-            "q": "What may happen if the air-starter clutch fails to disengage?",
+            "q": "What is the principal hazard if the air-starter clutch remains engaged?",
             "o": [
-              "The engine can overspeed the starter and damage it",
-              "The starter becomes a generator normally",
-              "N2 stops at idle",
-              "The packs open automatically"
+              "The engine can drive the starter beyond its safe speed and damage it.",
+              "The starter changes into generator mode and overloads the electrical system.",
+              "N2 remains near starter cutout speed and does not accelerate to idle.",
+              "The pack valves reopen while starter air remains supplied."
             ],
             "a": 0,
             "w": "A clutch that stays engaged lets the running engine drive the starter to damaging speed.",
@@ -2021,12 +2021,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 26
           },
           {
-            "q": "What happens to the pack valves when ENG MODE is first selected to IGN/START?",
+            "q": "What pack-valve response follows initial selection of ENG MODE to IGN/START?",
             "o": [
-              "They remain open permanently",
-              "Only one closes after ignition",
-              "They move to manual control",
-              "They automatically close"
+              "Both valves remain open until ENG MASTER is selected ON.",
+              "One valve closes to preserve bleed pressure for the selected engine.",
+              "Both valves transfer to manual control pending crew selection.",
+              "Both pack valves close automatically."
             ],
             "a": 3,
             "w": "IGN/START calls up engine indications and closes the pack valves to conserve starting air.",
@@ -2057,72 +2057,72 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 28
           },
           {
-            "q": "What occurs after the approximately 30-second automatic dry crank?",
+            "q": "What is the next automatic-start event after the initial dry-crank period?",
             "o": [
-              "The engine is shut down",
-              "The pack valves remain the only active item",
-              "Ignition starts and the HP fuel valve opens",
-              "N2 is commanded to zero"
+              "The start valve closes and N2 decays before fuel introduction.",
+              "The pack valves reopen while the starter continues to motor N2.",
+              "Ignition is energised and the HP fuel valve opens.",
+              "LP fuel closes briefly to confirm the start-valve position."
             ],
             "a": 2,
             "w": "After dry cranking, FADEC applies an igniter and introduces HP fuel.",
             "slide": 28
           },
           {
-            "q": "What is the expected relationship between fuel flow and EGT during fuel introduction?",
+            "q": "During normal fuel introduction, which indication should respond first?",
             "o": [
-              "EGT rises before fuel flow",
-              "Both remain at zero",
-              "EGT falls as fuel enters",
-              "Fuel flow rises first, followed by EGT"
+              "EGT rises before fuel flow appears.",
+              "Fuel flow and EGT rise simultaneously.",
+              "EGT falls as fuel flow rises.",
+              "Fuel flow appears, followed by the EGT rise."
             ],
             "a": 3,
             "w": "The sequence shown is fuel flow increase followed by an EGT rise as ignition succeeds.",
             "slide": 28
           },
           {
-            "q": "What three essentials are required for a successful turbine-engine start?",
+            "q": "Which combination is necessary for a turbine engine to light and accelerate successfully?",
             "o": [
-              "Sufficient compressor rpm, fuel, and ignition",
-              "Hydraulic pressure, cabin pressure, and brakes",
-              "Only fuel and oil",
-              "N1 indication, reverse thrust, and ram air"
+              "Adequate compressor RPM, correctly scheduled fuel and ignition.",
+              "Bleed pressure, oil pressure and an open generator contactor.",
+              "Starter RPM, pack flow and cabin differential pressure.",
+              "N1 rotation, reverse-thrust stowage and ram-air flow."
             ],
             "a": 0,
             "w": "A successful start needs compression/airflow, fuel, and an ignition source.",
             "slide": 29
           },
           {
-            "q": "Which indications should be watched especially closely throughout a start?",
+            "q": "Which indication pair gives the most immediate warning of a hung or hot start?",
             "o": [
-              "Cabin altitude and brake temperature",
-              "EGT and rpm",
-              "Fuel tank temperature only",
-              "Radio altitude and airspeed"
+              "Fuel quantity and oil temperature.",
+              "EGT and engine RPM.",
+              "N1 and cabin altitude.",
+              "Oil pressure and starter-valve position."
             ],
             "a": 1,
             "w": "EGT and spool rpm show whether ignition and acceleration are normal.",
             "slide": 29
           },
           {
-            "q": "If ENG MASTER is selected OFF to interrupt an automatic start, what does FADEC do?",
+            "q": "How does FADEC secure an automatic start interrupted with ENG MASTER OFF?",
             "o": [
-              "Opens both fuel valves",
-              "Keeps ignition energised",
-              "Closes LP/HP fuel, stops ignition, and closes the start valve",
-              "Commands maximum thrust"
+              "It closes HP fuel while leaving LP fuel and ignition on for cooling.",
+              "It closes fuel valves but keeps the start valve open until idle speed.",
+              "It closes LP and HP fuel, stops ignition and closes the start valve.",
+              "It removes ignition and leaves fuel flow unchanged during dry cranking."
             ],
             "a": 2,
             "w": "FADEC removes fuel and ignition and shuts the engine start valve.",
             "slide": 30
           },
           {
-            "q": "What counts as one starter duty cycle?",
+            "q": "For starter-duty accounting, what constitutes one standard cycle?",
             "o": [
-              "Any 15-second pause",
-              "One minute at idle",
-              "An entire flight",
-              "A standard automatic start containing one start attempt"
+              "One 15-second cooling pause between attempts.",
+              "One minute of starter operation at any N2.",
+              "Every start attempt made during one flight sector.",
+              "One standard automatic start containing one attempt."
             ],
             "a": 3,
             "w": "One normal automatic start with one attempt is defined as one duty cycle.",
@@ -2141,12 +2141,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 31
           },
           {
-            "q": "Above which N2 speeds must the starter not be run?",
+            "q": "Which ground and flight N2 thresholds prohibit starter operation?",
             "o": [
-              "35% ground and 43% flight",
-              "10% on the ground and 18% in flight",
-              "18% ground and 10% flight",
-              "50% in all cases"
+              "Above 18% on the ground and 10% in flight.",
+              "Above 10% on the ground and 18% in flight.",
+              "Above 10% for both ground and flight starts.",
+              "Above 18% for both ground and flight starts."
             ],
             "a": 1,
             "w": "The stated starter cut-in limits are 10% N2 on the ground and 18% in flight.",
@@ -2177,24 +2177,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 32
           },
           {
-            "q": "Why is manual start recommended with a tailwind greater than 10 kt?",
+            "q": "Why does a tailwind above 10 kt favour the manual-start procedure?",
             "o": [
-              "Tailwind may cause engine counter-rotation",
-              "Tailwind always improves starter pressure",
-              "It forces both packs open",
-              "It prevents fuel flow"
+              "Tailwind can drive the engine in the reverse direction before the start.",
+              "Tailwind reduces N2 indication without changing actual shaft speed.",
+              "Tailwind increases pack demand and delays start-valve opening.",
+              "Tailwind raises EGT by reducing fuel flow during ignition."
             ],
             "a": 0,
             "w": "A tailwind above 10 kt may cause counter-rotation, so the manual procedure is recommended.",
             "slide": 35
           },
           {
-            "q": "During a manual start, how does the abort action differ before and after ENG MASTER ON?",
+            "q": "Which switch sequence correctly aborts a manual start on either side of fuel introduction?",
             "o": [
-              "There is no difference",
-              "Before MASTER ON select MAN START off; after MASTER ON select MASTER off, then MAN START off",
-              "Before MASTER ON open HP fuel; after MASTER ON increase thrust",
-              "After MASTER ON no abort is possible"
+              "Select MAN START off in both cases; ENG MASTER remains unchanged.",
+              "Before MASTER ON select MAN START off; afterwards select MASTER off, then MAN START off.",
+              "Before MASTER ON select MASTER off; afterwards select MAN START off and leave fuel on.",
+              "Before MASTER ON select ENG MODE NORM; afterwards select IGN/START again."
             ],
             "a": 1,
             "w": "Before fuel selection the manual-start pushbutton is switched off; after MASTER ON fuel is removed first, followed by MAN START off.",
@@ -2213,12 +2213,12 @@ window.SELF_STUDY_QUIZZES = [
         "id": "A",
         "questions": [
           {
-            "q": "What is differential pressure in the context of aircraft pressurisation?",
+            "q": "Which two pressures are compared when cabin differential pressure is displayed?",
             "o": [
-              "The difference between engine oil and fuel pressure",
-              "The difference between pressure inside and outside the aircraft cabin",
-              "The difference between N1 and N2",
-              "The pressure difference between two cabin zones only"
+              "Cabin pressure and conditioned-air duct pressure.",
+              "Cabin pressure and ambient pressure outside the aircraft.",
+              "Cockpit pressure and passenger-cabin pressure.",
+              "Cabin pressure and the selected landing-elevation pressure."
             ],
             "a": 1,
             "w": "Cabin differential pressure is the difference between internal cabin pressure and outside ambient pressure.",
@@ -2261,12 +2261,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 6
           },
           {
-            "q": "Which statement best describes a person's ability to recognise developing hypoxia?",
+            "q": "Why is self-recognition an unreliable defence against developing hypoxia?",
             "o": [
-              "A person will always recognise hypoxia immediately.",
-              "A person may not realise they are becoming hypoxic because the condition can be gradual and insidious.",
-              "The brain is less susceptible to hypoxia than other body tissues.",
-              "Hypoxia produces exactly the same symptoms in every person."
+              "Early symptoms are consistent enough to be recognised but are easily mistaken for fatigue.",
+              "The onset can be gradual and insidious while judgement is already deteriorating.",
+              "Physical symptoms usually appear after the brain has adapted to the lower oxygen level.",
+              "The first effects are confined to vision, leaving reasoning intact for self-diagnosis."
             ],
             "a": 1,
             "w": "Hypoxia is gradual and insidious; a person may not realise that they are becoming impaired.",
@@ -2297,24 +2297,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 15
           },
           {
-            "q": "Which is a benefit of operating at altitude that is enabled by cabin pressurisation?",
+            "q": "Which combination explains why pressurisation makes routine high-altitude flight useful?",
             "o": [
-              "Faster airspeeds, improved jet-engine performance, obstacle clearance, and less weather",
-              "Elimination of all weather and turbulence",
-              "Removal of the need for oxygen systems",
-              "Unlimited fuselage differential pressure"
+              "Higher airspeed, improved jet performance, obstacle clearance and less weather exposure.",
+              "Lower true airspeed, improved propeller efficiency and greater weather avoidance.",
+              "Higher cabin oxygen percentage, lower aircraft drag and removal of terrain constraints.",
+              "Sea-level cabin pressure, unrestricted differential pressure and complete turbulence avoidance."
             ],
             "a": 0,
             "w": "The slides cite faster flight, engine efficiency, terrain clearance, reduced weather exposure, and passenger comfort.",
             "slide": 9
           },
           {
-            "q": "How is cabin pressure normally controlled?",
+            "q": "How is normal cabin pressure established and regulated?",
             "o": [
-              "By sealing all airflow in the cabin permanently",
-              "By changing only the cockpit oxygen flow",
-              "By using the safety valves as the primary controller",
-              "By introducing conditioned air and regulating how much air leaves through the outflow valve"
+              "By varying pack inflow while holding the outflow valve closed.",
+              "By using safety valves to meter cabin discharge during each flight phase.",
+              "By varying recirculated airflow while keeping fresh-air inflow constant.",
+              "By supplying conditioned air and controlling discharge through the outflow valve."
             ],
             "a": 3,
             "w": "Conditioned air enters the cabin, while the outflow valve meters air leaving to control cabin altitude.",
@@ -2333,36 +2333,36 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 10
           },
           {
-            "q": "What defines a depressurisation?",
+            "q": "Which condition marks a depressurisation rather than a normal cabin-altitude change?",
             "o": [
-              "Cabin altitude can no longer be maintained and cabin pressure begins to equalise with aircraft altitude.",
-              "The cabin altitude remains constant throughout climb.",
-              "The outflow valve operates normally during descent.",
-              "Aircraft altitude becomes lower than cabin altitude on the ground."
+              "Cabin altitude can no longer be maintained and pressure moves towards ambient.",
+              "Cabin altitude follows the scheduled climb while differential pressure increases.",
+              "The outflow valve modulates during descent to match landing elevation.",
+              "Cabin altitude briefly falls below airport elevation during pre-pressurisation."
             ],
             "a": 0,
             "w": "Depressurisation occurs when the system cannot maintain cabin altitude and pressure starts equalising with ambient conditions.",
             "slide": 11
           },
           {
-            "q": "Which group is characteristic of a rapid decompression?",
+            "q": "Which combination points to rapid rather than slow decompression?",
             "o": [
-              "A quiet cabin, gradual warming, and no airflow",
-              "A loud bang, blast of wind, temperature drop, fog or mist, and rapid hypoxia onset",
-              "Only a slow increase in oil temperature",
-              "A steady cabin altitude with normal pressure"
+              "Ear discomfort, a door-seal hiss and a gradual cabin-altitude rise.",
+              "A loud bang, blast of air, cooling, mist and rapid hypoxia onset.",
+              "Passenger-mask deployment with no airflow, sound or temperature change.",
+              "A cabin-altitude alert followed by slowly increasing differential pressure."
             ],
             "a": 1,
             "w": "Those are the rapid-decompression indications listed on the slide.",
             "slide": 12
           },
           {
-            "q": "Which may indicate a slow decompression?",
+            "q": "Which group is consistent with a developing slow decompression?",
             "o": [
-              "Popping ears, abdominal discomfort, oxygen-mask deployment, a cabin-altitude alert, or hissing",
-              "A sudden engine overspeed only",
-              "An immediate fire warning only",
-              "A reduction in groundspeed with no physiological symptoms"
+              "Ear popping, abdominal discomfort, a cabin-altitude alert or door-seal hissing.",
+              "A loud bang, debris and an immediate fog cloud without warning indications.",
+              "A pressure increase, ear pain and automatic closure of the safety valves.",
+              "A pack-flow reduction with stable cabin altitude and no physiological effects."
             ],
             "a": 0,
             "w": "The guide lists physiological symptoms, mask deployment, a cabin-altitude alert, and possible hissing near a door seal.",
@@ -2381,12 +2381,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 14
           },
           {
-            "q": "What is Time of Useful Consciousness (TUC)?",
+            "q": "What event defines the end of Time of Useful Consciousness?",
             "o": [
-              "The time until a person falls asleep at sea level",
-              "The time required to descend from cruise altitude",
-              "The period during which a person can still perform useful tasks effectively before hypoxia causes serious impairment",
-              "The endurance of the portable oxygen bottle only"
+              "The point at which the person first notices hypoxia symptoms.",
+              "The point at which consciousness is completely lost.",
+              "The point at which effective task performance is no longer possible.",
+              "The point at which supplemental oxygen begins restoring performance."
             ],
             "a": 2,
             "w": "TUC describes the limited time in which effective action remains possible as hypoxia develops.",
@@ -2417,60 +2417,60 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 16
           },
           {
-            "q": "What happens to the high-pressure air received by the A320 packs?",
+            "q": "What processing occurs before high-pressure pack air reaches the cabin?",
             "o": [
-              "It is discharged overboard without conditioning.",
-              "It is used only to start the engines.",
-              "It is stored in the oxygen cylinders.",
-              "It is conditioned, mixed with recirculated air, and distributed to the cabin."
+              "It is cooled and supplied directly, with recirculated air exhausted separately.",
+              "It is conditioned, mixed with recirculated air and distributed.",
+              "It is stored under pressure and released when the outflow valve opens.",
+              "It is mixed with oxygen before distribution to maintain oxygen percentage."
             ],
             "a": 3,
             "w": "The packs condition the high-pressure air, which is then mixed with recirculated air and distributed.",
             "slide": 17
           },
           {
-            "q": "Which statement correctly describes the A320 Cabin Pressure Controllers (CPCs)?",
+            "q": "Which architecture description matches the A320 Cabin Pressure Controllers?",
             "o": [
-              "They are independent, automatic controllers and provide information required for ECAM.",
-              "They operate only when the aircraft is on the ground.",
-              "They are mechanically linked and have no ECAM interface.",
-              "They control only the passenger oxygen masks."
+              "Two independent automatic controllers that also generate pressurisation data for ECAM.",
+              "Two controllers that share one pressure channel and operate alternately in manual mode.",
+              "One automatic controller backed up by the Residual Pressure Control Unit in flight.",
+              "Two manual valve controllers with pressurisation data generated by the ADIRS."
             ],
             "a": 0,
             "w": "The two CPCs are described as independent and automatic, and they generate required ECAM information.",
             "slide": 17
           },
           {
-            "q": "Where is the A320's single outflow valve located?",
+            "q": "Which location identifies the A320's normal outflow valve?",
             "o": [
-              "On the left side above the flotation line",
-              "On the nose landing-gear door",
-              "Inside the cockpit overhead panel",
-              "On the right side of the fuselage below the flotation line"
+              "Left side of the rear fuselage above the flotation line.",
+              "Rear pressure bulkhead above the flotation line.",
+              "Right side of the rear fuselage above the flotation line.",
+              "Right side of the fuselage below the flotation line."
             ],
             "a": 3,
             "w": "The outflow valve is on the right-hand side of the fuselage below the flotation line.",
             "slide": 18
           },
           {
-            "q": "Under which conditions can the Residual Pressure Control Unit automatically open the outflow valve on the ground?",
+            "q": "Which complete condition set permits the RPCU to open the outflow valve for residual pressure?",
             "o": [
-              "Outflow valve not fully open; both CPCs failed or manual mode selected; aircraft on ground; engines shut down or all ADIRS below 100 kt",
-              "Aircraft airborne above 10,000 ft with both engines running",
-              "Only when maximum positive differential pressure is reached in flight",
-              "Whenever the landing gear is retracted"
+              "Valve not fully open; both CPCs failed or MAN selected; on ground; engines off or all ADIRS below 100 kt.",
+              "Valve fully closed; one CPC failed; on ground; at least one engine off or one ADIRS below 100 kt.",
+              "Valve not fully open; both CPCs failed; airborne; engines idle and ADIRS indications below 100 kt.",
+              "Valve not fully open; AUTO selected; on ground; engines off and any ADIRS below 100 kt."
             ],
             "a": 0,
             "w": "The slide lists that combination of residual-pressure, controller/mode, ground, and engine/airspeed conditions.",
             "slide": 19
           },
           {
-            "q": "When will a passenger-door residual-pressure warning light flash red?",
+            "q": "Which combination triggers the passenger-door residual-pressure warning described in the guide?",
             "o": [
-              "Whenever the slide is armed in flight",
-              "When residual pressure is detected, the slide is disarmed, and the engines are off or the aircraft is on the ground",
-              "Only when both safety valves are open",
-              "Whenever cabin altitude is below airport elevation"
+              "Residual pressure, slide armed and aircraft on the ground.",
+              "Residual pressure, slide disarmed and engines off or aircraft on the ground.",
+              "Negative differential pressure, slide disarmed and engines running.",
+              "Positive differential pressure, slide armed and aircraft airborne."
             ],
             "a": 1,
             "w": "Those three conditions are listed for the flashing red residual-pressure warning.",
@@ -2501,24 +2501,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 21
           },
           {
-            "q": "Under what conditions can the ram-air inlet provide ambient air to the air-conditioning system?",
+            "q": "When is the RAM AIR inlet available to provide ambient air in the emergency use described?",
             "o": [
-              "In an emergency below 10,000 ft, provided the ditching pushbutton has not been selected",
-              "At any altitude whenever ditching is selected",
-              "Only above 25,000 ft",
-              "Only with differential pressure above 8.6 psi"
+              "Below 10,000 ft with DITCHING not selected.",
+              "Below 10,000 ft with DITCHING selected and differential above 1 psi.",
+              "Above 10,000 ft with DITCHING not selected and packs off.",
+              "At any altitude once differential pressure falls below 1 psi."
             ],
             "a": 0,
             "w": "The emergency ram-air function is described for use below 10,000 ft and is inhibited by ditching selection.",
             "slide": 22
           },
           {
-            "q": "How does cabin differential pressure affect the selected RAM AIR function?",
+            "q": "How does cabin differential pressure modify a selected RAM AIR command?",
             "o": [
-              "If differential pressure is above 1 psi, the ram-air door opens fully.",
-              "Differential pressure has no effect on ram-air operation.",
-              "Below 1 psi, automatic control opens the outflow valve to about 50%; above 1 psi, the ram-air door will not open and no airflow is supplied.",
-              "Below 1 psi, both safety valves close permanently."
+              "Below 1 psi the inlet opens; above 1 psi it opens after the safety valves relieve pressure.",
+              "Below 1 psi the outflow valve remains closed; above 1 psi the inlet opens with reduced flow.",
+              "Below 1 psi automatic control opens the outflow valve about halfway; above 1 psi the inlet stays closed.",
+              "Below 1 psi both safety valves open; above 1 psi the outflow valve opens fully before the inlet."
             ],
             "a": 2,
             "w": "The guide uses 1 psi as the threshold for opening the outflow valve and permitting actual ram airflow.",
@@ -2527,34 +2527,34 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "Which operating modes are available for the A320 pressurisation system?",
             "o": [
-              "Automatic only",
-              "Manual and emergency only",
-              "Semi-automatic only",
-              "Automatic, semi-automatic, and manual"
+              "Automatic, with manual valve control available after both CPCs fail.",
+              "Automatic and manual, with landing elevation entered in both modes.",
+              "Automatic and semi-automatic, with RPCU control as the manual backup.",
+              "Automatic, semi-automatic and manual."
             ],
             "a": 3,
             "w": "The presentation identifies automatic, semi-automatic, and manual modes.",
             "slide": 23
           },
           {
-            "q": "Which statement correctly describes semi-automatic and manual pressurisation operation?",
+            "q": "How do semi-automatic and manual pressurisation differ?",
             "o": [
-              "Semi-automatic uses FMGS data only; manual mode keeps the automatic motors powered.",
-              "Semi-automatic requires selection of landing elevation when FMGS data is unavailable; manual mode enables the manual outflow-valve motor.",
-              "Both modes prevent the outflow valve from moving.",
-              "Manual mode is controlled only by the RPCU with no crew input."
+              "Semi-automatic uses entered landing elevation; manual lets the crew position the outflow valve.",
+              "Semi-automatic uses the RPCU for valve control; manual uses the active CPC.",
+              "Semi-automatic fixes cabin altitude at 8,000 ft; manual controls cabin vertical speed.",
+              "Semi-automatic uses FMGS data; manual leaves the automatic motors powered."
             ],
             "a": 1,
             "w": "Without FMGS data, landing elevation is selected; MAN mode removes power from the automatic motors and enables the manual motor.",
             "slide": 23
           },
           {
-            "q": "Which oxygen systems are provided on the A320?",
+            "q": "Which set accounts for the three categories of oxygen equipment on the A320?",
             "o": [
-              "Only portable oxygen bottles",
-              "A cockpit-fixed system, a cabin-fixed system, and portable oxygen equipment",
-              "Only passenger chemical oxygen generators",
-              "A single shared cockpit-and-cabin bottle with no portable equipment"
+              "Cockpit fixed, passenger portable and cabin-crew portable.",
+              "Cockpit fixed, cabin fixed and portable equipment.",
+              "Cockpit portable, cabin chemical and maintenance fixed.",
+              "Flight-crew fixed, observer fixed and passenger portable."
             ],
             "a": 1,
             "w": "The guide identifies cockpit-fixed, cabin-fixed, and portable oxygen systems.",
@@ -2578,24 +2578,24 @@ window.SELF_STUDY_QUIZZES = [
         "id": "B",
         "questions": [
           {
-            "q": "What is cabin differential pressure when cabin altitude equals aircraft altitude?",
+            "q": "If cabin altitude has risen until it equals aircraft altitude, what is cabin differential pressure?",
             "o": [
-              "Maximum positive differential",
-              "Zero",
-              "Negative 8.6 psi",
-              "Exactly 1 psi"
+              "Maximum positive differential.",
+              "Zero differential.",
+              "Maximum negative differential.",
+              "Approximately +1 psi."
             ],
             "a": 1,
             "w": "Equal cabin and aircraft altitudes mean the inside and outside pressures are equal, so differential pressure is zero.",
             "slide": 3
           },
           {
-            "q": "Which FCOM chapters are identified for oxygen and pressurisation system revision?",
+            "q": "Which DSC references does the revision slide assign to oxygen and pressurisation?",
             "o": [
-              "Oxygen DSC-35-10 and pressurisation DSC-21-20-10",
-              "Oxygen DSC-21 and pressurisation DSC-35",
-              "Both in DSC-70",
-              "Both in DSC-29"
+              "Oxygen DSC-35-10; pressurisation DSC-21-20-10.",
+              "Oxygen DSC-21-20-10; pressurisation DSC-35-10.",
+              "Oxygen DSC-35-20; pressurisation DSC-21-10.",
+              "Oxygen DSC-21-10; pressurisation DSC-35-20."
             ],
             "a": 0,
             "w": "The revision slide points to DSC-35-10 for oxygen and DSC-21-20-10 for pressurisation.",
@@ -2614,24 +2614,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 5
           },
           {
-            "q": "Which atmospheric composition statement matches the guide?",
+            "q": "Which approximate atmospheric composition completes the major nitrogen and oxygen proportions?",
             "o": [
-              "Argon 21%, oxygen 0.9%",
-              "Other gases 21%",
-              "Nitrogen 0.1%",
-              "Argon about 0.9% and other gases about 0.1%"
+              "Argon 0.1%; other gases 0.9%.",
+              "Argon 1.9%; other gases 0.1%.",
+              "Argon 0.9%; other gases 1.0%.",
+              "Argon 0.9%; other gases 0.1%."
             ],
             "a": 3,
             "w": "The slide assigns about 0.9% to argon and 0.1% to other gases.",
             "slide": 5
           },
           {
-            "q": "How does air density at altitude compare with sea-level air?",
+            "q": "Compared with sea-level air, how does air density change with altitude?",
             "o": [
-              "It is lower",
-              "It is always identical",
-              "It is higher",
-              "It becomes independent of pressure"
+              "It decreases.",
+              "It remains constant while oxygen percentage decreases.",
+              "It increases as ambient pressure decreases.",
+              "It decreases during climb but recovers above 10,000 ft."
             ],
             "a": 0,
             "w": "Air becomes less dense as altitude increases.",
@@ -2650,12 +2650,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 6
           },
           {
-            "q": "Which combination can affect how hypoxia develops?",
+            "q": "Which set of factors can change the onset or severity of hypoxia for an individual?",
             "o": [
-              "Only age and height",
-              "Only cabin temperature",
-              "Fitness, time at altitude, activity, ascent rate, stress, and fatigue",
-              "Aircraft groundspeed only"
+              "Fitness, age, cabin temperature and aircraft heading.",
+              "Time at altitude, aircraft speed, diet and cabin humidity.",
+              "Fitness, exposure time, activity, ascent rate, stress and fatigue.",
+              "Altitude, landing elevation, differential pressure and pack flow."
             ],
             "a": 2,
             "w": "The slide lists those personal and exposure factors as influencing hypoxia onset and severity.",
@@ -2674,24 +2674,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 7
           },
           {
-            "q": "Which visual changes may accompany hypoxia?",
+            "q": "Which visual pattern is consistent with hypoxia?",
             "o": [
-              "Dimmer light, reduced colour vision and acuity, and narrowed peripheral vision",
-              "Brighter colours and wider peripheral vision",
-              "Only improved night vision",
-              "No visual change is possible"
+              "Dimmer light, reduced colour and acuity, and narrowed peripheral vision.",
+              "Dimmer light with improved colour discrimination and wider peripheral vision.",
+              "Brighter light with reduced acuity but unchanged peripheral vision.",
+              "Reduced near vision with sharper distance vision and normal colour perception."
             ],
             "a": 0,
             "w": "The guide lists dimming, loss of colour discrimination, reduced acuity, and narrowed peripheral vision.",
             "slide": 7
           },
           {
-            "q": "Which group of mental and motor abilities is impaired by hypoxia?",
+            "q": "Which group of higher-order abilities is degraded by hypoxia?",
             "o": [
-              "Only hearing",
-              "Coordination, judgement, reasoning, memory, and reaction time",
-              "Only long-term memory",
-              "Only muscle strength"
+              "Hearing, balance and long-term memory.",
+              "Coordination, judgement, reasoning, memory and reaction time.",
+              "Speech, colour vision and muscle strength.",
+              "Peripheral vision, hearing and fine touch."
             ],
             "a": 1,
             "w": "Hypoxia degrades coordination and several judgement, reasoning, memory, and reaction functions.",
@@ -2722,84 +2722,84 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 8
           },
           {
-            "q": "Which operational advantage of high-altitude flight is identified?",
+            "q": "Which pair is identified as an operational advantage of high-altitude flight?",
             "o": [
-              "Obstacle clearance and reduced exposure to weather",
-              "Elimination of all turbulence",
-              "No need for fuel",
-              "Unlimited airspeed"
+              "Obstacle clearance and reduced exposure to weather.",
+              "Lower true airspeed and reduced engine efficiency.",
+              "Higher air density and improved propeller performance.",
+              "Lower cabin altitude and reduced differential pressure."
             ],
             "a": 0,
             "w": "Altitude provides terrain clearance and often less weather, in addition to speed and engine-performance benefits.",
             "slide": 9
           },
           {
-            "q": "How does introducing conditioned bleed air affect effective cabin altitude?",
+            "q": "What is the pressure effect of supplying conditioned bleed air to the cabin?",
             "o": [
-              "It raises cabin altitude",
-              "It raises cabin pressure and therefore lowers effective cabin altitude",
-              "It has no pressure effect",
-              "It opens the safety valves"
+              "Cabin pressure falls, making effective cabin altitude rise.",
+              "Cabin pressure rises, making effective cabin altitude fall.",
+              "Cabin pressure stays constant while oxygen percentage rises.",
+              "Ambient pressure rises relative to the cabin, reducing differential pressure."
             ],
             "a": 1,
             "w": "Adding conditioned air increases cabin pressure, which represents a lower cabin altitude.",
             "slide": 10
           },
           {
-            "q": "What structural factor limits how much a cabin can be pressurised?",
+            "q": "What ultimately constrains the maximum pressure difference that can be maintained across the cabin?",
             "o": [
-              "The number of passengers",
-              "The oxygen percentage",
-              "The differential pressure the fuselage can withstand",
-              "The amount of recirculated air"
+              "The maximum flow capacity of both air-conditioning packs.",
+              "The pressure schedule programmed into the active CPC.",
+              "The differential pressure the fuselage structure can withstand.",
+              "The amount of recirculated air mixed with conditioned air."
             ],
             "a": 2,
             "w": "Fuselage structural differential-pressure capability limits cabin pressurisation.",
             "slide": 10
           },
           {
-            "q": "Which pair contains the two causes of depressurisation identified in the guide?",
+            "q": "Which two broad causes of depressurisation are identified?",
             "o": [
-              "High fuel flow and low oil pressure",
-              "Engine overspeed and brake failure",
-              "Icing and radio failure",
-              "System malfunction or a breach in the aircraft structure"
+              "Pack overheat and high cabin vertical speed.",
+              "Outflow-valve modulation and landing-elevation error.",
+              "Safety-valve opening and residual pressure on the ground.",
+              "A system malfunction or a breach in the aircraft structure."
             ],
             "a": 3,
             "w": "A system failure or structural opening can prevent the cabin from maintaining pressure.",
             "slide": 11
           },
           {
-            "q": "What rapid-decompression effects are associated with the sudden expansion and cooling of cabin air?",
+            "q": "Which visible and temperature effects can follow sudden cabin-air expansion?",
             "o": [
-              "A temperature drop and possible fog or mist",
-              "A steady temperature rise only",
-              "Improved visibility",
-              "No airflow or debris"
+              "A temperature drop with possible fog or mist.",
+              "A temperature rise with condensation clearing.",
+              "A temperature drop with cabin humidity falling too quickly for mist.",
+              "A stable temperature with fog caused by increasing pressure."
             ],
             "a": 0,
             "w": "Rapid decompression commonly produces cooling and visible fog or mist, with a wind blast and debris.",
             "slide": 12
           },
           {
-            "q": "What sound may identify a slow decompression associated with a door seal?",
+            "q": "Which sound particularly suggests leakage at a door seal during slow decompression?",
             "o": [
-              "A starter pop",
-              "Whistling or hissing",
-              "A fire bell only",
-              "A landing-gear horn"
+              "A brief pressure-equalisation pop.",
+              "Whistling or hissing.",
+              "A continuous pack-compressor rumble.",
+              "Repeated safety-valve clicks."
             ],
             "a": 1,
             "w": "Leakage through a door seal may produce a whistle or hiss.",
             "slide": 13
           },
           {
-            "q": "On which checks did the Helios crew overlook the pressurisation-system state?",
+            "q": "At which three points did the Helios crew miss the pressurisation-system state?",
             "o": [
-              "Taxi, cruise, and descent only",
-              "Before landing only",
-              "Pre-flight, after-start, and after-takeoff",
-              "Refuelling and pushback only"
+              "Pre-flight, before-start and taxi checks.",
+              "After-start, line-up and initial-climb checks.",
+              "Pre-flight, after-start and after-takeoff checks.",
+              "Pre-flight, top-of-climb and approach checks."
             ],
             "a": 2,
             "w": "The case-study quotation identifies the pre-flight, after-start, and after-takeoff checks.",
@@ -2878,12 +2878,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 16
           },
           {
-            "q": "Why should published TUC values be treated as approximate?",
+            "q": "Why are tabulated Time of Useful Consciousness values not precise personal guarantees?",
             "o": [
-              "They apply only on the ground",
-              "TUC varies between people and can be affected by rapid decompression",
-              "Altitude has no effect",
-              "They are determined only by aircraft weight"
+              "They vary among people and rapid decompression can shorten them.",
+              "They are based on cabin altitude but ignore aircraft altitude.",
+              "They apply to rapid decompression but not gradual exposure.",
+              "They change with aircraft weight and pressurisation mode."
             ],
             "a": 1,
             "w": "The slide warns that TUC varies and specifically highlights rapid decompression.",
@@ -2902,36 +2902,36 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 18
           },
           {
-            "q": "Which airspeed condition can satisfy the RPCU ground-depressurisation logic when the engines are not all shut down?",
+            "q": "If the engines are not confirmed shut down, which airspeed evidence can satisfy the RPCU ground logic?",
             "o": [
-              "One ADIRS below 250 kt",
-              "Aircraft groundspeed below 150 kt",
-              "Indicated airspeed exactly zero only",
-              "All ADIRS indicate below 100 kt"
+              "Either ADIRS indicates less than 100 kt.",
+              "The mean ADIRS indication is less than 100 kt.",
+              "At least two ADIRS indicate less than 100 kt.",
+              "All ADIRS indicate less than 100 kt."
             ],
             "a": 3,
             "w": "The RPCU accepts either all engines shut down or all ADIRS indicating less than 100 kt.",
             "slide": 19
           },
           {
-            "q": "Where are the two A320 safety valves installed?",
+            "q": "Which location distinguishes the safety valves from the normal outflow valve?",
             "o": [
-              "On the rear pressure bulkhead above the flotation line",
-              "Beside the outflow valve below the flotation line",
-              "Inside the cockpit roof",
-              "On the engine pylons"
+              "Rear pressure bulkhead above the flotation line.",
+              "Right rear fuselage below the flotation line.",
+              "Left rear fuselage below the flotation line.",
+              "Forward pressure bulkhead above the flotation line."
             ],
             "a": 0,
             "w": "Both independent safety valves are on the rear pressure bulkhead above the flotation line.",
             "slide": 21
           },
           {
-            "q": "How long can the ECAM outflow-valve position indication take to update during manual operation?",
+            "q": "What display lag should be allowed for the outflow-valve position during manual operation?",
             "o": [
-              "It is instantaneous in all cases",
-              "Up to about 5 seconds",
-              "Exactly 30 seconds",
-              "More than 10 minutes"
+              "About one second.",
+              "Up to about five seconds.",
+              "Up to about ten seconds.",
+              "About 30 seconds."
             ],
             "a": 1,
             "w": "The guide notes that the manual-mode valve-position indication may take up to five seconds.",
@@ -2943,48 +2943,48 @@ window.SELF_STUDY_QUIZZES = [
         "id": "C",
         "questions": [
           {
-            "q": "Why is hypoxia described as especially dangerous even before severe symptoms appear?",
+            "q": "What makes early hypoxia particularly hazardous to self-monitoring?",
             "o": [
-              "It is gradual and a person may not recognise their own impairment",
-              "It always produces an immediate loud warning",
-              "It improves judgement at first",
-              "It affects only passengers"
+              "Impairment develops gradually and can reduce the ability to recognise it.",
+              "Symptoms begin abruptly but disappear before performance is affected.",
+              "Judgement improves temporarily while physical coordination declines.",
+              "The effects begin in passengers and reach flight crew later."
             ],
             "a": 0,
             "w": "Its insidious onset can impair self-awareness and decision-making before the person recognises the problem.",
             "slide": 6
           },
           {
-            "q": "Which group contains possible physical symptoms of hypoxia?",
+            "q": "Which group contains possible physical manifestations of hypoxia?",
             "o": [
-              "Lower breathing rate and improved speech",
-              "Headache, dizziness, nausea, tingling, weakness, or sweating",
-              "Only blue fingernails",
-              "Only abdominal discomfort from pressure change"
+              "Ear popping, abdominal discomfort and a door-seal hiss.",
+              "Headache, dizziness, nausea, tingling, weakness or sweating.",
+              "Cyanosis, improved coordination and slower breathing.",
+              "Euphoria, narrowed vision and improved task performance."
             ],
             "a": 1,
             "w": "The guide lists those respiratory, neurological, and physical symptoms among possible hypoxia signs.",
             "slide": 7
           },
           {
-            "q": "What does cyanosis look like?",
+            "q": "Which observation is described as cyanosis?",
             "o": [
-              "Red eyes",
-              "Pale hair",
-              "Blue discolouration of the lips or fingernails",
-              "Yellow skin from fuel vapour"
+              "Pale lips with reddened fingernails.",
+              "Blue discolouration around the eyes.",
+              "Blue discolouration of the lips or fingernails.",
+              "Yellow discolouration of the skin and eyes."
             ],
             "a": 2,
             "w": "Cyanosis is the blue discolouration caused by inadequate oxygenation.",
             "slide": 7
           },
           {
-            "q": "Which mood changes can occur with hypoxia?",
+            "q": "Which change in mood can accompany hypoxia?",
             "o": [
-              "Only sadness",
-              "No emotional change",
-              "Only calmness",
-              "Irritability or euphoria"
+              "Irritability or euphoria.",
+              "Anxiety followed consistently by depression.",
+              "Unusual calmness without any change in judgement.",
+              "Emotional blunting with preserved reasoning."
             ],
             "a": 3,
             "w": "The presentation lists both irritability and a misleading sense of euphoria.",
@@ -3015,24 +3015,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 13
           },
           {
-            "q": "What did the repeated failure to establish radio contact in the Helios case indicate?",
+            "q": "In the Helios case, what did the prolonged lack of radio response imply while the aircraft remained airborne?",
             "o": [
-              "The aircraft had landed safely",
-              "The crew had selected manual radio tuning",
-              "The occupants were no longer responding while the aircraft remained airborne",
-              "The autopilot was disconnected"
+              "The crew had transferred control to the cabin while holding.",
+              "The radios had failed while the occupants remained operational.",
+              "The occupants were no longer responding as the autopilot continued flight.",
+              "The aircraft had begun an emergency descent without making a call."
             ],
             "a": 2,
             "w": "Nineteen contact attempts received no response while the aircraft continued at altitude under autopilot.",
             "slide": 14
           },
           {
-            "q": "Can a hypoxic person remain conscious after useful task performance has been lost?",
+            "q": "How can consciousness and useful performance differ during hypoxia?",
             "o": [
-              "No, loss of usefulness and consciousness are simultaneous",
-              "Only below 10,000 ft",
-              "Only if cabin pressure is zero",
-              "Yes; TUC ends when effective performance is lost, not necessarily when consciousness is lost"
+              "Useful performance can be lost while the person remains conscious.",
+              "Loss of useful performance occurs after loss of consciousness.",
+              "They are lost together once cabin altitude exceeds 10,000 ft.",
+              "Consciousness remains useful until supplemental oxygen is fitted."
             ],
             "a": 3,
             "w": "The guide explains that confusion may prevent effective task completion while the person remains conscious.",
@@ -3051,24 +3051,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 17
           },
           {
-            "q": "What system information do the CPCs provide to the crew?",
+            "q": "What pressurisation-related output do the CPCs generate for the crew?",
             "o": [
-              "Only engine thrust data",
-              "Information required for ECAM pressurisation indications",
-              "Only passenger-mask status",
-              "Only ram-air temperature"
+              "Pack outlet temperatures and recirculation-fan status.",
+              "Information used for ECAM pressurisation indications.",
+              "Passenger oxygen-mask status and bottle pressure.",
+              "RAM AIR temperature and ditching-valve position."
             ],
             "a": 1,
             "w": "The independent automatic CPCs generate the pressurisation data required by ECAM.",
             "slide": 17
           },
           {
-            "q": "How many normal outflow valves regulate the A320 cabin?",
+            "q": "How many outflow valves normally regulate A320 cabin-air discharge?",
             "o": [
-              "Four",
-              "Two",
-              "One",
-              "None"
+              "One valve for each CPC.",
+              "One main valve and one standby valve.",
+              "One normal outflow valve.",
+              "Two normal valves plus two safety valves."
             ],
             "a": 2,
             "w": "The A320 uses one outflow valve to meter cabin-air discharge.",
@@ -3087,12 +3087,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 19
           },
           {
-            "q": "Why must the passenger-door slide be disarmed for the residual-pressure warning light logic described?",
+            "q": "Why does slide status matter to the passenger-door residual-pressure warning logic?",
             "o": [
-              "The listed warning conditions specifically include residual pressure with the slide disarmed",
-              "The warning only works in flight with the slide armed",
-              "The light measures oxygen flow",
-              "The slide controls the outflow valve directly"
+              "The warning condition includes residual pressure while the slide is disarmed.",
+              "The warning is inhibited with the slide disarmed to prevent nuisance alerts.",
+              "The slide-arming mechanism mechanically opens the outflow valve.",
+              "The light indicates slide pressure rather than cabin residual pressure."
             ],
             "a": 0,
             "w": "The warning is designed to alert a person preparing to open a disarmed door while residual pressure remains.",
@@ -3123,24 +3123,24 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 21
           },
           {
-            "q": "Where is the normal outflow valve relative to the safety valves?",
+            "q": "Which relative locations correctly distinguish the normal outflow valve and safety valves?",
             "o": [
-              "Both are on the right fuselage below the flotation line",
-              "All are in the cockpit",
-              "The outflow valve is above and the safety valves below the flotation line",
-              "The outflow valve is below the flotation line; the safety valves are on the rear bulkhead above it"
+              "Outflow valve below the flotation line; safety valves beside it below the line.",
+              "Outflow valve on the rear bulkhead; safety valves on the right fuselage.",
+              "Outflow valve above the flotation line; safety valves below it.",
+              "Outflow valve below the flotation line; safety valves on the rear bulkhead above it."
             ],
             "a": 3,
             "w": "The normal valve is low on the right fuselage, while the two safety valves are aft and above the flotation line.",
             "slide": 18
           },
           {
-            "q": "At what altitude range is emergency RAM AIR intended to supply ambient air?",
+            "q": "Within which altitude band is emergency RAM AIR intended to supply ambient air?",
             "o": [
-              "Below 10,000 ft",
-              "Above 35,000 ft only",
-              "At any altitude without restriction",
-              "Only on the ground"
+              "Below 10,000 ft.",
+              "Below 25,000 ft.",
+              "Between 10,000 and 25,000 ft.",
+              "Below maximum certified cabin altitude."
             ],
             "a": 0,
             "w": "The ram-air inlet is described as an emergency ambient-air source below 10,000 ft.",
@@ -3171,12 +3171,12 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 22
           },
           {
-            "q": "What happens if RAM AIR is selected while differential pressure remains above 1 psi?",
+            "q": "If RAM AIR is selected while differential pressure remains above 1 psi, what is the inlet response?",
             "o": [
-              "The door opens fully",
-              "The safety valves open first",
-              "The packs shut down permanently",
-              "The ram-air door does not open and no ram airflow is supplied"
+              "It opens while the outflow valve drives fully open.",
+              "It opens at reduced area until differential pressure falls.",
+              "It remains closed until both safety valves have opened.",
+              "It remains closed and supplies no ram airflow."
             ],
             "a": 3,
             "w": "Differential pressure above one psi inhibits actual ram-air door opening.",
@@ -3195,96 +3195,96 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 23
           },
           {
-            "q": "What crew input is required for semi-automatic operation when FMGS data is unavailable?",
+            "q": "With FMGS landing data unavailable, which crew entry enables semi-automatic operation?",
             "o": [
-              "Select RAM AIR",
-              "Select landing elevation",
-              "Open both safety valves",
-              "Turn off all ADIRS"
+              "Destination QNH.",
+              "Landing elevation.",
+              "Cruise flight level.",
+              "Target cabin vertical speed."
             ],
             "a": 1,
             "w": "Loss of FMGS landing data requires the crew to set LDG ELEV.",
             "slide": 23
           },
           {
-            "q": "Which barometric reference does the CPC use in semi-automatic operation?",
+            "q": "Which barometric input does the CPC use in semi-automatic operation?",
             "o": [
-              "The first officer's standby altimeter only",
-              "Destination QNH from ACARS only",
-              "The captain's BARO reference from the ADIRS",
-              "Cabin differential pressure"
+              "The standby-altimeter barometric setting.",
+              "Destination QNH entered on the PERF page.",
+              "The captain's BARO reference from the ADIRS.",
+              "The first officer's BARO reference from the ADIRS."
             ],
             "a": 2,
             "w": "The course specifies the captain's barometric reference supplied through ADIRS.",
             "slide": 23
           },
           {
-            "q": "What electrical change occurs when MODE SEL is selected to MAN?",
+            "q": "What motor-power transfer occurs when MODE SEL is selected to MAN?",
             "o": [
-              "All outflow-valve motors lose power",
-              "The safety valves are powered open",
-              "The automatic motors remain active",
-              "Power is removed from AUTO motors and the MAN motor is enabled"
+              "AUTO-motor power is removed and the MAN motor is enabled.",
+              "The active AUTO motor remains powered while the standby motor is isolated.",
+              "Both AUTO motors are enabled and the MAN motor is inhibited.",
+              "All outflow-valve motors are depowered until the valve switch is moved."
             ],
             "a": 3,
             "w": "Manual selection disables the automatic valve motors and enables the crew-controlled manual motor.",
             "slide": 23
           },
           {
-            "q": "Why should the crew allow for a delay after commanding the outflow valve manually?",
+            "q": "Why should the ECAM valve-position indication not be expected to respond instantly in manual control?",
             "o": [
-              "The ECAM position display may take up to five seconds to reflect movement",
-              "The valve cannot move on the ground",
-              "CPC data is available only after landing",
-              "The display intentionally remains blank for 30 minutes"
+              "The indication can take up to five seconds to show valve movement.",
+              "The valve moves immediately but CPC data updates at 30-second intervals.",
+              "The indication is inhibited until the valve reaches a commanded detent.",
+              "The manual motor remains unpowered for five seconds after MODE SEL."
             ],
             "a": 0,
             "w": "Valve movement/position reporting is not instantaneous and can lag by up to about five seconds.",
             "slide": 23
           },
           {
-            "q": "Which group of parameters is shown on the pressurisation EIS presentation?",
+            "q": "Which parameter set belongs to the pressurisation EIS presentation?",
             "o": [
-              "N1, N2, EGT, and fuel flow",
-              "Differential pressure, cabin altitude/vertical speed, operating mode, landing elevation, and valve positions",
-              "Hydraulic quantity and brake pressure only",
-              "Radio altitude and groundspeed only"
+              "Differential pressure, pack flow, bleed pressure and valve positions.",
+              "Differential pressure, cabin altitude and rate, mode, landing elevation and valve positions.",
+              "Cabin altitude and rate, oxygen pressure, pack temperature and mode.",
+              "Cabin altitude, aircraft altitude, ADIRS airspeed and safety-valve position."
             ],
             "a": 1,
             "w": "The system display combines pressure, cabin rate/altitude, control mode, landing elevation, and valve-position information.",
             "slide": 24
           },
           {
-            "q": "Who is supplied by the cockpit-fixed A320 oxygen system?",
+            "q": "Who receives oxygen from the cockpit-fixed system?",
             "o": [
-              "Passengers only",
-              "Cabin crew only",
-              "Flight-deck occupants",
-              "Ground engineers only"
+              "Flight-deck occupants.",
+              "Flight crew and the forward cabin crew.",
+              "Flight crew and passengers in the forward cabin.",
+              "Flight-deck occupants and ground personnel through portable outlets."
             ],
             "a": 2,
             "w": "The cockpit-fixed system supplies the occupants of the flight deck.",
             "slide": 25
           },
           {
-            "q": "Who is supplied by the cabin-fixed oxygen system?",
+            "q": "Who is served by the cabin-fixed oxygen system?",
             "o": [
-              "Only pilots",
-              "Only maintenance staff",
-              "Only observers",
-              "Passengers and cabin crew"
+              "Passengers and flight-deck observers.",
+              "Cabin crew and flight-deck occupants.",
+              "Passengers and cabin crew.",
+              "Passengers, cabin crew and flight-deck occupants."
             ],
             "a": 3,
             "w": "The fixed cabin system is provided for passengers and cabin crew.",
             "slide": 25
           },
           {
-            "q": "Who may use the portable A320 oxygen equipment?",
+            "q": "Who may be supported by the portable oxygen equipment?",
             "o": [
-              "Either flight-deck or cabin occupants as required",
-              "Only the captain",
-              "Only passengers seated over the wing",
-              "Only external ground staff"
+              "Flight-deck or cabin occupants as required.",
+              "Cabin crew responding to a decompression, but not flight crew.",
+              "Passengers requiring first aid, but not operating crew.",
+              "Flight-deck occupants during smoke procedures, but not cabin occupants."
             ],
             "a": 0,
             "w": "The portable oxygen system can be used by either flight-deck or cabin occupants.",
