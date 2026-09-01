@@ -269,6 +269,29 @@ function gradeInput(run,controlId,value){
   return event;
 }
 
+function gradeStepChoice(run,choiceIndex){
+  if(run.complete){
+    return {grade:"incorrect",message:"Flow already complete.",stepComplete:false,flowComplete:true,choiceIndex:choiceIndex};
+  }
+  const expectedIndex=run.index;
+  let grade="incorrect",message="That item is not part of the selected role flow.",stepComplete=false;
+  if(Number.isInteger(choiceIndex)&&choiceIndex>=0&&choiceIndex<run.steps.length){
+    if(choiceIndex===expectedIndex){
+      grade="correct";message="Correct - action complete.";stepComplete=true;run.correct++;run.index++;run.doneControls=new Set();
+      if(run.index>=run.steps.length) run.complete=true;
+    }else if(choiceIndex>expectedIndex){
+      grade="out-of-order";message="That item belongs later in the flow.";
+    }else{
+      grade="out-of-order";message="That item has already been completed.";
+    }
+  }
+  if(grade==="incorrect") run.incorrect++;
+  if(grade==="out-of-order") run.outOfOrder++;
+  const event={grade:grade,choiceIndex:choiceIndex,stepIndex:run.index,message:message,stepComplete:stepComplete,flowComplete:run.complete};
+  run.history.push(event);
+  return event;
+}
+
 function expectedInputs(run){return run.steps.reduce(function(sum,item){return sum+(item.completeAny?1:item.controls.length);},0);}
 
 function initBrowser(){
@@ -277,8 +300,10 @@ function initBrowser(){
   let selectedPhase=FLOW_PHASES[0].id;
   let selectedRole="PF";
   let selectedMode="assessment";
+  let selectedView="diagram";
   let activeRun=null;
   let revealed=false;
+  let cockpitRendered=false;
   const controlState={};
   const BEST_KEY="a320flows_v1";
 
@@ -345,7 +370,9 @@ function initBrowser(){
     dock.appendChild(choices);dock.scrollIntoView({behavior:"smooth",block:"nearest"});
   }
   function renderCockpit(){
+    if(cockpitRendered)return;
     CONTROL_DEFS.forEach(function(def){const layer=document.querySelector('.control-layer[data-layer="'+def.panel+'"]');if(layer)layer.appendChild(renderControl(def));});
+    cockpitRendered=true;
     resetControlStates();
   }
   function setState(id,value){
@@ -367,6 +394,60 @@ function initBrowser(){
   }
 
   function clearControlGrades(){document.querySelectorAll(".cockpit-control[data-grade]").forEach(function(el){delete el.dataset.grade;});}
+  function clearMapGrades(){document.querySelectorAll(".flow-item[data-grade]").forEach(function(el){delete el.dataset.grade;});}
+  function stepAnchor(item){
+    const defs=item.controls.map(function(id){return DEF_BY_ID[id];}).filter(Boolean);
+    if(!defs.length)return 50000;
+    const x=defs.reduce(function(sum,def){return sum+def.x+def.w/2;},0)/defs.length;
+    const y=defs.reduce(function(sum,def){return sum+def.y+def.h/2;},0)/defs.length;
+    return Math.round(y*1000+x);
+  }
+  function redrawFlowPath(){
+    const shell=$("flowMapShell"),svg=$("flowMapPath");if(!shell||!svg||shell.hidden)return;
+    const shellRect=shell.getBoundingClientRect();
+    const done=Array.from(shell.querySelectorAll(".flow-item.done")).sort(function(a,b){return Number(a.dataset.stepIndex)-Number(b.dataset.stepIndex);});
+    svg.innerHTML="";svg.setAttribute("viewBox","0 0 "+shellRect.width+" "+shellRect.height);
+    if(done.length<2)return;
+    const points=done.map(function(item){const rect=item.getBoundingClientRect();return (rect.left-shellRect.left+rect.width/2)+","+(rect.top-shellRect.top+rect.height/2);}).join(" ");
+    const line=document.createElementNS("http://www.w3.org/2000/svg","polyline");line.setAttribute("points",points);svg.appendChild(line);
+  }
+  function syncFlowMap(){
+    if(!activeRun||selectedView!=="diagram")return;
+    document.querySelectorAll(".flow-item[data-step-index]").forEach(function(item){
+      const index=Number(item.dataset.stepIndex),done=index<activeRun.index;
+      item.classList.toggle("done",done);
+      item.classList.toggle("current",selectedMode==="guided"&&index===activeRun.index&&!activeRun.complete);
+      const order=item.querySelector(".flow-order");if(order)order.textContent=done||selectedMode==="guided"?String(index+1):"";
+    });
+    requestAnimationFrame(redrawFlowPath);
+  }
+  function renderFlowMap(){
+    const shell=$("flowMapShell");shell.dataset.role=selectedRole;
+    $("diagramRole").textContent=selectedRole+" · "+seatForRole(selectedRole)+" FLOW MAP";
+    const grouped={overhead:[],flightdeck:[],pedestal:[],checks:[]};
+    activeRun.steps.forEach(function(item,index){grouped[item.panel].push({item:item,index:index,anchor:stepAnchor(item)});});
+    document.querySelectorAll("[data-flow-zone]").forEach(function(zone){
+      const panel=zone.dataset.flowZone,host=zone.querySelector(".flow-zone-items"),items=(grouped[panel]||[]).sort(function(a,b){return a.anchor-b.anchor;});
+      host.innerHTML="";zone.classList.toggle("empty",items.length===0);
+      if(!items.length){const empty=document.createElement("span");empty.className="flow-zone-empty";empty.textContent="NO "+selectedRole+" ACTION";host.appendChild(empty);return;}
+      items.forEach(function(entry){
+        const b=button("","flow-item");b.dataset.stepIndex=entry.index;b.dataset.role=selectedRole;
+        b.setAttribute("aria-label",entry.item.label+" - "+entry.item.target);
+        b.innerHTML='<span class="flow-order"></span><strong>'+entry.item.label+'</strong><em>'+entry.item.target+'</em>';
+        b.onclick=function(){interactFlowStep(entry.index,b);};host.appendChild(b);
+      });
+    });
+    syncFlowMap();
+  }
+  function interactFlowStep(index,itemButton){
+    if(!activeRun)return;
+    clearMapGrades();
+    const selected=activeRun.steps[index],result=gradeStepChoice(activeRun,index);itemButton.dataset.grade=result.grade;
+    const title=result.grade==="correct"?"CORRECT":result.grade==="out-of-order"?"OUT OF ORDER":"INCORRECT";
+    showFeedback(result.grade,title,selected.label+" · "+selected.target+" - "+result.message);
+    updateRunUI();
+    if(result.flowComplete)finishRun();
+  }
   function interact(id,value,wrap){
     if(!activeRun)return;
     clearControlGrades();
@@ -388,7 +469,7 @@ function initBrowser(){
     if(selectedMode==="guided"||revealed){
       cue.innerHTML='<span class="cue-kicker">NEXT · '+current.panel.toUpperCase()+'</span><strong>'+current.label+'</strong><span>'+current.target+'</span>';
     }else{
-      cue.innerHTML='<span class="cue-kicker">ASSESSMENT MODE</span><strong>RECALL ACTION '+(activeRun.index+1)+' OF '+activeRun.steps.length+'</strong><span>Use HINT only if needed.</span>';
+      cue.innerHTML='<span class="cue-kicker">ASSESSMENT MODE</span><strong>RECALL ACTION '+(activeRun.index+1)+' OF '+activeRun.steps.length+'</strong><span>'+(selectedView==="diagram"?"Tap the next flow item.":"Use HINT only if needed.")+'</span>';
     }
   }
   function updateRunUI(){
@@ -398,7 +479,7 @@ function initBrowser(){
     $("incorrectValue").textContent=activeRun.incorrect;
     $("orderValue").textContent=activeRun.outOfOrder;
     $("runProgress").style.width=Math.round(activeRun.index/activeRun.steps.length*100)+"%";
-    renderCue();renderFlowList();
+    renderCue();renderFlowList();syncFlowMap();
   }
   function renderFlowList(){
     const host=$("flowList");host.innerHTML="";
@@ -415,20 +496,24 @@ function initBrowser(){
   }
   function startRun(){
     activeRun=createRun(selectedPhase,selectedRole);revealed=selectedMode==="guided";
+    activeRun.practiceView=selectedView;
+    if(selectedView==="panel")renderCockpit();
     applyInitial(PHASE_BY_ID[selectedPhase]);clearControlGrades();
     $("setup").hidden=true;$("trainer").hidden=false;$("completion").hidden=true;
+    $("diagramPractice").hidden=selectedView!=="diagram";$("detailedPractice").hidden=selectedView!=="panel";
     $("runTitle").textContent=PHASE_BY_ID[selectedPhase].title.toUpperCase();
-    $("runMeta").textContent=selectedRole+" · "+seatForRole(selectedRole)+" · "+selectedMode.toUpperCase();
+    $("runMeta").textContent=selectedRole+" · "+seatForRole(selectedRole)+" · "+selectedMode.toUpperCase()+" · "+(selectedView==="diagram"?"FLOW MAP":"FULL PANEL");
     $("flowDrawer").open=selectedMode==="guided";
-    showFeedback("neutral","FLOW ARMED",activeRun.steps.length+" actions loaded from the supplied flow card."+(PHASE_BY_ID[selectedPhase].coldDark?" Aircraft state: cold and dark.":""));
-    selectPanel(activeRun.steps[0].panel);updateRunUI();window.scrollTo({top:0,behavior:"instant"});
+    showFeedback("neutral","FLOW ARMED",activeRun.steps.length+" actions loaded. "+(selectedView==="diagram"?"Tap the flow items in order.":"Operate the cockpit controls in order.")+(PHASE_BY_ID[selectedPhase].coldDark?" Aircraft state: cold and dark.":""));
+    if(selectedView==="diagram")renderFlowMap();else selectPanel(activeRun.steps[0].panel);
+    updateRunUI();window.scrollTo({top:0,behavior:"instant"});
   }
   function accuracy(run){const attempts=run.correct+run.incorrect+run.outOfOrder;return attempts?Math.round(run.correct/attempts*100):0;}
   function finishRun(){
     const pct=accuracy(activeRun);$("completion").hidden=false;
     $("completionScore").textContent=pct+"%";
-    $("completionText").textContent=activeRun.correct+" correct control inputs · "+activeRun.incorrect+" incorrect · "+activeRun.outOfOrder+" out of order"+(activeRun.hints?" · "+activeRun.hints+" hints":"");
-    const key=activeRun.phaseId+":"+activeRun.role+":"+activeRun.seat;const best=loadBest();
+    $("completionText").textContent=activeRun.correct+" correct "+(activeRun.practiceView==="diagram"?"flow items":"control inputs")+" · "+activeRun.incorrect+" incorrect · "+activeRun.outOfOrder+" out of order"+(activeRun.hints?" · "+activeRun.hints+" hints":"");
+    const key=activeRun.phaseId+":"+activeRun.role+":"+activeRun.seat+":"+activeRun.practiceView;const best=loadBest();
     if(!best[key]||pct>best[key]){best[key]=pct;saveBest(best);}
     showFeedback("correct","FLOW COMPLETE",PHASE_BY_ID[activeRun.phaseId].title+" · "+activeRun.role+" complete.");
     $("runProgress").style.width="100%";$("completion").scrollIntoView({behavior:"smooth",block:"center"});
@@ -437,20 +522,22 @@ function initBrowser(){
     activeRun=null;$("trainer").hidden=true;$("setup").hidden=false;renderBrief();window.scrollTo({top:0,behavior:"instant"});
   }
 
-  renderPhases();renderRoles();renderBrief();renderCockpit();
+  renderPhases();renderRoles();renderBrief();
   wireSegments("modeButtons",function(value){selectedMode=value;});
+  wireSegments("viewButtons",function(value){selectedView=value;});
   $("beginFlow").onclick=startRun;
   $("changeFlow").onclick=backToSetup;
   $("resetFlow").onclick=startRun;
   $("retryFlow").onclick=startRun;
   $("chooseFlow").onclick=backToSetup;
-  $("hintButton").onclick=function(){if(activeRun&&!activeRun.complete){activeRun.hints++;revealed=true;renderCue();setTimeout(function(){if(selectedMode==="assessment"){revealed=false;renderCue();}},5000);}};
+  $("hintButton").onclick=function(){if(activeRun&&!activeRun.complete){activeRun.hints++;revealed=true;renderCue();const item=document.querySelector('.flow-item[data-step-index="'+activeRun.index+'"]');if(item)item.classList.add("hinted");setTimeout(function(){if(item)item.classList.remove("hinted");if(selectedMode==="assessment"){revealed=false;renderCue();}},5000);}};
   $("revealButton").onclick=function(){if(activeRun){activeRun.reveals++;$("flowDrawer").open=true;}};
   document.querySelectorAll(".panel-tab").forEach(function(b){b.onclick=function(){selectPanel(b.dataset.panel);};});
+  window.addEventListener("resize",function(){if(activeRun&&selectedView==="diagram")redrawFlowPath();});
   selectPanel("overhead");
 }
 
-const api={FLOW_PHASES:FLOW_PHASES,CONTROL_DEFS:CONTROL_DEFS,createRun:createRun,gradeInput:gradeInput,getResolvedSteps:getResolvedSteps,expectedInputs:expectedInputs,seatForRole:seatForRole,getInitialControlState:getInitialControlState};
+const api={FLOW_PHASES:FLOW_PHASES,CONTROL_DEFS:CONTROL_DEFS,createRun:createRun,gradeInput:gradeInput,gradeStepChoice:gradeStepChoice,getResolvedSteps:getResolvedSteps,expectedInputs:expectedInputs,seatForRole:seatForRole,getInitialControlState:getInitialControlState};
 if(typeof module!=="undefined"&&module.exports) module.exports=api;
 if(root) root.A320FlowTrainer=api;
 if(typeof document!=="undefined"){if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initBrowser);else initBrowser();}

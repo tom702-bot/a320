@@ -92,13 +92,15 @@ source.
    - the engine explorer exposes 8 system tabs and 23 selectable 3D parts;
    - every 3D part links to an existing system tab and every system has at least one operating mode.
    - the flow trainer exposes 10 phases; every role step references an existing cockpit control;
+   - every PF/CM2 and PM/CM1 role completes in Flow Map mode by selecting each source action once in order;
+   - Flow Map assessment mode starts without visible sequence numbers, while correct selections number and connect the completed path;
    - every mapped cockpit hit box stays within its panel and no two control hit boxes overlap;
    - Cockpit Preparation initializes every modeled power source and powered system to its cold-and-dark value;
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
 5. Search correct answers and explanations—not just distractors—for superseded A321P2F or
    engineering-only values.
 6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v28`.
+   `a320-trainer-v29`.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is
