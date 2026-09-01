@@ -78,21 +78,19 @@ function step(label,target,panel,controls,accept,options){
 const FLOW_PHASES = [
   {
     id:"cockpit-preparation",title:"Cockpit Preparation",short:"COCKPIT PREP",
-    note:"This card uses PF / CM1 / CM2 labels rather than PF / PM. The trainer retains that allocation exactly.",
+    note:"Fixed crew allocation applied: CM2/PF performs the PF and CM2 items; CM1/PM performs the CM1 items.",
     roles:{
       PF:[
         step("Overhead Panel","SCAN","overhead","scan_overhead"),
         step("Centre Instrument Panel","SCAN","flightdeck","scan_center_instrument"),
         step("Pedestal","SCAN","pedestal","scan_pedestal"),
-        step("FMGS preparation","COMPLETE","pedestal","fmgs_prepare")
-      ],
-      CM1:[
-        step("Glareshield","SCAN","flightdeck","scan_glareshield_cm1"),
-        step("Lateral consoles and CM1 panel","SCAN","checks","scan_lateral_cm1")
-      ],
-      CM2:[
+        step("FMGS preparation","COMPLETE","pedestal","fmgs_prepare"),
         step("Glareshield","SCAN","flightdeck","scan_glareshield_cm2"),
         step("Lateral consoles and CM2 panel","SCAN","checks","scan_lateral_cm2")
+      ],
+      PM:[
+        step("Glareshield","SCAN","flightdeck","scan_glareshield_cm1"),
+        step("Lateral consoles and CM1 panel","SCAN","checks","scan_lateral_cm1")
       ]
     }
   },
@@ -263,6 +261,7 @@ const FLOW_PHASES = [
 
 const PHASE_BY_ID = Object.fromEntries(FLOW_PHASES.map(function(phase){return [phase.id,phase];}));
 
+function seatForRole(role){return role==="PF"?"CM2":"CM1";}
 function seatSuffix(seat){return String(seat||"CM1").toLowerCase();}
 function resolveControlId(id,seat){return id.replace("{seat}",seatSuffix(seat));}
 function resolveStep(source,seat){
@@ -271,16 +270,17 @@ function resolveStep(source,seat){
 function getResolvedSteps(phaseId,role,seat){
   const phase=PHASE_BY_ID[phaseId];
   if(!phase||!phase.roles[role]) return [];
-  return phase.roles[role].map(function(item){return resolveStep(item,seat);});
+  return phase.roles[role].map(function(item){return resolveStep(item,seatForRole(role));});
 }
 function accepts(stepDef,value){
   if(stepDef.any) return true;
   return (stepDef.accept||["CHECK"]).indexOf(value)!==-1;
 }
 function createRun(phaseId,role,seat){
-  const steps=getResolvedSteps(phaseId,role,seat);
+  const fixedSeat=seatForRole(role);
+  const steps=getResolvedSteps(phaseId,role,fixedSeat);
   if(!steps.length) throw new Error("No flow actions for this phase and role");
-  return {phaseId:phaseId,role:role,seat:seat||"CM1",steps:steps,index:0,doneControls:new Set(),correct:0,incorrect:0,outOfOrder:0,hints:0,reveals:0,history:[],complete:false};
+  return {phaseId:phaseId,role:role,seat:fixedSeat,steps:steps,index:0,doneControls:new Set(),correct:0,incorrect:0,outOfOrder:0,hints:0,reveals:0,history:[],complete:false};
 }
 function findStepWithControl(run,controlId,start,end){
   for(let i=start;i<end;i++) if(run.steps[i].controls.indexOf(controlId)!==-1) return i;
@@ -325,7 +325,6 @@ function initBrowser(){
   if(!$('phaseGrid')) return;
   let selectedPhase=FLOW_PHASES[1].id;
   let selectedRole="PF";
-  let selectedSeat="CM1";
   let selectedMode="assessment";
   let activeRun=null;
   let revealed=false;
@@ -356,12 +355,11 @@ function initBrowser(){
       b.setAttribute("aria-pressed",String(role===selectedRole));
       b.onclick=function(){selectedRole=role;renderRoles();renderBrief();};host.appendChild(b);
     });
-    $("seatSelect").hidden=(selectedRole==="CM1"||selectedRole==="CM2");
   }
   function renderBrief(){
     const phase=PHASE_BY_ID[selectedPhase];
     const actions=phase.roles[selectedRole]||[];
-    $("phaseBrief").innerHTML='<strong>'+phase.title+' · '+selectedRole+'</strong><span>'+actions.length+' source actions'+(phase.note?' · '+phase.note:'')+'</span>';
+    $("phaseBrief").innerHTML='<strong>'+phase.title+' · '+selectedRole+' / '+seatForRole(selectedRole)+'</strong><span>'+actions.length+' source actions'+(phase.note?' · '+phase.note:'')+'</span>';
   }
   function wireSegments(id,onChange){
     $(id).querySelectorAll("button").forEach(function(b){b.onclick=function(){onChange(b.dataset.value);$(id).querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});};});
@@ -371,28 +369,27 @@ function initBrowser(){
     const wrap=document.createElement("div");
     wrap.className="cockpit-control kind-"+def.kind+(def.compact?" compact":"")+(def.wide?" wide":"");
     wrap.dataset.control=def.id;
-    const lab=document.createElement("div");lab.className="control-label";lab.textContent=def.label;wrap.appendChild(lab);
+    const trigger=button(def.label,"hotspot-trigger");
+    trigger.setAttribute("aria-label",def.label+(def.kind==="check"?" check":" control"));
+    wrap.appendChild(trigger);
     if(def.kind==="check"){
-      const b=button(def.face||"CHECK","check-face");
-      b.setAttribute("aria-label",def.label+" - "+(def.face||"check"));
-      b.onclick=function(){interact(def.id,"CHECK",wrap);};wrap.appendChild(b);
+      trigger.onclick=function(){interact(def.id,"CHECK",wrap);};
     }else if(def.kind==="pb"){
-      const b=button(def.label,"pb-face");
-      b.setAttribute("aria-label",def.label+" pushbutton");
-      b.onclick=function(){
+      trigger.onclick=function(){
         const next=controlState[def.id]===def.states[0]?def.states[1]:def.states[0];
         setState(def.id,next);interact(def.id,next,wrap);
       };
-      const state=button("","state-readout");state.dataset.stateFor=def.id;state.setAttribute("aria-label","Confirm "+def.label+" current position");
-      state.onclick=function(){interact(def.id,controlState[def.id],wrap);};wrap.appendChild(b);wrap.appendChild(state);
     }else{
-      const gate=document.createElement("div");gate.className=def.kind==="lever"?"lever-gate":"selector-gate";
-      def.states.forEach(function(state){
-        const b=button(state,"position");b.dataset.value=state;b.setAttribute("aria-label",def.label+" "+state);
-        b.onclick=function(){setState(def.id,state);interact(def.id,state,wrap);};gate.appendChild(b);
-      });wrap.appendChild(gate);
+      trigger.onclick=function(){openControlDock(def,wrap);};
     }
+    if(def.states){const state=document.createElement("span");state.className="state-readout";state.dataset.stateFor=def.id;wrap.appendChild(state);}
     return wrap;
+  }
+  function openControlDock(def,wrap){
+    const dock=$("controlDock");dock.hidden=false;dock.innerHTML='<div><span>SELECT POSITION</span><strong>'+def.label+'</strong></div>';
+    const choices=document.createElement("div");choices.className="dock-choices";
+    def.states.forEach(function(state){const b=button(state,"position");b.setAttribute("aria-pressed",String(controlState[def.id]===state));b.onclick=function(){setState(def.id,state);interact(def.id,state,wrap);dock.hidden=true;};choices.appendChild(b);});
+    dock.appendChild(choices);dock.scrollIntoView({behavior:"smooth",block:"nearest"});
   }
   function renderCockpit(){
     CONTROL_DEFS.forEach(function(def){const mount=$(def.mount);if(mount)mount.appendChild(renderControl(def));});
@@ -403,9 +400,8 @@ function initBrowser(){
     const def=DEF_BY_ID[id];if(!def)return;
     const wrap=document.querySelector('.cockpit-control[data-control="'+id+'"]');if(!wrap)return;
     wrap.dataset.state=value;
-    wrap.querySelectorAll(".position").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.value===value));});
     const readout=wrap.querySelector('[data-state-for="'+id+'"]');if(readout){readout.textContent=value;readout.classList.toggle("on",value!==def.states[0]);}
-    const face=wrap.querySelector(".pb-face");if(face)face.classList.toggle("on",value!==def.states[0]);
+    wrap.classList.toggle("is-on",value!==def.states[0]);
   }
   function resetControlStates(){CONTROL_DEFS.forEach(function(def){if(def.states)setState(def.id,def.initial||def.states[0]);});}
   function applyInitial(phase){resetControlStates();Object.keys(phase.initial||{}).forEach(function(id){setState(id,phase.initial[id]);});}
@@ -455,13 +451,14 @@ function initBrowser(){
   function selectPanel(name){
     document.querySelectorAll(".panel-tab").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.panel===name));});
     document.querySelectorAll(".panel-view").forEach(function(view){view.hidden=view.dataset.panel!==name;});
+    $("controlDock").hidden=true;
   }
   function startRun(){
-    activeRun=createRun(selectedPhase,selectedRole,selectedSeat);revealed=selectedMode==="guided";
+    activeRun=createRun(selectedPhase,selectedRole);revealed=selectedMode==="guided";
     applyInitial(PHASE_BY_ID[selectedPhase]);clearControlGrades();
     $("setup").hidden=true;$("trainer").hidden=false;$("completion").hidden=true;
     $("runTitle").textContent=PHASE_BY_ID[selectedPhase].title.toUpperCase();
-    $("runMeta").textContent=selectedRole+" · "+((selectedRole==="CM1"||selectedRole==="CM2")?selectedRole:selectedSeat)+" · "+selectedMode.toUpperCase();
+    $("runMeta").textContent=selectedRole+" · "+seatForRole(selectedRole)+" · "+selectedMode.toUpperCase();
     $("flowDrawer").open=selectedMode==="guided";
     showFeedback("neutral","FLOW ARMED",activeRun.steps.length+" actions loaded from the supplied flow card.");
     selectPanel(activeRun.steps[0].panel);updateRunUI();window.scrollTo({top:0,behavior:"instant"});
@@ -481,7 +478,6 @@ function initBrowser(){
   }
 
   renderPhases();renderRoles();renderBrief();renderCockpit();
-  wireSegments("seatButtons",function(value){selectedSeat=value;});
   wireSegments("modeButtons",function(value){selectedMode=value;});
   $("beginFlow").onclick=startRun;
   $("changeFlow").onclick=backToSetup;
@@ -494,7 +490,7 @@ function initBrowser(){
   selectPanel("overhead");
 }
 
-const api={FLOW_PHASES:FLOW_PHASES,CONTROL_DEFS:CONTROL_DEFS,createRun:createRun,gradeInput:gradeInput,getResolvedSteps:getResolvedSteps,expectedInputs:expectedInputs};
+const api={FLOW_PHASES:FLOW_PHASES,CONTROL_DEFS:CONTROL_DEFS,createRun:createRun,gradeInput:gradeInput,getResolvedSteps:getResolvedSteps,expectedInputs:expectedInputs,seatForRole:seatForRole};
 if(typeof module!=="undefined"&&module.exports) module.exports=api;
 if(root) root.A320FlowTrainer=api;
 if(typeof document!=="undefined"){if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initBrowser);else initBrowser();}

@@ -49,6 +49,15 @@ button,a{font:inherit}[hidden]{display:none!important}.page{max-width:1240px;mar
 button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media(max-width:760px){.page{padding-left:7px;padding-right:7px}.card{padding:13px 10px}.config-grid{grid-template-columns:1fr}.phase-grid{grid-template-columns:1fr}.run-head{display:block}.run-actions{justify-content:flex-start;margin-top:8px}.cue-bar{grid-template-columns:1fr}.cue{grid-template-columns:1fr}.cue>span:last-child{text-align:left}.feedback{align-items:flex-start;flex-direction:column;gap:3px}.strip .v{font-size:16px}.surface-scroll{padding:4px}.scroll-note{text-align:left}.placard{padding:11px}.placard h1{font-size:14px}.tag{font-size:8px}.flow-row{grid-template-columns:22px 1fr}.flow-row em{grid-column:2;text-align:left}.scope{font-size:9px}}
 .state-readout{width:100%;border:0;background:transparent;cursor:pointer}
+.crew-lock{border:1px solid #315348;border-radius:7px;background:#0b1713;padding:10px 12px}.crew-lock strong{display:block;color:var(--green);font:11px var(--mono);letter-spacing:.8px}.crew-lock span{display:block;color:#a7b8b0;font:9px/1.5 var(--mono);margin-top:3px}
+.surface-scroll{padding:0;background:#030405;overflow:auto}.panel-view{min-width:760px;max-width:1080px;border:0;border-radius:0;padding:0;background:#020303;box-shadow:none}.photo-crop{position:relative;width:100%;overflow:hidden;background:#020303}.photo-crop img{display:block;width:100%;height:auto}.photo-crop.overhead-photo{aspect-ratio:1.95/1}.photo-crop.overhead-photo img{width:132%;margin-left:-16%;margin-top:-27%}.photo-crop.flightdeck-photo{aspect-ratio:2.1/1}.photo-crop.flightdeck-photo img{width:132%;margin-left:-16%;margin-top:-60%}.photo-crop.pedestal-photo{aspect-ratio:1.45/1}.photo-crop.pedestal-photo img{width:132%;margin-left:-16%;margin-top:-82%}.photo-crop.checks-photo{aspect-ratio:2.1/1}.photo-crop.checks-photo img{width:132%;margin-left:-16%;margin-top:-52%}.photo-caption{position:absolute;left:10px;top:9px;z-index:5;padding:5px 8px;border:1px solid rgba(88,216,236,.55);border-radius:4px;background:rgba(4,10,12,.82);color:var(--cyan);font:9px var(--mono);letter-spacing:1.2px}
+.photo-crop .mount{position:absolute;z-index:3;display:flex;align-items:flex-start;justify-content:center;gap:4px;flex-wrap:wrap}.photo-crop .cockpit-control{position:relative;width:auto;min-width:54px;max-width:112px;padding:0;border:0;background:transparent;box-shadow:none}.hotspot-trigger{display:block;width:100%;min-height:34px;padding:5px 6px;border:1px solid rgba(88,216,236,.8);border-radius:5px;background:rgba(5,12,15,.82);color:#edf7f8;font:700 7px/1.2 var(--mono);letter-spacing:.15px;cursor:pointer;box-shadow:0 2px 9px rgba(0,0,0,.65)}.cockpit-control:hover .hotspot-trigger,.hotspot-trigger:focus-visible{background:rgba(12,35,42,.94);border-color:var(--cyan)}.cockpit-control.is-on .hotspot-trigger{box-shadow:inset 0 0 0 1px var(--green),0 2px 9px #000}.photo-crop .state-readout{display:block;pointer-events:none;margin:-1px auto 0;width:max-content;max-width:95%;padding:2px 5px;border-radius:0 0 4px 4px;background:rgba(0,0,0,.9);color:#aeb8be;font:700 6px var(--mono)}.photo-crop .state-readout.on{color:var(--green)}.photo-crop .cockpit-control[data-grade=correct],.photo-crop .cockpit-control[data-grade=incorrect],.photo-crop .cockpit-control[data-grade=out-of-order]{box-shadow:none}.photo-crop .cockpit-control[data-grade] .hotspot-trigger{box-shadow:0 0 0 3px var(--grade),0 0 18px var(--grade);border-color:var(--grade)}.photo-crop .cockpit-control[data-grade=correct]{--grade:var(--green)}.photo-crop .cockpit-control[data-grade=incorrect]{--grade:var(--red)}.photo-crop .cockpit-control[data-grade=out-of-order]{--grade:var(--amber)}.photo-crop .cockpit-control[data-grade]::after{right:50%;top:-11px;transform:translateX(50%);white-space:nowrap}
+.overhead-photo #oh-scan{left:40%;top:5%;width:20%}.overhead-photo #oh-fuel{left:27%;top:35%;width:46%}.overhead-photo #oh-hyd{left:27%;top:24%;width:46%}.overhead-photo #oh-air{left:27%;top:59%;width:46%}.overhead-photo #oh-ice{left:28%;top:71%;width:26%}.overhead-photo #oh-lights{left:28%;top:80%;width:31%}.overhead-photo #oh-signs{left:58%;top:81%;width:19%}.overhead-photo #oh-apu{left:52%;top:73%;width:13%}
+.flightdeck-photo #glare-cm1{left:9%;top:5%;width:24%}.flightdeck-photo #glare-cm2{right:9%;top:5%;width:24%}.flightdeck-photo #main-center{left:37%;top:39%;width:26%}.flightdeck-photo #main-gear{left:64%;top:40%;width:18%}
+.pedestal-photo #ped-mcdu{left:7%;top:2%;width:25%}.pedestal-photo #ped-atc{right:7%;top:25%;width:25%}.pedestal-photo #ped-throttle{left:34%;top:23%;width:32%}.pedestal-photo #ped-engine{left:37%;top:61%;width:26%}
+.checks-photo #checks-view{left:35%;top:13%;width:30%}.checks-photo #checks-left{left:5%;top:57%;width:24%}.checks-photo #checks-center{left:36%;top:63%;width:28%}.checks-photo #checks-right{right:5%;top:57%;width:24%}
+.control-dock{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--cyan);border-radius:8px;background:#0b1519;padding:10px 12px;margin:9px 0}.control-dock>div:first-child{display:grid;gap:3px}.control-dock span{font:8px var(--mono);letter-spacing:1px;color:var(--muted)}.control-dock strong{font:11px var(--mono);color:var(--cyan)}.dock-choices{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.dock-choices .position{min-width:58px;min-height:36px}.source-credit{font:9px/1.5 var(--mono);color:var(--muted);margin:8px 2px 0}.source-credit a{color:var(--cyan)}
+@media(max-width:760px){.crew-lock{margin-top:0}.panel-view{min-width:720px}.control-dock{align-items:flex-start;flex-direction:column}.dock-choices{justify-content:flex-start}.hotspot-trigger{min-height:38px;font-size:7.5px}}
 </style>
 </head>
 <body>
@@ -58,25 +67,25 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 
   <section id="setup" class="card">
     <div class="eyebrow">Configure a flow</div>
-    <p class="lead">Choose a phase and role, then operate the cockpit controls in the exact order shown on the supplied flow cards. Every input is graded <b>correct</b>, <b>incorrect</b>, or <b>out of order</b>. CM1 / CM2 selects which side-specific EFIS and window controls you use.</p>
+    <p class="lead">Choose a phase and role, then operate the controls on the FlyByWire A32NX flight-deck panel in the exact order shown on the supplied flow cards. Every input is graded <b>correct</b>, <b>incorrect</b>, or <b>out of order</b>.</p>
 
     <div class="config-label">PHASE</div>
     <div class="phase-grid" id="phaseGrid" aria-label="Flow phase"></div>
 
     <div class="config-grid">
       <div><div class="config-label">ROLE ALLOCATION</div><div class="segment-group" id="roleButtons"></div></div>
-      <div id="seatSelect"><div class="config-label">OPERATING SEAT</div><div class="segment-group" id="seatButtons"><button class="segment" data-value="CM1" aria-pressed="true">CM1 / LEFT</button><button class="segment" data-value="CM2" aria-pressed="false">CM2 / RIGHT</button></div></div>
+      <div><div class="config-label">FIXED CREW POSITIONS</div><div class="crew-lock"><strong>CM1 = PM &middot; CM2 = PF</strong><span>Left seat always monitors; right seat always flies.</span></div></div>
       <div><div class="config-label">PRACTICE MODE</div><div class="segment-group" id="modeButtons"><button class="segment" data-value="assessment" aria-pressed="true">ASSESSMENT</button><button class="segment" data-value="guided" aria-pressed="false">GUIDED</button></div></div>
     </div>
 
     <div class="phase-brief" id="phaseBrief"></div>
     <div class="actions"><button class="btn primary" id="beginFlow">BEGIN FLOW &rarr;</button></div>
-    <p class="scope"><b>SOURCE SCOPE:</b> A320 Panel Scans.pdf supplied in this chat. Exact positions are enforced where the card provides one. For actions written only as SET or AS RQRD, the trainer grades the correct control interaction without inventing a company-specific configuration. Cockpit Preparation retains the card's PF / CM1 / CM2 labels. Current approved FCOM, QRH and company procedures remain authoritative.</p>
+    <p class="scope"><b>SOURCE SCOPE:</b> A320 Panel Scans.pdf supplied in this chat. CM1 is fixed as PM and CM2 as PF; Cockpit Preparation combines each seat's labelled scan items with that allocation. Exact positions are enforced where the card provides one. SET and AS RQRD actions are treated as conditional interactions. Current approved FCOM, QRH and company procedures remain authoritative.</p>
   </section>
 
   <section id="trainer" hidden>
     <div class="card">
-      <div class="run-head"><div><div class="eyebrow">Active flow</div><h2 id="runTitle">BEFORE START</h2><div class="run-meta" id="runMeta">PF &middot; CM1 &middot; ASSESSMENT</div></div><div class="run-actions"><button class="btn small ghost" id="changeFlow">CHANGE FLOW</button><button class="btn small" id="resetFlow">RESET</button></div></div>
+      <div class="run-head"><div><div class="eyebrow">Active flow</div><h2 id="runTitle">BEFORE START</h2><div class="run-meta" id="runMeta">PF &middot; CM2 &middot; ASSESSMENT</div></div><div class="run-actions"><button class="btn small ghost" id="changeFlow">CHANGE FLOW</button><button class="btn small" id="resetFlow">RESET</button></div></div>
       <div class="strip">
         <div class="cell"><div class="k">STEP</div><div class="v" id="stepValue">1/1</div></div>
         <div class="cell"><div class="k">CORRECT</div><div class="v good" id="correctValue">0</div></div>
@@ -96,64 +105,39 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
       <div class="scroll-note">Panel is intentionally full-width; scroll sideways on a small screen.</div>
       <div class="surface-scroll">
         <section class="panel-view" data-panel="overhead">
-          <div class="overhead-shape">
-            <div class="panel-title">OVERHEAD PANEL</div>
-            <div class="mount single oh-scan" id="oh-scan"></div>
-            <div class="oh-grid">
-              <section class="panel-unit"><h3>ADIRS</h3><div class="dummy-bank"><i class="dummy-knob"></i><i class="dummy-knob"></i><i class="dummy-knob"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
-              <section class="panel-unit tall"><h3>FUEL</h3><div class="mount six" id="oh-fuel"></div><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
-              <section class="panel-unit"><h3>HYD</h3><div class="mount" id="oh-hyd"></div><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
-              <section class="panel-unit"><h3>ELEC</h3><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
-              <section class="panel-unit"><h3>AIR COND / PNEU</h3><div class="mount" id="oh-air"></div></section>
-              <section class="panel-unit"><h3>ANTI ICE</h3><div class="mount single" id="oh-ice"></div><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
-              <section class="panel-unit tall"><h3>EXTERIOR LIGHTS</h3><div class="mount" id="oh-lights"></div></section>
-              <section class="panel-unit"><h3>SIGNS / CALLS</h3><div class="mount" id="oh-signs"></div></section>
-              <section class="panel-unit"><h3>APU</h3><div class="mount single" id="oh-apu"></div><div class="dummy-knob"></div></section>
-            </div>
+          <div class="photo-crop overhead-photo">
+            <img src="a32nx-cockpit.png" alt="FlyByWire A32NX overhead panel">
+            <div class="photo-caption">OVERHEAD PANEL</div>
+            <div class="mount" id="oh-scan"></div><div class="mount" id="oh-fuel"></div><div class="mount" id="oh-hyd"></div><div class="mount" id="oh-air"></div><div class="mount" id="oh-ice"></div><div class="mount" id="oh-lights"></div><div class="mount" id="oh-signs"></div><div class="mount" id="oh-apu"></div>
           </div>
         </section>
 
         <section class="panel-view" data-panel="flightdeck" hidden>
-          <div class="panel-title">GLARESHIELD AND MAIN INSTRUMENT PANEL</div>
-          <div class="glare">
-            <section class="efis-panel"><div class="panel-title">CM1 EFIS</div><div class="mount" id="glare-cm1"></div></section>
-            <section class="fcu"><div class="panel-title">FCU</div><div class="fcu-display-row"><div class="fcu-window">250</div><div class="fcu-window">HDG</div><div class="fcu-window">10000</div><div class="fcu-window">+10</div></div><div class="fcu-knobs"><i class="dummy-knob"></i><i class="dummy-knob"></i><i class="dummy-knob"></i><i class="dummy-knob"></i></div></section>
-            <section class="efis-panel"><div class="panel-title">CM2 EFIS</div><div class="mount" id="glare-cm2"></div></section>
-          </div>
-          <div class="main-instruments">
-            <section class="screen-pair"><div class="display pfd" aria-label="PFD representation"></div><div class="display nd" aria-label="ND representation"></div></section>
-            <section class="ecam-stack"><div class="ecam-screen"><b>ENG / WARNING</b><br>FOB 6.2<br><span class="amber">T.O INHIBIT</span><br>FLAPS 1+F<br>SPLRS ARM</div><div class="ecam-screen"><b>STATUS / SYSTEM</b><br>MEMO<br>SEAT BELTS<br>NO SMOKING<br>NW STRG DISC</div><div class="mount main-control-bank" id="main-center"></div></section>
-            <section class="screen-pair"><div class="display nd" aria-label="ND representation"></div><div class="display pfd" aria-label="PFD representation"></div></section>
-            <section class="gear-bay"><div class="panel-title">GEAR / BRAKE</div><div class="gear-lever"></div><div class="mount single" id="main-gear"></div></section>
+          <div class="photo-crop flightdeck-photo">
+            <img src="a32nx-cockpit.png" alt="FlyByWire A32NX glareshield and main instrument panel">
+            <div class="photo-caption">GLARESHIELD / MAIN PANEL</div>
+            <div class="mount" id="glare-cm1"></div><div class="mount" id="glare-cm2"></div><div class="mount" id="main-center"></div><div class="mount" id="main-gear"></div>
           </div>
         </section>
 
         <section class="panel-view" data-panel="pedestal" hidden>
-          <div class="pedestal-shape">
-            <div class="panel-title">CENTRE PEDESTAL</div>
-            <div class="ped-upper">
-              <section class="mcdu-shell"><div class="panel-title">MCDU 1</div><div class="mcdu-screen">INIT &nbsp; F-PLN<br><br>FROM/TO<br>FLT NBR<br>COST INDEX<br>CRZ FL/TEMP</div><div class="mcdu-keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="mount single" id="ped-mcdu"></div></section>
-              <section class="radio-stack"><div class="panel-title">RMP / ATC / WX</div><div class="fcu-window">7700</div><div class="dummy-bank"><i class="dummy-knob"></i><i class="dummy-knob"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div><div class="mount" id="ped-atc"></div></section>
-              <section class="mcdu-shell"><div class="panel-title">MCDU 2</div><div class="mcdu-screen">PROG &nbsp; PERF<br><br>GPS PRIMARY<br>OPT FL 350<br>REC MAX 372<br>NAV ACCUR HIGH</div><div class="mcdu-keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></section>
-            </div>
-            <div class="throttle-zone">
-              <section class="throttle-quadrant"><div class="panel-title">FLIGHT CONTROL PEDESTAL</div><div class="throttle-art"><div class="throttle-handle"></div><div class="throttle-handle"></div></div><div class="mount" id="ped-throttle"></div></section>
-              <section class="engine-zone"><div class="panel-title">ENG / PARK BRK</div><div class="mount" id="ped-engine"></div><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-knob"></i><i class="dummy-pb"></i></div></section>
-            </div>
+          <div class="photo-crop pedestal-photo">
+            <img src="a32nx-cockpit.png" alt="FlyByWire A32NX center pedestal">
+            <div class="photo-caption">CENTRE PEDESTAL</div>
+            <div class="mount" id="ped-mcdu"></div><div class="mount" id="ped-atc"></div><div class="mount" id="ped-throttle"></div><div class="mount" id="ped-engine"></div>
           </div>
         </section>
 
-        <section class="panel-view checks-shape" data-panel="checks" hidden>
-          <div class="panel-title">WINDOWS, RUNWAY AND CABIN CHECKS</div>
-          <div class="windscreen"><div class="window-pane"></div><div class="window-pane center"></div><div class="window-pane"></div></div>
-          <div class="view-actions mount single" id="checks-view"></div>
-          <div class="checks-grid">
-            <section class="check-bay"><div class="panel-title">CM1 SIDE</div><div class="mount single" id="checks-left"></div></section>
-            <section class="check-bay"><div class="panel-title">DOORS / CABIN</div><div class="mount single" id="checks-center"></div><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
-            <section class="check-bay"><div class="panel-title">CM2 SIDE</div><div class="mount single" id="checks-right"></div></section>
+        <section class="panel-view" data-panel="checks" hidden>
+          <div class="photo-crop checks-photo">
+            <img src="a32nx-cockpit.png" alt="FlyByWire A32NX flight deck and side consoles">
+            <div class="photo-caption">WINDOWS / EXTERNAL CHECKS</div>
+            <div class="mount" id="checks-view"></div><div class="mount" id="checks-left"></div><div class="mount" id="checks-center"></div><div class="mount" id="checks-right"></div>
           </div>
         </section>
       </div>
+      <div class="control-dock" id="controlDock" hidden></div>
+      <p class="source-credit">Flight-deck artwork/reference: <a href="https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/#description" target="_blank" rel="noopener">FlyByWire Simulations A32NX Flight Deck Overview</a>. Used for training reference; this site is not affiliated with FlyByWire Simulations.</p>
 
       <details class="flow-drawer" id="flowDrawer"><summary>FLOW CARD TRANSCRIPTION / PROGRESS</summary><div class="flow-list" id="flowList"></div></details>
       <section class="completion" id="completion" hidden><div class="eyebrow">Run complete</div><div class="score" id="completionScore">100%</div><p id="completionText"></p><div class="actions"><button class="btn primary" id="retryFlow">RETRY SAME FLOW</button><button class="btn" id="chooseFlow">CHOOSE ANOTHER</button></div></section>
