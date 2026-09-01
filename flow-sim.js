@@ -1,73 +1,9 @@
 (function(root){
 "use strict";
 
-const CONTROL_DEFS = [
-  {id:"scan_overhead",mount:"oh-scan",label:"OVERHEAD PANEL",kind:"check",face:"SCAN COMPLETE"},
-  {id:"fuel_pump_l1",mount:"oh-fuel",label:"L TK 1",kind:"pb",states:["OFF","ON"],initial:"ON",compact:true},
-  {id:"fuel_pump_l2",mount:"oh-fuel",label:"L TK 2",kind:"pb",states:["OFF","ON"],initial:"ON",compact:true},
-  {id:"fuel_pump_ctr1",mount:"oh-fuel",label:"CTR TK 1",kind:"pb",states:["OFF","ON"],initial:"ON",compact:true},
-  {id:"fuel_pump_ctr2",mount:"oh-fuel",label:"CTR TK 2",kind:"pb",states:["OFF","ON"],initial:"ON",compact:true},
-  {id:"fuel_pump_r1",mount:"oh-fuel",label:"R TK 1",kind:"pb",states:["OFF","ON"],initial:"ON",compact:true},
-  {id:"fuel_pump_r2",mount:"oh-fuel",label:"R TK 2",kind:"pb",states:["OFF","ON"],initial:"ON",compact:true},
-  {id:"yellow_pump",mount:"oh-hyd",label:"Y ELEC PUMP",kind:"pb",states:["OFF","ON"],initial:"ON"},
-  {id:"pack_1",mount:"oh-air",label:"PACK 1",kind:"pb",states:["OFF","ON"],initial:"ON"},
-  {id:"pack_2",mount:"oh-air",label:"PACK 2",kind:"pb",states:["OFF","ON"],initial:"ON"},
-  {id:"apu_bleed",mount:"oh-air",label:"APU BLEED",kind:"pb",states:["OFF","ON"],initial:"ON"},
-  {id:"anti_ice",mount:"oh-ice",label:"ANTI ICE PANEL",kind:"selector",states:["OFF","ON"],initial:"OFF"},
-  {id:"beacon",mount:"oh-lights",label:"BEACON",kind:"selector",states:["OFF","ON"],initial:"OFF"},
-  {id:"land_lights",mount:"oh-lights",label:"LAND L/R",kind:"selector",states:["OFF","ON"],initial:"OFF"},
-  {id:"exterior_lights",mount:"oh-lights",label:"EXTERIOR LIGHTS",kind:"selector",states:["SET","OFF"],initial:"OFF",wide:true},
-  {id:"seat_belts",mount:"oh-signs",label:"SEAT BELTS",kind:"selector",states:["OFF","ON"],initial:"ON"},
-  {id:"cabin_crew",mount:"oh-signs",label:"CABIN CREW",kind:"check",face:"ADVISE"},
-  {id:"apu_master",mount:"oh-apu",label:"APU MASTER SW",kind:"pb",states:["OFF","ON"],initial:"ON"},
-
-  {id:"terr_cm1",mount:"glare-cm1",label:"TERR ON ND",kind:"pb",states:["OFF","ON"],initial:"OFF"},
-  {id:"ls_cm1",mount:"glare-cm1",label:"LS",kind:"pb",states:["OFF","ON"],initial:"OFF",compact:true},
-  {id:"efis_options_cm1",mount:"glare-cm1",label:"EFIS OPTIONS",kind:"selector",states:["CLR","CSTR","WPT","VOR.D","NDB","ARPT"],initial:"CLR",wide:true},
-  {id:"scan_glareshield_cm1",mount:"glare-cm1",label:"CM1 GLARESHIELD",kind:"check",face:"SCAN COMPLETE",wide:true},
-  {id:"terr_cm2",mount:"glare-cm2",label:"TERR ON ND",kind:"pb",states:["OFF","ON"],initial:"OFF"},
-  {id:"ls_cm2",mount:"glare-cm2",label:"LS",kind:"pb",states:["OFF","ON"],initial:"OFF",compact:true},
-  {id:"efis_options_cm2",mount:"glare-cm2",label:"EFIS OPTIONS",kind:"selector",states:["CLR","CSTR","WPT","VOR.D","NDB","ARPT"],initial:"CLR",wide:true},
-  {id:"scan_glareshield_cm2",mount:"glare-cm2",label:"CM2 GLARESHIELD",kind:"check",face:"SCAN COMPLETE",wide:true},
-
-  {id:"scan_center_instrument",mount:"main-center",label:"CENTRE INSTRUMENT PANEL",kind:"check",face:"SCAN COMPLETE",wide:true},
-  {id:"ecam_status",mount:"main-center",label:"ECAM STATUS",kind:"check",face:"CHECK"},
-  {id:"nw_strg_memo",mount:"main-center",label:"NW STRG DISC MEMO",kind:"check",face:"NOT DISPLAYED",wide:true},
-  {id:"ecam_memo",mount:"main-center",label:"ECAM MEMO",kind:"check",face:"REVIEW"},
-  {id:"to_memo",mount:"main-center",label:"T.O MEMO",kind:"check",face:"NO BLUE"},
-  {id:"to_config",mount:"main-center",label:"T.O CONFIG",kind:"check",face:"TEST"},
-  {id:"fuel_quantity",mount:"main-center",label:"FUEL QUANTITY",kind:"check",face:"CHECK"},
-  {id:"auto_brake_max",mount:"main-gear",label:"AUTO BRK MAX",kind:"pb",states:["OFF","ON"],initial:"OFF"},
-  {id:"gear_check",mount:"main-gear",label:"L/G INDICATION",kind:"check",face:"CHECK UP"},
-  {id:"accu_press",mount:"main-gear",label:"ACCU PRESS",kind:"check",face:"CHECK"},
-
-  {id:"fmgs_prepare",mount:"ped-mcdu",label:"FMGS PREPARATION",kind:"check",face:"COMPLETE",wide:true},
-  {id:"navaids_climb",mount:"ped-mcdu",label:"NAVAIDS / SEC-PLAN / OPT FL / REC MAX FL",kind:"check",face:"CHECK",wide:true},
-  {id:"navaids_descent",mount:"ped-mcdu",label:"NAVAIDS / NAV ACCURACY",kind:"check",face:"MONITOR",wide:true},
-  {id:"irs_performance",mount:"ped-mcdu",label:"IRS PERFORMANCE",kind:"check",face:"CHECK",wide:true},
-  {id:"atc_operational",mount:"ped-atc",label:"ATC",kind:"check",face:"SET FOR OPS"},
-  {id:"squawk",mount:"ped-atc",label:"SQUAWK",kind:"check",face:"CONFIRM / SET"},
-  {id:"tcas_atc",mount:"ped-atc",label:"TCAS / ATC",kind:"selector",states:["STBY","TA","TA/RA"],initial:"STBY",wide:true},
-  {id:"radar_pws",mount:"ped-atc",label:"RADAR / PWS",kind:"selector",states:["OFF","AUTO"],initial:"OFF"},
-  {id:"scan_pedestal",mount:"ped-throttle",label:"PEDESTAL",kind:"check",face:"SCAN COMPLETE",wide:true},
-  {id:"spoilers",mount:"ped-throttle",label:"GND SPLRS",kind:"lever",states:["DISARMED","ARMED"],initial:"DISARMED"},
-  {id:"thrust_levers",mount:"ped-throttle",label:"THRUST LEVERS",kind:"lever",states:["IDLE","CL","FLX/MCT","TOGA"],initial:"IDLE",wide:true},
-  {id:"flaps",mount:"ped-throttle",label:"FLAPS",kind:"lever",states:["0","1+F","2","3","FULL"],initial:"0",wide:true},
-  {id:"pitch_trim",mount:"ped-throttle",label:"PITCH TRIM",kind:"check",face:"SET"},
-  {id:"rudder_neutral",mount:"ped-throttle",label:"RUDDER",kind:"check",face:"CHECK NEUTRAL"},
-  {id:"eng_mode",mount:"ped-engine",label:"ENG MODE",kind:"selector",states:["CRANK","NORM","IGN/START"],initial:"NORM",wide:true},
-  {id:"eng_master_1",mount:"ped-engine",label:"ENG 1 MASTER",kind:"lever",states:["OFF","ON"],initial:"ON"},
-  {id:"eng_master_2",mount:"ped-engine",label:"ENG 2 MASTER",kind:"lever",states:["OFF","ON"],initial:"ON"},
-  {id:"park_brake",mount:"ped-engine",label:"PARK BRK",kind:"selector",states:["OFF","ON"],initial:"OFF"},
-
-  {id:"windows_cm1",mount:"checks-left",label:"CM1 WINDOW",kind:"selector",states:["OPEN","CLOSED"],initial:"CLOSED"},
-  {id:"windows_cm2",mount:"checks-right",label:"CM2 WINDOW",kind:"selector",states:["OPEN","CLOSED"],initial:"CLOSED"},
-  {id:"scan_lateral_cm1",mount:"checks-left",label:"CM1 LATERAL CONSOLE / PANEL",kind:"check",face:"SCAN COMPLETE",wide:true},
-  {id:"scan_lateral_cm2",mount:"checks-right",label:"CM2 LATERAL CONSOLE / PANEL",kind:"check",face:"SCAN COMPLETE",wide:true},
-  {id:"doors_slides",mount:"checks-center",label:"DOORS / SLIDES",kind:"selector",states:["ARMED","DISARMED"],initial:"ARMED",wide:true},
-  {id:"takeoff_runway",mount:"checks-view",label:"TAKEOFF RUNWAY",kind:"check",face:"CONFIRM"},
-  {id:"approach_path",mount:"checks-view",label:"APPROACH PATH",kind:"check",face:"CLEAR OF TRAFFIC",wide:true}
-];
+const catalog=(root&&root.A320ControlCatalog)||(typeof require!=="undefined"?require("./a320-controls.js"):null);
+if(!catalog) throw new Error("A320 control catalog not loaded");
+const CONTROL_DEFS=catalog.CONTROL_DEFS;
 
 const DEF_BY_ID = Object.fromEntries(CONTROL_DEFS.map(function(def){return [def.id,def];}));
 
@@ -75,16 +11,22 @@ function step(label,target,panel,controls,accept,options){
   return Object.assign({label:label,target:target,panel:panel,controls:Array.isArray(controls)?controls:[controls],accept:accept||["CHECK"]},options||{});
 }
 
+const ANTI_ICE_CONTROLS=["anti_ice_eng_1","anti_ice_wing","anti_ice_eng_2"];
+const EXTERIOR_LIGHT_CONTROLS=["ext_strobe","beacon","ext_wing","ext_nav_logo","land_light_l","ext_nose","ext_rwy_turnoff","land_light_r"];
+const EFIS_OPTION_TEMPLATES=["efis_cstr_{seat}","efis_wpt_{seat}","efis_vord_{seat}","efis_ndb_{seat}","efis_arpt_{seat}"];
+const FMGS_PREP_TEMPLATES=["mcdu_{seat}_init","mcdu_{seat}_f_pln","mcdu_{seat}_rad_nav","mcdu_{seat}_perf"];
+
 const FLOW_PHASES = [
   {
     id:"cockpit-preparation",title:"Cockpit Preparation",short:"COCKPIT PREP",
+    coldDark:true,
     note:"Fixed crew allocation applied: CM2/PF performs the PF and CM2 items; CM1/PM performs the CM1 items.",
     roles:{
       PF:[
         step("Overhead Panel","SCAN","overhead","scan_overhead"),
         step("Centre Instrument Panel","SCAN","flightdeck","scan_center_instrument"),
         step("Pedestal","SCAN","pedestal","scan_pedestal"),
-        step("FMGS preparation","COMPLETE","pedestal","fmgs_prepare"),
+        step("FMGS preparation","COMPLETE","pedestal",FMGS_PREP_TEMPLATES),
         step("Glareshield","SCAN","flightdeck","scan_glareshield_cm2"),
         step("Lateral consoles and CM2 panel","SCAN","checks","scan_lateral_cm2")
       ],
@@ -96,17 +38,17 @@ const FLOW_PHASES = [
   },
   {
     id:"before-start",title:"Before Start",short:"BEFORE START",
-    initial:{beacon:"OFF",park_brake:"OFF",tcas_atc:"STBY",doors_slides:"ARMED"},
+    initial:{beacon:"OFF",park_brake:"OFF",atc_mode:"STBY",doors_slides:"ARMED"},
     roles:{
       PF:[
         step("BEACON sw","ON","overhead","beacon",["ON"]),
         step("WINDOWS","CHECK CLOSED","checks","windows_{seat}",["CLOSED"]),
         step("DOORS / SLIDES","CHECK CLOSED / ARMED","checks","doors_slides",["ARMED"]),
-        step("THRUST LEVERS","IDLE","pedestal","thrust_levers",["IDLE"]),
+        step("THRUST LEVERS","IDLE","pedestal",["thrust_lever_1","thrust_lever_2"],["IDLE"]),
         step("PARK BRK handle","ON","pedestal","park_brake",["ON"])
       ],
       PM:[
-        step("ATC","SET FOR OPERATIONS","pedestal","atc_operational"),
+        step("ATC","SET FOR OPERATIONS","pedestal","atc_mode",["AUTO","ON"]),
         step("WINDOWS","CHECK CLOSED","checks","windows_{seat}",["CLOSED"]),
         step("DOORS / SLIDES","CHECK CLOSED / ARMED","checks","doors_slides",["ARMED"])
       ]
@@ -119,7 +61,7 @@ const FLOW_PHASES = [
       PF:[
         step("ENG MODE selector","NORM","pedestal","eng_mode",["NORM"]),
         step("APU BLEED pb-sw","OFF","overhead","apu_bleed",["OFF"]),
-        step("ANTI ICE","AS RQRD","overhead","anti_ice",null,{any:true}),
+        step("ANTI ICE","AS RQRD","overhead",ANTI_ICE_CONTROLS,null,{any:true,completeAny:true}),
         step("APU MASTER SW","OFF","overhead","apu_master",["OFF"]),
         step("ECAM STATUS","CHECK","flightdeck","ecam_status"),
         step("NW STRG DISC MEMO","CHECK NOT DISPLAYED","flightdeck","nw_strg_memo")
@@ -135,7 +77,7 @@ const FLOW_PHASES = [
   },
   {
     id:"taxi",title:"Taxi",short:"TAXI",
-    initial:{auto_brake_max:"OFF",radar_pws:"OFF",eng_mode:"NORM",terr_cm1:"OFF",terr_cm2:"OFF"},
+    initial:{auto_brake_max:"OFF",wx_radar_system:"OFF",wx_pws:"OFF",eng_mode:"NORM",terr_cm1:"OFF",terr_cm2:"OFF"},
     roles:{
       PF:[
         step("TERR ON ND","AS RQRD","flightdeck","terr_{seat}",null,{any:true})
@@ -145,72 +87,72 @@ const FLOW_PHASES = [
         step("TERR ON ND","AS RQRD","flightdeck","terr_{seat}",null,{any:true}),
         step("SQUAWK","CONFIRM / SET","pedestal","squawk"),
         step("ENG MODE selector","AS RQRD","pedestal","eng_mode",null,{any:true}),
-        step("RADAR / PWS","ON / AUTO","pedestal","radar_pws",["AUTO"]),
-        step("T.O CONFIG pb","TEST","flightdeck","to_config"),
+        step("RADAR / PWS","ON / AUTO","pedestal",["wx_radar_system","wx_pws"],null,{acceptByControl:{wx_radar_system:["1","2"],wx_pws:["AUTO"]}}),
+        step("T.O CONFIG pb","TEST","pedestal","to_config"),
         step("T.O MEMO","CHECK NO BLUE","flightdeck","to_memo")
       ]
     }
   },
   {
     id:"line-up",title:"Line-up",short:"LINE-UP",
-    initial:{tcas_atc:"STBY",exterior_lights:"OFF",pack_1:"ON",pack_2:"ON"},
+    initial:{tcas_mode:"STBY",ext_strobe:"AUTO",beacon:"ON",ext_wing:"OFF",ext_nav_logo:"2",land_light_l:"OFF",ext_nose:"OFF",ext_rwy_turnoff:"OFF",land_light_r:"OFF",pack_1:"ON",pack_2:"ON"},
     roles:{
       PF:[
         step("TAKEOFF RUNWAY","CONFIRM","checks","takeoff_runway"),
         step("APPROACH PATH","CLEAR OF TRAFFIC","checks","approach_path"),
-        step("EXTERIOR LIGHTS","SET","overhead","exterior_lights",["SET"],{conditional:true})
+        step("EXTERIOR LIGHTS","SET","overhead",EXTERIOR_LIGHT_CONTROLS,null,{any:true,conditional:true})
       ],
       PM:[
-        step("TCAS mode selector","TA ONLY or TA/RA","pedestal","tcas_atc",["TA","TA/RA"]),
+        step("TCAS mode selector","TA ONLY or TA/RA","pedestal","tcas_mode",["TA","TA/RA"]),
         step("TAKEOFF RUNWAY","CONFIRM","checks","takeoff_runway"),
         step("APPROACH PATH","CLEAR OF TRAFFIC","checks","approach_path"),
         step("PACKS 1 AND 2","AS RQRD","overhead",["pack_1","pack_2"],null,{any:true}),
-        step("CABIN CREW","ADVISE","overhead","cabin_crew")
+        step("CABIN CREW","ADVISE","overhead","calls_all")
       ]
     }
   },
   {
     id:"climb-acceleration",title:"Climb / Acceleration",short:"CLIMB-ACCEL",
     note:"The supplied flow card assigns this flow to PM only.",
-    initial:{flaps:"1+F",spoilers:"ARMED",exterior_lights:"SET"},
+    initial:{flaps:"1+F",spoilers:"ARMED",ext_strobe:"ON",beacon:"ON",ext_wing:"ON",ext_nav_logo:"2",land_light_l:"ON",ext_nose:"T.O",ext_rwy_turnoff:"ON",land_light_r:"ON"},
     roles:{
       PM:[
         step("FLAPS ZERO","SELECT","pedestal","flaps",["0"]),
         step("GND SPLRS","DISARM","pedestal","spoilers",["DISARMED"]),
         step("L/G","CHECK UP","flightdeck","gear_check"),
-        step("EXTERIOR LIGHTS","SET","overhead","exterior_lights",["SET"],{conditional:true})
+        step("EXTERIOR LIGHTS","SET","overhead",EXTERIOR_LIGHT_CONTROLS,null,{any:true,conditional:true})
       ]
     }
   },
   {
     id:"ten-thousand-climb",title:"10,000 ft - Climb",short:"10,000 CLIMB",
-    initial:{land_lights:"ON",seat_belts:"ON",efis_options_cm1:"CLR",efis_options_cm2:"CLR"},
+    initial:{land_light_l:"ON",land_light_r:"ON",seat_belts:"ON",efis_cstr_cm1:"OFF",efis_cstr_cm2:"OFF"},
     roles:{
       PF:[
-        step("EFIS OPTIONS","AS RQRD","flightdeck","efis_options_{seat}",null,{any:true})
+        step("EFIS OPTIONS","AS RQRD","flightdeck",EFIS_OPTION_TEMPLATES,null,{any:true,completeAny:true})
       ],
       PM:[
-        step("LAND sw","OFF","overhead","land_lights",["OFF"]),
+        step("LAND L + R switches","OFF","overhead",["land_light_l","land_light_r"],["OFF"]),
         step("SEAT BELT sw","AS RQRD","overhead","seat_belts",null,{any:true}),
-        step("EFIS OPTIONS","AS RQRD","flightdeck","efis_options_{seat}",null,{any:true}),
+        step("EFIS OPTIONS","AS RQRD","flightdeck",EFIS_OPTION_TEMPLATES,null,{any:true,completeAny:true}),
         step("ECAM MEMO","REVIEW","flightdeck","ecam_memo"),
-        step("NAVAIDS / SEC-PLAN / OPT FL / REC MAX FL","CHECK","pedestal","navaids_climb")
+        step("NAVAIDS / SEC-PLAN / OPT FL / REC MAX FL","CHECK","pedestal",["mcdu_{seat}_rad_nav","mcdu_{seat}_sec_f_pln","mcdu_{seat}_prog"])
       ]
     }
   },
   {
     id:"ten-thousand-descent",title:"10,000 ft - Descent",short:"10,000 DESCENT",
-    initial:{land_lights:"OFF",seat_belts:"OFF",ls_cm1:"OFF",ls_cm2:"OFF",efis_options_cm1:"CLR",efis_options_cm2:"CLR"},
+    initial:{land_light_l:"OFF",land_light_r:"OFF",seat_belts:"OFF",ls_cm1:"OFF",ls_cm2:"OFF",efis_cstr_cm1:"OFF",efis_cstr_cm2:"OFF"},
     roles:{
       PF:[
         step("ILS / LS pb","AS RQRD","flightdeck","ls_{seat}",null,{any:true}),
-        step("EFIS option pb","CSTR","flightdeck","efis_options_{seat}",["CSTR"]),
-        step("NAVAIDS / NAV ACCURACY","AS RQRD / MONITOR","pedestal","navaids_descent")
+        step("EFIS option pb","CSTR","flightdeck","efis_cstr_{seat}",["ON"]),
+        step("NAVAIDS / NAV ACCURACY","AS RQRD / MONITOR","pedestal",["mcdu_{seat}_rad_nav","mcdu_{seat}_prog"])
       ],
       PM:[
-        step("LAND sw","ON","overhead","land_lights",["ON"]),
+        step("LAND L + R switches","ON","overhead",["land_light_l","land_light_r"],["ON"]),
         step("SEAT BELTS","ON","overhead","seat_belts",["ON"]),
-        step("EFIS option pb","CSTR","flightdeck","efis_options_{seat}",["CSTR"]),
+        step("EFIS option pb","CSTR","flightdeck","efis_cstr_{seat}",["ON"]),
         step("ILS / LS pb","AS RQRD","flightdeck","ls_{seat}",null,{any:true}),
         step("ENG MODE selector","AS RQRD","pedestal","eng_mode",null,{any:true})
       ]
@@ -218,41 +160,41 @@ const FLOW_PHASES = [
   },
   {
     id:"after-landing",title:"After Landing",short:"AFTER LANDING",
-    initial:{spoilers:"ARMED",exterior_lights:"SET",radar_pws:"AUTO",eng_mode:"IGN/START",flaps:"1+F",tcas_atc:"TA/RA",apu_master:"OFF"},
+    initial:{spoilers:"ARMED",ext_strobe:"ON",beacon:"ON",ext_wing:"ON",ext_nav_logo:"2",land_light_l:"ON",ext_nose:"T.O",ext_rwy_turnoff:"ON",land_light_r:"ON",wx_radar_system:"1",wx_pws:"AUTO",eng_mode:"IGN/START",flaps:"1+F",tcas_mode:"TA/RA",apu_master:"OFF"},
     roles:{
       PF:[
         step("GND SPLRS","DISARM","pedestal","spoilers",["DISARMED"]),
-        step("EXTERIOR LIGHTS","SET","overhead","exterior_lights",["SET"],{conditional:true})
+        step("EXTERIOR LIGHTS","SET","overhead",EXTERIOR_LIGHT_CONTROLS,null,{any:true,conditional:true})
       ],
       PM:[
-        step("RADAR / PWS","OFF","pedestal","radar_pws",["OFF"]),
+        step("RADAR / PWS","OFF","pedestal",["wx_radar_system","wx_pws"],["OFF"]),
         step("ENG MODE selector","NORM","pedestal","eng_mode",["NORM"]),
         step("FLAPS","RETRACT","pedestal","flaps",["0"]),
-        step("TCAS / ATC","STBY / AS RQRD","pedestal","tcas_atc",null,{any:true}),
+        step("TCAS / ATC","STBY / AS RQRD","pedestal","tcas_mode",null,{any:true}),
         step("APU","AS RQRD","overhead","apu_master",null,{any:true}),
-        step("ANTI ICE","AS RQRD","overhead","anti_ice",null,{any:true})
+        step("ANTI ICE","AS RQRD","overhead",ANTI_ICE_CONTROLS,null,{any:true,completeAny:true})
       ]
     }
   },
   {
     id:"parking",title:"Parking",short:"PARKING",
-    initial:{park_brake:"OFF",yellow_pump:"ON",eng_master_1:"ON",eng_master_2:"ON",exterior_lights:"SET",doors_slides:"ARMED",seat_belts:"ON",anti_ice:"ON",apu_bleed:"ON",tcas_atc:"TA/RA"},
+    initial:{park_brake:"OFF",yellow_pump:"ON",eng_master_1:"ON",eng_master_2:"ON",ext_strobe:"AUTO",beacon:"ON",ext_wing:"ON",ext_nav_logo:"2",land_light_l:"OFF",ext_nose:"TAXI",ext_rwy_turnoff:"ON",land_light_r:"OFF",doors_slides:"ARMED",seat_belts:"ON",anti_ice_eng_1:"ON",anti_ice_wing:"ON",anti_ice_eng_2:"ON",apu_bleed:"ON",atc_mode:"AUTO"},
     roles:{
       PF:[
         step("ACCU PRESS","CHECK","flightdeck","accu_press"),
         step("PARK BRAKE handle","ON","pedestal","park_brake",["ON"]),
         step("YELLOW ELEC PUMP","OFF","overhead","yellow_pump",["OFF"]),
         step("ALL ENG MASTER LEVERS","OFF","pedestal",["eng_master_1","eng_master_2"],["OFF"]),
-        step("EXTERIOR LIGHTS","OFF","overhead","exterior_lights",["OFF"]),
+        step("EXTERIOR LIGHTS","OFF","overhead",EXTERIOR_LIGHT_CONTROLS,null,{acceptByControl:{ext_strobe:["OFF"],beacon:["OFF"],ext_wing:["OFF"],ext_nav_logo:["OFF"],land_light_l:["OFF","RETRACT"],ext_nose:["OFF"],ext_rwy_turnoff:["OFF"],land_light_r:["OFF","RETRACT"]}}),
         step("SLIDES","CHECK DISARMED","checks","doors_slides",["DISARMED"]),
         step("SEAT BELTS sw","OFF","overhead","seat_belts",["OFF"])
       ],
       PM:[
-        step("ANTI ICE","OFF","overhead","anti_ice",["OFF"]),
+        step("ANTI ICE","OFF","overhead",ANTI_ICE_CONTROLS,["OFF"]),
         step("APU BLEED pb-sw","AS RQRD","overhead","apu_bleed",null,{any:true}),
         step("FUEL PUMPS","OFF","overhead",["fuel_pump_l1","fuel_pump_l2","fuel_pump_ctr1","fuel_pump_ctr2","fuel_pump_r1","fuel_pump_r2"],["OFF"]),
-        step("ATC","STBY","pedestal","tcas_atc",["STBY"]),
-        step("IRS PERFORMANCE","CHECK","pedestal","irs_performance"),
+        step("ATC","STBY","pedestal","atc_mode",["STBY"]),
+        step("IRS PERFORMANCE","CHECK","pedestal","mcdu_{seat}_data"),
         step("FUEL QUANTITY","CHECK","flightdeck","fuel_quantity")
       ]
     }
@@ -260,6 +202,14 @@ const FLOW_PHASES = [
 ];
 
 const PHASE_BY_ID = Object.fromEntries(FLOW_PHASES.map(function(phase){return [phase.id,phase];}));
+
+function getInitialControlState(phaseId){
+  const phase=PHASE_BY_ID[phaseId];
+  if(!phase) return {};
+  const state={};
+  CONTROL_DEFS.forEach(function(def){if(def.states)state[def.id]=phase.coldDark?(def.cold||def.states[0]):(def.initial||def.states[0]);});
+  return Object.assign(state,phase.initial||{});
+}
 
 function seatForRole(role){return role==="PF"?"CM2":"CM1";}
 function seatSuffix(seat){return String(seat||"CM1").toLowerCase();}
@@ -272,8 +222,9 @@ function getResolvedSteps(phaseId,role,seat){
   if(!phase||!phase.roles[role]) return [];
   return phase.roles[role].map(function(item){return resolveStep(item,seatForRole(role));});
 }
-function accepts(stepDef,value){
+function accepts(stepDef,value,controlId){
   if(stepDef.any) return true;
+  if(stepDef.acceptByControl&&stepDef.acceptByControl[controlId]) return stepDef.acceptByControl[controlId].indexOf(value)!==-1;
   return (stepDef.accept||["CHECK"]).indexOf(value)!==-1;
 }
 function createRun(phaseId,role,seat){
@@ -295,9 +246,9 @@ function gradeInput(run,controlId,value){
   if(current.controls.indexOf(controlId)!==-1){
     if(run.doneControls.has(controlId)){
       grade="out-of-order"; message="That part of the current action is already complete.";
-    }else if(accepts(current,value)){
+    }else if(accepts(current,value,controlId)){
       grade="correct"; run.doneControls.add(controlId); run.correct++;
-      if(run.doneControls.size===current.controls.length){
+      if(run.doneControls.size===(current.completeAny?1:current.controls.length)){
         stepComplete=true; run.index++; run.doneControls=new Set();
         if(run.index>=run.steps.length) run.complete=true;
       }
@@ -318,12 +269,12 @@ function gradeInput(run,controlId,value){
   return event;
 }
 
-function expectedInputs(run){return run.steps.reduce(function(sum,item){return sum+item.controls.length;},0);}
+function expectedInputs(run){return run.steps.reduce(function(sum,item){return sum+(item.completeAny?1:item.controls.length);},0);}
 
 function initBrowser(){
   const $=function(id){return document.getElementById(id);};
   if(!$('phaseGrid')) return;
-  let selectedPhase=FLOW_PHASES[1].id;
+  let selectedPhase=FLOW_PHASES[0].id;
   let selectedRole="PF";
   let selectedMode="assessment";
   let activeRun=null;
@@ -367,13 +318,15 @@ function initBrowser(){
 
   function renderControl(def){
     const wrap=document.createElement("div");
-    wrap.className="cockpit-control kind-"+def.kind+(def.compact?" compact":"")+(def.wide?" wide":"");
+    wrap.className="cockpit-control kind-"+def.kind+(def.zone?" check-zone":"");
     wrap.dataset.control=def.id;
-    const trigger=button(def.label,"hotspot-trigger");
+    wrap.style.left=def.x+"%";wrap.style.top=def.y+"%";wrap.style.width=def.w+"%";wrap.style.height=def.h+"%";
+    const trigger=button(def.short||def.label,"hotspot-trigger");
     trigger.setAttribute("aria-label",def.label+(def.kind==="check"?" check":" control"));
+    trigger.title=def.label;
     wrap.appendChild(trigger);
-    if(def.kind==="check"){
-      trigger.onclick=function(){interact(def.id,"CHECK",wrap);};
+    if(def.kind==="check"||def.kind==="momentary"){
+      trigger.onclick=function(){wrap.classList.add("pressed");setTimeout(function(){wrap.classList.remove("pressed");},180);interact(def.id,"CHECK",wrap);};
     }else if(def.kind==="pb"){
       trigger.onclick=function(){
         const next=controlState[def.id]===def.states[0]?def.states[1]:def.states[0];
@@ -386,13 +339,13 @@ function initBrowser(){
     return wrap;
   }
   function openControlDock(def,wrap){
-    const dock=$("controlDock");dock.hidden=false;dock.innerHTML='<div><span>SELECT POSITION</span><strong>'+def.label+'</strong></div>';
+    const dock=$("controlDock");dock.hidden=false;dock.innerHTML='<div><span>'+def.panel.toUpperCase()+' · SELECT POSITION</span><strong>'+def.label+'</strong></div>';
     const choices=document.createElement("div");choices.className="dock-choices";
     def.states.forEach(function(state){const b=button(state,"position");b.setAttribute("aria-pressed",String(controlState[def.id]===state));b.onclick=function(){setState(def.id,state);interact(def.id,state,wrap);dock.hidden=true;};choices.appendChild(b);});
     dock.appendChild(choices);dock.scrollIntoView({behavior:"smooth",block:"nearest"});
   }
   function renderCockpit(){
-    CONTROL_DEFS.forEach(function(def){const mount=$(def.mount);if(mount)mount.appendChild(renderControl(def));});
+    CONTROL_DEFS.forEach(function(def){const layer=document.querySelector('.control-layer[data-layer="'+def.panel+'"]');if(layer)layer.appendChild(renderControl(def));});
     resetControlStates();
   }
   function setState(id,value){
@@ -402,9 +355,16 @@ function initBrowser(){
     wrap.dataset.state=value;
     const readout=wrap.querySelector('[data-state-for="'+id+'"]');if(readout){readout.textContent=value;readout.classList.toggle("on",value!==def.states[0]);}
     wrap.classList.toggle("is-on",value!==def.states[0]);
+    refreshPowerState();
   }
   function resetControlStates(){CONTROL_DEFS.forEach(function(def){if(def.states)setState(def.id,def.initial||def.states[0]);});}
-  function applyInitial(phase){resetControlStates();Object.keys(phase.initial||{}).forEach(function(id){setState(id,phase.initial[id]);});}
+  function applyInitial(phase){const state=getInitialControlState(phase.id);Object.keys(state).forEach(function(id){setState(id,state[id]);});refreshPowerState();}
+  function refreshPowerState(){
+    const powerIds=["elec_bat_1","elec_bat_2","elec_ext_pwr","elec_apu_gen","elec_gen_1","elec_gen_2"];
+    const powered=powerIds.some(function(id){return controlState[id]&&controlState[id]!=="OFF";});
+    if($("trainer"))$("trainer").dataset.power=powered?"on":"off";
+    if($("powerState")){$("powerState").className="power-state "+(powered?"powered":"cold-dark");$("powerState").textContent=powered?"AIRCRAFT POWERED":"COLD & DARK · ALL POWER OFF";}
+  }
 
   function clearControlGrades(){document.querySelectorAll(".cockpit-control[data-grade]").forEach(function(el){delete el.dataset.grade;});}
   function interact(id,value,wrap){
@@ -460,7 +420,7 @@ function initBrowser(){
     $("runTitle").textContent=PHASE_BY_ID[selectedPhase].title.toUpperCase();
     $("runMeta").textContent=selectedRole+" · "+seatForRole(selectedRole)+" · "+selectedMode.toUpperCase();
     $("flowDrawer").open=selectedMode==="guided";
-    showFeedback("neutral","FLOW ARMED",activeRun.steps.length+" actions loaded from the supplied flow card.");
+    showFeedback("neutral","FLOW ARMED",activeRun.steps.length+" actions loaded from the supplied flow card."+(PHASE_BY_ID[selectedPhase].coldDark?" Aircraft state: cold and dark.":""));
     selectPanel(activeRun.steps[0].panel);updateRunUI();window.scrollTo({top:0,behavior:"instant"});
   }
   function accuracy(run){const attempts=run.correct+run.incorrect+run.outOfOrder;return attempts?Math.round(run.correct/attempts*100):0;}
@@ -490,7 +450,7 @@ function initBrowser(){
   selectPanel("overhead");
 }
 
-const api={FLOW_PHASES:FLOW_PHASES,CONTROL_DEFS:CONTROL_DEFS,createRun:createRun,gradeInput:gradeInput,getResolvedSteps:getResolvedSteps,expectedInputs:expectedInputs,seatForRole:seatForRole};
+const api={FLOW_PHASES:FLOW_PHASES,CONTROL_DEFS:CONTROL_DEFS,createRun:createRun,gradeInput:gradeInput,getResolvedSteps:getResolvedSteps,expectedInputs:expectedInputs,seatForRole:seatForRole,getInitialControlState:getInitialControlState};
 if(typeof module!=="undefined"&&module.exports) module.exports=api;
 if(root) root.A320FlowTrainer=api;
 if(typeof document!=="undefined"){if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initBrowser);else initBrowser();}

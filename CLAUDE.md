@@ -19,7 +19,8 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `engine-sim.js` | Eight system layouts, normal/abnormal modes, component failures and ECAM-style SVG rendering for the IAE engine explorer. |
 | `engine-3d.js` | Lightweight procedural 3D cutaway renderer with 23 selectable parts, airflow overlays, touch controls and component-to-system links. |
 | `flows.html` | Interactive A320 PF/PM cockpit-flow practice on the FlyByWire panel reference, with fixed CM1/PM and CM2/PF allocation. |
-| `flow-sim.js` | Source-card flow data, 61 cockpit controls and order-sensitive correct/incorrect/out-of-order grading. |
+| `a320-controls.js` | Individually positioned A32NX control catalog with panel labels, states and cold-and-dark defaults. |
+| `flow-sim.js` | Source-card flow data and order-sensitive correct/incorrect/out-of-order grading across the control catalog. |
 | `sw.js` | Offline cache. Bump `CACHE` whenever app content changes. |
 | `manifest.webmanifest` | Installable-app metadata. |
 | `icon-180.png`, `icon-192.png`, `icon-512.png` | App icons. |
@@ -91,11 +92,13 @@ source.
    - the engine explorer exposes 8 system tabs and 23 selectable 3D parts;
    - every 3D part links to an existing system tab and every system has at least one operating mode.
    - the flow trainer exposes 10 phases; every role step references an existing cockpit control;
+   - every mapped cockpit hit box stays within its panel and no two control hit boxes overlap;
+   - Cockpit Preparation initializes every modeled power source and powered system to its cold-and-dark value;
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
 5. Search correct answers and explanations—not just distractors—for superseded A321P2F or
    engineering-only values.
 6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v26`.
+   `a320-trainer-v27`.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is

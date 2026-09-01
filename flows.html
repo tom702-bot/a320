@@ -58,6 +58,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 .checks-photo #checks-view{left:35%;top:13%;width:30%}.checks-photo #checks-left{left:5%;top:57%;width:24%}.checks-photo #checks-center{left:36%;top:63%;width:28%}.checks-photo #checks-right{right:5%;top:57%;width:24%}
 .control-dock{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--cyan);border-radius:8px;background:#0b1519;padding:10px 12px;margin:9px 0}.control-dock>div:first-child{display:grid;gap:3px}.control-dock span{font:8px var(--mono);letter-spacing:1px;color:var(--muted)}.control-dock strong{font:11px var(--mono);color:var(--cyan)}.dock-choices{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.dock-choices .position{min-width:58px;min-height:36px}.source-credit{font:9px/1.5 var(--mono);color:var(--muted);margin:8px 2px 0}.source-credit a{color:var(--cyan)}
 @media(max-width:760px){.crew-lock{margin-top:0}.panel-view{min-width:720px}.control-dock{align-items:flex-start;flex-direction:column}.dock-choices{justify-content:flex-start}.hotspot-trigger{min-height:38px;font-size:7.5px}}
+.power-state{display:inline-block;margin-top:7px;padding:4px 7px;border:1px solid var(--edge);border-radius:4px;font:700 8px var(--mono);letter-spacing:.7px}.power-state.cold-dark{border-color:#8a3036;color:var(--red);background:#1a0c0e}.power-state.powered{border-color:var(--green-d);color:var(--green);background:#09170e}
+.panel-view{min-width:856px;max-width:856px}.photo-crop{width:856px;max-width:100%;overflow:hidden}.photo-crop.overhead-photo{aspect-ratio:856/631}.photo-crop.flightdeck-photo{aspect-ratio:856/466}.photo-crop.pedestal-photo{aspect-ratio:856/905}.photo-crop.checks-photo{aspect-ratio:856/466}.photo-crop img,.photo-crop.overhead-photo img,.photo-crop.flightdeck-photo img,.photo-crop.pedestal-photo img,.photo-crop.checks-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;transition:filter .2s}.control-layer{position:absolute;inset:0;z-index:3}.photo-crop .cockpit-control{position:absolute;min-width:0;max-width:none;padding:0;border:0;background:transparent;box-shadow:none;overflow:visible}.photo-crop .hotspot-trigger{position:absolute;inset:0;display:block;width:100%;height:100%;min-height:0;padding:1px 1px 9px;overflow:hidden;border:1px solid rgba(88,216,236,.72);border-radius:2px;background:rgba(1,8,10,.38);color:#f2fbfc;font:700 5.5px/1.05 var(--mono);letter-spacing:0;cursor:pointer;text-shadow:0 1px 2px #000;box-shadow:none}.photo-crop .check-zone .hotspot-trigger{border-style:dashed;background:rgba(4,16,20,.5);font-size:6.5px}.photo-crop .cockpit-control:hover .hotspot-trigger,.photo-crop .hotspot-trigger:focus-visible{z-index:6;border-color:#fff;background:rgba(5,32,39,.92);box-shadow:0 0 0 2px var(--cyan)}.photo-crop .cockpit-control.is-on .hotspot-trigger{border-color:rgba(75,224,112,.9);box-shadow:inset 0 0 0 1px rgba(75,224,112,.6)}.photo-crop .cockpit-control.pressed .hotspot-trigger{background:rgba(88,216,236,.9);color:#041013}.photo-crop .state-readout{position:absolute;left:1px;right:1px;bottom:1px;z-index:2;display:block;width:auto;max-width:none;height:7px;margin:0;padding:0;border-radius:1px;background:rgba(0,0,0,.82);color:#c4c9cc;font:700 5px/7px var(--mono);text-align:center;overflow:hidden;white-space:nowrap}.photo-crop .state-readout.on{color:var(--green)}.photo-crop .cockpit-control[data-grade]::after{display:none}.photo-crop .cockpit-control[data-grade] .hotspot-trigger{border-color:var(--grade);box-shadow:0 0 0 2px var(--grade),0 0 12px var(--grade)}#trainer[data-power="off"] .photo-crop img{filter:brightness(.34) saturate(.45)}#trainer[data-power="off"] .photo-crop::after{content:"COLD & DARK";position:absolute;right:9px;top:9px;z-index:2;padding:4px 7px;border:1px solid rgba(255,91,97,.65);border-radius:3px;background:rgba(18,3,5,.78);color:var(--red);font:700 7px var(--mono);letter-spacing:1px}.control-dock{position:sticky;left:0;z-index:9;max-width:856px}.scroll-note{text-align:left}
+@media(max-width:760px){.panel-view,.photo-crop{min-width:856px}.photo-crop .hotspot-trigger{font-size:5.5px}.photo-crop .check-zone .hotspot-trigger{font-size:6.5px}}
 </style>
 </head>
 <body>
@@ -67,7 +70,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 
   <section id="setup" class="card">
     <div class="eyebrow">Configure a flow</div>
-    <p class="lead">Choose a phase and role, then operate the controls on the FlyByWire A32NX flight-deck panel in the exact order shown on the supplied flow cards. Every input is graded <b>correct</b>, <b>incorrect</b>, or <b>out of order</b>.</p>
+    <p class="lead">Choose a phase and role, then operate the individually mapped controls on the FlyByWire A32NX flight deck in the exact order shown on the supplied flow cards. Every input is graded <b>correct</b>, <b>incorrect</b>, or <b>out of order</b>. Cockpit Preparation begins completely cold and dark.</p>
 
     <div class="config-label">PHASE</div>
     <div class="phase-grid" id="phaseGrid" aria-label="Flow phase"></div>
@@ -85,7 +88,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 
   <section id="trainer" hidden>
     <div class="card">
-      <div class="run-head"><div><div class="eyebrow">Active flow</div><h2 id="runTitle">BEFORE START</h2><div class="run-meta" id="runMeta">PF &middot; CM2 &middot; ASSESSMENT</div></div><div class="run-actions"><button class="btn small ghost" id="changeFlow">CHANGE FLOW</button><button class="btn small" id="resetFlow">RESET</button></div></div>
+      <div class="run-head"><div><div class="eyebrow">Active flow</div><h2 id="runTitle">COCKPIT PREPARATION</h2><div class="run-meta" id="runMeta">PF &middot; CM2 &middot; ASSESSMENT</div><div class="power-state cold-dark" id="powerState">COLD &amp; DARK &middot; ALL POWER OFF</div></div><div class="run-actions"><button class="btn small ghost" id="changeFlow">CHANGE FLOW</button><button class="btn small" id="resetFlow">RESET</button></div></div>
       <div class="strip">
         <div class="cell"><div class="k">STEP</div><div class="v" id="stepValue">1/1</div></div>
         <div class="cell"><div class="k">CORRECT</div><div class="v good" id="correctValue">0</div></div>
@@ -102,37 +105,37 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
         <button class="panel-tab" data-panel="pedestal" aria-pressed="false">PEDESTAL</button>
         <button class="panel-tab" data-panel="checks" aria-pressed="false">WINDOWS / CHECKS</button>
       </div>
-      <div class="scroll-note">Panel is intentionally full-width; scroll sideways on a small screen.</div>
+      <div class="scroll-note">Every outlined area is a separate control. Scroll sideways on a small screen; tap any control to see its full Airbus label and available positions.</div>
       <div class="surface-scroll">
         <section class="panel-view" data-panel="overhead">
           <div class="photo-crop overhead-photo">
-            <img src="a32nx-cockpit.webp" alt="FlyByWire A32NX overhead panel">
+            <img src="a32nx-overhead.webp" alt="FlyByWire A32NX forward overhead panel">
             <div class="photo-caption">OVERHEAD PANEL</div>
-            <div class="mount" id="oh-scan"></div><div class="mount" id="oh-fuel"></div><div class="mount" id="oh-hyd"></div><div class="mount" id="oh-air"></div><div class="mount" id="oh-ice"></div><div class="mount" id="oh-lights"></div><div class="mount" id="oh-signs"></div><div class="mount" id="oh-apu"></div>
+            <div class="control-layer" data-layer="overhead"></div>
           </div>
         </section>
 
         <section class="panel-view" data-panel="flightdeck" hidden>
           <div class="photo-crop flightdeck-photo">
-            <img src="a32nx-cockpit.webp" alt="FlyByWire A32NX glareshield and main instrument panel">
+            <img src="a32nx-main.webp" alt="FlyByWire A32NX glareshield and main instrument panel">
             <div class="photo-caption">GLARESHIELD / MAIN PANEL</div>
-            <div class="mount" id="glare-cm1"></div><div class="mount" id="glare-cm2"></div><div class="mount" id="main-center"></div><div class="mount" id="main-gear"></div>
+            <div class="control-layer" data-layer="flightdeck"></div>
           </div>
         </section>
 
         <section class="panel-view" data-panel="pedestal" hidden>
           <div class="photo-crop pedestal-photo">
-            <img src="a32nx-cockpit.webp" alt="FlyByWire A32NX center pedestal">
+            <img src="a32nx-pedestal.webp" alt="FlyByWire A32NX center pedestal">
             <div class="photo-caption">CENTRE PEDESTAL</div>
-            <div class="mount" id="ped-mcdu"></div><div class="mount" id="ped-atc"></div><div class="mount" id="ped-throttle"></div><div class="mount" id="ped-engine"></div>
+            <div class="control-layer" data-layer="pedestal"></div>
           </div>
         </section>
 
         <section class="panel-view" data-panel="checks" hidden>
           <div class="photo-crop checks-photo">
-            <img src="a32nx-cockpit.webp" alt="FlyByWire A32NX flight deck and side consoles">
+            <img src="a32nx-main.webp" alt="FlyByWire A32NX flight deck and side consoles">
             <div class="photo-caption">WINDOWS / EXTERNAL CHECKS</div>
-            <div class="mount" id="checks-view"></div><div class="mount" id="checks-left"></div><div class="mount" id="checks-center"></div><div class="mount" id="checks-right"></div>
+            <div class="control-layer" data-layer="checks"></div>
           </div>
         </section>
       </div>
@@ -146,6 +149,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 
   <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE. VERIFY AGAINST CURRENT APPROVED PROCEDURES.</p>
 </main>
+<script src="a320-controls.js"></script>
 <script src="flow-sim.js"></script>
 <script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});}
