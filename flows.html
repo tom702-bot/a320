@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A320 PF / PM Flow Trainer</title>
+<meta name="theme-color" content="#090b0d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{
+  --bg:#07090b;--panel:#111417;--panel-2:#181c20;--panel-3:#22272c;--edge:#394149;
+  --edge-hi:#59636d;--white:#edf1f2;--muted:#89949c;--green:#4be070;--green-d:#1d7437;
+  --amber:#ffbd38;--amber-d:#916514;--red:#ff5b61;--red-d:#812e33;--cyan:#58d8ec;
+  --blue:#5ba8ff;--screen:#071812;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --ui:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white)}
+body{font-family:var(--ui);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);background:radial-gradient(1000px 500px at 50% -10%,#1a2025 0,var(--bg) 65%)}
+button,a{font:inherit}[hidden]{display:none!important}.page{max-width:1240px;margin:auto;padding:14px 12px 48px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.back{color:var(--cyan);font:12px var(--mono);letter-spacing:.7px;text-decoration:none;padding:10px 0}.tag{color:var(--muted);font:10px var(--mono);letter-spacing:1px;text-align:right}
+.placard{display:flex;align-items:center;gap:14px;border:1px solid var(--edge);border-top:3px solid #a13444;background:linear-gradient(180deg,#15191d,#0d1012);border-radius:10px;padding:14px 17px;margin-bottom:14px}.badge{font:700 13px var(--mono);letter-spacing:2px;color:#090b0d;background:#a13444;padding:6px 10px;border-radius:4px}.placard h1{font-size:17px;margin:0 0 2px;letter-spacing:.4px}.placard p{font:10px var(--mono);letter-spacing:1px;color:var(--muted);margin:0}
+.card{border:1px solid var(--edge);border-radius:11px;background:linear-gradient(180deg,#12161a,#0d1012);padding:18px;margin-bottom:14px}.eyebrow{font:10px var(--mono);letter-spacing:1.8px;color:var(--cyan);text-transform:uppercase;margin-bottom:7px}.lead{color:#c7d0d5;font-size:14px;line-height:1.55;margin:0 0 18px;max-width:900px}.config-label{font:10px var(--mono);color:var(--muted);letter-spacing:1.5px;margin:16px 0 8px}.phase-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.phase-card{min-height:58px;text-align:left;display:grid;grid-template-columns:34px 1fr;column-gap:9px;row-gap:3px;border:1px solid var(--edge);border-radius:7px;background:#171b1f;color:var(--white);padding:10px;cursor:pointer}.phase-card:hover{border-color:var(--edge-hi)}.phase-card[aria-pressed=true]{border-color:var(--cyan);box-shadow:inset 0 0 0 1px var(--cyan);background:#122027}.phase-card .phase-num{grid-row:1/3;color:var(--cyan);font:700 11px var(--mono);padding-top:2px}.phase-card strong{font:12px var(--mono);letter-spacing:.6px}.phase-card span:last-child{font:9px var(--mono);color:var(--muted)}
+.config-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.segment-group{display:flex;flex-wrap:wrap;gap:6px}.segment{flex:1;min-width:80px;min-height:42px;border:1px solid var(--edge);border-radius:6px;background:#171b1f;color:var(--white);font:10px var(--mono);padding:7px;cursor:pointer}.segment[aria-pressed=true]{border-color:var(--green);color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+.phase-brief{display:flex;flex-direction:column;gap:3px;border-left:3px solid var(--cyan);background:#0a1216;padding:11px 13px;margin:17px 0;color:#d5dde1}.phase-brief strong{font:12px var(--mono);color:var(--cyan)}.phase-brief span{font-size:12px;line-height:1.45;color:#aeb9c0}.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.btn{min-height:44px;border:1px solid var(--edge-hi);border-radius:7px;background:#1a1f24;color:var(--white);font:11px var(--mono);letter-spacing:.7px;padding:10px 15px;cursor:pointer}.btn:hover{border-color:var(--cyan)}.btn.primary{background:#a13444;border-color:#bf4558;font-weight:700}.btn.primary:hover{background:#b83c50}.btn.ghost{background:transparent}.scope{border:1px solid #5f491e;background:#151006;border-radius:7px;color:#e0c276;font:10px/1.55 var(--mono);padding:10px 12px;margin:14px 0 0}
+
+.run-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}.run-head h2{font:500 20px var(--mono);letter-spacing:2px;margin:2px 0 3px}.run-meta{font:10px var(--mono);color:var(--green);letter-spacing:1px}.run-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.btn.small{min-height:36px;padding:7px 10px;font-size:9px}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--edge);background:var(--edge);border-radius:8px;overflow:hidden}.strip .cell{background:#101417;text-align:center;padding:8px 5px}.strip .k{font:8px var(--mono);color:var(--muted);letter-spacing:1px}.strip .v{font:700 19px var(--mono);color:var(--cyan)}.strip .good{color:var(--green)}.strip .bad{color:var(--red)}.strip .warn{color:var(--amber)}.progress{height:4px;background:#20262b;border-radius:3px;overflow:hidden;margin:8px 0 10px}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#a13444,#db5268);transition:width .25s}
+.feedback{display:flex;gap:12px;align-items:center;border-left:4px solid var(--cyan);background:#0d171b;padding:9px 12px;margin-bottom:9px;min-height:43px}.feedback strong{font:11px var(--mono);letter-spacing:1px;color:var(--cyan);white-space:nowrap}.feedback span{font-size:12px;color:#c7d1d6}.feedback.correct{border-color:var(--green);background:#0b170f}.feedback.correct strong{color:var(--green)}.feedback.incorrect{border-color:var(--red);background:#1a0d0e}.feedback.incorrect strong{color:var(--red)}.feedback.out-of-order{border-color:var(--amber);background:#181305}.feedback.out-of-order strong{color:var(--amber)}
+.cue-bar{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid var(--edge);border-radius:8px;background:#0b0e10;padding:10px 12px;margin-bottom:10px}.cue{display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:center}.cue-kicker{font:9px var(--mono);letter-spacing:1px;color:var(--muted)}.cue strong{font:12px var(--mono);color:var(--white)}.cue>span:last-child{font:12px var(--mono);color:var(--cyan);text-align:right}
+.panel-tabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}.panel-tab{flex:1;min-width:124px;min-height:40px;border:1px solid var(--edge);border-radius:5px;background:#111518;color:#aeb8be;font:9px var(--mono);letter-spacing:.7px;cursor:pointer}.panel-tab[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan);background:#101e23}.scroll-note{font:9px var(--mono);color:var(--muted);text-align:right;margin:1px 2px 6px}
+.surface-scroll{overflow:auto;border:1px solid var(--edge);border-radius:10px;background:#020304;padding:8px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}.panel-view{min-width:820px;max-width:1040px;margin:auto;border:1px solid #4a5056;border-radius:12px;background:linear-gradient(145deg,#272b2e,#171a1c 45%,#101214);box-shadow:inset 0 0 80px rgba(0,0,0,.65),0 12px 30px rgba(0,0,0,.35);padding:12px;position:relative}.panel-title{text-align:center;font:10px var(--mono);letter-spacing:2.2px;color:#aeb4b8;margin:0 0 9px;text-shadow:0 1px #000}.mount{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;align-content:start}.mount.single{grid-template-columns:1fr}.mount.six{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+.overhead-shape{clip-path:polygon(5% 0,95% 0,100% 100%,0 100%);padding:10px 38px 18px;background:linear-gradient(180deg,#4a4d4e,#242728 20%,#1a1d1e);border:1px solid #666}.oh-scan{max-width:240px;margin:0 auto 8px}.oh-grid{display:grid;grid-template-columns:1.05fr 1.15fr 1.15fr 1fr;gap:7px}.panel-unit{border:1px solid #5b6063;background:linear-gradient(180deg,#292d2f,#171a1c);box-shadow:inset 0 0 0 2px #121416;border-radius:3px;padding:7px;min-height:150px}.panel-unit h3{font:9px var(--mono);letter-spacing:1.3px;text-align:center;color:#d9dddf;margin:0 0 7px;border-bottom:1px solid #62676a;padding-bottom:4px}.panel-unit.tall{grid-row:span 2}.dummy-bank{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:7px;opacity:.55}.dummy-pb{height:31px;border:1px solid #0a0b0c;border-radius:2px;background:linear-gradient(#34383a,#151719);box-shadow:inset 0 -2px #050606}.dummy-pb::after{content:"";display:block;width:12px;height:3px;background:#736f56;margin:6px auto}.dummy-knob{width:28px;height:28px;border:2px solid #080909;border-radius:50%;background:radial-gradient(circle at 35% 30%,#585b5c,#191b1c 60%);margin:8px auto;position:relative}.dummy-knob::after{content:"";position:absolute;width:2px;height:9px;background:#ddd;left:11px;top:2px}
+
+.glare{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:8px;background:linear-gradient(#303436,#17191a);border:1px solid #555b5e;border-radius:6px 6px 2px 2px;padding:8px}.efis-panel,.fcu{border:1px solid #5a6064;background:#202426;padding:7px;border-radius:3px}.fcu-display-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:7px}.fcu-window{height:34px;border:2px inset #262d2c;background:#070f0c;color:#e9a82d;font:16px var(--mono);display:flex;align-items:center;justify-content:center;text-shadow:0 0 5px #a46d09}.fcu-knobs{display:flex;justify-content:space-around;margin-top:9px}.fcu-knobs .dummy-knob{margin:0}.main-instruments{display:grid;grid-template-columns:1fr 1.15fr 1fr .62fr;gap:8px;margin-top:8px;align-items:start}.screen-pair{display:grid;grid-template-columns:1fr 1fr;gap:5px;border:1px solid #50565a;background:#191c1e;padding:7px}.display{height:170px;border:5px solid #24292c;background:radial-gradient(circle at 50% 45%,#102722,#030605 72%);box-shadow:inset 0 0 18px #000;position:relative;overflow:hidden}.display.pfd{background:linear-gradient(#1c6e9d 0 47%,#8a542e 48% 100%)}.display.pfd::before{content:"";position:absolute;left:15%;right:15%;top:50%;height:2px;background:#fff;box-shadow:0 -30px rgba(255,255,255,.45),0 30px rgba(255,255,255,.45)}.display.nd::before{content:"320";position:absolute;top:8px;left:50%;transform:translateX(-50%);color:#fff;font:12px var(--mono)}.display.nd::after{content:"";position:absolute;width:90px;height:90px;border:2px solid #fff;border-bottom-color:transparent;border-radius:50%;left:50%;top:55%;transform:translate(-50%,-50%)}.ecam-stack{border:1px solid #50565a;background:#191c1e;padding:7px}.ecam-screen{height:125px;border:5px solid #24292c;background:#020704;color:var(--green);font:9px/1.5 var(--mono);padding:8px}.ecam-screen b{color:#fff}.ecam-screen .amber{color:var(--amber)}.main-control-bank{margin-top:7px}.gear-bay{border:1px solid #50565a;background:#181b1d;padding:7px}.gear-lever{height:90px;width:42px;margin:8px auto 12px;border:4px solid #111;border-radius:18px;background:linear-gradient(90deg,#25282a,#555b5f,#25282a);position:relative}.gear-lever::after{content:"UP";position:absolute;top:-18px;left:10px;color:var(--green);font:8px var(--mono)}
+
+.pedestal-shape{clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);padding:10px 80px 18px;background:linear-gradient(180deg,#3d4143,#202325 30%,#141617);border:1px solid #5d6265}.ped-upper{display:grid;grid-template-columns:1fr .78fr 1fr;gap:8px}.mcdu-shell,.radio-stack{border:1px solid #5c6265;background:#1b1e20;padding:7px}.mcdu-screen{height:98px;border:5px solid #252a2d;background:#020b08;color:#5de789;font:8px/1.4 var(--mono);padding:7px}.mcdu-keys{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin-top:5px}.mcdu-keys i{height:9px;border:1px solid #070808;background:#303436}.throttle-zone{display:grid;grid-template-columns:1.1fr .7fr;gap:8px;margin-top:8px}.throttle-quadrant,.engine-zone{border:1px solid #5c6265;background:#1a1d1f;padding:8px}.throttle-art{height:100px;display:flex;justify-content:center;align-items:flex-end;gap:15px;border-radius:45% 45% 5px 5px;background:radial-gradient(ellipse at center bottom,#3c4143,#151718 68%);margin-bottom:8px}.throttle-handle{width:34px;height:72px;border-radius:12px 12px 4px 4px;background:linear-gradient(90deg,#101112,#555a5c 50%,#101112);transform:rotate(-8deg);transform-origin:bottom}.throttle-handle+ .throttle-handle{transform:rotate(8deg)}
+
+.checks-shape{background:linear-gradient(180deg,#22282c,#101315);padding:16px}.windscreen{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:7px;height:190px;margin-bottom:10px}.window-pane{border:8px solid #30363a;background:linear-gradient(180deg,#183847,#56717e 52%,#272f33 53%,#171b1d);clip-path:polygon(8% 0,92% 0,100% 100%,0 100%);position:relative}.window-pane.center{background:linear-gradient(180deg,#1c4253,#78919a 55%,#22292c 56%)}.window-pane::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.08) 36%,transparent 42%)}.checks-grid{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:8px}.check-bay{border:1px solid #4e5559;background:#191d1f;padding:8px;min-height:150px}.view-actions{position:absolute;left:50%;top:72px;transform:translateX(-50%);width:260px;display:grid;grid-template-columns:1fr;gap:6px;z-index:2}
+
+.cockpit-control{position:relative;min-width:0;border:1px solid #51575b;background:linear-gradient(180deg,#272b2e,#171a1c);border-radius:3px;padding:5px;transition:border-color .12s,box-shadow .12s}.cockpit-control.wide{grid-column:1/-1}.cockpit-control.compact{padding:4px}.control-label{min-height:20px;color:#e4e6e7;font:7.5px/1.2 var(--mono);letter-spacing:.35px;text-align:center;display:flex;align-items:center;justify-content:center}.check-face,.pb-face{width:100%;min-height:38px;border:2px solid #090a0b;border-radius:3px;background:linear-gradient(#34383a,#151719);color:#e6e8e9;font:8px/1.2 var(--mono);padding:5px;cursor:pointer;box-shadow:inset 0 -3px #050606}.check-face:active,.pb-face:active{transform:translateY(1px);box-shadow:inset 0 1px #050606}.pb-face.on{box-shadow:inset 0 0 0 2px #69623c,inset 0 -3px #050606}.state-readout{display:block;text-align:center;margin-top:3px;color:#777f84;font:7px var(--mono)}.state-readout.on{color:var(--green)}.selector-gate,.lever-gate{display:flex;gap:3px;flex-wrap:wrap;justify-content:center}.position{min-height:34px;flex:1;min-width:35px;border:1px solid #090a0b;border-radius:3px;background:#25292b;color:#929b9f;font:7px var(--mono);padding:4px 3px;cursor:pointer}.position[aria-pressed=true]{color:var(--green);border-color:#526458;box-shadow:inset 0 0 0 1px var(--green);background:#17231a}.lever-gate .position{min-height:45px;background:linear-gradient(90deg,#17191a,#3a3e40,#17191a)}.lever-gate .position[aria-pressed=true]{background:linear-gradient(90deg,#172019,#4a5b4e,#172019)}
+.cockpit-control[data-grade=correct]{border-color:var(--green);box-shadow:0 0 0 2px var(--green),0 0 16px rgba(75,224,112,.5)}.cockpit-control[data-grade=incorrect]{border-color:var(--red);box-shadow:0 0 0 2px var(--red),0 0 16px rgba(255,91,97,.45)}.cockpit-control[data-grade=out-of-order]{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber),0 0 16px rgba(255,189,56,.45)}.cockpit-control[data-grade]::after{position:absolute;right:3px;top:3px;border-radius:2px;padding:2px 4px;color:#060708;font:700 6px var(--mono);letter-spacing:.3px;z-index:4}.cockpit-control[data-grade=correct]::after{content:"CORRECT";background:var(--green)}.cockpit-control[data-grade=incorrect]::after{content:"INCORRECT";background:var(--red)}.cockpit-control[data-grade=out-of-order]::after{content:"OUT OF ORDER";background:var(--amber)}
+
+.flow-drawer{border:1px solid var(--edge);border-radius:7px;background:#0d1012;margin-top:10px}.flow-drawer summary{cursor:pointer;color:var(--cyan);font:10px var(--mono);letter-spacing:.8px;padding:10px 12px}.flow-list{padding:0 12px 10px}.flow-row{display:grid;grid-template-columns:25px 1fr auto;gap:8px;align-items:center;border-top:1px solid #252b30;padding:7px 0;font:9px var(--mono)}.flow-row span{color:var(--muted)}.flow-row b{font-weight:500;color:#c9d1d5}.flow-row em{font-style:normal;color:var(--cyan);text-align:right}.flow-row.done b,.flow-row.done em{color:var(--green)}.flow-row.current{background:#131b1f}.flow-row.pending{opacity:.55}
+.completion{border:1px solid var(--green-d);border-radius:8px;background:#0a170e;padding:16px;margin-top:10px;text-align:center}.completion .score{font:700 34px var(--mono);color:var(--green)}.completion p{color:#b8c6bc;font-size:12px;margin:5px 0 13px}.completion .actions{justify-content:center}.foot{text-align:center;color:var(--muted);font:9px/1.5 var(--mono);margin-top:13px}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media(max-width:760px){.page{padding-left:7px;padding-right:7px}.card{padding:13px 10px}.config-grid{grid-template-columns:1fr}.phase-grid{grid-template-columns:1fr}.run-head{display:block}.run-actions{justify-content:flex-start;margin-top:8px}.cue-bar{grid-template-columns:1fr}.cue{grid-template-columns:1fr}.cue>span:last-child{text-align:left}.feedback{align-items:flex-start;flex-direction:column;gap:3px}.strip .v{font-size:16px}.surface-scroll{padding:4px}.scroll-note{text-align:left}.placard{padding:11px}.placard h1{font-size:14px}.tag{font-size:8px}.flow-row{grid-template-columns:22px 1fr}.flow-row em{grid-column:2;text-align:left}.scope{font-size:9px}}
+.state-readout{width:100%;border:0;background:transparent;cursor:pointer}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="top"><a class="back" href="index.html">&larr; TRAINER</a><div class="tag">A320 &middot; PF / PM &middot; FLOW CARDS</div></div>
+  <header class="placard"><span class="badge">A320</span><div><h1>PF / PM Flow Trainer</h1><p>INTERACTIVE COCKPIT &middot; ORDER-SENSITIVE GRADING</p></div></header>
+
+  <section id="setup" class="card">
+    <div class="eyebrow">Configure a flow</div>
+    <p class="lead">Choose a phase and role, then operate the cockpit controls in the exact order shown on the supplied flow cards. Every input is graded <b>correct</b>, <b>incorrect</b>, or <b>out of order</b>. CM1 / CM2 selects which side-specific EFIS and window controls you use.</p>
+
+    <div class="config-label">PHASE</div>
+    <div class="phase-grid" id="phaseGrid" aria-label="Flow phase"></div>
+
+    <div class="config-grid">
+      <div><div class="config-label">ROLE ALLOCATION</div><div class="segment-group" id="roleButtons"></div></div>
+      <div id="seatSelect"><div class="config-label">OPERATING SEAT</div><div class="segment-group" id="seatButtons"><button class="segment" data-value="CM1" aria-pressed="true">CM1 / LEFT</button><button class="segment" data-value="CM2" aria-pressed="false">CM2 / RIGHT</button></div></div>
+      <div><div class="config-label">PRACTICE MODE</div><div class="segment-group" id="modeButtons"><button class="segment" data-value="assessment" aria-pressed="true">ASSESSMENT</button><button class="segment" data-value="guided" aria-pressed="false">GUIDED</button></div></div>
+    </div>
+
+    <div class="phase-brief" id="phaseBrief"></div>
+    <div class="actions"><button class="btn primary" id="beginFlow">BEGIN FLOW &rarr;</button></div>
+    <p class="scope"><b>SOURCE SCOPE:</b> A320 Panel Scans.pdf supplied in this chat. Exact positions are enforced where the card provides one. For actions written only as SET or AS RQRD, the trainer grades the correct control interaction without inventing a company-specific configuration. Cockpit Preparation retains the card's PF / CM1 / CM2 labels. Current approved FCOM, QRH and company procedures remain authoritative.</p>
+  </section>
+
+  <section id="trainer" hidden>
+    <div class="card">
+      <div class="run-head"><div><div class="eyebrow">Active flow</div><h2 id="runTitle">BEFORE START</h2><div class="run-meta" id="runMeta">PF &middot; CM1 &middot; ASSESSMENT</div></div><div class="run-actions"><button class="btn small ghost" id="changeFlow">CHANGE FLOW</button><button class="btn small" id="resetFlow">RESET</button></div></div>
+      <div class="strip">
+        <div class="cell"><div class="k">STEP</div><div class="v" id="stepValue">1/1</div></div>
+        <div class="cell"><div class="k">CORRECT</div><div class="v good" id="correctValue">0</div></div>
+        <div class="cell"><div class="k">INCORRECT</div><div class="v bad" id="incorrectValue">0</div></div>
+        <div class="cell"><div class="k">OUT OF ORDER</div><div class="v warn" id="orderValue">0</div></div>
+      </div>
+      <div class="progress"><i id="runProgress"></i></div>
+      <div class="feedback neutral" id="feedback" aria-live="polite"><strong>FLOW ARMED</strong><span>Select the first control.</span></div>
+      <div class="cue-bar"><div class="cue" id="nextCue"><span class="cue-kicker">ASSESSMENT MODE</span><strong>RECALL ACTION 1</strong><span>Use HINT only if needed.</span></div><div class="actions"><button class="btn small" id="hintButton">HINT</button><button class="btn small ghost" id="revealButton">FLOW LIST</button></div></div>
+
+      <div class="panel-tabs" aria-label="Cockpit panel view">
+        <button class="panel-tab" data-panel="overhead" aria-pressed="true">OVERHEAD</button>
+        <button class="panel-tab" data-panel="flightdeck" aria-pressed="false">GLARESHIELD / MAIN</button>
+        <button class="panel-tab" data-panel="pedestal" aria-pressed="false">PEDESTAL</button>
+        <button class="panel-tab" data-panel="checks" aria-pressed="false">WINDOWS / CHECKS</button>
+      </div>
+      <div class="scroll-note">Panel is intentionally full-width; scroll sideways on a small screen.</div>
+      <div class="surface-scroll">
+        <section class="panel-view" data-panel="overhead">
+          <div class="overhead-shape">
+            <div class="panel-title">OVERHEAD PANEL</div>
+            <div class="mount single oh-scan" id="oh-scan"></div>
+            <div class="oh-grid">
+              <section class="panel-unit"><h3>ADIRS</h3><div class="dummy-bank"><i class="dummy-knob"></i><i class="dummy-knob"></i><i class="dummy-knob"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
+              <section class="panel-unit tall"><h3>FUEL</h3><div class="mount six" id="oh-fuel"></div><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
+              <section class="panel-unit"><h3>HYD</h3><div class="mount" id="oh-hyd"></div><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
+              <section class="panel-unit"><h3>ELEC</h3><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
+              <section class="panel-unit"><h3>AIR COND / PNEU</h3><div class="mount" id="oh-air"></div></section>
+              <section class="panel-unit"><h3>ANTI ICE</h3><div class="mount single" id="oh-ice"></div><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
+              <section class="panel-unit tall"><h3>EXTERIOR LIGHTS</h3><div class="mount" id="oh-lights"></div></section>
+              <section class="panel-unit"><h3>SIGNS / CALLS</h3><div class="mount" id="oh-signs"></div></section>
+              <section class="panel-unit"><h3>APU</h3><div class="mount single" id="oh-apu"></div><div class="dummy-knob"></div></section>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel="flightdeck" hidden>
+          <div class="panel-title">GLARESHIELD AND MAIN INSTRUMENT PANEL</div>
+          <div class="glare">
+            <section class="efis-panel"><div class="panel-title">CM1 EFIS</div><div class="mount" id="glare-cm1"></div></section>
+            <section class="fcu"><div class="panel-title">FCU</div><div class="fcu-display-row"><div class="fcu-window">250</div><div class="fcu-window">HDG</div><div class="fcu-window">10000</div><div class="fcu-window">+10</div></div><div class="fcu-knobs"><i class="dummy-knob"></i><i class="dummy-knob"></i><i class="dummy-knob"></i><i class="dummy-knob"></i></div></section>
+            <section class="efis-panel"><div class="panel-title">CM2 EFIS</div><div class="mount" id="glare-cm2"></div></section>
+          </div>
+          <div class="main-instruments">
+            <section class="screen-pair"><div class="display pfd" aria-label="PFD representation"></div><div class="display nd" aria-label="ND representation"></div></section>
+            <section class="ecam-stack"><div class="ecam-screen"><b>ENG / WARNING</b><br>FOB 6.2<br><span class="amber">T.O INHIBIT</span><br>FLAPS 1+F<br>SPLRS ARM</div><div class="ecam-screen"><b>STATUS / SYSTEM</b><br>MEMO<br>SEAT BELTS<br>NO SMOKING<br>NW STRG DISC</div><div class="mount main-control-bank" id="main-center"></div></section>
+            <section class="screen-pair"><div class="display nd" aria-label="ND representation"></div><div class="display pfd" aria-label="PFD representation"></div></section>
+            <section class="gear-bay"><div class="panel-title">GEAR / BRAKE</div><div class="gear-lever"></div><div class="mount single" id="main-gear"></div></section>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel="pedestal" hidden>
+          <div class="pedestal-shape">
+            <div class="panel-title">CENTRE PEDESTAL</div>
+            <div class="ped-upper">
+              <section class="mcdu-shell"><div class="panel-title">MCDU 1</div><div class="mcdu-screen">INIT &nbsp; F-PLN<br><br>FROM/TO<br>FLT NBR<br>COST INDEX<br>CRZ FL/TEMP</div><div class="mcdu-keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="mount single" id="ped-mcdu"></div></section>
+              <section class="radio-stack"><div class="panel-title">RMP / ATC / WX</div><div class="fcu-window">7700</div><div class="dummy-bank"><i class="dummy-knob"></i><i class="dummy-knob"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div><div class="mount" id="ped-atc"></div></section>
+              <section class="mcdu-shell"><div class="panel-title">MCDU 2</div><div class="mcdu-screen">PROG &nbsp; PERF<br><br>GPS PRIMARY<br>OPT FL 350<br>REC MAX 372<br>NAV ACCUR HIGH</div><div class="mcdu-keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></section>
+            </div>
+            <div class="throttle-zone">
+              <section class="throttle-quadrant"><div class="panel-title">FLIGHT CONTROL PEDESTAL</div><div class="throttle-art"><div class="throttle-handle"></div><div class="throttle-handle"></div></div><div class="mount" id="ped-throttle"></div></section>
+              <section class="engine-zone"><div class="panel-title">ENG / PARK BRK</div><div class="mount" id="ped-engine"></div><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-knob"></i><i class="dummy-pb"></i></div></section>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-view checks-shape" data-panel="checks" hidden>
+          <div class="panel-title">WINDOWS, RUNWAY AND CABIN CHECKS</div>
+          <div class="windscreen"><div class="window-pane"></div><div class="window-pane center"></div><div class="window-pane"></div></div>
+          <div class="view-actions mount single" id="checks-view"></div>
+          <div class="checks-grid">
+            <section class="check-bay"><div class="panel-title">CM1 SIDE</div><div class="mount single" id="checks-left"></div></section>
+            <section class="check-bay"><div class="panel-title">DOORS / CABIN</div><div class="mount single" id="checks-center"></div><div class="dummy-bank"><i class="dummy-pb"></i><i class="dummy-pb"></i><i class="dummy-pb"></i></div></section>
+            <section class="check-bay"><div class="panel-title">CM2 SIDE</div><div class="mount single" id="checks-right"></div></section>
+          </div>
+        </section>
+      </div>
+
+      <details class="flow-drawer" id="flowDrawer"><summary>FLOW CARD TRANSCRIPTION / PROGRESS</summary><div class="flow-list" id="flowList"></div></details>
+      <section class="completion" id="completion" hidden><div class="eyebrow">Run complete</div><div class="score" id="completionScore">100%</div><p id="completionText"></p><div class="actions"><button class="btn primary" id="retryFlow">RETRY SAME FLOW</button><button class="btn" id="chooseFlow">CHOOSE ANOTHER</button></div></section>
+    </div>
+  </section>
+
+  <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE. VERIFY AGAINST CURRENT APPROVED PROCEDURES.</p>
+</main>
+<script src="flow-sim.js"></script>
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});}
+</script>
+</body>
+</html>
