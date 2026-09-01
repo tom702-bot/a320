@@ -1,7 +1,7 @@
-const CACHE = 'a320-trainer-v25';
+const CACHE = 'a320-trainer-v26';
 const ASSETS = ['./','./index.html','./manifest.webmanifest',
   './self-study-quizzes.js',
-  './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js','./flows.html','./flow-sim.js','./a32nx-cockpit.png',
+  './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js','./flows.html','./flow-sim.js','./a32nx-cockpit.webp',
   './icon-180.png','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', function(e){
   e.waitUntil(caches.open(CACHE).then(function(c){return c.addAll(ASSETS);})
