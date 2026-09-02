@@ -9,6 +9,7 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 |---|---|
 | `index.html` | Main app: HTML, CSS, JavaScript and question data in one file. |
 | `A320_Checkride_Trainer.html` | Standalone twin of `index.html`; keep it byte-for-byte identical. |
+| `systems-exam-questions.js` | 230 referenced A320 systems questions across 17 FCOM DSC subjects; the app adds the 253 limitations questions as the eighteenth subject. |
 | `self-study-quizzes.js` | Nine source-grounded 30-question banks (270 questions) in fixed A-D order. |
 | `A321P2F_Limitations_FillCheck.html` | Legacy filename for the standalone A320 fill-and-check page. Its visible title and data are A320-specific. |
 | `electrical.html` | Interactive ECAM-style A320 electrical-system synoptic and configuration explainer. |
@@ -48,6 +49,19 @@ source. Subject chips are generated from each question's `c` value.
 Current audited state: 253 limitations questions and 8 separate memory-item cards. Recount
 after every question edit; do not rely on these figures if validation reports something else.
 
+`systems-exam-questions.js` defines `window.SYSTEMS_EXAM_QUESTIONS` and
+`window.SYSTEMS_EXAM_TOPICS`. It contains 230 A320 systems questions across 17 subjects. At
+runtime the main app adds a referenced copy of all 253 `BANK` items as the eighteenth subject,
+Limitations, creating a 483-question Systems Exam Prep pool. Each systems object has:
+
+```js
+{ c: "Subject", q: "Question", o: ["A", "B", "C", "D"], a: 0,
+  w: "Explanation", ref: "FCOM DSC-..." }
+```
+
+Every systems item requires exactly four choices, a valid zero-based answer, a non-empty
+explanation and a visible FCOM reference. Mixed runs must remain balanced across selected subjects.
+
 `self-study-quizzes.js` separately defines 270 course-test questions as
 `window.SELF_STUDY_QUIZZES`. Each of the three course areas has three banks of 30 questions.
 Every question has exactly four fixed options, and `a` is a zero-based answer index from 0 through 3.
@@ -73,9 +87,8 @@ source.
   teaching detail also uses the supplied 2022 Gas Turbine Engines A320 Self Study Guides Parts 1
   and 2; keep their slide references visible.
 - The three course tests in `self-study-quizzes.js` are separately sourced from the supplied self-study guides. Keep their explanations and slide references visible, and do not describe them as part of the FCOM limitations audit.
-- Existing DSC systems and QRH memory-item questions were outside that limitations-only audit.
-  They must be checked against the relevant supplied DSC/QRH source before being described as
-  revalidated.
+- Systems Exam Prep uses the supplied A320 FCOM DSC chapters and exposes its citation in a
+  dedicated Reference line after each answer. Do not move these questions into `BANK`.
 - The hydraulic trainer is sourced from the supplied active A/C 21-CMHT DSC-29-10 and DSC-29-20 pages dated 22 MAY 24. Keep the three fluid systems independent: the PTU transfers mechanical power, never hydraulic fluid.
 - Cite limitation questions with the relevant `FCOM LIM-...` reference.
 - Never invent a source reference. If the source is unavailable or ambiguous, flag the item.
@@ -89,6 +102,10 @@ source.
 4. Validate JavaScript syntax and check that:
    - the limitations bank total is 253 unless a deliberate addition/removal changes it;
    - every served Limitations Check item is sourced from an `FCOM LIM-...` page;
+   - Systems Exam Prep contains 18 selectable subjects, 230 DSC questions plus all 253 limitations
+     questions, with no duplicate normalized question text;
+   - every Systems Exam Prep question has exactly four choices, a valid answer index, a non-empty
+     explanation and a visible `FCOM DSC-...` or `FCOM LIM-...` reference;
    - the self-study bank contains 3 courses, 3 banks per course, 30 questions per bank, and 4 options per question;
    - every answer index is valid;
    - every question has a non-empty explanation/reference;
@@ -106,7 +123,7 @@ source.
 5. Search correct answers and explanations—not just distractors—for superseded A321P2F or CFM/PW
    values. IAE values must retain their engineering-only applicability warning.
 6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v32`.
+   `a320-trainer-v33`.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is

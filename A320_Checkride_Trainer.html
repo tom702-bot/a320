@@ -119,6 +119,10 @@
   .ecam .why{font-size:14px; color:#c7d3db; line-height:1.55}
   .ecam .why .lead{color:var(--muted); font-family:var(--font-data); font-size:10.5px;
     letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:4px}
+  .ecam .ref{font-family:var(--font-data);font-size:11.5px;color:var(--cyan);
+    line-height:1.5;margin-top:10px;padding-top:9px;border-top:1px solid var(--edge)}
+  .ecam .ref .lead{color:var(--muted);font-size:10.5px;letter-spacing:1.5px;
+    text-transform:uppercase;display:block;margin-bottom:4px}
 
   /* ---- Buttons ---- */
   .btn{font-family:var(--font-data); font-size:13.5px; letter-spacing:1px;
@@ -149,6 +153,7 @@
   .mode.review .mt .ic{background:var(--cyan)}
   .mode.lookup .mt .ic{background:#c9d4dc;color:var(--bg)}
   .mode.study .mt .ic{background:#9b8cff;color:var(--bg)}
+  .mode.systems .mt .ic{background:var(--cyan);color:var(--bg)}
   .mode.electrical .mt .ic{background:var(--green-deep);color:#fff}
   .mode.hydraulic .mt .ic{background:#49a7db;color:#fff}
   .mode.engine .mt .ic{background:var(--amber);color:var(--bg)}
@@ -254,6 +259,9 @@
   .review .rq{color:var(--white); margin-bottom:5px}
   .review .ra{font-family:var(--font-data); font-size:13px; color:var(--green)}
   .review .rmiss{font-family:var(--font-data); font-size:13px; color:var(--amber)}
+  .review .rw{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:6px}
+  .review .rref{font-family:var(--font-data);font-size:11.5px;color:var(--cyan);
+    line-height:1.5;margin-top:5px}
 
   .hidden{display:none!important}
   .foot{text-align:center; font-size:11px; color:var(--muted-2); margin-top:26px;
@@ -270,21 +278,25 @@
     <span class="badge">A320</span>
     <div>
       <h1>Ansett A320 Trainer</h1>
-      <div class="sub">A320 &middot; IAE V2500 &middot; Limitations only</div>
+      <div class="sub">A320 &middot; IAE V2500 &middot; Systems and limitations</div>
     </div>
   </div>
 
   <!-- ================= START ================= -->
   <section id="start">
-    <p class="lede">Pick a drill. Limitations Check gives an ECAM-style debrief with the answer,
-      reasoning and FCOM reference. Review Weak Areas re-serves only what you've missed. Memory
-      Item Drill is self-marked cold recall, Fill &amp; Check grades typed values, and Self-Study
-      Quizzes draws each 30-question test from larger rotating banks. Progress is saved on this device only.</p>
+    <p class="lede">Pick a drill. Systems Exam Prep covers the full A320 IAE syllabus with a source
+      reference on every answer. Limitations Check remains restricted to the supplied FCOM limitations
+      chapter. Review Weak Areas re-serves missed limitations, while the other drills retain their own
+      grading and recall formats. Progress is saved on this device only.</p>
 
     <div class="modegrid">
       <button class="mode" id="modeMcq">
         <div class="mt"><span class="ic">MCQ</span>Limitations Check</div>
         <div class="md">Multiple-choice drawn only from the supplied A320 limitations chapter, using the IAE V2500 engine subsection. CFM/PW excluded.</div>
+      </button>
+      <button class="mode systems" id="modeSystems">
+        <div class="mt"><span class="ic">SYS</span>Systems Exam Prep</div>
+        <div class="md">Choose from 18 A320 IAE subjects. Balanced, shuffled A&ndash;D questions with an explanation and FCOM reference attached to every answer.</div>
       </button>
       <button class="mode review" id="modeReview">
         <div class="mt"><span class="ic">WEAK</span>Review Weak Areas</div>
@@ -327,12 +339,23 @@
     <div class="prog" id="progPanel"></div>
 
     <div class="panel filters" id="filterPanel">
-      <div class="eyebrow">Question sets</div>
+      <div class="eyebrow">Limitations question sets</div>
       <div class="chips" id="chips"></div>
       <div class="eyebrow" style="margin-top:20px">Questions per run</div>
       <div class="chips" id="lenChips"></div>
       <div class="row">
         <button class="btn primary" id="startMcqBtn">Begin check &rarr;</button>
+      </div>
+    </div>
+
+    <div class="panel filters hidden" id="systemsPanel">
+      <div class="eyebrow">Systems Exam Prep subjects</div>
+      <p class="studynote" style="margin:7px 0 14px">Select any combination. Mixed runs are balanced across the selected subjects before additional questions are drawn.</p>
+      <div class="chips" id="sysChips"></div>
+      <div class="eyebrow" style="margin-top:20px">Questions per run</div>
+      <div class="chips" id="sysLenChips"></div>
+      <div class="row">
+        <button class="btn primary" id="startSystemsBtn">Begin systems exam &rarr;</button>
       </div>
     </div>
   </section>
@@ -486,10 +509,12 @@
     Study aid &mdash; NOT for flying. Verify every value against current FCOM / QRH.<br>
     Airframe/system limits: supplied A320 FCOM, A/C 21-CMHT, 22 MAY 24.
     Engine limits: supplied IAE V2500 appendix, A/C 20-IMHT, 13 AUG 18, marked FOR ENGINEERING USE ONLY.
-    CFM/PW pages and all non-LIM systems/BTC questions are excluded from Limitations Check.
+    Systems Exam Prep uses the supplied FCOM DSC chapters; Limitations Check remains FCOM LIM only.
+    CFM/PW engine material is excluded.
   </div>
 </div>
 
+<script src="systems-exam-questions.js"></script>
 <script src="self-study-quizzes.js"></script>
 <script>
 /* ============ QUESTION BANK ============ */
@@ -749,7 +774,20 @@ const BANK = [
  {"c":"Aircraft General","q":"With Thrust Bump used, at 14,100 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["95 / 97 / 95 / 95 kt","111 / 112 / 110 / 109 kt","110 / 111 / 109 / 109 kt","108 / 109 / 107 / 107 kt"],"a":0,"w":"With Thrust Bump at 14,100 ft: 95 / 97 / 95 / 95 kt respectively. · FCOM LIM-AG-SPD"}
 ];
 
-/* Systems/BTC banks intentionally excluded: Limitations Check is FCOM LIM only. */
+/* Systems Exam Prep is separate: Limitations Check above remains FCOM LIM only. */
+function limitationExamItem(item){
+  const text=item.w||"";
+  const match=text.match(/FCOM LIM-[^·]+$/);
+  const marker=match?text.lastIndexOf(" · FCOM LIM-"):-1;
+  return Object.assign({},item,{
+    c:"Limitations",
+    w:marker>=0?text.slice(0,marker):text,
+    ref:match?match[0]:"FCOM Limitations chapter"
+  });
+}
+const SYSTEMS_BASE=window.SYSTEMS_EXAM_QUESTIONS||[];
+const SYSTEMS_BANK=SYSTEMS_BASE.concat(BANK.map(limitationExamItem));
+const SYSTEMS_CATS=(window.SYSTEMS_EXAM_TOPICS||[]).filter(c=>SYSTEMS_BANK.some(q=>q.c===c));
 
 /* ============ MEMORY ITEMS ============ */
 const MEM = [
@@ -853,7 +891,7 @@ const chips=$("chips");
 function drawChips(){
   chips.innerHTML="";
   const all=document.createElement("button");
-  all.className="chip"; all.textContent="All systems";
+  all.className="chip"; all.textContent="All limitations";
   all.setAttribute("aria-pressed",active.size===CATS.length);
   all.onclick=()=>{active=active.size===CATS.length?new Set():new Set(CATS);drawChips();};
   chips.appendChild(all);
@@ -881,9 +919,55 @@ function drawLens(){
 }
 drawLens();
 
-$("modeMcq").onclick=()=>$("filterPanel").scrollIntoView({behavior:"smooth"});
+$("modeMcq").onclick=()=>{
+  $("systemsPanel").classList.add("hidden");
+  $("filterPanel").classList.remove("hidden");
+  $("filterPanel").scrollIntoView({behavior:"smooth"});
+};
 $("modeMem").onclick=()=>startMem();
 $("modeFill").onclick=()=>{ show("fill"); buildFill(); };
+
+/* ---------- SYSTEMS EXAM PREP FILTERS ---------- */
+let sysActive=new Set(SYSTEMS_CATS);
+let sysRunLen=30;
+function drawSystemChips(){
+  const host=$("sysChips");host.innerHTML="";
+  const all=document.createElement("button");
+  all.className="chip";all.textContent="All 18 subjects";
+  all.setAttribute("aria-pressed",sysActive.size===SYSTEMS_CATS.length);
+  all.onclick=()=>{sysActive=sysActive.size===SYSTEMS_CATS.length?new Set():new Set(SYSTEMS_CATS);drawSystemChips();};
+  host.appendChild(all);
+  SYSTEMS_CATS.forEach(c=>{
+    const b=document.createElement("button");b.className="chip";b.textContent=c;
+    b.setAttribute("aria-pressed",sysActive.has(c));
+    b.onclick=()=>{sysActive.has(c)?sysActive.delete(c):sysActive.add(c);drawSystemChips();};
+    host.appendChild(b);
+  });
+}
+const SYS_LENS=[["18",18],["30",30],["60",60],["All",0]];
+function drawSystemLens(){
+  const host=$("sysLenChips");host.innerHTML="";
+  SYS_LENS.forEach(([label,value])=>{
+    const b=document.createElement("button");b.className="chip";b.textContent=label;
+    b.setAttribute("aria-pressed",sysRunLen===value);
+    b.onclick=()=>{sysRunLen=value;drawSystemLens();};host.appendChild(b);
+  });
+}
+function balancedSystemDeck(pool,categories,limit){
+  if(!limit||pool.length<=limit)return shuffle(pool);
+  const groups=categories.map(c=>({c,items:shuffle(pool.filter(q=>q.c===c))}));
+  const deck=[];
+  while(deck.length<limit&&groups.some(g=>g.items.length)){
+    shuffle(groups).forEach(g=>{if(deck.length<limit&&g.items.length)deck.push(g.items.pop());});
+  }
+  return deck;
+}
+drawSystemChips();drawSystemLens();
+$("modeSystems").onclick=()=>{
+  $("filterPanel").classList.add("hidden");
+  $("systemsPanel").classList.remove("hidden");
+  $("systemsPanel").scrollIntoView({behavior:"smooth"});
+};
 
 /* ---------- SELF-STUDY QUIZZES ---------- */
 const STUDY_QUIZZES=window.SELF_STUDY_QUIZZES||[];
@@ -1061,20 +1145,29 @@ $("ssResultHome").onclick=()=>show("start");
 
 /* ---------- MCQ ---------- */
 let queue=[],qi=0,cor=0,miss=0,streak=0,missed=[];
+let currentQuizKind="limitations";
 $("startMcqBtn").onclick=()=>{
   const pool=BANK.filter(x=>active.has(x.c));
   if(!pool.length){alert("Select at least one question set.");return;}
   let deck=shuffle(pool);
   if(runLen && deck.length>runLen) deck=deck.slice(0,runLen);
-  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[]; lastMode="mcq";
+  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[];currentQuizKind="limitations";lastMode="mcq";
   show("quiz"); renderQ();
+};
+$("startSystemsBtn").onclick=()=>{
+  const selected=SYSTEMS_CATS.filter(c=>sysActive.has(c));
+  const pool=SYSTEMS_BANK.filter(q=>sysActive.has(q.c));
+  if(!pool.length){alert("Select at least one Systems Exam Prep subject.");return;}
+  queue=balancedSystemDeck(pool,selected,sysRunLen);
+  qi=0;cor=0;miss=0;streak=0;missed=[];currentQuizKind="systems";lastMode="systems";
+  show("quiz");renderQ();
 };
 function startReview(){
   const pool=weakPool();
   if(!pool.length){ alert("No weak areas yet — take a Limitations Check first, then anything you miss shows up here."); return; }
   let deck=pool.slice();                    // most-missed first
   if(runLen && deck.length>runLen) deck=deck.slice(0,runLen);
-  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[]; lastMode="review";
+  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[];currentQuizKind="limitations";lastMode="review";
   show("quiz"); renderQ();
 }
 $("modeReview").onclick=()=>startReview();
@@ -1108,8 +1201,8 @@ function answer(btn,chosen,order){
     else el.classList.add("dim");
   });
   if(correct){cor++;streak++;}
-  else{miss++;streak=0;missed.push({q:q.q,a:q.o[q.a]});}
-  recordAnswer(q,correct);
+  else{miss++;streak=0;missed.push({q:q.q,a:q.o[q.a],w:q.w||"",ref:q.ref||""});}
+  if(currentQuizKind==="limitations")recordAnswer(q,correct);
   $("sCor").textContent=cor;$("sMiss").textContent=miss;$("sStreak").textContent=streak;
   const e=document.createElement("div");
   e.className="ecam "+(correct?"ok":"no");
@@ -1119,7 +1212,8 @@ function answer(btn,chosen,order){
       '<div class="ans">ANSWER &nbsp;<b>'+q.o[q.a]+'</b></div>'+
       (q.w
         ? '<div class="why"><span class="lead">Reasoning</span>'+q.w+'</div>'
-        : '<div class="why"><span class="lead">Source</span>See the reasoning and FCOM chapter reference below.</div>')+
+        : '<div class="why"><span class="lead">Reasoning</span>Refer to the cited FCOM section.</div>')+
+      (q.ref?'<div class="ref"><span class="lead">Reference</span>'+q.ref+'</div>':'')+
     '</div>';
   $("ecamSlot").appendChild(e);
   $("nextRow").style.display="flex";
@@ -1130,7 +1224,7 @@ $("quitBtn").onclick=()=>finishMcq();
 function finishMcq(){
   const total=cor+miss;
   const pct=total?Math.round(cor/total*100):0;
-  $("rEye").textContent="Limitations check — debrief";
+  $("rEye").textContent=currentQuizKind==="systems"?"Systems Exam Prep — debrief":"Limitations check — debrief";
   $("rScore").textContent=pct+"%";
   $("rScore").style.color=pct>=90?"var(--green)":pct>=75?"var(--cyan)":"var(--amber)";
   const v=$("rVerdict");
@@ -1143,14 +1237,16 @@ function finishMcq(){
     h.textContent="Review — missed items ("+missed.length+")";r.appendChild(h);
     missed.forEach(m=>{
       const d=document.createElement("div");d.className="ritem";
-      d.innerHTML='<div class="rq">'+m.q+'</div><div class="ra">&#10003; '+m.a+'</div>';
+      d.innerHTML='<div class="rq">'+m.q+'</div><div class="ra">&#10003; '+m.a+'</div>'+
+        (m.w?'<div class="rw">'+m.w+'</div>':'')+
+        (m.ref?'<div class="rref">Reference: '+m.ref+'</div>':'');
       r.appendChild(d);
     });
   }else if(total){
     const d=document.createElement("div");d.className="ritem";d.style.borderTop="none";
     d.innerHTML='<div class="ra">Clean sweep — nothing missed.</div>';r.appendChild(d);
   }
-  lastMode="mcq"; show("results");
+  show("results");
 }
 
 /* ---------- MEMORY DRILL ---------- */
@@ -1206,7 +1302,12 @@ function finishMem(){
 
 /* ---------- RESULTS NAV ---------- */
 let lastMode="mcq";
-$("againBtn").onclick=()=>{ lastMode==="mem"?startMem():lastMode==="review"?startReview():$("startMcqBtn").onclick(); };
+$("againBtn").onclick=()=>{
+  if(lastMode==="mem")startMem();
+  else if(lastMode==="review")startReview();
+  else if(lastMode==="systems")$("startSystemsBtn").onclick();
+  else $("startMcqBtn").onclick();
+};
 $("homeBtn").onclick=()=>show("start");
 
 /* ---------- FILL & CHECK ---------- */
