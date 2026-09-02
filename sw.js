@@ -1,4 +1,4 @@
-const CACHE = 'a320-trainer-v31';
+const CACHE = 'a320-trainer-v32';
 const ASSETS = ['./','./index.html','./manifest.webmanifest',
   './self-study-quizzes.js',
   './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js','./flows.html','./a320-controls.js?v=31','./flow-sim.js?v=31','./a32nx-overhead.webp','./a32nx-main.webp','./a32nx-pedestal.webp',

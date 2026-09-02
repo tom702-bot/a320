@@ -31,13 +31,12 @@ The main app defines these arrays:
 
 ```js
 const BANK = [ ... ];
-const BTC_Q = [ ... ];
-const NEW_Q = [ ... ];
 const MEM = [ ... ];
 const FILL_SECTIONS = [ ... ];
 ```
 
-`BTC_Q` and `NEW_Q` are appended to `BANK` at startup. Each multiple-choice object has:
+`BANK` is the limitations-only multiple-choice bank. Non-LIM BTC and systems questions must not
+be appended to it. Each multiple-choice object has:
 
 ```js
 { c: "Subject", q: "Question", o: ["options"], a: 0, w: "Reason · source" }
@@ -46,7 +45,7 @@ const FILL_SECTIONS = [ ... ];
 `a` is zero-based and must point to an option. Every question needs a clear `w` explanation and
 source. Subject chips are generated from each question's `c` value.
 
-Current audited state: 330 multiple-choice questions and 8 separate memory-item cards. Recount
+Current audited state: 253 limitations questions and 8 separate memory-item cards. Recount
 after every question edit; do not rely on these figures if validation reports something else.
 
 `self-study-quizzes.js` separately defines 270 course-test questions as
@@ -62,11 +61,17 @@ Study Guide; each rationale includes its source slide number in the UI.
 Accuracy is safety-critical. Do not infer aircraft values from another variant or a generic web
 source.
 
-- Limitations source used for the August 2026 audit: Ansett/Navblue A320 FCOM limitations extract,
-  active aircraft header `NVB A320 For A/C: 21-CMHT`, dated `22 MAY 24`.
-- Use the active `CFM & PW` engine limitations pages for the audited quiz bank.
-- Do not mix the separate IAE engine pages stamped `FOR ENGINEERING USE ONLY` into the active A/C 21-CMHT quiz content.
-- The standalone IAE engine systems explorer is an explicit exception requested by the user. Keep its source/effectivity warning prominent and describe it as provisional. Engine-specific logic and limits come from the supplied A/C 20-IMHT / 19-IMHE IAE engineering appendix (2015-2018), not the active A/C 21-CMHT CFM/PW section. Physical engine, instrumentation and compressor-stability teaching detail also uses the supplied 2022 Gas Turbine Engines A320 Self Study Guides Parts 1 and 2; keep their slide references visible.
+- Airframe and system limitations use the supplied Ansett/Navblue A320 FCOM chapter with active
+  aircraft header `NVB A320 For A/C: 21-CMHT`, dated `22 MAY 24`.
+- Engine limitations use only the supplied IAE V2500 pages for A/C `20-IMHT`, dated `13 AUG 18`.
+  Those pages are stamped `FOR ENGINEERING USE ONLY`; keep that warning visible in the app and
+  do not present the figures as current operational authority.
+- Exclude the separate CFM & PW engine pages from the limitations quiz and fill-in dataset.
+- The standalone IAE engine systems explorer uses the same source/effectivity warning and remains
+  provisional. Engine-specific logic and limits come from the supplied A/C 20-IMHT / 19-IMHE IAE
+  engineering appendix (2015-2018). Physical engine, instrumentation and compressor-stability
+  teaching detail also uses the supplied 2022 Gas Turbine Engines A320 Self Study Guides Parts 1
+  and 2; keep their slide references visible.
 - The three course tests in `self-study-quizzes.js` are separately sourced from the supplied self-study guides. Keep their explanations and slide references visible, and do not describe them as part of the FCOM limitations audit.
 - Existing DSC systems and QRH memory-item questions were outside that limitations-only audit.
   They must be checked against the relevant supplied DSC/QRH source before being described as
@@ -82,7 +87,8 @@ source.
 2. Keep `A320_Checkride_Trainer.html` identical to it.
 3. Keep the standalone fill page's `SECTIONS` data aligned with `FILL_SECTIONS`.
 4. Validate JavaScript syntax and check that:
-   - the main-bank total is 330 unless a deliberate addition/removal changes it;
+   - the limitations bank total is 253 unless a deliberate addition/removal changes it;
+   - every served Limitations Check item is sourced from an `FCOM LIM-...` page;
    - the self-study bank contains 3 courses, 3 banks per course, 30 questions per bank, and 4 options per question;
    - every answer index is valid;
    - every question has a non-empty explanation/reference;
@@ -97,10 +103,10 @@ source.
    - every mapped cockpit hit box stays within its panel and no two control hit boxes overlap;
    - Cockpit Preparation initializes every modeled power source and powered system to its cold-and-dark value;
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
-5. Search correct answers and explanations—not just distractors—for superseded A321P2F or
-   engineering-only values.
+5. Search correct answers and explanations—not just distractors—for superseded A321P2F or CFM/PW
+   values. IAE values must retain their engineering-only applicability warning.
 6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v31`.
+   `a320-trainer-v32`.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is
