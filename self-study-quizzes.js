@@ -1423,15 +1423,15 @@ window.SELF_STUDY_QUIZZES = [
             "slide": 29
           },
           {
-            "q": "Which set of timing limits matches the start limitations shown in the guide?",
+            "q": "Which starter-duty limits match the current AAT A320 FCOM?",
             "o": [
-              "30-second pause between cycles; five-minute manual start; two-minute crank.",
-              "15-second pause between cycles; two-minute manual start; five-minute crank.",
-              "15-second pause between cycles; five-minute manual start; two-minute crank.",
-              "Two-minute pause between cycles; 15-second manual start; five-minute crank."
+              "20-second pause between ground cycles; 15-minute cooling after four failed cycles.",
+              "15-second pause between ground cycles; 30-minute cooling after three failed cycles.",
+              "30-second pause between ground cycles; 15-minute cooling after two failed cycles.",
+              "60-second pause between ground cycles; no cooling period after failed cycles."
             ],
-            "a": 1,
-            "w": "The stated limits include a 15-second pause, a two-minute manual-start cycle, and a five-minute crank cycle.",
+            "a": 0,
+            "w": "The current AAT A320 FCOM requires 20 seconds between successive ground cycles and 15 minutes of cooling after four failed cycles.",
             "slide": 31
           },
           {
@@ -2119,49 +2119,49 @@ window.SELF_STUDY_QUIZZES = [
           {
             "q": "For starter-duty accounting, what constitutes one standard cycle?",
             "o": [
-              "One 15-second cooling pause between attempts.",
+              "One 20-second cooling pause between attempts.",
               "One minute of starter operation at any N2.",
               "Every start attempt made during one flight sector.",
-              "One standard automatic start containing one attempt."
+              "One standard automatic start containing up to three attempts."
             ],
             "a": 3,
-            "w": "One normal automatic start with one attempt is defined as one duty cycle.",
+            "w": "The current AAT A320 FCOM defines one standard automatic start containing up to three attempts as one duty cycle.",
             "slide": 31
           },
           {
-            "q": "What are the maximum continuous times for a manual start cycle and a crank cycle?",
+            "q": "What interval is required between successive IAE V2500 ground starter cycles?",
             "o": [
-              "Manual start 2 minutes; crank 5 minutes",
-              "Manual start 5 minutes; crank 2 minutes",
-              "Both 30 minutes",
-              "Both 15 seconds"
+              "20 seconds",
+              "15 seconds",
+              "30 seconds",
+              "60 seconds"
             ],
             "a": 0,
-            "w": "The guide limits a manual start cycle to two minutes and cranking to five minutes.",
+            "w": "The current AAT A320 FCOM requires a 20-second interval between successive ground starter cycles.",
             "slide": 31
           },
           {
-            "q": "Which ground and flight N2 thresholds prohibit starter operation?",
+            "q": "Above which N2 value is IAE V2500 starter operation prohibited?",
             "o": [
-              "Above 18% on the ground and 10% in flight.",
-              "Above 10% on the ground and 18% in flight.",
-              "Above 10% for both ground and flight starts.",
-              "Above 18% for both ground and flight starts."
+              "20% N2",
+              "10% N2",
+              "18% N2",
+              "43% N2"
             ],
-            "a": 1,
-            "w": "The stated starter cut-in limits are 10% N2 on the ground and 18% in flight.",
+            "a": 0,
+            "w": "The current AAT A320 FCOM prohibits starter operation above 20% N2.",
             "slide": 31
           },
           {
-            "q": "What starting EGT limit is stated for both ground and in-flight starts?",
+            "q": "Which IAE V2500 oil-temperature limits match the current AAT A320 FCOM?",
             "o": [
-              "725 C",
-              "950 C",
-              "635 C",
-              "1,090 C"
+              "140 C continuous; 155 C for 15 minutes",
+              "155 C continuous; 165 C for 15 minutes",
+              "140 C continuous; 165 C for 5 minutes",
+              "155 C continuous with no transient limit"
             ],
-            "a": 2,
-            "w": "The presentation gives a 635 C starting EGT limit for ground or in-flight starts.",
+            "a": 0,
+            "w": "The current AAT A320 FCOM limits oil temperature to 140 C continuously and 155 C transiently for 15 minutes.",
             "slide": 31
           },
           {

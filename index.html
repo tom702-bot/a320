@@ -296,8 +296,8 @@
 
   <!-- ================= START ================= -->
   <section id="start">
-    <p class="lede">Pick a drill. Systems Exam Prep covers the full Ansett A320 IAE syllabus with a source
-      reference on every answer. Limitations Check remains restricted to the supplied FCOM limitations
+    <p class="lede">Pick a drill. Systems Exam Prep uses all 315 questions supplied in the student study guide,
+      reconciled to the current Ansett A320 IAE FCOM with a source reference on every answer. Limitations Check remains restricted to the supplied FCOM limitations
       chapter. Review Weak Areas now combines missed systems and limitations questions and requires two
       clean recalls after a miss. Progress is saved on this device only.</p>
 
@@ -308,7 +308,7 @@
       </button>
       <button class="mode systems" id="modeSystems">
         <div class="mt"><span class="ic">SYS</span>Systems Exam Prep</div>
-        <div class="md">Choose from 18 A320 IAE subjects. Balanced, shuffled A&ndash;D questions with an explanation and FCOM reference attached to every answer.</div>
+        <div class="md">Choose from 19 A320 IAE subjects. Balanced, shuffled A&ndash;D questions from the supplied 315-question guide, with FCOM-reconciled answers and references.</div>
       </button>
       <button class="mode review" id="modeReview">
         <div class="mt"><span class="ic">WEAK</span>Review Weak Areas</div>
@@ -528,9 +528,9 @@
 
   <div class="foot">
     Study aid &mdash; NOT for flying. Verify every value against current FCOM / QRH.<br>
-    Airframe/system limits: supplied A320 FCOM, A/C 21-CMHT, 22 MAY 24.
-    Engine limits: supplied IAE V2500 appendix, A/C 20-IMHT, 13 AUG 18, marked FOR ENGINEERING USE ONLY.
-    Systems Exam Prep uses the supplied FCOM DSC chapters; Limitations Check remains FCOM LIM only.
+    Source: AAT A320 FCOM for A/C 21-CMHT, custom issue 16 MAR 2026 (Airbus content issue 22 MAY 2024).
+    Systems Exam Prep uses the supplied student guide reconciled to that FCOM; MEL questions require the current operator MEL.
+    Limitations Check remains FCOM LIM only.
     All aircraft and engine content is scoped to the Ansett A320 IAE V2500.
   </div>
 </div>
@@ -620,25 +620,25 @@ const BANK = [
  {"c":"Engine & APU","q":"APU bleed air for wing anti-ice is…?","o":["Permitted","Permitted on ground","Not permitted","Permitted single pack"],"a":2,"w":"Not permitted. · FCOM LIM-APU-20"},
  {"c":"Engine & APU","q":"During refuel/defuel, if the APU failed to start or auto-shut-down, the crew should…?","o":["Retry immediately","Not start the APU","Start on battery","Continue fuelling only"],"a":1,"w":"Do not start the APU. If a fuel spill occurs, perform a normal shutdown. · FCOM LIM-APU"},
  {"c":"Communication","q":"Use of the GSM Onboard System below 3,000 m AGL (approximately 10,000 ft) is…?","o":["Permitted","Prohibited","Permitted in cruise","Crew discretion"],"a":1,"w":"GSM Onboard use is prohibited below 3,000 m AGL (approximately 10,000 ft) and in specified geographical areas. · FCOM LIM-COM"},
- {"c":"Engine & APU","q":"IAE V2500 EGT limit — takeoff and go-around?","o":["635 °C","610 °C","675 °C","950 °C"],"a":0,"w":"Takeoff/go-around EGT is limited to 635 °C. The time limit is 5 min with all engines operative or 10 min with one engine inoperative. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 takeoff/go-around thrust time limit — all engines operative / one engine inoperative?","o":["5 min / 10 min","10 min / 5 min","5 min / unlimited","10 min / 10 min"],"a":0,"w":"5 min with all engines operative and 10 min with one engine inoperative. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 EGT limit — maximum continuous thrust (MCT)?","o":["610 °C, no time limit","635 °C for 5 min","675 °C, no time limit","915 °C, no time limit"],"a":0,"w":"MCT is limited to 610 °C with no time limit. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 EGT limit — starting on the ground or in flight?","o":["635 °C","610 °C","725 °C","950 °C"],"a":0,"w":"The starting EGT limit is 635 °C both on the ground and in flight. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 maximum N1?","o":["100%","104%","105%","107%"],"a":0,"w":"Maximum N1 is 100%; ambient conditions and engine bleed configuration may impose a lower limit. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 maximum N2?","o":["100%","104%","105%","107%"],"a":0,"w":"Maximum N2 is 100%. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 starter — pause between successive ground-start cycles?","o":["15 s","20 s","30 s","60 s"],"a":0,"w":"A 15 s pause is required between successive automatic or manual ground-start cycles. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 starter — cooling required after three failed cycles or 5 min of continuous crank?","o":["30 min","15 min","20 min","60 min"],"a":0,"w":"A 30 min cooling period is required after three failed cycles or 5 min of continuous crank. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 maximum continuous oil temperature?","o":["155 °C","140 °C","165 °C","175 °C"],"a":0,"w":"Maximum continuous oil temperature is 155 °C. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 starter — do not run above which N2 values on the ground / in flight?","o":["10% / 18%","18% / 10%","20% / 20%","15% / 25%"],"a":0,"w":"Do not run the starter above 10% N2 on the ground or 18% N2 in flight. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 selection of reverse thrust in flight is…?","o":["Permitted at idle","Prohibited","Permitted above FL200","Permitted below 70 kt"],"a":1,"w":"Prohibited in flight. Maximum reverse should not be used below 70 kt; idle reverse is permitted to a stop. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 FLEX takeoff in association with a DERATED takeoff is…?","o":["Permitted","Not permitted","Permitted on dry only","Permitted OEI"],"a":1,"w":"FLEX takeoff is not permitted together with a derated takeoff. · IAE V2500 engineering-only appendix · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"IAE V2500 maximum TFLEX?","o":["ISA +55 °C","ISA +53 °C","ISA +50 °C","ISA +60 °C"],"a":0,"w":"TMAXFLEX is ISA +55 °C; TFLEX must also not be below TREF or actual OAT. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum N1?","o":["104%","105%","100%","107%"],"a":0,"w":"Maximum N1 is 104%; ambient conditions and engine bleed configuration may impose a lower limit. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum N2?","o":["105%","104%","100%","107%"],"a":0,"w":"Maximum N2 is 105%. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum continuous oil temperature?","o":["140 °C","155 °C","165 °C","175 °C"],"a":0,"w":"Maximum continuous oil temperature is 140 °C. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum transient oil temperature and duration?","o":["155 °C for 15 min","140 °C for 15 min","165 °C for 5 min","175 °C for 10 min"],"a":0,"w":"Maximum transient oil temperature is 155 °C for 15 minutes. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 minimum oil temperature for starting?","o":["-40 °C","-10 °C","0 °C","40 °C"],"a":0,"w":"Minimum oil temperature for engine start is -40 °C. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 minimum oil temperature before takeoff?","o":["-10 °C","-40 °C","0 °C","50 °C"],"a":0,"w":"Oil temperature must be at least -10 °C before takeoff. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 minimum oil quantity before engine start?","o":["9.5 qt plus estimated consumption","9.5 qt fixed with no allowance","6.0 qt plus fuel used","12 qt fixed"],"a":0,"w":"Minimum oil quantity is 9.5 qt plus the estimated consumption for the flight. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 average oil-consumption figure used for planning?","o":["0.5 qt/h","0.2 qt/h","1.0 qt/h","1.5 qt/h"],"a":0,"w":"The average oil-consumption figure is 0.5 qt/h. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 starter — minimum pause between successive ground cycles?","o":["20 s","15 s","30 s","60 s"],"a":0,"w":"Wait 20 seconds between successive ground starter cycles. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 starter — cooling after four failed cycles?","o":["15 min","30 min","20 min","60 min"],"a":0,"w":"After four failed starter cycles, allow 15 minutes for cooling. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"For starter-duty accounting, one standard automatic start may contain up to how many attempts?","o":["Three attempts","One attempt","Two attempts","Four attempts"],"a":0,"w":"A standard automatic start containing up to three attempts counts as one starter cycle. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"Above what N2 must the IAE V2500 starter not be operated?","o":["20% N2","10% N2","18% N2","43% N2"],"a":0,"w":"Do not operate the starter above 20% N2. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"Selection of IAE V2500 reverse thrust in flight is…?","o":["Prohibited","Permitted at idle","Permitted above FL200","Permitted below 70 kt"],"a":0,"w":"Selection of reverse thrust in flight is prohibited. · FCOM LIM-ENG"},
  {"c":"Communication","q":"Passenger in-seat power for portable electronic devices must be…?","o":["ON for takeoff","OFF for takeoff and landing","OFF only in flight","Crew discretion"],"a":1,"w":"The passenger in-seat power supply system must be off during takeoff and landing. · FCOM LIM-CAB"},
  {"c":"Flight Controls & Flaps","q":"Rapid, large alternating control inputs (esp. with large pitch/roll/yaw changes) may cause…?","o":["No effect","Structural failure at any speed","Only autopilot disconnect","Overspeed only"],"a":1,"w":"They may result in structural failures at any speed — a flight-controls caution. · FCOM LIM-F_CTL"},
  {"c":"Communication","q":"Use of mobile phones is prohibited in which aircraft areas?","o":["Cabin and galley","Cockpit and toilets","Flight deck only","Toilets only"],"a":1,"w":"Mobile-phone use is prohibited in the cockpit and toilets. · FCOM LIM-COM"},
- {"c":"Engine & APU","q":"IAE V2500 maximum transient oil temperature and duration?","o":["165 °C for 15 min","155 °C for 15 min","165 °C for 5 min","175 °C for 10 min"],"a":0,"w":"Maximum transient oil temperature is 165 °C for 15 min. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 minimum oil temperature before takeoff?","o":["50 °C","-10 °C","0 °C","40 °C"],"a":0,"w":"Oil temperature must be at least 50 °C before takeoff. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 minimum oil quantity is obtained from which source?","o":["PRO-NOR-SOP-04 Before Walkaround — ECAM Pages","A fixed 9.5 qt limit in LIM-ENG","The takeoff performance calculation","The fuel SD page"],"a":0,"w":"The IAE limitation page does not give a fixed quantity; it refers to PRO-NOR-SOP-04 Before Walkaround — ECAM Pages. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"Backing the aircraft using IAE V2500 reverse thrust is…?","o":["Not permitted","Permitted below 5 kt","Permitted on dry ramps","Permitted with both engines"],"a":0,"w":"Backing the aircraft with reverse thrust is not permitted. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"Below which speed must maximum IAE V2500 reverse thrust not be used?","o":["70 kt","50 kt","80 kt","100 kt"],"a":0,"w":"Do not use maximum reverse below 70 kt; idle reverse is permitted to a stop. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"Combining an IAE V2500 FLEX takeoff with a derated takeoff is…?","o":["Not permitted","Permitted on a dry runway","Required with one engine inoperative","Permitted below maximum landing weight"],"a":0,"w":"FLEX takeoff is not permitted in association with a derated takeoff. · FCOM LIM-ENG-10"},
  {"c":"Fuel","q":"Minimum fuel quantity for takeoff?","o":["1,000 kg","1,500 kg","2,000 kg","500 kg"],"a":1,"w":"1,500 kg (3,307 lb) minimum for takeoff. · FCOM LIM-FUEL"},
  {"c":"Fuel","q":"Maximum temperature for Jet A, Jet A1, JP5, JP8, N°3 Jet, RT and TS-1?","o":["49 °C","54 °C","60 °C","65 °C"],"a":1,"w":"Maximum temperature is 54 °C for these fuels; Jet B and JP4 are limited to 49 °C. · FCOM LIM-FUEL"},
  {"c":"Fuel","q":"Minimum fuel temperature for JET A1 / JP8 / N°3 JET?","o":["-36 °C","-43 °C","-54 °C","-45 °C"],"a":1,"w":"-43 °C for JET A1/JP8/N°3 JET (JET A is warmer at -36 °C; JP4 coldest at -54 °C). · FCOM LIM-FUEL"},
@@ -710,24 +710,24 @@ const BANK = [
  {"c":"Auto Flight","q":"Automatic landing weight condition?","o":["Aircraft weight must be below maximum landing weight","Weight may equal MTOW","No weight condition","At or below maximum taxi weight"],"a":0,"w":"Automatic landing is demonstrated with weight below the maximum landing weight. · FCOM LIM-AFS-20-10"},
  {"c":"Auto Flight","q":"During automatic rollout with one engine or one reverser inoperative, the remaining reverser may be used provided…?","o":["Wind remains within automatic-rollout limits","The runway is contaminated","Tailwind exceeds 10 kt","Both APs are off"],"a":0,"w":"Use of the remaining reverser is permitted within the maximum automatic-rollout wind conditions. · FCOM LIM-AFS-20-10"},
  {"c":"Auto Flight","q":"Autoland on a CAT I ground installation requires which precaution set?","o":["Beam/terrain checked, crew ready to disconnect, CAT 2 capability and procedures, CAT I visual references or go-around","No airline assessment or visual reference","CAT 1 FMA only and AP off","Contaminated-runway approval"],"a":0,"w":"All four precautions are stated, including assessment of terrain within 300 m before threshold. · FCOM LIM-AFS-20-10"},
- {"c":"Engine & APU","q":"IAE V2500 minimum oil pressure?","o":["60 PSI","13 PSI","40 PSI","80 PSI"],"a":0,"w":"Minimum oil pressure is 60 PSI. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 minimum oil temperature for starting?","o":["-40 °C","-10 °C","0 °C","50 °C"],"a":0,"w":"Minimum starting oil temperature is -40 °C. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 minimum oil temperature before IDLE is exceeded?","o":["-10 °C","-40 °C","0 °C","50 °C"],"a":0,"w":"Oil temperature must be at least -10 °C before IDLE is exceeded. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"For the IAE V2500 starter, one standard automatic start with one attempt counts as…?","o":["One cycle","Three cycles","Half a cycle","No cycle"],"a":0,"w":"A standard automatic start containing one start attempt is one cycle. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 manual-start maximum cycle time?","o":["2 min","1 min","5 min","10 min"],"a":0,"w":"Manual start is limited to a 2 min cycle. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 crank maximum cycle time?","o":["5 min","2 min","10 min","15 min"],"a":0,"w":"Crank is limited to a 5 min cycle. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"Backing the aircraft using IAE V2500 reverse thrust is…?","o":["Not permitted","Permitted below 5 kt","Permitted on dry ramps","Permitted with both engines"],"a":0,"w":"Backing with reverse thrust is not permitted. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 FLEX takeoff on a contaminated runway is…?","o":["Not permitted","Permitted without correction","Required","Permitted only with derate"],"a":0,"w":"FLEX takeoff is not permitted on contaminated runways. · IAE V2500 engineering-only appendix · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"An IAE V2500 FLEX takeoff is permitted only when…?","o":["All takeoff-weight performance requirements are met at TFLEX thrust, including applied shortfalls for inoperative items","The runway is contaminated","TFLEX is below actual OAT","It is combined with a derated takeoff"],"a":0,"w":"All performance requirements must be met at takeoff weight using thrust available for TFLEX; any performance shortfall from an inoperative item must be applied. · IAE V2500 engineering-only appendix · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"Besides the ISA +55 °C maximum, IAE V2500 TFLEX must not be below…?","o":["TREF or actual OAT","ISA or SAT","TAT only","The runway temperature only"],"a":0,"w":"TFLEX must not be lower than flat temperature TREF or actual OAT. · IAE V2500 engineering-only appendix · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"During an IAE V2500 derated takeoff, selecting TOGA is…?","o":["Prohibited unless an abnormal/emergency procedure requests it","Always required","Permitted after V1","Permitted on contaminated runways only"],"a":0,"w":"TOGA is prohibited during derated takeoff except when an abnormal or emergency procedure requests it. · IAE V2500 engineering-only appendix · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"IAE V2500 derated takeoff may be used on which runway conditions?","o":["Dry, wet or contaminated","Dry only","Dry or wet only","Contaminated only"],"a":0,"w":"Derated takeoff is permitted regardless of runway condition. FLEX and derate may not be combined. · IAE V2500 engineering-only appendix · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"IAE V2500 demonstrated engine-start crosswind capability?","o":["Up to 35 kt","Up to 25 kt","Up to 38 kt","Up to 45 kt"],"a":0,"w":"The engine is able to start in crosswind up to 35 kt. · IAE V2500 engineering-only appendix · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"What is the IAE V2500 maximum assumed-temperature value, TMAXFLEX?","o":["ISA +53 °C","ISA +55 °C","ISA +50 °C","ISA +60 °C"],"a":0,"w":"TMAXFLEX is ISA +53 °C. · FCOM LIM-ENG-10"},
+ {"c":"Engine & APU","q":"The selected IAE V2500 TFLEX must not be lower than which flat-temperature reference?","o":["TREF","TAT","SAT","TROP"],"a":0,"w":"TFLEX must not be lower than the flat temperature TREF. · FCOM LIM-ENG-10"},
+ {"c":"Engine & APU","q":"How must selected IAE V2500 TFLEX compare with actual OAT?","o":["TFLEX must be at least OAT","TFLEX must be below OAT","TFLEX must equal ISA","OAT is not relevant"],"a":0,"w":"TFLEX must not be lower than the actual outside-air temperature. · FCOM LIM-ENG-10"},
+ {"c":"Engine & APU","q":"IAE V2500 FLEX takeoff on a contaminated runway is…?","o":["Not permitted","Permitted without correction","Required","Permitted only with derate"],"a":0,"w":"FLEX takeoff is not permitted on a contaminated runway. · FCOM LIM-ENG-10"},
+ {"c":"Engine & APU","q":"Before an IAE V2500 FLEX takeoff, which performance condition must be satisfied?","o":["All takeoff-weight performance requirements must be met at TFLEX thrust","Only climb performance must be checked","Runway contamination must be ignored","TFLEX must be below OAT"],"a":0,"w":"All takeoff-weight performance requirements must be met with the thrust available at TFLEX. · FCOM LIM-ENG-10"},
+ {"c":"Engine & APU","q":"How is an inoperative-item performance shortfall treated for IAE V2500 FLEX takeoff?","o":["It must be applied to the performance calculation","It may be ignored below maximum takeoff weight","It is replaced by a fixed 5% allowance","It prohibits every FLEX takeoff"],"a":0,"w":"Any performance shortfall caused by an inoperative item must be applied. · FCOM LIM-ENG-10"},
+ {"c":"Engine & APU","q":"During an IAE V2500 derated takeoff, selecting TOGA is…?","o":["Prohibited unless an abnormal or emergency procedure requests it","Always required","Permitted after V1","Permitted on contaminated runways only"],"a":0,"w":"TOGA is prohibited during a derated takeoff unless an abnormal or emergency procedure requests it. · FCOM LIM-ENG-10"},
+ {"c":"Engine & APU","q":"On which runway conditions may an IAE V2500 derated takeoff be used?","o":["Dry, wet or contaminated","Dry only","Dry or wet only","Contaminated only"],"a":0,"w":"A derated takeoff may be used regardless of runway condition. · FCOM LIM-ENG-10"},
+ {"c":"Engine & APU","q":"What may reduce the usable IAE V2500 N1 limit below 104%?","o":["Ambient conditions and engine-bleed configuration","Only the selected flap setting","Radio-altimeter height","Fuel-tank imbalance"],"a":0,"w":"Although maximum N1 is 104%, ambient conditions and the engine-bleed configuration may impose a lower value. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"One standard IAE V2500 automatic start containing up to three attempts counts as…?","o":["One starter cycle","Three starter cycles","Half a starter cycle","No starter cycle"],"a":0,"w":"Up to three attempts within one standard automatic start constitute one starter cycle. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"After how many failed IAE V2500 starter cycles is a 15-minute cooling period required?","o":["Four","Three","Two","Five"],"a":0,"w":"A 15-minute cooling period is required after four failed cycles. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"What interval is required between successive automatic or manual IAE V2500 ground-start cycles?","o":["20 seconds","15 seconds","30 seconds","60 seconds"],"a":0,"w":"Wait 20 seconds between successive ground-start cycles. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"From 70 kt down to a stop, which IAE V2500 reverse setting is permitted?","o":["Idle reverse","Maximum reverse","Half reverse only","Reverse is prohibited below 70 kt"],"a":0,"w":"Maximum reverse must not be used below 70 kt; idle reverse may be used to a stop. · FCOM LIM-ENG"},
  {"c":"Engine & APU","q":"During refuel/defuel, what action is required if a fuel spill occurs while the APU is running?","o":["Perform a normal APU shutdown","Start the APU","Continue without action","Use APU bleed"],"a":0,"w":"A fuel spill requires a normal APU shutdown. · FCOM LIM-APU"},
  {"c":"Engine & APU","q":"If the aircraft environmental envelope is more restrictive than the APU envelope…?","o":["The aircraft limit must not be exceeded","The APU limit always overrides","Use the midpoint","There is no limit"],"a":0,"w":"The more restrictive aircraft environmental-envelope value governs. · FCOM LIM-APU-20"},
- {"c":"Engine & APU","q":"Maximum pressure altitude for APU operation and a normal restart?","o":["41,000 ft","39,800 ft","25,000 ft","22,500 ft"],"a":0,"w":"The APU operational-envelope chart shows operation and normal restart up to 41,000 ft. · FCOM LIM-APU-20"},
- {"c":"Engine & APU","q":"Maximum pressure altitude for an APU battery restart in electrical emergency configuration?","o":["25,000 ft","22,500 ft","41,000 ft","15,000 ft"],"a":0,"w":"The APU battery-restart limit in electrical emergency configuration is 25,000 ft. · FCOM LIM-APU-20"},
- {"c":"Engine & APU","q":"Maximum pressure altitude for APU ground operation?","o":["14,500 ft","9,200 ft","15,000 ft","22,500 ft"],"a":0,"w":"The APU operational-envelope chart limits ground operation to 14,500 ft. · FCOM LIM-APU-20"},
+ {"c":"Engine & APU","q":"Which APU-bleed use has the highest permitted altitude?","o":["Single-pack air conditioning at 22,500 ft","Engine-start assist at 20,000 ft","Dual-pack air conditioning at 15,000 ft","Wing anti-ice at 22,500 ft"],"a":0,"w":"The highest listed APU-bleed altitude is 22,500 ft for single-pack air conditioning. · FCOM LIM-APU-20"},
+ {"c":"Engine & APU","q":"Which APU-bleed function is limited to 20,000 ft?","o":["Engine-start assist","Single-pack air conditioning","Dual-pack air conditioning","Wing anti-ice"],"a":0,"w":"APU bleed may assist an engine start up to 20,000 ft. · FCOM LIM-APU-20"},
+ {"c":"Engine & APU","q":"Which APU-bleed function is limited to 15,000 ft?","o":["Dual-pack air conditioning","Single-pack air conditioning","Engine-start assist","Wing anti-ice"],"a":0,"w":"APU bleed may supply both air-conditioning packs up to 15,000 ft. · FCOM LIM-APU-20"},
  {"c":"Fuel","q":"Which fuels are certified in this limitation section?","o":["JET A, JET A1, JP5, JP8, No. 3 JET, RT and TS-1","JET B and JP4 only","AVGAS only","SAF blends only"],"a":0,"w":"The certified-fuel list contains those seven fuel types. · FCOM LIM-FUEL"},
  {"c":"Fuel","q":"Minimum fuel temperature for JET A?","o":["-36 °C","-43 °C","-42 °C","-54 °C"],"a":0,"w":"JET A minimum is -36 °C. · FCOM LIM-FUEL"},
  {"c":"Fuel","q":"Minimum fuel temperature for JP5?","o":["-42 °C","-36 °C","-43 °C","-45 °C"],"a":0,"w":"JP5 minimum is -42 °C. · FCOM LIM-FUEL"},
@@ -795,24 +795,11 @@ const BANK = [
  {"c":"Aircraft General","q":"With Thrust Bump used, at 14,100 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["95 / 97 / 95 / 95 kt","111 / 112 / 110 / 109 kt","110 / 111 / 109 / 109 kt","108 / 109 / 107 / 107 kt"],"a":0,"w":"With Thrust Bump at 14,100 ft: 95 / 97 / 95 / 95 kt respectively. · FCOM LIM-AG-SPD"}
 ];
 
-/* Systems Exam Prep is separate: Limitations Check above remains FCOM LIM only. */
-function limitationExamItem(item){
-  const text=item.w||"";
-  const match=text.match(/FCOM LIM-[^·]+$/);
-  const marker=match?text.lastIndexOf(" · FCOM LIM-"):-1;
-  return Object.assign({},item,{
-    c:"Limitations",
-    topic:item.c,
-    scope:"limitations",
-    w:marker>=0?text.slice(0,marker):text,
-    ref:match?match[0]:"FCOM Limitations chapter"
-  });
-}
 /* Stable scope metadata lets one progress model follow the same limitation in every drill. */
 BANK.forEach(item=>{item.scope="limitations";item.topic=item.c;});
 const SYSTEMS_BASE=window.SYSTEMS_EXAM_QUESTIONS||[];
 SYSTEMS_BASE.forEach(item=>{item.scope="systems";item.topic=item.c;});
-const SYSTEMS_BANK=SYSTEMS_BASE.concat(BANK.map(limitationExamItem));
+const SYSTEMS_BANK=SYSTEMS_BASE;
 const SYSTEMS_CATS=(window.SYSTEMS_EXAM_TOPICS||[]).filter(c=>SYSTEMS_BANK.some(q=>q.c===c));
 const TRACKED_BANK=BANK.concat(SYSTEMS_BASE);
 
@@ -1263,11 +1250,16 @@ function renderQ(){
   });
 }
 function sourceStatus(q){
-  const text=[q.c,q.w,q.ref].filter(Boolean).join(" ");
-  if(q.c==="Power Plant IAE"||/IAE appendix|LIM-ENG/i.test(text)){
-    return {className:"engineering",label:"ENGINEERING-ONLY SOURCE · IAE V2500 APPENDIX · 13 AUG 18 · VERIFY CURRENT APPROVED DATA"};
+  if(q.scope==="limitations"){
+    return {className:"approved",label:"AAT A320 FCOM 21-CMHT · LIMITATIONS CHECK"};
   }
-  return {className:"approved",label:"SUPPLIED ANSETT A320 FCOM · REVISION-LOCKED TRAINING SOURCE"};
+  if(q.review==="mel-check"){
+    return {className:"engineering",label:"MEL ITEM · VERIFY AGAINST THE CURRENT OPERATOR MEL"};
+  }
+  if(q.review==="fcom-revised"){
+    return {className:"approved",label:"STUDENT GUIDE ITEM · REVISED AGAINST AAT A320 FCOM 21-CMHT"};
+  }
+  return {className:"approved",label:"STUDENT GUIDE ITEM · CHECKED AGAINST AAT A320 FCOM 21-CMHT"};
 }
 function sourceStatusHtml(q){const status=sourceStatus(q);return '<div class="source-status '+status.className+'">'+status.label+'</div>';}
 function answer(btn,chosen,order){
@@ -1406,8 +1398,8 @@ const FILL_SECTIONS = [
  {"t":"FLAPS / SLATS SPEEDS","rows":[["CONF 1",[["","230 kt",[],"kt"]]],["CONF 1+F",[["","215 kt",[],"kt"]]],["CONF 2",[["","200 kt",[],"kt"]]],["CONF 3",[["","185 kt",[],"kt"]]],["CONF FULL",[["","177 kt",[],"kt"]]],["Max altitude — flaps/slats extended",[["","20,000 ft",[],"ft"]]]]},
  {"t":"PRESSURISATION","rows":[["Maximum positive differential",[["","9.0 PSI",[],"PSI"]]],["Maximum negative differential",[["","-1.0 PSI",[],"PSI"]]],["Safety relief valve setting",[["","8.6 PSI",[],"PSI"]]],["Differential / valve tolerance",[["","±0.1 PSI",[],"PSI"]]]]},
  {"t":"WEIGHTS — A320 A/C 21-CMHT","rows":[["Maximum taxi weight",[["","73,900 kg",[],"kg"]]],["Maximum takeoff weight (brake release)",[["","73,500 kg",[],"kg"]]],["Maximum landing weight",[["","64,500 kg",[],"kg"]]],["Maximum zero fuel weight",[["","61,000 kg",[],"kg"]]],["Minimum weight",[["","37,230 kg",[],"kg"]]]]},
- {"t":"POWERPLANT — IAE V2500 (ENGINEERING-ONLY APPENDIX)","rows":[["EGT — Takeoff / Go-around",[["","635 °C",[],"°C"]]],["Takeoff/GA time — all eng / one eng",[["all eng","5 min",[],"min"],["one eng","10 min",[],"min"]]],["EGT — MCT",[["","610 °C",[],"°C"]]],["EGT — Starting",[["","635 °C",[],"°C"]]],["Max N1 / N2",[["N1","100%",[],"%"],["N2","100%",[],"%"]]],["Oil temp — continuous / transient",[["continuous","155 °C",[],"°C"],["15 min","165 °C",[],"°C"]]],["Oil temp — start / before IDLE / takeoff",[["start","-40 °C",[],"°C"],["before IDLE","-10 °C",[],"°C"],["takeoff","50 °C",[],"°C"]]],["Minimum oil pressure",[["","60 PSI",[],"PSI"]]],["Starter — pause between ground cycles",[["","15 s",[],"s"]]],["Starter — cooling after 3 failed / 5 min crank",[["","30 min",[],"min"]]],["Starter — manual / crank cycle",[["manual","2 min",[],"min"],["crank","5 min",[],"min"]]],["Starter — do not run above N2",[["ground","10%",[],"%"],["flight","18%",[],"%"]]],["Maximum reverse — not below",[["","70 kt",[],"kt"]]],["Maximum TFLEX",[["","ISA +55 °C",[],"°C"]]],["Engine-start crosswind",[["","35 kt",[],"kt"]]]]},
- {"t":"APU","rows":[["Operational envelope — operation / normal restart",[["","41,000 ft",[],"ft"]]],["Operational envelope — battery restart (elec emer)",[["","25,000 ft",[],"ft"]]],["Operational envelope — ground operation",[["","14,500 ft",[],"ft"]]],["Maximum N speed",[["","107%",[],"%"]]],["Wait after 3 consecutive start attempts",[["","60 min",[],"min"]]],["EGT — start below / above 35,000 ft",[["below","1090 °C",[],"°C"],["above","1120 °C",[],"°C"]]],["EGT — running",[["","675 °C",[],"°C"]]],["Bleed — max alt, engine start",[["","20,000 ft",[],"ft"]]],["Bleed — max alt, single / dual pack",[["single","22,500 ft",[],"ft"],["dual","15,000 ft",[],"ft"]]]]},
+ {"t":"POWERPLANT — AAT A320 IAE V2500","rows":[["Max N1 / N2",[["N1","104%",[],"%"],["N2","105%",[],"%"]]],["Oil temp — continuous / transient",[["continuous","140 °C",[],"°C"],["15 min","155 °C",[],"°C"]]],["Oil temp — start / before takeoff",[["start","-40 °C",[],"°C"],["before takeoff","-10 °C",[],"°C"]]],["Minimum oil quantity",[["","9.5 qt + estimated consumption",[],"qt"]]],["Average oil consumption",[["","0.5 qt/h",[],"qt/h"]]],["Standard automatic start cycle",[["","up to 3 attempts",[],"attempts"]]],["Starter — pause between ground cycles",[["","20 s",[],"s"]]],["Starter — cooling after 4 failed cycles",[["","15 min",[],"min"]]],["Starter — do not run above N2",[["","20%",[],"%"]]],["Maximum reverse — not below",[["","70 kt",[],"kt"]]],["Maximum TFLEX",[["","ISA +53 °C",[],"°C"]]]]},
+ {"t":"APU","rows":[["Maximum N speed",[["","107%",[],"%"]]],["Wait after 3 consecutive start attempts",[["","60 min",[],"min"]]],["EGT — start below / above 35,000 ft",[["below","1090 °C",[],"°C"],["above","1120 °C",[],"°C"]]],["EGT — running",[["","675 °C",[],"°C"]]],["Bleed — max alt, engine start",[["","20,000 ft",[],"ft"]]],["Bleed — max alt, single / dual pack",[["single","22,500 ft",[],"ft"],["dual","15,000 ft",[],"ft"]]],["Battery-only start — after BAT AUTO",[["","within 30 min",[],"min"]]]]},
  {"t":"AUTOPILOT — MINIMUM USE HEIGHT","rows":[["Takeoff",[["","100 ft",[],"ft AGL"]]],["Approach — F-G/S",[["","200 ft",[],"ft AGL"]]],["FINAL APP / V/S / FPA",[["","250 ft",[],"ft AGL"]]],["Circling — cat C / cat D",[["cat C","500 ft",[],"ft"],["cat D","600 ft",[],"ft"]]],["ILS/MLS or GLS — CAT 1 displayed",[["","160 ft",[],"ft AGL"]]],["PAR approach",[["","250 ft",[],"ft AGL"]]],["After manual go-around",[["","100 ft",[],"ft AGL"]]],["All other phases",[["","500 ft",[],"ft AGL"]]]]},
  {"t":"AUTOLAND","rows":[["CAT II — minimum DH",[["","100 ft",[],"ft"]]],["CAT II manual landing — AP off by",[["","80 ft",[],"ft AGL"]]],["CAT III fail-passive — minimum DH",[["","50 ft",[],"ft"]]],["CAT III DUAL — alert height",[["","100 ft",[],"ft"]]],["CAT III with DH — minimum DH",[["","20 ft",[],"ft"]]],["CAT III without DH — minimum RVR",[["","75 m",[],"m"]]],["Demonstrated glide-slope range",[["","-2.5° to -3.15°",[],"°"]]],["Maximum airport elevation",[["","9,200 ft",[],"ft"]]],["Not allowed below pressure altitude",[["","-1,000 ft",[],"ft"]]],["Maximum wind — head / tail / cross",[["head","30 kt",[],"kt"],["tail","10 kt",[],"kt"],["cross","20 kt",[],"kt"]]],["Engine-out procedures complete before",[["","1,000 ft",[],"ft"]]]]},
  {"t":"FUEL","rows":[["Minimum fuel for takeoff",[["","1,500 kg",[],"kg"]]],["Maximum temperature — main listed fuels / Jet B & JP4",[["main","54 °C",[],"°C"],["Jet B/JP4","49 °C",[],"°C"]]],["Minimum temperature — Jet A1 / Jet A / JP5",[["Jet A1","-43 °C",[],"°C"],["Jet A","-36 °C",[],"°C"],["JP5","-42 °C",[],"°C"]]],["Minimum temperature — RT / TS-1 / Jet B / JP4",[["RT","-45 °C",[],"°C"],["TS-1","-45 °C",[],"°C"],["Jet B","-46 °C",[],"°C"],["JP4","-54 °C",[],"°C"]]],["Takeoff inner imbalance — heavier tank full",[["","500 kg",[],"kg"]]],["Takeoff outer-tank imbalance",[["","370 kg",[],"kg"]]],["Flight/landing inner imbalance — heavier tank full",[["","1,500 kg",[],"kg"]]],["No flight/landing inner limit below",[["","2,250 kg",[],"kg"]]],["Flight/landing outer-tank imbalance",[["","690 kg",[],"kg"]]]]},

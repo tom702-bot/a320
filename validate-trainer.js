@@ -63,11 +63,18 @@ delete require.cache[require.resolve("./systems-exam-questions.js")];
 require("./systems-exam-questions.js");
 const systems=window.SYSTEMS_EXAM_QUESTIONS;
 const topics=window.SYSTEMS_EXAM_TOPICS;
-ok(systems.length===230,"systems bank has 230 questions");
-ok(topics.length===18&&topics.includes("Limitations"),"systems selector has 18 subjects including Limitations");
-ok(new Set(systems.map(item=>item.c)).size===17,"systems source bank has 17 DSC subjects");
-validateQuestions("Systems",systems,/FCOM DSC-/);
-ok(unique(systems.concat(limitations).map(item=>normalize(item.q))),"combined 483-question pool has unique question text");
+ok(systems.length===315,"systems bank has all 315 supplied guide questions");
+ok(topics.length===19&&topics.includes("Limitations")&&topics.includes("MEL"),"systems selector has 19 subjects including Limitations and MEL");
+ok(new Set(systems.map(item=>item.c)).size===19,"systems source bank has 19 guide subjects");
+validateQuestions("Systems",systems,/FCOM|current operator MEL/i);
+const expectedGuideNumbers=[];
+for(let number=1;number<=310;number++)expectedGuideNumbers.push(number);
+for(let number=318;number<=322;number++)expectedGuideNumbers.push(number);
+ok(JSON.stringify(systems.map(item=>item.n))===JSON.stringify(expectedGuideNumbers),"systems bank preserves supplied guide numbering and the source gap at 311-317");
+ok(systems.every(item=>Number.isInteger(item.p)&&item.p>0),"every systems item retains its source PDF page");
+ok(systems.every(item=>/Guide Q\d+, PDF p\.\d+/.test(item.ref||"")),"every systems reference identifies its guide question and PDF page");
+ok(systems.every(item=>["fcom-checked","fcom-revised","mel-check"].includes(item.review)),"every systems item has a valid reconciliation status");
+ok(systems.filter(item=>item.review==="mel-check").length===2,"the two MEL items are marked for current-operator verification");
 
 global.window={};
 delete require.cache[require.resolve("./self-study-quizzes.js")];
@@ -145,14 +152,26 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v34"),"offline cache is version 34");
-ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=34"),"offline cache includes upgraded modules");
+ok(sw.includes("a320-trainer-v35"),"offline cache is version 35");
+ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=35"),"offline cache includes upgraded modules");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
 const forbidden=new RegExp("\\bA3"+"21\\b|P2"+"F|CF"+"M(?:56)?|PW"+"1100|LE"+"AP-?1A|Pra"+"tt\\s*(?:&|and)?\\s*Whitney","i");
 served.forEach(file=>{const hit=read(file).match(forbidden);if(hit)errors.push("Out-of-scope variant token in "+file+": "+hit[0]);});
-ok(/Ansett A320 IAE V2500 only/i.test(read("engine.html")),"engine explorer states strict Ansett A320 IAE scope");
-ok(/FOR ENGINEERING USE ONLY/i.test(read("engine.html"))&&/FOR ENGINEERING USE ONLY/i.test(read("systems-exam-questions.js")),"engineering-only engine source warning is retained");
+ok(/Ansett A320 IAE V2500-A5 only/i.test(read("engine.html")),"engine explorer states strict Ansett A320 IAE scope");
+ok(served.every(file=>!/20-IMHT|19-IMHE|FOR ENGINEERING USE ONLY/i.test(read(file))),"obsolete engineering-only source effectivity is absent from served files");
+ok(/A\/C 21-CMHT, custom issue 16 MAR 2026/i.test(read("engine.html")),"engine explorer cites the current AAT FCOM effectivity");
+
+function correctAnswerContaining(questions,questionPattern,answerPattern,label){
+  const item=questions.find(entry=>questionPattern.test(entry.q));
+  ok(Boolean(item)&&answerPattern.test(item.o[item.a]),label);
+}
+correctAnswerContaining(limitations,/maximum N1/i,/104%/,"limitations use current IAE maximum N1");
+correctAnswerContaining(limitations,/maximum N2/i,/105%/,"limitations use current IAE maximum N2");
+correctAnswerContaining(limitations,/maximum continuous oil temperature/i,/140/,"limitations use current IAE continuous oil temperature");
+correctAnswerContaining(limitations,/minimum pause between successive ground cycles/i,/20 s/,"limitations use current IAE starter-cycle pause");
+correctAnswerContaining(limitations,/maximum assumed-temperature value/i,/ISA \+53/,"limitations use current IAE TMAXFLEX");
+correctAnswerContaining(systems,/basic FM navigation mode/i,/GPS\/INERTIAL/,"systems bank revises the basic FM navigation mode");
 
 if(fs.existsSync(path.join(root,"A320_Checkride_Trainer.html"))){
   ok(read("index.html")===read("A320_Checkride_Trainer.html"),"main HTML twin is byte-for-byte identical");
@@ -163,4 +182,4 @@ if(errors.length){
   errors.forEach(message=>console.error(" - "+message));
   process.exit(1);
 }
-console.log("Trainer validation passed: "+checks.length+" checks, 253 limitations, 230 systems, 270 self-study questions, 10 flow phases, 344 cockpit controls.");
+console.log("Trainer validation passed: "+checks.length+" checks, 253 limitations, 315 systems, 270 self-study questions, 10 flow phases, 344 cockpit controls.");
