@@ -45,6 +45,7 @@
   const presets={
     normal:{title:'NORMAL CONFIGURATION RESET',text:'GEN 1 supplies AC BUS 1 and GEN 2 supplies AC BUS 2. All automatic contactors and conversion components are available.',changes:{}},
     onegen:{title:'ONE GENERATOR AVAILABLE',text:'GEN 2 is removed. The automatic bus-tie network lets GEN 1 supply both main AC buses.',changes:{gen2:false}},
+    eng1loss:{title:'ENGINE 1 / GENERATOR 1 LOST',text:'GEN 1 is removed. The automatic bus-tie network lets GEN 2 supply both main AC buses. Open the linked hydraulic trainer to inspect the associated green engine-pump loss.',changes:{gen1:false}},
     apu:{title:'APU SUPPLY',text:'Both engine generators are removed and the APU generator supplies the main AC network through the automatic bus ties.',changes:{gen1:false,gen2:false,apu:true}},
     emergency:{title:'EMERGENCY GENERATOR CONFIGURATION',text:'Both main AC buses are lost. The emergency generator supplies AC ESS and the ESS TR supports DC ESS; shed buses are not powered.',changes:{gen1:false,gen2:false,apu:false,ext:false}},
     battery:{title:'BATTERY-ONLY CONFIGURATION',text:'All AC generators are unavailable. BAT 1 supports AC ESS through the static inverter and the batteries support the reduced DC essential network.',changes:{gen1:false,gen2:false,apu:false,ext:false,emer:false}}
@@ -331,6 +332,8 @@
   presetButtons.forEach(button=>button.addEventListener('click',()=>loadPreset(button.dataset.mode)));
   if('ResizeObserver' in window)new ResizeObserver(draw).observe(canvas.parentElement);else window.addEventListener('resize',draw);
   window.A320ElectricalTrainer={loadPreset,toggleComponent,restoreAll:()=>loadPreset('normal'),getState:()=>({preset:activePreset,components:{...state},network:evaluate(state)}),getComponents:()=>Object.keys(components)};
-  renderControls();loadPreset('normal');
+  renderControls();
+  const scenario=typeof location!=="undefined"?new URLSearchParams(location.search).get("scenario"):"";
+  loadPreset({eng1:"eng1loss",eng2:"onegen",dual:"emergency"}[scenario]||"normal");
 })();
 

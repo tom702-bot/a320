@@ -11,7 +11,6 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `A320_Checkride_Trainer.html` | Standalone twin of `index.html`; keep it byte-for-byte identical. |
 | `systems-exam-questions.js` | 230 referenced A320 systems questions across 17 FCOM DSC subjects; the app adds the 253 limitations questions as the eighteenth subject. |
 | `self-study-quizzes.js` | Nine source-grounded 30-question banks (270 questions) in fixed A-D order. |
-| `A321P2F_Limitations_FillCheck.html` | Legacy filename for the standalone A320 fill-and-check page. Its visible title and data are A320-specific. |
 | `electrical.html` | Interactive ECAM-style A320 electrical-system synoptic and configuration explainer. |
 | `electrical-sim.js` | Electrical network evaluation, component failures, transfers and dimensional canvas rendering. |
 | `hydraulic.html` | Interactive green/blue/yellow A320 hydraulic generation and distribution trainer. |
@@ -19,9 +18,10 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `engine.html` | Provisional interactive IAE V2500 engine-systems study assistant. |
 | `engine-sim.js` | Eight system layouts, normal/abnormal modes, component failures and ECAM-style SVG rendering for the IAE engine explorer. |
 | `engine-3d.js` | Lightweight procedural 3D cutaway renderer with 23 selectable parts, airflow overlays, touch controls and component-to-system links. |
-| `flows.html` | Interactive A320 PF/PM cockpit-flow practice on the FlyByWire panel reference, with fixed CM1/PM and CM2/PF allocation. |
-| `a320-controls.js` | Individually positioned A32NX control catalog with panel labels, states and cold-and-dark defaults. |
-| `flow-sim.js` | Source-card flow data and order-sensitive correct/incorrect/out-of-order grading across the control catalog. |
+| `flows.html` | Interactive Ansett A320 PF/PM flow practice with phase sequences, three practice views, fixed CM1/PM and CM2/PF allocation, and artwork-only panel reference. |
+| `a320-controls.js` | Individually positioned A320 control catalog with panel labels, states and cold-and-dark defaults. |
+| `flow-sim.js` | Source-card flow data, carried cockpit state, conditional acknowledgements and order-sensitive grading across the control catalog. |
+| `integration.html` | Cross-system engine-loss scenario lab linking engine, electrical and hydraulic modules through matching URL presets. |
 | `sw.js` | Offline cache. Bump `CACHE` whenever app content changes. |
 | `manifest.webmanifest` | Installable-app metadata. |
 | `icon-180.png`, `icon-192.png`, `icon-512.png` | App icons. |
@@ -80,7 +80,7 @@ source.
 - Engine limitations use only the supplied IAE V2500 pages for A/C `20-IMHT`, dated `13 AUG 18`.
   Those pages are stamped `FOR ENGINEERING USE ONLY`; keep that warning visible in the app and
   do not present the figures as current operational authority.
-- Exclude the separate CFM & PW engine pages from the limitations quiz and fill-in dataset.
+- Keep every served aircraft and engine item within the Ansett A320 IAE V2500 scope. Reject any question, distractor, explanation or legacy page that introduces a different aircraft or engine variant.
 - The standalone IAE engine systems explorer uses the same source/effectivity warning and remains
   provisional. Engine-specific logic and limits come from the supplied A/C 20-IMHT / 19-IMHE IAE
   engineering appendix (2015-2018). Physical engine, instrumentation and compressor-stability
@@ -98,8 +98,7 @@ source.
 
 1. Edit `index.html` first.
 2. Keep `A320_Checkride_Trainer.html` identical to it.
-3. Keep the standalone fill page's `SECTIONS` data aligned with `FILL_SECTIONS`.
-4. Validate JavaScript syntax and check that:
+3. Validate JavaScript syntax and check that:
    - the limitations bank total is 253 unless a deliberate addition/removal changes it;
    - every served Limitations Check item is sourced from an `FCOM LIM-...` page;
    - Systems Exam Prep contains 18 selectable subjects, 230 DSC questions plus all 253 limitations
@@ -120,10 +119,11 @@ source.
    - every mapped cockpit hit box stays within its panel and no two control hit boxes overlap;
    - Cockpit Preparation initializes every modeled power source and powered system to its cold-and-dark value;
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
-5. Search correct answers and explanations—not just distractors—for superseded A321P2F or CFM/PW
-   values. IAE values must retain their engineering-only applicability warning.
-6. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v33`.
+4. Search every served file, including distractors and filenames, for content outside the strict Ansett A320 IAE V2500 scope. IAE values must retain their engineering-only applicability warning.
+5. Bump the cache version in `sw.js` after any app-content change. Current cache:
+   `a320-trainer-v34`.
+
+Run `node validate-trainer.js` for the full automated version of these checks. CI runs the same command on pushes and pull requests.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is
@@ -139,4 +139,3 @@ Publish the changed source files to `main`, wait for GitHub Pages to finish, the
 page and service worker. On an iPhone, opening the site once while online allows the bumped cache
 to replace the prior offline copy. If an installed Home-Screen copy remains stale, remove it,
 open the site in Safari, and add it to the Home Screen again.
-

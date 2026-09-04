@@ -99,6 +99,8 @@
   .opt.correct .tag{color:var(--green); border-color:var(--green)}
   .opt.wrong{border-color:var(--amber); background:rgba(255,176,46,.10)}
   .opt.wrong .tag{color:var(--amber); border-color:var(--amber)}
+  .opt.selected{border-color:var(--cyan);background:rgba(92,211,232,.10)}
+  .opt.selected .tag{color:var(--cyan);border-color:var(--cyan)}
   .opt.dim{opacity:.5}
 
   /* ---- ECAM feedback (signature) ---- */
@@ -123,6 +125,11 @@
     line-height:1.5;margin-top:10px;padding-top:9px;border-top:1px solid var(--edge)}
   .ecam .ref .lead{color:var(--muted);font-size:10.5px;letter-spacing:1.5px;
     text-transform:uppercase;display:block;margin-bottom:4px}
+  .source-status{margin-top:9px;padding:7px 9px;border:1px solid var(--edge);border-radius:6px;
+    color:var(--muted);font-family:var(--font-data);font-size:10.5px;letter-spacing:.55px;line-height:1.45}
+  .source-status.engineering{border-color:var(--amber-deep);color:#e1bd72;background:rgba(255,176,46,.06)}
+  .quiz-mode{display:inline-block;margin:0 0 12px;padding:5px 8px;border:1px solid var(--edge);
+    border-radius:5px;color:var(--cyan);font-family:var(--font-data);font-size:10px;letter-spacing:1px;text-transform:uppercase}
 
   /* ---- Buttons ---- */
   .btn{font-family:var(--font-data); font-size:13.5px; letter-spacing:1px;
@@ -158,6 +165,7 @@
   .mode.hydraulic .mt .ic{background:#49a7db;color:#fff}
   .mode.engine .mt .ic{background:var(--amber);color:var(--bg)}
   .mode.flows .mt .ic{background:#58d8ec;color:var(--bg)}
+  .mode.integration .mt .ic{background:#d8c46e;color:var(--bg)}
 
   /* ---- Self-study quiz centre ---- */
   .studygrid{display:flex;flex-direction:column;gap:12px;margin-top:18px}
@@ -194,6 +202,10 @@
   .pbar .pfill{height:100%;background:var(--green);width:0%}
   .pbar .pnum{flex:0 0 74px;text-align:right;font-family:var(--font-data);font-size:11px;color:var(--muted)}
   .pbar .pweak{color:var(--amber);font-weight:700}
+  .prog .pnote{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:10px}
+  .prog .psummary{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+  .prog .pill{border:1px solid var(--edge);border-radius:14px;padding:5px 9px;color:var(--muted);
+    font-family:var(--font-data);font-size:10.5px}
   .btn.tiny{padding:7px 12px;font-size:11px}
 
   /* ---- Lookup ---- */
@@ -284,15 +296,15 @@
 
   <!-- ================= START ================= -->
   <section id="start">
-    <p class="lede">Pick a drill. Systems Exam Prep covers the full A320 IAE syllabus with a source
+    <p class="lede">Pick a drill. Systems Exam Prep covers the full Ansett A320 IAE syllabus with a source
       reference on every answer. Limitations Check remains restricted to the supplied FCOM limitations
-      chapter. Review Weak Areas re-serves missed limitations, while the other drills retain their own
-      grading and recall formats. Progress is saved on this device only.</p>
+      chapter. Review Weak Areas now combines missed systems and limitations questions and requires two
+      clean recalls after a miss. Progress is saved on this device only.</p>
 
     <div class="modegrid">
       <button class="mode" id="modeMcq">
         <div class="mt"><span class="ic">MCQ</span>Limitations Check</div>
-        <div class="md">Multiple-choice drawn only from the supplied A320 limitations chapter, using the IAE V2500 engine subsection. CFM/PW excluded.</div>
+        <div class="md">Multiple-choice drawn only from the supplied Ansett A320 limitations chapter and its IAE V2500 engine subsection.</div>
       </button>
       <button class="mode systems" id="modeSystems">
         <div class="mt"><span class="ic">SYS</span>Systems Exam Prep</div>
@@ -300,7 +312,7 @@
       </button>
       <button class="mode review" id="modeReview">
         <div class="mt"><span class="ic">WEAK</span>Review Weak Areas</div>
-        <div class="md">Re-serves only questions you've missed, most-missed first. Get one right and it drops out.</div>
+        <div class="md">Re-serves missed systems and limitations questions, most-missed first. Two consecutive correct recalls clear a miss.</div>
       </button>
       <button class="mode alt" id="modeMem">
         <div class="mt"><span class="ic">REC</span>Memory Item Drill</div>
@@ -334,6 +346,10 @@
         <div class="mt"><span class="ic">FLOW</span>PF / PM Flow Trainer</div>
         <div class="md">Build each PF or PM flow from memory on a simple spatial flow map, then use the optional 300+ control panel for detailed switch practice.</div>
       </a>
+      <a class="mode integration" href="integration.html">
+        <div class="mt"><span class="ic">LINK</span>Cross-System Scenario Lab</div>
+        <div class="md">Follow engine-loss consequences through IAE power plant, electrical generation and hydraulic supply, then open each trainer in the matching state.</div>
+      </a>
     </div>
 
     <div class="prog" id="progPanel"></div>
@@ -343,6 +359,8 @@
       <div class="chips" id="chips"></div>
       <div class="eyebrow" style="margin-top:20px">Questions per run</div>
       <div class="chips" id="lenChips"></div>
+      <div class="eyebrow" style="margin-top:20px">Feedback</div>
+      <div class="chips" id="limFeedbackButtons"><button class="chip" data-value="learn" aria-pressed="true">Learn &middot; adaptive + feedback</button><button class="chip" data-value="exam" aria-pressed="false">Exam &middot; debrief only</button></div>
       <div class="row">
         <button class="btn primary" id="startMcqBtn">Begin check &rarr;</button>
       </div>
@@ -354,6 +372,8 @@
       <div class="chips" id="sysChips"></div>
       <div class="eyebrow" style="margin-top:20px">Questions per run</div>
       <div class="chips" id="sysLenChips"></div>
+      <div class="eyebrow" style="margin-top:20px">Feedback</div>
+      <div class="chips" id="sysFeedbackButtons"><button class="chip" data-value="learn" aria-pressed="true">Learn &middot; adaptive + feedback</button><button class="chip" data-value="exam" aria-pressed="false">Exam &middot; debrief only</button></div>
       <div class="row">
         <button class="btn primary" id="startSystemsBtn">Begin systems exam &rarr;</button>
       </div>
@@ -372,6 +392,7 @@
 
     <div class="panel">
       <div class="eyebrow" id="qCat">System</div>
+      <div class="quiz-mode" id="quizModeStatus">Learn mode &middot; immediate feedback</div>
       <div class="question" id="qText">&nbsp;</div>
       <div class="options" id="qOpts"></div>
       <div id="ecamSlot"></div>
@@ -492,7 +513,7 @@
     </div>
     <p class="md" style="color:var(--muted);font-size:12.5px;margin:0 0 14px">
       Type each value, press <b>Enter</b> to check. Units are ignored (350 = 350kt); ranges accept
-      &ldquo;-1 to +2.5&rdquo;. Supplied A320 limits with the IAE V2500 engine subsection; CFM/PW excluded.</p>
+      &ldquo;-1 to +2.5&rdquo;. Supplied Ansett A320 limits with the IAE V2500 engine subsection.</p>
     <div id="fillSheet"></div>
     <div class="row"><button class="btn ghost" id="fillHome">&larr; Change drill</button></div>
   </section>
@@ -510,7 +531,7 @@
     Airframe/system limits: supplied A320 FCOM, A/C 21-CMHT, 22 MAY 24.
     Engine limits: supplied IAE V2500 appendix, A/C 20-IMHT, 13 AUG 18, marked FOR ENGINEERING USE ONLY.
     Systems Exam Prep uses the supplied FCOM DSC chapters; Limitations Check remains FCOM LIM only.
-    CFM/PW engine material is excluded.
+    All aircraft and engine content is scoped to the Ansett A320 IAE V2500.
   </div>
 </div>
 
@@ -755,17 +776,17 @@ const BANK = [
  {"c":"Surveillance","q":"The HUD synthetic runway may be used as…?","o":["A means to identify the runway","The sole navigation source","A guarantee of exact runway overlay","A substitute for ROPS"],"a":0,"w":"It is an identification aid; the synthetic runway or LOC may not overlay the real one. · FCOM LIM-SURV-HUD"},
  {"c":"Surveillance","q":"The HUD presents a synthetic runway on approach when heading is within…?","o":["±80° of runway QFU","±30°","±45°","±90°"],"a":0,"w":"The display condition is within ±80° of runway QFU. · FCOM LIM-SURV-HUD"},
  {"c":"Surveillance","q":"Maximum lateral FPV offset due to IRS drift?","o":["2°","1°","3°","5°"],"a":0,"w":"The FPV may be laterally offset by up to 2°. · FCOM LIM-SURV-HUD"},
- {"c":"Aircraft General","q":"At -2,000 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["112 / 112 / 110 / 109 kt","108 / 109 / 107 / 107 kt","108 / 109 / 107 / 107 kt","107 / 108 / 106 / 105 kt"],"a":0,"w":"-2,000 ft: 112 / 112 / 110 / 109 kt respectively. · FCOM LIM-AG-SPD"},
- {"c":"Aircraft General","q":"At 2,000 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["108 / 109 / 107 / 107 kt","108 / 109 / 107 / 107 kt","107 / 108 / 106 / 105 kt","104 / 105 / 103 / 103 kt"],"a":0,"w":"2,000 ft: 108 / 109 / 107 / 107 kt respectively. · FCOM LIM-AG-SPD"},
+ {"c":"Aircraft General","q":"At -2,000 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["112 / 112 / 110 / 109 kt","110 / 111 / 109 / 108 kt","108 / 109 / 107 / 107 kt","107 / 108 / 106 / 105 kt"],"a":0,"w":"-2,000 ft: 112 / 112 / 110 / 109 kt respectively. · FCOM LIM-AG-SPD"},
+ {"c":"Aircraft General","q":"At 2,000 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["108 / 109 / 107 / 107 kt","110 / 110 / 108 / 107 kt","107 / 108 / 106 / 105 kt","104 / 105 / 103 / 103 kt"],"a":0,"w":"2,000 ft: 108 / 109 / 107 / 107 kt respectively. · FCOM LIM-AG-SPD"},
  {"c":"Aircraft General","q":"At 4,000 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["108 / 109 / 107 / 107 kt","107 / 108 / 106 / 105 kt","104 / 105 / 103 / 103 kt","100 / 101 / 99 / 99 kt"],"a":0,"w":"4,000 ft: 108 / 109 / 107 / 107 kt respectively. · FCOM LIM-AG-SPD"},
  {"c":"Aircraft General","q":"At 6,000 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["107 / 108 / 106 / 105 kt","104 / 105 / 103 / 103 kt","100 / 101 / 99 / 99 kt","97 / 99 / 97 / 96 kt"],"a":0,"w":"6,000 ft: 107 / 108 / 106 / 105 kt respectively. · FCOM LIM-AG-SPD"},
  {"c":"Aircraft General","q":"At 8,000 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["104 / 105 / 103 / 103 kt","100 / 101 / 99 / 99 kt","97 / 99 / 97 / 96 kt","94 / 95 / 93 / 93 kt"],"a":0,"w":"8,000 ft: 104 / 105 / 103 / 103 kt respectively. · FCOM LIM-AG-SPD"},
  {"c":"Aircraft General","q":"At 10,000 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["100 / 101 / 99 / 99 kt","97 / 99 / 97 / 96 kt","94 / 95 / 93 / 93 kt","112 / 112 / 110 / 109 kt"],"a":0,"w":"10,000 ft: 100 / 101 / 99 / 99 kt respectively. · FCOM LIM-AG-SPD"},
  {"c":"Aircraft General","q":"At 12,000 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["97 / 99 / 97 / 96 kt","94 / 95 / 93 / 93 kt","112 / 112 / 110 / 109 kt","108 / 109 / 107 / 107 kt"],"a":0,"w":"12,000 ft: 97 / 99 / 97 / 96 kt respectively. · FCOM LIM-AG-SPD"},
- {"c":"Aircraft General","q":"At 14,100 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["94 / 95 / 93 / 93 kt","112 / 112 / 110 / 109 kt","108 / 109 / 107 / 107 kt","108 / 109 / 107 / 107 kt"],"a":0,"w":"14,100 ft: 94 / 95 / 93 / 93 kt respectively. · FCOM LIM-AG-SPD"},
- {"c":"Aircraft General","q":"With Thrust Bump used, at -2,000 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["111 / 112 / 110 / 109 kt","110 / 111 / 109 / 109 kt","108 / 109 / 107 / 107 kt","108 / 109 / 107 / 107 kt"],"a":0,"w":"With Thrust Bump at -2,000 ft: 111 / 112 / 110 / 109 kt respectively. · FCOM LIM-AG-SPD"},
- {"c":"Aircraft General","q":"With Thrust Bump used, at sea level, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["110 / 111 / 109 / 109 kt","108 / 109 / 107 / 107 kt","108 / 109 / 107 / 107 kt","108 / 109 / 107 / 106 kt"],"a":0,"w":"With Thrust Bump at sea level: 110 / 111 / 109 / 109 kt respectively. · FCOM LIM-AG-SPD"},
- {"c":"Aircraft General","q":"With Thrust Bump used, at 2,000 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["108 / 109 / 107 / 107 kt","108 / 109 / 107 / 107 kt","108 / 109 / 107 / 106 kt","105 / 106 / 104 / 104 kt"],"a":0,"w":"With Thrust Bump at 2,000 ft: 108 / 109 / 107 / 107 kt respectively. · FCOM LIM-AG-SPD"},
+ {"c":"Aircraft General","q":"At 14,100 ft, normal VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["94 / 95 / 93 / 93 kt","112 / 112 / 110 / 109 kt","108 / 109 / 107 / 107 kt","97 / 99 / 97 / 96 kt"],"a":0,"w":"14,100 ft: 94 / 95 / 93 / 93 kt respectively. · FCOM LIM-AG-SPD"},
+ {"c":"Aircraft General","q":"With Thrust Bump used, at -2,000 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["111 / 112 / 110 / 109 kt","110 / 111 / 109 / 109 kt","108 / 109 / 107 / 107 kt","105 / 106 / 104 / 104 kt"],"a":0,"w":"With Thrust Bump at -2,000 ft: 111 / 112 / 110 / 109 kt respectively. · FCOM LIM-AG-SPD"},
+ {"c":"Aircraft General","q":"With Thrust Bump used, at sea level, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["110 / 111 / 109 / 109 kt","111 / 112 / 110 / 109 kt","105 / 106 / 104 / 104 kt","108 / 109 / 107 / 106 kt"],"a":0,"w":"With Thrust Bump at sea level: 110 / 111 / 109 / 109 kt respectively. · FCOM LIM-AG-SPD"},
+ {"c":"Aircraft General","q":"With Thrust Bump used, at 2,000 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["108 / 109 / 107 / 107 kt","110 / 111 / 109 / 109 kt","108 / 109 / 107 / 106 kt","105 / 106 / 104 / 104 kt"],"a":0,"w":"With Thrust Bump at 2,000 ft: 108 / 109 / 107 / 107 kt respectively. · FCOM LIM-AG-SPD"},
  {"c":"Aircraft General","q":"With Thrust Bump used, at 4,000 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["108 / 109 / 107 / 107 kt","108 / 109 / 107 / 106 kt","105 / 106 / 104 / 104 kt","102 / 103 / 101 / 101 kt"],"a":0,"w":"With Thrust Bump at 4,000 ft: 108 / 109 / 107 / 107 kt respectively. · FCOM LIM-AG-SPD"},
  {"c":"Aircraft General","q":"With Thrust Bump used, at 6,000 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["108 / 109 / 107 / 106 kt","105 / 106 / 104 / 104 kt","102 / 103 / 101 / 101 kt","99 / 100 / 98 / 97 kt"],"a":0,"w":"With Thrust Bump at 6,000 ft: 108 / 109 / 107 / 106 kt respectively. · FCOM LIM-AG-SPD"},
  {"c":"Aircraft General","q":"With Thrust Bump used, at 8,000 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["105 / 106 / 104 / 104 kt","102 / 103 / 101 / 101 kt","99 / 100 / 98 / 97 kt","95 / 97 / 95 / 95 kt"],"a":0,"w":"With Thrust Bump at 8,000 ft: 105 / 106 / 104 / 104 kt respectively. · FCOM LIM-AG-SPD"},
@@ -781,13 +802,19 @@ function limitationExamItem(item){
   const marker=match?text.lastIndexOf(" · FCOM LIM-"):-1;
   return Object.assign({},item,{
     c:"Limitations",
+    topic:item.c,
+    scope:"limitations",
     w:marker>=0?text.slice(0,marker):text,
     ref:match?match[0]:"FCOM Limitations chapter"
   });
 }
+/* Stable scope metadata lets one progress model follow the same limitation in every drill. */
+BANK.forEach(item=>{item.scope="limitations";item.topic=item.c;});
 const SYSTEMS_BASE=window.SYSTEMS_EXAM_QUESTIONS||[];
+SYSTEMS_BASE.forEach(item=>{item.scope="systems";item.topic=item.c;});
 const SYSTEMS_BANK=SYSTEMS_BASE.concat(BANK.map(limitationExamItem));
 const SYSTEMS_CATS=(window.SYSTEMS_EXAM_TOPICS||[]).filter(c=>SYSTEMS_BANK.some(q=>q.c===c));
+const TRACKED_BANK=BANK.concat(SYSTEMS_BASE);
 
 /* ============ MEMORY ITEMS ============ */
 const MEM = [
@@ -837,48 +864,75 @@ const sec={start:$("start"),quiz:$("quiz"),study:$("study"),studyQuiz:$("studyQu
   studyResults:$("studyResults"),mem:$("mem"),results:$("results"),fill:$("fill"),lookup:$("lookup")};
 function show(name){for(const k in sec)sec[k].classList.toggle("hidden",k!==name);if(name==="start")renderProgress();window.scrollTo({top:0,behavior:"instant"});}
 
-/* ---------- on-device performance memory (localStorage; never leaves this device) ---------- */
-const STORE_KEY="a320stats_v1";
-function loadStats(){ try{ return JSON.parse(localStorage.getItem(STORE_KEY))||{}; }catch(e){ return {}; } }
+/* ---------- unified on-device performance memory (localStorage; never leaves this device) ---------- */
+const STORE_KEY="a320stats_v2";
+const LEGACY_STORE_KEY="a320stats_v1";
+const normQuestion=text=>(text||"").replace(/−/g,"-").toLowerCase().replace(/[^a-z0-9+\-]+/g," ").replace(/\s+/g," ").trim();
+function statKey(q){return (q.scope||"systems")+":"+normQuestion(q.q);}
+function loadStats(){
+  try{
+    const current=JSON.parse(localStorage.getItem(STORE_KEY));
+    if(current)return current;
+    const legacy=JSON.parse(localStorage.getItem(LEGACY_STORE_KEY))||{};
+    const migrated={};
+    TRACKED_BANK.forEach(q=>{
+      const old=legacy[q.q];if(!old)return;
+      migrated[statKey(q)]={s:old.s||0,c:old.c||0,w:old.w||0,lc:old.lc,
+        recovery:old.lc===true?2:0,mastered:old.lc===true,last:0};
+    });
+    return migrated;
+  }catch(e){return {};}
+}
 function saveStats(){ try{ localStorage.setItem(STORE_KEY,JSON.stringify(STATS)); }catch(e){} }
 let STATS=loadStats();
 function recordAnswer(q,correct){
-  const k=q.q, r=STATS[k]||{s:0,c:0,w:0,lc:null};
-  r.s++; if(correct){r.c++;r.lc=true;} else {r.w++;r.lc=false;}
+  const k=statKey(q),r=STATS[k]||{s:0,c:0,w:0,lc:null,recovery:0,mastered:false,last:0};
+  r.s++;r.last=Date.now();
+  if(correct){r.c++;r.lc=true;r.recovery=(r.recovery||0)+1;r.mastered=r.recovery>=2;}
+  else{r.w++;r.lc=false;r.recovery=0;r.mastered=false;}
   STATS[k]=r; saveStats();
 }
 function weakPool(){
-  return BANK.filter(x=>{ const r=STATS[x.q]; return r && r.lc===false; })
-             .sort((a,b)=>(STATS[b.q].w||0)-(STATS[a.q].w||0));
+  return TRACKED_BANK.filter(q=>{const r=STATS[statKey(q)];return r&&r.w>0&&!r.mastered;})
+    .sort((a,b)=>{const ar=STATS[statKey(a)],br=STATS[statKey(b)];return (br.w-ar.w)||(ar.recovery-br.recovery)||(ar.last-br.last);});
 }
+function practicePriority(q){
+  const r=STATS[statKey(q)];
+  if(r&&r.w>0&&!r.mastered)return 0;
+  if(!r)return 1;
+  if(!r.mastered)return 2;
+  return 3;
+}
+function adaptiveDeck(pool){return shuffle(pool).sort((a,b)=>practicePriority(a)-practicePriority(b));}
+function readLocalObject(key){try{return JSON.parse(localStorage.getItem(key))||{};}catch(e){return {};}}
 function renderProgress(){
   const host=$("progPanel"); if(!host) return;
-  const subj={}; let tot=0, mastered=0, seen=0, weak=0;
-  BANK.forEach(q=>{
-    subj[q.c]=subj[q.c]||{t:0,m:0}; subj[q.c].t++; tot++;
-    const r=STATS[q.q];
-    if(r){ seen++; if(r.lc===true){subj[q.c].m++;mastered++;} else if(r.lc===false){weak++;} }
-  });
-  if(!seen){
-    host.innerHTML='<div class="phead"><span class="ptitle">Your progress</span></div>'+
-      '<div class="empty">No attempts yet. Take a Limitations Check and your mastery by subject will build here &mdash; then Review Weak Areas targets what you miss.</div>';
-    return;
-  }
+  let mastered=0,seen=0,weak=0;
+  TRACKED_BANK.forEach(q=>{const r=STATS[statKey(q)];if(r){seen++;if(r.mastered)mastered++;if(r.w>0&&!r.mastered)weak++;}});
   let rows="";
-  Object.keys(subj).sort().forEach(c=>{
-    const t=subj[c].t, m=subj[c].m, pct=Math.round(m/t*100);
-    rows+='<div class="pbar"><span class="pname">'+c+'</span>'+
+  [["Limitations",BANK],["Systems",SYSTEMS_BASE]].forEach(group=>{
+    const items=group[1],m=items.filter(q=>STATS[statKey(q)]&&STATS[statKey(q)].mastered).length;
+    const s=items.filter(q=>STATS[statKey(q)]).length,pct=Math.round(m/items.length*100);
+    rows+='<div class="pbar"><span class="pname">'+group[0]+'</span>'+
       '<span class="ptrack"><span class="pfill" style="width:'+pct+'%"></span></span>'+
-      '<span class="pnum">'+m+'/'+t+'</span></div>';
+      '<span class="pnum">'+m+'/'+items.length+' &middot; '+s+' seen</span></div>';
   });
+  const flowData=readLocalObject("a320flows_v2");
+  const masteredFlows=Object.values(flowData).filter(item=>item&&item.mastered).length;
+  const studyData=readLocalObject("a320selfstudy_v1");
+  const studyAttempts=Object.values(studyData).reduce((sum,item)=>sum+(Number(item&&item.attempts)||0),0);
   host.innerHTML=
-    '<div class="phead"><span class="ptitle">Your progress &mdash; mastered by subject</span>'+
-      '<span class="overall">'+mastered+'/'+tot+' &middot; '+(weak?'<span class="pweak">'+weak+' weak</span>':'0 weak')+'</span></div>'+
+    '<div class="phead"><span class="ptitle">Unified progress</span>'+
+      '<span class="overall">'+mastered+'/'+TRACKED_BANK.length+' mastered &middot; '+(weak?'<span class="pweak">'+weak+' weak</span>':'0 weak')+'</span></div>'+
     rows+
+    '<div class="psummary"><span class="pill">'+masteredFlows+' mastered flow runs</span><span class="pill">'+studyAttempts+' self-study attempts</span></div>'+
+    '<div class="pnote">Mastery requires two clean recalls. Any miss resets that question until it is answered correctly twice in succession. Learn mode prioritises weak, unseen and not-yet-mastered items.</div>'+
     '<div class="row" style="margin-top:12px"><button class="btn tiny ghost" id="resetProg">Reset progress</button></div>';
   $("resetProg").onclick=()=>{
     if(confirm("Reset all saved progress on this device? This cannot be undone.")){
-      STATS={}; saveStats(); renderProgress();
+      STATS={};saveStats();
+      try{localStorage.removeItem(LEGACY_STORE_KEY);localStorage.removeItem("a320flows_v1");localStorage.removeItem("a320flows_v2");localStorage.removeItem("a320selfstudy_v1");}catch(e){}
+      STUDY_STATS={};renderProgress();
     }
   };
 }
@@ -919,6 +973,19 @@ function drawLens(){
 }
 drawLens();
 
+let limFeedbackMode="learn",sysFeedbackMode="learn",currentFeedbackMode="learn";
+function wireFeedbackMode(id,onSelect){
+  const host=$(id);
+  host.querySelectorAll("button").forEach(button=>{
+    button.onclick=()=>{
+      onSelect(button.dataset.value);
+      host.querySelectorAll("button").forEach(item=>item.setAttribute("aria-pressed",String(item===button)));
+    };
+  });
+}
+wireFeedbackMode("limFeedbackButtons",value=>{limFeedbackMode=value;});
+wireFeedbackMode("sysFeedbackButtons",value=>{sysFeedbackMode=value;});
+
 $("modeMcq").onclick=()=>{
   $("systemsPanel").classList.add("hidden");
   $("filterPanel").classList.remove("hidden");
@@ -953,12 +1020,12 @@ function drawSystemLens(){
     b.onclick=()=>{sysRunLen=value;drawSystemLens();};host.appendChild(b);
   });
 }
-function balancedSystemDeck(pool,categories,limit){
-  if(!limit||pool.length<=limit)return shuffle(pool);
-  const groups=categories.map(c=>({c,items:shuffle(pool.filter(q=>q.c===c))}));
+function balancedSystemDeck(pool,categories,limit,adaptive){
+  if(!limit||pool.length<=limit)return adaptive?adaptiveDeck(pool):shuffle(pool);
+  const groups=categories.map(c=>({c,items:adaptive?adaptiveDeck(pool.filter(q=>q.c===c)):shuffle(pool.filter(q=>q.c===c))}));
   const deck=[];
   while(deck.length<limit&&groups.some(g=>g.items.length)){
-    shuffle(groups).forEach(g=>{if(deck.length<limit&&g.items.length)deck.push(g.items.pop());});
+    shuffle(groups).forEach(g=>{if(deck.length<limit&&g.items.length)deck.push(g.items.shift());});
   }
   return deck;
 }
@@ -1149,7 +1216,8 @@ let currentQuizKind="limitations";
 $("startMcqBtn").onclick=()=>{
   const pool=BANK.filter(x=>active.has(x.c));
   if(!pool.length){alert("Select at least one question set.");return;}
-  let deck=shuffle(pool);
+  currentFeedbackMode=limFeedbackMode;
+  let deck=currentFeedbackMode==="learn"?adaptiveDeck(pool):shuffle(pool);
   if(runLen && deck.length>runLen) deck=deck.slice(0,runLen);
   queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[];currentQuizKind="limitations";lastMode="mcq";
   show("quiz"); renderQ();
@@ -1158,25 +1226,29 @@ $("startSystemsBtn").onclick=()=>{
   const selected=SYSTEMS_CATS.filter(c=>sysActive.has(c));
   const pool=SYSTEMS_BANK.filter(q=>sysActive.has(q.c));
   if(!pool.length){alert("Select at least one Systems Exam Prep subject.");return;}
-  queue=balancedSystemDeck(pool,selected,sysRunLen);
+  currentFeedbackMode=sysFeedbackMode;
+  queue=balancedSystemDeck(pool,selected,sysRunLen,currentFeedbackMode==="learn");
   qi=0;cor=0;miss=0;streak=0;missed=[];currentQuizKind="systems";lastMode="systems";
   show("quiz");renderQ();
 };
 function startReview(){
   const pool=weakPool();
-  if(!pool.length){ alert("No weak areas yet — take a Limitations Check first, then anything you miss shows up here."); return; }
+  if(!pool.length){ alert("No weak systems or limitations questions are due. A missed item remains here until two consecutive correct recalls."); return; }
   let deck=pool.slice();                    // most-missed first
   if(runLen && deck.length>runLen) deck=deck.slice(0,runLen);
-  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[];currentQuizKind="limitations";lastMode="review";
+  queue=deck; qi=0;cor=0;miss=0;streak=0;missed=[];currentQuizKind="review";currentFeedbackMode="learn";lastMode="review";
   show("quiz"); renderQ();
 }
 $("modeReview").onclick=()=>startReview();
 function renderQ(){
   const q=queue[qi];
   $("qCat").textContent=q.c;
+  $("quizModeStatus").textContent=currentFeedbackMode==="exam"?"Exam mode · feedback at debrief":"Learn mode · adaptive order + immediate feedback";
   $("qText").textContent=q.q;
   $("sPos").textContent=(qi+1)+"/"+queue.length;
-  $("sCor").textContent=cor; $("sMiss").textContent=miss; $("sStreak").textContent=streak;
+  $("sCor").textContent=currentFeedbackMode==="exam"?"—":cor;
+  $("sMiss").textContent=currentFeedbackMode==="exam"?"—":miss;
+  $("sStreak").textContent=currentFeedbackMode==="exam"?"—":streak;
   $("bar").style.width=((qi)/queue.length*100)+"%";
   $("ecamSlot").innerHTML=""; $("nextRow").style.display="none";
   const opts=$("qOpts"); opts.innerHTML="";
@@ -1190,32 +1262,47 @@ function renderQ(){
     opts.appendChild(b);
   });
 }
+function sourceStatus(q){
+  const text=[q.c,q.w,q.ref].filter(Boolean).join(" ");
+  if(q.c==="Power Plant IAE"||/IAE appendix|LIM-ENG/i.test(text)){
+    return {className:"engineering",label:"ENGINEERING-ONLY SOURCE · IAE V2500 APPENDIX · 13 AUG 18 · VERIFY CURRENT APPROVED DATA"};
+  }
+  return {className:"approved",label:"SUPPLIED ANSETT A320 FCOM · REVISION-LOCKED TRAINING SOURCE"};
+}
+function sourceStatusHtml(q){const status=sourceStatus(q);return '<div class="source-status '+status.className+'">'+status.label+'</div>';}
 function answer(btn,chosen,order){
   const q=queue[qi];
   const correct=chosen===q.a;
   [...$("qOpts").children].forEach((el,idx)=>{
     el.disabled=true;
     const oi=order[idx].i;
-    if(oi===q.a)el.classList.add("correct");
-    else if(oi===chosen)el.classList.add("wrong");
-    else el.classList.add("dim");
+    if(currentFeedbackMode==="exam"){
+      if(oi===chosen)el.classList.add("selected");else el.classList.add("dim");
+    }else{
+      if(oi===q.a)el.classList.add("correct");
+      else if(oi===chosen)el.classList.add("wrong");
+      else el.classList.add("dim");
+    }
   });
   if(correct){cor++;streak++;}
-  else{miss++;streak=0;missed.push({q:q.q,a:q.o[q.a],w:q.w||"",ref:q.ref||""});}
-  if(currentQuizKind==="limitations")recordAnswer(q,correct);
-  $("sCor").textContent=cor;$("sMiss").textContent=miss;$("sStreak").textContent=streak;
-  const e=document.createElement("div");
-  e.className="ecam "+(correct?"ok":"no");
-  e.innerHTML=
-    '<div class="head"><span class="dot"></span>'+(correct?"CORRECT":"CHECK — INCORRECT")+'</div>'+
-    '<div class="body">'+
-      '<div class="ans">ANSWER &nbsp;<b>'+q.o[q.a]+'</b></div>'+
-      (q.w
-        ? '<div class="why"><span class="lead">Reasoning</span>'+q.w+'</div>'
-        : '<div class="why"><span class="lead">Reasoning</span>Refer to the cited FCOM section.</div>')+
-      (q.ref?'<div class="ref"><span class="lead">Reference</span>'+q.ref+'</div>':'')+
-    '</div>';
-  $("ecamSlot").appendChild(e);
+  else{miss++;streak=0;missed.push({q:q.q,a:q.o[q.a],chosen:q.o[chosen],w:q.w||"",ref:q.ref||"",status:sourceStatus(q)});}
+  recordAnswer(q,correct);
+  if(currentFeedbackMode!=="exam"){
+    $("sCor").textContent=cor;$("sMiss").textContent=miss;$("sStreak").textContent=streak;
+    const e=document.createElement("div");
+    e.className="ecam "+(correct?"ok":"no");
+    e.innerHTML=
+      '<div class="head"><span class="dot"></span>'+(correct?"CORRECT":"CHECK — INCORRECT")+'</div>'+
+      '<div class="body">'+
+        '<div class="ans">ANSWER &nbsp;<b>'+q.o[q.a]+'</b></div>'+
+        (q.w
+          ? '<div class="why"><span class="lead">Reasoning</span>'+q.w+'</div>'
+          : '<div class="why"><span class="lead">Reasoning</span>Refer to the cited FCOM section.</div>')+
+        (q.ref?'<div class="ref"><span class="lead">Reference</span>'+q.ref+'</div>':'')+
+        sourceStatusHtml(q)+
+      '</div>';
+    $("ecamSlot").appendChild(e);
+  }
   $("nextRow").style.display="flex";
   $("nextBtn").focus();
 }
@@ -1224,13 +1311,13 @@ $("quitBtn").onclick=()=>finishMcq();
 function finishMcq(){
   const total=cor+miss;
   const pct=total?Math.round(cor/total*100):0;
-  $("rEye").textContent=currentQuizKind==="systems"?"Systems Exam Prep — debrief":"Limitations check — debrief";
+  const title=currentQuizKind==="systems"?"Systems Exam Prep":currentQuizKind==="review"?"Weak Area Review":"Limitations Check";
+  $("rEye").textContent=title+" — "+(currentFeedbackMode==="exam"?"exam debrief":"learn debrief");
   $("rScore").textContent=pct+"%";
-  $("rScore").style.color=pct>=90?"var(--green)":pct>=75?"var(--cyan)":"var(--amber)";
+  $("rScore").style.color=pct>=80?"var(--green)":"var(--amber)";
   const v=$("rVerdict");
-  if(pct>=90){v.textContent="Sharp — checkride ready";v.style.color="var(--green)";}
-  else if(pct>=75){v.textContent="Solid — tidy the misses";v.style.color="var(--cyan)";}
-  else{v.textContent="More reps needed";v.style.color="var(--amber)";}
+  if(pct>=80){v.textContent="Pass · 80% threshold met";v.style.color="var(--green)";}
+  else{v.textContent="Not yet · 80% pass threshold";v.style.color="var(--amber)";}
   const r=$("rReview"); r.innerHTML="";
   if(missed.length){
     const h=document.createElement("div");h.className="eyebrow";h.style.marginTop="18px";
@@ -1238,8 +1325,10 @@ function finishMcq(){
     missed.forEach(m=>{
       const d=document.createElement("div");d.className="ritem";
       d.innerHTML='<div class="rq">'+m.q+'</div><div class="ra">&#10003; '+m.a+'</div>'+
+        '<div class="rmiss">Your answer: '+m.chosen+'</div>'+
         (m.w?'<div class="rw">'+m.w+'</div>':'')+
-        (m.ref?'<div class="rref">Reference: '+m.ref+'</div>':'');
+        (m.ref?'<div class="rref">Reference: '+m.ref+'</div>':'')+
+        '<div class="source-status '+m.status.className+'">'+m.status.label+'</div>';
       r.appendChild(d);
     });
   }else if(total){
@@ -1452,4 +1541,3 @@ if('serviceWorker' in navigator){
 </script>
 </body>
 </html>
-

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A320 Cross-System Scenario Lab</title>
+<meta name="theme-color" content="#0c1116">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--bg:#0c1116;--panel:#111820;--panel2:#18222b;--edge:#30404b;--white:#eef3f6;--muted:#91a0aa;--cyan:#58d8ec;--green:#43dc70;--amber:#ffbd38;--red:#ff6368;--brand:#a13444;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--ui:system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white)}body{font-family:var(--ui);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);background:radial-gradient(900px 460px at 50% -10%,#25323b,var(--bg) 68%)}button,a{font:inherit}.page{max-width:1080px;margin:auto;padding:14px 12px 46px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.back{color:var(--cyan);font:12px var(--mono);text-decoration:none;padding:9px 0}.tag{color:var(--muted);font:10px var(--mono);letter-spacing:1px;text-align:right}.placard{display:flex;align-items:center;gap:13px;border:1px solid var(--edge);border-top:3px solid var(--brand);border-radius:10px;background:linear-gradient(#182027,#0e1419);padding:14px 17px}.badge{background:var(--brand);color:#080b0e;border-radius:4px;padding:6px 10px;font:700 13px var(--mono);letter-spacing:2px}.placard h1{font-size:18px;margin:0 0 3px}.placard p{color:var(--muted);font:10px var(--mono);letter-spacing:1px;margin:0}.intro{color:#c8d1d6;font-size:14px;line-height:1.6;margin:17px 2px}.scenario-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px}.scenario{min-height:52px;border:1px solid var(--edge);border-radius:7px;background:var(--panel2);color:var(--white);font:700 10px var(--mono);letter-spacing:.6px;padding:9px;cursor:pointer}.scenario[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan);box-shadow:inset 0 0 0 1px var(--cyan);background:#102027}.brief{border-left:4px solid var(--amber);border-radius:5px;background:#191508;padding:12px 14px;margin-bottom:12px}.brief strong{display:block;color:var(--amber);font:12px var(--mono);letter-spacing:1px}.brief span{display:block;color:#d8cda9;font-size:13px;line-height:1.5;margin-top:5px}.systems{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.system{display:flex;flex-direction:column;min-height:285px;border:1px solid var(--edge);border-radius:10px;background:linear-gradient(#151d24,#0e1419);padding:15px}.system .num{color:var(--muted);font:9px var(--mono);letter-spacing:1.5px}.system h2{font:600 16px var(--ui);margin:6px 0 9px}.status{display:inline-block;align-self:flex-start;border:1px solid currentColor;border-radius:4px;padding:4px 6px;color:var(--amber);font:700 9px var(--mono);letter-spacing:.8px}.system p{color:#bec8ce;font-size:13px;line-height:1.55;margin:10px 0}.system ul{padding-left:18px;margin:0 0 14px;color:var(--muted);font-size:12px;line-height:1.55}.open{margin-top:auto;display:block;border:1px solid var(--cyan);border-radius:6px;color:var(--cyan);text-align:center;text-decoration:none;font:700 10px var(--mono);letter-spacing:.6px;padding:10px}.open:hover{background:#10262c}.linkage{border:1px solid #315c45;border-radius:9px;background:#0d1913;padding:14px;margin-top:12px}.linkage strong{color:var(--green);font:11px var(--mono);letter-spacing:1px}.linkage p{color:#b9cbc0;font-size:13px;line-height:1.55;margin:6px 0 0}.scope{border:1px solid #644c1e;border-radius:7px;background:#171106;color:#dec77f;font:10px/1.55 var(--mono);padding:10px 12px;margin-top:12px}.foot{text-align:center;color:var(--muted);font:9px/1.5 var(--mono);margin-top:14px}@media(max-width:760px){.systems{grid-template-columns:1fr}.system{min-height:0}.scenario-tabs{grid-template-columns:1fr}.tag{font-size:8px}.placard h1{font-size:15px}}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="top"><a class="back" href="index.html">&larr; TRAINER</a><div class="tag">ANSETT A320 &middot; IAE V2500 &middot; INTEGRATED STUDY</div></div>
+  <header class="placard"><span class="badge">A320</span><div><h1>Cross-System Scenario Lab</h1><p>ENGINE &middot; ELECTRICAL &middot; HYDRAULIC CONSEQUENCES</p></div></header>
+  <p class="intro">Select one initiating event. The three system cards describe the linked consequences, and each button opens its detailed trainer already configured to the same scenario.</p>
+  <div class="scenario-tabs" id="scenarioTabs" aria-label="Initiating event">
+    <button class="scenario" data-scenario="eng1" aria-pressed="true">ENGINE 1 LOSS</button>
+    <button class="scenario" data-scenario="eng2" aria-pressed="false">ENGINE 2 LOSS</button>
+    <button class="scenario" data-scenario="dual" aria-pressed="false">DUAL ENGINE LOSS</button>
+  </div>
+  <section class="brief" aria-live="polite"><strong id="briefTitle">ENGINE 1 LOSS</strong><span id="briefText"></span></section>
+  <section class="systems">
+    <article class="system"><span class="num">01 &middot; POWER PLANT</span><h2>IAE V2500</h2><span class="status" id="engineStatus"></span><p id="engineText"></p><ul id="engineImpacts"></ul><a class="open" id="engineLink" href="engine.html?scenario=eng1">OPEN CONFIGURED ENGINE TRAINER &rarr;</a></article>
+    <article class="system"><span class="num">02 &middot; ELECTRICAL</span><h2>Generation &amp; Distribution</h2><span class="status" id="electricalStatus"></span><p id="electricalText"></p><ul id="electricalImpacts"></ul><a class="open" id="electricalLink" href="electrical.html?scenario=eng1">OPEN CONFIGURED ELECTRICAL TRAINER &rarr;</a></article>
+    <article class="system"><span class="num">03 &middot; HYDRAULIC</span><h2>Green / Blue / Yellow</h2><span class="status" id="hydraulicStatus"></span><p id="hydraulicText"></p><ul id="hydraulicImpacts"></ul><a class="open" id="hydraulicLink" href="hydraulic.html?scenario=eng1">OPEN CONFIGURED HYDRAULIC TRAINER &rarr;</a></article>
+  </section>
+  <section class="linkage"><strong>CROSS-SYSTEM LINK</strong><p id="linkageText"></p></section>
+  <p class="scope"><b>SCOPE:</b> Ansett A320 IAE V2500 only. This lab links the behavior already modeled in the supplied-source engine, electrical and hydraulic trainers. It demonstrates consequences, not crew actions. Use the current approved ECAM, FCOM and QRH for operational procedures.</p>
+  <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE.</p>
+</main>
+<script>
+(function(){
+  "use strict";
+  const scenarios={
+    eng1:{
+      title:"ENGINE 1 LOSS",brief:"Loss of engine 1 removes its thrust and engine-driven accessory outputs. The remaining engine can support automatic electrical and hydraulic reconfiguration where the associated paths remain available.",
+      engine:["FAULT · ENGINE 1","Engine 1 thrust and shaft-driven accessories are no longer sustained.",["FADEC indications and the engine flow can be inspected in the linked module.","Exact crew action is intentionally outside this consequence model."]],
+      electrical:["DEGRADED · GEN 2 AVAILABLE","Generator 1 is unavailable; generator 2 can supply both main AC buses through the automatic bus-tie network.",["The remaining generator carries the transferred main-bus load.","Bus or contactor failures can still prevent the automatic recovery path."]],
+      hydraulic:["DEGRADED · PTU TRANSFER","The green engine-driven pump is lost. With yellow pressure available, the PTU transfers mechanical power from yellow to green.",["Hydraulic fluid remains separate between systems.","Green pressure still depends on a healthy PTU, reservoirs, fire valve and circuit."]],
+      linkage:"The same lost engine drives both generator 1 and the green hydraulic pump. The electrical bus-tie and hydraulic PTU are independent recovery paths; success in one does not guarantee recovery in the other."
+    },
+    eng2:{
+      title:"ENGINE 2 LOSS",brief:"Loss of engine 2 removes its thrust and engine-driven accessory outputs. The remaining engine can support automatic electrical and hydraulic reconfiguration where the associated paths remain available.",
+      engine:["FAULT · ENGINE 2","Engine 2 thrust and shaft-driven accessories are no longer sustained.",["The engine trainer uses the same IAE V2500 architecture for either side.","Exact crew action is intentionally outside this consequence model."]],
+      electrical:["DEGRADED · GEN 1 AVAILABLE","Generator 2 is unavailable; generator 1 can supply both main AC buses through the automatic bus-tie network.",["The remaining generator carries the transferred main-bus load.","Bus or contactor failures can still prevent the automatic recovery path."]],
+      hydraulic:["DEGRADED · PTU TRANSFER","The yellow engine-driven pump is lost. With green pressure available, the PTU transfers mechanical power from green to yellow.",["Hydraulic fluid remains separate between systems.","Yellow pressure still depends on a healthy PTU, reservoirs, fire valve and circuit."]],
+      linkage:"The same lost engine drives both generator 2 and the yellow hydraulic pump. The electrical bus-tie and hydraulic PTU are independent recovery paths; success in one does not guarantee recovery in the other."
+    },
+    dual:{
+      title:"DUAL ENGINE LOSS",brief:"Both engine thrust sources and engine-driven accessories are lost. This preset focuses on the reduced emergency networks represented by the existing trainers; it is not a procedural checklist.",
+      engine:["FAULT · BOTH ENGINES","Both engines lose sustained combustion and normal engine-driven outputs.",["The engine view opens at electrical-emergency FADEC reversion.","Restart and forced-landing procedures are outside this consequence model."]],
+      electrical:["EMERGENCY · ESSENTIAL NETWORK","Both engine generators are unavailable. With emergency generation available, AC ESS and the ESS TR support the reduced essential network.",["Main and shed-bus availability is intentionally reduced.","The detailed synoptic shows each powered and unpowered bus."]],
+      hydraulic:["EMERGENCY · RAT / BLUE","Green and yellow engine-driven pumps are unavailable. The deployed RAT supplies the blue system at the modeled emergency pressure.",["Blue priority users remain the focus of the emergency hydraulic supply.","Green and yellow do not receive blue hydraulic fluid."]],
+      linkage:"The emergency generator depends on hydraulic drive from the blue emergency configuration. A blue-system or RAT-path loss therefore crosses the hydraulic/electrical boundary and can remove emergency AC generation."
+    }
+  };
+  const $=id=>document.getElementById(id);
+  function list(id,items){const host=$(id);host.replaceChildren();items.forEach(text=>{const li=document.createElement("li");li.textContent=text;host.appendChild(li);});}
+  function render(id){
+    const data=scenarios[id]||scenarios.eng1;
+    $("briefTitle").textContent=data.title;$("briefText").textContent=data.brief;
+    [["engine",data.engine],["electrical",data.electrical],["hydraulic",data.hydraulic]].forEach(([prefix,value])=>{$(prefix+"Status").textContent=value[0];$(prefix+"Text").textContent=value[1];list(prefix+"Impacts",value[2]);$(prefix+"Link").href=prefix+".html?scenario="+id;});
+    $("linkageText").textContent=data.linkage;
+    document.querySelectorAll("[data-scenario]").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.scenario===id)));
+    history.replaceState(null,"","#"+id);
+  }
+  document.querySelectorAll("[data-scenario]").forEach(button=>button.addEventListener("click",()=>render(button.dataset.scenario)));
+  render(location.hash.slice(1));
+})();
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(){});});}</script>
+</body>
+</html>
