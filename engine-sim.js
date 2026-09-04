@@ -251,7 +251,7 @@
         node('lower',755,315,120,145,'ENGINE SD\nOIL · FF · VIB',component('SECONDARY ENGINE INDICATION','Presents detailed engine-system information when the engine page is displayed.','The presentation groups oil pressure/temperature, fuel flow and vibration with the secondary information.','Abnormal values aid diagnosis but do not by themselves replace the ECAM procedure.','GTE PART 2 SLIDES 3, 10-13'))
       ],
       edges:[
-        edge('p2f','p2','fadec','control','P2',[[345,79],[345,225]]),edge('p5f','p5','fadec','control','P5',[[365,179],[365,235]]),edge('n1f','n1','fadec','control','N1',[[350,294],[350,245]]),edge('n2f','n2','fadec','control','N2',[[380,409],[380,255]]),
+        edge('p2_to_fadec','p2','fadec','control','P2',[[345,79],[345,225]]),edge('p5f','p5','fadec','control','P5',[[365,179],[365,235]]),edge('n1f','n1','fadec','control','N1',[[350,294],[350,245]]),edge('n2f','n2','fadec','control','N2',[[380,409],[380,255]]),
         edge('egtf','egt','fadec','control','EGT'),edge('fff','ff','fadec','control','FF'),edge('vibf','vib','fadec','control','VIB'),edge('oilf','oil','fadec','control','OIL'),edge('airf','airdata','fadec','control','T2 / P0'),
         edge('feiu','fadec','eiu','control','ENGINE DATA'),edge('eiuup','eiu','upper','control','PRIMARY'),edge('eiulow','eiu','lower','control','SECONDARY')
       ],
@@ -261,7 +261,7 @@
         ],{fadec:'control',eiu:'control',upper:'normal',lower:'normal'}),
         mode('rated','P2 / P5 LOST','caution','RATED N1 REVERSION','Sensed EPR is unavailable because one or both pressure-sensing inputs are invalid.',[
           'FADEC automatically reverts from EPR to rated N1 mode.','Equivalent thrust is initially provided until the thrust lever is moved.','Autothrust and alpha-floor protection are lost.'
-        ],{p2:'fault',p5:'fault',fadec:'caution',upper:'caution'},{p2f:'fault',p5f:'fault',feiu:'caution',eiuup:'caution'}),
+        ],{p2:'fault',p5:'fault',fadec:'caution',upper:'caution'},{p2_to_fadec:'fault',p5f:'fault',feiu:'caution',eiuup:'caution'}),
         mode('degraded','T2 / AIR DATA LOST','fault','DEGRADED N1 REVERSION','Computed EPR is unavailable because the required inlet-temperature or ambient-pressure data is invalid.',[
           'FADEC uses degraded N1 mode.','Equivalent thrust is initially held until a thrust-lever change.','Autothrust and alpha-floor protection are lost.'
         ],{airdata:'fault',fadec:'fault',upper:'caution'},{airf:'fault',feiu:'caution',eiuup:'caution'}),
@@ -545,6 +545,8 @@
     getComponents:id=>(systems[id]||systems[activeSystem]).nodes.map(item=>item.id)
   };
 
+  const scenario=typeof location!=="undefined"?new URLSearchParams(location.search).get("scenario"):"";
+  const linkedScenario={eng1:{system:"architecture",mode:"flameout"},eng2:{system:"architecture",mode:"flameout"},dual:{system:"fadec",mode:"elecemerg"}}[scenario];
+  if(linkedScenario){activeSystem=linkedScenario.system;activeMode=linkedScenario.mode;activeComponent=systems[activeSystem].overviewId;}
   renderAll();
 })();
-

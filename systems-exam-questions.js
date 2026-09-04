@@ -2922,14 +2922,14 @@ window.SYSTEMS_EXAM_QUESTIONS = [
   },
   {
     "c": "Power Plant IAE",
-    "q": "Which engines are identified in the supplied IAE engine appendix?",
+    "q": "Which engine installation is identified in the supplied IAE engine appendix?",
     "o": [
-      "Two CFM56-5B engines",
       "Two IAE V2500-A5 engines",
-      "Two PW1100G engines",
-      "Two LEAP-1A engines"
+      "One IAE V2500-A5 engine mounted under the fuselage",
+      "Two IAE V2500-A5 engines mounted at the tail",
+      "Four IAE V2500-A5 engines mounted under the wings"
     ],
-    "a": 1,
+    "a": 0,
     "w": "The appendix identifies two International Aero Engines V2500-A5 high-bypass turbofan engines.",
     "ref": "FCOM DSC-70-05, IAE Overview · IAE appendix (FOR ENGINEERING USE ONLY, 13 AUG 18)"
   },

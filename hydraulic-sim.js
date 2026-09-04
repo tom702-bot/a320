@@ -100,6 +100,7 @@ function toggleFail(id=selected){if(!components[id]||id==='overview')return;if(f
 function loadMode(id){const p=presets[id];if(!p)return;activeMode=id;config={...p.config};failed=new Set(p.fail);selected='overview';render()}
 canvas.addEventListener('click',e=>{const r=canvas.getBoundingClientRect(),px=(e.clientX-r.left)*W/r.width,py=(e.clientY-r.top)*H/r.height;const h=[...hit].reverse().find(a=>px>=a.x&&px<=a.x+a.w&&py>=a.y&&py<=a.y+a.h);if(h){selected=h.id;render()}});canvas.addEventListener('dblclick',e=>{e.preventDefault();if(selected!=='overview')toggleFail(selected)});failButton.addEventListener('click',()=>toggleFail());restoreButton.addEventListener('click',()=>loadMode('normal'));modeButtons.forEach(b=>b.addEventListener('click',()=>loadMode(b.dataset.mode)));if('ResizeObserver'in window)new ResizeObserver(draw).observe(canvas.parentElement);else addEventListener('resize',draw);
 window.A320HydraulicTrainer={loadMode,selectComponent:id=>{if(components[id]){selected=id;render()}},failComponent:id=>{if(components[id]&&id!=='overview'){failed.add(id);activeMode='';render()}},restoreComponent:id=>{failed.delete(id);render()},restoreAll:()=>loadMode('normal'),getState:()=>({mode:activeMode,failures:[...failed],...evaluate()}),getComponents:()=>Object.keys(components).filter(id=>id!=='overview')};
-loadMode('normal');
+const scenario=typeof location!=="undefined"?new URLSearchParams(location.search).get("scenario"):"";
+loadMode({eng1:"eng1",eng2:"eng2",dual:"rat"}[scenario]||"normal");
 })();
 
