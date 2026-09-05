@@ -128,7 +128,7 @@
     <div class="tag">A320 &middot; IAE V2500-A5 &middot; ATA 70</div>
   </div>
 
-  <div class="warning"><b>SOURCE EFFECTIVITY:</b> Ansett A320 IAE V2500-A5 only. Limits are reconciled to the AAT A320 FCOM for A/C 21-CMHT, custom issue 16 MAR 2026. The diagrams are simplified study representations supplemented by the supplied 2022 Gas Turbine Engine self-study presentations. Confirm operational actions against the current approved FCOM, QRH and ECAM.</div>
+  <div class="warning"><b>SOURCE EFFECTIVITY:</b> Ansett A320 IAE V2500-A5 only. Engine limits and descriptions use the explicit IAE inserts: A/C 20-IMHT, 13 AUG 2018, marked FOR ENGINEERING USE ONLY. Limits: LIM-ENG pp.1/4–3/4, supplied PDF pp.3737–3739. The diagrams are simplified study representations supplemented by the supplied 2022 Gas Turbine Engine self-study presentations. Confirm operational actions against the current approved FCOM, QRH and ECAM.</div>
 
   <section class="trainer" aria-labelledby="engineTitle">
     <h1 id="engineTitle"><span>IAE V2500 ENGINE SYSTEMS</span></h1>
@@ -217,23 +217,24 @@
   <div class="reference-grid">
     <section class="reference">
       <h2>IAE V2500 ENGINE LIMITS</h2>
-      <div class="limit"><b>SHAFT SPEED</b><p>Maximum N1: 104%. Maximum N2: 105%. Ambient conditions and engine-bleed configuration may impose a lower N1 value.</p></div>
-      <div class="limit"><b>OIL TEMPERATURE</b><p>Maximum continuous: 140 &deg;C. Maximum transient: 155 &deg;C for 15 minutes. Minimum: &minus;40 &deg;C for start and &minus;10 &deg;C before takeoff.</p></div>
-      <div class="limit"><b>OIL QUANTITY</b><p>Minimum before start: 9.5 qt plus estimated flight consumption. The average consumption figure is 0.5 qt/h.</p></div>
-      <div class="limit"><b>REVERSE</b><p>Reverse is prohibited in flight and must not be used to back the aircraft. Maximum reverse must not be used below 70 kt; idle reverse is permitted to a stop.</p></div>
+      <div class="limit"><b>SHAFT SPEED</b><p>Maximum N1: 100%. Maximum N2: 100%. Ambient conditions and engine-bleed configuration may impose a lower N1 value.</p></div>
+      <div class="limit"><b>OIL TEMPERATURE</b><p>Maximum continuous: 155 &deg;C. Maximum transient: 165 &deg;C for 15 minutes. Minimum: &minus;40 &deg;C for start, &minus;10 &deg;C before exceeding idle, and 50 &deg;C before takeoff. Minimum oil pressure: 60 PSI.</p></div>
+      <div class="limit"><b>EGT / TIME</b><p>Takeoff/go-around: 635 &deg;C, 5 minutes with all engines operative or 10 minutes with one inoperative. MCT: 610 &deg;C. Starting: 635 &deg;C. Engine start crosswind capability: 35 kt.</p></div>
+      <div class="limit"><b>OIL QUANTITY</b><p>The IAE limitations page refers to PRO-NOR-SOP-04 Before Walkaround &mdash; ECAM Pages. Confirm minimum quantity and any consumption allowance in the applicable simulator/operator procedure; a numeric IAE quantity is not verified here.</p></div>
+      <div class="limit"><b>REVERSE</b><p>Reverse is prohibited in flight and must not be used to back the aircraft. Maximum reverse should not be used below 70 kt; idle reverse is permitted to a stop.</p></div>
     </section>
     <section class="reference">
       <h2>CONTROL &amp; PROTECTION NOTES</h2>
       <div class="limit"><b>EPR / N1 REVERSION</b><p>EPR is the normal thrust-control mode. Loss of sensed EPR produces rated N1 mode; loss of computed EPR produces degraded N1 mode. Autothrust and alpha-floor protection are lost in either N1 reversion.</p></div>
       <div class="limit"><b>AUTOMATIC START</b><p>Below 50% N2 on the ground, FADEC can abort a hot, hung, stalled or no-light-up automatic start and command approximately 30 seconds of dry cranking. A manual start is monitored but not automatically aborted.</p></div>
-      <div class="limit"><b>STARTER</b><p>One standard automatic start may contain up to three attempts and counts as one cycle. Allow 20 seconds between successive ground cycles and 15 minutes after four failed cycles. Do not operate the starter above 20% N2.</p></div>
-      <div class="limit"><b>FLEX / DERATE</b><p>TMAXFLEX is ISA +53 &deg;C. TFLEX must not be below TREF or OAT. FLEX is prohibited on a contaminated runway and may not be combined with a derated takeoff.</p></div>
+      <div class="limit"><b>STARTER</b><p>One standard automatic start contains one attempt and counts as one cycle. Allow 15 seconds between ground cycles and 30 minutes after three failed cycles or five minutes of continuous cranking. Maximum manual start: 2 minutes; crank: 5 minutes. Starter engagement limits: 10% N2 on ground, 18% in flight; normal start-valve cutout is 43% N2.</p></div>
+      <div class="limit"><b>FLEX / DERATE</b><p>TMAXFLEX is ISA +55 &deg;C. TFLEX must not be below TREF or OAT. FLEX is prohibited on a contaminated runway and may not be combined with a derated takeoff.</p></div>
       <div class="limit"><b>INSTRUMENTATION</b><p>Primary information includes EPR, N1 and EGT. Secondary information includes oil pressure, oil temperature, fuel flow and engine vibration. The new indication diagram traces each sensing path to FADEC/EIU and ECAM.</p></div>
       <div class="limit"><b>STALL / SURGE RECOGNITION</b><p>Presentation indications include abnormal noises or bangs, possible inlet or exhaust flame, fluctuating EGT/N1/N2, vibration, sluggish thrust response and a rapid EGT rise. Use current ECAM/QRH for any operational response.</p></div>
     </section>
   </div>
 
-  <p class="source">SOURCE: AAT A320 FCOM, A/C 21-CMHT, CUSTOM ISSUE 16 MAR 2026 &mdash; DSC-70-05/10/20/35/45/50/65/70/80/95 AND LIM-ENG; GAS TURBINE ENGINES A320 SELF STUDY GUIDE PART 1, SLIDES 55&ndash;60; PART 2, SLIDES 3&ndash;36. DIAGRAMS ARE SIMPLIFIED STUDY REPRESENTATIONS, NOT MAINTENANCE SCHEMATICS. STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE.</p>
+  <p class="source">SOURCE: SUPPLIED AAT A320 FCOM, IAE INSERTS, A/C 20-IMHT, 13 AUG 2018, FOR ENGINEERING USE ONLY &mdash; DSC-70-05/10/20/35/45/50/65/70/80/95 AND LIM-ENG; GAS TURBINE ENGINES A320 SELF STUDY GUIDE PART 1, SLIDES 55&ndash;60; PART 2, SLIDES 3&ndash;36. DIAGRAMS ARE SIMPLIFIED STUDY REPRESENTATIONS, NOT MAINTENANCE SCHEMATICS. STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE.</p>
 </main>
 <script src="engine-sim.js"></script>
 <script src="engine-3d.js"></script>

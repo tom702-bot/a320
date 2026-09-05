@@ -159,7 +159,6 @@
   .mode.fill .mt .ic{background:var(--green)}
   .mode.review .mt .ic{background:var(--cyan)}
   .mode.lookup .mt .ic{background:#c9d4dc;color:var(--bg)}
-  .mode.study .mt .ic{background:#9b8cff;color:var(--bg)}
   .mode.systems .mt .ic{background:var(--cyan);color:var(--bg)}
   .mode.electrical .mt .ic{background:var(--green-deep);color:#fff}
   .mode.hydraulic .mt .ic{background:#49a7db;color:#fff}
@@ -167,28 +166,7 @@
   .mode.flows .mt .ic{background:#58d8ec;color:var(--bg)}
   .mode.integration .mt .ic{background:#d8c46e;color:var(--bg)}
 
-  /* ---- Self-study quiz centre ---- */
-  .studygrid{display:flex;flex-direction:column;gap:12px;margin-top:18px}
-  .studycard{width:100%;text-align:left;border:1px solid var(--edge);background:var(--panel2);
-    color:var(--white);border-radius:11px;padding:17px;cursor:pointer;font-family:var(--font-ui);
-    transition:border-color .15s,background .15s,transform .05s}
-  .studycard:hover{border-color:#9b8cff;background:#1d2831}
-  .studycard:active{transform:translateY(1px)}
-  .studycard .sttop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-  .studycard .stnum{font-family:var(--font-data);font-size:10px;letter-spacing:1.4px;
-    text-transform:uppercase;color:#b9b0ff;margin-bottom:5px}
-  .studycard .sttitle{font-size:15.5px;font-weight:650;line-height:1.35}
-  .studycard .stscore{font-family:var(--font-data);font-size:12px;color:var(--cyan);
-    white-space:nowrap;border:1px solid var(--edge);border-radius:6px;padding:5px 7px}
-  .studycard .stmeta{font-family:var(--font-data);font-size:11px;color:var(--muted);
-    line-height:1.5;margin-top:9px}
-  .studynote{font-size:13.5px;color:var(--muted);line-height:1.6;margin:0}
-  .studyresult{font-family:var(--font-data);font-size:13px;color:var(--muted);
-    text-align:center;margin:8px 0 18px}
-  .study-review .ritem{border-top:1px solid var(--edge);padding:13px 0;font-size:14px}
-  .study-review .rq{color:var(--white);margin-bottom:5px}
-  .study-review .ra{font-family:var(--font-data);font-size:13px;color:var(--green);line-height:1.5}
-  .study-review .rw{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:5px}
+  .source-note{font-size:13.5px;color:var(--muted);line-height:1.6;margin:0 0 16px}
 
   /* ---- Progress panel ---- */
   .prog{border:1px solid var(--edge);background:var(--panel);border-radius:12px;padding:16px 18px;margin-bottom:16px}
@@ -297,7 +275,7 @@
   <!-- ================= START ================= -->
   <section id="start">
     <p class="lede">Pick a drill. Systems Exam Prep uses all 315 questions supplied in the student study guide,
-      reconciled to the current Ansett A320 IAE FCOM with a source reference on every answer. Limitations Check remains restricted to the supplied FCOM limitations
+      with a reference and source-check status on every answer. Limitations Check remains restricted to the supplied FCOM limitations
       chapter. Review Weak Areas now combines missed systems and limitations questions and requires two
       clean recalls after a miss. Progress is saved on this device only.</p>
 
@@ -308,7 +286,7 @@
       </button>
       <button class="mode systems" id="modeSystems">
         <div class="mt"><span class="ic">SYS</span>Systems Exam Prep</div>
-        <div class="md">Choose from 19 A320 IAE subjects. Balanced, shuffled A&ndash;D questions from the supplied 315-question guide, with FCOM-reconciled answers and references.</div>
+        <div class="md">Choose from 19 A320 IAE subjects. Balanced, shuffled A&ndash;D questions from the supplied 315-question guide, with references and an explicit source-check status for each item.</div>
       </button>
       <button class="mode review" id="modeReview">
         <div class="mt"><span class="ic">WEAK</span>Review Weak Areas</div>
@@ -321,10 +299,6 @@
       <button class="mode fill" id="modeFill">
         <div class="mt"><span class="ic">FILL</span>Fill &amp; Check</div>
         <div class="md">Type each limitation value from memory; instant green/amber grading, answers on miss.</div>
-      </button>
-      <button class="mode study" id="modeStudy">
-        <div class="mt"><span class="ic">TEST</span>Self-Study Quizzes</div>
-        <div class="md">Three course areas with three banks each: 270 questions in total, fixed A&ndash;D choices, recent-question avoidance and automatic scoring.</div>
       </button>
       <button class="mode lookup" id="modeLookup">
         <div class="mt"><span class="ic">READ</span>Lookup</div>
@@ -352,6 +326,7 @@
       </a>
     </div>
 
+    <p class="source-note">IAE engine items checked against the supplied FCOM training inserts (A/C 20-IMHT, 13 AUG 2018), marked FOR ENGINEERING USE ONLY. Other items retain their references with applicability checks pending. Confirm aircraft options and operational procedures with your instructor and approved manuals.</p>
     <div class="prog" id="progPanel"></div>
 
     <div class="panel filters" id="filterPanel">
@@ -368,7 +343,7 @@
 
     <div class="panel filters hidden" id="systemsPanel">
       <div class="eyebrow">Systems Exam Prep subjects</div>
-      <p class="studynote" style="margin:7px 0 14px">Select any combination. Mixed runs are balanced across the selected subjects before additional questions are drawn.</p>
+      <p class="source-note" style="margin:7px 0 14px">Select any combination. Mixed runs are balanced across the selected subjects before additional questions are drawn.</p>
       <div class="chips" id="sysChips"></div>
       <div class="eyebrow" style="margin-top:20px">Questions per run</div>
       <div class="chips" id="sysLenChips"></div>
@@ -401,57 +376,6 @@
       </div>
     </div>
     <div class="row"><button class="btn ghost" id="quitBtn">&larr; End &amp; score</button></div>
-  </section>
-
-  <!-- ================= SELF-STUDY QUIZ CENTRE ================= -->
-  <section id="study" class="hidden">
-    <div class="panel">
-      <div class="eyebrow">Self-study quiz centre</div>
-      <div class="question" style="margin-bottom:10px">Choose a practice test</div>
-      <p class="studynote">Each course has three independent 30-question banks. Every attempt draws 30 questions,
-        prioritising ones not yet served on this device and recycling the oldest only after the 90-question pool is exhausted.
-        Choices remain in fixed A&ndash;D order, and completed scores are saved on this device.</p>
-      <div class="studygrid" id="studyCards"></div>
-    </div>
-    <div class="row"><button class="btn ghost" id="studyHome">&larr; Change drill</button></div>
-  </section>
-
-  <!-- ================= SELF-STUDY QUIZ ================= -->
-  <section id="studyQuiz" class="hidden">
-    <div class="strip">
-      <div class="cell"><div class="k">Item</div><div class="v" id="ssPos">0/30</div></div>
-      <div class="cell"><div class="k">Correct</div><div class="v green" id="ssCor">0</div></div>
-      <div class="cell"><div class="k">Missed</div><div class="v amber" id="ssMiss">0</div></div>
-      <div class="cell"><div class="k">Score</div><div class="v" id="ssPct">&mdash;</div></div>
-    </div>
-    <div class="progress"><i id="ssBar"></i></div>
-
-    <div class="panel">
-      <div class="eyebrow" id="ssTitle">Self-study quiz</div>
-      <div class="question" id="ssText">&nbsp;</div>
-      <div class="options" id="ssOpts"></div>
-      <div id="ssFeedback" aria-live="polite"></div>
-      <div class="row end" id="ssNextRow" style="display:none">
-        <button class="btn primary" id="ssNext">Next &rarr;</button>
-      </div>
-    </div>
-    <div class="row"><button class="btn ghost" id="ssQuit">&larr; End attempt</button></div>
-  </section>
-
-  <!-- ================= SELF-STUDY RESULTS ================= -->
-  <section id="studyResults" class="hidden">
-    <div class="panel">
-      <div class="eyebrow" id="ssResultEye">Self-study quiz &mdash; result</div>
-      <div class="bigscore" id="ssResultScore">0%</div>
-      <div class="verdict" id="ssResultVerdict">&nbsp;</div>
-      <div class="studyresult" id="ssResultMeta"></div>
-      <div class="study-review" id="ssReview"></div>
-      <div class="row" style="margin-top:20px">
-        <button class="btn primary" id="ssRetake">Retake quiz</button>
-        <button class="btn" id="ssChoose">Choose another</button>
-        <button class="btn ghost" id="ssResultHome">Change drill</button>
-      </div>
-    </div>
   </section>
 
   <!-- ================= MEMORY DRILL ================= -->
@@ -536,7 +460,7 @@
 </div>
 
 <script src="systems-exam-questions.js"></script>
-<script src="self-study-quizzes.js"></script>
+<script src="trainer-core.js"></script>
 <script>
 /* ============ QUESTION BANK ============ */
 const BANK = [
@@ -620,25 +544,25 @@ const BANK = [
  {"c":"Engine & APU","q":"APU bleed air for wing anti-ice is…?","o":["Permitted","Permitted on ground","Not permitted","Permitted single pack"],"a":2,"w":"Not permitted. · FCOM LIM-APU-20"},
  {"c":"Engine & APU","q":"During refuel/defuel, if the APU failed to start or auto-shut-down, the crew should…?","o":["Retry immediately","Not start the APU","Start on battery","Continue fuelling only"],"a":1,"w":"Do not start the APU. If a fuel spill occurs, perform a normal shutdown. · FCOM LIM-APU"},
  {"c":"Communication","q":"Use of the GSM Onboard System below 3,000 m AGL (approximately 10,000 ft) is…?","o":["Permitted","Prohibited","Permitted in cruise","Crew discretion"],"a":1,"w":"GSM Onboard use is prohibited below 3,000 m AGL (approximately 10,000 ft) and in specified geographical areas. · FCOM LIM-COM"},
- {"c":"Engine & APU","q":"IAE V2500 maximum N1?","o":["104%","105%","100%","107%"],"a":0,"w":"Maximum N1 is 104%; ambient conditions and engine bleed configuration may impose a lower limit. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 maximum N2?","o":["105%","104%","100%","107%"],"a":0,"w":"Maximum N2 is 105%. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 maximum continuous oil temperature?","o":["140 °C","155 °C","165 °C","175 °C"],"a":0,"w":"Maximum continuous oil temperature is 140 °C. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 maximum transient oil temperature and duration?","o":["155 °C for 15 min","140 °C for 15 min","165 °C for 5 min","175 °C for 10 min"],"a":0,"w":"Maximum transient oil temperature is 155 °C for 15 minutes. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 minimum oil temperature for starting?","o":["-40 °C","-10 °C","0 °C","40 °C"],"a":0,"w":"Minimum oil temperature for engine start is -40 °C. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 minimum oil temperature before takeoff?","o":["-10 °C","-40 °C","0 °C","50 °C"],"a":0,"w":"Oil temperature must be at least -10 °C before takeoff. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 minimum oil quantity before engine start?","o":["9.5 qt plus estimated consumption","9.5 qt fixed with no allowance","6.0 qt plus fuel used","12 qt fixed"],"a":0,"w":"Minimum oil quantity is 9.5 qt plus the estimated consumption for the flight. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 average oil-consumption figure used for planning?","o":["0.5 qt/h","0.2 qt/h","1.0 qt/h","1.5 qt/h"],"a":0,"w":"The average oil-consumption figure is 0.5 qt/h. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 starter — minimum pause between successive ground cycles?","o":["20 s","15 s","30 s","60 s"],"a":0,"w":"Wait 20 seconds between successive ground starter cycles. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"IAE V2500 starter — cooling after four failed cycles?","o":["15 min","30 min","20 min","60 min"],"a":0,"w":"After four failed starter cycles, allow 15 minutes for cooling. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"For starter-duty accounting, one standard automatic start may contain up to how many attempts?","o":["Three attempts","One attempt","Two attempts","Four attempts"],"a":0,"w":"A standard automatic start containing up to three attempts counts as one starter cycle. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"Above what N2 must the IAE V2500 starter not be operated?","o":["20% N2","10% N2","18% N2","43% N2"],"a":0,"w":"Do not operate the starter above 20% N2. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"Selection of IAE V2500 reverse thrust in flight is…?","o":["Prohibited","Permitted at idle","Permitted above FL200","Permitted below 70 kt"],"a":0,"w":"Selection of reverse thrust in flight is prohibited. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum N1?","o":["100%","104%","105%","107%"],"a":0,"w":"Maximum N1 is 100%; ambient conditions and engine bleed configuration may impose a lower limit.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"n1","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum N2?","o":["100%","104%","105%","107%"],"a":0,"w":"Maximum N2 is 100%.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"n2","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum continuous oil temperature?","o":["155 °C","140 °C","165 °C","175 °C"],"a":0,"w":"Maximum continuous oil temperature is 155 °C.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"oilContinuous","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum transient oil temperature and duration?","o":["165 °C for 15 min","155 °C for 15 min","165 °C for 5 min","175 °C for 10 min"],"a":0,"w":"The transient limit is 165 °C for 15 minutes.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"oilTransient","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 minimum oil temperature for starting?","o":["-40 °C","-10 °C","0 °C","40 °C"],"a":0,"w":"The minimum starting temperature is -40 °C.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"oilStart","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 minimum oil temperature before takeoff?","o":["50 °C","-10 °C","-40 °C","0 °C"],"a":0,"w":"Before takeoff the minimum is 50 °C; -10 °C applies before exceeding idle.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"oilTakeoff","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"Where does the IAE limitations page direct you to check minimum oil quantity?","o":["PRO-NOR-SOP-04 Before Walkaround - ECAM Pages","The fuel imbalance table","The APU starting limits","The hydraulic reservoir table"],"a":0,"w":"The IAE LIM page refers to the before-walkaround ECAM checks. This compilation does not establish an independently verified IAE quantity here; confirm it with the applicable simulator/operator procedure.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"oilQuantity","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 minimum oil pressure?","o":["60 PSI","40 PSI","80 PSI","100 PSI"],"a":0,"w":"The IAE limitation gives a minimum oil pressure of 60 PSI.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"oilPressure","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 starter — minimum pause between successive ground cycles?","o":["15 seconds","20 seconds","30 seconds","60 seconds"],"a":0,"w":"Allow 15 seconds between successive automatic or manual ground-start cycles.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"starterPause","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"When is IAE V2500 starter cooling required, and for how long?","o":["30 minutes after three failed cycles or five minutes of continuous cranking","15 minutes after four failed cycles","20 minutes after two failed cycles","No cooling period after continuous cranking"],"a":0,"w":"Allow 30 minutes after three failed cycles or five minutes of continuous cranking.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"starterCooling","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"How many attempts does one standard IAE automatic-start cycle contain?","o":["One attempt","Three attempts","Two attempts","Four attempts"],"a":0,"w":"A standard automatic start containing one attempt counts as one cycle.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"starterCycle","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"Above which N2 values does the IAE starter limitation prohibit engagement?","o":["10% N2 on ground; 18% N2 in flight","20% N2 on ground and in flight","18% N2 on ground; 10% N2 in flight","43% N2 on ground and in flight"],"a":0,"w":"The stated limits are 10% N2 on ground and 18% in flight. These engagement limits are distinct from the normal start-valve cutout at 43% N2.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"starterN2","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"Selection of IAE V2500 reverse thrust in flight is…?","o":["Prohibited","Permitted at idle","Permitted above FL200","Permitted below 70 kt"],"a":0,"w":"Reverse selection is prohibited in flight.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"reverseFlight","revision":"iae-20260905"},
  {"c":"Communication","q":"Passenger in-seat power for portable electronic devices must be…?","o":["ON for takeoff","OFF for takeoff and landing","OFF only in flight","Crew discretion"],"a":1,"w":"The passenger in-seat power supply system must be off during takeoff and landing. · FCOM LIM-CAB"},
  {"c":"Flight Controls & Flaps","q":"Rapid, large alternating control inputs (esp. with large pitch/roll/yaw changes) may cause…?","o":["No effect","Structural failure at any speed","Only autopilot disconnect","Overspeed only"],"a":1,"w":"They may result in structural failures at any speed — a flight-controls caution. · FCOM LIM-F_CTL"},
  {"c":"Communication","q":"Use of mobile phones is prohibited in which aircraft areas?","o":["Cabin and galley","Cockpit and toilets","Flight deck only","Toilets only"],"a":1,"w":"Mobile-phone use is prohibited in the cockpit and toilets. · FCOM LIM-COM"},
- {"c":"Engine & APU","q":"Backing the aircraft using IAE V2500 reverse thrust is…?","o":["Not permitted","Permitted below 5 kt","Permitted on dry ramps","Permitted with both engines"],"a":0,"w":"Backing the aircraft with reverse thrust is not permitted. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"Below which speed must maximum IAE V2500 reverse thrust not be used?","o":["70 kt","50 kt","80 kt","100 kt"],"a":0,"w":"Do not use maximum reverse below 70 kt; idle reverse is permitted to a stop. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"Combining an IAE V2500 FLEX takeoff with a derated takeoff is…?","o":["Not permitted","Permitted on a dry runway","Required with one engine inoperative","Permitted below maximum landing weight"],"a":0,"w":"FLEX takeoff is not permitted in association with a derated takeoff. · FCOM LIM-ENG-10"},
+ {"c":"Engine & APU","q":"Backing the aircraft using IAE V2500 reverse thrust is…?","o":["Not permitted","Permitted below 5 kt","Permitted on dry ramps","Permitted with both engines"],"a":0,"w":"Backing the aircraft with reverse thrust is not permitted.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"reverseBacking","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"Below which speed does the IAE FCOM say maximum reverse should not be used?","o":["70 kt","50 kt","80 kt","100 kt"],"a":0,"w":"The source says maximum reverse should not be used below 70 kt. Idle reverse is permitted to a stop.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"reverseSpeed","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"Combining an IAE V2500 FLEX takeoff with an available derated takeoff is…?","o":["Not permitted","Permitted on a dry runway","Required with one engine inoperative","Permitted below maximum landing weight"],"a":0,"w":"FLEX and derated takeoff must not be combined. Derate statements apply only when that option is available.","ref":"FCOM LIM-ENG p.3/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3739 · FOR ENGINEERING USE ONLY","evidence":"flexDerate","revision":"iae-20260905"},
  {"c":"Fuel","q":"Minimum fuel quantity for takeoff?","o":["1,000 kg","1,500 kg","2,000 kg","500 kg"],"a":1,"w":"1,500 kg (3,307 lb) minimum for takeoff. · FCOM LIM-FUEL"},
  {"c":"Fuel","q":"Maximum temperature for Jet A, Jet A1, JP5, JP8, N°3 Jet, RT and TS-1?","o":["49 °C","54 °C","60 °C","65 °C"],"a":1,"w":"Maximum temperature is 54 °C for these fuels; Jet B and JP4 are limited to 49 °C. · FCOM LIM-FUEL"},
  {"c":"Fuel","q":"Minimum fuel temperature for JET A1 / JP8 / N°3 JET?","o":["-36 °C","-43 °C","-54 °C","-45 °C"],"a":1,"w":"-43 °C for JET A1/JP8/N°3 JET (JET A is warmer at -36 °C; JP4 coldest at -54 °C). · FCOM LIM-FUEL"},
@@ -710,19 +634,19 @@ const BANK = [
  {"c":"Auto Flight","q":"Automatic landing weight condition?","o":["Aircraft weight must be below maximum landing weight","Weight may equal MTOW","No weight condition","At or below maximum taxi weight"],"a":0,"w":"Automatic landing is demonstrated with weight below the maximum landing weight. · FCOM LIM-AFS-20-10"},
  {"c":"Auto Flight","q":"During automatic rollout with one engine or one reverser inoperative, the remaining reverser may be used provided…?","o":["Wind remains within automatic-rollout limits","The runway is contaminated","Tailwind exceeds 10 kt","Both APs are off"],"a":0,"w":"Use of the remaining reverser is permitted within the maximum automatic-rollout wind conditions. · FCOM LIM-AFS-20-10"},
  {"c":"Auto Flight","q":"Autoland on a CAT I ground installation requires which precaution set?","o":["Beam/terrain checked, crew ready to disconnect, CAT 2 capability and procedures, CAT I visual references or go-around","No airline assessment or visual reference","CAT 1 FMA only and AP off","Contaminated-runway approval"],"a":0,"w":"All four precautions are stated, including assessment of terrain within 300 m before threshold. · FCOM LIM-AFS-20-10"},
- {"c":"Engine & APU","q":"What is the IAE V2500 maximum assumed-temperature value, TMAXFLEX?","o":["ISA +53 °C","ISA +55 °C","ISA +50 °C","ISA +60 °C"],"a":0,"w":"TMAXFLEX is ISA +53 °C. · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"The selected IAE V2500 TFLEX must not be lower than which flat-temperature reference?","o":["TREF","TAT","SAT","TROP"],"a":0,"w":"TFLEX must not be lower than the flat temperature TREF. · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"How must selected IAE V2500 TFLEX compare with actual OAT?","o":["TFLEX must be at least OAT","TFLEX must be below OAT","TFLEX must equal ISA","OAT is not relevant"],"a":0,"w":"TFLEX must not be lower than the actual outside-air temperature. · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"IAE V2500 FLEX takeoff on a contaminated runway is…?","o":["Not permitted","Permitted without correction","Required","Permitted only with derate"],"a":0,"w":"FLEX takeoff is not permitted on a contaminated runway. · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"Before an IAE V2500 FLEX takeoff, which performance condition must be satisfied?","o":["All takeoff-weight performance requirements must be met at TFLEX thrust","Only climb performance must be checked","Runway contamination must be ignored","TFLEX must be below OAT"],"a":0,"w":"All takeoff-weight performance requirements must be met with the thrust available at TFLEX. · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"How is an inoperative-item performance shortfall treated for IAE V2500 FLEX takeoff?","o":["It must be applied to the performance calculation","It may be ignored below maximum takeoff weight","It is replaced by a fixed 5% allowance","It prohibits every FLEX takeoff"],"a":0,"w":"Any performance shortfall caused by an inoperative item must be applied. · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"During an IAE V2500 derated takeoff, selecting TOGA is…?","o":["Prohibited unless an abnormal or emergency procedure requests it","Always required","Permitted after V1","Permitted on contaminated runways only"],"a":0,"w":"TOGA is prohibited during a derated takeoff unless an abnormal or emergency procedure requests it. · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"On which runway conditions may an IAE V2500 derated takeoff be used?","o":["Dry, wet or contaminated","Dry only","Dry or wet only","Contaminated only"],"a":0,"w":"A derated takeoff may be used regardless of runway condition. · FCOM LIM-ENG-10"},
- {"c":"Engine & APU","q":"What may reduce the usable IAE V2500 N1 limit below 104%?","o":["Ambient conditions and engine-bleed configuration","Only the selected flap setting","Radio-altimeter height","Fuel-tank imbalance"],"a":0,"w":"Although maximum N1 is 104%, ambient conditions and the engine-bleed configuration may impose a lower value. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"One standard IAE V2500 automatic start containing up to three attempts counts as…?","o":["One starter cycle","Three starter cycles","Half a starter cycle","No starter cycle"],"a":0,"w":"Up to three attempts within one standard automatic start constitute one starter cycle. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"After how many failed IAE V2500 starter cycles is a 15-minute cooling period required?","o":["Four","Three","Two","Five"],"a":0,"w":"A 15-minute cooling period is required after four failed cycles. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"What interval is required between successive automatic or manual IAE V2500 ground-start cycles?","o":["20 seconds","15 seconds","30 seconds","60 seconds"],"a":0,"w":"Wait 20 seconds between successive ground-start cycles. · FCOM LIM-ENG"},
- {"c":"Engine & APU","q":"From 70 kt down to a stop, which IAE V2500 reverse setting is permitted?","o":["Idle reverse","Maximum reverse","Half reverse only","Reverse is prohibited below 70 kt"],"a":0,"w":"Maximum reverse must not be used below 70 kt; idle reverse may be used to a stop. · FCOM LIM-ENG"},
+ {"c":"Engine & APU","q":"What is the IAE V2500 maximum assumed-temperature value, TMAXFLEX?","o":["ISA +55 °C","ISA +53 °C","ISA +50 °C","ISA +60 °C"],"a":0,"w":"TMAXFLEX is ISA +55 °C.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"flexMax","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"The selected IAE V2500 TFLEX must not be lower than which flat-temperature reference?","o":["TREF","TAT","SAT","TROP"],"a":0,"w":"TFLEX must not be below the flat temperature TREF.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"flexTref","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"How must selected IAE V2500 TFLEX compare with actual OAT?","o":["TFLEX must be at least OAT","TFLEX must be below OAT","TFLEX must equal ISA","OAT is not relevant"],"a":0,"w":"TFLEX must not be lower than the actual outside-air temperature.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"flexOat","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 FLEX takeoff on a contaminated runway is…?","o":["Not permitted","Permitted without correction","Required","Permitted only with derate"],"a":0,"w":"FLEX takeoff is not permitted on contaminated runways.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"flexContaminated","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"Before an IAE V2500 FLEX takeoff, which performance condition must be satisfied?","o":["All takeoff-weight performance requirements must be met at TFLEX thrust","Only climb performance must be checked","Runway contamination must be ignored","TFLEX must be below OAT"],"a":0,"w":"All takeoff-weight performance requirements must be met at the thrust available for TFLEX.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"flexPerformance","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"How is an inoperative-item performance shortfall treated for IAE V2500 FLEX takeoff?","o":["It must be applied to the performance calculation","It may be ignored below maximum takeoff weight","It is replaced by a fixed 5% allowance","It prohibits every FLEX takeoff"],"a":0,"w":"Apply the associated performance shortfall before assessing FLEX performance.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"flexInoperative","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"When the derate option is available and used, selecting TOGA is…?","o":["Prohibited unless an abnormal or emergency procedure requests it","Always required","Permitted after V1","Permitted on contaminated runways only"],"a":0,"w":"During a derated takeoff TOGA selection is prohibited except when requested by an abnormal or emergency procedure.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"derateToga","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"When the IAE derate option is available, on which runway conditions may it be used?","o":["Dry, wet or contaminated","Dry only","Dry or wet only","Contaminated only"],"a":0,"w":"The source permits derate regardless of dry, wet or contaminated runway condition; performance requirements still apply.","ref":"FCOM LIM-ENG p.3/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3739 · FOR ENGINEERING USE ONLY","evidence":"derateRunway","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"What may reduce the usable IAE V2500 N1 limit below 100%?","o":["Ambient conditions and engine-bleed configuration","Only the selected flap setting","Radio-altimeter height","Fuel-tank imbalance"],"a":0,"w":"Ambient conditions and engine-bleed configuration can impose a lower N1 limit.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"n1Conditions","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 minimum oil temperature before exceeding idle?","o":["-10 °C","-40 °C","0 °C","50 °C"],"a":0,"w":"Oil must be at least -10 °C before exceeding idle, and at least 50 °C before takeoff.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"oilIdle","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum manual-start cycle time?","o":["2 minutes","3 minutes","5 minutes","10 minutes"],"a":0,"w":"The maximum manual-start cycle time is two minutes.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"starterManual","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum continuous crank cycle time?","o":["5 minutes","2 minutes","3 minutes","10 minutes"],"a":0,"w":"Cranking is limited to five minutes; that duration also triggers the 30-minute cooling requirement.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"starterCrank","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"Which IAE V2500 reverse setting is permitted down to aircraft stop?","o":["Idle reverse","Maximum reverse","Half reverse only","Reverse is prohibited below 70 kt"],"a":0,"w":"Idle reverse is permitted to a stop; maximum reverse should not be used below 70 kt.","ref":"FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY","evidence":"reverseIdle","revision":"iae-20260905"},
  {"c":"Engine & APU","q":"During refuel/defuel, what action is required if a fuel spill occurs while the APU is running?","o":["Perform a normal APU shutdown","Start the APU","Continue without action","Use APU bleed"],"a":0,"w":"A fuel spill requires a normal APU shutdown. · FCOM LIM-APU"},
  {"c":"Engine & APU","q":"If the aircraft environmental envelope is more restrictive than the APU envelope…?","o":["The aircraft limit must not be exceeded","The APU limit always overrides","Use the midpoint","There is no limit"],"a":0,"w":"The more restrictive aircraft environmental-envelope value governs. · FCOM LIM-APU-20"},
  {"c":"Engine & APU","q":"Which APU-bleed use has the highest permitted altitude?","o":["Single-pack air conditioning at 22,500 ft","Engine-start assist at 20,000 ft","Dual-pack air conditioning at 15,000 ft","Wing anti-ice at 22,500 ft"],"a":0,"w":"The highest listed APU-bleed altitude is 22,500 ft for single-pack air conditioning. · FCOM LIM-APU-20"},
@@ -792,7 +716,13 @@ const BANK = [
  {"c":"Aircraft General","q":"With Thrust Bump used, at 8,000 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["105 / 106 / 104 / 104 kt","102 / 103 / 101 / 101 kt","99 / 100 / 98 / 97 kt","95 / 97 / 95 / 95 kt"],"a":0,"w":"With Thrust Bump at 8,000 ft: 105 / 106 / 104 / 104 kt respectively. · FCOM LIM-AG-SPD"},
  {"c":"Aircraft General","q":"With Thrust Bump used, at 10,000 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["102 / 103 / 101 / 101 kt","99 / 100 / 98 / 97 kt","95 / 97 / 95 / 95 kt","111 / 112 / 110 / 109 kt"],"a":0,"w":"With Thrust Bump at 10,000 ft: 102 / 103 / 101 / 101 kt respectively. · FCOM LIM-AG-SPD"},
  {"c":"Aircraft General","q":"With Thrust Bump used, at 12,000 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["99 / 100 / 98 / 97 kt","95 / 97 / 95 / 95 kt","111 / 112 / 110 / 109 kt","110 / 111 / 109 / 109 kt"],"a":0,"w":"With Thrust Bump at 12,000 ft: 99 / 100 / 98 / 97 kt respectively. · FCOM LIM-AG-SPD"},
- {"c":"Aircraft General","q":"With Thrust Bump used, at 14,100 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["95 / 97 / 95 / 95 kt","111 / 112 / 110 / 109 kt","110 / 111 / 109 / 109 kt","108 / 109 / 107 / 107 kt"],"a":0,"w":"With Thrust Bump at 14,100 ft: 95 / 97 / 95 / 95 kt respectively. · FCOM LIM-AG-SPD"}
+ {"c":"Aircraft General","q":"With Thrust Bump used, at 14,100 ft, VMCA / VMCG CONF 1+F / CONF 2 / CONF 3?","o":["95 / 97 / 95 / 95 kt","111 / 112 / 110 / 109 kt","110 / 111 / 109 / 109 kt","108 / 109 / 107 / 107 kt"],"a":0,"w":"With Thrust Bump at 14,100 ft: 95 / 97 / 95 / 95 kt respectively. · FCOM LIM-AG-SPD"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum takeoff/go-around EGT?","o":["635 °C","610 °C","650 °C","675 °C"],"a":0,"w":"The takeoff/go-around EGT limit is 635 °C for the applicable time limit.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"egtTakeoff","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum continuous-thrust EGT?","o":["610 °C","635 °C","650 °C","675 °C"],"a":0,"w":"The MCT EGT limit is 610 °C, without a time limit.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"egtMct","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE V2500 maximum starting EGT, on ground or in flight?","o":["635 °C","610 °C","650 °C","675 °C"],"a":0,"w":"The IAE starting EGT limit is 635 °C on ground and in flight.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"egtStart","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE takeoff/go-around time limit with all engines operative?","o":["5 minutes","2 minutes","10 minutes","15 minutes"],"a":0,"w":"The all-engines-operative time limit is five minutes.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"takeoffAeo","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"IAE takeoff/go-around time limit with one engine inoperative?","o":["10 minutes","2 minutes","5 minutes","15 minutes"],"a":0,"w":"The one-engine-inoperative time limit is ten minutes.","ref":"FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY","evidence":"takeoffOei","revision":"iae-20260905"},
+ {"c":"Engine & APU","q":"Up to what crosswind does the IAE engine limitation state the engine can start?","o":["35 kt","20 kt","30 kt","40 kt"],"a":0,"w":"The IAE engine can start in crosswind up to 35 kt. This is an engine-start capability, not a takeoff crosswind limit.","ref":"FCOM LIM-ENG p.3/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3739 · FOR ENGINEERING USE ONLY","evidence":"startCrosswind","revision":"iae-20260905"}
 ];
 
 /* Stable scope metadata lets one progress model follow the same limitation in every drill. */
@@ -847,15 +777,14 @@ const MEM = [
 
 /* ============ ENGINE ============ */
 const $=id=>document.getElementById(id);
-const sec={start:$("start"),quiz:$("quiz"),study:$("study"),studyQuiz:$("studyQuiz"),
-  studyResults:$("studyResults"),mem:$("mem"),results:$("results"),fill:$("fill"),lookup:$("lookup")};
+const sec={start:$("start"),quiz:$("quiz"),mem:$("mem"),results:$("results"),fill:$("fill"),lookup:$("lookup")};
 function show(name){for(const k in sec)sec[k].classList.toggle("hidden",k!==name);if(name==="start")renderProgress();window.scrollTo({top:0,behavior:"instant"});}
 
 /* ---------- unified on-device performance memory (localStorage; never leaves this device) ---------- */
 const STORE_KEY="a320stats_v2";
 const LEGACY_STORE_KEY="a320stats_v1";
 const normQuestion=text=>(text||"").replace(/−/g,"-").toLowerCase().replace(/[^a-z0-9+\-]+/g," ").replace(/\s+/g," ").trim();
-function statKey(q){return (q.scope||"systems")+":"+normQuestion(q.q);}
+function statKey(q){return (q.scope||"systems")+":"+normQuestion(q.q)+(q.revision?":"+q.revision:"");}
 function loadStats(){
   try{
     const current=JSON.parse(localStorage.getItem(STORE_KEY));
@@ -863,7 +792,7 @@ function loadStats(){
     const legacy=JSON.parse(localStorage.getItem(LEGACY_STORE_KEY))||{};
     const migrated={};
     TRACKED_BANK.forEach(q=>{
-      const old=legacy[q.q];if(!old)return;
+      const old=legacy[q.q];if(!old||q.revision)return;
       migrated[statKey(q)]={s:old.s||0,c:old.c||0,w:old.w||0,lc:old.lc,
         recovery:old.lc===true?2:0,mastered:old.lc===true,last:0};
     });
@@ -906,20 +835,18 @@ function renderProgress(){
   });
   const flowData=readLocalObject("a320flows_v2");
   const masteredFlows=Object.values(flowData).filter(item=>item&&item.mastered).length;
-  const studyData=readLocalObject("a320selfstudy_v1");
-  const studyAttempts=Object.values(studyData).reduce((sum,item)=>sum+(Number(item&&item.attempts)||0),0);
   host.innerHTML=
     '<div class="phead"><span class="ptitle">Unified progress</span>'+
       '<span class="overall">'+mastered+'/'+TRACKED_BANK.length+' mastered &middot; '+(weak?'<span class="pweak">'+weak+' weak</span>':'0 weak')+'</span></div>'+
     rows+
-    '<div class="psummary"><span class="pill">'+masteredFlows+' mastered flow runs</span><span class="pill">'+studyAttempts+' self-study attempts</span></div>'+
+    '<div class="psummary"><span class="pill">'+masteredFlows+' mastered flow runs</span></div>'+
     '<div class="pnote">Mastery requires two clean recalls. Any miss resets that question until it is answered correctly twice in succession. Learn mode prioritises weak, unseen and not-yet-mastered items.</div>'+
     '<div class="row" style="margin-top:12px"><button class="btn tiny ghost" id="resetProg">Reset progress</button></div>';
   $("resetProg").onclick=()=>{
     if(confirm("Reset all saved progress on this device? This cannot be undone.")){
       STATS={};saveStats();
-      try{localStorage.removeItem(LEGACY_STORE_KEY);localStorage.removeItem("a320flows_v1");localStorage.removeItem("a320flows_v2");localStorage.removeItem("a320selfstudy_v1");}catch(e){}
-      STUDY_STATS={};renderProgress();
+      try{localStorage.removeItem(LEGACY_STORE_KEY);localStorage.removeItem("a320flows_v1");localStorage.removeItem("a320flows_v2");}catch(e){}
+      renderProgress();
     }
   };
 }
@@ -987,7 +914,7 @@ let sysRunLen=30;
 function drawSystemChips(){
   const host=$("sysChips");host.innerHTML="";
   const all=document.createElement("button");
-  all.className="chip";all.textContent="All 18 subjects";
+  all.className="chip";all.textContent="All "+SYSTEMS_CATS.length+" subjects";
   all.setAttribute("aria-pressed",sysActive.size===SYSTEMS_CATS.length);
   all.onclick=()=>{sysActive=sysActive.size===SYSTEMS_CATS.length?new Set():new Set(SYSTEMS_CATS);drawSystemChips();};
   host.appendChild(all);
@@ -998,7 +925,7 @@ function drawSystemChips(){
     host.appendChild(b);
   });
 }
-const SYS_LENS=[["18",18],["30",30],["60",60],["All",0]];
+const SYS_LENS=[[String(SYSTEMS_CATS.length),SYSTEMS_CATS.length],["30",30],["60",60],["All",0]];
 function drawSystemLens(){
   const host=$("sysLenChips");host.innerHTML="";
   SYS_LENS.forEach(([label,value])=>{
@@ -1022,180 +949,6 @@ $("modeSystems").onclick=()=>{
   $("systemsPanel").classList.remove("hidden");
   $("systemsPanel").scrollIntoView({behavior:"smooth"});
 };
-
-/* ---------- SELF-STUDY QUIZZES ---------- */
-const STUDY_QUIZZES=window.SELF_STUDY_QUIZZES||[];
-const STUDY_STORE_KEY="a320selfstudy_v1";
-const STUDY_LETTERS=["A","B","C","D"];
-const STUDY_RUN_SIZE=30;
-function loadStudyStats(){try{return JSON.parse(localStorage.getItem(STUDY_STORE_KEY))||{};}catch(e){return {};}}
-function saveStudyStats(){try{localStorage.setItem(STUDY_STORE_KEY,JSON.stringify(STUDY_STATS));}catch(e){}}
-let STUDY_STATS=loadStudyStats();
-let studyActive=null,studyQueue=[],studyIndex=0,studyCorrect=0,studyMissed=[];
-
-function studyShortTitle(title){return title.replace(/^Quiz\s+\d+\s+-\s+/i,"");}
-function studyBanks(quiz){
-  return Array.isArray(quiz.banks)?quiz.banks:[{id:"A",questions:quiz.questions||[]}];
-}
-function studyQuestionPool(quiz){
-  return studyBanks(quiz).flatMap(bank=>bank.questions.map((question,index)=>
-    Object.assign({key:bank.id+":"+index},question)));
-}
-function selectStudyQuestions(quiz){
-  const pool=studyQuestionPool(quiz);
-  const stat=STUDY_STATS[quiz.id]||{};
-  const history=Array.isArray(stat.history)?stat.history.filter(key=>pool.some(q=>q.key===key)):[];
-  const seen=new Set(history);
-  const unseen=shuffle(pool.filter(question=>!seen.has(question.key)));
-  const selected=unseen.slice(0,STUDY_RUN_SIZE);
-  if(selected.length<STUDY_RUN_SIZE){
-    const selectedKeys=new Set(selected.map(question=>question.key));
-    const byKey=new Map(pool.map(question=>[question.key,question]));
-    const oldest=history.map(key=>byKey.get(key)).filter(question=>question&&!selectedKeys.has(question.key));
-    selected.push(...oldest.slice(0,STUDY_RUN_SIZE-selected.length));
-  }
-  const queue=shuffle(selected);
-  const served=new Set(queue.map(question=>question.key));
-  const updatedHistory=history.filter(key=>!served.has(key)).concat(queue.map(question=>question.key));
-  STUDY_STATS[quiz.id]=Object.assign({attempts:0,best:0,last:0},stat,{history:updatedHistory.slice(-pool.length)});
-  saveStudyStats();
-  return queue;
-}
-function renderStudyCards(){
-  const host=$("studyCards"); host.innerHTML="";
-  if(!STUDY_QUIZZES.length){
-    const p=document.createElement("p");p.className="studynote";
-    p.textContent="The quiz bank could not be loaded. Refresh once while online to update the offline copy.";
-    host.appendChild(p);return;
-  }
-  STUDY_QUIZZES.forEach((quiz,index)=>{
-    const stat=STUDY_STATS[quiz.id];
-    const card=document.createElement("button");card.className="studycard";card.type="button";
-    const top=document.createElement("div");top.className="sttop";
-    const name=document.createElement("div");
-    const num=document.createElement("div");num.className="stnum";num.textContent="Quiz "+(index+1);
-    const title=document.createElement("div");title.className="sttitle";title.textContent=studyShortTitle(quiz.title);
-    name.appendChild(num);name.appendChild(title);
-    const score=document.createElement("div");score.className="stscore";
-    score.textContent=stat&&stat.attempts?"Best "+stat.best+"%":"Not attempted";
-    top.appendChild(name);top.appendChild(score);card.appendChild(top);
-    const meta=document.createElement("div");meta.className="stmeta";
-    meta.textContent=studyQuestionPool(quiz).length+"-question pool · "+studyBanks(quiz).length+" banks · 30 per attempt · A–D · "+quiz.source;
-    card.appendChild(meta);card.onclick=()=>startStudyQuiz(quiz.id);host.appendChild(card);
-  });
-}
-function openStudyCentre(){renderStudyCards();show("study");}
-$("modeStudy").onclick=()=>openStudyCentre();
-$("studyHome").onclick=()=>show("start");
-
-function startStudyQuiz(id){
-  studyActive=STUDY_QUIZZES.find(q=>q.id===id);
-  if(!studyActive){alert("That quiz could not be loaded.");return;}
-  studyQueue=selectStudyQuestions(studyActive);
-  if(studyQueue.length!==STUDY_RUN_SIZE){alert("That quiz bank is incomplete.");return;}
-  studyIndex=0;studyCorrect=0;studyMissed=[];
-  show("studyQuiz");renderStudyQuestion();
-}
-function renderStudyQuestion(){
-  const q=studyQueue[studyIndex];
-  $("ssTitle").textContent=studyShortTitle(studyActive.title);
-  $("ssText").textContent=q.q;
-  $("ssPos").textContent=(studyIndex+1)+"/"+studyQueue.length;
-  $("ssCor").textContent=studyCorrect;$("ssMiss").textContent=studyMissed.length;
-  const attempted=studyCorrect+studyMissed.length;
-  $("ssPct").textContent=attempted?Math.round(studyCorrect/attempted*100)+"%":"—";
-  $("ssBar").style.width=(studyIndex/studyQueue.length*100)+"%";
-  $("ssFeedback").innerHTML="";$("ssNextRow").style.display="none";
-  const opts=$("ssOpts");opts.innerHTML="";
-  q.o.forEach((option,index)=>{
-    const button=document.createElement("button");button.className="opt";button.type="button";
-    const tag=document.createElement("span");tag.className="tag";tag.textContent=STUDY_LETTERS[index];
-    const text=document.createElement("span");text.className="txt";text.textContent=option;
-    button.appendChild(tag);button.appendChild(text);
-    button.onclick=()=>markStudyAnswer(index);opts.appendChild(button);
-  });
-}
-function markStudyAnswer(chosen){
-  const q=studyQueue[studyIndex];
-  const correct=chosen===q.a;
-  [...$("ssOpts").children].forEach((button,index)=>{
-    button.disabled=true;
-    if(index===q.a)button.classList.add("correct");
-    else if(index===chosen)button.classList.add("wrong");
-    else button.classList.add("dim");
-  });
-  if(correct)studyCorrect++;
-  else studyMissed.push({index:studyIndex,chosen});
-  const attempted=studyCorrect+studyMissed.length;
-  $("ssCor").textContent=studyCorrect;$("ssMiss").textContent=studyMissed.length;
-  $("ssPct").textContent=Math.round(studyCorrect/attempted*100)+"%";
-
-  const feedback=document.createElement("div");feedback.className="ecam "+(correct?"ok":"no");
-  const head=document.createElement("div");head.className="head";
-  const dot=document.createElement("span");dot.className="dot";head.appendChild(dot);
-  head.appendChild(document.createTextNode(correct?"CORRECT":"CHECK — INCORRECT"));
-  const body=document.createElement("div");body.className="body";
-  const answer=document.createElement("div");answer.className="ans";
-  answer.textContent="ANSWER  "+STUDY_LETTERS[q.a]+". "+q.o[q.a];
-  const why=document.createElement("div");why.className="why";
-  const lead=document.createElement("span");lead.className="lead";lead.textContent="Explanation";
-  why.appendChild(lead);why.appendChild(document.createTextNode(q.w+" · "+studyActive.source+", slide "+q.slide));
-  body.appendChild(answer);body.appendChild(why);feedback.appendChild(head);feedback.appendChild(body);
-  $("ssFeedback").appendChild(feedback);$("ssNextRow").style.display="flex";$("ssNext").focus();
-}
-$("ssNext").onclick=()=>{
-  studyIndex++;
-  if(studyIndex>=studyQueue.length)finishStudyQuiz(true);
-  else renderStudyQuestion();
-};
-$("ssQuit").onclick=()=>{
-  if(confirm("End this attempt? Incomplete attempts are not saved to your best score."))finishStudyQuiz(false);
-};
-function finishStudyQuiz(completed){
-  const total=studyQueue.length;
-  const answered=studyCorrect+studyMissed.length;
-  const pct=answered?Math.round(studyCorrect/(completed?total:answered)*100):0;
-  if(completed){
-    const prev=STUDY_STATS[studyActive.id]||{attempts:0,best:0,last:0};
-    STUDY_STATS[studyActive.id]=Object.assign({},prev,{attempts:(prev.attempts||0)+1,best:Math.max(prev.best||0,pct),last:pct});
-    saveStudyStats();
-  }
-  $("ssResultEye").textContent=studyShortTitle(studyActive.title)+" — result";
-  $("ssResultScore").textContent=pct+"%";
-  $("ssResultScore").style.color=pct>=90?"var(--green)":pct>=75?"var(--cyan)":"var(--amber)";
-  const verdict=$("ssResultVerdict");
-  if(!completed){verdict.textContent="Incomplete attempt";verdict.style.color="var(--amber)";}
-  else if(pct>=90){verdict.textContent="Excellent — strong recall";verdict.style.color="var(--green)";}
-  else if(pct>=75){verdict.textContent="Solid — review the misses";verdict.style.color="var(--cyan)";}
-  else{verdict.textContent="More study and another run";verdict.style.color="var(--amber)";}
-  $("ssResultMeta").textContent=completed
-    ? studyCorrect+" of "+total+" correct · Score saved on this device"
-    : answered+" of "+total+" answered · Partial accuracy shown · Score not saved";
-  const review=$("ssReview");review.innerHTML="";
-  if(studyMissed.length){
-    const heading=document.createElement("div");heading.className="eyebrow";heading.style.marginTop="18px";
-    heading.textContent="Review — missed items ("+studyMissed.length+")";review.appendChild(heading);
-    studyMissed.forEach(miss=>{
-      const q=studyQueue[miss.index];
-      const item=document.createElement("div");item.className="ritem";
-      const question=document.createElement("div");question.className="rq";
-      question.textContent=(miss.index+1)+". "+q.q;
-      const answer=document.createElement("div");answer.className="ra";
-      answer.textContent="✓ "+STUDY_LETTERS[q.a]+". "+q.o[q.a];
-      const why=document.createElement("div");why.className="rw";
-      why.textContent=q.w+" · "+studyActive.source+", slide "+q.slide;
-      item.appendChild(question);item.appendChild(answer);item.appendChild(why);review.appendChild(item);
-    });
-  }else if(completed){
-    const item=document.createElement("div");item.className="ritem";
-    const answer=document.createElement("div");answer.className="ra";answer.textContent="Clean sweep — nothing missed.";
-    item.appendChild(answer);review.appendChild(item);
-  }
-  show("studyResults");
-}
-$("ssRetake").onclick=()=>startStudyQuiz(studyActive.id);
-$("ssChoose").onclick=()=>openStudyCentre();
-$("ssResultHome").onclick=()=>show("start");
 
 /* ---------- MCQ ---------- */
 let queue=[],qi=0,cor=0,miss=0,streak=0,missed=[];
@@ -1239,7 +992,7 @@ function renderQ(){
   $("bar").style.width=((qi)/queue.length*100)+"%";
   $("ecamSlot").innerHTML=""; $("nextRow").style.display="none";
   const opts=$("qOpts"); opts.innerHTML="";
-  const order=shuffle(q.o.map((t,i)=>({t,i})));
+  const order=TrainerCore.optionOrder(q,shuffle);
   const letters=["A","B","C","D","E"];
   order.forEach((item,idx)=>{
     const b=document.createElement("button");
@@ -1249,18 +1002,7 @@ function renderQ(){
     opts.appendChild(b);
   });
 }
-function sourceStatus(q){
-  if(q.scope==="limitations"){
-    return {className:"approved",label:"AAT A320 FCOM 21-CMHT · LIMITATIONS CHECK"};
-  }
-  if(q.review==="mel-check"){
-    return {className:"engineering",label:"MEL ITEM · VERIFY AGAINST THE CURRENT OPERATOR MEL"};
-  }
-  if(q.review==="fcom-revised"){
-    return {className:"approved",label:"STUDENT GUIDE ITEM · REVISED AGAINST AAT A320 FCOM 21-CMHT"};
-  }
-  return {className:"approved",label:"STUDENT GUIDE ITEM · CHECKED AGAINST AAT A320 FCOM 21-CMHT"};
-}
+function sourceStatus(q){return TrainerCore.sourceStatus(q);}
 function sourceStatusHtml(q){const status=sourceStatus(q);return '<div class="source-status '+status.className+'">'+status.label+'</div>';}
 function answer(btn,chosen,order){
   const q=queue[qi];
@@ -1301,14 +1043,16 @@ function answer(btn,chosen,order){
 $("nextBtn").onclick=()=>{ qi++; if(qi>=queue.length)finishMcq(); else renderQ(); };
 $("quitBtn").onclick=()=>finishMcq();
 function finishMcq(){
-  const total=cor+miss;
-  const pct=total?Math.round(cor/total*100):0;
+  const result=TrainerCore.examResult(cor,miss,queue.length);
+  const total=result.answered;
+  const pct=result.displayPercent;
   const title=currentQuizKind==="systems"?"Systems Exam Prep":currentQuizKind==="review"?"Weak Area Review":"Limitations Check";
   $("rEye").textContent=title+" — "+(currentFeedbackMode==="exam"?"exam debrief":"learn debrief");
-  $("rScore").textContent=pct+"%";
-  $("rScore").style.color=pct>=80?"var(--green)":"var(--amber)";
+  $("rScore").textContent=result.complete?pct+"%":total+" / "+queue.length;
+  $("rScore").style.color=result.pass?"var(--green)":"var(--amber)";
   const v=$("rVerdict");
-  if(pct>=80){v.textContent="Pass · 80% threshold met";v.style.color="var(--green)";}
+  if(!result.complete){v.textContent="Incomplete · "+total+" of "+queue.length+" answered · no pass awarded";v.style.color="var(--amber)";}
+  else if(result.pass){v.textContent="Pass · 80% threshold met";v.style.color="var(--green)";}
   else{v.textContent="Not yet · 80% pass threshold";v.style.color="var(--amber)";}
   const r=$("rReview"); r.innerHTML="";
   if(missed.length){
@@ -1323,7 +1067,7 @@ function finishMcq(){
         '<div class="source-status '+m.status.className+'">'+m.status.label+'</div>';
       r.appendChild(d);
     });
-  }else if(total){
+  }else if(total&&result.complete){
     const d=document.createElement("div");d.className="ritem";d.style.borderTop="none";
     d.innerHTML='<div class="ra">Clean sweep — nothing missed.</div>';r.appendChild(d);
   }
@@ -1398,7 +1142,7 @@ const FILL_SECTIONS = [
  {"t":"FLAPS / SLATS SPEEDS","rows":[["CONF 1",[["","230 kt",[],"kt"]]],["CONF 1+F",[["","215 kt",[],"kt"]]],["CONF 2",[["","200 kt",[],"kt"]]],["CONF 3",[["","185 kt",[],"kt"]]],["CONF FULL",[["","177 kt",[],"kt"]]],["Max altitude — flaps/slats extended",[["","20,000 ft",[],"ft"]]]]},
  {"t":"PRESSURISATION","rows":[["Maximum positive differential",[["","9.0 PSI",[],"PSI"]]],["Maximum negative differential",[["","-1.0 PSI",[],"PSI"]]],["Safety relief valve setting",[["","8.6 PSI",[],"PSI"]]],["Differential / valve tolerance",[["","±0.1 PSI",[],"PSI"]]]]},
  {"t":"WEIGHTS — A320 A/C 21-CMHT","rows":[["Maximum taxi weight",[["","73,900 kg",[],"kg"]]],["Maximum takeoff weight (brake release)",[["","73,500 kg",[],"kg"]]],["Maximum landing weight",[["","64,500 kg",[],"kg"]]],["Maximum zero fuel weight",[["","61,000 kg",[],"kg"]]],["Minimum weight",[["","37,230 kg",[],"kg"]]]]},
- {"t":"POWERPLANT — AAT A320 IAE V2500","rows":[["Max N1 / N2",[["N1","104%",[],"%"],["N2","105%",[],"%"]]],["Oil temp — continuous / transient",[["continuous","140 °C",[],"°C"],["15 min","155 °C",[],"°C"]]],["Oil temp — start / before takeoff",[["start","-40 °C",[],"°C"],["before takeoff","-10 °C",[],"°C"]]],["Minimum oil quantity",[["","9.5 qt + estimated consumption",[],"qt"]]],["Average oil consumption",[["","0.5 qt/h",[],"qt/h"]]],["Standard automatic start cycle",[["","up to 3 attempts",[],"attempts"]]],["Starter — pause between ground cycles",[["","20 s",[],"s"]]],["Starter — cooling after 4 failed cycles",[["","15 min",[],"min"]]],["Starter — do not run above N2",[["","20%",[],"%"]]],["Maximum reverse — not below",[["","70 kt",[],"kt"]]],["Maximum TFLEX",[["","ISA +53 °C",[],"°C"]]]]},
+ {"t":"POWERPLANT — AAT A320 IAE V2500","rows":[["Max N1 / N2",[["N1","100%",[],"%"],["N2","100%",[],"%"]]],["EGT — takeoff/go-around / MCT / start",[["TO/GA","635 °C",[],"°C"],["MCT","610 °C",[],"°C"],["start","635 °C",[],"°C"]]],["Takeoff/go-around time",[["all engines","5 min",[],"min"],["one engine inoperative","10 min",[],"min"]]],["Oil temp — continuous / transient",[["continuous","155 °C",[],"°C"],["15 min","165 °C",[],"°C"]]],["Oil temp — start / exceeding idle / takeoff",[["start","-40 °C",[],"°C"],["exceeding idle","-10 °C",[],"°C"],["takeoff","50 °C",[],"°C"]]],["Minimum oil pressure",[["","60 PSI",[],"PSI"]]],["Standard automatic start cycle",[["","1 attempt",[],"attempt"]]],["Starter — pause between ground cycles",[["","15 s",[],"s"]]],["Starter — cooling after 3 failed cycles or 5 min continuous crank",[["","30 min",[],"min"]]],["Starter engagement — N2 limit",[["ground","10%",[],"%"],["flight","18%",[],"%"]]],["Maximum cycle time",[["manual start","2 min",[],"min"],["crank","5 min",[],"min"]]],["Maximum reverse should not be used below",[["","70 kt",[],"kt"]]],["Maximum TFLEX",[["ISA +","55 °C",[],"°C"]]],["Engine start crosswind capability",[["","35 kt",[],"kt"]]]],"ref":"IAE FCOM LIM-ENG pp.1/4-3/4 · A/C 20-IMHT · 13 AUG 2018 · PDF pp.3737-3739 · FOR ENGINEERING USE ONLY. Oil quantity: confirm the applicable before-walkaround procedure."},
  {"t":"APU","rows":[["Maximum N speed",[["","107%",[],"%"]]],["Wait after 3 consecutive start attempts",[["","60 min",[],"min"]]],["EGT — start below / above 35,000 ft",[["below","1090 °C",[],"°C"],["above","1120 °C",[],"°C"]]],["EGT — running",[["","675 °C",[],"°C"]]],["Bleed — max alt, engine start",[["","20,000 ft",[],"ft"]]],["Bleed — max alt, single / dual pack",[["single","22,500 ft",[],"ft"],["dual","15,000 ft",[],"ft"]]],["Battery-only start — after BAT AUTO",[["","within 30 min",[],"min"]]]]},
  {"t":"AUTOPILOT — MINIMUM USE HEIGHT","rows":[["Takeoff",[["","100 ft",[],"ft AGL"]]],["Approach — F-G/S",[["","200 ft",[],"ft AGL"]]],["FINAL APP / V/S / FPA",[["","250 ft",[],"ft AGL"]]],["Circling — cat C / cat D",[["cat C","500 ft",[],"ft"],["cat D","600 ft",[],"ft"]]],["ILS/MLS or GLS — CAT 1 displayed",[["","160 ft",[],"ft AGL"]]],["PAR approach",[["","250 ft",[],"ft AGL"]]],["After manual go-around",[["","100 ft",[],"ft AGL"]]],["All other phases",[["","500 ft",[],"ft AGL"]]]]},
  {"t":"AUTOLAND","rows":[["CAT II — minimum DH",[["","100 ft",[],"ft"]]],["CAT II manual landing — AP off by",[["","80 ft",[],"ft AGL"]]],["CAT III fail-passive — minimum DH",[["","50 ft",[],"ft"]]],["CAT III DUAL — alert height",[["","100 ft",[],"ft"]]],["CAT III with DH — minimum DH",[["","20 ft",[],"ft"]]],["CAT III without DH — minimum RVR",[["","75 m",[],"m"]]],["Demonstrated glide-slope range",[["","-2.5° to -3.15°",[],"°"]]],["Maximum airport elevation",[["","9,200 ft",[],"ft"]]],["Not allowed below pressure altitude",[["","-1,000 ft",[],"ft"]]],["Maximum wind — head / tail / cross",[["head","30 kt",[],"kt"],["tail","10 kt",[],"kt"],["cross","20 kt",[],"kt"]]],["Engine-out procedures complete before",[["","1,000 ft",[],"ft"]]]]},
@@ -1429,6 +1173,7 @@ function buildFill(){
   FILL_SECTIONS.forEach(secn=>{
     const b=document.createElement("div"); b.className="fblk";
     b.innerHTML='<h3>'+secn.t+'</h3>';
+    if(secn.ref){const note=document.createElement("p");note.className="source-status engineering";note.textContent=secn.ref;b.appendChild(note);}
     secn.rows.forEach(([label,vals])=>{
       const row=document.createElement("div"); row.className="frow";
       const fl=document.createElement("div"); fl.className="fl"; fl.textContent=label;
@@ -1496,7 +1241,8 @@ function renderLkList(){
     const d=document.createElement("div"); d.className="lk-item";
     d.innerHTML='<div class="lka">'+q.o[q.a]+'</div>'+
                 '<div class="lkq">'+q.q+'</div>'+
-                (q.w?'<div class="lkw">'+q.w+'</div>':'');
+                (q.w?'<div class="lkw">'+q.w+'</div>':'')+
+                (q.ref?'<div class="lkw">'+q.ref+'</div>':'')+sourceStatusHtml(q);
     host.appendChild(d);
   });
 }
@@ -1514,13 +1260,6 @@ document.addEventListener("keydown",e=>{
       if(opts[idx]&&!opts[idx].disabled)opts[idx].click();
     }
     if(e.key==="Enter"&&$("nextRow").style.display!=="none")$("nextBtn").click();
-  }else if(!sec.studyQuiz.classList.contains("hidden")){
-    if(/^[1-4]$/.test(e.key)){
-      const opts=$("ssOpts").children;
-      const idx=+e.key-1;
-      if(opts[idx]&&!opts[idx].disabled)opts[idx].click();
-    }
-    if(e.key==="Enter"&&$("ssNextRow").style.display!=="none")$("ssNext").click();
   }
 });
 </script>

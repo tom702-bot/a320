@@ -1,10 +1,9 @@
-/*
- * Systems Exam Prep sourced from the supplied A320 Student Study Questions.
- * Reconciled to AAT A320 FCOM A/C 21-CMHT, custom issue 16 MAR 2026
- * (Airbus content issue 22 MAY 2024). AAT YMML simulator scope: IAE V2500.
+/* Student-guide questions with explicit per-item source status.
+ * IAE corrections reference the supplied FCOM engineering-use inserts.
+ * Remaining references await individual applicability review; no blanket FCOM certification.
  * Guide numbering 311-317 is absent from the supplied PDF.
  */
-window.SYSTEMS_EXAM_SOURCE = "A320 Student Study Questions · reconciled to AAT A320 FCOM 21-CMHT, custom issue 16 MAR 2026";
+window.SYSTEMS_EXAM_SOURCE = "A320 Student Study Questions · item-level source status and references";
 window.SYSTEMS_EXAM_TOPICS = [
   "General",
   "EIS",
@@ -28,7 +27,7 @@ window.SYSTEMS_EXAM_TOPICS = [
 ];
 window.SYSTEMS_EXAM_QUESTIONS = [
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 1,
     "p": 2,
     "c": "General",
@@ -42,10 +41,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The old chapter-number answer was obsolete. Antenna locations are in the current Aircraft General description.",
     "ref": "FCOM DSC-20-20, Aircraft General — Aircraft Description · Guide Q1, PDF p.2",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 2,
     "p": 2,
     "c": "General",
@@ -57,12 +56,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Tail Cone"
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Outside Wingtip Guide Q2, PDF p.2.",
+    "w": "Student guide answer retained: Outside Wingtip Guide Q2, PDF p.2.",
     "ref": "FCOM DSC-20, Aircraft General · Guide Q2, PDF p.2",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 3,
     "p": 2,
     "c": "EIS",
@@ -74,12 +73,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Whenever the RCL pushbutton is pressed (to Recall Aircraft Status)."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Automatically after ECAM Messages and any Secondary Failure SDs have been 'CLR' ed. Guide Q3, PDF p.2.",
+    "w": "Student guide answer retained: Automatically after ECAM Messages and any Secondary Failure SDs have been 'CLR' ed. Guide Q3, PDF p.2.",
     "ref": "FCOM DSC-31, Indicating and Recording Systems · Guide Q3, PDF p.2",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 4,
     "p": 2,
     "c": "EIS",
@@ -91,12 +90,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Can be displayed on ND2 by pressing and holding the appropriate ECP pushbutton."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Can be displayed on either ND using the ECAM/ND XFR Switch. Guide Q4, PDF p.2.",
+    "w": "Student guide answer retained: Can be displayed on either ND using the ECAM/ND XFR Switch. Guide Q4, PDF p.2.",
     "ref": "FCOM DSC-31, Indicating and Recording Systems · Guide Q4, PDF p.2",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 5,
     "p": 2,
     "c": "EIS",
@@ -108,12 +107,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Is lost from the Captain's side."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Is shown on PFD 2 and ND 1. Guide Q5, PDF p.2.",
+    "w": "Student guide answer retained: Is shown on PFD 2 and ND 1. Guide Q5, PDF p.2.",
     "ref": "FCOM DSC-31, Indicating and Recording Systems · Guide Q5, PDF p.2",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 6,
     "p": 2,
     "c": "EIS",
@@ -125,12 +124,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "At DH + 100."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: At MDA. Guide Q6, PDF p.2.",
+    "w": "Student guide answer retained: At MDA. Guide Q6, PDF p.2.",
     "ref": "FCOM DSC-31, Indicating and Recording Systems · Guide Q6, PDF p.2",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 7,
     "p": 3,
     "c": "EIS",
@@ -144,10 +143,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "An inactive primary route is shown as a dashed green line.",
     "ref": "FCOM DSC-31-45, Navigation Display · Guide Q7, PDF p.3",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 8,
     "p": 3,
     "c": "EIS",
@@ -159,12 +158,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The SDACs will continue to provide Attention Getters."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: ECAM System Display Indications will be normal. Guide Q8, PDF p.3.",
+    "w": "Student guide answer retained: ECAM System Display Indications will be normal. Guide Q8, PDF p.3.",
     "ref": "FCOM DSC-31, Indicating and Recording Systems · Guide Q8, PDF p.3",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 9,
     "p": 3,
     "c": "EIS",
@@ -176,12 +175,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Automatic switching in the event of DMC failure."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Two FWCs to generate Red Warning / Amber Caution Lights and Aurals. Guide Q9, PDF p.3.",
+    "w": "Student guide answer retained: Two FWCs to generate Red Warning / Amber Caution Lights and Aurals. Guide Q9, PDF p.3.",
     "ref": "FCOM DSC-31, Indicating and Recording Systems · Guide Q9, PDF p.3",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 10,
     "p": 3,
     "c": "EIS",
@@ -193,12 +192,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Any SDs for Inoperative systems automatically when the Landing Gear is extended."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Fault Messages and/or Memos on the E/WD. Guide Q10, PDF p.3.",
+    "w": "Student guide answer retained: Fault Messages and/or Memos on the E/WD. Guide Q10, PDF p.3.",
     "ref": "FCOM DSC-31, Indicating and Recording Systems · Guide Q10, PDF p.3",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 11,
     "p": 3,
     "c": "EIS",
@@ -210,12 +209,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Use of ECAM can be recovered by using the ECAM XFR switch on the switching panel."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: CLR, RCL, STS, EMERG CANC and ALL pushbutton switches remain operative. Guide Q11, PDF p.3.",
+    "w": "Student guide answer retained: CLR, RCL, STS, EMERG CANC and ALL pushbutton switches remain operative. Guide Q11, PDF p.3.",
     "ref": "FCOM DSC-31, Indicating and Recording Systems · Guide Q11, PDF p.3",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 12,
     "p": 3,
     "c": "EIS",
@@ -229,10 +228,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The CONF 1 manoeuvring speed is identified by the green S symbol.",
     "ref": "FCOM DSC-31-40, PFD Speed Scale · Guide Q12, PDF p.3",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 13,
     "p": 3,
     "c": "EIS",
@@ -244,12 +243,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "When the flight directors disagree"
     ],
     "a": 0,
-    "w": "The current FCOM specifies a difference of more than 5° between the heading data displayed on both PFDs and NDs.",
+    "w": "The retained answer specifies a difference of more than 5° between the heading data displayed on both PFDs and NDs.",
     "ref": "FCOM DSC-31-05-60, Side 1/Side 2 Discrepancy Messages · Guide Q13, PDF p.3",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 14,
     "p": 4,
     "c": "EIS",
@@ -263,10 +262,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The temporary route is dashed yellow and the secondary route is white.",
     "ref": "FCOM DSC-31-45, Navigation Display · Guide Q14, PDF p.4",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 15,
     "p": 4,
     "c": "EIS",
@@ -278,12 +277,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "On both PFDs provided at least one RA is operative."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: On both PFDs provided at least one RA is operative. Guide Q15, PDF p.4.",
+    "w": "Student guide answer retained: On both PFDs provided at least one RA is operative. Guide Q15, PDF p.4.",
     "ref": "FCOM DSC-31, Indicating and Recording Systems · Guide Q15, PDF p.4",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 16,
     "p": 4,
     "c": "EIS",
@@ -297,10 +296,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "A selected altitude target may be displayed in blue; managed constraints are magenta.",
     "ref": "FCOM DSC-31-40, PFD Altitude Scale · Guide Q16, PDF p.4",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 17,
     "p": 4,
     "c": "EIS",
@@ -314,10 +313,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The active flight-plan route is solid green; an inactive diversion route is dashed blue.",
     "ref": "FCOM DSC-31-45, Navigation Display · Guide Q17, PDF p.4",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 18,
     "p": 5,
     "c": "Autoflight & FMGS",
@@ -329,12 +328,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Managed Approach Speed is only available following arming of the App pushbutton."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: In climb, Cruise, Descent or Approach you may use Selected or Managed Speed as you wish. Guide Q18, PDF p.5.",
+    "w": "Student guide answer retained: In climb, Cruise, Descent or Approach you may use Selected or Managed Speed as you wish. Guide Q18, PDF p.5.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q18, PDF p.5",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 19,
     "p": 5,
     "c": "Autoflight & FMGS",
@@ -346,12 +345,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "MAN TOGA - SRS — NAV."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: MAN TOGA- SRS - RWY. Guide Q19, PDF p.5.",
+    "w": "Student guide answer retained: MAN TOGA- SRS - RWY. Guide Q19, PDF p.5.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q19, PDF p.5",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 20,
     "p": 5,
     "c": "Autoflight & FMGS",
@@ -363,12 +362,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "CLB (magenta) becoming ALT* (green) becoming ALT CSTR (green)."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: CLB (green) becoming ALT CST* (green) becoming ALT CSTR (green). Guide Q20, PDF p.5.",
+    "w": "Student guide answer retained: CLB (green) becoming ALT CST* (green) becoming ALT CSTR (green). Guide Q20, PDF p.5.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q20, PDF p.5",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 21,
     "p": 5,
     "c": "Autoflight & FMGS",
@@ -380,12 +379,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "With first Climb after Initial Level Out on SID."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Automatically on reaching the Acceleration Altitude. Guide Q21, PDF p.5.",
+    "w": "Student guide answer retained: Automatically on reaching the Acceleration Altitude. Guide Q21, PDF p.5.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q21, PDF p.5",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 22,
     "p": 5,
     "c": "Autoflight & FMGS",
@@ -397,12 +396,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The aircraft is in CLB and will observe the Altitude Constraint of 6000'."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: The aircraft is in CLB and will observe the Altitude Constraint of 6000'. Guide Q22, PDF p.5.",
+    "w": "Student guide answer retained: The aircraft is in CLB and will observe the Altitude Constraint of 6000'. Guide Q22, PDF p.5.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q22, PDF p.5",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 23,
     "p": 5,
     "c": "Autoflight & FMGS",
@@ -414,12 +413,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Amber Star next to Predicted Altitude on the F/PLN page."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Amber Star next to Predicted Altitude on the F/PLN page. Guide Q23, PDF p.5.",
+    "w": "Student guide answer retained: Amber Star next to Predicted Altitude on the F/PLN page. Guide Q23, PDF p.5.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q23, PDF p.5",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 24,
     "p": 6,
     "c": "Autoflight & FMGS",
@@ -431,12 +430,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "GS (blue) until on LLZ then G/S (green) / LOC (green) only."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: ALT (green) G/S (blue) / HDG (green) LOC (blue). Guide Q24, PDF p.6.",
+    "w": "Student guide answer retained: ALT (green) G/S (blue) / HDG (green) LOC (blue). Guide Q24, PDF p.6.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q24, PDF p.6",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 25,
     "p": 6,
     "c": "Autoflight & FMGS",
@@ -450,10 +449,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "NAV can re-engage when the aircraft track will intercept the active leg between the FROM and TO waypoints; non-sequenced waypoints may need to be cleared first.",
     "ref": "FCOM DSC-22_30-40-30-20, NAV Mode — Engagement Conditions · Guide Q25, PDF p.6",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 26,
     "p": 6,
     "c": "Autoflight & FMGS",
@@ -465,12 +464,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "FD2 has failed: F/D on PFD2 is unavailable."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: FD2 is switched OFF. Guide Q26, PDF p.6.",
+    "w": "Student guide answer retained: FD2 is switched OFF. Guide Q26, PDF p.6.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q26, PDF p.6",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 27,
     "p": 6,
     "c": "Autoflight & FMGS",
@@ -482,12 +481,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Master Warnings Indications and ECAM Red MEMO will self cancel after a few seconds."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Master Warnings Indications and ECAM Red MEMO will self cancel after a few seconds. Guide Q27, PDF p.6.",
+    "w": "Student guide answer retained: Master Warnings Indications and ECAM Red MEMO will self cancel after a few seconds. Guide Q27, PDF p.6.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q27, PDF p.6",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 28,
     "p": 6,
     "c": "Autoflight & FMGS",
@@ -501,10 +500,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "All three relationships in the first option are described by the autothrust logic.",
     "ref": "FCOM DSC-22-30-90, Autothrust · Guide Q28, PDF p.6",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 29,
     "p": 6,
     "c": "Autoflight & FMGS",
@@ -516,12 +515,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Causes the Autopilot to disengage."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Causes the Flight Director display to disappear. Guide Q29, PDF p.6.",
+    "w": "Student guide answer retained: Causes the Flight Director display to disappear. Guide Q29, PDF p.6.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q29, PDF p.6",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 30,
     "p": 7,
     "c": "Autoflight & FMGS",
@@ -535,10 +534,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "ALPHA FLOOR commands TOGA regardless of thrust-lever position. It is available from liftoff to 100 ft RA on approach.",
     "ref": "FCOM DSC-22_30-50-50, ALPHA FLOOR · Guide Q30, PDF p.7",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 31,
     "p": 7,
     "c": "Autoflight & FMGS",
@@ -550,12 +549,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The new TO waypoint must be part of the Active Flight Plan."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Press the DIR TO pushbutton, select or define the Waypoint. Guide Q31, PDF p.7.",
+    "w": "Student guide answer retained: Press the DIR TO pushbutton, select or define the Waypoint. Guide Q31, PDF p.7.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q31, PDF p.7",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 32,
     "p": 7,
     "c": "Autoflight & FMGS",
@@ -567,12 +566,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "At the ToD Point, DECELERATE will be displayed on the PFD and the MCDU A Lower Altitude should be set in the FCU and then the Altitude Selector Pulled or Pushed."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: At the ToD Point, DECELERATE will be displayed on the PFD and the MCDU A Lower Altitude should be set in the FCU and then the Altitude Selector Pulled or Pushed. Guide Q32, PDF p.7.",
+    "w": "Student guide answer retained: At the ToD Point, DECELERATE will be displayed on the PFD and the MCDU A Lower Altitude should be set in the FCU and then the Altitude Selector Pulled or Pushed. Guide Q32, PDF p.7.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q32, PDF p.7",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 33,
     "p": 7,
     "c": "Autoflight & FMGS",
@@ -584,12 +583,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "THRCLB/VS."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: THRIDLE/ OP DES. Guide Q33, PDF p.7.",
+    "w": "Student guide answer retained: THRIDLE/ OP DES. Guide Q33, PDF p.7.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q33, PDF p.7",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 34,
     "p": 7,
     "c": "Autoflight & FMGS",
@@ -601,12 +600,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "PROG page."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: INIT Page B. Guide Q34, PDF p.7.",
+    "w": "Student guide answer retained: INIT Page B. Guide Q34, PDF p.7.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q34, PDF p.7",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 35,
     "p": 7,
     "c": "Autoflight & FMGS",
@@ -618,12 +617,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "PROG."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: PROG. Guide Q35, PDF p.7.",
+    "w": "Student guide answer retained: PROG. Guide Q35, PDF p.7.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q35, PDF p.7",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 36,
     "p": 7,
     "c": "Autoflight & FMGS",
@@ -635,12 +634,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Configure the aircraft without delay, as Target Managed Speed will reduce to VAPP."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: The Managed Target Speed will be appropriate to the aircraft configuration. Guide Q36, PDF p.7.",
+    "w": "Student guide answer retained: The Managed Target Speed will be appropriate to the aircraft configuration. Guide Q36, PDF p.7.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q36, PDF p.7",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 37,
     "p": 8,
     "c": "Autoflight & FMGS",
@@ -652,12 +651,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "To Change to Selected Speed, Push the FCU Speed Selector and Turn."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: There is a Magenta Target Speed on the PFD. Guide Q37, PDF p.8.",
+    "w": "Student guide answer retained: There is a Magenta Target Speed on the PFD. Guide Q37, PDF p.8.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q37, PDF p.8",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 38,
     "p": 8,
     "c": "Autoflight & FMGS",
@@ -669,12 +668,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "MAN TOGA — SRS — NAV."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: MAN FLEX — SRS — RWY. Guide Q38, PDF p.8.",
+    "w": "Student guide answer retained: MAN FLEX — SRS — RWY. Guide Q38, PDF p.8.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q38, PDF p.8",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 39,
     "p": 8,
     "c": "Autoflight & FMGS",
@@ -688,10 +687,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Because the FCU altitude is the limiting target, ALT* captures the selected altitude rather than the higher constraint.",
     "ref": "FCOM DSC-22_30-40, Vertical Modes · Guide Q39, PDF p.8",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 40,
     "p": 8,
     "c": "Autoflight & FMGS",
@@ -703,12 +702,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "7"
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: 6 Guide Q40, PDF p.8.",
+    "w": "Student guide answer retained: 6 Guide Q40, PDF p.8.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q40, PDF p.8",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 41,
     "p": 8,
     "c": "Autoflight & FMGS",
@@ -720,12 +719,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The aircraft is in DES and will observe the Altitude Constraint of 8000."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: The aircraft is in DES and will observe the Altitude Constraint of 8000. Guide Q41, PDF p.8.",
+    "w": "Student guide answer retained: The aircraft is in DES and will observe the Altitude Constraint of 8000. Guide Q41, PDF p.8.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q41, PDF p.8",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 42,
     "p": 8,
     "c": "Autoflight & FMGS",
@@ -737,12 +736,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Amber Circle around the Waypoint."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Amber Circle around the Waypoint. Guide Q42, PDF p.8.",
+    "w": "Student guide answer retained: Amber Circle around the Waypoint. Guide Q42, PDF p.8.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q42, PDF p.8",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 43,
     "p": 9,
     "c": "Autoflight & FMGS",
@@ -754,12 +753,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "SPEED (Green) / ALT (Green) + G/S Blue / HDG (Green)."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: SPEED (Green) / ALT (Green) + G/S (Blue) / LOC (Green). Guide Q43, PDF p.9.",
+    "w": "Student guide answer retained: SPEED (Green) / ALT (Green) + G/S (Blue) / LOC (Green). Guide Q43, PDF p.9.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q43, PDF p.9",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 44,
     "p": 9,
     "c": "Autoflight & FMGS",
@@ -771,12 +770,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Use the DIR TO pushbutton only."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Use the DIR TO pushbutton only. Guide Q44, PDF p.9.",
+    "w": "Student guide answer retained: Use the DIR TO pushbutton only. Guide Q44, PDF p.9.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q44, PDF p.9",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 45,
     "p": 9,
     "c": "Autoflight & FMGS",
@@ -788,12 +787,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "This is the normal indication when AP2 is engaged."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: FD1 is INOP but FD2 will drive the Flight Director Bars on PFD1 Guide Q45, PDF p.9.",
+    "w": "Student guide answer retained: FD1 is INOP but FD2 will drive the Flight Director Bars on PFD1 Guide Q45, PDF p.9.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q45, PDF p.9",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 46,
     "p": 9,
     "c": "Autoflight & FMGS",
@@ -805,12 +804,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Master Warnings Indications and ECAM Red MEMO will self cancel after a few seconds."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Use the Master Warning pushbutton to cancel Master Warning Attention Getters and the CLR pushbutton to cancel the ECAM Message. Guide Q46, PDF p.9.",
+    "w": "Student guide answer retained: Use the Master Warning pushbutton to cancel Master Warning Attention Getters and the CLR pushbutton to cancel the ECAM Message. Guide Q46, PDF p.9.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q46, PDF p.9",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 47,
     "p": 9,
     "c": "Autoflight & FMGS",
@@ -824,10 +823,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Autothrust mode is coordinated with the active pitch mode; it is not independent of it.",
     "ref": "FCOM DSC-22-30-90, Autothrust · Guide Q47, PDF p.9",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 48,
     "p": 9,
     "c": "Autoflight & FMGS",
@@ -839,12 +838,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Causes the FDs to disengage also."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Has no effect on the FD or A/THR system. Guide Q48, PDF p.9.",
+    "w": "Student guide answer retained: Has no effect on the FD or A/THR system. Guide Q48, PDF p.9.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q48, PDF p.9",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 49,
     "p": 10,
     "c": "Autoflight & FMGS",
@@ -858,10 +857,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The FMA changes to TOGA LK and thrust remains frozen. The crew cancels A.FLOOR/TOGA LK by disconnecting autothrust.",
     "ref": "FCOM DSC-22_30-50-50, ALPHA FLOOR / TOGA LK · Guide Q49, PDF p.10",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 50,
     "p": 10,
     "c": "Autoflight & FMGS",
@@ -873,12 +872,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "SPEED/VS."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: SPEED/CLB. Guide Q50, PDF p.10.",
+    "w": "Student guide answer retained: SPEED/CLB. Guide Q50, PDF p.10.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q50, PDF p.10",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 51,
     "p": 10,
     "c": "Autoflight & FMGS",
@@ -890,12 +889,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Top of Climb Wind; Alternate, Initial Fuel on Board."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Co Route or ICAO City Pair; Cruise Altitude; Cost Index. Guide Q51, PDF p.10.",
+    "w": "Student guide answer retained: Co Route or ICAO City Pair; Cruise Altitude; Cost Index. Guide Q51, PDF p.10.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q51, PDF p.10",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 52,
     "p": 10,
     "c": "Autoflight & FMGS",
@@ -907,12 +906,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "THR CLB-CLB-HDG."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: THRCLB-OPCLB-HDG. Guide Q52, PDF p.10.",
+    "w": "Student guide answer retained: THRCLB-OPCLB-HDG. Guide Q52, PDF p.10.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q52, PDF p.10",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 53,
     "p": 10,
     "c": "Autoflight & FMGS",
@@ -921,15 +920,15 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Single mode.",
       "Independent mode.",
       "Dual mode.",
-      "None of the Above."
+      "Normal operation uses none of single, independent or dual mode."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Dual mode. Guide Q53, PDF p.10.",
+    "w": "Student guide answer retained: Dual mode. Guide Q53, PDF p.10.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q53, PDF p.10",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 54,
     "p": 10,
     "c": "Autoflight & FMGS",
@@ -943,10 +942,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 1,
     "w": "Approach phase can be activated manually from PERF DES or automatically when the DECEL pseudo-waypoint is sequenced in the applicable managed modes.",
     "ref": "FCOM DSC-22_20-30, Flight Phases · Guide Q54, PDF p.10",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 55,
     "p": 10,
     "c": "Autoflight & FMGS",
@@ -958,12 +957,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "-1000 fpm."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: -1000 fpm. Guide Q55, PDF p.10.",
+    "w": "Student guide answer retained: -1000 fpm. Guide Q55, PDF p.10.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q55, PDF p.10",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 56,
     "p": 11,
     "c": "Autoflight & FMGS",
@@ -977,10 +976,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "ALT* uses a computed vertical path to capture the target altitude.",
     "ref": "FCOM DSC-22_30-40-50, ALT* Mode · Guide Q56, PDF p.11",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 57,
     "p": 11,
     "c": "Autoflight & FMGS",
@@ -992,12 +991,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Remain in Climb phase."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Remain in Climb phase. Guide Q57, PDF p.11.",
+    "w": "Student guide answer retained: Remain in Climb phase. Guide Q57, PDF p.11.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q57, PDF p.11",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 58,
     "p": 11,
     "c": "Autoflight & FMGS",
@@ -1011,10 +1010,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "GPS/INERTIAL is the basic navigation mode when GPS data is valid and successfully tested. Without valid GPS, the FMGC uses available radio updates with inertial data, or inertial-only navigation.",
     "ref": "FCOM DSC-22_20-20-10, Position Computation — Navigation Modes · Guide Q58, PDF p.11",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 59,
     "p": 11,
     "c": "Autoflight & FMGS",
@@ -1026,12 +1025,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "To set a default climb in case of FMGC failure."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: To preset a Selected Target Speed, which will become active above acceleration altitude. Guide Q59, PDF p.11.",
+    "w": "Student guide answer retained: To preset a Selected Target Speed, which will become active above acceleration altitude. Guide Q59, PDF p.11.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q59, PDF p.11",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 60,
     "p": 11,
     "c": "Autoflight & FMGS",
@@ -1045,10 +1044,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The terrain-avoidance manoeuvre uses immediate manual pitch and maximum available thrust, with speedbrakes retracted and bank managed for terrain clearance.",
     "ref": "FCOM PRO-ABN-SURV [QRH], EGPWS PULL UP Warning · Guide Q60, PDF p.11",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 61,
     "p": 11,
     "c": "Autoflight & FMGS",
@@ -1060,12 +1059,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Activate the Approach phase."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Change the destination by Lateral Modification, Enabling the Alternate or Activating the Secondary Flight Plan. Guide Q61, PDF p.11.",
+    "w": "Student guide answer retained: Change the destination by Lateral Modification, Enabling the Alternate or Activating the Secondary Flight Plan. Guide Q61, PDF p.11.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q61, PDF p.11",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 62,
     "p": 12,
     "c": "Autoflight & FMGS",
@@ -1077,12 +1076,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Any of the above."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Any of the above. Guide Q62, PDF p.12.",
+    "w": "Student guide answer retained: Any of the above. Guide Q62, PDF p.12.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q62, PDF p.12",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 63,
     "p": 12,
     "c": "Autoflight & FMGS",
@@ -1094,12 +1093,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Manually when TLA set in CLB detent, provided Acceleration altitude has been reached."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Manually when TLA set in CLB detent. Guide Q63, PDF p.12.",
+    "w": "Student guide answer retained: Manually when TLA set in CLB detent. Guide Q63, PDF p.12.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q63, PDF p.12",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 64,
     "p": 12,
     "c": "Autoflight & FMGS",
@@ -1111,12 +1110,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Maintain VAPP / Speed at GA Initiation (whichever higher) until Missed Approach acceleration altitude is reached."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Maintain VAPP / Speed at GA Initiation (whichever higher) until Missed Approach acceleration altitude is reached. Guide Q64, PDF p.12.",
+    "w": "Student guide answer retained: Maintain VAPP / Speed at GA Initiation (whichever higher) until Missed Approach acceleration altitude is reached. Guide Q64, PDF p.12.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q64, PDF p.12",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 65,
     "p": 12,
     "c": "Autoflight & FMGS",
@@ -1128,12 +1127,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Proceed directly enroute."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Return to the holding fix immediately. Guide Q65, PDF p.12.",
+    "w": "Student guide answer retained: Return to the holding fix immediately. Guide Q65, PDF p.12.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q65, PDF p.12",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 66,
     "p": 12,
     "c": "Autoflight & FMGS",
@@ -1145,12 +1144,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "FMGC 2 is completely INOP."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: FMGC1 is supplying both FDs. Guide Q66, PDF p.12.",
+    "w": "Student guide answer retained: FMGC1 is supplying both FDs. Guide Q66, PDF p.12.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q66, PDF p.12",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 67,
     "p": 12,
     "c": "Autoflight & FMGS",
@@ -1162,12 +1161,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "450' AGL."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: 400' AGL. Guide Q67, PDF p.12.",
+    "w": "Student guide answer retained: 400' AGL. Guide Q67, PDF p.12.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q67, PDF p.12",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 68,
     "p": 13,
     "c": "Autoflight & FMGS",
@@ -1179,12 +1178,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "There will be an Auto callout of \"SPEED SPEED SPEED\"."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: There will be an FMGS Mode Reversion. The AP temporarily abandons the V/S target and automatically decreases the vertical speed to maintain VLS. Guide Q68, PDF p.13.",
+    "w": "Student guide answer retained: There will be an FMGS Mode Reversion. The AP temporarily abandons the V/S target and automatically decreases the vertical speed to maintain VLS. Guide Q68, PDF p.13.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q68, PDF p.13",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 69,
     "p": 13,
     "c": "Autoflight & FMGS",
@@ -1196,12 +1195,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "PERF."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: PROG. Guide Q69, PDF p.13.",
+    "w": "Student guide answer retained: PROG. Guide Q69, PDF p.13.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q69, PDF p.13",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 70,
     "p": 13,
     "c": "Autoflight & FMGS",
@@ -1213,12 +1212,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The lateral guidance is maintaining the track present when the TLA was selected to TOGA."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: The lateral guidance is maintaining the track present when the TLA was selected to TOGA. Guide Q70, PDF p.13.",
+    "w": "Student guide answer retained: The lateral guidance is maintaining the track present when the TLA was selected to TOGA. Guide Q70, PDF p.13.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q70, PDF p.13",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 71,
     "p": 13,
     "c": "Autoflight & FMGS",
@@ -1230,12 +1229,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "A managed Holding Speed is available."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: A managed Holding Speed is available. Guide Q71, PDF p.13.",
+    "w": "Student guide answer retained: A managed Holding Speed is available. Guide Q71, PDF p.13.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q71, PDF p.13",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 72,
     "p": 13,
     "c": "Autoflight & FMGS",
@@ -1247,12 +1246,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Line Select Entry Sector 1, 2 or 3 as appropriate."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: For a Database Hold, review and then accept or change Hold parameters. Guide Q72, PDF p.13.",
+    "w": "Student guide answer retained: For a Database Hold, review and then accept or change Hold parameters. Guide Q72, PDF p.13.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q72, PDF p.13",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 73,
     "p": 13,
     "c": "Autoflight & FMGS",
@@ -1264,12 +1263,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "By activating the SEC FPLAN"
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: When the Go - Around Phase becomes active. Guide Q73, PDF p.13.",
+    "w": "Student guide answer retained: When the Go - Around Phase becomes active. Guide Q73, PDF p.13.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q73, PDF p.13",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 74,
     "p": 14,
     "c": "Autoflight & FMGS",
@@ -1281,12 +1280,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "In Independent mode, MCDU 1 controls FMGC1 and MCDU2 controls FMGC2."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: In Independent mode, MCDU 1 controls FMGC1 and MCDU2 controls FMGC2. Guide Q74, PDF p.14.",
+    "w": "Student guide answer retained: In Independent mode, MCDU 1 controls FMGC1 and MCDU2 controls FMGC2. Guide Q74, PDF p.14.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q74, PDF p.14",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 75,
     "p": 14,
     "c": "Autoflight & FMGS",
@@ -1298,12 +1297,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "From 0 — 99; 0 will give the shortest flight time."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: From 0 - 999; 0 will give the least fuel burn. Guide Q75, PDF p.14.",
+    "w": "Student guide answer retained: From 0 - 999; 0 will give the least fuel burn. Guide Q75, PDF p.14.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q75, PDF p.14",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 76,
     "p": 14,
     "c": "Autoflight & FMGS",
@@ -1315,12 +1314,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Must be updated if planned Cruise Alt is increased."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Should be less than REC MAX as shown on the Progress page. Guide Q76, PDF p.14.",
+    "w": "Student guide answer retained: Should be less than REC MAX as shown on the Progress page. Guide Q76, PDF p.14.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q76, PDF p.14",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 77,
     "p": 14,
     "c": "Autoflight & FMGS",
@@ -1332,12 +1331,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Company Route or FROM / TO Airfields, Cruise Alt and Wind and ISA Deviation."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Company Route or FROM/ TO Airfields, Flight Nr, Cost Index, Cruise Alt. Guide Q77, PDF p.14.",
+    "w": "Student guide answer retained: Company Route or FROM/ TO Airfields, Flight Nr, Cost Index, Cruise Alt. Guide Q77, PDF p.14.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q77, PDF p.14",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 78,
     "p": 14,
     "c": "Autoflight & FMGS",
@@ -1351,10 +1350,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The DEPARTURES page is opened from a lateral revision at the departure airport.",
     "ref": "FCOM DSC-22_20-30, F-PLN Lateral Revisions · Guide Q78, PDF p.14",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 79,
     "p": 14,
     "c": "Autoflight & FMGS",
@@ -1366,12 +1365,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Lateral Revisions are accessed by a key on the right of the MCDU, Vertical Revisions by one on the left."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Vertical revisions are made either directly onto the page or through a Vertical Revision page. Guide Q79, PDF p.14.",
+    "w": "Student guide answer retained: Vertical revisions are made either directly onto the page or through a Vertical Revision page. Guide Q79, PDF p.14.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q79, PDF p.14",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 80,
     "p": 14,
     "c": "Autoflight & FMGS",
@@ -1383,12 +1382,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The FMGCs continuously compute the vector between IR and Radio positions, and, when Radio Position is not available, add the latest such vector to IR Position to establish FMGC position."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: The FMGCs continuously compute the vector between IR and Radio positions, and, when Radio Position is not available, add the latest such vector to IR Position to establish FMGC position. Guide Q80, PDF p.14.",
+    "w": "Student guide answer retained: The FMGCs continuously compute the vector between IR and Radio positions, and, when Radio Position is not available, add the latest such vector to IR Position to establish FMGC position. Guide Q80, PDF p.14.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q80, PDF p.14",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 81,
     "p": 15,
     "c": "Autoflight & FMGS",
@@ -1400,12 +1399,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The FMGS transitions into Approach Phase when the APP pushbutton is pressed."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: A Copy of the Approach Procedure (with associated Missed Approach Procedure) is added to the end of the Active Flight Plan. Guide Q81, PDF p.15.",
+    "w": "Student guide answer retained: A Copy of the Approach Procedure (with associated Missed Approach Procedure) is added to the end of the Active Flight Plan. Guide Q81, PDF p.15.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q81, PDF p.15",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 82,
     "p": 15,
     "c": "Autoflight & FMGS",
@@ -1417,12 +1416,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "With one engine inoperative, A/THR becomes active when the Thrust Lever of the Operating Engine is set to MCT."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: With one engine inoperative, A/THR becomes active when the Thrust Lever of the Operating Engine is set to MCT. Guide Q82, PDF p.15.",
+    "w": "Student guide answer retained: With one engine inoperative, A/THR becomes active when the Thrust Lever of the Operating Engine is set to MCT. Guide Q82, PDF p.15.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q82, PDF p.15",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 83,
     "p": 15,
     "c": "Autoflight & FMGS",
@@ -1434,12 +1433,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "If the FPV is displayed, the FPD will engage in TRK and FPA modes."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: If the FPV is displayed, the FPD will engage in TRK and FPA modes. Guide Q83, PDF p.15.",
+    "w": "Student guide answer retained: If the FPV is displayed, the FPD will engage in TRK and FPA modes. Guide Q83, PDF p.15.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q83, PDF p.15",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 84,
     "p": 15,
     "c": "Autoflight & FMGS",
@@ -1453,10 +1452,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "ALT* is the altitude-capture mode; ALT without the star is altitude hold.",
     "ref": "FCOM DSC-22_30-40-50, Altitude Modes · Guide Q84, PDF p.15",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 85,
     "p": 15,
     "c": "Autoflight & FMGS",
@@ -1470,10 +1469,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "When NAV is armed before takeoff, it normally engages at 30 ft radio altitude. The legacy guide's degree symbol was an OCR error.",
     "ref": "FCOM DSC-22_30-40-30, NAV Mode — Engagement Conditions · Guide Q85, PDF p.15",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 86,
     "p": 15,
     "c": "Autoflight & FMGS",
@@ -1485,12 +1484,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Either the LOC or the APP FCU pushbutton is illuminated green."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: A second autopilot has been engaged within the last few seconds. Guide Q86, PDF p.15.",
+    "w": "Student guide answer retained: A second autopilot has been engaged within the last few seconds. Guide Q86, PDF p.15.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q86, PDF p.15",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 87,
     "p": 15,
     "c": "Autoflight & FMGS",
@@ -1502,12 +1501,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "This knob cannot be pushed in."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: An immediate level off is commanded. Guide Q87, PDF p.15.",
+    "w": "Student guide answer retained: An immediate level off is commanded. Guide Q87, PDF p.15.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q87, PDF p.15",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 88,
     "p": 16,
     "c": "Autoflight & FMGS",
@@ -1519,12 +1518,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Both APs can be selected ON after Approach Phase is Activated."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: If a Heading is preset before Takeoff, it will not be cancelled after 45 seconds. Guide Q88, PDF p.16.",
+    "w": "Student guide answer retained: If a Heading is preset before Takeoff, it will not be cancelled after 45 seconds. Guide Q88, PDF p.16.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q88, PDF p.16",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 89,
     "p": 16,
     "c": "Autoflight & FMGS",
@@ -1536,12 +1535,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "When any other lateral mode is disengaged."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Automatically at 30 feet RA after take-off when previously armed. Guide Q89, PDF p.16.",
+    "w": "Student guide answer retained: Automatically at 30 feet RA after take-off when previously armed. Guide Q89, PDF p.16.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q89, PDF p.16",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 90,
     "p": 16,
     "c": "Autoflight & FMGS",
@@ -1553,12 +1552,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "At 400' ams! only if both APs are engaged."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: At 400' Radio (ILS Approaches only) Guide Q90, PDF p.16.",
+    "w": "Student guide answer retained: At 400' Radio (ILS Approaches only) Guide Q90, PDF p.16.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q90, PDF p.16",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 91,
     "p": 16,
     "c": "Autoflight & FMGS",
@@ -1570,12 +1569,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "By the A/THR light on the FCU, and on the FMA."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: By the A/THR light on the FCU, and on the FMA. Guide Q91, PDF p.16.",
+    "w": "Student guide answer retained: By the A/THR light on the FCU, and on the FMA. Guide Q91, PDF p.16.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q91, PDF p.16",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 92,
     "p": 16,
     "c": "Autoflight & FMGS",
@@ -1587,12 +1586,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Active until Acceleration Altitude (or, for a low initial level-off, until ALT* becomes active)."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Active until Acceleration Altitude (or, for a low initial level-off, until ALT* becomes active). Guide Q92, PDF p.16.",
+    "w": "Student guide answer retained: Active until Acceleration Altitude (or, for a low initial level-off, until ALT* becomes active). Guide Q92, PDF p.16.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q92, PDF p.16",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 93,
     "p": 16,
     "c": "Autoflight & FMGS",
@@ -1604,12 +1603,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Dashed green"
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Solid blue Guide Q93, PDF p.16.",
+    "w": "Student guide answer retained: Solid blue Guide Q93, PDF p.16.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q93, PDF p.16",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 94,
     "p": 16,
     "c": "Autoflight & FMGS",
@@ -1621,12 +1620,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The VORs are those that may be displayed on the NDs / DDRMI. They may have been Automatically or Manually tuned."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: The VORs are those that may be displayed on the NDs / DDRMI. They may have been Automatically or Manually tuned. Guide Q94, PDF p.16.",
+    "w": "Student guide answer retained: The VORs are those that may be displayed on the NDs / DDRMI. They may have been Automatically or Manually tuned. Guide Q94, PDF p.16.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q94, PDF p.16",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 95,
     "p": 17,
     "c": "Autoflight & FMGS",
@@ -1638,12 +1637,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Must be changed if Planned Cruise Altitude is changed."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: A cost index of 30 gives a lower speed than a cost index of 60. Guide Q95, PDF p.17.",
+    "w": "Student guide answer retained: A cost index of 30 gives a lower speed than a cost index of 60. Guide Q95, PDF p.17.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q95, PDF p.17",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 96,
     "p": 17,
     "c": "Autoflight & FMGS",
@@ -1655,12 +1654,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Will be automatically decreased if Top of Climb is below planned CRZ Alt."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Will be automatically increased if achieved Final Altitude is higher than CRZ Altitude. Guide Q96, PDF p.17.",
+    "w": "Student guide answer retained: Will be automatically increased if achieved Final Altitude is higher than CRZ Altitude. Guide Q96, PDF p.17.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q96, PDF p.17",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 97,
     "p": 17,
     "c": "Autoflight & FMGS",
@@ -1672,12 +1671,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Cruise Level, Cruise Cog, Taxi Fuel, ZFW."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: ZFW CG, ZFW, Fuel Loaded. Guide Q97, PDF p.17.",
+    "w": "Student guide answer retained: ZFW CG, ZFW, Fuel Loaded. Guide Q97, PDF p.17.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q97, PDF p.17",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 98,
     "p": 17,
     "c": "Autoflight & FMGS",
@@ -1689,12 +1688,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "CLB mode, if engaged, will revert to OP CLB."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: CLB mode, if engaged, will revert to OP CLB. Guide Q98, PDF p.17.",
+    "w": "Student guide answer retained: CLB mode, if engaged, will revert to OP CLB. Guide Q98, PDF p.17.",
     "ref": "FCOM DSC-22, Auto Flight · Guide Q98, PDF p.17",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 99,
     "p": 17,
     "c": "Autoflight & FMGS",
@@ -1708,10 +1707,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The PERF APPR page uses the landing configuration, QNH, surface temperature and tower wind among its approach inputs.",
     "ref": "FCOM DSC-22_20-30, PERF APPR Page · Guide Q99, PDF p.17",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 100,
     "p": 17,
     "c": "Air & Pressurisation",
@@ -1723,12 +1722,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Only if Engine Bleed Pressure is Low."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Yes Guide Q100, PDF p.17.",
+    "w": "Student guide answer retained: Yes Guide Q100, PDF p.17.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q100, PDF p.17",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 101,
     "p": 17,
     "c": "Air & Pressurisation",
@@ -1740,12 +1739,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Switch off the APU, but open the Crossbleed to maintain two pack operation."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: APU Bleed and Crossbleed valve will close; Left Engine Bleed valve will remain Closed. Guide Q101, PDF p.17.",
+    "w": "Student guide answer retained: APU Bleed and Crossbleed valve will close; Left Engine Bleed valve will remain Closed. Guide Q101, PDF p.17.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q101, PDF p.17",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 102,
     "p": 18,
     "c": "Air & Pressurisation",
@@ -1754,15 +1753,15 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "From the |P Compressor, supplemented from the HP Compressor at low Engine speeds.",
       "Is Pressure Regulated by the Bleed valve to approx 45 psi.",
       "Is Pre-cooled by Fan Air to approx 200°C.",
-      "All of the above"
+      "The extraction, pressure-regulation and pre-cooling statements are all correct."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: All of the above Guide Q102, PDF p.18.",
+    "w": "Student guide answer retained: All of the above Guide Q102, PDF p.18.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q102, PDF p.18",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 103,
     "p": 18,
     "c": "Air & Pressurisation",
@@ -1774,12 +1773,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "If BMC1 has failed, the APU Bleed Valve cannot be controlled in AUTO."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: The Cross Bleed Valve Auto Position is always over-ridden by manual SHUT or OPEN selections. Guide Q103, PDF p.18.",
+    "w": "Student guide answer retained: The Cross Bleed Valve Auto Position is always over-ridden by manual SHUT or OPEN selections. Guide Q103, PDF p.18.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q103, PDF p.18",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 104,
     "p": 18,
     "c": "Air & Pressurisation",
@@ -1791,12 +1790,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Anamber HP valve symbol means HP bleed available, but not used."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: When APU BLEED pushbutton ON and the APU running, the APU Bleed Valve and Crossbleed valve will be indicated open, and both Engine Bleed Valves will be indicated closed. Guide Q104, PDF p.18.",
+    "w": "Student guide answer retained: When APU BLEED pushbutton ON and the APU running, the APU Bleed Valve and Crossbleed valve will be indicated open, and both Engine Bleed Valves will be indicated closed. Guide Q104, PDF p.18.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q104, PDF p.18",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 105,
     "p": 19,
     "c": "Air & Pressurisation",
@@ -1808,12 +1807,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Single pack operation, APU supplying Bleed Air or High Cabin Temp required."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Single pack operation or APU supplying bleed air. Guide Q105, PDF p.19.",
+    "w": "Student guide answer retained: Single pack operation or APU supplying bleed air. Guide Q105, PDF p.19.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q105, PDF p.19",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 106,
     "p": 19,
     "c": "Air & Pressurisation",
@@ -1825,12 +1824,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Loss of cabin temp control."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Following loss of both Packs, to remove smoke or for ventilation. Guide Q106, PDF p.19.",
+    "w": "Student guide answer retained: Following loss of both Packs, to remove smoke or for ventilation. Guide Q106, PDF p.19.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q106, PDF p.19",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 107,
     "p": 19,
     "c": "Air & Pressurisation",
@@ -1842,12 +1841,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "PACK REG will be displayed on the AIRCOND SD."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: The Packs will operate in ALTN mode and maintain both Flight deck and Cabin at 24°C. Guide Q107, PDF p.19.",
+    "w": "Student guide answer retained: The Packs will operate in ALTN mode and maintain both Flight deck and Cabin at 24°C. Guide Q107, PDF p.19.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q107, PDF p.19",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 108,
     "p": 19,
     "c": "Air & Pressurisation",
@@ -1859,12 +1858,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "It is controlled within a defined temperature range by a pack internal mechanism."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: It is controlled within a defined temperature range by a pack internal mechanism. Guide Q108, PDF p.19.",
+    "w": "Student guide answer retained: It is controlled within a defined temperature range by a pack internal mechanism. Guide Q108, PDF p.19.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q108, PDF p.19",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 109,
     "p": 19,
     "c": "Air & Pressurisation",
@@ -1873,15 +1872,15 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Nothing; CPCs will change over automatically 70 seconds after landing.",
       "Select CABIN PRESS MODE SEL pushbutton to MAN for 10 sec, then back to AUTO to force CPCs changeover.",
       "Briefly select the MANUAL Landing Elevation Selector out of the AUTO detent to force CPC changeover.",
-      "Either B or C."
+      "Either select pressure mode MAN for 10 seconds then AUTO, or briefly move landing elevation out of AUTO."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Select CABIN PRESS MODE SEL pushbutton to MAN for 10 sec, then back to AUTO to force CPCs changeover. Guide Q109, PDF p.19.",
+    "w": "Student guide answer retained: Select CABIN PRESS MODE SEL pushbutton to MAN for 10 sec, then back to AUTO to force CPCs changeover. Guide Q109, PDF p.19.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q109, PDF p.19",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 110,
     "p": 19,
     "c": "Air & Pressurisation",
@@ -1893,12 +1892,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Manually set the Required Cabin Alt for Cruise and Descent on the Man Cabin Alt Selector"
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Select the Cabin Pressure MODE SEL pushbutton to MAN and then use the VS toggle switch to directly adjust the Outflow Valve position. Guide Q110, PDF p.19.",
+    "w": "Student guide answer retained: Select the Cabin Pressure MODE SEL pushbutton to MAN and then use the VS toggle switch to directly adjust the Outflow Valve position. Guide Q110, PDF p.19.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q110, PDF p.19",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 111,
     "p": 20,
     "c": "Air & Pressurisation",
@@ -1910,12 +1909,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "On Ground: CLOSED: In Flight: CLOSED with added Air-conditioning Air"
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: On Ground: CLOSED: In Flight: CLOSED. Guide Q111, PDF p.20.",
+    "w": "Student guide answer retained: On Ground: CLOSED: In Flight: CLOSED. Guide Q111, PDF p.20.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q111, PDF p.20",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 112,
     "p": 20,
     "c": "Air & Pressurisation",
@@ -1927,12 +1926,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Both Packs at the coldest of all 3 Selected zone temps. Trim Air is added to the supply to any zones with warmer selections"
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Both Packs at the coldest of all 3 Selected zone temps. Trim Air is added to the supply to any zones with warmer selections Guide Q112, PDF p.20.",
+    "w": "Student guide answer retained: Both Packs at the coldest of all 3 Selected zone temps. Trim Air is added to the supply to any zones with warmer selections Guide Q112, PDF p.20.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q112, PDF p.20",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 113,
     "p": 20,
     "c": "Air & Pressurisation",
@@ -1944,12 +1943,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The other CPC will continue to control the pressurisation automatically."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: The other CPC will continue to control the pressurisation automatically. Guide Q113, PDF p.20.",
+    "w": "Student guide answer retained: The other CPC will continue to control the pressurisation automatically. Guide Q113, PDF p.20.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q113, PDF p.20",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 114,
     "p": 20,
     "c": "Air & Pressurisation",
@@ -1961,12 +1960,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "If the Outflow valve has failed closed."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Only if differential pressure < 1 psi. Guide Q114, PDF p.20.",
+    "w": "Student guide answer retained: Only if differential pressure < 1 psi. Guide Q114, PDF p.20.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q114, PDF p.20",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 115,
     "p": 20,
     "c": "Air & Pressurisation",
@@ -1978,12 +1977,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Closed, but Open if the Skin Temperature is very High (>35°C)."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Closed, but Intermediate if the Skin Temperature is very High (>35°C). Guide Q115, PDF p.20.",
+    "w": "Student guide answer retained: Closed, but Intermediate if the Skin Temperature is very High (>35°C). Guide Q115, PDF p.20.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q115, PDF p.20",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 116,
     "p": 20,
     "c": "Air & Pressurisation",
@@ -1995,12 +1994,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Temperature Selectors in the Flight deck and Cabin."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: One Zone Controller and two Pack Controllers Guide Q116, PDF p.20.",
+    "w": "Student guide answer retained: One Zone Controller and two Pack Controllers Guide Q116, PDF p.20.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q116, PDF p.20",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 117,
     "p": 20,
     "c": "Air & Pressurisation",
@@ -2012,12 +2011,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Both Packs run at 24°C."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: The Secondary channel operates as back-up. Pack flow rate remains fixed at the previous setting. Guide Q117, PDF p.20.",
+    "w": "Student guide answer retained: The Secondary channel operates as back-up. Pack flow rate remains fixed at the previous setting. Guide Q117, PDF p.20.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q117, PDF p.20",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 118,
     "p": 21,
     "c": "Air & Pressurisation",
@@ -2031,10 +2030,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "COLD corresponds to 18 °C, 12 o'clock to 24 °C, and HOT to 30 °C.",
     "ref": "FCOM DSC-21-10-30, Air Conditioning Controls · Guide Q118, PDF p.21",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 119,
     "p": 21,
     "c": "Air & Pressurisation",
@@ -2046,12 +2045,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Select Pack Flow Rate to HI in order to maintain aircraft ventilation rate."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Pack 2 operates at 120% of NORMAL automatically. Guide Q119, PDF p.21.",
+    "w": "Student guide answer retained: Pack 2 operates at 120% of NORMAL automatically. Guide Q119, PDF p.21.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q119, PDF p.21",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 120,
     "p": 21,
     "c": "Air & Pressurisation",
@@ -2063,12 +2062,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Two Cabin Pressure Controllers one Outflow Valve and two Safety Valves."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Two Cabin Pressure Controllers one Outflow Valve and two Safety Valves. Guide Q120, PDF p.21.",
+    "w": "Student guide answer retained: Two Cabin Pressure Controllers one Outflow Valve and two Safety Valves. Guide Q120, PDF p.21.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q120, PDF p.21",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 121,
     "p": 21,
     "c": "Air & Pressurisation",
@@ -2082,10 +2081,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The current controller description limits the cruise cabin-altitude target to approximately 8,000 ft. The legacy 8.06-PSI wording is not used here.",
     "ref": "FCOM DSC-21-20-20, Pressurisation System Operation · Guide Q121, PDF p.21",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 122,
     "p": 21,
     "c": "Air & Pressurisation",
@@ -2097,12 +2096,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Set Pack Flow rate to HI to ensure adequate air is available for Repressurisation."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: The active CPC uses FMGC Landing Airfield Elevation to control Repressurisation. Guide Q122, PDF p.21.",
+    "w": "Student guide answer retained: The active CPC uses FMGC Landing Airfield Elevation to control Repressurisation. Guide Q122, PDF p.21.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q122, PDF p.21",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 123,
     "p": 21,
     "c": "Air & Pressurisation",
@@ -2114,12 +2113,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Emergency Ram-air Inlet and the Pack Flow Control Valves only."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Emergency Ram-air inlet, Avionics Ventilation Inlet and Extract Valves, and the Pack Valves. Guide Q123, PDF p.21.",
+    "w": "Student guide answer retained: Emergency Ram-air inlet, Avionics Ventilation Inlet and Extract Valves, and the Pack Valves. Guide Q123, PDF p.21.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q123, PDF p.21",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 124,
     "p": 21,
     "c": "Air & Pressurisation",
@@ -2131,12 +2130,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Intermediate configuration."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Intermediate configuration. Guide Q124, PDF p.21.",
+    "w": "Student guide answer retained: Intermediate configuration. Guide Q124, PDF p.21.",
     "ref": "FCOM DSC-21 / DSC-36, Air Conditioning and Pneumatics · Guide Q124, PDF p.21",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 125,
     "p": 22,
     "c": "Ice & Rain",
@@ -2148,12 +2147,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "All Angle of Attack Probes will be heated at a High Level in Flight."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Windshields and Pitots will be heated at LOW on the Ground and NORM when in Flight. Guide Q125, PDF p.22.",
+    "w": "Student guide answer retained: Windshields and Pitots will be heated at LOW on the Ground and NORM when in Flight. Guide Q125, PDF p.22.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q125, PDF p.22",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 126,
     "p": 22,
     "c": "Ice & Rain",
@@ -2165,12 +2164,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Wing anti-ice will activate for 30 seconds, then reset.It will not re-activate unless Selected ON again."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Wing anti-ice will activate for 30 seconds. However, unless switched OFF again, it will re-activate on Rotation. Guide Q126, PDF p.22.",
+    "w": "Student guide answer retained: Wing anti-ice will activate for 30 seconds. However, unless switched OFF again, it will re-activate on Rotation. Guide Q126, PDF p.22.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q126, PDF p.22",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 127,
     "p": 22,
     "c": "Ice & Rain",
@@ -2182,12 +2181,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Selected ON only when a build up of Ice is observed on the Airframe."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Selected ON when Icing Conditions are Present or Anticipated. Guide Q127, PDF p.22.",
+    "w": "Student guide answer retained: Selected ON when Icing Conditions are Present or Anticipated. Guide Q127, PDF p.22.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q127, PDF p.22",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 128,
     "p": 22,
     "c": "Ice & Rain",
@@ -2196,15 +2195,15 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Following either Wing or Pylon Leak.",
       "Following Engine Fire.",
       "When the APU is supplying Pneumatic Air.",
-      "All of the Above."
+      "Any of the listed leak, fire or APU-supply circumstances."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: All of the Above. Guide Q128, PDF p.22.",
+    "w": "Student guide answer retained: All of the Above. Guide Q128, PDF p.22.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q128, PDF p.22",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 129,
     "p": 22,
     "c": "Ice & Rain",
@@ -2216,12 +2215,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "AUTO: all probes are heated at Low Power on the ground, and all windows at High Power in the Air."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: ONor AUTO, the TAT probes are not heated on the ground. Guide Q129, PDF p.22.",
+    "w": "Student guide answer retained: ONor AUTO, the TAT probes are not heated on the ground. Guide Q129, PDF p.22.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q129, PDF p.22",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 130,
     "p": 22,
     "c": "Ice & Rain",
@@ -2233,12 +2232,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Icing conditions should be avoided."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: The anti ice valves open automatically. Guide Q130, PDF p.22.",
+    "w": "Student guide answer retained: The anti ice valves open automatically. Guide Q130, PDF p.22.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q130, PDF p.22",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 131,
     "p": 23,
     "c": "Ice & Rain",
@@ -2250,12 +2249,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Do not Extend Slats."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: The pushbutton light indicates FAULT (Amber) while the valves transit then ON (Blue). Guide Q131, PDF p.23.",
+    "w": "Student guide answer retained: The pushbutton light indicates FAULT (Amber) while the valves transit then ON (Blue). Guide Q131, PDF p.23.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q131, PDF p.23",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 132,
     "p": 23,
     "c": "Ice & Rain",
@@ -2267,12 +2266,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "WAI Valves stay open until the WAI is selected off."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: WAI Valves open for 30 seconds, and then close. Guide Q132, PDF p.23.",
+    "w": "Student guide answer retained: WAI Valves open for 30 seconds, and then close. Guide Q132, PDF p.23.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q132, PDF p.23",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 133,
     "p": 23,
     "c": "Ice & Rain",
@@ -2284,12 +2283,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The Wing Anti-ice control Valve on the affected side will close."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: The Wing Anti-ice control Valve on the affected side will close. Guide Q133, PDF p.23.",
+    "w": "Student guide answer retained: The Wing Anti-ice control Valve on the affected side will close. Guide Q133, PDF p.23.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q133, PDF p.23",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 134,
     "p": 23,
     "c": "Ice & Rain",
@@ -2301,12 +2300,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Only operates when the temperature falls below 10°C."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Operates at Low power on the ground after engine start and at Normal power in flight. Guide Q134, PDF p.23.",
+    "w": "Student guide answer retained: Operates at Low power on the ground after engine start and at Normal power in flight. Guide Q134, PDF p.23.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q134, PDF p.23",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 135,
     "p": 23,
     "c": "Ice & Rain",
@@ -2318,46 +2317,50 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Pitots, Angle of Attack Probes Are heated whenever the Window/Probe Heat pushbutton is ON, the TAT probes are heated when airborne."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Pitots, Angle of Attack Probes Are heated whenever the Window/Probe Heat pushbutton is ON, the TAT probes are heated when airborne. Guide Q135, PDF p.23.",
+    "w": "Student guide answer retained: Pitots, Angle of Attack Probes Are heated whenever the Window/Probe Heat pushbutton is ON, the TAT probes are heated when airborne. Guide Q135, PDF p.23.",
     "ref": "FCOM DSC-30, Ice and Rain Protection · Guide Q135, PDF p.23",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 136,
     "p": 24,
     "c": "Powerplant",
-    "q": "Reverse thrust translating sleeves are actuated by what system?",
+    "q": "Which hydraulic systems actuate the IAE thrust-reverser translating sleeves?",
     "o": [
-      "Green and Blue Hydraulics.",
-      "Green hydraulics.",
-      "Yellow hydraulics.",
-      "G+ Yellow hydraulics."
+      "Engine 1: green; engine 2: yellow hydraulics",
+      "Both engines: blue hydraulics",
+      "Both engines: green hydraulics",
+      "Engine 1: yellow; engine 2: green hydraulics"
     ],
-    "a": 3,
-    "w": "FCOM cross-check retained the guide answer: G+ Yellow hydraulics. Guide Q136, PDF p.24.",
-    "ref": "FCOM DSC-70, IAE V2500 Power Plant · Guide Q136, PDF p.24",
-    "review": "fcom-checked"
+    "a": 0,
+    "w": "The reversers have independent hydraulic actuation: engine 1 green, engine 2 yellow.",
+    "ref": "FCOM DSC-70-70 p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.2293 · FOR ENGINEERING USE ONLY · Guide Q136, PDF p.24",
+    "review": "iae-training-checked",
+    "evidence": "reverserHydraulics",
+    "revision": "iae-20260905"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 137,
     "p": 24,
     "c": "Powerplant",
-    "q": "If one channel of the engine FADEC fails the engine will:",
+    "q": "If the active IAE FADEC channel fails, what happens?",
     "o": [
-      "Continue to run using the other FADEC channel.",
-      "Shut down.",
-      "Operate at a fixed power setting.",
-      "Operate at IDLE thrust only."
+      "The standby channel automatically takes control",
+      "The engine must always shut down immediately",
+      "Thrust is controlled directly by the thrust-lever cable",
+      "The other engine FADEC controls both engines"
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Continue to run using the other FADEC channel. Guide Q137, PDF p.24.",
-    "ref": "FCOM DSC-70, IAE V2500 Power Plant · Guide Q137, PDF p.24",
-    "review": "fcom-checked"
+    "w": "One channel is active and one is in standby; the standby channel automatically takes control if the active channel fails.",
+    "ref": "FCOM DSC-70-20 p.1/6 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.2264 · FOR ENGINEERING USE ONLY · Guide Q137, PDF p.24",
+    "review": "iae-training-checked",
+    "evidence": "fadecChannel",
+    "revision": "iae-20260905"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 138,
     "p": 24,
     "c": "Powerplant",
@@ -2369,46 +2372,50 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "By engine oil. Fuel is also used to cool IDG Oil."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: By engine oil. Fuel is also used to cool IDG Oil. Guide Q138, PDF p.24.",
+    "w": "Student guide answer retained: By engine oil. Fuel is also used to cool IDG Oil. Guide Q138, PDF p.24.",
     "ref": "FCOM DSC-70, IAE V2500 Power Plant · Guide Q138, PDF p.24",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 139,
     "p": 24,
     "c": "Powerplant",
-    "q": "During an IAE V2500 manual start, which function remains automatic?",
+    "q": "During an IAE V2500 manual start, which action remains automatic?",
     "o": [
-      "The FADEC closes the start valve at the appropriate N2",
-      "The FADEC automatically aborts every abnormal manual start",
-      "The engine master selects itself ON at maximum motoring",
-      "Fuel is introduced with the engine master OFF"
+      "The FADEC closes the start valve at 43% N2",
+      "The FADEC automatically aborts every hot start",
+      "The FADEC selects the ENG MASTER switch ON",
+      "The FADEC moves the ENG MODE selector to NORM"
     ],
     "a": 0,
-    "w": "A manual start is monitored but is not automatically aborted; the FADEC still closes the start valve at the appropriate N2.",
-    "ref": "FCOM DSC-70-80, IAE V2500 Starting · Guide Q139, PDF p.24",
-    "review": "fcom-revised"
+    "w": "During manual start FADEC closes the start valve and cuts ignition at 43% N2, but the crew must interrupt an abnormal manual start.",
+    "ref": "FCOM DSC-70-80-40 p.5/6 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.2308 · FOR ENGINEERING USE ONLY · Guide Q139, PDF p.24",
+    "review": "iae-training-checked",
+    "evidence": "manualStart",
+    "revision": "iae-20260905"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 140,
     "p": 24,
     "c": "Powerplant",
-    "q": "How is an IAE V2500 dry crank commanded?",
+    "q": "How is manual IAE V2500 dry cranking selected?",
     "o": [
-      "ENG MODE selector to CRANK and the applicable MAN START pushbutton ON",
-      "ENG MODE selector to CRANK and engine master ON",
-      "Engine master ON only",
-      "ENG MODE selector to IGN/START with both engine masters OFF"
+      "ENG MODE to CRANK, MAN START ON, ENG MASTER OFF",
+      "ENG MODE to NORM and ENG MASTER ON",
+      "ENG MODE to IGN/START with ENG MASTER ON",
+      "ENG MODE to CRANK with ENG MASTER ON"
     ],
     "a": 0,
-    "w": "Dry cranking uses CRANK with the applicable MAN START pushbutton ON; the engine master remains OFF so fuel is not introduced.",
-    "ref": "FCOM DSC-70-80 / PRO-NOR-SUP-ENG, IAE V2500 Dry Crank · Guide Q140, PDF p.24",
-    "review": "fcom-revised"
+    "w": "Dry cranking uses CRANK and MAN START ON with ENG MASTER OFF; select MAN START OFF to stop cranking.",
+    "ref": "FCOM DSC-70-80-40 p.6/6 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.2309 · FOR ENGINEERING USE ONLY · Guide Q140, PDF p.24",
+    "review": "iae-training-checked",
+    "evidence": "dryCrank",
+    "revision": "iae-20260905"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 141,
     "p": 24,
     "c": "Powerplant",
@@ -2420,29 +2427,31 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "When the Fire pushbutton is pressed / released."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: When the Fire pushbutton is pressed / released. Guide Q141, PDF p.24.",
+    "w": "Student guide answer retained: When the Fire pushbutton is pressed / released. Guide Q141, PDF p.24.",
     "ref": "FCOM DSC-70, IAE V2500 Power Plant · Guide Q141, PDF p.24",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 142,
     "p": 24,
     "c": "Powerplant",
-    "q": "During an In Flight Start:",
+    "q": "During an automatic IAE in-flight start, how is starter assistance determined?",
     "o": [
-      "Open the Cross Bleed only if FADEC requires a Starter Assisted Start.",
-      "If the attempt fails, switch OFF Engine Master, Wait 30 seconds, then try again.",
-      "Eng MODE SEL to START IGN; MAN START pushbutton ON; at Max Motoring, Engine Master ON.",
-      "FADEC will continue to alternate the use of Igniters."
+      "FADEC decides whether windmilling speed is sufficient or starter assistance is needed",
+      "Starter assistance is never used in flight",
+      "The flight crew must always select manual start",
+      "The starter is engaged regardless of windmilling speed"
     ],
-    "a": 1,
-    "w": "FCOM cross-check retained the guide answer: If the attempt fails, switch OFF Engine Master, Wait 30 seconds, then try again. Guide Q142, PDF p.24.",
-    "ref": "FCOM DSC-70, IAE V2500 Power Plant · Guide Q142, PDF p.24",
-    "review": "fcom-checked"
+    "a": 0,
+    "w": "FADEC assesses engine parameters and the flight environment to determine whether windmilling is sufficient or starter assistance is needed. This replaces an unqualified restart-delay instruction.",
+    "ref": "FCOM DSC-70-80-40 p.2/6 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.2305 · FOR ENGINEERING USE ONLY · Guide Q142, PDF p.24",
+    "review": "iae-training-checked",
+    "evidence": "inflightStart",
+    "revision": "iae-20260905"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 143,
     "p": 25,
     "c": "Fuel",
@@ -2454,12 +2463,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Centre Tank Pumps are not running because Slats are extended or Wings are full."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Both CTR TK pumps are switched off or have failed. Any remaining CTR TK fuel is now unusable. Guide Q143, PDF p.25.",
+    "w": "Student guide answer retained: Both CTR TK pumps are switched off or have failed. Any remaining CTR TK fuel is now unusable. Guide Q143, PDF p.25.",
     "ref": "FCOM DSC-28, Fuel · Guide Q143, PDF p.25",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 144,
     "p": 25,
     "c": "Fuel",
@@ -2471,12 +2480,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "When FoB is less than 3 tonnes, all 4 Transfer valves open."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: If one of two sensors in each Inner tank detect a low level, corresponding Transfer valves, one ineach wing, willopen. Guide Q144, PDF p.25.",
+    "w": "Student guide answer retained: If one of two sensors in each Inner tank detect a low level, corresponding Transfer valves, one ineach wing, willopen. Guide Q144, PDF p.25.",
     "ref": "FCOM DSC-28, Fuel · Guide Q144, PDF p.25",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 145,
     "p": 25,
     "c": "Fuel",
@@ -2488,12 +2497,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The Centre Tank Pumps have continued to run although Slats are extended."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: There is significant fuel in the Centre Tank, yet a Wing Tank contains less than 5000 kg. Guide Q145, PDF p.25.",
+    "w": "Student guide answer retained: There is significant fuel in the Centre Tank, yet a Wing Tank contains less than 5000 kg. Guide Q145, PDF p.25.",
     "ref": "FCOM DSC-28, Fuel · Guide Q145, PDF p.25",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 146,
     "p": 25,
     "c": "Fuel",
@@ -2507,10 +2516,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "In MAN, each centre-tank pump is directly controlled by its own pushbutton.",
     "ref": "FCOM DSC-28-20, Centre Tank Pump Control · Guide Q146, PDF p.25",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 147,
     "p": 25,
     "c": "Fuel",
@@ -2522,12 +2531,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "If TXFR valves fail to open, select the FUEL TXFR Valve pushbutton to Manual."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: If one TXFR valve is signalled Open opens, a valve in the opposite wing.is also signalled Open; symmetrical transfer is assured. Guide Q147, PDF p.25.",
+    "w": "Student guide answer retained: If one TXFR valve is signalled Open opens, a valve in the opposite wing.is also signalled Open; symmetrical transfer is assured. Guide Q147, PDF p.25.",
     "ref": "FCOM DSC-28, Fuel · Guide Q147, PDF p.25",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 148,
     "p": 25,
     "c": "Fuel",
@@ -2541,10 +2550,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "MAN removes the automatic mode logic but does not override an individual pump pushbutton selected OFF.",
     "ref": "FCOM DSC-28-20, Centre Tank Pump Control · Guide Q148, PDF p.25",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 149,
     "p": 26,
     "c": "Fuel",
@@ -2556,12 +2565,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Both CTR TK PUMPS are OFF or have failed. CTR TK fuel is unusable in this condition."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Both CTR TK PUMPS are OFF or have failed. CTR TK fuel is unusable in this condition. Guide Q149, PDF p.26.",
+    "w": "Student guide answer retained: Both CTR TK PUMPS are OFF or have failed. CTR TK fuel is unusable in this condition. Guide Q149, PDF p.26.",
     "ref": "FCOM DSC-28, Fuel · Guide Q149, PDF p.26",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 150,
     "p": 26,
     "c": "Fuel",
@@ -2575,10 +2584,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The normal fuel logic uses centre-tank fuel preferentially while protecting the wing tanks from overfill.",
     "ref": "FCOM DSC-28-20, Fuel Feed Sequence · Guide Q150, PDF p.26",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 151,
     "p": 26,
     "c": "Fuel",
@@ -2590,12 +2599,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "IDG Cooling flow stops until Wing contents reduce by 500 kg."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Centre Tank Fuel Pumps stop to allow Wing Inner contents to decrease to accommodate further |DG Return Fuel. Guide Q151, PDF p.26.",
+    "w": "Student guide answer retained: Centre Tank Fuel Pumps stop to allow Wing Inner contents to decrease to accommodate further |DG Return Fuel. Guide Q151, PDF p.26.",
     "ref": "FCOM DSC-28, Fuel · Guide Q151, PDF p.26",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 152,
     "p": 26,
     "c": "Fuel",
@@ -2604,15 +2613,15 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "If one Centre Tank Pump Fails (with Centre Fuel), open the Fuel Cross-feed.",
       "If both Centre Tank Pumps fail, any remaining Centre Tank fuel is unavailable.",
       "If both Pumps in one wing fail, respect the Gravity Feed Ceiling, and, while above it, use Centre Tank fuel, or open the Fuel Cross-feed.",
-      "All of the above are correct."
+      "All three listed fuel-pump failure statements are correct."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: All of the above are correct. Guide Q152, PDF p.26.",
+    "w": "Student guide answer retained: All of the above are correct. Guide Q152, PDF p.26.",
     "ref": "FCOM DSC-28, Fuel · Guide Q152, PDF p.26",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 153,
     "p": 27,
     "c": "Navigation",
@@ -2621,15 +2630,15 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "First, select the VOR so that it is displayed on your ND.",
       "First, press the STBY NAV switch on the onside RMP.",
       "First select the Onside RMP to VOR; Second, dial in frequency; Third; dial in Course.",
-      "As in B, but use Onside RMP, or, if it has failed, RMP3."
+      "Press STBY NAV on the onside RMP, or use RMP3 if the onside RMP has failed."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: First, press the STBY NAV switch on the onside RMP. Guide Q153, PDF p.27.",
+    "w": "Student guide answer retained: First, press the STBY NAV switch on the onside RMP. Guide Q153, PDF p.27.",
     "ref": "FCOM DSC-34, Navigation · Guide Q153, PDF p.27",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 154,
     "p": 27,
     "c": "Navigation",
@@ -2643,10 +2652,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "ADIRU 1 normally supplies the DDRMI. Selecting ATT HDG to CAPT 3 lets IR 3 replace IR 1.",
     "ref": "FCOM DSC-34-NAV-10-20 / DSC-34-NAV-30-30 · Guide Q154, PDF p.27",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 155,
     "p": 27,
     "c": "Navigation",
@@ -2658,12 +2667,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Supplied Lat and Long may be inconsistent with Lat and Long at the Last IRS Shutdown."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Supplied Lat and Long may be inconsistent with Lat and Long at the Last IRS Shutdown. Guide Q155, PDF p.27.",
+    "w": "Student guide answer retained: Supplied Lat and Long may be inconsistent with Lat and Long at the Last IRS Shutdown. Guide Q155, PDF p.27.",
     "ref": "FCOM DSC-34, Navigation · Guide Q155, PDF p.27",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 156,
     "p": 27,
     "c": "Navigation",
@@ -2675,12 +2684,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "AIR DATA to CAPT 3 on the switching panel."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: The ADR1 pushbutton on the ADIRS CDU. Guide Q156, PDF p.27.",
+    "w": "Student guide answer retained: The ADR1 pushbutton on the ADIRS CDU. Guide Q156, PDF p.27.",
     "ref": "FCOM DSC-34, Navigation · Guide Q156, PDF p.27",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 157,
     "p": 27,
     "c": "Navigation",
@@ -2692,12 +2701,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Manual tuned through on-side MCDU. Audio identified."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Auto-tuned and auto identified by FMGCs. Guide Q157, PDF p.27.",
+    "w": "Student guide answer retained: Auto-tuned and auto identified by FMGCs. Guide Q157, PDF p.27.",
     "ref": "FCOM DSC-34, Navigation · Guide Q157, PDF p.27",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 158,
     "p": 27,
     "c": "Navigation",
@@ -2709,12 +2718,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Re-initialize the FMGC."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Check that the NAV Backup Selector pushbutton on RMP1 and 2 are OFF. Guide Q158, PDF p.27.",
+    "w": "Student guide answer retained: Check that the NAV Backup Selector pushbutton on RMP1 and 2 are OFF. Guide Q158, PDF p.27.",
     "ref": "FCOM DSC-34, Navigation · Guide Q158, PDF p.27",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 159,
     "p": 27,
     "c": "Navigation",
@@ -2728,10 +2737,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "In the normal switching configuration, ADIRU 1 supplies PFD 1, ND 1, the DDRMI and VOR/DME.",
     "ref": "FCOM DSC-34-NAV-10-20, ADIRS Switching · Guide Q159, PDF p.27",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 160,
     "p": 28,
     "c": "Navigation",
@@ -2745,10 +2754,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "For backup navaid tuning, the captain's RMP (RMP 1) controls VOR 1. RMP 3 is not used for navaid tuning.",
     "ref": "FCOM DSC-34-NAV-30-10, Backup Tuning · Guide Q160, PDF p.28",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 161,
     "p": 28,
     "c": "Navigation",
@@ -2760,12 +2769,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "If the FAULT light Flashes, Attitude and Heading information may be available."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: If the FAULT light Flashes, Attitude and Heading information may be available. Guide Q161, PDF p.28.",
+    "w": "Student guide answer retained: If the FAULT light Flashes, Attitude and Heading information may be available. Guide Q161, PDF p.28.",
     "ref": "FCOM DSC-34, Navigation · Guide Q161, PDF p.28",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 162,
     "p": 29,
     "c": "Lights, Doors & Oxygen",
@@ -2777,12 +2786,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "NORM/NORM"
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: NORM / 100% Guide Q162, PDF p.29.",
+    "w": "Student guide answer retained: NORM / 100% Guide Q162, PDF p.29.",
     "ref": "FCOM DSC-33 / DSC-35 / DSC-52 · Guide Q162, PDF p.29",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 163,
     "p": 29,
     "c": "Lights, Doors & Oxygen",
@@ -2794,12 +2803,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Pressure goes below 300 psi"
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Pressure goes below 400 psi. Guide Q163, PDF p.29.",
+    "w": "Student guide answer retained: Pressure goes below 400 psi. Guide Q163, PDF p.29.",
     "ref": "FCOM DSC-33 / DSC-35 / DSC-52 · Guide Q163, PDF p.29",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 164,
     "p": 29,
     "c": "Lights, Doors & Oxygen",
@@ -2811,12 +2820,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "16,000 ft in all configurations"
     ],
     "a": 0,
-    "w": "The current FCOM threshold is 14,000 ft with a +250/-750 ft tolerance. The older tolerance in the guide was revised.",
+    "w": "The retained answer gives 14,000 ft with a +250/-750 ft tolerance. The older tolerance in the guide was revised.",
     "ref": "FCOM DSC-35-30-20, Passenger Oxygen Controls · Guide Q164, PDF p.29",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 165,
     "p": 29,
     "c": "Lights, Doors & Oxygen",
@@ -2828,12 +2837,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Will only illuminate if it is switched ON."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Can be switched ON from the Flight Deck or Cabin. Guide Q165, PDF p.29.",
+    "w": "Student guide answer retained: Can be switched ON from the Flight Deck or Cabin. Guide Q165, PDF p.29.",
     "ref": "FCOM DSC-33 / DSC-35 / DSC-52 · Guide Q165, PDF p.29",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 166,
     "p": 29,
     "c": "Lights, Doors & Oxygen",
@@ -2845,12 +2854,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "If the handle is moved and the cabin is pressurized, display a white light on the door."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: When ARMED, open with automatic opening assist, Guide Q166, PDF p.29.",
+    "w": "Student guide answer retained: When ARMED, open with automatic opening assist, Guide Q166, PDF p.29.",
     "ref": "FCOM DSC-33 / DSC-35 / DSC-52 · Guide Q166, PDF p.29",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 167,
     "p": 29,
     "c": "Lights, Doors & Oxygen",
@@ -2862,12 +2871,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Must be used with the Selector in the EMERG position if Cabin Alt is above 30000'."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: May be used at any time at 100%, and, if necessary, at Emergency pressure, as a protection against smoke or fumes. Guide Q167, PDF p.29.",
+    "w": "Student guide answer retained: May be used at any time at 100%, and, if necessary, at Emergency pressure, as a protection against smoke or fumes. Guide Q167, PDF p.29.",
     "ref": "FCOM DSC-33 / DSC-35 / DSC-52 · Guide Q167, PDF p.29",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 168,
     "p": 29,
     "c": "Lights, Doors & Oxygen",
@@ -2879,12 +2888,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Will Auto-deploy above 9550 feet."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Ls available to a set of 3 or 4 masks once they have dropped out and one of them has been pulled down. Guide Q168, PDF p.29.",
+    "w": "Student guide answer retained: Ls available to a set of 3 or 4 masks once they have dropped out and one of them has been pulled down. Guide Q168, PDF p.29.",
     "ref": "FCOM DSC-33 / DSC-35 / DSC-52 · Guide Q168, PDF p.29",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 169,
     "p": 30,
     "c": "APU",
@@ -2896,12 +2905,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The APU is in use (supplying Air, Electrics, or both)."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: The APU Electronic Control Box is powered. Guide Q169, PDF p.30.",
+    "w": "Student guide answer retained: The APU Electronic Control Box is powered. Guide Q169, PDF p.30.",
     "ref": "FCOM DSC-49, Auxiliary Power Unit · Guide Q169, PDF p.30",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 170,
     "p": 30,
     "c": "APU",
@@ -2913,12 +2922,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The APU is in use (supplying Air, Electrics, or both)."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: The APU start sequence is in progress. Guide Q170, PDF p.30.",
+    "w": "Student guide answer retained: The APU start sequence is in progress. Guide Q170, PDF p.30.",
     "ref": "FCOM DSC-49, Auxiliary Power Unit · Guide Q170, PDF p.30",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 171,
     "p": 30,
     "c": "APU",
@@ -2932,10 +2941,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "APU bleed may assist engine start up to 20,000 ft.",
     "ref": "FCOM LIM-APU-20, APU Bleed · Guide Q171, PDF p.30",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 172,
     "p": 30,
     "c": "APU",
@@ -2949,10 +2958,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The dual-pack APU-bleed limit is 15,000 ft; the single-pack limit is 22,500 ft.",
     "ref": "FCOM LIM-APU-20, APU Bleed · Guide Q172, PDF p.30",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 173,
     "p": 31,
     "c": "Communications",
@@ -2964,12 +2973,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "On RMPs 2 and 3 only"
     ],
     "a": 0,
-    "w": "The current FCOM says the SEL lights illuminate on all installed RMPs when a radio is tuned from a non-associated RMP. The guide's RMP 1-and-2 answer was revised.",
+    "w": "The retained answer says the SEL lights illuminate on all installed RMPs when a radio is tuned from a non-associated RMP. The guide's RMP 1-and-2 answer was revised.",
     "ref": "FCOM DSC-23-60, Radio Management Panel — Tuning · Guide Q173, PDF p.31",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 174,
     "p": 31,
     "c": "Communications",
@@ -2983,10 +2992,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The radio transmission key flashes for an incoming SELCAL, accompanied by a cockpit buzzer until reset.",
     "ref": "FCOM DSC-23-10-50, Audio Control Panel · Guide Q174, PDF p.31",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 175,
     "p": 31,
     "c": "Communications",
@@ -2998,12 +3007,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "CVR test is automatic following First Engine Start."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: By setting the Parking Brake and pressing the CVR test pushbutton (press the RCDR GRD CTRL switch if necessary) Guide Q175, PDF p.31.",
+    "w": "Student guide answer retained: By setting the Parking Brake and pressing the CVR test pushbutton (press the RCDR GRD CTRL switch if necessary) Guide Q175, PDF p.31.",
     "ref": "FCOM DSC-23, Communications · Guide Q175, PDF p.31",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 176,
     "p": 31,
     "c": "Communications",
@@ -3017,10 +3026,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Each pilot can transmit on any available radio by selecting its transmission key on the onside audio-control panel.",
     "ref": "FCOM DSC-23-10-50, Audio Control Panel · Guide Q176, PDF p.31",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 177,
     "p": 31,
     "c": "Communications",
@@ -3034,10 +3043,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "SEL reminds the crew that at least one radio is being controlled from an RMP other than its associated RMP.",
     "ref": "FCOM DSC-23-60, Radio Management Panel — Tuning · Guide Q177, PDF p.31",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 178,
     "p": 31,
     "c": "Communications",
@@ -3051,10 +3060,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The SELCAL/CALL RESET key cancels the buzzer and flashing indication.",
     "ref": "FCOM DSC-23-10-50, Audio Control Panel · Guide Q178, PDF p.31",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 179,
     "p": 31,
     "c": "Communications",
@@ -3066,12 +3075,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "VHF1 Frequency is now locked. Use VHF 2, or, if fitted, VHF3 for ATC Communication."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Switch off RMP 1, and tune VHF 1 from RMP 2 or 3. Guide Q179, PDF p.31.",
+    "w": "Student guide answer retained: Switch off RMP 1, and tune VHF 1 from RMP 2 or 3. Guide Q179, PDF p.31.",
     "ref": "FCOM DSC-23, Communications · Guide Q179, PDF p.31",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 180,
     "p": 32,
     "c": "Communications",
@@ -3083,12 +3092,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "First, Remove Oxygen Mask from face and switch off Loudspeaker to prevent fee"
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Press the PA Transmit pushbutton and talk. Guide Q180, PDF p.32.",
+    "w": "Student guide answer retained: Press the PA Transmit pushbutton and talk. Guide Q180, PDF p.32.",
     "ref": "FCOM DSC-23, Communications · Guide Q180, PDF p.32",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 181,
     "p": 32,
     "c": "Communications",
@@ -3100,12 +3109,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Change over to ACP3 is automatic."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Select CAPT3 on the AUDIO SWITCHING selector. Guide Q181, PDF p.32.",
+    "w": "Student guide answer retained: Select CAPT3 on the AUDIO SWITCHING selector. Guide Q181, PDF p.32.",
     "ref": "FCOM DSC-23, Communications · Guide Q181, PDF p.32",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 182,
     "p": 32,
     "c": "Communications",
@@ -3119,10 +3128,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The recording system is active for the first 5 minutes after ground electrical energisation, after the first engine start, and throughout flight. It stops 5 minutes after the second engine shuts down on ground.",
     "ref": "FCOM DSC-31-60-10, Recording System · Guide Q182, PDF p.32",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 183,
     "p": 33,
     "c": "Electrical",
@@ -3134,12 +3143,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Will extinguish when the APU Generator is in use."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Is green when power is available and its parameters are normal. Guide Q183, PDF p.33.",
+    "w": "Student guide answer retained: Is green when power is available and its parameters are normal. Guide Q183, PDF p.33.",
     "ref": "FCOM DSC-24, Electrical · Guide Q183, PDF p.33",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 184,
     "p": 33,
     "c": "Electrical",
@@ -3153,10 +3162,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Each engine-driven generator normally supplies its associated AC bus.",
     "ref": "FCOM DSC-24-10-30, Normal Electrical Configuration · Guide Q184, PDF p.33",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 185,
     "p": 33,
     "c": "Electrical",
@@ -3168,12 +3177,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Could lead to the loss of AC ESS."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Will not cause the loss of any Busbars. Guide Q185, PDF p.33.",
+    "w": "Student guide answer retained: Will not cause the loss of any Busbars. Guide Q185, PDF p.33.",
     "ref": "FCOM DSC-24, Electrical · Guide Q185, PDF p.33",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 186,
     "p": 33,
     "c": "Electrical",
@@ -3185,12 +3194,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "AC Bus 4 to power AC ESS Bus."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: AC Bus 2 to power AC ESS Bus. Guide Q186, PDF p.33.",
+    "w": "Student guide answer retained: AC Bus 2 to power AC ESS Bus. Guide Q186, PDF p.33.",
     "ref": "FCOM DSC-24, Electrical · Guide Q186, PDF p.33",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 187,
     "p": 33,
     "c": "Electrical",
@@ -3202,12 +3211,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Selects GEN 1 OFF with Residual Voltage generated due to IDG rotation."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Will cause Gen 2 to power AC Bus 1. Guide Q187, PDF p.33.",
+    "w": "Student guide answer retained: Will cause Gen 2 to power AC Bus 1. Guide Q187, PDF p.33.",
     "ref": "FCOM DSC-24, Electrical · Guide Q187, PDF p.33",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 188,
     "p": 33,
     "c": "Electrical",
@@ -3219,12 +3228,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The Batteries are connected to the DC BATT Busbar at all times."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: In flight, if both Generators fail, the RAT will deploy and the AC ESS Bus will be supplied by the Emergency Generator. Guide Q188, PDF p.33.",
+    "w": "Student guide answer retained: In flight, if both Generators fail, the RAT will deploy and the AC ESS Bus will be supplied by the Emergency Generator. Guide Q188, PDF p.33.",
     "ref": "FCOM DSC-24, Electrical · Guide Q188, PDF p.33",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 189,
     "p": 33,
     "c": "Electrical",
@@ -3236,12 +3245,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The external power is powering the GRD / FLT busses."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: The external power is connected but not powering AC busses 1 and 2. Guide Q189, PDF p.33.",
+    "w": "Student guide answer retained: The external power is connected but not powering AC busses 1 and 2. Guide Q189, PDF p.33.",
     "ref": "FCOM DSC-24, Electrical · Guide Q189, PDF p.33",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 190,
     "p": 34,
     "c": "Electrical",
@@ -3253,12 +3262,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Comes on when the charging current is out of limits (too high)."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Comes on when the charging current is out of limits (too high). Guide Q190, PDF p.34.",
+    "w": "Student guide answer retained: Comes on when the charging current is out of limits (too high). Guide Q190, PDF p.34.",
     "ref": "FCOM DSC-24, Electrical · Guide Q190, PDF p.34",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 191,
     "p": 34,
     "c": "Electrical",
@@ -3270,12 +3279,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "AC BUS 1 or AC BUS 2 or EMER GEN or the Static Inverter."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: AC BUS 1 or AC BUS 2 or EMER GEN or the Static Inverter. Guide Q191, PDF p.34.",
+    "w": "Student guide answer retained: AC BUS 1 or AC BUS 2 or EMER GEN or the Static Inverter. Guide Q191, PDF p.34.",
     "ref": "FCOM DSC-24, Electrical · Guide Q191, PDF p.34",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 192,
     "p": 34,
     "c": "Electrical",
@@ -3289,10 +3298,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The remaining main TR replaces the failed unit; the ESS TR supplies the DC ESS BUS.",
     "ref": "FCOM DSC-24-10-30, Failure of One TR · Guide Q192, PDF p.34",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 193,
     "p": 34,
     "c": "Electrical",
@@ -3300,16 +3309,16 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "o": [
       "The Emergency Generator is in use.",
       "AC1 and AC2 have both failed.",
-      "As in B; plus the Emergency Generator is unavailable.",
+      "AC1 and AC2 have both failed, and the emergency generator is unavailable.",
       "ACESS is unpowered."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: As in B; plus the Emergency Generator is unavailable. Guide Q193, PDF p.34.",
+    "w": "Student guide answer retained: As in B; plus the Emergency Generator is unavailable. Guide Q193, PDF p.34.",
     "ref": "FCOM DSC-24, Electrical · Guide Q193, PDF p.34",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 194,
     "p": 34,
     "c": "Electrical",
@@ -3321,12 +3330,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Disconnected on the ground 30 min after the main power (APU GEN or EXT) is OFF."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Connected to the DC battery bus only for charging, APU start, and with loss of AC buses 1 and 2 (speed < 100 kt). Guide Q194, PDF p.34.",
+    "w": "Student guide answer retained: Connected to the DC battery bus only for charging, APU start, and with loss of AC buses 1 and 2 (speed < 100 kt). Guide Q194, PDF p.34.",
     "ref": "FCOM DSC-24, Electrical · Guide Q194, PDF p.34",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 195,
     "p": 34,
     "c": "Electrical",
@@ -3340,10 +3349,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The BAT FAULT light accompanies charging current outside limits. The guide's 'BAT 4' label was an OCR error.",
     "ref": "FCOM DSC-24-20, Electrical Controls · Guide Q195, PDF p.34",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 196,
     "p": 34,
     "c": "Electrical",
@@ -3355,12 +3364,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Will have no effect if AC Busses 1 and 2 are energised."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Deploys the RAT and signals the Emergency Generator to connect to AC ESS when its output is satisfactory. Guide Q196, PDF p.34.",
+    "w": "Student guide answer retained: Deploys the RAT and signals the Emergency Generator to connect to AC ESS when its output is satisfactory. Guide Q196, PDF p.34.",
     "ref": "FCOM DSC-24, Electrical · Guide Q196, PDF p.34",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 197,
     "p": 35,
     "c": "Electrical",
@@ -3372,12 +3381,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "AGreen AVAIL light with a Blue ON light indicate that External Power is within limits and also supplying."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: A Green AVAIL light means External Power connected and within limits. Guide Q197, PDF p.35.",
+    "w": "Student guide answer retained: A Green AVAIL light means External Power connected and within limits. Guide Q197, PDF p.35.",
     "ref": "FCOM DSC-24, Electrical · Guide Q197, PDF p.35",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 198,
     "p": 35,
     "c": "Electrical",
@@ -3389,12 +3398,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "It can be used to back up the emergency generator."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: It can replace either or both main engine generators at any time (subject to KVA limits) Guide Q198, PDF p.35.",
+    "w": "Student guide answer retained: It can replace either or both main engine generators at any time (subject to KVA limits) Guide Q198, PDF p.35.",
     "ref": "FCOM DSC-24, Electrical · Guide Q198, PDF p.35",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 199,
     "p": 35,
     "c": "Electrical",
@@ -3408,10 +3417,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "TR 1 normally supplies DC BUS 1, DC BAT BUS and DC ESS BUS; TR 2 normally supplies DC BUS 2.",
     "ref": "FCOM DSC-24-10-30, Normal Configuration · Guide Q199, PDF p.35",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 200,
     "p": 35,
     "c": "Electrical",
@@ -3423,12 +3432,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "They are continuously charged on the ground."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: They are also connected to the DC BAT BUS if they need charging. Guide Q200, PDF p.35.",
+    "w": "Student guide answer retained: They are also connected to the DC BAT BUS if they need charging. Guide Q200, PDF p.35.",
     "ref": "FCOM DSC-24, Electrical · Guide Q200, PDF p.35",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 201,
     "p": 35,
     "c": "Electrical",
@@ -3442,10 +3451,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "GEN 1 is isolated from the normal bus channel but remains upstream of the line contactor for one fuel pump in each wing tank; GEN 2 supplies AC BUS 1 through the bus tie.",
     "ref": "FCOM DSC-24-20 / PRO-ABN-SMOKE, GEN 1 LINE · Guide Q201, PDF p.35",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 202,
     "p": 36,
     "c": "Fire Protection",
@@ -3457,12 +3466,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "On the Ground, by the red guarded switch on the refuelling panel."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: On the Ground, either Automatically or, if the Auto system fails, Manually. Guide Q202, PDF p.36.",
+    "w": "Student guide answer retained: On the Ground, either Automatically or, if the Auto system fails, Manually. Guide Q202, PDF p.36.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q202, PDF p.36",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 203,
     "p": 36,
     "c": "Fire Protection",
@@ -3474,12 +3483,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "1 for each Engine, 1 for the APU, one for the Cargo Compartments."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: 2 for each Engine, 1 for the APU, 1 for the Cargo Compartments. Guide Q203, PDF p.36.",
+    "w": "Student guide answer retained: 2 for each Engine, 1 for the APU, 1 for the Cargo Compartments. Guide Q203, PDF p.36.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q203, PDF p.36",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 204,
     "p": 36,
     "c": "Fire Protection",
@@ -3491,12 +3500,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Shuts down the Engine, isolates it from other aircraft systems and arms the Agent pushbutton."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Shuts down the Engine, isolates it from other aircraft systems and arms the Agent pushbutton. Guide Q204, PDF p.36.",
+    "w": "Student guide answer retained: Shuts down the Engine, isolates it from other aircraft systems and arms the Agent pushbutton. Guide Q204, PDF p.36.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q204, PDF p.36",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 205,
     "p": 36,
     "c": "Fire Protection",
@@ -3508,12 +3517,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "By both loops within 5 seconds of each other."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: By both of the two detection loops. Guide Q205, PDF p.36.",
+    "w": "Student guide answer retained: By both of the two detection loops. Guide Q205, PDF p.36.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q205, PDF p.36",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 206,
     "p": 36,
     "c": "Fire Protection",
@@ -3525,12 +3534,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "A single loop in each Compartment. Each Compartment has its own extinguisher."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Two sensing loops in each Compartment and one shared Extinguisher. Guide Q206, PDF p.36.",
+    "w": "Student guide answer retained: Two sensing loops in each Compartment and one shared Extinguisher. Guide Q206, PDF p.36.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q206, PDF p.36",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 207,
     "p": 36,
     "c": "Fire Protection",
@@ -3542,12 +3551,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Only after an ENG or APU FIRE pushbutton has been pressed/released."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Only after an ENG or APU FIRE pushbutton has been pressed/released. Guide Q207, PDF p.36.",
+    "w": "Student guide answer retained: Only after an ENG or APU FIRE pushbutton has been pressed/released. Guide Q207, PDF p.36.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q207, PDF p.36",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 208,
     "p": 37,
     "c": "Fire Protection",
@@ -3559,12 +3568,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Automatically 3 seconds after the warning (Ground or In Flight)."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Automatically 3 seconds after the warning (Ground only). Guide Q208, PDF p.37.",
+    "w": "Student guide answer retained: Automatically 3 seconds after the warning (Ground only). Guide Q208, PDF p.37.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q208, PDF p.37",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 209,
     "p": 37,
     "c": "Fire Protection",
@@ -3576,12 +3585,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Cabin Smoke, Lavatory Smoke, Avionics Smoke."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Smoke from Avionics or in either Cargo Compartments. Guide Q209, PDF p.37.",
+    "w": "Student guide answer retained: Smoke from Avionics or in either Cargo Compartments. Guide Q209, PDF p.37.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q209, PDF p.37",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 210,
     "p": 37,
     "c": "Fire Protection",
@@ -3593,12 +3602,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Any of the above."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Any of the above. Guide Q210, PDF p.37.",
+    "w": "Student guide answer retained: Any of the above. Guide Q210, PDF p.37.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q210, PDF p.37",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 211,
     "p": 37,
     "c": "Fire Protection",
@@ -3610,12 +3619,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "One for the APU, two usable for either engine, and one for each Cargo Compartment."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Two per engine, one for the APU, and one for the Cargo Compartments. Guide Q211, PDF p.37.",
+    "w": "Student guide answer retained: Two per engine, one for the APU, and one for the Cargo Compartments. Guide Q211, PDF p.37.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q211, PDF p.37",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 212,
     "p": 37,
     "c": "Fire Protection",
@@ -3627,12 +3636,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The agent pushbutton is pressed / released."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: The fire is no longer signalled. Guide Q212, PDF p.37.",
+    "w": "Student guide answer retained: The fire is no longer signalled. Guide Q212, PDF p.37.",
     "ref": "FCOM DSC-26, Fire Protection · Guide Q212, PDF p.37",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 213,
     "p": 38,
     "c": "Hydraulics",
@@ -3644,12 +3653,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "2 engine driven pumps, 2 electrical pumps and a RAT."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: 2 engine driven pumps and an electrical pump. Guide Q213, PDF p.38.",
+    "w": "Student guide answer retained: 2 engine driven pumps and an electrical pump. Guide Q213, PDF p.38.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q213, PDF p.38",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 214,
     "p": 38,
     "c": "Hydraulics",
@@ -3663,10 +3672,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The bidirectional PTU transfers hydraulic power between Green and Yellow without transferring fluid.",
     "ref": "FCOM DSC-29-10-20, PTU · Guide Q214, PDF p.38",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 215,
     "p": 38,
     "c": "Hydraulics",
@@ -3680,10 +3689,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Each hydraulic system operates at a nominal 3,000 PSI, with the stated ±200-PSI range. The OCR-generated 3,600-PSI answer was corrected.",
     "ref": "FCOM DSC-29-10, Hydraulic Power — General · Guide Q215, PDF p.38",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 216,
     "p": 38,
     "c": "Hydraulics",
@@ -3692,15 +3701,15 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "With the loss of blue hydraulic pressure.",
       "With the loss of green hydraulic pressure.",
       "With the loss of yellow hydraulic pressure.",
-      "None of the above."
+      "None of these hydraulic-pressure losses alone triggers automatic RAT extension."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: None of the above. Guide Q216, PDF p.38.",
+    "w": "Student guide answer retained: None of the above. Guide Q216, PDF p.38.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q216, PDF p.38",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 217,
     "p": 38,
     "c": "Hydraulics",
@@ -3712,12 +3721,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Can be done on the ground only."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Is not possible. Guide Q217, PDF p.38.",
+    "w": "Student guide answer retained: Is not possible. Guide Q217, PDF p.38.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q217, PDF p.38",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 218,
     "p": 38,
     "c": "Hydraulics",
@@ -3729,12 +3738,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "By the yellow electric pump and the PTU."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: By the yellow electric pump and the PTU. Guide Q218, PDF p.38.",
+    "w": "Student guide answer retained: By the yellow electric pump and the PTU. Guide Q218, PDF p.38.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q218, PDF p.38",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 219,
     "p": 38,
     "c": "Hydraulics",
@@ -3746,12 +3755,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Reservoir low level, overheat or low air pressure or pump low pressure."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Reservoir low level, overheat or low air pressure or pump low pressure. Guide Q219, PDF p.38.",
+    "w": "Student guide answer retained: Reservoir low level, overheat or low air pressure or pump low pressure. Guide Q219, PDF p.38.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q219, PDF p.38",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 220,
     "p": 39,
     "c": "Hydraulics",
@@ -3765,10 +3774,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "On the ground the Blue electric pump runs with an engine running; maintenance override can run it before engine start when AC power is available.",
     "ref": "FCOM DSC-29-10-30, Blue Electric Pump · Guide Q220, PDF p.39",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 221,
     "p": 39,
     "c": "Hydraulics",
@@ -3780,12 +3789,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Slats and flaps and right elevator."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Slats and left and right elevator. Guide Q221, PDF p.39.",
+    "w": "Student guide answer retained: Slats and left and right elevator. Guide Q221, PDF p.39.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q221, PDF p.39",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 222,
     "p": 39,
     "c": "Hydraulics",
@@ -3797,12 +3806,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "2 engine driven pumps, 2 electric pumps, and a RAT."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: 2 engine-driven pumps and an electric pump. Guide Q222, PDF p.39.",
+    "w": "Student guide answer retained: 2 engine-driven pumps and an electric pump. Guide Q222, PDF p.39.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q222, PDF p.39",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 223,
     "p": 39,
     "c": "Hydraulics",
@@ -3816,10 +3825,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The PTU is a bidirectional power-transfer unit; the system fluids remain separate.",
     "ref": "FCOM DSC-29-10-20, PTU · Guide Q223, PDF p.39",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 224,
     "p": 39,
     "c": "Hydraulics",
@@ -3831,12 +3840,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The blue pump cannot run on the ground."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Can be run before start with BLUE PUMP OVRD pushbutton on the overhead HYD MAINT panel ON, and AC electrical power available. Guide Q224, PDF p.39.",
+    "w": "Student guide answer retained: Can be run before start with BLUE PUMP OVRD pushbutton on the overhead HYD MAINT panel ON, and AC electrical power available. Guide Q224, PDF p.39.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q224, PDF p.39",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 225,
     "p": 40,
     "c": "Hydraulics",
@@ -3848,12 +3857,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Two systems, operating at a nominal pressure of 3000 psi with a back up system operating at 2500 psi."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Three systems, each operating at a nominal pressure of 3000 +/- 200 psi. Guide Q225, PDF p.40.",
+    "w": "Student guide answer retained: Three systems, each operating at a nominal pressure of 3000 +/- 200 psi. Guide Q225, PDF p.40.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q225, PDF p.40",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 226,
     "p": 40,
     "c": "Hydraulics",
@@ -3865,12 +3874,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "A pump driven by engine 2, an electric pump, or the PTU."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: A pump driven by engine 2, an electric pump, or the PTU. Guide Q226, PDF p.40.",
+    "w": "Student guide answer retained: A pump driven by engine 2, an electric pump, or the PTU. Guide Q226, PDF p.40.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q226, PDF p.40",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 227,
     "p": 40,
     "c": "Hydraulics",
@@ -3884,10 +3893,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The automatic deployment condition is loss of both main AC buses in flight above 100 kt, not loss of one hydraulic system.",
     "ref": "FCOM DSC-24-10-30 / DSC-29-20, Emergency Generation · Guide Q227, PDF p.40",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 228,
     "p": 40,
     "c": "Hydraulics",
@@ -3899,12 +3908,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "For test purposes during the first engine start."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: When the difference between Green and Yellow systems' pressures is more than 500 psi. Guide Q228, PDF p.40.",
+    "w": "Student guide answer retained: When the difference between Green and Yellow systems' pressures is more than 500 psi. Guide Q228, PDF p.40.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q228, PDF p.40",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 229,
     "p": 40,
     "c": "Hydraulics",
@@ -3918,10 +3927,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Green hydraulic power supplies spoiler panels 1 and 5. The guide's '71' was an OCR error.",
     "ref": "FCOM DSC-29-10-20 / DSC-27-10-20 · Guide Q229, PDF p.40",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 230,
     "p": 40,
     "c": "Hydraulics",
@@ -3933,12 +3942,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Is only available after loss of Green or Yellow System Hydraulic Pressure."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Has priority over electrical control, and requires either Green or Yellow hydraulic systems. Guide Q230, PDF p.40.",
+    "w": "Student guide answer retained: Has priority over electrical control, and requires either Green or Yellow hydraulic systems. Guide Q230, PDF p.40.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q230, PDF p.40",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 231,
     "p": 40,
     "c": "Hydraulics",
@@ -3950,12 +3959,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "All Spoilers;"
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Spoilers 2,3, 4 and 5 Guide Q231, PDF p.40.",
+    "w": "Student guide answer retained: Spoilers 2,3, 4 and 5 Guide Q231, PDF p.40.",
     "ref": "FCOM DSC-29, Hydraulics · Guide Q231, PDF p.40",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 232,
     "p": 41,
     "c": "Flight Controls",
@@ -3969,10 +3978,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Normal Law automatically coordinates the turn with rudder while controlling ailerons and spoilers from lateral sidestick demand.",
     "ref": "FCOM DSC-27-20-10-30, Lateral Normal Law · Guide Q232, PDF p.41",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 233,
     "p": 41,
     "c": "Flight Controls",
@@ -3986,10 +3995,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Angle-of-attack protection stabilises the aircraft at approximately Vα PROT with the sidestick released.",
     "ref": "FCOM DSC-27-20-10-20, High Angle-of-Attack Protection · Guide Q233, PDF p.41",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 234,
     "p": 41,
     "c": "Flight Controls",
@@ -4003,10 +4012,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Extending the landing gear changes pitch Alternate Law to Direct Law.",
     "ref": "FCOM DSC-27-20-20, Reconfiguration Control Laws · Guide Q234, PDF p.41",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 235,
     "p": 41,
     "c": "Flight Controls",
@@ -4018,12 +4027,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The first stick moved is the master."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Both demands are algebraically summed. Guide Q235, PDF p.41.",
+    "w": "Student guide answer retained: Both demands are algebraically summed. Guide Q235, PDF p.41.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q235, PDF p.41",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 236,
     "p": 41,
     "c": "Flight Controls",
@@ -4035,12 +4044,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "They can be released by reducing speed below flap limiting speed."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: They cannot be released in flight. Guide Q236, PDF p.41.",
+    "w": "Student guide answer retained: They cannot be released in flight. Guide Q236, PDF p.41.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q236, PDF p.41",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 237,
     "p": 42,
     "c": "Flight Controls",
@@ -4054,10 +4063,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "With neutral sidestick, pitch Normal Law maintains the flight path within the normal-law logic.",
     "ref": "FCOM DSC-27-20-10-20, Pitch Normal Law · Guide Q237, PDF p.42",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 238,
     "p": 42,
     "c": "Flight Controls",
@@ -4069,12 +4078,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Slats are supplied by Green and Blue, Flaps by Green and Yellow."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Slats are supplied by Green and Blue, Flaps by Green and Yellow. Guide Q238, PDF p.42.",
+    "w": "Student guide answer retained: Slats are supplied by Green and Blue, Flaps by Green and Yellow. Guide Q238, PDF p.42.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q238, PDF p.42",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 239,
     "p": 42,
     "c": "Flight Controls",
@@ -4088,10 +4097,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The attitude at 50 ft RA becomes the initial reference. Passing 30 ft, the reference reduces toward 2° nose down over 8 seconds, requiring a gentle nose-up flare input.",
     "ref": "FCOM DSC-27-20-10-20, Normal Law — Flare Mode · Guide Q239, PDF p.42",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 240,
     "p": 42,
     "c": "Flight Controls",
@@ -4103,12 +4112,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Automatic Pitch Trimming takes place in both Alternate and Normal Laws."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Automatic Pitch Trimming takes place in both Alternate and Normal Laws. Guide Q240, PDF p.42.",
+    "w": "Student guide answer retained: Automatic Pitch Trimming takes place in both Alternate and Normal Laws. Guide Q240, PDF p.42.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q240, PDF p.42",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 241,
     "p": 42,
     "c": "Flight Controls",
@@ -4120,12 +4129,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "None: Rudders have Mechanical Input only."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: FAC. Guide Q241, PDF p.42.",
+    "w": "Student guide answer retained: FAC. Guide Q241, PDF p.42.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q241, PDF p.42",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 242,
     "p": 42,
     "c": "Flight Controls",
@@ -4139,10 +4148,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Normal Law maximum bank-angle authority is 67°.",
     "ref": "FCOM DSC-27-20-10-30, Lateral Normal Law · Guide Q242, PDF p.42",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 243,
     "p": 42,
     "c": "Flight Controls",
@@ -4154,12 +4163,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Direct Law."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Direct Law. Guide Q243, PDF p.42.",
+    "w": "Student guide answer retained: Direct Law. Guide Q243, PDF p.42.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q243, PDF p.42",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 244,
     "p": 43,
     "c": "Flight Controls",
@@ -4173,10 +4182,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The pitch-trim wheels provide mechanical command of the THS and have priority over electrical control; hydraulic power is still required for actuation.",
     "ref": "FCOM DSC-27-10-20, THS Control · Guide Q244, PDF p.43",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 245,
     "p": 43,
     "c": "Flight Controls",
@@ -4188,12 +4197,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The green or yellow hydraulic systems or mechanical backup."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: A screw jack driven by two hydraulic motors, which are controlled by one of three electric motors or the mechanical trim wheel. Guide Q245, PDF p.43.",
+    "w": "Student guide answer retained: A screw jack driven by two hydraulic motors, which are controlled by one of three electric motors or the mechanical trim wheel. Guide Q245, PDF p.43.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q245, PDF p.43",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 246,
     "p": 43,
     "c": "Flight Controls",
@@ -4205,12 +4214,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Nose wheel steering signals."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Rudder trim signals. Guide Q246, PDF p.43.",
+    "w": "Student guide answer retained: Rudder trim signals. Guide Q246, PDF p.43.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q246, PDF p.43",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 247,
     "p": 43,
     "c": "Flight Controls",
@@ -4224,10 +4233,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The sidesticks are locked neutral with AP engaged. Overcoming the lock with more than 5 daN pitch or 3.5 daN roll disconnects the AP; this is not the recommended disconnect method.",
     "ref": "FCOM DSC-27-20-10-20, Control with Autopilot Engaged · Guide Q247, PDF p.43",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 248,
     "p": 43,
     "c": "Flight Controls",
@@ -4239,12 +4248,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Pitch attitude protection is retained."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: High speed stability can be overridden by the pilot. Guide Q248, PDF p.43.",
+    "w": "Student guide answer retained: High speed stability can be overridden by the pilot. Guide Q248, PDF p.43.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q248, PDF p.43",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 249,
     "p": 43,
     "c": "Flight Controls",
@@ -4258,10 +4267,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Direct Law has no automatic pitch trim and displays USE MAN PITCH TRIM in amber.",
     "ref": "FCOM DSC-27-20-20, Direct Law · Guide Q249, PDF p.43",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 250,
     "p": 43,
     "c": "Flight Controls",
@@ -4273,12 +4282,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Pressing a take-over pushbutton for more than 40 seconds."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Momentarily pressing the take-over pushbutton on either stick Guide Q250, PDF p.43.",
+    "w": "Student guide answer retained: Momentarily pressing the take-over pushbutton on either stick Guide Q250, PDF p.43.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q250, PDF p.43",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 251,
     "p": 44,
     "c": "Flight Controls",
@@ -4292,10 +4301,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The FLAP indication turns amber when a flap or slat wing-tip brake is on.",
     "ref": "FCOM DSC-27-50, Slat/Flap Indications · Guide Q251, PDF p.44",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 252,
     "p": 44,
     "c": "Flight Controls",
@@ -4307,12 +4316,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The RAT can supply the Blue Elevator Servos, which are controlled directly by the THS Wheels."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Pitch control is through the THS. Electronic / Electrical Control of THS Motors is mechanically bypassed. Guide Q252, PDF p.44.",
+    "w": "Student guide answer retained: Pitch control is through the THS. Electronic / Electrical Control of THS Motors is mechanically bypassed. Guide Q252, PDF p.44.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q252, PDF p.44",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 253,
     "p": 44,
     "c": "Flight Controls",
@@ -4324,12 +4333,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "NWS inputs from the hand wheels."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Rudder trim. Guide Q253, PDF p.44.",
+    "w": "Student guide answer retained: Rudder trim. Guide Q253, PDF p.44.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q253, PDF p.44",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 254,
     "p": 44,
     "c": "Flight Controls",
@@ -4341,12 +4350,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Once a take-over pushbutton has been pressed for 40 seconds, the priority cannot be undone."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: If both pilots press their take-over pushbutton, the last to press gets priority. Guide Q254, PDF p.44.",
+    "w": "Student guide answer retained: If both pilots press their take-over pushbutton, the last to press gets priority. Guide Q254, PDF p.44.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q254, PDF p.44",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 255,
     "p": 44,
     "c": "Flight Controls",
@@ -4358,12 +4367,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Slats and Flaps move at half speed."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Slats and Flaps move at half speed. Guide Q255, PDF p.44.",
+    "w": "Student guide answer retained: Slats and Flaps move at half speed. Guide Q255, PDF p.44.",
     "ref": "FCOM DSC-27, Flight Controls · Guide Q255, PDF p.44",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 256,
     "p": 44,
     "c": "Flight Controls",
@@ -4377,10 +4386,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Normal Law pitch attitude is limited to +30°/-15°; the clean structural manoeuvring range is -1 g to +2.5 g.",
     "ref": "FCOM DSC-27-20-10 / LIM-AG-F_CTL · Guide Q256, PDF p.44",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 257,
     "p": 44,
     "c": "Flight Controls",
@@ -4394,10 +4403,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "In pitch Alternate Law, landing-gear extension causes pitch to revert to Direct Law.",
     "ref": "FCOM DSC-27-20-20, Reconfiguration Control Laws · Guide Q257, PDF p.44",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 258,
     "p": 45,
     "c": "Landing Gear & Brakes",
@@ -4409,12 +4418,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The green system, or yellow system via the PTU."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: The green hydraulic system. Guide Q258, PDF p.45.",
+    "w": "Student guide answer retained: The green hydraulic system. Guide Q258, PDF p.45.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q258, PDF p.45",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 259,
     "p": 45,
     "c": "Landing Gear & Brakes",
@@ -4426,12 +4435,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Until the aircraft slows below 20 kt."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: From Normal Brakes. Guide Q259, PDF p.45.",
+    "w": "Student guide answer retained: From Normal Brakes. Guide Q259, PDF p.45.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q259, PDF p.45",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 260,
     "p": 45,
     "c": "Landing Gear & Brakes",
@@ -4443,12 +4452,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Requires both LGCIUs to be functioning for Raising or Lowering: if either LGCIU is INOP use Gravity Extension.;"
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Cannot be lowered hydraulically above 260 kt. Guide Q260, PDF p.45.",
+    "w": "Student guide answer retained: Cannot be lowered hydraulically above 260 kt. Guide Q260, PDF p.45.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q260, PDF p.45",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 261,
     "p": 45,
     "c": "Landing Gear & Brakes",
@@ -4460,12 +4469,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "3,000 PSI"
     ],
     "a": 0,
-    "w": "The current FCOM limits alternate braking without anti-skid to 1,000 PSI. The guide's 1,900-PSI answer was corrected.",
+    "w": "The retained answer limits alternate braking without anti-skid to 1,000 PSI. The guide's 1,900-PSI answer was corrected.",
     "ref": "FCOM DSC-32-30-10 / PRO-ABN-BRAKES [QRH] · Guide Q261, PDF p.45",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 262,
     "p": 45,
     "c": "Landing Gear & Brakes",
@@ -4479,10 +4488,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "A safety valve cuts off hydraulic supply to the gear when speed exceeds 260 kt.",
     "ref": "FCOM DSC-32-10-20, Landing Gear Hydraulic Supply · Guide Q262, PDF p.45",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 263,
     "p": 45,
     "c": "Landing Gear & Brakes",
@@ -4494,12 +4503,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Green hydraulic system has failed."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: LGCIU 1 is not receiving electrical power. Guide Q263, PDF p.45.",
+    "w": "Student guide answer retained: LGCIU 1 is not receiving electrical power. Guide Q263, PDF p.45.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q263, PDF p.45",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 264,
     "p": 45,
     "c": "Landing Gear & Brakes",
@@ -4511,12 +4520,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "+75° up to 70 kt and then +6° up to 130 kt."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Up to +75° depending on aircraft ground speed. Guide Q264, PDF p.45.",
+    "w": "Student guide answer retained: Up to +75° depending on aircraft ground speed. Guide Q264, PDF p.45.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q264, PDF p.45",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 265,
     "p": 46,
     "c": "Landing Gear & Brakes",
@@ -4528,12 +4537,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "NW STRG DISC message is displayed in green, it becomes amber with one engine running."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: NW STRG DISC message is displayed in green, it becomes amber with one engine running. Guide Q265, PDF p.46.",
+    "w": "Student guide answer retained: NW STRG DISC message is displayed in green, it becomes amber with one engine running. Guide Q265, PDF p.46.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q265, PDF p.46",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 266,
     "p": 46,
     "c": "Landing Gear & Brakes",
@@ -4547,10 +4556,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "A red triangle represents an unsafe or in-transit gear position; green triangles indicate downlocked gear.",
     "ref": "FCOM DSC-32-10-40, WHEEL SD Page · Guide Q266, PDF p.46",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 267,
     "p": 46,
     "c": "Landing Gear & Brakes",
@@ -4562,12 +4571,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The hand-wheels can normally steer + 75° up to 20 kt, reducing to zero at 70 kt ground speed."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: The hand-wheels can normally steer + 75° up to 20 kt, reducing to zero at 70 kt ground speed. Guide Q267, PDF p.46.",
+    "w": "Student guide answer retained: The hand-wheels can normally steer + 75° up to 20 kt, reducing to zero at 70 kt ground speed. Guide Q267, PDF p.46.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q267, PDF p.46",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 268,
     "p": 46,
     "c": "Landing Gear & Brakes",
@@ -4579,12 +4588,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Pressurised by Green Hydraulics, but will be from Yellow Hydraulics if Green has low pressure."
     ],
     "a": 0,
-    "w": "FCOM cross-check retained the guide answer: Pressurised by Green Hydraulics. Guide Q268, PDF p.46.",
+    "w": "Student guide answer retained: Pressurised by Green Hydraulics. Guide Q268, PDF p.46.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q268, PDF p.46",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 269,
     "p": 46,
     "c": "Landing Gear & Brakes",
@@ -4596,12 +4605,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Depletes the accumulator pressure."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Applies Yellow pressure to the wheels. All other Braking Systems are de — activated until the Park Brake is switched OFF. Guide Q269, PDF p.46.",
+    "w": "Student guide answer retained: Applies Yellow pressure to the wheels. All other Braking Systems are de — activated until the Park Brake is switched OFF. Guide Q269, PDF p.46.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q269, PDF p.46",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 270,
     "p": 46,
     "c": "Landing Gear & Brakes",
@@ -4613,12 +4622,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Above 260 kt or if Gravity Extension has been used."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Above 260 kt or if Gravity Extension has been used. Guide Q270, PDF p.46.",
+    "w": "Student guide answer retained: Above 260 kt or if Gravity Extension has been used. Guide Q270, PDF p.46.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q270, PDF p.46",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 271,
     "p": 46,
     "c": "Landing Gear & Brakes",
@@ -4630,12 +4639,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Green hydraulic system or by Gravity (with Yellow system down locking)."
     ],
     "a": 1,
-    "w": "FCOM cross-check retained the guide answer: Green hydraulic system or by Gravity. Guide Q271, PDF p.46.",
+    "w": "Student guide answer retained: Green hydraulic system or by Gravity. Guide Q271, PDF p.46.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q271, PDF p.46",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 272,
     "p": 47,
     "c": "Landing Gear & Brakes",
@@ -4647,12 +4656,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "The landing gear is not locked down when the Flap Lever is set to 3 or FULL."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: The landing gear is not Locked Down and the aircraft is below 750'. Guide Q272, PDF p.47.",
+    "w": "Student guide answer retained: The landing gear is not Locked Down and the aircraft is below 750'. Guide Q272, PDF p.47.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q272, PDF p.47",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 273,
     "p": 47,
     "c": "Landing Gear & Brakes",
@@ -4664,12 +4673,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "+/- 76°."
     ],
     "a": 2,
-    "w": "FCOM cross-check retained the guide answer: Up to +/- 6° depending on ground speed. Guide Q273, PDF p.47.",
+    "w": "Student guide answer retained: Up to +/- 6° depending on ground speed. Guide Q273, PDF p.47.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q273, PDF p.47",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 274,
     "p": 47,
     "c": "Landing Gear & Brakes",
@@ -4681,12 +4690,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Green system for Normal brakes with Yellow system pressure for the Alternate brakes."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Green system for Normal brakes with Yellow system pressure for the Alternate brakes. Guide Q274, PDF p.47.",
+    "w": "Student guide answer retained: Green system for Normal brakes with Yellow system pressure for the Alternate brakes. Guide Q274, PDF p.47.",
     "ref": "FCOM DSC-32, Landing Gear · Guide Q274, PDF p.47",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 275,
     "p": 48,
     "c": "Limitations",
@@ -4700,10 +4709,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Maximum landing weight is 64,500 kg.",
     "ref": "FCOM LIM-AG-WGHT · Guide Q275, PDF p.48",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 276,
     "p": 48,
     "c": "Limitations",
@@ -4717,10 +4726,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "VMO is 350 kt and MMO is M0.82.",
     "ref": "FCOM LIM-AG-SPD · Guide Q276, PDF p.48",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 277,
     "p": 48,
     "c": "Limitations",
@@ -4734,10 +4743,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The maximum operating pressure altitude is 39,800 ft and the maximum runway altitude is 9,200 ft.",
     "ref": "FCOM LIM-AG-OPS · Guide Q277, PDF p.48",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 278,
     "p": 48,
     "c": "Limitations",
@@ -4751,10 +4760,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Maximum taxi weight is 73,900 kg.",
     "ref": "FCOM LIM-AG-WGHT · Guide Q278, PDF p.48",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 279,
     "p": 48,
     "c": "Limitations",
@@ -4768,10 +4777,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Slats and/or flaps may not be operated above 20,000 ft.",
     "ref": "FCOM LIM-F_CTL · Guide Q279, PDF p.48",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 280,
     "p": 48,
     "c": "Limitations",
@@ -4785,10 +4794,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Maximum zero-fuel weight is 61,000 kg.",
     "ref": "FCOM LIM-AG-WGHT · Guide Q280, PDF p.48",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 281,
     "p": 48,
     "c": "Limitations",
@@ -4802,10 +4811,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The current value is 38 kt with the gust included; the older steady-wind-plus-gust wording was revised.",
     "ref": "FCOM LIM-AG-OPS-ARPT_WIND · Guide Q281, PDF p.48",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 282,
     "p": 49,
     "c": "Limitations",
@@ -4819,10 +4828,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Maximum takeoff weight at brake release is 73,500 kg. The guide's 77.0-t answer was not applicable to this aircraft.",
     "ref": "FCOM LIM-AG-WGHT · Guide Q282, PDF p.49",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 283,
     "p": 49,
     "c": "Limitations",
@@ -4836,10 +4845,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The FCOM explicitly says it is not an AFM limitation; Airbus recommends not intentionally exceeding it.",
     "ref": "FCOM LIM-AG-OPS-ARPT_WIND · Guide Q283, PDF p.49",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 284,
     "p": 49,
     "c": "Limitations",
@@ -4853,10 +4862,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "VLE is 280 kt / M0.67.",
     "ref": "FCOM LIM-AG-SPD, Landing Gear Speeds · Guide Q284, PDF p.49",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 285,
     "p": 49,
     "c": "Limitations",
@@ -4870,10 +4879,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The takeoff minimum is 100 ft AGL and at least 5 seconds after liftoff.",
     "ref": "FCOM LIM-AFS-10, AP Use · Guide Q285, PDF p.49",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 286,
     "p": 49,
     "c": "Limitations",
@@ -4887,10 +4896,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Automatic landing is demonstrated at airport elevations at or below 9,200 ft. The legacy 2,500-ft answer was revised.",
     "ref": "FCOM LIM-AFS-20-10 · Guide Q286, PDF p.49",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 287,
     "p": 49,
     "c": "Limitations",
@@ -4904,10 +4913,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The current RWYCC 5 recommendation is 38 kt with the gust included.",
     "ref": "FCOM LIM-AG-OPS-ARPT_WIND · Guide Q287, PDF p.49",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 288,
     "p": 49,
     "c": "Limitations",
@@ -4921,10 +4930,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The listed minimum weight is 37,230 kg.",
     "ref": "FCOM LIM-AG-WGHT · Guide Q288, PDF p.49",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 289,
     "p": 49,
     "c": "Limitations",
@@ -4938,10 +4947,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The maximum wiper operating speed is 230 kt while sweeping.",
     "ref": "FCOM LIM-AG-SPD, Wipers · Guide Q289, PDF p.49",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 290,
     "p": 50,
     "c": "Limitations",
@@ -4955,10 +4964,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Maximum landing-gear extension speed is 250 kt / M0.60.",
     "ref": "FCOM LIM-AG-SPD, Landing Gear Speeds · Guide Q290, PDF p.50",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 291,
     "p": 50,
     "c": "Limitations",
@@ -4972,10 +4981,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "After a manual go-around, the AP engagement minimum is 100 ft AGL.",
     "ref": "FCOM LIM-AFS-10, AP Use · Guide Q291, PDF p.50",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 292,
     "p": 50,
     "c": "Limitations",
@@ -4989,10 +4998,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The current normal procedure says to start within 30 minutes of battery selection. The old 25,000-ft battery-start ceiling is not stated in the current APU limitation.",
     "ref": "FCOM PRO-NOR-SOP-04, Preliminary Cockpit Preparation · Guide Q292, PDF p.50",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 293,
     "p": 50,
     "c": "Limitations",
@@ -5006,10 +5015,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Passenger-door operation is limited to 65 kt. Cargo-door operation is 40 kt, increased to 50 kt with the nose into wind or the door on the leeward side; cargo doors must be closed before wind exceeds 65 kt.",
     "ref": "FCOM LIM-AG-OPS, Door Wind Limitations · Guide Q293, PDF p.50",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 294,
     "p": 50,
     "c": "Limitations",
@@ -5023,10 +5032,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Maximum landing-gear retraction speed is 220 kt / M0.54.",
     "ref": "FCOM LIM-AG-SPD, Landing Gear Speeds · Guide Q294, PDF p.50",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 295,
     "p": 50,
     "c": "Limitations",
@@ -5040,10 +5049,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The maximum speed in CONF 1+F is 215 kt.",
     "ref": "FCOM LIM-AG-SPD, Flaps/Slats Speeds · Guide Q295, PDF p.50",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 296,
     "p": 50,
     "c": "Limitations",
@@ -5057,10 +5066,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The current APU description permits starting throughout the normal flight envelope; the aircraft environmental envelope still governs.",
     "ref": "FCOM DSC-49-10-20 / LIM-APU-20 · Guide Q296, PDF p.50",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 297,
     "p": 51,
     "c": "Limitations",
@@ -5074,27 +5083,29 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "A 60-minute wait is required before another APU start attempt.",
     "ref": "FCOM LIM-APU-10 · Guide Q297, PDF p.51",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 298,
     "p": 51,
     "c": "Limitations",
-    "q": "What is the maximum continuous engine-oil temperature?",
+    "q": "What is the IAE V2500 maximum continuous engine-oil temperature?",
     "o": [
-      "140 °C",
       "155 °C",
+      "140 °C",
       "165 °C",
-      "135 °C"
+      "175 °C"
     ],
     "a": 0,
-    "w": "The current A/C 21-CMHT value is 140 °C. A transient up to 155 °C is permitted for 15 minutes; the old 155-°C continuous answer was revised.",
-    "ref": "FCOM LIM-ENG, Oil · Guide Q298, PDF p.51",
-    "review": "fcom-revised"
+    "w": "The IAE continuous limit is 155 °C. The transient limit is 165 °C for 15 minutes.",
+    "ref": "FCOM LIM-ENG p.1/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3737 · FOR ENGINEERING USE ONLY · Guide Q298, PDF p.51",
+    "review": "iae-training-checked",
+    "evidence": "oilContinuous",
+    "revision": "iae-20260905"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 299,
     "p": 51,
     "c": "Limitations",
@@ -5108,27 +5119,29 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "In a non-clean configuration the limit is 0 g to +2.0 g.",
     "ref": "FCOM LIM-AG-F_CTL · Guide Q299, PDF p.51",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 300,
     "p": 51,
     "c": "Limitations",
-    "q": "What pause is required between successive automatic or manual ground-start cycles?",
+    "q": "What pause is required between successive IAE automatic or manual ground-start cycles?",
     "o": [
-      "20 seconds",
       "15 seconds",
+      "20 seconds",
       "30 seconds",
       "60 seconds"
     ],
     "a": 0,
-    "w": "The current A/C 21-CMHT requirement is 20 seconds. Four failed cycles require 15 minutes of cooling.",
-    "ref": "FCOM LIM-ENG, Starter · Guide Q300, PDF p.51",
-    "review": "fcom-revised"
+    "w": "The IAE limitation requires a 15-second pause between ground cycles.",
+    "ref": "FCOM LIM-ENG p.2/4 · IAE insert, A/C 20-IMHT · 13 AUG 2018 · PDF p.3738 · FOR ENGINEERING USE ONLY · Guide Q300, PDF p.51",
+    "review": "iae-training-checked",
+    "evidence": "starterPause",
+    "revision": "iae-20260905"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 301,
     "p": 51,
     "c": "Limitations",
@@ -5142,10 +5155,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The single-pack limit is 22,500 ft; dual-pack operation is limited to 15,000 ft.",
     "ref": "FCOM LIM-APU-20, APU Bleed · Guide Q301, PDF p.51",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 302,
     "p": 51,
     "c": "Limitations",
@@ -5159,10 +5172,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "VLO retraction is 220 kt (M0.54).",
     "ref": "FCOM LIM-AG-SPD, Landing Gear Speeds · Guide Q302, PDF p.51",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 303,
     "p": 51,
     "c": "MEL",
@@ -5179,7 +5192,7 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "review": "mel-check"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 304,
     "p": 52,
     "c": "MEL",
@@ -5196,7 +5209,7 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "review": "mel-check"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 305,
     "p": 53,
     "c": "Miscellaneous",
@@ -5210,10 +5223,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "For this A320 configuration, loss of both AC buses above 100 kt commands automatic RAT deployment; the emergency generator then supplies the essential network when available. Variant-dependent wording was removed.",
     "ref": "FCOM DSC-24-10-30, Emergency Generation · Guide Q305, PDF p.53",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 306,
     "p": 53,
     "c": "Miscellaneous",
@@ -5225,12 +5238,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Battery-charging current is out of limits."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Battery-charging current is out of limits. Guide Q306, PDF p.53.",
+    "w": "Student guide answer retained: Battery-charging current is out of limits. Guide Q306, PDF p.53.",
     "ref": "FCOM DSC / PRO, applicable system section · Guide Q306, PDF p.53",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 307,
     "p": 53,
     "c": "Miscellaneous",
@@ -5244,10 +5257,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Simultaneous sidestick inputs trigger both priority lights and, when installed, the DUAL INPUT voice alert.",
     "ref": "FCOM DSC-27-20-30, Sidestick Priority Logic · Guide Q307, PDF p.53",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 308,
     "p": 53,
     "c": "Miscellaneous",
@@ -5261,10 +5274,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "During the takeoff roll, the normal flight-control law is in ground mode before transitioning after liftoff.",
     "ref": "FCOM DSC-27-20-10-20, Ground Mode · Guide Q308, PDF p.53",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 309,
     "p": 53,
     "c": "Miscellaneous",
@@ -5278,10 +5291,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The attitude is memorised at 50 ft RA; passing 30 ft RA, the reference begins reducing toward 2° nose down over 8 seconds.",
     "ref": "FCOM DSC-27-20-10-20, Flare Mode · Guide Q309, PDF p.53",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 310,
     "p": 53,
     "c": "Miscellaneous",
@@ -5295,10 +5308,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The amber message accompanies Direct Law, where automatic pitch trim is unavailable.",
     "ref": "FCOM DSC-27-20-20, Direct Law · Guide Q310, PDF p.53",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 318,
     "p": 54,
     "c": "Miscellaneous",
@@ -5312,10 +5325,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "The handcrank is pulled and rotated clockwise three turns to the mechanical stop.",
     "ref": "FCOM DSC-32-10-20 / PRO-ABN-LG [QRH] · Guide Q318, PDF p.54",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 319,
     "p": 54,
     "c": "Miscellaneous",
@@ -5327,12 +5340,12 @@ window.SYSTEMS_EXAM_QUESTIONS = [
       "Lowered using the emergency Gravity Extension system."
     ],
     "a": 3,
-    "w": "FCOM cross-check retained the guide answer: Lowered using the emergency Gravity Extension system. Guide Q319, PDF p.54.",
+    "w": "Student guide answer retained: Lowered using the emergency Gravity Extension system. Guide Q319, PDF p.54.",
     "ref": "FCOM DSC / PRO, applicable system section · Guide Q319, PDF p.54",
-    "review": "fcom-checked"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 320,
     "p": 54,
     "c": "Miscellaneous",
@@ -5346,10 +5359,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Above 72 kt, armed ground spoilers extend when both thrust levers reach IDLE; their extension commands MAX autobrake. The missing 'armed' condition was added.",
     "ref": "FCOM DSC-27-10-20 / DSC-32-30-10, Rejected Takeoff · Guide Q320, PDF p.54",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 321,
     "p": 54,
     "c": "Miscellaneous",
@@ -5363,10 +5376,10 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Without anti-skid, brake pressure is limited to approximately 1,000 PSI.",
     "ref": "FCOM PRO-ABN-BRAKES [QRH] · Guide Q321, PDF p.54",
-    "review": "fcom-revised"
+    "review": "source-pending"
   },
   {
-    "source": "A320 Student Study Questions — FCOM reconciled",
+    "source": "A320 Student Study Questions",
     "n": 322,
     "p": 54,
     "c": "Miscellaneous",
@@ -5380,6 +5393,6 @@ window.SYSTEMS_EXAM_QUESTIONS = [
     "a": 0,
     "w": "Smoke detected in the avionics extraction duct triggers the ECAM alert plus GEN 1 LINE SMOKE, BLOWER FAULT and EXTRACT FAULT lights.",
     "ref": "FCOM DSC-26-30-10, Avionics Smoke Detection · Guide Q322, PDF p.54",
-    "review": "fcom-revised"
+    "review": "source-pending"
   }
 ];

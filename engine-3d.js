@@ -26,7 +26,7 @@
       operation:'Inlet distortion, turbulence, icing or foreign-object damage can reduce compressor stability margin. P2 is sensed in the inlet region for EPR control.',facts:['CAPTURE + DIFFUSE','P2 SENSING','PART 1 · SLIDE 22']},
     fan:{label:'FAN & LP ROTOR',short:'FAN / N1',system:'architecture',center:[-3.7,.85,.55],
       purpose:'The fan and low-pressure compressor are driven by the five-stage LP turbine through the LP shaft. Fan speed is displayed as N1.',
-      operation:'Most fan air bypasses the core and produces most of the thrust. Maximum N1 in the current AAT A320 FCOM is 104%.',facts:['LP SPOOL','N1 % RPM','HIGH BYPASS']},
+      operation:'Most fan air bypasses the core and produces most of the thrust. Maximum N1 in the supplied IAE FCOM training insert is 100% (LIM-ENG p.1/4, A/C 20-IMHT, 13 AUG 2018; FOR ENGINEERING USE ONLY).',facts:['LP SPOOL','N1 % RPM','HIGH BYPASS']},
     lpc:{label:'LOW-PRESSURE COMPRESSOR',short:'LP COMP',system:'architecture',center:[-2.35,.65,.38],
       purpose:'The LP compressor includes the fan and four compressor stages before the airflow divides into bypass and core streams.',
       operation:'The 2.5 bleed valve improves stall margin during starting, low power and transients. Its fail-safe position is open.',facts:['FAN + 4 STAGES','LP SHAFT','PART 1 · SLIDE 57']},

@@ -41,7 +41,7 @@ function validateQuestions(name,questions,referencePattern){
   });
 }
 
-const required=["index.html","A320_Checkride_Trainer.html","flows.html","flow-sim.js","a320-controls.js","systems-exam-questions.js","self-study-quizzes.js","electrical.html","electrical-sim.js","hydraulic.html","hydraulic-sim.js","engine.html","engine-sim.js","engine-3d.js","integration.html","manifest.webmanifest","sw.js"];
+const required=["index.html","A320_Checkride_Trainer.html","trainer-core.js","flows.html","flow-sim.js","a320-controls.js","systems-exam-questions.js","electrical.html","electrical-sim.js","hydraulic.html","hydraulic-sim.js","engine.html","engine-sim.js","engine-3d.js","integration.html","manifest.webmanifest","sw.js"];
 required.forEach(file=>ok(fs.existsSync(path.join(root,file)),file+" exists"));
 const allNames=fs.readdirSync(root);
 const legacyNamePattern=new RegExp("A3"+"21|P2"+"F","i");
@@ -50,12 +50,12 @@ ok(!allNames.some(name=>legacyNamePattern.test(name)),"legacy out-of-scope aircr
 parseInlineScripts("index.html");
 parseInlineScripts("flows.html");
 parseInlineScripts("integration.html");
-["systems-exam-questions.js","self-study-quizzes.js","a320-controls.js","flow-sim.js","electrical-sim.js","hydraulic-sim.js","engine-sim.js","engine-3d.js","sw.js"].forEach(file=>{
+["trainer-core.js","systems-exam-questions.js","a320-controls.js","flow-sim.js","electrical-sim.js","hydraulic-sim.js","engine-sim.js","engine-3d.js","sw.js"].forEach(file=>{
   try{new vm.Script(read(file),{filename:file});}catch(error){errors.push(error.message);}
 });
 
 const limitations=readLimitations();
-ok(limitations.length===253,"limitations bank has 253 questions");
+ok(limitations.length===259,"limitations bank has 259 questions");
 validateQuestions("Limitations",limitations,/FCOM LIM-/);
 
 global.window={};
@@ -73,27 +73,8 @@ for(let number=318;number<=322;number++)expectedGuideNumbers.push(number);
 ok(JSON.stringify(systems.map(item=>item.n))===JSON.stringify(expectedGuideNumbers),"systems bank preserves supplied guide numbering and the source gap at 311-317");
 ok(systems.every(item=>Number.isInteger(item.p)&&item.p>0),"every systems item retains its source PDF page");
 ok(systems.every(item=>/Guide Q\d+, PDF p\.\d+/.test(item.ref||"")),"every systems reference identifies its guide question and PDF page");
-ok(systems.every(item=>["fcom-checked","fcom-revised","mel-check"].includes(item.review)),"every systems item has a valid reconciliation status");
+ok(systems.every(item=>["source-pending","iae-training-checked","mel-check"].includes(item.review)),"every systems item has an explicit, honest source status");
 ok(systems.filter(item=>item.review==="mel-check").length===2,"the two MEL items are marked for current-operator verification");
-
-global.window={};
-delete require.cache[require.resolve("./self-study-quizzes.js")];
-require("./self-study-quizzes.js");
-const courses=window.SELF_STUDY_QUIZZES;
-ok(courses.length===3,"self-study has three courses");
-const studyQuestions=[];
-courses.forEach((course,courseIndex)=>{
-  ok(Array.isArray(course.banks)&&course.banks.length===3,"self-study course "+(courseIndex+1)+" has three banks");
-  (course.banks||[]).forEach((bank,bankIndex)=>{
-    ok(bank.questions.length===30,"self-study "+course.id+" bank "+bank.id+" has 30 questions");
-    bank.questions.forEach(item=>{
-      studyQuestions.push(item);
-      if(!Number.isFinite(item.slide))errors.push("Self-study question has no slide: "+item.q);
-    });
-  });
-});
-ok(studyQuestions.length===270,"self-study has 270 questions");
-validateQuestions("Self-study",studyQuestions,null);
 
 const controls=require("./a320-controls.js").CONTROL_DEFS;
 const flows=require("./flow-sim.js");
@@ -152,25 +133,34 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v35"),"offline cache is version 35");
-ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=35"),"offline cache includes upgraded modules");
+ok(sw.includes("a320-trainer-v37"),"offline cache is version 37");
+ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=37"),"offline cache includes upgraded modules");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
 const forbidden=new RegExp("\\bA3"+"21\\b|P2"+"F|CF"+"M(?:56)?|PW"+"1100|LE"+"AP-?1A|Pra"+"tt\\s*(?:&|and)?\\s*Whitney","i");
 served.forEach(file=>{const hit=read(file).match(forbidden);if(hit)errors.push("Out-of-scope variant token in "+file+": "+hit[0]);});
 ok(/Ansett A320 IAE V2500-A5 only/i.test(read("engine.html")),"engine explorer states strict Ansett A320 IAE scope");
-ok(served.every(file=>!/20-IMHT|19-IMHE|FOR ENGINEERING USE ONLY/i.test(read(file))),"obsolete engineering-only source effectivity is absent from served files");
-ok(/A\/C 21-CMHT, custom issue 16 MAR 2026/i.test(read("engine.html")),"engine explorer cites the current AAT FCOM effectivity");
+ok(/A\/C 20-IMHT, 13 AUG 2018/.test(read("engine.html"))&&/FOR ENGINEERING USE ONLY/.test(read("engine.html")),"engine explorer preserves the actual IAE source identity and restriction");
+const core=require('./trainer-core.js');
+const engineQuestions=limitations.filter(q=>/FCOM LIM-ENG/.test((q.ref||'')+' '+q.w));
+ok(engineQuestions.length===35,"all 35 IAE limitation items have individual evidence records");
+engineQuestions.forEach(q=>{
+  const evidence=core.EVIDENCE[q.evidence];
+  if(!evidence||normalize(q.o[q.a])!==normalize(evidence.answer))errors.push('IAE answer differs from reviewed source record: '+q.q);
+  if(!q.ref.includes(core.SOURCE.restriction)||!q.ref.includes('PDF p.'+evidence?.pdfPage))errors.push('Missing source restriction or page: '+q.q);
+});
+ok(systems.filter(q=>q.review==='iae-training-checked').every(q=>core.EVIDENCE[q.evidence]&&q.ref.includes(core.SOURCE.restriction)),"checked systems items retain evidence and source restrictions");
+ok(systems.every(q=>!core.hasDependentOptions(q)),"systems choices are independent of displayed letter order");
 
 function correctAnswerContaining(questions,questionPattern,answerPattern,label){
   const item=questions.find(entry=>questionPattern.test(entry.q));
   ok(Boolean(item)&&answerPattern.test(item.o[item.a]),label);
 }
-correctAnswerContaining(limitations,/maximum N1/i,/104%/,"limitations use current IAE maximum N1");
-correctAnswerContaining(limitations,/maximum N2/i,/105%/,"limitations use current IAE maximum N2");
-correctAnswerContaining(limitations,/maximum continuous oil temperature/i,/140/,"limitations use current IAE continuous oil temperature");
-correctAnswerContaining(limitations,/minimum pause between successive ground cycles/i,/20 s/,"limitations use current IAE starter-cycle pause");
-correctAnswerContaining(limitations,/maximum assumed-temperature value/i,/ISA \+53/,"limitations use current IAE TMAXFLEX");
+correctAnswerContaining(limitations,/maximum N1/i,/100%/,"limitations match the IAE N1 source page");
+correctAnswerContaining(limitations,/maximum N2/i,/100%/,"limitations match the IAE N2 source page");
+correctAnswerContaining(limitations,/maximum continuous oil temperature/i,/155/,"limitations match the IAE oil source page");
+correctAnswerContaining(limitations,/minimum pause between successive ground cycles/i,/15 seconds/,"limitations match the IAE starter source page");
+correctAnswerContaining(limitations,/maximum assumed-temperature value/i,/ISA \+55/,"limitations match the IAE TMAXFLEX source page");
 correctAnswerContaining(systems,/basic FM navigation mode/i,/GPS\/INERTIAL/,"systems bank revises the basic FM navigation mode");
 
 if(fs.existsSync(path.join(root,"A320_Checkride_Trainer.html"))){
@@ -182,4 +172,5 @@ if(errors.length){
   errors.forEach(message=>console.error(" - "+message));
   process.exit(1);
 }
-console.log("Trainer validation passed: "+checks.length+" checks, 253 limitations, 315 systems, 270 self-study questions, 10 flow phases, 344 cockpit controls.");
+console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 315 systems, 10 flow phases, 344 cockpit controls. This is not operational certification.");
+require('./test-trainer.js');
