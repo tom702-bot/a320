@@ -1,31 +1,45 @@
-# Source correction record — 5 September 2026
+# FCOM audit — 5 September 2026
 
-This update corrects the release reviewed at `68697c983f19bb576076293e25e298b1174e059f`. Scope remains Ansett A320 IAE V2500-A5.
+Scope: Ansett A320 IAE V2500-A5. Review base: published main 81cba9c812a8d59093c9a1d5f6b0568154a4badf.
 
-## Manuals actually inspected
+## Complete question inventory
 
-- **PDFA320_FCOM_AATIAECUSTOM20260521.pdf:** 3,901 readable pages. SHA-256: `7978fb0645d256b8affd4e76b751b5e0fff7e9b56a8bfb1bb168a46a163b6b06`. The cover explicitly requires selection of the engine references appropriate to the simulator. IAE divider: PDF p.3733. IAE limitations: PDF pp.3737–3739, LIM-ENG pp.1/4–3/4, A/C 20-IMHT, 13 AUG 2018, **FOR ENGINEERING USE ONLY**. All three limit pages were visually inspected. The later engine section is a different applicability and must not supply IAE answers merely because its date is newer.
-- **A320APT1V1.11.pdf:** the uploaded file internally identifies itself as a 21-CMHT Quick Reference Handbook and contains 227 pages. It was treated according to its contents, not assumed to be an APT lecture. It does not independently resolve the missing IAE oil-quantity applicability.
-- **PDF-A320-MSN_09977-FCTM-NVB-202405227.pdf:** 464 readable pages. GI p.1/24, PDF p.25, dated 22 MAY 2024, states that the FCOM remains the reference when FCTM data differs. The FCTM was not used to override engine-specific FCOM limitations.
+| Material | Reviewed | Source matched without substantive change | Corrected or clarified | Withheld |
+|---|---:|---:|---:|---:|
+| Limitations | 259 | 187 | 12 | 60 |
+| Systems guide | 315 | 161 | 132 | 22 |
+| Memory cards | 8 | 0 | 8 | 0 |
+| Fill-in cells | 141 | 83 | 38 | 20 |
+| Total | 723 | 431 | 190 | 102 |
 
-## Corrections and evidence
+Corrected counts include question wording, conditions, distractors and explanations, not only changes to the keyed answer. All 723 records are in verification-audit.json with original content, result, status, rationale and PDF-page references. The source hash, printed-page footer, Ident and page revision are preserved. No withheld item enters verified question grading, weak-area review, mastery counts or the limitation lookup. Eligible totals: 199 limitations, 293 systems questions, eight self-graded memory cards and 121 fill-in cells.
 
-`trainer-core.js` records the FCOM PDF page, printed page, Ident, effectivity, revision, source restriction and review date for each checked fact. Thirty-five engine limitation questions use these records; this includes six added questions covering EGT, takeoff/go-around duration and engine-start crosswind capability. Systems Q136, Q137, Q139, Q140, Q142, Q298 and Q300 were corrected or clarified against explicit IAE pages. The separate self-study courses were subsequently removed at the user's request. Other powerplant study references were not promoted to checked without individual evidence.
+## Source identity and limitations
 
-IAE system pages checked for those corrections: DSC-70-20 p.1/6 (PDF p.2264), DSC-70-70 p.2/4 (p.2293), DSC-70-80-40 pp.2/6, 5/6 and 6/6 (pp.2305, 2308, 2309). The engine explorer's automatic-start description was aligned with DSC-70-80-40 p.4/6 (PDF p.2307): the fuel/ignition step follows the automatic dry-crank sequence, and the start valve/ignition cut out above 43% N2. Starter engagement limits are not the normal cutout threshold.
+The supplied PDFA320_FCOM_AATIAECUSTOM20260521.pdf contains 3,901 pages. SHA-256: 7978fb0645d256b8affd4e76b751b5e0fff7e9b56a8bfb1bb168a46a163b6b06. It is a mixed training compilation, not evidence of the current controlled operator revision. The IAE system insert is A/C 20-IMHT, 13 AUG 2018, FOR ENGINEERING USE ONLY. IAE LIM-ENG is PDF pp.3737–3739; the divider is p.3733. IAE display descriptions in pp.2314–2322 are a separate A/C 19-IMHE insert dated 12 AUG 2015. Many airframe pages are A/C 21-CMHT, 22 MAY 2024; AAT SOP insert revisions differ. Refer to each audit record instead of assuming cover effectivity.
 
-The IAE LIM oil-quantity entry refers to PRO-NOR-SOP-04. The compiled before-walkaround page refers back to LIM-ENG, so it does not resolve the numeric IAE minimum or allowance. The previous numeric answers were removed. The trainer now asks for the source procedure and flags the unresolved value rather than substituting another engine's limits.
+The uploaded A320APT1V1.11.pdf is internally a 227-page 21-CMHT QRH, not an APT lecture. It does not establish IAE-specific values. The 464-page FCTM states that FCOM takes precedence; it was not used to override the engine-specific FCOM. Neither file establishes the missing operator MEL or the Ansett simulator option list. No replacement values were taken from unrelated engine sections.
 
-## Application changes
+Withheld items include variant weights and minimum control speeds; optional avionics/approach/HUD/ROPS/GSM/ISPSS data; unestablished fuel-system, air-conditioning, ADIRS and steering standards; ambiguous radio-panel behavior; fuel approval conflicts; and both MEL questions. Numeric IAE minimum oil quantity/consumption allowance remain unresolved; the retained question asks for the procedure reference rather than inventing a value.
 
-- Source checks are item-specific. The 306 remaining systems questions and 224 remaining airframe/system limitations retain references with individual applicability checks pending. Two MEL questions require the current operator MEL. Installed options also require simulator applicability checks. Nothing is described as operationally certified.
-- Letter-dependent and “above” choices were rewritten; the renderer also preserves original ordering if a future question has such dependencies.
-- A pass requires a completed run and an unrounded score of at least 80%. Ending after one correct answer reports an incomplete exam.
-- The v37 flow-script URLs match the fresh offline manifest. Only navigation requests receive an HTML fallback, unrelated caches are preserved, and unsuccessful HTTP responses are not cached.
-- Revised items do not inherit previous mastery. Unrelated progress is preserved.
-- The subject label and shortest all-subject run derive from the actual 19 categories.
-- PXS and GTE Parts 1 and 2 self-study courses are removed, including their menu, 270-question bank, screens, event handlers, progress display and precache entry.
+## Principal corrections
 
-## Verification
+- Missing operating conditions in landing tailwind, fuel imbalance, icing, autopilot use and automatic landing.
+- Incorrect or ambiguous autoflight, pneumatic, electrical, fire-protection, flight-control and landing-gear questions; keyed options and distractors were reviewed together.
+- GPWS warning: simultaneous AP OFF, full backstick held, TOGA, speedbrakes retracted and appropriate bank, with configuration unchanged until clear. Removed FOLLOW SRS.
+- TCAS memory card explicitly uses the branch when AP/FD TCAS is unavailable. The approach CLIMB-RA go-around exception is separated from the generic AP/FD OFF branch.
+- Emergency descent: five boxed memory actions separated from checklist continuation. Removed the unsupported unconditional MASK OFF at 10,000 ft instruction.
+- Stall, unreliable speed, loss of braking and windshear cards now include their triggers and conditional branches.
+- Fill grading now checks units and preserves signs/ranges. Memory completion is self-reported recall; an early exit is incomplete.
 
-The existing CI entry point, `node validate-trainer.js`, now also runs `test-trainer.js`. The suite executes the actual scoring and rendering functions and exercises service-worker install, activation and offline script requests with controlled browser-API stand-ins. It checks zero/partial/completed runs, a score that rounds to 80% but must fail, letter-dependent choices, retained source restrictions, revised-answer progress, fresh offline scripts, and missing-script handling. These checks establish the tested software behaviour and consistency with reviewed source records; they do not certify every system model or operational applicability. No browser visual QA was performed.
+## Flow and model review
+
+All ten retained flow subsets were compared with FCOM SOP/Tasksharing passages; phase references and retained steps are recorded in the audit. Corrected pushback parking-brake conditions, APU use, flap/icing conditions, default TCAS TA/RA, FLAPS ZERO at S speed on PF order, 10,000 ft AAL and landing-light RETRACT, parking-light conditions and source availability before shutdown. The user-selected crew allocation and the subsets are not a complete approved checklist. The visual control catalog and aircraft artwork do not verify equipment fit.
+
+Electrical source cases were corrected for single-TR crossfeed, ESS TR selection, battery-only BAT 2 direct DC ESS, unpowered DC BAT in flight, emergency-generator essential shed buses and optional AC ESS alternate switching. IDG/C/B qualifications were corrected. Hydraulic corrections clarify reservoir failures, PTU inhibits, brake-accumulator reserve and withheld NWS routing. Engine display corrections distinguish primary fuel FLOW from secondary fuel USED and correct oil sensing paths; unsupported numeric diffuser velocity and exact sensor-placement claims were removed. Per-system references are displayed.
+
+Models are ungraded conceptual study aids. Their geometry, timings, battery/accumulator endurance and arbitrary multi-failure propagation are not certified by this review. The audit explicitly separates these bounds from question source checks.
+
+## Validation and publication
+
+node validate-trainer.js runs the existing regressions and test-audit.js. The suite checks all 723 records, fail-closed eligibility, corrected answer consistency, complete-exam scoring, progress revision, memory branches, numeric units/signs/ranges, flow conditions and actual electrical evaluator source cases. It also tests service-worker installation and fresh offline script loading. HTML twins remain identical; cache v38 replaces the prior release. No browser visual QA was performed. The removed PXS/GTE courses remain absent.

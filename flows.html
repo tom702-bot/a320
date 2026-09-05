@@ -84,7 +84,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 
     <div class="config-grid">
       <div><div class="config-label">ROLE ALLOCATION</div><div class="segment-group" id="roleButtons"></div><div class="crew-lock"><strong>CM1 = PM &middot; CM2 = PF</strong><span>Fixed throughout every flow.</span></div></div>
-      <div><div class="config-label">PRACTICE MODE</div><div class="segment-group" id="modeButtons"><button class="segment" data-value="assessment" aria-pressed="true">ASSESSMENT</button><button class="segment" data-value="guided" aria-pressed="false">GUIDED</button></div></div>
+      <div><div class="config-label">PRACTICE MODE</div><div class="segment-group" id="modeButtons"><button class="segment" data-value="assessment" aria-pressed="true">RECALL CHECK</button><button class="segment" data-value="guided" aria-pressed="false">GUIDED</button></div></div>
       <div><div class="config-label">PRACTICE VIEW</div><div class="segment-group" id="viewButtons"><button class="segment" data-value="diagram" aria-pressed="true">FLOW MAP</button><button class="segment" data-value="focus" aria-pressed="false">FOCUSED PANEL</button><button class="segment" data-value="panel" aria-pressed="false">FULL PANEL</button></div></div>
       <div><div class="config-label">SESSION</div><div class="segment-group" id="sessionButtons"><button class="segment" data-value="single" aria-pressed="true">SINGLE PHASE</button><button class="segment" data-value="sequence" aria-pressed="false">PHASE SEQUENCE</button></div></div>
       <div><div class="config-label">PRACTICE CONTEXT</div><div class="segment-group" id="contextButtons"><button class="segment" data-value="standard-dry" aria-pressed="true">STANDARD &middot; DRY</button><button class="segment" data-value="operator-conditions" aria-pressed="false">OPERATOR CONDITIONS</button></div></div>
@@ -93,7 +93,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 
     <div class="phase-brief" id="phaseBrief"></div>
     <div class="actions"><button class="btn primary" id="beginFlow">BEGIN FLOW &rarr;</button></div>
-    <p class="scope"><b>SOURCE SCOPE:</b> Strict Ansett A320 with IAE V2500 engines. Flow content is transcribed from the supplied A320 Panel Scans.pdf. CM1 is fixed as PM and CM2 as PF. Exact positions are enforced where the card provides one; SET and AS RQRD actions are recorded as conditional acknowledgements. Current approved FCOM, QRH and company procedures remain authoritative.</p>
+    <p class="scope"><b>SOURCE SCOPE:</b> Strict Ansett A320 with IAE V2500 engines. The retained scan subsets were cross-checked against the supplied FCOM SOP and Tasksharing sections on 5 September 2026; source pages are shown per phase. They do not contain every checklist action. CM1 is fixed as PM and CM2 as PF. CM1/PM and CM2/PF is your chosen allocation, not an independent verification of seat-specific company duties. Scores measure practice recall, not operational competence. Exact positions are enforced where the source and scenario provide one; SET and AS RQRD actions are recorded as conditional acknowledgements. Current approved FCOM, QRH and company procedures remain authoritative.</p>
   </section>
 
   <section id="trainer" hidden>
@@ -176,8 +176,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 
   <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE. VERIFY AGAINST CURRENT APPROVED PROCEDURES.</p>
 </main>
-<script src="a320-controls.js?v=37"></script>
-<script src="flow-sim.js?v=37"></script>
+<script src="a320-controls.js?v=38"></script>
+<script src="flow-sim.js?v=38"></script>
 <script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});}
 </script>

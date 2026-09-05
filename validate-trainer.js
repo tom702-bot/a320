@@ -73,8 +73,8 @@ for(let number=318;number<=322;number++)expectedGuideNumbers.push(number);
 ok(JSON.stringify(systems.map(item=>item.n))===JSON.stringify(expectedGuideNumbers),"systems bank preserves supplied guide numbering and the source gap at 311-317");
 ok(systems.every(item=>Number.isInteger(item.p)&&item.p>0),"every systems item retains its source PDF page");
 ok(systems.every(item=>/Guide Q\d+, PDF p\.\d+/.test(item.ref||"")),"every systems reference identifies its guide question and PDF page");
-ok(systems.every(item=>["source-pending","iae-training-checked","mel-check"].includes(item.review)),"every systems item has an explicit, honest source status");
-ok(systems.filter(item=>item.review==="mel-check").length===2,"the two MEL items are marked for current-operator verification");
+ok(systems.every(item=>["fcom-source-checked","withheld"].includes(item.review)),"every systems item has a completed audit status");
+ok(systems.filter(item=>item.c==="MEL").every(item=>item.review==="withheld"),"MEL items are withheld without an operator MEL");
 
 const controls=require("./a320-controls.js").CONTROL_DEFS;
 const flows=require("./flow-sim.js");
@@ -133,8 +133,8 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v37"),"offline cache is version 37");
-ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=37"),"offline cache includes upgraded modules");
+ok(sw.includes("a320-trainer-v38"),"offline cache is version 38");
+ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=38"),"offline cache includes upgraded modules");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
 const forbidden=new RegExp("\\bA3"+"21\\b|P2"+"F|CF"+"M(?:56)?|PW"+"1100|LE"+"AP-?1A|Pra"+"tt\\s*(?:&|and)?\\s*Whitney","i");
@@ -147,7 +147,7 @@ ok(engineQuestions.length===35,"all 35 IAE limitation items have individual evid
 engineQuestions.forEach(q=>{
   const evidence=core.EVIDENCE[q.evidence];
   if(!evidence||normalize(q.o[q.a])!==normalize(evidence.answer))errors.push('IAE answer differs from reviewed source record: '+q.q);
-  if(!q.ref.includes(core.SOURCE.restriction)||!q.ref.includes('PDF p.'+evidence?.pdfPage))errors.push('Missing source restriction or page: '+q.q);
+  if(!q.ref.includes(core.SOURCE.restriction)||!q.verification.pdfPages.includes(evidence?.pdfPage))errors.push('Missing source restriction or page: '+q.q);
 });
 ok(systems.filter(q=>q.review==='iae-training-checked').every(q=>core.EVIDENCE[q.evidence]&&q.ref.includes(core.SOURCE.restriction)),"checked systems items retain evidence and source restrictions");
 ok(systems.every(q=>!core.hasDependentOptions(q)),"systems choices are independent of displayed letter order");
@@ -174,3 +174,4 @@ if(errors.length){
 }
 console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 315 systems, 10 flow phases, 344 cockpit controls. This is not operational certification.");
 require('./test-trainer.js');
+require('./test-audit.js');

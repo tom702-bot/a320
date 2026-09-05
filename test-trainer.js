@@ -116,7 +116,7 @@ async function offlineTests(){
   assert(!stores.has('a320-trainer-v35'));assert(stores.has('unrelated-app'));
   assert.equal((await event('fetch',request('self-study-quizzes.js'))).type,'error','removed bank cannot load from the previous offline cache');
   const flows=await event('fetch',request('flows.html','navigate'));
-  assert.match(await flows.text(),/flow-sim\.js\?v=37/);
+  assert.match(await flows.text(),/flow-sim\.js\?v=38/);
   for(const file of ['index.html','flows.html','engine.html','electrical.html','hydraulic.html','integration.html']){
     for(const match of read(file).matchAll(/<script src="([^"]+)"/g)){
       const response=await event('fetch',request(match[1]));
@@ -131,7 +131,7 @@ async function offlineTests(){
   assert.match(await nav.text(),/Systems Exam Prep/);
   online=true;
   assert.equal((await event('fetch',request('missing.js'))).status,404);
-  assert.equal(await (await caches.open('a320-trainer-v37')).match('missing.js'),undefined,'404 responses are not cached');
+  assert.equal(await (await caches.open('a320-trainer-v38')).match('missing.js'),undefined,'404 responses are not cached');
   assert.equal(await event('fetch',{method:'GET',url:'https://other.invalid/a320/file.js'}),undefined);
   assert.equal(await event('fetch',{method:'GET',url:'https://trainer.invalid/another/file.js'}),undefined);
 }

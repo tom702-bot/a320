@@ -62,12 +62,47 @@
       ' · '+SOURCE.revision+' · PDF p.'+e.pdfPage+' · '+SOURCE.restriction;
   }
   function sourceStatus(q){
+    if(isVerified(q))return {className:'engineering',label:'FCOM SOURCE CHECKED · '+q.verification.id+' · '+(q.evidence?'FOR ENGINEERING USE ONLY':'TRAINING SOURCE; MATCH AIRCRAFT OPTIONS')};
+    if(q.verification?.status==='withheld')return {className:'engineering',label:'WITHHELD · NOT ELIGIBLE FOR GRADING'};
     if(q.evidence&&EVIDENCE[q.evidence])return {className:'engineering',label:'IAE TRAINING SOURCE CHECKED · '+SOURCE.restriction};
     if(q.review==='mel-check')return {className:'engineering',label:'VERIFY AGAINST THE CURRENT OPERATOR MEL'};
     return {className:'engineering',label:'SOURCE REFERENCE RETAINED · APPLICABILITY CHECK PENDING'};
   }
+  function isVerified(q){
+    const v=q&&q.verification;
+    return Boolean(v&&['checked','corrected'].includes(v.status)&&v.id&&v.pdfPages?.length&&v.sourceHash===SOURCE.sha256);
+  }
+  // Ignore optional, matching units only. Never discard arbitrary words or wrong units.
+  function normalizeFill(value,unit){
+    let s=String(value??'').toLowerCase().trim().replace(/[−–]/g,'-');
+    if(!s)return null;
+    if((s.match(/\d[\d,]*/g)||[]).some(n=>n.includes(',')&&!/^\d{1,3}(?:,\d{3})+$/.test(n)))return null;
+    s=s.replace(/,/g,'').replace(/(\d)(?=[a-z°%])/g,'$1 ').replace(/\s+/g,' ');
+    const u=String(unit||'').toLowerCase();
+    let units;
+    if(u.includes('mach')){units=/\bmach\b|m(?=\s*[+-]?(?:\d|\.\d))/g;}
+    else if(u.includes('kt'))units=/\b(?:kt|kts|knots|knot)(?:\s+gs)?\b/g;
+    else if(u.includes('ft'))units=/\b(?:ft|feet|foot)(?:\s+agl)?\b/g;
+    else if(u.includes('psi'))units=/\bpsi\b/g;
+    else if(u.includes('°c'))units=/°\s*c|\bcelsius\b/g;
+    else if(u.includes('°'))units=/°|\bdegrees?\b/g;
+    else if(u.includes('min'))units=/\b(?:min|mins|minute|minutes)\b/g;
+    else if(u==='h')units=/\b(?:h|hr|hrs|hour|hours)\b/g;
+    else if(u==='s')units=/\b(?:s|sec|secs|second|seconds)\b/g;
+    else if(u.includes('attempt'))units=/\battempts?\b/g;
+    else if(u.includes('kg'))units=/\bkg\b/g;
+    else if(u.includes('nm'))units=/\bnm\b/g;
+    else if(u.includes('mm'))units=/\bmm\b/g;
+    else if(u.startsWith('m'))units=/\bm(?:\s+agl)?\b/g;
+    else if(u.includes('%'))units=/%/g;
+    else if(u.includes('g'))units=/\bg\b/g;
+    if(units)s=s.replace(units,'');
+    s=s.replace(/^within\s+/,'').replace(/\bto\b/g,':').replace(/\s+/g,'');
+    if(!/^[±+-]?\d*\.?\d+(?::[+-]?\d*\.?\d+)?$/.test(s))return null;
+    return s.split(':').map(n=>(n.startsWith('±')?'±':'')+Number(n.replace('±',''))).join(':');
+  }
   function hasDependentOptions(q){
-    return q.o.some(s=>/\b(?:as in|either|both|option|answer|statement)\s+[A-E]\b|\b[A-E]\s+(?:and|or)\s+[A-E]\b|\b(?:all|none)\s+of\s+(?:the\s+)?above\b/i.test(s));
+    return q.o.some(s=>/\b(?:as in|either|both|option|answer|statement)\s+[A-E]\b|\b[A-E]\s+(?:and|or)\s+[A-E]\b|\b(?:all|none|any)\s+of\s+(?:the\s+)?above\b/i.test(s));
   }
   function optionOrder(q,shuffle){
     const items=q.o.map((t,i)=>({t,i}));
@@ -79,5 +114,5 @@
     const percent=answered?correct/answered*100:0;
     return {answered,expected,complete,percent,displayPercent:Math.round(percent*10)/10,pass:complete&&correct*100>=expected*80};
   }
-  return {SOURCE,EVIDENCE,sourceReference,sourceStatus,hasDependentOptions,optionOrder,examResult};
+  return {SOURCE,EVIDENCE,sourceReference,sourceStatus,isVerified,normalizeFill,hasDependentOptions,optionOrder,examResult};
 });

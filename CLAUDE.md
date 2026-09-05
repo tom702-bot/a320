@@ -56,7 +56,7 @@ guide across 19 subjects. Guide numbers 311–317 are absent from the source PDF
 
 ```js
 { n: 1, p: 2, c: "Subject", q: "Question", o: ["A", "B", "C", "D"], a: 0,
-  w: "Explanation", ref: "FCOM ... · Guide Q1, PDF p.2", review: "source-pending" }
+  w: "Explanation", ref: "FCOM ... · Guide Q1, PDF p.2", review: "fcom-source-checked", verification: { id: "S001", status: "checked", pdfPages: [1], sourceHash: "..." } }
 ```
 
 Every systems item requires exactly four choices, a valid zero-based answer, a non-empty
@@ -68,12 +68,11 @@ Accuracy is safety-critical. Do not infer aircraft values from another variant o
 source.
 
 - Engine limits use the explicit IAE inserts: A/C `20-IMHT`, `13 AUG 2018`, LIM-ENG pp.1/4–3/4, uploaded PDF pp.3737–3739. Preserve `FOR ENGINEERING USE ONLY`. The compilation cover's `21-CMHT` identity and newer date do not make every engine section applicable to IAE. Check engine-section dividers and page effectivity before any revision.
-- The 35 engine limitation items and seven corrected systems items have evidence records in `trainer-core.js`. Remaining items retain references with individual applicability review pending. Never promote an item to checked without a matching source record, including its exact PDF page, Ident, revision and applicability. A source restriction is information to preserve, not a stale string to delete.
+- The 35 engine limitation items and seven corrected systems items have evidence records in `trainer-core.js`. All 723 questions/cards/cells have item audit records in verification-audit.json; 102 questions/cells are withheld. Runtime quiz eligibility requires checked/corrected status, source hash and page references. Never promote an item to checked without a matching source record, including its exact PDF page, Ident, revision and applicability. A source restriction is information to preserve, not a stale string to delete.
 - A numeric IAE minimum oil quantity/consumption allowance is unresolved in the supplied compilation. Keep it unverified and refer to the applicable before-walkaround procedure; do not substitute a quantity from a different engine section.
 - Keep every served aircraft and engine item within the Ansett A320 IAE V2500 scope. Reject any question, distractor, explanation or legacy page that introduces a different aircraft or engine variant.
 - The standalone IAE engine systems explorer uses the actual 20-IMHT IAE insert effectivity and engineering-use restriction.
-  Physical engine, instrumentation and compressor-stability teaching detail also uses the supplied
-  2022 Gas Turbine Engines A320 Self Study Guides Parts 1 and 2; keep their slide references visible.
+  Display descriptions use the separate IAE 19-IMHE insert, 12 AUG 2015, pp.2314–2322. Preserve its identity. Exact geometry and arbitrary failure propagation are illustrative, not verified operational logic.
 - The PXS and GTE self-study courses were removed at the user's request. Do not restore their menu, bank, quiz screens or cache entry. Systems Exam Prep and the IAE explorer remain part of the trainer.
 - Systems Exam Prep retains the guide location, reference and explicit verification status for every item. MEL items must direct the
   learner to the current operator MEL. Do not move these questions into `BANK`.
@@ -89,7 +88,7 @@ source.
 3. Validate JavaScript syntax and check that:
    - the limitations bank total is 259 unless a deliberate addition/removal changes it;
    - every served Limitations Check item is sourced from an `FCOM LIM-...` page;
-   - Systems Exam Prep contains 19 selectable subjects and 315 guide questions, with no duplicate
+   - Systems Exam Prep retains 315 guide records, with 293 eligible questions across 18 selectable subjects, with no duplicate
      normalized question text;
    - every Systems Exam Prep question has exactly four choices, a valid answer index, a non-empty
      explanation and a visible FCOM or current-operator-MEL reference;
@@ -108,7 +107,7 @@ source.
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
 4. Search every served file, including distractors and filenames, for content outside the strict Ansett A320 IAE V2500-A5 scope.
 5. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v37`. Keep every local script URL aligned with the precache manifest. Navigation fallbacks must never serve HTML to script requests.
+   `a320-trainer-v38`. Keep every local script URL aligned with the precache manifest. Navigation fallbacks must never serve HTML to script requests.
 
 Run `node validate-trainer.js` and `node test-trainer.js`. CI runs both on pushes and pull requests. These are structural and source-record checks, not operational certification. A completed exam is required for a pass; test the unrounded threshold. Keep dependent options in their original order or rewrite them as independent statements. Corrected answers must not inherit mastery from the previous content.
 
@@ -126,3 +125,5 @@ Publish the changed source files to `main`, wait for GitHub Pages to finish, the
 page and service worker. On an iPhone, opening the site once while online allows the bumped cache
 to replace the prior offline copy. If an installed Home-Screen copy remains stale, remove it,
 open the site in Safari, and add it to the Home Screen again.
+
+Audit revision: all quiz results use fcom-audit-20260905. Eligible limitations: 199/259; systems: 293/315; fill cells: 121/141; memory: eight self-graded cards. Do not restore a withheld item without resolving its recorded applicability question. test-audit.js and verification-audit.json are part of the publication gate. Flow scores use a320flows_v3 and are practice recall only.

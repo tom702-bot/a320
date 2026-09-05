@@ -17,38 +17,39 @@
     apu:{label:'APU GEN',group:'source',on:'ON',off:'OFF',offText:'The APU generator was selected OFF and is no longer available to the AC bus-tie network.',onText:'The APU generator was selected ON. It will supply an unpowered main AC bus through the bus-tie network.'},
     ext:{label:'EXT PWR',group:'source',on:'ON',off:'OFF',offText:'External power was disconnected from the AC bus-tie network.',onText:'External power was connected. It has priority over the APU generator when an external source is needed in this training model.'},
     emer:{label:'EMER GEN',group:'source',on:'AVAILABLE',off:'ISOLATED',offText:'The emergency generator was isolated. It cannot recover AC ESS after loss of both main AC buses.',onText:'The emergency generator was made available. With both main AC buses lost, it supplies AC ESS and allows the ESS TR to support DC ESS.'},
-    bat1:{label:'BAT 1',group:'source',on:'AVAILABLE',off:'UNAVAILABLE',offText:'BAT 1 was made unavailable. HOT BUS 1 lost its direct battery source and the static inverter cannot use BAT 1.',onText:'BAT 1 was made available. HOT BUS 1 is directly powered, and BAT 1 can support the DC BAT BUS or static inverter when required.'},
-    bat2:{label:'BAT 2',group:'source',on:'AVAILABLE',off:'UNAVAILABLE',offText:'BAT 2 was made unavailable. HOT BUS 2 lost its direct battery source.',onText:'BAT 2 was made available. HOT BUS 2 is directly powered and BAT 2 can support the DC BAT BUS through its contactor.'},
+    bat1:{label:'BAT 1',group:'source',on:'AVAILABLE',off:'UNAVAILABLE',offText:'BAT 1 was made unavailable. HOT BUS 1 lost its direct battery source and the static inverter cannot use BAT 1.',onText:'BAT 1 is available for HOT BUS 1 and the static inverter. Charged-battery DC BAT contactors remain open in this steady-state flight model.'},
+    bat2:{label:'BAT 2',group:'source',on:'AVAILABLE',off:'UNAVAILABLE',offText:'BAT 2 was made unavailable. HOT BUS 2 lost its direct battery source.',onText:'BAT 2 supplies HOT BUS 2 and directly supplies DC ESS in battery-only flight. Charging, ground contactor logic and battery endurance are not simulated.'},
     tr1:{label:'TR 1',group:'system',on:'IN SERVICE',off:'ISOLATED',offText:'TR 1 was isolated. AC BUS 1 can no longer be converted into power for DC BUS 1.',onText:'TR 1 was returned to service. When AC BUS 1 is powered, it supplies DC BUS 1 with 28 V DC.'},
     tr2:{label:'TR 2',group:'system',on:'IN SERVICE',off:'ISOLATED',offText:'TR 2 was isolated. AC BUS 2 can no longer be converted into power for DC BUS 2.',onText:'TR 2 was returned to service. When AC BUS 2 is powered, it supplies DC BUS 2 with 28 V DC.'},
     essTr:{label:'ESS TR',group:'system',on:'IN SERVICE',off:'ISOLATED',offText:'The ESS TR was isolated. AC ESS can no longer be converted into an alternate supply for DC ESS.',onText:'The ESS TR was returned to service. It supports DC ESS from AC ESS when the normal DC feed is lost.'},
     statInv:{label:'STAT INV',group:'system',on:'IN SERVICE',off:'ISOLATED',offText:'The static inverter was isolated. BAT 1 cannot be converted into battery-supplied essential AC.',onText:'The static inverter was returned to service. It can convert BAT 1 DC power into essential AC when no AC generator source is available.'},
     busTie:{label:'BUS TIE',group:'system',on:'AUTO',off:'OFF',offText:'Both AC bus-tie contactors were selected OFF. Automatic transfer between the main AC buses and APU or external supply is blocked.',onText:'The AC bus-tie contactors were returned to AUTO. They close only when needed to recover an unpowered main AC bus.'},
-    dcTie:{label:'DC TIE',group:'system',on:'AUTO',off:'OFF',offText:'Both DC-tie contactors were selected OFF. DC BUS 1 and DC BUS 2 can no longer feed the DC BAT BUS.',onText:'The DC-tie contactors were returned to AUTO, allowing an available main DC bus to feed the DC BAT BUS.'},
-    acEssFeed:{label:'AC ESS FEED',group:'system',on:'AUTO',off:'OFF',offText:'The normal and alternate AC ESS feed path was isolated. AC ESS now depends on the emergency generator or static inverter.',onText:'AC ESS FEED was returned to AUTO. AC BUS 1 is preferred, with AC BUS 2 used as the alternate main-bus source.'},
+    dcTie:{label:'DC TIE',group:'system',on:'AUTO',off:'OFF',offText:'The simulated DC-tie paths were isolated (not a cockpit switch). DC BUS 1 and DC BUS 2 can no longer feed the DC BAT BUS.',onText:'The simulated DC-tie paths were restored, allowing an available main DC bus to feed the DC BAT BUS.'},
+    acEssAlt:{label:'AC ESS FEED SELECTION',group:'system',on:'ALTN',off:'NORM',offText:'NORM selected: AC BUS 1 supplies AC ESS. Automatic alternate switching is an aircraft option and is not assumed here.',onText:'ALTN selected: the available AC BUS 2 can supply AC ESS through the healthy feed path.'},
+    acEssFeed:{label:'AC ESS FEED PATH',group:'system',on:'HEALTHY',off:'ISOLATED',offText:'The normal and alternate AC ESS feed path was isolated. AC ESS now depends on the emergency generator or static inverter.',onText:'The AC ESS feed path is healthy. NORM selects AC BUS 1; select ALTN to use AC BUS 2.'},
     batCont1:{label:'BAT 1 CONT',group:'system',on:'AUTO',off:'OFF',offText:'The BAT 1 contactor opened. BAT 1 is isolated from the DC BAT BUS, but HOT BUS 1 remains directly battery-fed.',onText:'The BAT 1 contactor was returned to AUTO, allowing BAT 1 to connect to the DC BAT BUS when required.'},
     batCont2:{label:'BAT 2 CONT',group:'system',on:'AUTO',off:'FAILED / OPEN',offText:'The BAT 2 contactor opened. BAT 2 is isolated from the DC BAT BUS, but HOT BUS 2 remains directly battery-fed.',onText:'The BAT 2 contactor was returned to AUTO, allowing BAT 2 to connect to the DC BAT BUS when required.'},
-    acBus1:{label:'AC BUS 1',group:'system',on:'HEALTHY',off:'FAILED',offText:'AC BUS 1 failed. GEN 1 cannot feed it and AC ESS automatically seeks the AC BUS 2 alternate path.',onText:'AC BUS 1 was restored and can again accept its normal or transferred source.'},
+    acBus1:{label:'AC BUS 1',group:'system',on:'HEALTHY',off:'FAILED',offText:'AC BUS 1 failed. GEN 1 cannot feed it and select AC ESS FEED ALTN for the AC BUS 2 alternate path; automatic switching is not assumed.',onText:'AC BUS 1 was restored and can again accept its normal or transferred source.'},
     acBus2:{label:'AC BUS 2',group:'system',on:'HEALTHY',off:'FAILED',offText:'AC BUS 2 failed. GEN 2 cannot feed it; the remaining AC network continues independently.',onText:'AC BUS 2 was restored and can again accept its normal or transferred source.'},
     acEssBus:{label:'AC ESS BUS',group:'system',on:'HEALTHY',off:'FAILED',offText:'The AC ESS BUS failed. Its normal, alternate, emergency-generator and static-inverter feeds cannot restore the bus itself.',onText:'The AC ESS BUS was restored and can accept the highest-priority available feed.'},
-    acEssShedBus:{label:'AC ESS SHED',group:'system',on:'HEALTHY',off:'FAILED',offText:'The AC ESS SHED BUS failed, removing its lower-priority essential loads.',onText:'The AC ESS SHED BUS was restored; it is powered whenever AC ESS and a main AC bus are available.'},
+    acEssShedBus:{label:'AC ESS SHED',group:'system',on:'HEALTHY',off:'FAILED',offText:'The AC ESS SHED BUS failed, removing its lower-priority essential loads.',onText:'The AC ESS SHED BUS was restored; it is powered from main or emergency generation, but shed on static-inverter supply.'},
     dcBus1:{label:'DC BUS 1',group:'system',on:'HEALTHY',off:'FAILED',offText:'DC BUS 1 failed. TR 1 may be energised but cannot power that distribution bus.',onText:'DC BUS 1 was restored and can again receive TR 1 output.'},
     dcBus2:{label:'DC BUS 2',group:'system',on:'HEALTHY',off:'FAILED',offText:'DC BUS 2 failed. TR 2 may be energised but cannot power that distribution bus.',onText:'DC BUS 2 was restored and can again receive TR 2 output.'},
     dcBatBus:{label:'DC BAT BUS',group:'system',on:'HEALTHY',off:'FAILED',offText:'The DC BAT BUS failed, interrupting normal DC-tie and battery-contactor distribution to DC ESS.',onText:'The DC BAT BUS was restored and can again accept a main DC or battery feed.'},
     dcEssBus:{label:'DC ESS BUS',group:'system',on:'HEALTHY',off:'FAILED',offText:'The DC ESS BUS failed. Normal DC, ESS TR and battery paths cannot restore the bus itself.',onText:'The DC ESS BUS was restored and can accept the available essential DC feed.'},
-    dcEssShedBus:{label:'DC ESS SHED',group:'system',on:'HEALTHY',off:'FAILED',offText:'The DC ESS SHED BUS failed, removing its lower-priority essential loads.',onText:'The DC ESS SHED BUS was restored; it remains automatically shed in reduced-power configurations.'},
+    dcEssShedBus:{label:'DC ESS SHED',group:'system',on:'HEALTHY',off:'FAILED',offText:'The DC ESS SHED BUS failed, removing its lower-priority essential loads.',onText:'The DC ESS SHED BUS was restored; it is powered from main or emergency generation, but shed on battery-only supply.'},
     hotBus1:{label:'HOT BUS 1',group:'system',on:'HEALTHY',off:'FAILED',offText:'HOT BUS 1 failed despite BAT 1 availability.',onText:'HOT BUS 1 was restored to its direct BAT 1 supply.'},
     hotBus2:{label:'HOT BUS 2',group:'system',on:'HEALTHY',off:'FAILED',offText:'HOT BUS 2 failed despite BAT 2 availability.',onText:'HOT BUS 2 was restored to its direct BAT 2 supply.'}
   };
 
-  const normalState={gen1:true,gen2:true,apu:false,ext:false,emer:true,bat1:true,bat2:true,tr1:true,tr2:true,essTr:true,statInv:true,busTie:true,dcTie:true,acEssFeed:true,batCont1:true,batCont2:true,acBus1:true,acBus2:true,acEssBus:true,acEssShedBus:true,dcBus1:true,dcBus2:true,dcBatBus:true,dcEssBus:true,dcEssShedBus:true,hotBus1:true,hotBus2:true};
+  const normalState={gen1:true,gen2:true,apu:false,ext:false,emer:true,bat1:true,bat2:true,tr1:true,tr2:true,essTr:true,statInv:true,busTie:true,dcTie:true,acEssFeed:true,acEssAlt:false,batCont1:true,batCont2:true,acBus1:true,acBus2:true,acEssBus:true,acEssShedBus:true,dcBus1:true,dcBus2:true,dcBatBus:true,dcEssBus:true,dcEssShedBus:true,hotBus1:true,hotBus2:true};
   const presets={
     normal:{title:'NORMAL CONFIGURATION RESET',text:'GEN 1 supplies AC BUS 1 and GEN 2 supplies AC BUS 2. All automatic contactors and conversion components are available.',changes:{}},
     onegen:{title:'ONE GENERATOR AVAILABLE',text:'GEN 2 is removed. The automatic bus-tie network lets GEN 1 supply both main AC buses.',changes:{gen2:false}},
     eng1loss:{title:'ENGINE 1 / GENERATOR 1 LOST',text:'GEN 1 is removed. The automatic bus-tie network lets GEN 2 supply both main AC buses. Open the linked hydraulic trainer to inspect the associated green engine-pump loss.',changes:{gen1:false}},
     apu:{title:'APU SUPPLY',text:'Both engine generators are removed and the APU generator supplies the main AC network through the automatic bus ties.',changes:{gen1:false,gen2:false,apu:true}},
-    emergency:{title:'EMERGENCY GENERATOR CONFIGURATION',text:'Both main AC buses are lost. The emergency generator supplies AC ESS and the ESS TR supports DC ESS; shed buses are not powered.',changes:{gen1:false,gen2:false,apu:false,ext:false}},
-    battery:{title:'BATTERY-ONLY CONFIGURATION',text:'All AC generators are unavailable. BAT 1 supports AC ESS through the static inverter and the batteries support the reduced DC essential network.',changes:{gen1:false,gen2:false,apu:false,ext:false,emer:false}}
+    emergency:{title:'EMERGENCY GENERATOR CONFIGURATION',text:'Both main AC buses are lost. The emergency generator supplies AC ESS and the ESS TR supports DC ESS; the essential shed buses remain powered. They are shed on batteries/static inverter.',changes:{gen1:false,gen2:false,apu:false,ext:false}},
+    battery:{title:'BATTERY-ONLY CONFIGURATION',text:'All AC generators are unavailable. BAT 1 supports AC ESS through the static inverter and BAT 2 directly supports DC ESS. DC BAT is unpowered in this in-flight configuration.',changes:{gen1:false,gen2:false,apu:false,ext:false,emer:false}}
   };
 
   let state={...normalState};
@@ -74,44 +75,40 @@
     ac1=ac1&&st.acBus1!==false;if(!ac1)ac1Source='';
     ac2=ac2&&st.acBus2!==false;if(!ac2)ac2Source='';
 
+    // Steady-state in-flight topology; charged batteries, >100 kt, coupling complete.
+    const mainAcAvailable=ac1||ac2;
     let acEss=false,acEssSource='';
-    if(st.acEssFeed&&ac1){acEss=true;acEssSource='AC BUS 1'}
-    else if(st.acEssFeed&&ac2){acEss=true;acEssSource='AC BUS 2 ALT FEED'}
-    else if(st.emer){acEss=true;acEssSource='EMER GEN'}
-    else if(st.statInv&&st.bat1){acEss=true;acEssSource='BAT 1 VIA STAT INV'}
+    if(st.acEssFeed&&!st.acEssAlt&&ac1){acEss=true;acEssSource='AC BUS 1'}
+    else if(st.acEssFeed&&st.acEssAlt&&ac2){acEss=true;acEssSource='AC BUS 2 ALT FEED'}
+    else if(!mainAcAvailable&&st.emer){acEss=true;acEssSource='EMER GEN'}
+    else if(!mainAcAvailable&&st.statInv&&st.bat1){acEss=true;acEssSource='BAT 1 VIA STAT INV'}
     acEss=acEss&&st.acEssBus!==false;if(!acEss)acEssSource='';
-
-    const tr1Active=st.tr1&&ac1;
-    const tr2Active=st.tr2&&ac2;
-    const dc1=tr1Active&&st.dcBus1!==false;
-    const dc2=tr2Active&&st.dcBus2!==false;
-    const normalDcFeed=st.dcTie&&(dc1||dc2);
-    const batteryDcFeed=(st.batCont1&&st.bat1)||(st.batCont2&&st.bat2);
-    const dcBat=(normalDcFeed||batteryDcFeed)&&st.dcBatBus!==false;
-    let dcBatSource='';
-    if(st.dcTie&&dc1)dcBatSource='DC BUS 1';
-    else if(st.dcTie&&dc2)dcBatSource='DC BUS 2';
-    else if(st.batCont1&&st.bat1)dcBatSource='BAT 1';
-    else if(st.batCont2&&st.bat2)dcBatSource='BAT 2';
-
-    const essTrActive=st.essTr&&acEss&&!normalDcFeed&&acEssSource.indexOf('STAT INV')<0;
+    const tr1Active=st.tr1&&ac1,tr2Active=st.tr2&&ac2;
+    const direct1=tr1Active&&st.dcBus1!==false,direct2=tr2Active&&st.dcBus2!==false;
+    const tieHealthy=st.dcTie&&st.dcBatBus!==false;
+    const dc1=st.dcBus1!==false&&(direct1||tieHealthy&&direct2);
+    const dc2=st.dcBus2!==false&&(direct2||tieHealthy&&direct1);
+    const dcBat=tieHealthy&&(direct1||direct2);
+    const dcBatSource=dcBat?(direct1?'DC BUS 1':'DC BUS 2'):'';
+    // Any main-TR loss transfers DC ESS to ESS TR, not the surviving main TR.
+    const normalDcFeed=dcBat&&tr1Active&&tr2Active;
+    const essTrActive=st.essTr&&acEss&&!normalDcFeed&&!acEssSource.includes('STAT INV');
     let dcEss=false,dcEssSource='';
     if(normalDcFeed){dcEss=true;dcEssSource='DC BAT BUS'}
     else if(essTrActive){dcEss=true;dcEssSource='ESS TR'}
-    else if(dcBat){dcEss=true;dcEssSource='DC BAT BUS / BATTERY'}
+    else if(!mainAcAvailable&&!st.emer&&st.bat2){dcEss=true;dcEssSource='BAT 2 DIRECT'}
     dcEss=dcEss&&st.dcEssBus!==false;if(!dcEss)dcEssSource='';
+    const acEssShed=acEss&&!acEssSource.includes('STAT INV')&&st.acEssShedBus!==false;
+    const dcEssShed=dcEss&&dcEssSource!=='BAT 2 DIRECT'&&st.dcEssShedBus!==false;
 
-    const mainAcAvailable=ac1||ac2;
-    const acEssShed=acEss&&mainAcAvailable&&st.acEssShedBus!==false;
-    const dcEssShed=dcEss&&mainAcAvailable&&st.dcEssShedBus!==false;
     return{
       ac1,ac2,acEss,acEssShed,dc1,dc2,dcBat,dcEss,dcEssShed,hot1:st.bat1&&st.hotBus1!==false,hot2:st.bat2&&st.hotBus2!==false,
       ac1Source,ac2Source,acEssSource,dcBatSource,dcEssSource,tr1Active,tr2Active,essTrActive,
       tieClosed,mainAcAvailable,
       gen1Line:st.gen1&&ac1Source==='GEN 1',gen2Line:st.gen2&&ac2Source==='GEN 2',
-      batCont1Closed:st.batCont1&&st.bat1,batCont2Closed:st.batCont2&&st.bat2,
-      dcTie1Closed:st.dcTie&&dc1,dcTie2Closed:st.dcTie&&dc2,
-      acEssFeedClosed:st.acEssFeed&&mainAcAvailable,
+      batCont1Closed:false,batCont2Closed:false,
+      dcTie1Closed:tieHealthy&&dc1,dcTie2Closed:tieHealthy&&dc2&&(!direct1||!direct2),
+      acEssFeedClosed:acEssSource.startsWith('AC BUS'),
       staticInvActive:acEssSource.indexOf('STAT INV')>=0,emerActive:acEssSource==='EMER GEN',
       apuActive:ac1Source.indexOf('APU')>=0||ac2Source.indexOf('APU')>=0,
       extActive:ac1Source.indexOf('EXT')>=0||ac2Source.indexOf('EXT')>=0
@@ -127,7 +124,7 @@
 
   function systemSummary(s){
     if(!s.acEss&&!s.dcEss)return 'Essential AC and DC power are both lost in this configuration.';
-    if(!s.ac1&&!s.ac2&&s.acEss&&s.dcEss)return 'Only the essential network remains powered; both shed buses are isolated.';
+    if(!s.ac1&&!s.ac2&&s.acEss&&s.dcEss)return s.emerActive?'Emergency generator supplies AC/DC ESS including essential shed buses; main DC and DC BAT are unpowered.':'Battery-only flight: BAT 1 supplies essential AC via static inverter, BAT 2 supplies DC ESS; essential shed buses and DC BAT are unpowered.';
     if(s.ac1&&s.ac2&&s.dc1&&s.dc2&&s.acEssShed&&s.dcEssShed)return 'All normal AC and DC buses are powered.';
     const unavailable=[];
     [['ac1','AC 1'],['ac2','AC 2'],['dc1','DC 1'],['dc2','DC 2'],['acEss','AC ESS'],['dcEss','DC ESS']].forEach(([key,name])=>{if(!s[key])unavailable.push(name)});
@@ -286,6 +283,7 @@
     wire(xL+sideW/2,acY,xC-centerW/2,acY,acEssFrom1);wire(xC+centerW/2,acY,xR-sideW/2,acY,acEssFrom2);
     contactor(xC,acY-20,s.acEssFeedClosed,state.acEssFeed,'acEssFeed','AC ESS FEED','right');
     if(s.essTrActive){wire(xEss,midY+12,xC,dcEssY+13,true)}
+    if(s.dcEssSource==='BAT 2 DIRECT'){wire(xB2,batY+batH/2,xB2,dcEssY,true);wire(xB2,dcEssY,xC+centerW/2,dcEssY,true)}
     if(s.emerActive){wire(xEmer,midY+20,xC+centerW/2,acY,true)}
     if(s.staticInvActive){wire(xB1+hotW/2,hotY,xInv,midY-20,true);wire(xInv,midY+20,xC-centerW/2,acY,true)}
 
@@ -336,4 +334,3 @@
   const scenario=typeof location!=="undefined"?new URLSearchParams(location.search).get("scenario"):"";
   loadPreset({eng1:"eng1loss",eng2:"onegen",dual:"emergency"}[scenario]||"normal");
 })();
-

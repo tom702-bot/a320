@@ -113,7 +113,7 @@
 
     <section class="component-controls" aria-labelledby="controlsTitle">
       <h2 id="controlsTitle">COMPONENT CONTROLS</h2>
-      <p class="control-help">Tap any source, converter, contactor or bus to FAIL / RESTORE it. The model immediately recalculates alternate feeds, unpowered buses and shed loads. Hot buses remain directly battery-fed when only a BAT contactor is opened.</p>
+      <p class="control-help">Tap any source, converter, contactor or bus to FAIL / RESTORE it. The model shows steady-state alternate feeds, unpowered buses and essential shed loads within the stated assumptions. Hot buses remain directly battery-fed when only a BAT contactor is opened.</p>
       <div class="control-groups">
         <div class="control-group">
           <h3>POWER SOURCES</h3>
@@ -136,9 +136,9 @@
       <div class="item"><b>TR 1 / TR 2 / ESS TR</b><p>Transformer rectifiers convert AC into 28 V DC. The ESS TR provides an alternate or emergency path to the essential DC network.</p></div>
       <div class="item"><b>DC BUS 1 / DC BUS 2</b><p>Distribute normal DC power. DC ESS preserves priority DC equipment when the main network is degraded.</p></div>
       <div class="item"><b>HOT BUSES / DC BAT BUS</b><p>Each hot bus remains directly connected to its battery. The DC BAT BUS links battery charging and essential battery-fed distribution through the battery and DC-tie contactors.</p></div>
-      <div class="item"><b>AC/DC ESS SHED BUSES</b><p>Feed lower-priority essential loads in normal operation. They are automatically shed when the aircraft is reduced to emergency or battery-only power.</p></div>
+      <div class="item"><b>AC/DC ESS SHED BUSES</b><p>Feed lower-priority essential loads in normal operation. They remain supplied with the emergency generator running and are shed on batteries/static inverter (FCOM PDF p.1139).</p></div>
       <div class="item"><b>CONTACTORS</b><p>Generator-line, bus-tie, battery, DC-tie and AC ESS-feed contactors automatically connect or isolate sources and buses during reconfiguration.</p></div>
-      <div class="item"><b>RAT / EMER GEN</b><p>After loss of both main AC buses in flight, the RAT provides hydraulic power to the emergency generator, which supplies the essential network.</p></div>
+      <div class="item"><b>RAT / EMER GEN</b><p>After loss of both main AC buses above 100 kt, the RAT provides hydraulic power to the emergency generator, which supplies the essential network.</p></div>
       <div class="item"><b>BATTERIES / STATIC INVERTER</b><p>The hot buses remain directly battery-connected. In battery-only operation, the static inverter converts battery DC into essential AC power.</p></div>
     </section>
 
@@ -146,14 +146,14 @@
       <h2>RATINGS &amp; OPERATING CONSTRAINTS</h2>
       <div class="item"><b>MAIN GENERATORS</b><p>Each engine-driven generator is rated at 90 kVA and supplies 115/200 V, 400 Hz AC. The APU generator can replace either or both main generators.</p></div>
       <div class="item"><b>TRANSFORMER RECTIFIERS</b><p>TR 1, TR 2 and the ESS TR convert AC to 28 V DC; each main TR is rated to 200 A.</p></div>
-      <div class="item limit"><b>IDG DISCONNECT &mdash; MAX 3 SECONDS</b><p>Do not hold the IDG disconnect pushbutton for more than 3 seconds. An IDG disconnected in flight cannot be reconnected by the crew.</p></div>
-      <div class="item limit"><b>CIRCUIT BREAKER RESET</b><p>A circuit breaker may be reset only once and only when an approved procedure authorises the reset.</p></div>
+      <div class="item limit"><b>IDG DISCONNECT &mdash; MAX 3 SECONDS</b><p>Do not hold the IDG disconnect pushbutton for more than 3 seconds. Disconnect only with the engine running or windmilling; only maintenance personnel can reconnect it (FCOM PDF p.1150).</p></div>
+      <div class="item limit"><b>CIRCUIT BREAKER RESET</b><p>In flight, do not reengage a tripped C/B unless the captain judges it necessary for safe continuation; only one attempt. On ground, do not reengage fuel-pump C/Bs. Other tripped C/Bs require an identified cause and maintenance coordination (FCOM PDF pp.2610, 2656).</p></div>
       <div class="item limit"><b>LOSS OF BOTH MAIN AC BUSES</b><p>Above 100 kt, the RAT automatically deploys and the aircraft changes to the emergency electrical configuration. Essential loads only remain supplied.</p></div>
       <div class="item limit"><b>SINGLE GENERATOR FAILURE</b><p>Follow ECAM. Starting the APU restores generator redundancy if the failed engine generator cannot be recovered.</p></div>
     </section>
   </div>
 
-  <p class="scope"><b>SOURCE SCOPE:</b> The supplied Ansett A320 limitations extract for A/C 21-CMHT contains no dedicated ATA 24 limitations section. Electrical ratings, architecture and procedural constraints shown here come from the trainer's existing DSC-24 / QRH-referenced material and must be checked against the current approved Ansett FCOM DSC, QRH and ECAM before operational use.</p>
+  <p class="scope"><b>SOURCE SCOPE:</b> FCOM DSC-24 PDF pp.1126–1143, 1150–1154; C/B procedures pp.2610, 2656. Simplified steady-state study model: in flight above 100 kt, batteries charged, emergency-generator coupling complete. Transfer delays, battery charging/endurance, ground/APU-start battery logic and galley/entertainment buses are not simulated. AC ESS automatic alternate switching is an option and is not assumed: use the ALTN control. Other isolation controls represent injected faults, not cockpit switches.</p>
   <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE</p>
 </main>
 

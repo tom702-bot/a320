@@ -58,17 +58,17 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offse
     <section class="reference"><h2>SYSTEM ARCHITECTURE</h2>
       <div class="item"><b>THREE INDEPENDENT SYSTEMS</b><p>Green, blue and yellow each have their own reservoir. Hydraulic fluid cannot transfer between systems.</p></div>
       <div class="item"><b>GREEN / YELLOW</b><p>Engine 1 drives the green pump and engine 2 drives the yellow pump. The bidirectional PTU transfers mechanical power between these systems, not fluid.</p></div>
-      <div class="item"><b>BLUE / RAT</b><p>The blue electric pump normally pressurises the blue system. The RAT-driven pump supplies blue hydraulics after loss of both AC buses or manual deployment.</p></div>
+      <div class="item"><b>BLUE / RAT</b><p>The blue electric pump normally pressurises the blue system. The RAT-driven pump supplies blue hydraulics after loss of both AC buses above 100 kt or manual deployment.</p></div>
       <div class="item"><b>YELLOW AUXILIARIES</b><p>The yellow electric pump permits ground operation with engines stopped. A hand pump operates the cargo doors without electrical power.</p></div>
     </section>
     <section class="reference"><h2>LIMITS &amp; AUTOMATIC LOGIC</h2>
       <div class="item limit"><b>NORMAL PRESSURE &mdash; 3,000 PSI</b><p>RAT-powered blue pressure is 2,500 PSI. ECAM pressure indications become amber below 1,450 PSI.</p></div>
-      <div class="item limit"><b>PTU &mdash; 500 PSI DIFFERENTIAL</b><p>The PTU runs automatically when green/yellow differential pressure exceeds 500 PSI. It is inhibited during the first engine start and tested during the second.</p></div>
+      <div class="item limit"><b>PTU &mdash; 500 PSI DIFFERENTIAL</b><p>With AUTO selected and no inhibition, the PTU operates above 500 PSI differential. First-start, single-engine/parking-brake and cargo-door inhibits apply; this airborne model assumes no inhibition.</p></div>
       <div class="item"><b>PRIORITY VALVES</b><p>When system pressure is low, priority valves remove heavy-load users to preserve the primary hydraulic services.</p></div>
       <div class="item"><b>RESERVOIR PRESSURISATION</b><p>Engine 1 HP bleed normally pressurises all three reservoirs; the crossbleed duct supplies them if that pressure is too low.</p></div>
     </section>
   </div>
-  <p class="scope"><b>SOURCE:</b> Supplied Ansett/Navblue A320 FCOM for A/C 21-CMHT, DSC-29-10 and DSC-29-20, dated 22 MAY 24. Diagram behaviour is a study abstraction: ECAM, QRH and the current approved FCOM remain authoritative.</p>
+  <p class="scope"><b>SOURCE:</b> Supplied Ansett/Navblue A320 FCOM for A/C 21-CMHT, DSC-29-10 and DSC-29-20, dated 22 MAY 24. Reviewed passages: PDF pp.1342–1357. The model assumes steady-state airborne operation, adequate airspeed and no PTU inhibit. Pressure dynamics, accumulator/braking reserve and cargo-door isolation timing are not simulated. NWS routing is withheld until the Ansett simulator hydraulic standard is confirmed. ECAM, QRH and the current approved FCOM remain authoritative.</p>
   <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE</p>
 </main>
 <script src="hydraulic-sim.js"></script>

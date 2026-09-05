@@ -24,7 +24,8 @@ const CONTEXT_BY_ID=Object.fromEntries(FLOW_CONTEXTS.map(function(item){return [
 const CONTEXT_RULES={
   "standard-dry":{
     "anti-ice":{target:"OFF · STANDARD DRY",accept:["OFF"]},
-    "packs":{target:"ON · NORMAL PACK CONFIG",accept:["ON"]}
+    "packs":{target:"ON · NORMAL PACK CONFIG",accept:["ON"]},
+    "tcas":{target:"TA/RA · NO OPERATOR TA-ONLY EXCEPTION",accept:["TA/RA"]}
   }
 };
 const GROUND_POWER_PROFILES = {
@@ -61,10 +62,10 @@ const FLOW_PHASES = [
         step("WINDOWS","CHECK CLOSED","checks","windows_{seat}",["CLOSED"]),
         step("DOORS / SLIDES","CHECK CLOSED / ARMED","checks","doors_slides",["ARMED"]),
         step("THRUST LEVERS","IDLE","pedestal",["thrust_lever_1","thrust_lever_2"],["IDLE"]),
-        step("PARK BRK handle","ON","pedestal","park_brake",["ON"])
+        step("PARK BRK handle","ON if no pushback; OFF during pushback; ON when completed","pedestal","park_brake",null,{conditional:true})
       ],
       PM:[
-        step("ATC","SET FOR OPERATIONS","pedestal","atc_mode",["AUTO","ON"]),
+        step("ATC","SET PER AIRPORT REQUIREMENTS","pedestal","atc_mode",null,{conditional:true}),
         step("WINDOWS","CHECK CLOSED","checks","windows_{seat}",["CLOSED"]),
         step("DOORS / SLIDES","CHECK CLOSED / ARMED","checks","doors_slides",["ARMED"])
       ]
@@ -78,14 +79,14 @@ const FLOW_PHASES = [
         step("ENG MODE selector","NORM","pedestal","eng_mode",["NORM"]),
         step("APU BLEED pb-sw","OFF","overhead","apu_bleed",["OFF"]),
         step("ANTI ICE","AS RQRD","overhead",ANTI_ICE_CONTROLS,null,{any:true,completeAny:true,conditional:true,contextRule:"anti-ice"}),
-        step("APU MASTER SW","OFF","overhead","apu_master",["OFF"]),
+        step("APU MASTER SW","OFF IF NO LONGER REQUIRED","overhead","apu_master",null,{conditional:true}),
         step("ECAM STATUS","CHECK","flightdeck","ecam_status"),
         step("NW STRG DISC MEMO","CHECK NOT DISPLAYED","flightdeck","nw_strg_memo")
       ],
       PM:[
         step("GND SPLRS","ARM","pedestal","spoilers",["ARMED"]),
-        step("RUD","CHECK NEUTRAL","pedestal","rudder_neutral"),
-        step("FLAPS","SET","pedestal","flaps",["1+F","2","3"],{conditional:true,contextRule:"takeoff-flaps"}),
+        step("RUD TRIM","RESET THEN CHECK NEUTRAL","pedestal","rudder_neutral"),
+        step("FLAPS","SET FOR TAKEOFF; DELAY IN ICING WITH RAIN/SLUSH/SNOW","pedestal","flaps",["1+F","2","3"],{conditional:true,contextRule:"takeoff-flaps"}),
         step("PITCH TRIM","SET","pedestal","pitch_trim"),
         step("ECAM STATUS","CHECK","flightdeck","ecam_status")
       ]
@@ -119,7 +120,7 @@ const FLOW_PHASES = [
         step("EXTERIOR LIGHTS","SET","overhead",EXTERIOR_LIGHT_CONTROLS,null,{any:true,conditional:true,contextRule:"exterior-lights"})
       ],
       PM:[
-        step("TCAS mode selector","TA ONLY or TA/RA","pedestal","tcas_mode",["TA","TA/RA"]),
+        step("TCAS mode selector","TA/RA DEFAULT; TA ONLY FOR IDENTIFIED OPERATOR PROCEDURES","pedestal","tcas_mode",null,{conditional:true,contextRule:"tcas"}),
         step("TAKEOFF RUNWAY","CONFIRM","checks","takeoff_runway"),
         step("APPROACH PATH","CLEAR OF TRAFFIC","checks","approach_path"),
         step("PACKS 1 AND 2","AS RQRD","overhead",["pack_1","pack_2"],null,{any:true,conditional:true,contextRule:"packs"}),
@@ -133,7 +134,7 @@ const FLOW_PHASES = [
     initial:{flaps:"1+F",spoilers:"ARMED",ext_strobe:"ON",beacon:"ON",ext_wing:"ON",ext_nav_logo:"2",land_light_l:"ON",ext_nose:"T.O",ext_rwy_turnoff:"ON",land_light_r:"ON"},
     roles:{
       PM:[
-        step("FLAPS ZERO","SELECT","pedestal","flaps",["0"]),
+        step("FLAPS ZERO","AT S SPEED, ON PF ORDER","pedestal","flaps",["0"]),
         step("GND SPLRS","DISARM","pedestal","spoilers",["DISARMED"]),
         step("L/G","CHECK UP","flightdeck","gear_check"),
         step("EXTERIOR LIGHTS","SET","overhead",EXTERIOR_LIGHT_CONTROLS,null,{any:true,conditional:true,contextRule:"exterior-lights"})
@@ -141,23 +142,23 @@ const FLOW_PHASES = [
     }
   },
   {
-    id:"ten-thousand-climb",title:"10,000 ft - Climb",short:"10,000 CLIMB",
+    id:"ten-thousand-climb",title:"10,000 ft AAL - Climb",short:"10,000 AAL CLIMB",
     initial:{land_light_l:"ON",land_light_r:"ON",seat_belts:"ON",efis_cstr_cm1:"OFF",efis_cstr_cm2:"OFF"},
     roles:{
       PF:[
         step("EFIS OPTIONS","AS RQRD","flightdeck",EFIS_OPTION_TEMPLATES,null,{any:true,completeAny:true,conditional:true})
       ],
       PM:[
-        step("LAND L + R switches","OFF","overhead",["land_light_l","land_light_r"],["OFF"]),
+        step("LAND L + R switches","RETRACT","overhead",["land_light_l","land_light_r"],["RETRACT"]),
         step("SEAT BELT sw","AS RQRD","overhead","seat_belts",null,{any:true,conditional:true}),
         step("EFIS OPTIONS","AS RQRD","flightdeck",EFIS_OPTION_TEMPLATES,null,{any:true,completeAny:true,conditional:true}),
         step("ECAM MEMO","REVIEW","flightdeck","ecam_memo"),
-        step("NAVAIDS / SEC-PLAN / OPT FL / REC MAX FL","CHECK","pedestal",["mcdu_{seat}_rad_nav","mcdu_{seat}_sec_f_pln","mcdu_{seat}_prog"])
+        step("NAVAIDS / SEC-PLAN / OPT FL / REC MAX FL","CLEAR / AS RQRD / CHECK","pedestal",["mcdu_{seat}_rad_nav","mcdu_{seat}_sec_f_pln","mcdu_{seat}_prog"],null,{conditional:true})
       ]
     }
   },
   {
-    id:"ten-thousand-descent",title:"10,000 ft - Descent",short:"10,000 DESCENT",
+    id:"ten-thousand-descent",title:"10,000 ft AAL - Descent",short:"10,000 AAL DESCENT",
     initial:{land_light_l:"OFF",land_light_r:"OFF",seat_belts:"OFF",ls_cm1:"OFF",ls_cm2:"OFF",efis_cstr_cm1:"OFF",efis_cstr_cm2:"OFF"},
     roles:{
       PF:[
@@ -185,9 +186,9 @@ const FLOW_PHASES = [
       PM:[
         step("RADAR / PWS","OFF","pedestal",["wx_radar_system","wx_pws"],["OFF"]),
         step("ENG MODE selector","NORM","pedestal","eng_mode",["NORM"]),
-        step("FLAPS","RETRACT","pedestal","flaps",["0"]),
-        step("TCAS / ATC","STBY / AS RQRD","pedestal","tcas_mode",null,{any:true,conditional:true}),
-        step("APU","AS RQRD","overhead","apu_master",null,{any:true,conditional:true}),
+        step("FLAPS","RETRACT UNLESS ICING/SLUSH/SNOW OR HOT-WEATHER CONDITION APPLIES","pedestal","flaps",null,{conditional:true}),
+        step("TCAS / ATC","TCAS STBY OR XPNDR PER FIT; ATC PER AIRPORT REQUIREMENTS","pedestal",["tcas_mode","atc_mode"],null,{any:true,conditional:true}),
+        step("APU","IF REQUIRED: MASTER ON, START ON, MONITOR AVAIL","overhead",["apu_master","apu_start"],null,{any:true,conditional:true}),
         step("ANTI ICE","AS RQRD","overhead",ANTI_ICE_CONTROLS,null,{any:true,completeAny:true,conditional:true,contextRule:"anti-ice"})
       ]
     }
@@ -198,17 +199,17 @@ const FLOW_PHASES = [
     roles:{
       PF:[
         step("ACCU PRESS","CHECK","flightdeck","accu_press"),
-        step("PARK BRAKE handle","ON","pedestal","park_brake",["ON"]),
+        step("PARK BRAKE handle","ON; APPLY HOT-BRAKE PRECAUTIONS AND VERIFY PRESSURE","pedestal","park_brake",null,{conditional:true}),
         step("YELLOW ELEC PUMP","OFF","overhead","yellow_pump",["OFF"]),
-        step("ALL ENG MASTER LEVERS","OFF","pedestal",["eng_master_1","eng_master_2"],["OFF"]),
-        step("EXTERIOR LIGHTS","OFF","overhead",EXTERIOR_LIGHT_CONTROLS,null,{acceptByControl:{ext_strobe:["OFF"],beacon:["OFF"],ext_wing:["OFF"],ext_nav_logo:["OFF"],land_light_l:["OFF","RETRACT"],ext_nose:["OFF"],ext_rwy_turnoff:["OFF"],land_light_r:["OFF","RETRACT"]}}),
+        step("ALL ENG MASTER LEVERS","OFF AFTER REQUIRED COOLING; VERIFY APU AVAIL OR EXT PWR ON","pedestal",["eng_master_1","eng_master_2"],null,{conditional:true}),
+        step("EXTERIOR LIGHTS","WING AND BEACON OFF; OTHER LIGHTS AS RQRD","overhead",EXTERIOR_LIGHT_CONTROLS,null,{conditional:true}),
         step("SLIDES","CHECK DISARMED","checks","doors_slides",["DISARMED"]),
         step("SEAT BELTS sw","OFF","overhead","seat_belts",["OFF"])
       ],
       PM:[
         step("ANTI ICE","OFF","overhead",ANTI_ICE_CONTROLS,["OFF"]),
         step("APU BLEED pb-sw","AS RQRD","overhead","apu_bleed",null,{any:true,conditional:true}),
-        step("FUEL PUMPS","OFF","overhead",["fuel_pump_l1","fuel_pump_l2","fuel_pump_ctr1","fuel_pump_ctr2","fuel_pump_r1","fuel_pump_r2"],["OFF"]),
+        step("FUEL PUMPS / CTR TRANSFER CONTROLS","OFF PER INSTALLED FUEL SYSTEM","overhead",["fuel_pump_l1","fuel_pump_l2","fuel_pump_ctr1","fuel_pump_ctr2","fuel_pump_r1","fuel_pump_r2"],null,{conditional:true}),
         step("ATC","STBY","pedestal","atc_mode",["STBY"]),
         step("IRS PERFORMANCE","CHECK","pedestal","mcdu_{seat}_data"),
         step("FUEL QUANTITY","CHECK","flightdeck","fuel_quantity")
@@ -218,6 +219,19 @@ const FLOW_PHASES = [
 ];
 
 const PHASE_BY_ID = Object.fromEntries(FLOW_PHASES.map(function(phase){return [phase.id,phase];}));
+const FLOW_SOURCES={
+  'cockpit-preparation':[3414,3415,3416],'before-start':[3224,3225,3226,3417],
+  'after-start':[3239,3240,3241,3418],taxi:[3251,3252,3253,3418],
+  'line-up':[3270,3271,3272,3419],'climb-acceleration':[3420],
+  'ten-thousand-climb':[3289,3421],'ten-thousand-descent':[3311,3423],
+  'after-landing':[3381,3382,3383,3431],parking:[3390,3391,3396,3431,3432]
+};
+FLOW_PHASES.forEach(function(phase){
+  phase.sourcePages=FLOW_SOURCES[phase.id];
+  phase.note=(phase.note?phase.note+' ':'')+'Training scan subset — not a complete checklist. FCOM PDF pp.'+phase.sourcePages.join(', ')+'. CM1/PM and CM2/PF is the user-selected role allocation.';
+  if(phase.id==='after-landing')phase.note+=' Begin after vacating the runway; after icing/slush/snow, do not retract until engines are shut down and ground crew confirm no ice obstruction. Above 30 °C, CONF 1 may be retained to avoid a wing-leak alert.';
+  if(phase.id==='climb-acceleration')phase.note+=' Flap retraction is speed- and PF-command-dependent. If takeoff used TA ONLY, restore TA/RA after takeoff (PDF p.3421).';
+});
 
 function getInitialControlState(phaseId,powerProfile){
   const phase=PHASE_BY_ID[phaseId];
@@ -349,7 +363,7 @@ function initBrowser(){
   let sequenceResults=[];
   let phaseStartState={};
   const controlState={};
-  const BEST_KEY="a320flows_v2";
+  const BEST_KEY="a320flows_v3";
   const LEGACY_BEST_KEY="a320flows_v1";
 
   function loadBest(){
@@ -616,7 +630,7 @@ function initBrowser(){
     const pct=accuracy(activeRun);$("completion").hidden=false;
     const scored=pct!==null;
     const mastered=scored&&selectedMode==="assessment"&&pct===100&&activeRun.incorrect===0&&activeRun.outOfOrder===0&&activeRun.hints===0&&activeRun.reveals===0;
-    $("completionScore").textContent=scored?pct+"% · "+(mastered?"MASTERED":selectedMode==="guided"?"GUIDED":"ASSISTED"):"NOT SCORED · CONDITIONAL";
+    $("completionScore").textContent=scored?pct+"% · "+(mastered?"UNASSISTED RECALL":selectedMode==="guided"?"GUIDED":"ASSISTED"):"NOT SCORED · CONDITIONAL";
     $("completion").classList.toggle("assisted",!mastered);
     $("completionText").textContent=activeRun.correct+" scored "+(activeRun.practiceView==="diagram"?"flow items":"control inputs")+" · "+activeRun.conditional+" conditional · "+activeRun.incorrect+" incorrect · "+activeRun.outOfOrder+" out of order · "+activeRun.hints+" hints · "+activeRun.reveals+" full reveals";
     const key=activeRun.phaseId+":"+activeRun.role+":"+activeRun.seat+":"+activeRun.practiceView+":"+activeRun.contextId;const best=loadBest();
@@ -627,7 +641,7 @@ function initBrowser(){
     if($("continueFlow")){$("continueFlow").hidden=!hasNext;if(hasNext)$("continueFlow").textContent="CONTINUE TO "+sequencePhases[sequenceIndex+1].short+" →";}
     const cleanCount=sequenceResults.filter(function(item){return item.mastered;}).length;
     const status=!scored?"CONDITIONAL FLOW COMPLETE":mastered?"UNASSISTED FLOW COMPLETE":"ASSISTED FLOW COMPLETE";
-    showFeedback(mastered?"correct":"conditional",status,PHASE_BY_ID[activeRun.phaseId].title+" · "+activeRun.role+" complete."+(selectedSession==="sequence"?" Sequence mastery: "+cleanCount+"/"+sequenceResults.length+" phases.":""));
+    showFeedback(mastered?"correct":"conditional",status,PHASE_BY_ID[activeRun.phaseId].title+" · "+activeRun.role+" complete."+(selectedSession==="sequence"?" Sequence recall: "+cleanCount+"/"+sequenceResults.length+" phases.":""));
     $("runProgress").style.width="100%";$("completion").scrollIntoView({behavior:"smooth",block:"center"});
   }
   function continueSequence(){
