@@ -133,8 +133,8 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v38"),"offline cache is version 38");
-ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=38"),"offline cache includes upgraded modules");
+ok(sw.includes("a320-trainer-v39"),"offline cache is version 39");
+ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=39"),"offline cache includes upgraded modules");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
 const forbidden=new RegExp("\\bA3"+"21\\b|P2"+"F|CF"+"M(?:56)?|PW"+"1100|LE"+"AP-?1A|Pra"+"tt\\s*(?:&|and)?\\s*Whitney","i");

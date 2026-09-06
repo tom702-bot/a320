@@ -6,17 +6,38 @@ function array(name){const start=html.indexOf('const '+name+' = ['),end=html.ind
 const lim=array('BANK'),memory=array('MEM'),fill=array('FILL_SECTIONS');
 const ctx={window:{}};vm.runInNewContext(fs.readFileSync(__dirname+'/systems-exam-questions.js','utf8'),ctx);const sys=ctx.window.SYSTEMS_EXAM_QUESTIONS;
 assert.equal(Object.keys(audit.items).length,723);
-assert.equal(lim.filter(core.isVerified).length,199);
-assert.equal(sys.filter(core.isVerified).length,293);
+assert.equal(lim.filter(core.isVerified).length,200);
+assert.equal(sys.filter(core.isVerified).length,296);
 assert.equal(new Set(sys.filter(core.isVerified).map(q=>q.c)).size,18);
-assert.equal(Object.values(audit.items).filter(a=>a.status==='withheld').length,102);
+assert.equal(Object.values(audit.items).filter(a=>a.status==='withheld').length,98);
+const followUp=Object.entries(audit.items).filter(([id,a])=>a.followUp);
+assert.equal(followUp.length,102,'all previously withheld records must have a follow-up');
+assert.equal(new Set(audit.followUpReview.reviewedIds).size,102);
+assert.deepEqual(followUp.filter(([id,a])=>a.followUp.disposition==='restored').map(([id])=>id).sort(),['L133','S116','S128','S145']);
+assert.equal(followUp.filter(([id,a])=>a.followUp.disposition==='withheld-applicability').length,84);
+assert.equal(followUp.filter(([id,a])=>a.followUp.disposition==='withheld-source-conflict-or-gap').length,14);
+for(const[id,a]of followUp){
+ assert.equal(a.followUp.sourceHash,core.SOURCE.sha256);
+ assert(a.followUp.pdfPages.length);for(const p of a.followUp.pdfPages)assert(audit.pages[p]);
+ if(a.followUp.disposition!=='restored'){
+  assert.equal(a.status,'withheld','matching a source value must not silently clear applicability');
+  assert(a.followUp.requiredEvidence);assert.equal(core.isVerified({verification:{id,status:a.status,pdfPages:a.pdfPages,sourceHash:core.SOURCE.sha256}}),false);
+ }
+}
+assert.deepEqual(audit.items['F16.01.01'].pdfPages,[3730]);
+assert.deepEqual(audit.items['F17.01.01'].pdfPages,[3788,3794]);
+const restoredSystem=n=>sys.find(q=>q.n===n);
+assert(restoredSystem(116).o[restoredSystem(116).a].includes('or two Air Conditioning System Controllers'));
+assert.equal(restoredSystem(128).o[restoredSystem(128).a],'APU bleed air must not be used to supply wing anti-ice');
+assert(restoredSystem(145).q.includes('AUTO'));
+assert.equal(restoredSystem(145).o[restoredSystem(145).a],'Centre tank above 250 kg and either wing tank below 5,000 kg');
 assert.equal(core.isVerified({evidence:'n1'}),false,'legacy engine reference alone cannot confer quiz eligibility');
 assert.equal(core.isVerified({verification:{id:'x',status:'checked',pdfPages:[],sourceHash:core.SOURCE.sha256}}),false);
 for(const q of [...lim,...sys]){
  const a=audit.items[q.verification.id];assert(a);
  assert.equal(q.verification.status,a.status);assert.equal(q.q,a.result.q);assert.equal(q.o[q.a],a.result.answer);
  assert.deepEqual(Array.from(q.o),a.result.o);assert.equal(q.w,a.result.explanation);
- if(core.isVerified(q)){assert(a.pdfPages.length);for(const p of a.pdfPages)assert(audit.pages[p]);assert.equal(q.revision,'fcom-audit-20260905');}
+ if(core.isVerified(q)){assert(a.pdfPages.length);for(const p of a.pdfPages)assert(audit.pages[p]);assert.equal(q.revision,a.followUp?.disposition==='restored'?'fcom-followup-20260906':'fcom-audit-20260905');}
 }
 const cells=fill.flatMap(s=>s.rows.flatMap(r=>r[1]));assert.equal(cells.length,121);
 for(const [sub,answer,aliases,unit,evidence]of cells){assert(core.isVerified({verification:evidence}));assert.notEqual(core.normalizeFill(answer,unit),null,'invalid fill key '+answer);assert(audit.items[evidence.id]);}

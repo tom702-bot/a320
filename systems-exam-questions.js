@@ -1,5 +1,5 @@
-/* FCOM item audit, 5 September 2026. Withheld records preserve provenance and are excluded from grading. */
-window.SYSTEMS_EXAM_SOURCE="FCOM source audit · 5 September 2026";
+/* FCOM item audit, 5 September 2026; outstanding-item follow-up, 6 September 2026. Withheld records are excluded from grading. */
+window.SYSTEMS_EXAM_SOURCE="FCOM source audit · follow-up 6 September 2026";
 window.SYSTEMS_EXAM_TOPICS=["General","EIS","Autoflight & FMGS","Air & Pressurisation","Ice & Rain","Powerplant","Fuel","Navigation","Lights, Doors & Oxygen","APU","Communications","Electrical","Fire Protection","Hydraulics","Flight Controls","Landing Gear & Brakes","Limitations","MEL","Miscellaneous"];
 window.SYSTEMS_EXAM_QUESTIONS=[
   {
@@ -3058,28 +3058,27 @@ window.SYSTEMS_EXAM_QUESTIONS=[
     "n": 116,
     "p": 20,
     "c": "Air & Pressurisation",
-    "q": "Cabin and Flight Deck Temperature is controlled by:",
+    "q": "Which automatic cockpit/cabin temperature-control arrangements does the supplied FCOM describe?",
     "o": [
-      "One Zone Controller and two Pack Controllers",
-      "One Hot Air Pressure Regulating Valves and three Trim Air Valves only.",
-      "Two Zone Controllers and two Pack Controllers.",
-      "Temperature Selectors in the Flight deck and Cabin."
+      "One zone controller and two pack controllers, or two Air Conditioning System Controllers (ACSCs)",
+      "Two zone controllers and no pack controllers",
+      "Temperature selectors acting without any controller",
+      "One trim-air valve controlling all three zones without a controller"
     ],
     "a": 0,
-    "w": "Student guide answer retained: One Zone Controller and two Pack Controllers Guide Q116, PDF p.20.",
-    "ref": "FCOM DSC-21-10-10, DSC-21-10-30, DSC-21-10-40 · PDF pp.155, 161, 163 · page revision 22 MAY 24 · supplied training compilation; aircraft options must match · Guide Q116, PDF p.20",
-    "review": "withheld",
+    "w": "The general description lists one zone controller with two pack controllers, or two ACSCs. The question includes both documented arrangements and does not assert which is fitted in the simulator. Legacy controller failure behaviour remains a separate unresolved question.",
+    "ref": "FCOM DSC-21-10-10 / DSC-21-10-30 · PDF pp.155, 161 · page revision 22 MAY 24 · supplied AAT training compilation · Guide Q116, PDF p.20",
+    "review": "fcom-source-checked",
     "verification": {
       "id": "S116",
-      "status": "withheld",
+      "status": "corrected",
       "pdfPages": [
         155,
-        161,
-        163
+        161
       ],
       "sourceHash": "7978fb0645d256b8affd4e76b751b5e0fff7e9b56a8bfb1bb168a46a163b6b06"
     },
-    "revision": "fcom-audit-20260905"
+    "revision": "fcom-followup-20260906"
   },
   {
     "source": "A320 Student Study Questions",
@@ -3380,28 +3379,29 @@ window.SYSTEMS_EXAM_QUESTIONS=[
     "n": 128,
     "p": 22,
     "c": "Ice & Rain",
-    "q": "Wing anti-ice is not available in which of the following circumstances:",
+    "q": "Which statement about supplying wing anti-ice is correct?",
     "o": [
-      "Following either Wing or Pylon Leak.",
-      "Following Engine Fire.",
-      "When the APU is supplying Pneumatic Air.",
-      "Any of the listed leak, fire or APU-supply circumstances."
+      "APU bleed air must not be used to supply wing anti-ice",
+      "Any single pylon leak always removes wing anti-ice from both wings",
+      "Any single engine fire always removes wing anti-ice from both wings",
+      "APU bleed is an approved substitute for engine bleed when wing anti-ice is required"
     ],
-    "a": 3,
-    "w": "Student guide answer retained: All of the Above. Guide Q128, PDF p.22.",
-    "ref": "FCOM DSC-30-20-10, DSC-36-10-30, DSC-36-10-50 · PDF pp.1366, 1900, 1904 · page revision 22 MAY 24 · supplied training compilation; aircraft options must match · Guide Q128, PDF p.22",
-    "review": "withheld",
+    "a": 0,
+    "w": "The FCOM prohibits APU bleed air for wing anti-ice. A leak isolates the affected side; the remaining capability depends on the failure and pneumatic configuration. The former all-of-the-above answer wrongly treated every listed fault as a total loss.",
+    "ref": "FCOM LIM-APU / PRO-ABN-AIR / DSC-30-20-10 / DSC-36-10-50 · PDF pp.3719, 2502, 1366, 1904 · page revision 22 MAY 24 · supplied AAT training compilation · Guide Q128, PDF p.22",
+    "review": "fcom-source-checked",
     "verification": {
       "id": "S128",
-      "status": "withheld",
+      "status": "corrected",
       "pdfPages": [
+        3719,
+        2502,
         1366,
-        1900,
         1904
       ],
       "sourceHash": "7978fb0645d256b8affd4e76b751b5e0fff7e9b56a8bfb1bb168a46a163b6b06"
     },
-    "revision": "fcom-audit-20260905"
+    "revision": "fcom-followup-20260906"
   },
   {
     "source": "A320 Student Study Questions",
@@ -3838,26 +3838,26 @@ window.SYSTEMS_EXAM_QUESTIONS=[
     "n": 145,
     "p": 25,
     "c": "Fuel",
-    "q": "The CTR TK MODE SEL pushbutton FAULT light indicates:",
+    "q": "With CTR TK MODE SEL at AUTO, which fuel quantities trigger its FAULT light and ECAM alert in the supplied FCOM?",
     "o": [
-      "There is significant fuel in the Centre Tank, yet a Wing Tank contains less than 5000 kg.",
-      "A Wing Inner Tank has become overfull.",
-      "A Transfer Valve has failed to open.",
-      "The Centre Tank Pumps have continued to run although Slats are extended."
+      "Centre tank above 250 kg and either wing tank below 5,000 kg",
+      "Centre tank below 250 kg and both wing tanks full",
+      "Both wing tanks above 5,000 kg, regardless of centre-tank quantity",
+      "Any non-zero centre-tank quantity, regardless of wing-tank quantities"
     ],
     "a": 0,
-    "w": "Student guide answer retained: There is significant fuel in the Centre Tank, yet a Wing Tank contains less than 5000 kg. Guide Q145, PDF p.25.",
-    "ref": "FCOM DSC-28-20-G · PDF pp.1325 · page revision 22 MAY 24 · supplied training compilation; aircraft options must match · Guide Q145, PDF p.25",
-    "review": "withheld",
+    "w": "All three conditions must coincide: CTR TK MODE SEL at AUTO, centre-tank quantity greater than 250 kg, and left or right wing-tank quantity less than 5,000 kg. This is an indication-logic question; it does not establish electrically driven centre pumps or their manual-control behaviour.",
+    "ref": "FCOM DSC-28-20 · PDF pp.1325 · page revision 22 MAY 24 · supplied AAT training compilation · Guide Q145, PDF p.25",
+    "review": "fcom-source-checked",
     "verification": {
       "id": "S145",
-      "status": "withheld",
+      "status": "corrected",
       "pdfPages": [
         1325
       ],
       "sourceHash": "7978fb0645d256b8affd4e76b751b5e0fff7e9b56a8bfb1bb168a46a163b6b06"
     },
-    "revision": "fcom-audit-20260905"
+    "revision": "fcom-followup-20260906"
   },
   {
     "source": "A320 Student Study Questions",
