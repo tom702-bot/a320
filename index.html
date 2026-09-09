@@ -79,6 +79,9 @@
     background:var(--cyan); box-shadow:0 0 8px var(--cyan)}
 
   .question{font-size:19px; line-height:1.4; font-weight:500; margin:2px 0 20px}
+  .question-media{display:flex;justify-content:center;margin:-7px 0 20px}
+  .question-media img{display:block;max-width:min(100%,460px);max-height:430px;object-fit:contain;
+    border:1px solid var(--edge);border-radius:8px;background:#0a1015;padding:8px}
 
   .options{display:flex; flex-direction:column; gap:10px}
   .opt{
@@ -274,7 +277,7 @@
 
   <!-- ================= START ================= -->
   <section id="start">
-    <p class="lede">Pick a drill. All 315 supplied systems questions and 259 limitation questions have been reviewed. Grading uses only source-checked items: 296 systems questions and 200 limitations. Unsupported or unresolved aircraft variants are withheld. Limitations Check remains restricted to the supplied FCOM limitations
+    <p class="lede">Pick a drill. The trainer contains 613 systems questions and 259 reviewed limitation questions. Grading includes 594 systems questions&mdash;296 FCOM-reviewed guide questions plus all 298 workbook questions accepted as supplied&mdash;and 200 limitations. Nineteen unresolved guide items remain withheld. Limitations Check remains restricted to the supplied FCOM limitations
       chapter. Review Weak Areas now combines missed systems and limitations questions and requires two
       clean recalls after a miss. Progress is saved on this device only.</p>
 
@@ -285,7 +288,7 @@
       </button>
       <button class="mode systems" id="modeSystems">
         <div class="mt"><span class="ic">SYS</span>Systems Exam Prep</div>
-        <div class="md">296 source-checked questions across 18 subjects, drawn from the 315-question guide. Each answer includes FCOM pages; 19 unresolved items, including MEL, are excluded.</div>
+        <div class="md">594 questions across 18 subjects: 296 FCOM-reviewed guide questions plus all 298 questions and answer keys from Question Bank.xlsx, accepted as supplied. Nineteen unresolved guide items are excluded.</div>
       </button>
       <button class="mode review" id="modeReview">
         <div class="mt"><span class="ic">WEAK</span>Review Weak Areas</div>
@@ -325,7 +328,7 @@
       </a>
     </div>
 
-    <p class="source-note">Reviewed against the supplied FCOM on 5 September 2026: 259 limitations, 315 systems questions, 8 memory cards and 141 fill-in cells. The 6 September follow-up rechecked all 102 outstanding records and restored 4. Of the 98 still excluded, 84 match the source but need applicability confirmation; 14 have source conflicts or missing descriptions. The compilation contains training pages and IAE inserts (A/C 20-IMHT, 13 AUG 2018) marked FOR ENGINEERING USE ONLY—not an operational approval or proof of the latest revision. <a href="verification-audit.json">Item-by-item audit and exclusions</a>. Confirm simulator options and operational procedures with your instructor and approved manuals.</p>
+    <p class="source-note">The original FCOM audit and follow-up cover 259 limitations, 315 systems-guide questions, 8 memory cards and 141 fill-in cells. All 298 rows from Question Bank.xlsx are included with their supplied answer keys at the user&rsquo;s direction; those workbook answers are not represented as independently FCOM-verified. The FCOM compilation contains training pages and IAE inserts (A/C 20-IMHT, 13 AUG 2018) marked FOR ENGINEERING USE ONLY&mdash;not an operational approval or proof of the latest revision. See the <a href="verification-audit.json">item-by-item source record</a>. Confirm simulator options and operational procedures with your instructor and approved manuals.</p>
     <div class="prog" id="progPanel"></div>
 
     <div class="panel filters" id="filterPanel">
@@ -368,6 +371,7 @@
       <div class="eyebrow" id="qCat">System</div>
       <div class="quiz-mode" id="quizModeStatus">Learn mode &middot; immediate feedback</div>
       <div class="question" id="qText">&nbsp;</div>
+      <div class="question-media hidden" id="qMedia"></div>
       <div class="options" id="qOpts"></div>
       <div id="ecamSlot"></div>
       <div class="row end" id="nextRow" style="display:none">
@@ -452,13 +456,14 @@
   <div class="foot">
     Study aid &mdash; NOT for flying. Verify every value against current FCOM / QRH.<br>
     Source: AAT A320 FCOM for A/C 21-CMHT, custom issue 16 MAR 2026 (Airbus content issue 22 MAY 2024).
-    Systems Exam Prep uses the supplied student guide reconciled to that FCOM; MEL questions require the current operator MEL.
+    Systems Exam Prep uses the supplied student guide reconciled to that FCOM plus Question Bank.xlsx answers accepted as supplied; MEL questions require the current operator MEL.
     Limitations Check remains FCOM LIM only.
     All aircraft and engine content is scoped to the Ansett A320 IAE V2500.
   </div>
 </div>
 
 <script src="systems-exam-questions.js"></script>
+<script src="question-bank-questions.js"></script>
 <script src="trainer-core.js"></script>
 <script>
 /* ============ QUESTION BANK ============ */
@@ -955,6 +960,11 @@ function renderQ(){
   $("qCat").textContent=q.c;
   $("quizModeStatus").textContent=currentFeedbackMode==="exam"?"Exam mode · feedback at debrief":"Learn mode · adaptive order + immediate feedback";
   $("qText").textContent=q.q;
+  const media=$("qMedia");media.innerHTML="";
+  if(q.image){
+    const img=document.createElement("img");img.src=q.image;img.alt=q.imageAlt||"Question illustration";
+    media.appendChild(img);media.classList.remove("hidden");
+  }else media.classList.add("hidden");
   $("sPos").textContent=(qi+1)+"/"+queue.length;
   $("sCor").textContent=currentFeedbackMode==="exam"?"—":cor;
   $("sMiss").textContent=currentFeedbackMode==="exam"?"—":miss;

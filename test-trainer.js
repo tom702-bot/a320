@@ -14,7 +14,7 @@ function fn(name){
   const end=html.indexOf('\n}',start)+2;
   return html.slice(start,end);
 }
-function element(){return {style:{},children:[],appendChild(child){this.children.push(child);}};}
+function element(){return {style:{},children:[],classList:{add(){},remove(){},toggle(){},contains(){return false;}},appendChild(child){this.children.push(child);}};}
 function context(extra={}){
   const elements={};
   return Object.assign({elements,$:id=>elements[id]??=element(),document:{createElement:element},TrainerCore:core,show(){},queue:[],missed:[],currentQuizKind:'systems',currentFeedbackMode:'exam'},extra);
@@ -38,6 +38,7 @@ assert.equal(core.examResult(0,0,0).pass,false);
 
 const bankContext={window:{}};
 vm.runInNewContext(read('systems-exam-questions.js'),bankContext);
+vm.runInNewContext(read('question-bank-questions.js'),bankContext);
 const systems=bankContext.window.SYSTEMS_EXAM_QUESTIONS;
 const q193=systems.find(q=>q.n===193);
 assert.equal(core.hasDependentOptions(q193),false);
@@ -47,6 +48,11 @@ vm.runInNewContext(fn('renderQ')+'\nrenderQ();',r);
 const correctButton=r.elements.qOpts.children.find(b=>b.innerHTML.includes(q193.o[q193.a]));
 assert(correctButton,'shuffled question retains its explicit correct answer');
 correctButton.onclick();assert.equal(marked,q193.a);
+const illustrated=systems.find(q=>q.verification.id==='QB002');
+const imageRun=context({queue:[illustrated],qi:0,cor:0,miss:0,streak:0,shuffle:a=>a,answer(){}});
+vm.runInNewContext(fn('renderQ')+'\nrenderQ();',imageRun);
+assert.equal(imageRun.elements.qMedia.children.length,1,'workbook illustration renders with its question');
+assert.equal(imageRun.elements.qMedia.children[0].src,'assets/question-bank/q002.png');
 const legacy={q:'Legacy dependent choices',o:['First statement','Second statement','As in B; plus a condition','None of the above.'],a:2};
 assert.deepEqual(core.optionOrder(legacy,a=>a.reverse()).map(x=>x.i),[0,1,2,3]);
 assert.deepEqual(core.optionOrder({o:['One','Two','Three','Four']},a=>a.reverse()).map(x=>x.i),[3,2,1,0]);
@@ -57,6 +63,7 @@ assert.doesNotMatch(read('systems-exam-questions.js'),/FCOM cross-check retained
 assert.doesNotMatch(html,/reconciled to the current Ansett A320 IAE FCOM/);
 assert.match(core.sourceStatus({evidence:'oilContinuous'}).label,/FOR ENGINEERING USE ONLY/);
 assert.match(core.sourceReference('oilContinuous'),/20-IMHT.*13 AUG 2018.*3737/);
+assert.match(core.sourceStatus(systems.find(q=>q.verification.id==='QB001')).label,/ANSWER ACCEPTED AS SUPPLIED/);
 
 const normLine=html.split('\n').find(s=>s.startsWith('const normQuestion='));
 const statsContext={};
@@ -116,7 +123,7 @@ async function offlineTests(){
   assert(!stores.has('a320-trainer-v35'));assert(stores.has('unrelated-app'));
   assert.equal((await event('fetch',request('self-study-quizzes.js'))).type,'error','removed bank cannot load from the previous offline cache');
   const flows=await event('fetch',request('flows.html','navigate'));
-  assert.match(await flows.text(),/flow-sim\.js\?v=39/);
+  assert.match(await flows.text(),/flow-sim\.js\?v=40/);
   for(const file of ['index.html','flows.html','engine.html','electrical.html','hydraulic.html','integration.html']){
     for(const match of read(file).matchAll(/<script src="([^"]+)"/g)){
       const response=await event('fetch',request(match[1]));
@@ -131,7 +138,7 @@ async function offlineTests(){
   assert.match(await nav.text(),/Systems Exam Prep/);
   online=true;
   assert.equal((await event('fetch',request('missing.js'))).status,404);
-  assert.equal(await (await caches.open('a320-trainer-v39')).match('missing.js'),undefined,'404 responses are not cached');
+  assert.equal(await (await caches.open('a320-trainer-v40')).match('missing.js'),undefined,'404 responses are not cached');
   assert.equal(await event('fetch',{method:'GET',url:'https://other.invalid/a320/file.js'}),undefined);
   assert.equal(await event('fetch',{method:'GET',url:'https://trainer.invalid/another/file.js'}),undefined);
 }

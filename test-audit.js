@@ -4,12 +4,22 @@ const core=require('./trainer-core.js'),audit=require('./verification-audit.json
 const html=fs.readFileSync(__dirname+'/index.html','utf8');
 function array(name){const start=html.indexOf('const '+name+' = ['),end=html.indexOf('\n];',start)+3,ctx={};vm.runInNewContext(html.slice(start,end).replace('const '+name,name),ctx);return ctx[name];}
 const lim=array('BANK'),memory=array('MEM'),fill=array('FILL_SECTIONS');
-const ctx={window:{}};vm.runInNewContext(fs.readFileSync(__dirname+'/systems-exam-questions.js','utf8'),ctx);const sys=ctx.window.SYSTEMS_EXAM_QUESTIONS;
-assert.equal(Object.keys(audit.items).length,723);
+const ctx={window:{}};
+vm.runInNewContext(fs.readFileSync(__dirname+'/systems-exam-questions.js','utf8'),ctx);
+vm.runInNewContext(fs.readFileSync(__dirname+'/question-bank-questions.js','utf8'),ctx);
+const sys=ctx.window.SYSTEMS_EXAM_QUESTIONS;
+const questionBank=sys.filter(q=>q.verification.id.startsWith('QB'));
+assert.equal(Object.keys(audit.items).length,1021);
 assert.equal(lim.filter(core.isVerified).length,200);
-assert.equal(sys.filter(core.isVerified).length,296);
+assert.equal(sys.filter(core.isVerified).length,594);
 assert.equal(new Set(sys.filter(core.isVerified).map(q=>q.c)).size,18);
 assert.equal(Object.values(audit.items).filter(a=>a.status==='withheld').length,98);
+assert.equal(questionBank.length,298);
+assert.equal(questionBank.filter(core.isVerified).length,298);
+assert.equal(questionBank.filter(q=>q.verification.status==='supplied').length,298);
+assert.equal(questionBank.filter(q=>q.image).length,15);
+assert.equal(Object.values(audit.items).filter(a=>a.markedConflict).length,0);
+assert.deepEqual(audit.questionBankReview,{sourceFile:'Question Bank.xlsx',sheet:'Question Bank',reviewed:'not performed at user request',rows:298,eligible:298,withheld:0,markedConflicts:0,revision:'question-bank-supplied-20260909',scope:'Systems Exam Prep; answers accepted as supplied by the user; no FCOM correctness or simulator-option-fit claim.'});
 const followUp=Object.entries(audit.items).filter(([id,a])=>a.followUp);
 assert.equal(followUp.length,102,'all previously withheld records must have a follow-up');
 assert.equal(new Set(audit.followUpReview.reviewedIds).size,102);
@@ -34,10 +44,14 @@ assert.equal(restoredSystem(145).o[restoredSystem(145).a],'Centre tank above 250
 assert.equal(core.isVerified({evidence:'n1'}),false,'legacy engine reference alone cannot confer quiz eligibility');
 assert.equal(core.isVerified({verification:{id:'x',status:'checked',pdfPages:[],sourceHash:core.SOURCE.sha256}}),false);
 for(const q of [...lim,...sys]){
- const a=audit.items[q.verification.id];assert(a);
+ const id=q.verification.id,a=audit.items[id];assert(a);
  assert.equal(q.verification.status,a.status);assert.equal(q.q,a.result.q);assert.equal(q.o[q.a],a.result.answer);
  assert.deepEqual(Array.from(q.o),a.result.o);assert.equal(q.w,a.result.explanation);
- if(core.isVerified(q)){assert(a.pdfPages.length);for(const p of a.pdfPages)assert(audit.pages[p]);assert.equal(q.revision,a.followUp?.disposition==='restored'?'fcom-followup-20260906':'fcom-audit-20260905');}
+ if(core.isVerified(q)){
+  if(!id.startsWith('QB')){assert(a.pdfPages.length);for(const p of a.pdfPages)assert(audit.pages[p]);}
+  const expectedRevision=id.startsWith('QB')?'question-bank-supplied-20260909':a.followUp?.disposition==='restored'?'fcom-followup-20260906':'fcom-audit-20260905';
+  assert.equal(q.revision,expectedRevision);
+ }
 }
 const cells=fill.flatMap(s=>s.rows.flatMap(r=>r[1]));assert.equal(cells.length,121);
 for(const [sub,answer,aliases,unit,evidence]of cells){assert(core.isVerified({verification:evidence}));assert.notEqual(core.normalizeFill(answer,unit),null,'invalid fill key '+answer);assert(audit.items[evidence.id]);}
@@ -76,4 +90,4 @@ for(const system of Object.values(ec.systems)){assert(system.sourcePages);for(co
 assert(ec.systems.instrumentation.nodes.find(n=>n.id==='upper').detail.normal.includes('fuel flow'));
 assert(ec.systems.instrumentation.nodes.find(n=>n.id==='lower').detail.normal.includes('fuel USED'));
 assert.equal(ec.systems.oil.edges.find(e=>e.id==='ind2').from,'scavfilter');
-console.log('Audit checks passed: 723 reviewed records, fail-closed eligibility, unit-aware fill keys, memory branches, flow conditions and electrical source cases.');
+console.log('Audit checks passed: 1,021 source records, 298 workbook rows, fail-closed eligibility, unit-aware fill keys, memory branches, flow conditions and electrical source cases.');

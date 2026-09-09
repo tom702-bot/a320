@@ -12,6 +12,11 @@
     restriction:'FOR ENGINEERING USE ONLY',checked:'2026-09-05',
     sectionDividerPdfPage:3733
   };
+  const QUESTION_BANK_SOURCE={
+    file:'Question Bank.xlsx',
+    sha256:'cf50ffedf21561744f348e60033afc7c4db4ef3c14cb7704ee80ebfdf79b6da8',
+    accepted:'2026-09-09'
+  };
   const fact=(answer,page,manualPage,ident,section='LIM-ENG')=>({answer,pdfPage:page,manualPage,ident,section});
   const EVIDENCE={
     n1:fact('100%',3737,'1/4','LIM-ENG-00020355.0003001'),
@@ -62,15 +67,20 @@
       ' · '+SOURCE.revision+' · PDF p.'+e.pdfPage+' · '+SOURCE.restriction;
   }
   function sourceStatus(q){
+    if(isSuppliedQuestionBank(q))return {className:'engineering',label:'QUESTION BANK · ANSWER ACCEPTED AS SUPPLIED · '+q.verification.id};
     if(isVerified(q))return {className:'engineering',label:'FCOM SOURCE CHECKED · '+q.verification.id+' · '+(q.evidence?'FOR ENGINEERING USE ONLY':'TRAINING SOURCE; MATCH AIRCRAFT OPTIONS')};
     if(q.verification?.status==='withheld')return {className:'engineering',label:'WITHHELD · NOT ELIGIBLE FOR GRADING'};
     if(q.evidence&&EVIDENCE[q.evidence])return {className:'engineering',label:'IAE TRAINING SOURCE CHECKED · '+SOURCE.restriction};
     if(q.review==='mel-check')return {className:'engineering',label:'VERIFY AGAINST THE CURRENT OPERATOR MEL'};
     return {className:'engineering',label:'SOURCE REFERENCE RETAINED · APPLICABILITY CHECK PENDING'};
   }
+  function isSuppliedQuestionBank(q){
+    const v=q&&q.verification;
+    return Boolean(q?.source==='Question Bank.xlsx · Question Bank'&&v?.status==='supplied'&&v.id&&v.sourceHash===QUESTION_BANK_SOURCE.sha256);
+  }
   function isVerified(q){
     const v=q&&q.verification;
-    return Boolean(v&&['checked','corrected'].includes(v.status)&&v.id&&v.pdfPages?.length&&v.sourceHash===SOURCE.sha256);
+    return isSuppliedQuestionBank(q)||Boolean(v&&['checked','corrected'].includes(v.status)&&v.id&&v.pdfPages?.length&&v.sourceHash===SOURCE.sha256);
   }
   // Ignore optional, matching units only. Never discard arbitrary words or wrong units.
   function normalizeFill(value,unit){
@@ -114,5 +124,5 @@
     const percent=answered?correct/answered*100:0;
     return {answered,expected,complete,percent,displayPercent:Math.round(percent*10)/10,pass:complete&&correct*100>=expected*80};
   }
-  return {SOURCE,EVIDENCE,sourceReference,sourceStatus,isVerified,normalizeFill,hasDependentOptions,optionOrder,examResult};
+  return {SOURCE,QUESTION_BANK_SOURCE,EVIDENCE,sourceReference,sourceStatus,isVerified,normalizeFill,hasDependentOptions,optionOrder,examResult};
 });

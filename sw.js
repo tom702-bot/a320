@@ -1,7 +1,8 @@
-const CACHE = 'a320-trainer-v39';
+const CACHE = 'a320-trainer-v40';
 const ASSETS = ['./','./index.html','./manifest.webmanifest',
-  './trainer-core.js','./systems-exam-questions.js',
-  './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js','./flows.html','./integration.html','./verification-audit.json','./a320-controls.js?v=39','./flow-sim.js?v=39','./a32nx-overhead.webp','./a32nx-main.webp','./a32nx-pedestal.webp',
+  './trainer-core.js','./systems-exam-questions.js','./question-bank-questions.js',
+  './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js','./flows.html','./integration.html','./verification-audit.json','./a320-controls.js?v=40','./flow-sim.js?v=40','./a32nx-overhead.webp','./a32nx-main.webp','./a32nx-pedestal.webp',
+  './assets/question-bank/q002.png','./assets/question-bank/q004.png','./assets/question-bank/q005.png','./assets/question-bank/q006.png','./assets/question-bank/q007.png','./assets/question-bank/q008.png','./assets/question-bank/q018.png','./assets/question-bank/q071.png','./assets/question-bank/q094.png','./assets/question-bank/q126.png','./assets/question-bank/q188.png','./assets/question-bank/q189.png','./assets/question-bank/q191.png','./assets/question-bank/q266.png','./assets/question-bank/q268.png',
   './icon-180.png','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', function(e){
   e.waitUntil(caches.open(CACHE).then(function(c){return c.addAll(ASSETS);})

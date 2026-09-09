@@ -41,7 +41,7 @@ function validateQuestions(name,questions,referencePattern){
   });
 }
 
-const required=["index.html","A320_Checkride_Trainer.html","trainer-core.js","flows.html","flow-sim.js","a320-controls.js","systems-exam-questions.js","electrical.html","electrical-sim.js","hydraulic.html","hydraulic-sim.js","engine.html","engine-sim.js","engine-3d.js","integration.html","manifest.webmanifest","sw.js"];
+const required=["index.html","A320_Checkride_Trainer.html","trainer-core.js","flows.html","flow-sim.js","a320-controls.js","systems-exam-questions.js","question-bank-questions.js","electrical.html","electrical-sim.js","hydraulic.html","hydraulic-sim.js","engine.html","engine-sim.js","engine-3d.js","integration.html","manifest.webmanifest","sw.js"];
 required.forEach(file=>ok(fs.existsSync(path.join(root,file)),file+" exists"));
 const allNames=fs.readdirSync(root);
 const legacyNamePattern=new RegExp("A3"+"21|P2"+"F","i");
@@ -50,7 +50,7 @@ ok(!allNames.some(name=>legacyNamePattern.test(name)),"legacy out-of-scope aircr
 parseInlineScripts("index.html");
 parseInlineScripts("flows.html");
 parseInlineScripts("integration.html");
-["trainer-core.js","systems-exam-questions.js","a320-controls.js","flow-sim.js","electrical-sim.js","hydraulic-sim.js","engine-sim.js","engine-3d.js","sw.js"].forEach(file=>{
+["trainer-core.js","systems-exam-questions.js","question-bank-questions.js","a320-controls.js","flow-sim.js","electrical-sim.js","hydraulic-sim.js","engine-sim.js","engine-3d.js","sw.js"].forEach(file=>{
   try{new vm.Script(read(file),{filename:file});}catch(error){errors.push(error.message);}
 });
 
@@ -60,21 +60,32 @@ validateQuestions("Limitations",limitations,/FCOM LIM-/);
 
 global.window={};
 delete require.cache[require.resolve("./systems-exam-questions.js")];
+delete require.cache[require.resolve("./question-bank-questions.js")];
 require("./systems-exam-questions.js");
+require("./question-bank-questions.js");
 const systems=window.SYSTEMS_EXAM_QUESTIONS;
 const topics=window.SYSTEMS_EXAM_TOPICS;
-ok(systems.length===315,"systems bank has all 315 supplied guide questions");
+const guideSystems=systems.filter(item=>item.source!=="Question Bank.xlsx · Question Bank");
+const questionBank=systems.filter(item=>item.source==="Question Bank.xlsx · Question Bank");
+ok(systems.length===613,"systems bank has 315 guide and 298 workbook questions");
+ok(guideSystems.length===315,"systems bank retains all 315 supplied guide questions");
+ok(questionBank.length===298,"systems bank includes all 298 Question Bank.xlsx rows");
 ok(topics.length===19&&topics.includes("Limitations")&&topics.includes("MEL"),"systems selector has 19 subjects including Limitations and MEL");
-ok(new Set(systems.map(item=>item.c)).size===19,"systems source bank has 19 guide subjects");
-validateQuestions("Systems",systems,/FCOM|current operator MEL/i);
+ok(new Set(guideSystems.map(item=>item.c)).size===19,"systems guide bank has 19 source subjects");
+validateQuestions("Systems",systems,/FCOM|current operator MEL|Question Bank\.xlsx/i);
 const expectedGuideNumbers=[];
 for(let number=1;number<=310;number++)expectedGuideNumbers.push(number);
 for(let number=318;number<=322;number++)expectedGuideNumbers.push(number);
-ok(JSON.stringify(systems.map(item=>item.n))===JSON.stringify(expectedGuideNumbers),"systems bank preserves supplied guide numbering and the source gap at 311-317");
-ok(systems.every(item=>Number.isInteger(item.p)&&item.p>0),"every systems item retains its source PDF page");
-ok(systems.every(item=>/Guide Q\d+, PDF p\.\d+/.test(item.ref||"")),"every systems reference identifies its guide question and PDF page");
-ok(systems.every(item=>["fcom-source-checked","withheld"].includes(item.review)),"every systems item has a completed audit status");
-ok(systems.filter(item=>item.c==="MEL").every(item=>item.review==="withheld"),"MEL items are withheld without an operator MEL");
+ok(JSON.stringify(guideSystems.map(item=>item.n))===JSON.stringify(expectedGuideNumbers),"systems bank preserves supplied guide numbering and the source gap at 311-317");
+ok(JSON.stringify(questionBank.map(item=>item.n))===JSON.stringify(Array.from({length:298},(_,index)=>index+1)),"workbook questions preserve rows 1-298");
+ok(systems.every(item=>Number.isInteger(item.p)&&item.p>0),"every systems item retains its source page or row");
+ok(guideSystems.every(item=>/Guide Q\d+, PDF p\.\d+/.test(item.ref||"")),"every guide reference identifies its question and PDF page");
+ok(questionBank.every(item=>/Question Bank Q\d+, sheet row \d+/.test(item.ref||"")),"every workbook reference identifies its question and sheet row");
+ok(questionBank.every(item=>item.verification.status==="supplied"&&item.review==="question-bank-supplied"),"all workbook answer keys are accepted as supplied without an FCOM claim");
+ok(questionBank.filter(item=>item.image).length===15,"all 15 workbook illustrations are attached");
+questionBank.filter(item=>item.image).forEach(item=>ok(fs.existsSync(path.join(root,item.image)),item.image+" exists"));
+ok(systems.every(item=>["fcom-source-checked","withheld","question-bank-supplied"].includes(item.review)),"every systems item has a completed source status");
+ok(guideSystems.filter(item=>item.c==="MEL").every(item=>item.review==="withheld"),"guide MEL items are withheld without an operator MEL");
 
 const controls=require("./a320-controls.js").CONTROL_DEFS;
 const flows=require("./flow-sim.js");
@@ -133,8 +144,8 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v39"),"offline cache is version 39");
-ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=39"),"offline cache includes upgraded modules");
+ok(sw.includes("a320-trainer-v40"),"offline cache is version 40");
+ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=40")&&sw.includes("./question-bank-questions.js"),"offline cache includes upgraded modules and workbook questions");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
 const forbidden=new RegExp("\\bA3"+"21\\b|P2"+"F|CF"+"M(?:56)?|PW"+"1100|LE"+"AP-?1A|Pra"+"tt\\s*(?:&|and)?\\s*Whitney","i");
@@ -172,6 +183,6 @@ if(errors.length){
   errors.forEach(message=>console.error(" - "+message));
   process.exit(1);
 }
-console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 315 systems, 10 flow phases, 344 cockpit controls. This is not operational certification.");
+console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 613 systems, 10 flow phases, 344 cockpit controls. This is not operational certification.");
 require('./test-trainer.js');
 require('./test-audit.js');

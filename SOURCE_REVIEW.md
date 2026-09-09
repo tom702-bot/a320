@@ -1,18 +1,21 @@
-# FCOM audit — 5 September 2026; follow-up 6 September 2026
+# FCOM audit — 5 September 2026; follow-up 6 September; Question Bank import 9 September
 
-Scope: Ansett A320 IAE V2500-A5. Review base: published main 81cba9c812a8d59093c9a1d5f6b0568154a4badf.
+Scope: Ansett A320 IAE V2500-A5. Review base: published main 81cba9c812a8d59093c9a1d5f6b0568154a4badf. Question Bank.xlsx is included as user-confirmed source material, not as FCOM-verified content.
 
 ## Complete question inventory
 
-| Material | Reviewed | Source matched without substantive change | Corrected or clarified | Withheld |
+| Material | Reviewed / accepted | Source matched or accepted as supplied | Corrected or clarified | Withheld |
 |---|---:|---:|---:|---:|
 | Limitations | 259 | 187 | 13 | 59 |
 | Systems guide | 315 | 161 | 135 | 19 |
+| Question Bank.xlsx | 298 | 298 | 0 | 0 |
 | Memory cards | 8 | 0 | 8 | 0 |
 | Fill-in cells | 141 | 83 | 38 | 20 |
-| Total | 723 | 431 | 194 | 98 |
+| Total | 1,021 | 729 | 194 | 98 |
 
-Corrected counts include question wording, conditions, distractors and explanations, not only changes to the keyed answer. All 723 records are in verification-audit.json with original content, result, status, rationale and PDF-page references. The source hash, printed-page footer, Ident and page revision are preserved. No withheld item enters verified question grading, weak-area review, mastery counts or the limitation lookup. Eligible totals: 200 limitations, 296 systems questions, eight self-graded memory cards and 121 fill-in cells.
+Corrected counts apply to the FCOM-audited material and include question wording, conditions, distractors and explanations, not only changes to the keyed answer. All 1,021 records are in verification-audit.json with original content, result, status and rationale. FCOM-reviewed records preserve PDF-page references, source hash, printed-page footer, Ident and page revision. No withheld item enters question grading, weak-area review, mastery counts or the limitation lookup. Eligible totals: 200 limitations, 594 systems questions, eight self-graded memory cards and 121 fill-in cells.
+
+The 9 September Question Bank import retained every workbook row as QB001–QB298, including all 15 illustrations. At the user&rsquo;s direction, the 298 workbook answer keys are accepted as supplied and are not described as independently FCOM-verified. They carry the workbook&rsquo;s SHA-256 source identity rather than the FCOM hash.
 
 The 6 September follow-up checked each of the 102 previous exclusions. L133, S116, S128 and S145 were corrected/qualified and restored. Another 84 keyed values/statements match the source but retain an applicability restriction; 14 have a source conflict or an unavailable legacy/MEL description. Each has a dated followUp record with the actual finding and required evidence. Corrected two GSM fill-cell references from PDF p.3724 to p.3730 and added the missing ROPS p.3788 reference to the combined ROPS/predictive-GPWS cell. See OUTSTANDING_REVIEW.md. Restored questions receive their own progress revision; unchanged questions retain their existing progress.
 
@@ -44,4 +47,4 @@ Models are ungraded conceptual study aids. Their geometry, timings, battery/accu
 
 ## Validation and publication
 
-node validate-trainer.js runs the existing regressions and test-audit.js. The suite checks all 723 records, all 102 follow-up dispositions, fail-closed eligibility, corrected answer consistency, complete-exam scoring, progress revision, memory branches, numeric units/signs/ranges, flow conditions and actual electrical evaluator source cases. It also tests service-worker installation and fresh offline script loading. HTML twins remain identical; cache v39 replaces the prior release. No browser visual QA was performed. The removed PXS/GTE courses remain absent.
+node validate-trainer.js runs the existing regressions and test-audit.js. The suite checks all 1,021 records, all 298 workbook rows, all 102 follow-up dispositions, fail-closed eligibility, corrected answer consistency, complete-exam scoring, progress revision, workbook-image rendering, memory branches, numeric units/signs/ranges, flow conditions and actual electrical evaluator source cases. It also tests service-worker installation and fresh offline script loading. HTML twins remain identical; cache v40 replaces the prior release. No browser visual QA was performed. The removed PXS/GTE courses remain absent.
