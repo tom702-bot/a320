@@ -45,6 +45,11 @@ assert.equal(core.isVerified({evidence:'n1'}),false,'legacy engine reference alo
 assert.equal(core.isVerified({verification:{id:'x',status:'checked',pdfPages:[],sourceHash:core.SOURCE.sha256}}),false);
 for(const q of [...lim,...sys]){
  const id=q.verification.id,a=audit.items[id];assert(a);
+ if(id.startsWith('QB')){
+  assert.equal(q.verification.status,a.status);assert.equal(a.questionNumber,q.n);assert.equal(a.sheetRow,q.n+1);
+  assert.equal(a.source,'Question Bank.xlsx');assert.equal(a.sourceHash,core.QUESTION_BANK_SOURCE.sha256);
+  assert.equal(q.revision,'question-bank-supplied-20260909');continue;
+ }
  assert.equal(q.verification.status,a.status);assert.equal(q.q,a.result.q);assert.equal(q.o[q.a],a.result.answer);
  assert.deepEqual(Array.from(q.o),a.result.o);assert.equal(q.w,a.result.explanation);
  if(core.isVerified(q)){
