@@ -10,6 +10,7 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `index.html` | Main app: HTML, CSS, JavaScript and question data in one file. |
 | `A320_Checkride_Trainer.html` | Standalone twin of `index.html`; keep it byte-for-byte identical. |
 | `systems-exam-questions.js` | 315 student-guide questions across 19 subjects, with explicit per-item source status. |
+| `question-bank-questions.js` | All 298 imported workbook rows; the sole active Systems Exam Prep source, across 15 subjects. |
 | `trainer-core.js` | Reviewed IAE evidence records with PDF page/Ident/revision, option ordering and completed-exam scoring. |
 | `electrical.html` | Interactive ECAM-style A320 electrical-system synoptic and configuration explainer. |
 | `electrical-sim.js` | Electrical network evaluation, component failures, transfers and dimensional canvas rendering. |
@@ -60,7 +61,13 @@ guide across 19 subjects. Guide numbers 311–317 are absent from the source PDF
 ```
 
 Every systems item requires exactly four choices, a valid zero-based answer, a non-empty
-explanation and a visible FCOM or current-operator-MEL reference. Mixed runs must remain balanced across selected subjects.
+explanation and a visible source reference. Since 13 September 2026, Systems Exam Prep uses only
+the 298 Question Bank.xlsx rows, with source hash and sheet-row references and the supplied answer keys.
+The guide remains archived. Systems quizzes, weak-area review and mastery totals must exclude guide rows.
+`TrainerCore.isSuppliedQuestionBank` enforces workbook provenance. `selectSystemDeck` draws fresh rows
+before the oldest previous selections, balances subjects within each freshness group, and shuffles
+question order. Both feedback modes and Run Again share `a320_systems_rotation_v1` draw history;
+do not change existing answer/mastery keys. Reset progress clears rotation too.
 
 ## Source and applicability rules
 
@@ -88,10 +95,10 @@ source.
 3. Validate JavaScript syntax and check that:
    - the limitations bank total is 259 unless a deliberate addition/removal changes it;
    - every served Limitations Check item is sourced from an `FCOM LIM-...` page;
-   - Systems Exam Prep retains 315 guide records, with 296 eligible questions across 18 selectable subjects, with no duplicate
-     normalized question text;
+   - Systems Exam Prep offers exactly the 298 supplied workbook rows across 15 selectable subjects;
+     315 guide records remain archived, with no duplicate normalized question text;
    - every Systems Exam Prep question has exactly four choices, a valid answer index, a non-empty
-     explanation and a visible FCOM or current-operator-MEL reference;
+     explanation and a visible source reference (workbook filename and row for active systems questions);
    - every answer index is valid;
    - every question has a non-empty explanation/reference;
    - normalized question text contains no duplicates;
@@ -107,9 +114,9 @@ source.
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
 4. Search every served file, including distractors and filenames, for content outside the strict Ansett A320 IAE V2500-A5 scope.
 5. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v39`. Keep every local script URL aligned with the precache manifest. Navigation fallbacks must never serve HTML to script requests.
+   `a320-trainer-v41`. Unchanged flow script URLs remain at v40 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
 
-Run `node validate-trainer.js` and `node test-trainer.js`. CI runs both on pushes and pull requests. These are structural and source-record checks, not operational certification. A completed exam is required for a pass; test the unrounded threshold. Keep dependent options in their original order or rewrite them as independent statements. Corrected answers must not inherit mastery from the previous content.
+Run `node validate-trainer.js` and `node test-trainer.js`. Validation includes `test-system-rotation.js` and `test-audit.js`; CI runs the gate on pushes and pull requests. These are structural and source-record checks, not operational certification. A completed exam is required for a pass; test the unrounded threshold. Keep dependent options in their original order or rewrite them as independent statements. Corrected answers must not inherit mastery from the previous content.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is

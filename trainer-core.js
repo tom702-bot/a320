@@ -82,6 +82,32 @@
     const v=q&&q.verification;
     return isSuppliedQuestionBank(q)||Boolean(v&&['checked','corrected'].includes(v.status)&&v.id&&v.pdfPages?.length&&v.sourceHash===SOURCE.sha256);
   }
+  // Rotate only the supplied workbook, sharing draw history across subjects and run lengths.
+  function selectSystemDeck(bank,categories,limit,previous,shuffle){
+    const workbook=bank.filter(isSuppliedQuestionBank);
+    const history={};
+    workbook.forEach(q=>{
+      const id=q.verification.id,value=previous?.[id];
+      history[id]=Number.isSafeInteger(value)&&value>0&&value<Number.MAX_SAFE_INTEGER?value:0;
+    });
+    const selected=new Set(categories),pool=workbook.filter(q=>selected.has(q.c));
+    const size=limit>0?Math.min(limit,pool.length):pool.length;
+    const questions=[];
+    // Use every never-drawn question first, then the oldest quiz selections.
+    const rounds=[...new Set(pool.map(q=>history[q.verification.id]))].sort((a,b)=>a-b);
+    for(const round of rounds){
+      const candidates=pool.filter(q=>history[q.verification.id]===round);
+      const subjects=[...new Set(candidates.map(q=>q.c))];
+      const groups=subjects.map(c=>shuffle(candidates.filter(q=>q.c===c)));
+      while(questions.length<size&&groups.some(g=>g.length)){
+        shuffle(groups).forEach(g=>{if(questions.length<size&&g.length)questions.push(g.pop());});
+      }
+      if(questions.length===size)break;
+    }
+    const nextRound=Math.max(0,...Object.values(history))+1;
+    questions.forEach(q=>{history[q.verification.id]=nextRound;});
+    return {questions:shuffle(questions),history};
+  }
   // Ignore optional, matching units only. Never discard arbitrary words or wrong units.
   function normalizeFill(value,unit){
     let s=String(value??'').toLowerCase().trim().replace(/[−–]/g,'-');
@@ -124,5 +150,5 @@
     const percent=answered?correct/answered*100:0;
     return {answered,expected,complete,percent,displayPercent:Math.round(percent*10)/10,pass:complete&&correct*100>=expected*80};
   }
-  return {SOURCE,QUESTION_BANK_SOURCE,EVIDENCE,sourceReference,sourceStatus,isVerified,normalizeFill,hasDependentOptions,optionOrder,examResult};
+  return {SOURCE,QUESTION_BANK_SOURCE,EVIDENCE,sourceReference,sourceStatus,isSuppliedQuestionBank,isVerified,selectSystemDeck,normalizeFill,hasDependentOptions,optionOrder,examResult};
 });

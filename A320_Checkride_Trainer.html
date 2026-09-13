@@ -277,7 +277,7 @@
 
   <!-- ================= START ================= -->
   <section id="start">
-    <p class="lede">Pick a drill. The trainer contains 613 systems questions and 259 reviewed limitation questions. Grading includes 594 systems questions&mdash;296 FCOM-reviewed guide questions plus all 298 workbook questions accepted as supplied&mdash;and 200 limitations. Nineteen unresolved guide items remain withheld. Limitations Check remains restricted to the supplied FCOM limitations
+    <p class="lede">Pick a drill. Systems Exam Prep uses only the 298 questions from Question Bank.xlsx, with answers accepted as supplied. Each new run mixes the subjects and draws fresh questions before repeating earlier selections. Limitations Check includes 200 eligible questions from the supplied FCOM limitations
       chapter. Review Weak Areas now combines missed systems and limitations questions and requires two
       clean recalls after a miss. Progress is saved on this device only.</p>
 
@@ -288,7 +288,7 @@
       </button>
       <button class="mode systems" id="modeSystems">
         <div class="mt"><span class="ic">SYS</span>Systems Exam Prep</div>
-        <div class="md">594 questions across 18 subjects: 296 FCOM-reviewed guide questions plus all 298 questions and answer keys from Question Bank.xlsx, accepted as supplied. Nineteen unresolved guide items are excluded.</div>
+        <div class="md">298 questions across 15 subjects, drawn only from Question Bank.xlsx. Fresh questions come first, with a new mix each run and the supplied answer keys.</div>
       </button>
       <button class="mode review" id="modeReview">
         <div class="mt"><span class="ic">WEAK</span>Review Weak Areas</div>
@@ -345,12 +345,12 @@
 
     <div class="panel filters hidden" id="systemsPanel">
       <div class="eyebrow">Systems Exam Prep subjects</div>
-      <p class="source-note" style="margin:7px 0 14px">Select any combination. Mixed runs are balanced across the selected subjects before additional questions are drawn.</p>
+      <p class="source-note" style="margin:7px 0 14px">Question Bank.xlsx only. New runs use undrawn questions from your selected subjects first, then the least recently drawn. Subjects and question order are mixed each time. Selecting All includes every question in your selected subjects. Rotation is saved on this device.</p>
       <div class="chips" id="sysChips"></div>
       <div class="eyebrow" style="margin-top:20px">Questions per run</div>
       <div class="chips" id="sysLenChips"></div>
       <div class="eyebrow" style="margin-top:20px">Feedback</div>
-      <div class="chips" id="sysFeedbackButtons"><button class="chip" data-value="learn" aria-pressed="true">Learn &middot; adaptive + feedback</button><button class="chip" data-value="exam" aria-pressed="false">Exam &middot; debrief only</button></div>
+      <div class="chips" id="sysFeedbackButtons"><button class="chip" data-value="learn" aria-pressed="true">Learn &middot; immediate feedback</button><button class="chip" data-value="exam" aria-pressed="false">Exam &middot; debrief only</button></div>
       <div class="row">
         <button class="btn primary" id="startSystemsBtn">Begin systems exam &rarr;</button>
       </div>
@@ -732,10 +732,10 @@ const BANK = [
 /* Stable scope metadata lets one progress model follow the same limitation in every drill. */
 const VERIFIED_BANK=BANK.filter(TrainerCore.isVerified);
 VERIFIED_BANK.forEach(item=>{item.scope="limitations";item.topic=item.c;});
-const SYSTEMS_BASE=(window.SYSTEMS_EXAM_QUESTIONS||[]).filter(TrainerCore.isVerified);
+const SYSTEMS_BASE=(window.SYSTEMS_EXAM_QUESTIONS||[]).filter(TrainerCore.isSuppliedQuestionBank);
 SYSTEMS_BASE.forEach(item=>{item.scope="systems";item.topic=item.c;});
 const SYSTEMS_BANK=SYSTEMS_BASE;
-const SYSTEMS_CATS=(window.SYSTEMS_EXAM_TOPICS||[]).filter(c=>SYSTEMS_BANK.some(q=>q.c===c));
+const SYSTEMS_CATS=[...new Set(SYSTEMS_BANK.map(q=>q.c))];
 const TRACKED_BANK=VERIFIED_BANK.concat(SYSTEMS_BASE);
 
 /* ============ MEMORY ITEMS ============ */
@@ -796,6 +796,8 @@ function practicePriority(q){
 }
 function adaptiveDeck(pool){return shuffle(pool).sort((a,b)=>practicePriority(a)-practicePriority(b));}
 function readLocalObject(key){try{return JSON.parse(localStorage.getItem(key))||{};}catch(e){return {};}}
+const SYSTEMS_DRAW_KEY="a320_systems_rotation_v1";
+let SYSTEMS_DRAWS=readLocalObject(SYSTEMS_DRAW_KEY);
 function renderProgress(){
   const host=$("progPanel"); if(!host) return;
   let mastered=0,seen=0,weak=0;
@@ -815,11 +817,13 @@ function renderProgress(){
       '<span class="overall">'+mastered+'/'+TRACKED_BANK.length+' mastered &middot; '+(weak?'<span class="pweak">'+weak+' weak</span>':'0 weak')+'</span></div>'+
     rows+
     '<div class="psummary"><span class="pill">'+masteredFlows+' unassisted flow recalls</span></div>'+
-    '<div class="pnote">Mastery requires two clean recalls. Any miss resets that question until it is answered correctly twice in succession. Learn mode prioritises weak, unseen and not-yet-mastered items.</div>'+
+    '<div class="pnote">Mastery requires two clean recalls. Any miss resets that question until it is answered correctly twice in succession. Systems runs rotate through Question Bank.xlsx. Review Weak Areas revisits missed questions; limitations Learn mode prioritises weak and unseen items.</div>'+
     '<div class="row" style="margin-top:12px"><button class="btn tiny ghost" id="resetProg">Reset progress</button></div>';
   $("resetProg").onclick=()=>{
     if(confirm("Reset all saved progress on this device? This cannot be undone.")){
       STATS={};saveStats();
+      SYSTEMS_DRAWS={};
+      try{localStorage.removeItem(SYSTEMS_DRAW_KEY);}catch(e){}
       try{localStorage.removeItem(LEGACY_STORE_KEY);localStorage.removeItem("a320flows_v1");localStorage.removeItem("a320flows_v3");}catch(e){}
       renderProgress();
     }
@@ -909,15 +913,6 @@ function drawSystemLens(){
     b.onclick=()=>{sysRunLen=value;drawSystemLens();};host.appendChild(b);
   });
 }
-function balancedSystemDeck(pool,categories,limit,adaptive){
-  if(!limit||pool.length<=limit)return adaptive?adaptiveDeck(pool):shuffle(pool);
-  const groups=categories.map(c=>({c,items:adaptive?adaptiveDeck(pool.filter(q=>q.c===c)):shuffle(pool.filter(q=>q.c===c))}));
-  const deck=[];
-  while(deck.length<limit&&groups.some(g=>g.items.length)){
-    shuffle(groups).forEach(g=>{if(deck.length<limit&&g.items.length)deck.push(g.items.shift());});
-  }
-  return deck;
-}
 drawSystemChips();drawSystemLens();
 $("modeSystems").onclick=()=>{
   $("filterPanel").classList.add("hidden");
@@ -942,7 +937,9 @@ $("startSystemsBtn").onclick=()=>{
   const pool=SYSTEMS_BANK.filter(q=>sysActive.has(q.c));
   if(!pool.length){alert("Select at least one Systems Exam Prep subject.");return;}
   currentFeedbackMode=sysFeedbackMode;
-  queue=balancedSystemDeck(pool,selected,sysRunLen,currentFeedbackMode==="learn");
+  const draw=TrainerCore.selectSystemDeck(SYSTEMS_BANK,selected,sysRunLen,SYSTEMS_DRAWS,shuffle);
+  queue=draw.questions;SYSTEMS_DRAWS=draw.history;
+  try{localStorage.setItem(SYSTEMS_DRAW_KEY,JSON.stringify(SYSTEMS_DRAWS));}catch(e){}
   qi=0;cor=0;miss=0;streak=0;missed=[];currentQuizKind="systems";lastMode="systems";
   show("quiz");renderQ();
 };
@@ -958,7 +955,7 @@ $("modeReview").onclick=()=>startReview();
 function renderQ(){
   const q=queue[qi];
   $("qCat").textContent=q.c;
-  $("quizModeStatus").textContent=currentFeedbackMode==="exam"?"Exam mode · feedback at debrief":"Learn mode · adaptive order + immediate feedback";
+  $("quizModeStatus").textContent=currentFeedbackMode==="exam"?"Exam mode · feedback at debrief":currentQuizKind==="systems"?"Learn mode · fresh mix + immediate feedback":"Learn mode · adaptive order + immediate feedback";
   $("qText").textContent=q.q;
   const media=$("qMedia");media.innerHTML="";
   if(q.image){

@@ -144,7 +144,7 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v40"),"offline cache is version 40");
+ok(sw.includes("a320-trainer-v41"),"offline cache is version 41");
 ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=40")&&sw.includes("./question-bank-questions.js"),"offline cache includes upgraded modules and workbook questions");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
@@ -186,3 +186,4 @@ if(errors.length){
 console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 613 systems, 10 flow phases, 344 cockpit controls. This is not operational certification.");
 require('./test-trainer.js');
 require('./test-audit.js');
+require('./test-system-rotation.js');
