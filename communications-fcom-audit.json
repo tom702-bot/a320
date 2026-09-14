@@ -1,0 +1,744 @@
+{
+  "fcom": {
+    "file": "PDFA320_FCOM_AATIAECUSTOM20260521.pdf",
+    "sha256": "7978fb0645d256b8affd4e76b751b5e0fff7e9b56a8bfb1bb168a46a163b6b06",
+    "chapter": "Aircraft Systems - Communications (ATA 23)",
+    "pdfPages": [
+      1058,
+      1119
+    ],
+    "pageRevision": "22 MAY 24",
+    "effectivity": "NVB A320 For A/C: 21-CMHT"
+  },
+  "supplement": {
+    "file": "Doc1.docx",
+    "sha256": "29f9d3e5690f158bc8a53788810854eefb887940249bc7e4c30f5169c2239d03",
+    "pages": 12,
+    "reviewed": "2026-09-14",
+    "format": "image-only Word document"
+  },
+  "scope": {
+    "revision": "communications-fcom-20260914",
+    "added": 51,
+    "activeTotal": 70,
+    "retainedWorkbookQuestions": 19,
+    "category": "Communications",
+    "excluded": [
+      "DFDR",
+      "QAR",
+      "linear accelerometer"
+    ],
+    "exclusionReason": "These topics appear in the supplement but belong to ATA 31 Indicating/Recording rather than FCOM DSC-23 Communications."
+  },
+  "items": {
+    "C23-001": {
+      "status": "checked",
+      "subtopic": "General",
+      "question": "Which systems provide internal communication on the aircraft?",
+      "answer": "The flight, cabin, and service interphones, plus the passenger address system",
+      "explanation": "Internal communication is provided by the flight, cabin, and service interphones and by the passenger address system.",
+      "ref": "Ansett A320 FCOM DSC-23-10-10 · PDF p.1062 · page revision 22 MAY 24 · Doc1.docx pp.9, 10",
+      "pdfPages": [
+        1062
+      ],
+      "supplementPages": [
+        9,
+        10
+      ]
+    },
+    "C23-002": {
+      "status": "checked",
+      "subtopic": "General",
+      "question": "Which means can provide external communication in voice or data mode?",
+      "answer": "VHF or HF radio and, when installed, SATCOM",
+      "explanation": "The FCOM identifies VHF/HF radio and optional SATCOM as external communication paths for voice or data.",
+      "ref": "Ansett A320 FCOM DSC-23-10-10 · PDF p.1062 · page revision 22 MAY 24 · Doc1.docx pp.10, 11",
+      "pdfPages": [
+        1062
+      ],
+      "supplementPages": [
+        10,
+        11
+      ]
+    },
+    "C23-003": {
+      "status": "checked",
+      "subtopic": "Radio Tuning",
+      "question": "Which Radio Management Panel functions in the emergency electrical configuration?",
+      "answer": "RMP 1 only",
+      "explanation": "Only RMP 1 functions in the emergency electrical configuration.",
+      "ref": "Ansett A320 FCOM DSC-23-10-20 · PDF p.1064 · page revision 22 MAY 24 · Doc1.docx p.12",
+      "pdfPages": [
+        1064
+      ],
+      "supplementPages": [
+        12
+      ]
+    },
+    "C23-004": {
+      "status": "checked",
+      "subtopic": "Radio Tuning",
+      "question": "If one RMP fails, what capability does the remaining RMP normally retain?",
+      "answer": "Control of all VHF and HF transceivers",
+      "explanation": "The remaining RMP normally controls all VHF and HF transceivers. The FCOM notes a VHF 3/ACARS exception when RMP 3 is not installed.",
+      "ref": "Ansett A320 FCOM DSC-23-10-20 · PDF p.1064 · page revision 22 MAY 24 · Doc1.docx p.12",
+      "pdfPages": [
+        1064
+      ],
+      "supplementPages": [
+        12
+      ]
+    },
+    "C23-005": {
+      "status": "checked",
+      "subtopic": "Radio Tuning",
+      "question": "What happens when the RMP transfer key is pressed?",
+      "answer": "The ACTIVE and STBY/CRS frequencies interchange and the receiver tunes the new active frequency",
+      "explanation": "The transfer key swaps the ACTIVE and STBY/CRS entries and tunes the receiver to the new ACTIVE frequency.",
+      "ref": "Ansett A320 FCOM DSC-23-10-20 · PDF p.1065 · page revision 22 MAY 24 · Doc1.docx p.11",
+      "pdfPages": [
+        1065
+      ],
+      "supplementPages": [
+        11
+      ]
+    },
+    "C23-006": {
+      "status": "checked",
+      "subtopic": "Radio Tuning",
+      "question": "How do the concentric RMP frequency selector knobs divide the tuning task?",
+      "answer": "The outer knob selects whole numbers and the inner knob selects decimal fractions",
+      "explanation": "The outer knob changes the whole-number units and the inner knob changes the decimal portion of the standby frequency.",
+      "ref": "Ansett A320 FCOM DSC-23-10-20 and DSC-23-60-A · PDF pp.1066, 1116 · page revision 22 MAY 24 · Doc1.docx p.11",
+      "pdfPages": [
+        1066,
+        1116
+      ],
+      "supplementPages": [
+        11
+      ]
+    },
+    "C23-007": {
+      "status": "checked",
+      "subtopic": "Radio Tuning",
+      "question": "For an equipped HF transceiver, what is the normal mode and how is AM selected?",
+      "answer": "SSB is the default; press the AM pushbutton to select AM",
+      "explanation": "HF normally operates in single side-band mode. The AM pushbutton selects amplitude modulation when required.",
+      "ref": "Ansett A320 FCOM DSC-23-10-20 · PDF p.1066 · page revision 22 MAY 24 · Doc1.docx p.11",
+      "pdfPages": [
+        1066
+      ],
+      "supplementPages": [
+        11
+      ]
+    },
+    "C23-008": {
+      "status": "checked",
+      "subtopic": "Radio Tuning",
+      "question": "What is the effect of pressing the guarded NAV key on an RMP?",
+      "answer": "It enables RMP selection of navigation receivers and courses without changing communication-radio selections or frequencies",
+      "explanation": "The NAV key enables radio-navigation backup selection through the RMP and does not disturb communication-radio selections or frequencies.",
+      "ref": "Ansett A320 FCOM DSC-23-10-20 · PDF p.1066 · page revision 22 MAY 24 · Doc1.docx pp.11, 12",
+      "pdfPages": [
+        1066
+      ],
+      "supplementPages": [
+        11,
+        12
+      ]
+    },
+    "C23-009": {
+      "status": "checked",
+      "subtopic": "Audio Management",
+      "question": "Which equipment is central to the flight-deck audio management system?",
+      "answer": "An Audio Management Unit and three Audio Control Panels, plus the associated audio sockets and controls",
+      "explanation": "The audio management system includes the AMU, three ACPs, station sockets, microphones, loudspeakers, PTT controls, and audio switching.",
+      "ref": "Ansett A320 FCOM DSC-23-10-30 · PDF p.1068 · page revision 22 MAY 24 · Doc1.docx p.10",
+      "pdfPages": [
+        1068
+      ],
+      "supplementPages": [
+        10
+      ]
+    },
+    "C23-010": {
+      "status": "checked",
+      "subtopic": "Audio Management",
+      "question": "If audio channel 1 or 2 fails because of its ACP or corresponding AMU channel, how can the crew restore that position’s audio functions?",
+      "answer": "Use the AUDIO SWITCHING selector to connect the affected position to the third audio channel",
+      "explanation": "The AUDIO SWITCHING selector lets the captain or first officer use the third ACP/audio channel after a channel 1 or 2 failure.",
+      "ref": "Ansett A320 FCOM DSC-23-10-30 and DSC-23-10-50 · PDF pp.1068, 1078 · page revision 22 MAY 24 · Doc1.docx p.12",
+      "pdfPages": [
+        1068,
+        1078
+      ],
+      "supplementPages": [
+        12
+      ]
+    },
+    "C23-011": {
+      "status": "checked",
+      "subtopic": "CIDS",
+      "question": "Which system transmits, controls, and processes the cabin and service interphones, passenger address, and other cabin-system signals?",
+      "answer": "The Cabin Intercommunication Data System",
+      "explanation": "CIDS controls and processes the cabin/service interphone, PA, and several other cabin-system functions.",
+      "ref": "Ansett A320 FCOM DSC-23-10-30 · PDF pp.1070, 1071 · page revision 22 MAY 24",
+      "pdfPages": [
+        1070,
+        1071
+      ],
+      "supplementPages": []
+    },
+    "C23-012": {
+      "status": "checked",
+      "subtopic": "Cockpit Voice Recorder",
+      "question": "How much cockpit voice recording is retained by the CVR?",
+      "answer": "The last 2 hours",
+      "explanation": "The CVR retains only the last two hours of recording.",
+      "ref": "Ansett A320 FCOM DSC-23-10-40 · PDF p.1072 · page revision 22 MAY 24 · Doc1.docx p.8",
+      "pdfPages": [
+        1072
+      ],
+      "supplementPages": [
+        8
+      ]
+    },
+    "C23-013": {
+      "status": "checked",
+      "subtopic": "Cockpit Voice Recorder",
+      "question": "When are passenger-address announcements recorded by the CVR?",
+      "answer": "When PA reception is selected on at least one Audio Control Panel",
+      "explanation": "The CVR records PA announcements when PA reception is selected on at least one ACP.",
+      "ref": "Ansett A320 FCOM DSC-23-10-40 · PDF p.1072 · page revision 22 MAY 24 · Doc1.docx p.8",
+      "pdfPages": [
+        1072
+      ],
+      "supplementPages": [
+        8
+      ]
+    },
+    "C23-014": {
+      "status": "checked",
+      "subtopic": "Cockpit Voice Recorder",
+      "question": "After the last engine is shut down on the ground, how long does the CVR normally continue recording?",
+      "answer": "5 minutes, provided the CVR jack is not used",
+      "explanation": "Automatic CVR recording continues until five minutes after the last engine shutdown, provided the CVR jack is not used.",
+      "ref": "Ansett A320 FCOM DSC-23-10-40 · PDF p.1072 · page revision 22 MAY 24 · Doc1.docx p.8",
+      "pdfPages": [
+        1072
+      ],
+      "supplementPages": [
+        8
+      ]
+    },
+    "C23-015": {
+      "status": "checked",
+      "subtopic": "Cockpit Voice Recorder",
+      "question": "Under which conditions does holding the CVR ERASE pushbutton for 2 seconds erase the full recording?",
+      "answer": "The aircraft is on the ground and the parking brake is on",
+      "explanation": "CVR erase is enabled only on the ground with the parking brake on, after the ERASE pushbutton is held for two seconds.",
+      "ref": "Ansett A320 FCOM DSC-23-10-40 · PDF p.1073 · page revision 22 MAY 24 · Doc1.docx p.8",
+      "pdfPages": [
+        1073
+      ],
+      "supplementPages": [
+        8
+      ]
+    },
+    "C23-016": {
+      "status": "checked",
+      "subtopic": "Cockpit Voice Recorder",
+      "question": "What conditions are required to activate the CVR test?",
+      "answer": "The CVR must be on, the parking brake on, and the CVR TEST pushbutton pressed and held",
+      "explanation": "Press and hold CVR TEST while the CVR is powered and the parking brake is on. GND CTL may be used to power the recorder on the ground when required.",
+      "ref": "Ansett A320 FCOM DSC-23-10-40 · PDF p.1073 · page revision 22 MAY 24 · Doc1.docx p.8",
+      "pdfPages": [
+        1073
+      ],
+      "supplementPages": [
+        8
+      ]
+    },
+    "C23-017": {
+      "status": "checked",
+      "subtopic": "Audio Control Panel",
+      "question": "What does a flashing external-radio transmission key on an ACP indicate?",
+      "answer": "An incoming SELCAL",
+      "explanation": "An external VHF or HF transmission key flashes when an incoming SELCAL is received.",
+      "ref": "Ansett A320 FCOM DSC-23-10-50 · PDF p.1074 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1074
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-018": {
+      "status": "checked",
+      "subtopic": "Audio Control Panel",
+      "question": "What does pressing the SELCAL/CALL RESET key cancel?",
+      "answer": "The cockpit buzzer associated with the call",
+      "explanation": "The SELCAL/CALL RESET key cancels the call buzzer.",
+      "ref": "Ansett A320 FCOM DSC-23-10-50 · PDF p.1075 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1075
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-019": {
+      "status": "checked",
+      "subtopic": "Audio Control Panel",
+      "question": "What is the purpose of the ACP VOICE filter key?",
+      "answer": "To inhibit the commonly used VOR and ADF identification audio signals",
+      "explanation": "The VOICE filter inhibits the common VOR and ADF ident audio so voice messages can be monitored more clearly.",
+      "ref": "Ansett A320 FCOM DSC-23-10-50 · PDF pp.1075, 1076 · page revision 22 MAY 24 · Doc1.docx p.12",
+      "pdfPages": [
+        1075,
+        1076
+      ],
+      "supplementPages": [
+        12
+      ]
+    },
+    "C23-020": {
+      "status": "checked",
+      "subtopic": "Audio Control Panel",
+      "question": "How does the ACP INT/RAD switch behave when held in RAD?",
+      "answer": "RAD is momentary and the switch returns to the off position when released",
+      "explanation": "RAD keys the boomset or oxygen-mask microphone through the selected transmission channel and springs back to off when released.",
+      "ref": "Ansett A320 FCOM DSC-23-10-50 · PDF p.1076 · page revision 22 MAY 24 · Doc1.docx p.12",
+      "pdfPages": [
+        1076
+      ],
+      "supplementPages": [
+        12
+      ]
+    },
+    "C23-021": {
+      "status": "checked",
+      "subtopic": "Audio Control Panel",
+      "question": "How does the ACP INT/RAD switch behave when selected to INT?",
+      "answer": "It remains in INT until another switch position is selected",
+      "explanation": "INT activates the boomset or mask microphone for interphone use and remains selected until the crew selects another position.",
+      "ref": "Ansett A320 FCOM DSC-23-10-50 · PDF p.1076 · page revision 22 MAY 24 · Doc1.docx p.12",
+      "pdfPages": [
+        1076
+      ],
+      "supplementPages": [
+        12
+      ]
+    },
+    "C23-022": {
+      "status": "checked",
+      "subtopic": "Audio Control Panel",
+      "question": "If the sidestick RADIO selector is pressed while the ACP INT/RAD switch is on INT, which function has priority?",
+      "answer": "Radio transmission",
+      "explanation": "The sidestick RADIO selection has priority over the interphone function.",
+      "ref": "Ansett A320 FCOM DSC-23-10-50 · PDF p.1077 · page revision 22 MAY 24",
+      "pdfPages": [
+        1077
+      ],
+      "supplementPages": []
+    },
+    "C23-023": {
+      "status": "checked",
+      "subtopic": "Audio Control Panel",
+      "question": "What does the cockpit loudspeaker volume knob not control?",
+      "answer": "The loudness of aural alerts and voice messages",
+      "explanation": "The knob adjusts radio-communication loudspeaker volume; it does not control aural-alert or voice-message loudness.",
+      "ref": "Ansett A320 FCOM DSC-23-10-50 · PDF p.1077 · page revision 22 MAY 24",
+      "pdfPages": [
+        1077
+      ],
+      "supplementPages": []
+    },
+    "C23-024": {
+      "status": "checked",
+      "subtopic": "Audio Switching",
+      "question": "What is the correct audio-switching action after ACP 1 fails?",
+      "answer": "Select CAPT 3; the captain uses ACP 3 and AUDIO 3 XFRD appears in green",
+      "explanation": "CAPT 3 connects the captain’s acoustic equipment to the third occupant’s ACP. The green AUDIO 3 XFRD memo appears and the third occupant loses access.",
+      "ref": "Ansett A320 FCOM DSC-23-10-50 and DSC-23-50 · PDF pp.1078, 1115 · page revision 22 MAY 24 · Doc1.docx p.12",
+      "pdfPages": [
+        1078,
+        1115
+      ],
+      "supplementPages": [
+        12
+      ]
+    },
+    "C23-025": {
+      "status": "checked",
+      "subtopic": "Flight Interphone",
+      "question": "Where can the ground crew connect to the flight interphone?",
+      "answer": "At the FLT INT jack on the maintenance nose-landing-gear panel forward of the nose-gear bay",
+      "explanation": "The ground-crew FLT INT jack is on the maintenance nose-landing-gear panel forward of the nose-gear bay.",
+      "ref": "Ansett A320 FCOM DSC-23-20-10 · PDF pp.1080, 1082 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1080,
+        1082
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-026": {
+      "status": "checked",
+      "subtopic": "Flight Interphone",
+      "question": "Before transmitting on the flight interphone, which selection sequence is required?",
+      "answer": "Select the INT reception knob out, press the INT transmission key, then use a PTT switch or RAD",
+      "explanation": "The crew selects INT reception out and the INT transmission key, then keys the microphone with a PTT control or the RAD position.",
+      "ref": "Ansett A320 FCOM DSC-23-20-10 · PDF p.1082 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1082
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-027": {
+      "status": "checked",
+      "subtopic": "Cabin Interphone",
+      "question": "How is cabin-interphone audio received and adjusted at an ACP?",
+      "answer": "Press and release the CAB reception knob to the out position, then rotate it for volume",
+      "explanation": "With the CAB reception knob out, its white light comes on and cabin audio is received; rotating the knob adjusts volume.",
+      "ref": "Ansett A320 FCOM DSC-23-20-20 · PDF p.1084 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1084
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-028": {
+      "status": "checked",
+      "subtopic": "Cabin Call",
+      "question": "What occurs at a selected cabin station when the flight crew makes a normal call from the CALLS panel?",
+      "answer": "Two steady pink area-call lights, a CAPTAIN CALL message with a green light, and a high-low chime",
+      "explanation": "A normal cockpit-to-cabin call produces two steady pink lights, CAPTAIN CALL on the applicable AIP with a green light, and a high-low chime.",
+      "ref": "Ansett A320 FCOM DSC-23-20-20 · PDF p.1086 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1086
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-029": {
+      "status": "checked",
+      "subtopic": "Cabin Call",
+      "question": "What does a flight-deck emergency call produce in the cabin?",
+      "answer": "Flashing pink lights at all area call panels, EMERGENCY CALL on all AIPs, and three high-low chimes",
+      "explanation": "The guarded EMER pushbutton flashes the pink area-call lights, displays EMERGENCY CALL on all AIPs, and repeats the high-low chime three times.",
+      "ref": "Ansett A320 FCOM DSC-23-20-20 · PDF p.1086 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1086
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-030": {
+      "status": "checked",
+      "subtopic": "Cabin Call",
+      "question": "What flight-deck indications follow a cabin crewmember’s normal CAPT call?",
+      "answer": "ATT lights flash on all ACPs and a buzzer sounds unless inhibited for takeoff or landing",
+      "explanation": "A cabin CAPT call flashes the ATT lights on all ACPs and sounds a cockpit buzzer, which is inhibited during takeoff and landing.",
+      "ref": "Ansett A320 FCOM DSC-23-20-20 · PDF p.1088 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1088
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-031": {
+      "status": "checked",
+      "subtopic": "Cabin Call",
+      "question": "What distinguishes a cabin EMER CALL on the flight deck?",
+      "answer": "The EMER ON light flashes white, CALL flashes amber, ATT flashes on all ACPs, and three buzzers sound unless inhibited",
+      "explanation": "A cabin EMER CALL flashes the EMER ON and CALL indications and all ACP ATT lights, with three consecutive buzzers unless takeoff/landing inhibition applies.",
+      "ref": "Ansett A320 FCOM DSC-23-20-20 · PDF p.1088 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1088
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-032": {
+      "status": "checked",
+      "subtopic": "Service Interphone",
+      "question": "How many service-interphone jacks are included in the system described by the FCOM?",
+      "answer": "Seven",
+      "explanation": "The service-interphone system includes seven interphone jacks and an overhead OVRD switch.",
+      "ref": "Ansett A320 FCOM DSC-23-20-30 · PDF p.1090 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1090
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-033": {
+      "status": "checked",
+      "subtopic": "Service Interphone",
+      "question": "When do the service-interphone jacks become available automatically after landing?",
+      "answer": "Ten seconds after landing, provided the landing gear is locked down",
+      "explanation": "Ground personnel can use the service-interphone jacks ten seconds after landing when the landing gear is locked down.",
+      "ref": "Ansett A320 FCOM DSC-23-20-30 · PDF p.1092 · page revision 22 MAY 24 · Doc1.docx p.10",
+      "pdfPages": [
+        1092
+      ],
+      "supplementPages": [
+        10
+      ]
+    },
+    "C23-034": {
+      "status": "checked",
+      "subtopic": "Service Interphone",
+      "question": "How can service-interphone communication be enabled when the landing gear is not locked down?",
+      "answer": "Press the SVCE INT OVRD pushbutton",
+      "explanation": "The SVCE INT OVRD pushbutton enables service-interphone communication when the landing gear is not locked down, including the on-jacks condition described by the supplement.",
+      "ref": "Ansett A320 FCOM DSC-23-20-30 · PDF p.1092 · page revision 22 MAY 24 · Doc1.docx pp.5, 10",
+      "pdfPages": [
+        1092
+      ],
+      "supplementPages": [
+        5,
+        10
+      ]
+    },
+    "C23-035": {
+      "status": "checked",
+      "subtopic": "Service Interphone",
+      "question": "Which ACP selections are used by flight crew to transmit over the service interphone?",
+      "answer": "CAB reception knob out, CAB transmission key selected, then a PTT switch or RAD",
+      "explanation": "For service interphone through the audio system, select CAB reception out and CAB transmission, then key the microphone with PTT or RAD.",
+      "ref": "Ansett A320 FCOM DSC-23-20-30 · PDF p.1092 · page revision 22 MAY 24 · Doc1.docx p.10",
+      "pdfPages": [
+        1092
+      ],
+      "supplementPages": [
+        10
+      ]
+    },
+    "C23-036": {
+      "status": "checked",
+      "subtopic": "Ground Mechanic Call",
+      "question": "What happens when the ground mechanic presses the COCKPIT CALL pushbutton?",
+      "answer": "MECH lights flash amber on the ACPs and a buzzer sounds; the buzzer stops on release and the lights time out after 60 seconds unless reset",
+      "explanation": "A ground-to-cockpit call flashes the ACP MECH indications and sounds the buzzer. Releasing the button stops the buzzer; unre-set lights extinguish after 60 seconds.",
+      "ref": "Ansett A320 FCOM DSC-23-20-30 · PDF p.1094 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1094
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-037": {
+      "status": "checked",
+      "subtopic": "Passenger Address",
+      "question": "Which system hosts the passenger address function, and which flight-deck microphones may be used?",
+      "answer": "CIDS hosts it; boom/headset, hand, oxygen-mask microphones, or the cockpit handset may be used",
+      "explanation": "CIDS hosts the PA system. Flight crew can make announcements with boom/headset, hand, or oxygen-mask microphones, or with the cockpit handset.",
+      "ref": "Ansett A320 FCOM DSC-23-20-40 · PDF p.1096 · page revision 22 MAY 24 · Doc1.docx p.10",
+      "pdfPages": [
+        1096
+      ],
+      "supplementPages": [
+        10
+      ]
+    },
+    "C23-038": {
+      "status": "checked",
+      "subtopic": "Passenger Address",
+      "question": "To make a PA announcement using a boom, mask, or hand microphone, what must the flight crewmember do?",
+      "answer": "Select the PA reception knob out and press and hold the PA transmission key; no separate PTT is required",
+      "explanation": "Select PA reception out and hold the PA transmission key while speaking. The PA key itself keys the microphone, so a separate PTT selection is not required.",
+      "ref": "Ansett A320 FCOM DSC-23-20-40 · PDF p.1097 · page revision 22 MAY 24 · Doc1.docx p.10",
+      "pdfPages": [
+        1097
+      ],
+      "supplementPages": [
+        10
+      ]
+    },
+    "C23-039": {
+      "status": "checked",
+      "subtopic": "Passenger Address",
+      "question": "When does the PA IN USE light illuminate?",
+      "answer": "When PA is active from the cockpit, cabin, or a prerecorded announcement",
+      "explanation": "The PA IN USE light comes on for PA activation from the cockpit or cabin, including a prerecorded announcement.",
+      "ref": "Ansett A320 FCOM DSC-23-20-40 · PDF p.1098 · page revision 22 MAY 24 · Doc1.docx p.10",
+      "pdfPages": [
+        1098
+      ],
+      "supplementPages": [
+        10
+      ]
+    },
+    "C23-040": {
+      "status": "checked",
+      "subtopic": "Radio Operation",
+      "question": "What should the crew do with an RMP that has failed?",
+      "answer": "Switch the affected RMP off; one remaining RMP can control all receivers",
+      "explanation": "The FCOM directs the crew to switch the affected RMP off. One remaining RMP can control all receivers.",
+      "ref": "Ansett A320 FCOM DSC-23-60-A · PDF p.1117 · page revision 22 MAY 24 · Doc1.docx p.12",
+      "pdfPages": [
+        1117
+      ],
+      "supplementPages": [
+        12
+      ]
+    },
+    "C23-041": {
+      "status": "checked",
+      "subtopic": "VHF",
+      "question": "Which statement describes VHF 1 in the emergency electrical configuration?",
+      "answer": "Only VHF 1 functions, and its tuning range is 118.000 to 136.975 MHz",
+      "explanation": "Only VHF 1 functions in the emergency electrical configuration. The installed VHF communication range is 118.000 to 136.975 MHz.",
+      "ref": "Ansett A320 FCOM DSC-23-30-10 · PDF p.1100 · page revision 22 MAY 24",
+      "pdfPages": [
+        1100
+      ],
+      "supplementPages": []
+    },
+    "C23-042": {
+      "status": "checked",
+      "subtopic": "HF",
+      "question": "Which restriction applies when using an installed HF radio on the ground?",
+      "answer": "HF must not be used during refueling or fuel-transfer operations",
+      "explanation": "The FCOM prohibits HF use during refueling or fuel transfer and requires people to remain clear of the antenna vicinity.",
+      "ref": "Ansett A320 FCOM DSC-23-30-10 · PDF p.1100 · page revision 22 MAY 24",
+      "pdfPages": [
+        1100
+      ],
+      "supplementPages": []
+    },
+    "C23-043": {
+      "status": "checked",
+      "subtopic": "SELCAL",
+      "question": "When is the SELCAL aural warning inhibited?",
+      "answer": "During takeoff and landing",
+      "explanation": "The aural SELCAL warning is inhibited during takeoff and landing; the system otherwise advises the crew aurally and visually.",
+      "ref": "Ansett A320 FCOM DSC-23-30-10 · PDF p.1101 · page revision 22 MAY 24 · Doc1.docx p.9",
+      "pdfPages": [
+        1101
+      ],
+      "supplementPages": [
+        9
+      ]
+    },
+    "C23-044": {
+      "status": "checked",
+      "subtopic": "SATCOM",
+      "question": "On an aircraft equipped with SATCOM, what happens to ATSU or ACARS data when VHF 3 is unavailable?",
+      "answer": "It automatically switches to SATCOM",
+      "explanation": "ATSU or ACARS normally uses VHF 3 and automatically changes to SATCOM when VHF 3 is unavailable.",
+      "ref": "Ansett A320 FCOM DSC-23-30-20-10 · PDF p.1102 · page revision 22 MAY 24",
+      "pdfPages": [
+        1102
+      ],
+      "supplementPages": []
+    },
+    "C23-045": {
+      "status": "checked",
+      "subtopic": "SATCOM",
+      "question": "How is the optional SATCOM cockpit voice interface normally controlled?",
+      "answer": "The ACP controls call setup and termination, while the MCDU selects the call number",
+      "explanation": "For SATCOM cockpit voice, the ACP controls call setup/termination and the MCDU is used for call-number selection.",
+      "ref": "Ansett A320 FCOM DSC-23-30-20-10 · PDF p.1102 · page revision 22 MAY 24",
+      "pdfPages": [
+        1102
+      ],
+      "supplementPages": []
+    },
+    "C23-046": {
+      "status": "checked",
+      "subtopic": "Emergency Evacuation",
+      "question": "With CAPT & PURS selected, what happens when an evacuation is initiated from the cabin?",
+      "answer": "The cockpit EVAC light flashes and the cockpit horn sounds continuously; cabin EVAC lights flash and the evacuation tone sounds continuously",
+      "explanation": "In CAPT & PURS, a cabin command can initiate the alert: the cockpit EVAC light flashes and horn sounds continuously, while cabin lights flash and the tone sounds continuously.",
+      "ref": "Ansett A320 FCOM DSC-23-40-10 · PDF pp.1110, 1111 · page revision 22 MAY 24 · Doc1.docx p.7",
+      "pdfPages": [
+        1110,
+        1111
+      ],
+      "supplementPages": [
+        7
+      ]
+    },
+    "C23-047": {
+      "status": "checked",
+      "subtopic": "Emergency Evacuation",
+      "question": "What is the function of the HORN SHUT OFF pushbutton on the evacuation panel?",
+      "answer": "It silences the cockpit horn generated by a cabin-initiated evacuation alert",
+      "explanation": "HORN SHUT OFF silences the cockpit horn produced by a cabin-initiated evacuation alert; it is not the master cancellation for the other indications.",
+      "ref": "Ansett A320 FCOM DSC-23-40-10 · PDF p.1111 · page revision 22 MAY 24 · Doc1.docx p.7",
+      "pdfPages": [
+        1111
+      ],
+      "supplementPages": [
+        7
+      ]
+    },
+    "C23-048": {
+      "status": "checked",
+      "subtopic": "Emergency Locator Transmitter",
+      "question": "In ARMED, which emergency frequencies does the ELT transmit on after an impact?",
+      "answer": "121.5, 243, and 406 MHz",
+      "explanation": "In ARMED, impact activation causes the ELT to transmit on 121.5, 243, and 406 MHz.",
+      "ref": "Ansett A320 FCOM DSC-23-40-30 · PDF p.1112 · page revision 22 MAY 24 · Doc1.docx p.7",
+      "pdfPages": [
+        1112
+      ],
+      "supplementPages": [
+        7
+      ]
+    },
+    "C23-049": {
+      "status": "checked",
+      "subtopic": "Emergency Locator Transmitter",
+      "question": "If the ELT is triggered unintentionally while ARMED, how is it reset?",
+      "answer": "Select TEST/RESET to reset the ELT and stop transmission",
+      "explanation": "Selecting TEST/RESET resets an inadvertently triggered ELT and stops its transmission; the same position starts the ELT autotest.",
+      "ref": "Ansett A320 FCOM DSC-23-40-30 · PDF p.1112 · page revision 22 MAY 24 · Doc1.docx p.7",
+      "pdfPages": [
+        1112
+      ],
+      "supplementPages": [
+        7
+      ]
+    },
+    "C23-050": {
+      "status": "checked",
+      "subtopic": "Memo Display",
+      "question": "What does the green ACARS CALL memo indicate?",
+      "answer": "ACARS has received a ground message requesting voice communication on VHF",
+      "explanation": "ACARS CALL appears when ACARS receives a ground message requesting VHF voice communication; it pulses green for 60 seconds and then remains steady.",
+      "ref": "Ansett A320 FCOM DSC-23-50 · PDF p.1114 · page revision 22 MAY 24",
+      "pdfPages": [
+        1114
+      ],
+      "supplementPages": []
+    },
+    "C23-051": {
+      "status": "checked",
+      "subtopic": "Radio Operation",
+      "question": "When should VHF 3 be used for voice communication if ACARS is installed?",
+      "answer": "Only when VHF 1 and VHF 2 are inoperative",
+      "explanation": "VHF 3 normally supports ACARS data. Use it for voice only when VHF 1 and VHF 2 are inoperative because voice mode temporarily removes the ATC datalink connection.",
+      "ref": "Ansett A320 FCOM DSC-23-60-A · PDF p.1118 · page revision 22 MAY 24 · Doc1.docx p.11",
+      "pdfPages": [
+        1118
+      ],
+      "supplementPages": [
+        11
+      ]
+    }
+  }
+}

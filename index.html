@@ -277,7 +277,7 @@
 
   <!-- ================= START ================= -->
   <section id="start">
-    <p class="lede">Pick a drill. Systems Exam Prep now contains only the 19 questions from Question Bank.xlsx related to FCOM Communications, with answers accepted as supplied. Each new run draws fresh Communications questions before repeating earlier selections. Limitations Check includes 200 eligible questions from the supplied FCOM limitations
+    <p class="lede">Pick a drill. Systems Exam Prep now contains 70 Communications-only questions: the 19 retained rows from Question Bank.xlsx, with answers accepted as supplied, plus 51 new items checked against the Ansett FCOM Aircraft Systems Communications chapter and the supplied Doc1 supplement. Each new run draws fresh Communications questions before repeating earlier selections. Limitations Check includes 200 eligible questions from the supplied FCOM limitations
       chapter. Review Weak Areas now combines missed systems and limitations questions and requires two
       clean recalls after a miss. Progress is saved on this device only.</p>
 
@@ -288,7 +288,7 @@
       </button>
       <button class="mode systems" id="modeSystems">
         <div class="mt"><span class="ic">SYS</span>Systems Exam Prep</div>
-        <div class="md">19 Communications questions from Question Bank.xlsx covering radio/audio management, calls, interphone, PA, evacuation signalling and CVR. All other systems topics are excluded.</div>
+        <div class="md">70 Communications-only questions covering radio and audio management, CVR, calls, interphone, PA, VHF/HF, SATCOM, evacuation signalling, ELT and Communications memos. All other systems topics are excluded.</div>
       </button>
       <button class="mode review" id="modeReview">
         <div class="mt"><span class="ic">WEAK</span>Review Weak Areas</div>
@@ -328,7 +328,7 @@
       </a>
     </div>
 
-    <p class="source-note">The original FCOM audit and follow-up cover 259 limitations, 315 systems-guide questions, 8 memory cards and 141 fill-in cells. All 298 rows from Question Bank.xlsx remain archived and traceable, but only 19 Communications-related rows are active in Systems Exam Prep. Their supplied answer keys are not represented as independently FCOM-verified. QB159, the DFDR-storage question, is excluded because it belongs to Indicating/Recording rather than FCOM DSC-23 Communications. The FCOM compilation contains training pages and IAE inserts (A/C 20-IMHT, 13 AUG 2018) marked FOR ENGINEERING USE ONLY&mdash;not an operational approval or proof of the latest revision. See the <a href="verification-audit.json">item-by-item source record</a>. Confirm simulator options and operational procedures with your instructor and approved manuals.</p>
+    <p class="source-note">The original FCOM audit and follow-up cover 259 limitations, 315 systems-guide questions, 8 memory cards and 141 fill-in cells. All 298 rows from Question Bank.xlsx remain archived and traceable; its 19 Communications-related rows remain active with their supplied answer keys unchanged and are not represented as independently FCOM-verified. A further 51 questions were checked against FCOM DSC-23 and the 12-page Doc1 supplement. QB159 and the supplement's DFDR, QAR and accelerometer material remain excluded because they belong to ATA 31 Indicating/Recording, not DSC-23 Communications. The FCOM compilation contains training pages and IAE inserts (A/C 20-IMHT, 13 AUG 2018) marked FOR ENGINEERING USE ONLY&mdash;not an operational approval or proof of the latest revision. See the <a href="verification-audit.json">original item-by-item source record</a> and <a href="communications-fcom-audit.json">Communications expansion audit</a>. Confirm simulator options and operational procedures with your instructor and approved manuals.</p>
     <div class="prog" id="progPanel"></div>
 
     <div class="panel filters" id="filterPanel">
@@ -464,6 +464,7 @@
 
 <script src="systems-exam-questions.js"></script>
 <script src="question-bank-questions.js"></script>
+<script src="communications-fcom-questions.js"></script>
 <script src="trainer-core.js"></script>
 <script>
 /* ============ QUESTION BANK ============ */
@@ -898,7 +899,7 @@ function drawSystemChips(){
     host.appendChild(b);
   });
 }
-const SYS_LENS=[["10",10],["All 19",0]];
+const SYS_LENS=[["10",10],["20",20],["40",40],["All 70",0]];
 function drawSystemLens(){
   const host=$("sysLenChips");host.innerHTML="";
   SYS_LENS.forEach(([label,value])=>{

@@ -42,7 +42,7 @@ function validateQuestions(name,questions,referencePattern){
   });
 }
 
-const required=["index.html","A320_Checkride_Trainer.html","trainer-core.js","flows.html","flow-sim.js","a320-controls.js","systems-exam-questions.js","question-bank-questions.js","electrical.html","electrical-sim.js","hydraulic.html","hydraulic-sim.js","engine.html","engine-sim.js","engine-3d.js","integration.html","manifest.webmanifest","sw.js"];
+const required=["index.html","A320_Checkride_Trainer.html","trainer-core.js","flows.html","flow-sim.js","a320-controls.js","systems-exam-questions.js","question-bank-questions.js","communications-fcom-questions.js","communications-fcom-audit.json","electrical.html","electrical-sim.js","hydraulic.html","hydraulic-sim.js","engine.html","engine-sim.js","engine-3d.js","integration.html","manifest.webmanifest","sw.js"];
 required.forEach(file=>ok(fs.existsSync(path.join(root,file)),file+" exists"));
 const allNames=fs.readdirSync(root);
 const legacyNamePattern=new RegExp("A3"+"21|P2"+"F","i");
@@ -51,7 +51,7 @@ ok(!allNames.some(name=>legacyNamePattern.test(name)),"legacy out-of-scope aircr
 parseInlineScripts("index.html");
 parseInlineScripts("flows.html");
 parseInlineScripts("integration.html");
-["trainer-core.js","systems-exam-questions.js","question-bank-questions.js","a320-controls.js","flow-sim.js","electrical-sim.js","hydraulic-sim.js","engine-sim.js","engine-3d.js","sw.js"].forEach(file=>{
+["trainer-core.js","systems-exam-questions.js","question-bank-questions.js","communications-fcom-questions.js","a320-controls.js","flow-sim.js","electrical-sim.js","hydraulic-sim.js","engine-sim.js","engine-3d.js","sw.js"].forEach(file=>{
   try{new vm.Script(read(file),{filename:file});}catch(error){errors.push(error.message);}
 });
 
@@ -62,15 +62,19 @@ validateQuestions("Limitations",limitations,/FCOM LIM-/);
 global.window={};
 delete require.cache[require.resolve("./systems-exam-questions.js")];
 delete require.cache[require.resolve("./question-bank-questions.js")];
+delete require.cache[require.resolve("./communications-fcom-questions.js")];
 require("./systems-exam-questions.js");
 require("./question-bank-questions.js");
+require("./communications-fcom-questions.js");
 const systems=window.SYSTEMS_EXAM_QUESTIONS;
 const topics=window.SYSTEMS_EXAM_TOPICS;
-const guideSystems=systems.filter(item=>item.source!=="Question Bank.xlsx · Question Bank");
+const guideSystems=systems.filter(item=>item.source==="A320 Student Study Questions");
 const questionBank=systems.filter(item=>item.source==="Question Bank.xlsx · Question Bank");
-ok(systems.length===613,"systems bank has 315 guide and 298 workbook questions");
+const fcomCommunications=systems.filter(core.isFcomCommunicationsQuestion);
+ok(systems.length===664,"systems bank has 315 guide, 298 workbook and 51 FCOM Communications questions");
 ok(guideSystems.length===315,"systems bank retains all 315 supplied guide questions");
 ok(questionBank.length===298,"systems bank includes all 298 Question Bank.xlsx rows");
+ok(fcomCommunications.length===51,"systems bank includes 51 FCOM-checked Communications additions");
 ok(topics.length===19&&topics.includes("Limitations")&&topics.includes("MEL"),"archived guide topic list has 19 subjects including Limitations and MEL");
 ok(new Set(guideSystems.map(item=>item.c)).size===19,"systems guide bank has 19 source subjects");
 validateQuestions("Systems",systems,/FCOM|current operator MEL|Question Bank\.xlsx/i);
@@ -83,9 +87,23 @@ ok(systems.every(item=>Number.isInteger(item.p)&&item.p>0),"every systems item r
 ok(guideSystems.every(item=>/Guide Q\d+, PDF p\.\d+/.test(item.ref||"")),"every guide reference identifies its question and PDF page");
 ok(questionBank.every(item=>/Question Bank Q\d+, sheet row \d+/.test(item.ref||"")),"every workbook reference identifies its question and sheet row");
 ok(questionBank.every(item=>item.verification.status==="supplied"&&item.review==="question-bank-supplied"),"all workbook answer keys are accepted as supplied without an FCOM claim");
+const communicationsAudit=JSON.parse(read("communications-fcom-audit.json"));
+ok(communicationsAudit.fcom.sha256===core.SOURCE.sha256,"Communications audit identifies the trainer FCOM");
+ok(communicationsAudit.supplement.sha256===core.COMMUNICATIONS_SUPPLEMENT_SOURCE.sha256,"Communications audit identifies the supplied Doc1 supplement");
+ok(communicationsAudit.scope.added===51&&communicationsAudit.scope.activeTotal===70,"Communications audit records the expansion counts");
+ok(JSON.stringify(Object.keys(communicationsAudit.items))===JSON.stringify(core.FCOM_COMMUNICATION_QUESTION_IDS),"Communications audit covers every new question in order");
+fcomCommunications.forEach(item=>{
+  const record=communicationsAudit.items[item.verification.id];
+  ok(Boolean(record),"Communications audit includes "+item.verification.id);
+  if(!record)return;
+  ok(record.question===item.q&&record.answer===item.o[item.a]&&record.explanation===item.w,"Communications audit content matches "+item.verification.id);
+  ok(JSON.stringify(record.pdfPages)===JSON.stringify(item.verification.pdfPages)&&JSON.stringify(record.supplementPages)===JSON.stringify(item.verification.supplementPages),"Communications evidence pages match "+item.verification.id);
+});
 const activeCommunications=questionBank.filter(core.isCommunicationsQuestion);
-ok(activeCommunications.length===19,"Systems Exam Prep has exactly 19 active Communications questions");
-ok(JSON.stringify(activeCommunications.map(item=>item.verification.id))===JSON.stringify(core.COMMUNICATIONS_QUESTION_IDS),"active Communications IDs match the explicit FCOM-section allowlist");
+const activeSystems=systems.filter(core.isCommunicationsQuestion);
+ok(activeCommunications.length===19,"Systems Exam Prep retains 19 active Communications workbook questions");
+ok(activeSystems.length===70,"Systems Exam Prep has exactly 70 active Communications questions");
+ok(JSON.stringify(activeSystems.map(item=>item.verification.id))===JSON.stringify(core.COMMUNICATIONS_QUESTION_IDS),"active Communications IDs match the explicit FCOM-section allowlist");
 ok(!activeCommunications.some(item=>item.verification.id==='QB159'),"DFDR storage remains outside Communications practice");
 ok(questionBank.filter(item=>item.image).length===15,"all 15 workbook illustrations are attached");
 questionBank.filter(item=>item.image).forEach(item=>ok(fs.existsSync(path.join(root,item.image)),item.image+" exists"));
@@ -149,8 +167,8 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v42"),"offline cache is version 42");
-ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=40")&&sw.includes("./question-bank-questions.js"),"offline cache includes upgraded modules and workbook questions");
+ok(sw.includes("a320-trainer-v43"),"offline cache is version 43");
+ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=40")&&sw.includes("./question-bank-questions.js")&&sw.includes("./communications-fcom-questions.js")&&sw.includes("./communications-fcom-audit.json"),"offline cache includes upgraded modules and both Communications sources");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
 const forbidden=new RegExp("\\bA3"+"21\\b|P2"+"F|CF"+"M(?:56)?|PW"+"1100|LE"+"AP-?1A|Pra"+"tt\\s*(?:&|and)?\\s*Whitney","i");
@@ -187,7 +205,7 @@ if(errors.length){
   errors.forEach(message=>console.error(" - "+message));
   process.exit(1);
 }
-console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 613 systems, 10 flow phases, 344 cockpit controls. This is not operational certification.");
+console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 664 systems, 10 flow phases, 344 cockpit controls. This is not operational certification.");
 require('./test-trainer.js');
 require('./test-audit.js');
 require('./test-system-rotation.js');

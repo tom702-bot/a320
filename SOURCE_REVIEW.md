@@ -1,4 +1,4 @@
-# FCOM audit — 5 September 2026; follow-up 6 September; Question Bank import 9 September
+# FCOM audit — 5 September 2026; follow-up 6 September; Question Bank import 9 September; Communications expansion 14 September
 
 Scope: Ansett A320 IAE V2500-A5. Review base: published main 81cba9c812a8d59093c9a1d5f6b0568154a4badf. Question Bank.xlsx is included as user-confirmed source material, not as FCOM-verified content.
 
@@ -9,13 +9,14 @@ Scope: Ansett A320 IAE V2500-A5. Review base: published main 81cba9c812a8d59093c
 | Limitations | 259 | 187 | 13 | 59 |
 | Systems guide | 315 | 161 | 135 | 19 |
 | Question Bank.xlsx | 298 | 298 | 0 | 0 |
+| Communications expansion | 51 | 51 | 0 | 0 |
 | Memory cards | 8 | 0 | 8 | 0 |
 | Fill-in cells | 141 | 83 | 38 | 20 |
-| Total | 1,021 | 729 | 194 | 98 |
+| Total | 1,072 | 780 | 194 | 98 |
 
-Corrected counts apply to the FCOM-audited material and include question wording, conditions, distractors and explanations, not only changes to the keyed answer. All 1,021 records are in verification-audit.json with original content, result, status and rationale. FCOM-reviewed records preserve PDF-page references, source hash, printed-page footer, Ident and page revision. No withheld item enters question grading, weak-area review, mastery counts or the limitation lookup. Eligible totals: 200 limitations, 594 systems questions, eight self-graded memory cards and 121 fill-in cells.
+Corrected counts apply to the original FCOM-audited material and include question wording, conditions, distractors and explanations, not only changes to the keyed answer. The original 1,021 records are in verification-audit.json; the 51 Communications additions are in communications-fcom-audit.json. FCOM-reviewed records preserve PDF-page references and source identity. No withheld item enters question grading, weak-area review, mastery counts or the limitation lookup. Eligible totals: 200 limitations, 645 archived systems questions, eight self-graded memory cards and 121 fill-in cells. Systems Exam Prep exposes only the 70 Communications questions.
 
-The 9 September Question Bank import retained every workbook row as QB001–QB298, including all 15 illustrations. At the user&rsquo;s direction, the 298 workbook answer keys are accepted as supplied and are not described as independently FCOM-verified. They carry the workbook&rsquo;s SHA-256 source identity rather than the FCOM hash. From 14 September, only the 19 rows related to FCOM Communications (QB152–QB158 and QB160–QB171) are active in Systems Exam Prep. QB159 remains archived with the other inactive rows because its DFDR-storage subject belongs to Indicating/Recording rather than Communications.
+The 9 September Question Bank import retained every workbook row as QB001–QB298, including all 15 illustrations. At the user&rsquo;s direction, the 298 workbook answer keys are accepted as supplied and are not described as independently FCOM-verified. They carry the workbook&rsquo;s SHA-256 source identity rather than the FCOM hash. From 14 September, the 19 rows related to FCOM Communications (QB152–QB158 and QB160–QB171) remain active alongside 51 new questions checked against FCOM DSC-23 and Doc1.docx. QB159 remains archived with the other inactive rows because its DFDR-storage subject belongs to ATA 31 Indicating/Recording. The same boundary excludes the supplement's QAR and accelerometer material; emergency evacuation and ELT remain included because this FCOM places them in DSC-23-40 Emergency Communication.
 
 The 6 September follow-up checked each of the 102 previous exclusions. L133, S116, S128 and S145 were corrected/qualified and restored. Another 84 keyed values/statements match the source but retain an applicability restriction; 14 have a source conflict or an unavailable legacy/MEL description. Each has a dated followUp record with the actual finding and required evidence. Corrected two GSM fill-cell references from PDF p.3724 to p.3730 and added the missing ROPS p.3788 reference to the combined ROPS/predictive-GPWS cell. See OUTSTANDING_REVIEW.md. Restored questions receive their own progress revision; unchanged questions retain their existing progress.
 
@@ -47,4 +48,4 @@ Models are ungraded conceptual study aids. Their geometry, timings, battery/accu
 
 ## Validation and publication
 
-node validate-trainer.js runs the existing regressions, test-audit.js and test-system-rotation.js. The suite checks all 1,021 records, all 298 archived workbook rows, the exact 19-question Communications allowlist, all 102 follow-up dispositions, fail-closed eligibility, corrected answer consistency, complete-exam scoring, progress revision, workbook-image rendering, memory branches, numeric units/signs/ranges, flow conditions and actual electrical evaluator source cases. It also tests service-worker installation and fresh offline script loading. HTML twins remain identical; cache v42 replaces the prior release. No browser visual QA was performed. The removed PXS/GTE courses remain absent.
+node validate-trainer.js runs the existing regressions, test-audit.js and test-system-rotation.js. The suite checks all 1,021 original records, all 51 Communications expansion records, all 298 archived workbook rows, the exact 70-question Communications allowlist, all 102 follow-up dispositions, fail-closed eligibility, corrected answer consistency, complete-exam scoring, progress revision, workbook-image rendering, memory branches, numeric units/signs/ranges, flow conditions and actual electrical evaluator source cases. It also tests service-worker installation and fresh offline script loading. HTML twins remain identical; cache v43 replaces the prior release. The removed PXS/GTE courses remain absent.

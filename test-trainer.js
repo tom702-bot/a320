@@ -39,6 +39,7 @@ assert.equal(core.examResult(0,0,0).pass,false);
 const bankContext={window:{}};
 vm.runInNewContext(read('systems-exam-questions.js'),bankContext);
 vm.runInNewContext(read('question-bank-questions.js'),bankContext);
+vm.runInNewContext(read('communications-fcom-questions.js'),bankContext);
 const systems=bankContext.window.SYSTEMS_EXAM_QUESTIONS;
 const q193=systems.find(q=>q.n===193);
 assert.equal(core.hasDependentOptions(q193),false);
@@ -64,6 +65,7 @@ assert.doesNotMatch(html,/reconciled to the current Ansett A320 IAE FCOM/);
 assert.match(core.sourceStatus({evidence:'oilContinuous'}).label,/FOR ENGINEERING USE ONLY/);
 assert.match(core.sourceReference('oilContinuous'),/20-IMHT.*13 AUG 2018.*3737/);
 assert.match(core.sourceStatus(systems.find(q=>q.verification.id==='QB001')).label,/ANSWER ACCEPTED AS SUPPLIED/);
+assert.match(core.sourceStatus(systems.find(q=>q.verification.id==='C23-001')).label,/FCOM SOURCE CHECKED/);
 
 const normLine=html.split('\n').find(s=>s.startsWith('const normQuestion='));
 const statsContext={};
@@ -83,7 +85,7 @@ const savedStorage={};
 const startup={TrainerCore:core,window:{SYSTEMS_EXAM_QUESTIONS:systems,SYSTEMS_EXAM_TOPICS:bankContext.window.SYSTEMS_EXAM_TOPICS,scrollTo(){},addEventListener(){}},navigator:{},localStorage:{getItem(key){return savedStorage[key]??null;},setItem(key,value){savedStorage[key]=value;},removeItem(key){delete savedStorage[key];}},document:{getElementById(id){if(!declaredIds.has(id))return null;if(!nodes.has(id))nodes.set(id,startupElement());return nodes.get(id);},createElement:startupElement,addEventListener(){}}};
 for(const script of html.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInNewContext(script[1],startup);
 assert.match(nodes.get('progPanel').innerHTML,/Communications/,'Communications progress panel initializes');
-assert.equal(vm.runInNewContext('SYSTEMS_BANK.length',startup),19);
+assert.equal(vm.runInNewContext('SYSTEMS_BANK.length',startup),70);
 assert.equal(vm.runInNewContext('SYSTEMS_CATS.length',startup),1);
 assert(vm.runInNewContext('TRACKED_BANK.every(q=>q.scope==="limitations"||TrainerCore.isCommunicationsQuestion(q))',startup),'systems weak review and progress use only FCOM Communications questions');
 const runIds=ctx=>Array.from(vm.runInNewContext('queue.map(q=>q.verification.id)',ctx));
@@ -94,7 +96,7 @@ assert(savedStorage.a320_systems_communications_rotation_v1,'a quiz saves its Co
 assert.match(nodes.get('quizModeStatus').textContent,/fresh mix/);
 nodes.get('againBtn').onclick();
 const againIds=runIds(startup);
-assert.equal(againIds.filter(id=>!learnIds.includes(id)).length,9,'Run again uses every remaining fresh Communications question before a repeat');
+assert.equal(againIds.filter(id=>!learnIds.includes(id)).length,10,'Run again uses only fresh Communications questions while undrawn items remain');
 const reloaded={...startup};
 for(const script of html.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInNewContext(script[1],reloaded);
 vm.runInNewContext('sysFeedbackMode="exam";',reloaded);
@@ -168,7 +170,7 @@ async function offlineTests(){
   assert.match(await nav.text(),/Systems Exam Prep/);
   online=true;
   assert.equal((await event('fetch',request('missing.js'))).status,404);
-  assert.equal(await (await caches.open('a320-trainer-v42')).match('missing.js'),undefined,'404 responses are not cached');
+  assert.equal(await (await caches.open('a320-trainer-v43')).match('missing.js'),undefined,'404 responses are not cached');
   assert.equal(await event('fetch',{method:'GET',url:'https://other.invalid/a320/file.js'}),undefined);
   assert.equal(await event('fetch',{method:'GET',url:'https://trainer.invalid/another/file.js'}),undefined);
 }

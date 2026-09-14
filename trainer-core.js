@@ -17,6 +17,14 @@
     sha256:'cf50ffedf21561744f348e60033afc7c4db4ef3c14cb7704ee80ebfdf79b6da8',
     accepted:'2026-09-09'
   };
+  const COMMUNICATIONS_SUPPLEMENT_SOURCE={
+    file:'Doc1.docx',
+    label:'Ansett A320 FCOM DSC-23 · Doc1 supplement',
+    sha256:'29f9d3e5690f158bc8a53788810854eefb887940249bc7e4c30f5169c2239d03',
+    pages:12,
+    checked:'2026-09-14',
+    revision:'communications-fcom-20260914'
+  };
   const fact=(answer,page,manualPage,ident,section='LIM-ENG')=>({answer,pdfPage:page,manualPage,ident,section});
   const EVIDENCE={
     n1:fact('100%',3737,'1/4','LIM-ENG-00020355.0003001'),
@@ -78,27 +86,51 @@
     const v=q&&q.verification;
     return Boolean(q?.source==='Question Bank.xlsx · Question Bank'&&v?.status==='supplied'&&v.id&&v.sourceHash===QUESTION_BANK_SOURCE.sha256);
   }
-  const COMMUNICATIONS_QUESTION_IDS=Object.freeze([
+  const WORKBOOK_COMMUNICATION_QUESTION_IDS=Object.freeze([
     'QB152','QB153','QB154','QB155','QB156','QB157','QB158','QB160','QB161','QB162',
     'QB163','QB164','QB165','QB166','QB167','QB168','QB169','QB170','QB171'
   ]);
+  const FCOM_COMMUNICATION_QUESTION_IDS=Object.freeze(
+    Array.from({length:51},(_,index)=>'C23-'+String(index+1).padStart(3,'0'))
+  );
+  const COMMUNICATIONS_QUESTION_IDS=Object.freeze(
+    WORKBOOK_COMMUNICATION_QUESTION_IDS.concat(FCOM_COMMUNICATION_QUESTION_IDS)
+  );
+  const workbookCommunicationsIds=new Set(WORKBOOK_COMMUNICATION_QUESTION_IDS);
+  const fcomCommunicationsIds=new Set(FCOM_COMMUNICATION_QUESTION_IDS);
   const communicationsIds=new Set(COMMUNICATIONS_QUESTION_IDS);
+  function isFcomCommunicationsQuestion(q){
+    const v=q&&q.verification;
+    return Boolean(
+      q?.source===COMMUNICATIONS_SUPPLEMENT_SOURCE.label&&
+      q.c==='Communications'&&
+      q.revision===COMMUNICATIONS_SUPPLEMENT_SOURCE.revision&&
+      fcomCommunicationsIds.has(v?.id)&&
+      ['checked','corrected'].includes(v?.status)&&
+      v.sourceHash===SOURCE.sha256&&
+      Array.isArray(v.pdfPages)&&v.pdfPages.length&&v.pdfPages.every(page=>Number.isInteger(page)&&page>=1058&&page<=1119)&&
+      v.supplementHash===COMMUNICATIONS_SUPPLEMENT_SOURCE.sha256&&
+      Array.isArray(v.supplementPages)&&v.supplementPages.every(page=>Number.isInteger(page)&&page>=1&&page<=COMMUNICATIONS_SUPPLEMENT_SOURCE.pages)
+    );
+  }
   function isCommunicationsQuestion(q){
-    return isSuppliedQuestionBank(q)&&q.c==='Communications'&&communicationsIds.has(q.verification.id);
+    const id=q?.verification?.id;
+    if(q?.c!=='Communications'||!communicationsIds.has(id))return false;
+    return (workbookCommunicationsIds.has(id)&&isSuppliedQuestionBank(q))||isFcomCommunicationsQuestion(q);
   }
   function isVerified(q){
     const v=q&&q.verification;
     return isSuppliedQuestionBank(q)||Boolean(v&&['checked','corrected'].includes(v.status)&&v.id&&v.pdfPages?.length&&v.sourceHash===SOURCE.sha256);
   }
-  // Rotate only the supplied workbook, sharing draw history across subjects and run lengths.
+  // Rotate only the explicit Communications allowlist, sharing draw history across run lengths.
   function selectSystemDeck(bank,categories,limit,previous,shuffle){
-    const workbook=bank.filter(isSuppliedQuestionBank);
+    const eligible=bank.filter(isCommunicationsQuestion);
     const history={};
-    workbook.forEach(q=>{
+    eligible.forEach(q=>{
       const id=q.verification.id,value=previous?.[id];
       history[id]=Number.isSafeInteger(value)&&value>0&&value<Number.MAX_SAFE_INTEGER?value:0;
     });
-    const selected=new Set(categories),pool=workbook.filter(q=>selected.has(q.c));
+    const selected=new Set(categories),pool=eligible.filter(q=>selected.has(q.c));
     const size=limit>0?Math.min(limit,pool.length):pool.length;
     const questions=[];
     // Use every never-drawn question first, then the oldest quiz selections.
@@ -158,5 +190,5 @@
     const percent=answered?correct/answered*100:0;
     return {answered,expected,complete,percent,displayPercent:Math.round(percent*10)/10,pass:complete&&correct*100>=expected*80};
   }
-  return {SOURCE,QUESTION_BANK_SOURCE,COMMUNICATIONS_QUESTION_IDS,EVIDENCE,sourceReference,sourceStatus,isSuppliedQuestionBank,isCommunicationsQuestion,isVerified,selectSystemDeck,normalizeFill,hasDependentOptions,optionOrder,examResult};
+  return {SOURCE,QUESTION_BANK_SOURCE,COMMUNICATIONS_SUPPLEMENT_SOURCE,WORKBOOK_COMMUNICATION_QUESTION_IDS,FCOM_COMMUNICATION_QUESTION_IDS,COMMUNICATIONS_QUESTION_IDS,EVIDENCE,sourceReference,sourceStatus,isSuppliedQuestionBank,isFcomCommunicationsQuestion,isCommunicationsQuestion,isVerified,selectSystemDeck,normalizeFill,hasDependentOptions,optionOrder,examResult};
 });
