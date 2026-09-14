@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const core=require('./trainer-core.js');
 const context={window:{}};
-for(const file of ['systems-exam-questions.js','question-bank-questions.js','communications-fcom-questions.js']){
+for(const file of ['systems-exam-questions.js','question-bank-questions.js','communications-fcom-questions.js','communications-option-quality.js']){
   vm.runInNewContext(fs.readFileSync(__dirname+'/'+file,'utf8'),context);
 }
 const combined=context.window.SYSTEMS_EXAM_QUESTIONS;

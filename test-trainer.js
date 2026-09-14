@@ -40,6 +40,7 @@ const bankContext={window:{}};
 vm.runInNewContext(read('systems-exam-questions.js'),bankContext);
 vm.runInNewContext(read('question-bank-questions.js'),bankContext);
 vm.runInNewContext(read('communications-fcom-questions.js'),bankContext);
+vm.runInNewContext(read('communications-option-quality.js'),bankContext);
 const systems=bankContext.window.SYSTEMS_EXAM_QUESTIONS;
 const q193=systems.find(q=>q.n===193);
 assert.equal(core.hasDependentOptions(q193),false);
@@ -66,6 +67,8 @@ assert.match(core.sourceStatus({evidence:'oilContinuous'}).label,/FOR ENGINEERIN
 assert.match(core.sourceReference('oilContinuous'),/20-IMHT.*13 AUG 2018.*3737/);
 assert.match(core.sourceStatus(systems.find(q=>q.verification.id==='QB001')).label,/ANSWER ACCEPTED AS SUPPLIED/);
 assert.match(core.sourceStatus(systems.find(q=>q.verification.id==='C23-001')).label,/FCOM SOURCE CHECKED/);
+assert.match(core.sourceStatus(systems.find(q=>q.verification.id==='C23-001')).label,/DISTRACTORS CURATED/);
+assert.match(core.sourceStatus(systems.find(q=>q.verification.id==='QB152')).label,/DISTRACTORS CURATED/);
 
 const normLine=html.split('\n').find(s=>s.startsWith('const normQuestion='));
 const statsContext={};
@@ -170,7 +173,7 @@ async function offlineTests(){
   assert.match(await nav.text(),/Systems Exam Prep/);
   online=true;
   assert.equal((await event('fetch',request('missing.js'))).status,404);
-  assert.equal(await (await caches.open('a320-trainer-v43')).match('missing.js'),undefined,'404 responses are not cached');
+  assert.equal(await (await caches.open('a320-trainer-v44')).match('missing.js'),undefined,'404 responses are not cached');
   assert.equal(await event('fetch',{method:'GET',url:'https://other.invalid/a320/file.js'}),undefined);
   assert.equal(await event('fetch',{method:'GET',url:'https://trainer.invalid/another/file.js'}),undefined);
 }

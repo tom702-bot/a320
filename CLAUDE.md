@@ -12,6 +12,7 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `systems-exam-questions.js` | 315 student-guide questions across 19 subjects, with explicit per-item source status. |
 | `question-bank-questions.js` | All 298 imported workbook rows; its 19 FCOM Communications-related rows are active in Systems Exam Prep. |
 | `communications-fcom-questions.js` | 51 Communications questions checked against FCOM DSC-23 and the 12-page Doc1 supplement. |
+| `communications-option-quality.js` | Presentation-only curated options for all 70 active Communications questions; preserves the original source choices and correct answers. |
 | `communications-fcom-audit.json` | Item-by-item FCOM and supplement evidence map for the 51 Communications additions. |
 | `trainer-core.js` | Reviewed IAE evidence records with PDF page/Ident/revision, option ordering and completed-exam scoring. |
 | `electrical.html` | Interactive ECAM-style A320 electrical-system synoptic and configuration explainer. |
@@ -71,6 +72,9 @@ Indicating/Recording, not DSC-23. CVR remains because it is covered by DSC-23-10
 workbook records remain archived. Systems quizzes, weak-area review and mastery totals must exclude
 every other row. `TrainerCore.isCommunicationsQuestion` enforces the exact IDs and both source hashes.
 `selectSystemDeck` draws fresh rows before the oldest previous selections and shuffles question order.
+`communications-option-quality.js` replaces only the displayed choices, retains `sourceOptions` and
+`sourceAnswerIndex`, and must cover the full 70-question allowlist. Every correct answer remains exact;
+all three distractors must answer the stem, use parallel wording and be plausible but unambiguously wrong.
 Both feedback modes and Run Again share `a320_systems_communications_rotation_v1` draw history;
 do not change existing answer/mastery keys. Reset progress clears rotation too.
 
@@ -119,9 +123,9 @@ source.
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
 4. Search every served file, including distractors and filenames, for content outside the strict Ansett A320 IAE V2500-A5 scope.
 5. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v43`. Unchanged flow script URLs remain at v40 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
+   `a320-trainer-v44`. Unchanged flow script URLs remain at v40 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
 
-Run `node validate-trainer.js` and `node test-trainer.js`. Validation includes `test-system-rotation.js` and `test-audit.js`; CI runs the gate on pushes and pull requests. These are structural and source-record checks, not operational certification. A completed exam is required for a pass; test the unrounded threshold. Keep dependent options in their original order or rewrite them as independent statements. Corrected answers must not inherit mastery from the previous content.
+Run `node validate-trainer.js` and `node test-trainer.js`. Validation includes `test-system-rotation.js`, `test-audit.js` and `test-communications-options.js`; CI runs the gate on pushes and pull requests. These are structural and source-record checks, not operational certification. A completed exam is required for a pass; test the unrounded threshold. Keep dependent options in their original order or rewrite them as independent statements. Corrected answers must not inherit mastery from the previous content.
 
 Keep the app self-contained: no external scripts, fonts or CDNs. Browser storage is used for
 the app's existing local study progress; preserve its keys and behaviour unless a change is

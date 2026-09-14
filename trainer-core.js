@@ -75,8 +75,9 @@
       ' · '+SOURCE.revision+' · PDF p.'+e.pdfPage+' · '+SOURCE.restriction;
   }
   function sourceStatus(q){
-    if(isSuppliedQuestionBank(q))return {className:'engineering',label:'QUESTION BANK · ANSWER ACCEPTED AS SUPPLIED · '+q.verification.id};
-    if(isVerified(q))return {className:'engineering',label:'FCOM SOURCE CHECKED · '+q.verification.id+' · '+(q.evidence?'FOR ENGINEERING USE ONLY':'TRAINING SOURCE; MATCH AIRCRAFT OPTIONS')};
+    const distractors=q?.distractorReview?.status==='curated'?' · DISTRACTORS CURATED':'';
+    if(isSuppliedQuestionBank(q))return {className:'engineering',label:'QUESTION BANK · ANSWER ACCEPTED AS SUPPLIED'+distractors+' · '+q.verification.id};
+    if(isVerified(q))return {className:'engineering',label:'FCOM SOURCE CHECKED'+distractors+' · '+q.verification.id+' · '+(q.evidence?'FOR ENGINEERING USE ONLY':'TRAINING SOURCE; MATCH AIRCRAFT OPTIONS')};
     if(q.verification?.status==='withheld')return {className:'engineering',label:'WITHHELD · NOT ELIGIBLE FOR GRADING'};
     if(q.evidence&&EVIDENCE[q.evidence])return {className:'engineering',label:'IAE TRAINING SOURCE CHECKED · '+SOURCE.restriction};
     if(q.review==='mel-check')return {className:'engineering',label:'VERIFY AGAINST THE CURRENT OPERATOR MEL'};
