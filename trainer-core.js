@@ -78,6 +78,14 @@
     const v=q&&q.verification;
     return Boolean(q?.source==='Question Bank.xlsx · Question Bank'&&v?.status==='supplied'&&v.id&&v.sourceHash===QUESTION_BANK_SOURCE.sha256);
   }
+  const COMMUNICATIONS_QUESTION_IDS=Object.freeze([
+    'QB152','QB153','QB154','QB155','QB156','QB157','QB158','QB160','QB161','QB162',
+    'QB163','QB164','QB165','QB166','QB167','QB168','QB169','QB170','QB171'
+  ]);
+  const communicationsIds=new Set(COMMUNICATIONS_QUESTION_IDS);
+  function isCommunicationsQuestion(q){
+    return isSuppliedQuestionBank(q)&&q.c==='Communications'&&communicationsIds.has(q.verification.id);
+  }
   function isVerified(q){
     const v=q&&q.verification;
     return isSuppliedQuestionBank(q)||Boolean(v&&['checked','corrected'].includes(v.status)&&v.id&&v.pdfPages?.length&&v.sourceHash===SOURCE.sha256);
@@ -150,5 +158,5 @@
     const percent=answered?correct/answered*100:0;
     return {answered,expected,complete,percent,displayPercent:Math.round(percent*10)/10,pass:complete&&correct*100>=expected*80};
   }
-  return {SOURCE,QUESTION_BANK_SOURCE,EVIDENCE,sourceReference,sourceStatus,isSuppliedQuestionBank,isVerified,selectSystemDeck,normalizeFill,hasDependentOptions,optionOrder,examResult};
+  return {SOURCE,QUESTION_BANK_SOURCE,COMMUNICATIONS_QUESTION_IDS,EVIDENCE,sourceReference,sourceStatus,isSuppliedQuestionBank,isCommunicationsQuestion,isVerified,selectSystemDeck,normalizeFill,hasDependentOptions,optionOrder,examResult};
 });

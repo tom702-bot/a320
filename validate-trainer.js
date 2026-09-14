@@ -4,6 +4,7 @@
 const fs=require("fs");
 const path=require("path");
 const vm=require("vm");
+const core=require('./trainer-core.js');
 const root=__dirname;
 const errors=[];
 const checks=[];
@@ -70,7 +71,7 @@ const questionBank=systems.filter(item=>item.source==="Question Bank.xlsx · Que
 ok(systems.length===613,"systems bank has 315 guide and 298 workbook questions");
 ok(guideSystems.length===315,"systems bank retains all 315 supplied guide questions");
 ok(questionBank.length===298,"systems bank includes all 298 Question Bank.xlsx rows");
-ok(topics.length===19&&topics.includes("Limitations")&&topics.includes("MEL"),"systems selector has 19 subjects including Limitations and MEL");
+ok(topics.length===19&&topics.includes("Limitations")&&topics.includes("MEL"),"archived guide topic list has 19 subjects including Limitations and MEL");
 ok(new Set(guideSystems.map(item=>item.c)).size===19,"systems guide bank has 19 source subjects");
 validateQuestions("Systems",systems,/FCOM|current operator MEL|Question Bank\.xlsx/i);
 const expectedGuideNumbers=[];
@@ -82,6 +83,10 @@ ok(systems.every(item=>Number.isInteger(item.p)&&item.p>0),"every systems item r
 ok(guideSystems.every(item=>/Guide Q\d+, PDF p\.\d+/.test(item.ref||"")),"every guide reference identifies its question and PDF page");
 ok(questionBank.every(item=>/Question Bank Q\d+, sheet row \d+/.test(item.ref||"")),"every workbook reference identifies its question and sheet row");
 ok(questionBank.every(item=>item.verification.status==="supplied"&&item.review==="question-bank-supplied"),"all workbook answer keys are accepted as supplied without an FCOM claim");
+const activeCommunications=questionBank.filter(core.isCommunicationsQuestion);
+ok(activeCommunications.length===19,"Systems Exam Prep has exactly 19 active Communications questions");
+ok(JSON.stringify(activeCommunications.map(item=>item.verification.id))===JSON.stringify(core.COMMUNICATIONS_QUESTION_IDS),"active Communications IDs match the explicit FCOM-section allowlist");
+ok(!activeCommunications.some(item=>item.verification.id==='QB159'),"DFDR storage remains outside Communications practice");
 ok(questionBank.filter(item=>item.image).length===15,"all 15 workbook illustrations are attached");
 questionBank.filter(item=>item.image).forEach(item=>ok(fs.existsSync(path.join(root,item.image)),item.image+" exists"));
 ok(systems.every(item=>["fcom-source-checked","withheld","question-bank-supplied"].includes(item.review)),"every systems item has a completed source status");
@@ -144,7 +149,7 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v41"),"offline cache is version 41");
+ok(sw.includes("a320-trainer-v42"),"offline cache is version 42");
 ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=40")&&sw.includes("./question-bank-questions.js"),"offline cache includes upgraded modules and workbook questions");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
@@ -152,7 +157,6 @@ const forbidden=new RegExp("\\bA3"+"21\\b|P2"+"F|CF"+"M(?:56)?|PW"+"1100|LE"+"AP
 served.forEach(file=>{const hit=read(file).match(forbidden);if(hit)errors.push("Out-of-scope variant token in "+file+": "+hit[0]);});
 ok(/Ansett A320 IAE V2500-A5 only/i.test(read("engine.html")),"engine explorer states strict Ansett A320 IAE scope");
 ok(/A\/C 20-IMHT, 13 AUG 2018/.test(read("engine.html"))&&/FOR ENGINEERING USE ONLY/.test(read("engine.html")),"engine explorer preserves the actual IAE source identity and restriction");
-const core=require('./trainer-core.js');
 const engineQuestions=limitations.filter(q=>/FCOM LIM-ENG/.test((q.ref||'')+' '+q.w));
 ok(engineQuestions.length===35,"all 35 IAE limitation items have individual evidence records");
 engineQuestions.forEach(q=>{

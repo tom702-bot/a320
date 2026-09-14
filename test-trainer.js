@@ -82,35 +82,35 @@ function startupElement(){return {style:{},children:[],classList:{add(){},remove
 const savedStorage={};
 const startup={TrainerCore:core,window:{SYSTEMS_EXAM_QUESTIONS:systems,SYSTEMS_EXAM_TOPICS:bankContext.window.SYSTEMS_EXAM_TOPICS,scrollTo(){},addEventListener(){}},navigator:{},localStorage:{getItem(key){return savedStorage[key]??null;},setItem(key,value){savedStorage[key]=value;},removeItem(key){delete savedStorage[key];}},document:{getElementById(id){if(!declaredIds.has(id))return null;if(!nodes.has(id))nodes.set(id,startupElement());return nodes.get(id);},createElement:startupElement,addEventListener(){}}};
 for(const script of html.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInNewContext(script[1],startup);
-assert.match(nodes.get('progPanel').innerHTML,/Systems/,'remaining progress panel initializes');
-assert.equal(vm.runInNewContext('SYSTEMS_BANK.length',startup),298);
-assert.equal(vm.runInNewContext('SYSTEMS_CATS.length',startup),15);
-assert(vm.runInNewContext('TRACKED_BANK.every(q=>q.scope==="limitations"||TrainerCore.isSuppliedQuestionBank(q))',startup),'systems weak review and progress use only the workbook');
+assert.match(nodes.get('progPanel').innerHTML,/Communications/,'Communications progress panel initializes');
+assert.equal(vm.runInNewContext('SYSTEMS_BANK.length',startup),19);
+assert.equal(vm.runInNewContext('SYSTEMS_CATS.length',startup),1);
+assert(vm.runInNewContext('TRACKED_BANK.every(q=>q.scope==="limitations"||TrainerCore.isCommunicationsQuestion(q))',startup),'systems weak review and progress use only FCOM Communications questions');
 const runIds=ctx=>Array.from(vm.runInNewContext('queue.map(q=>q.verification.id)',ctx));
 nodes.get('startSystemsBtn').onclick();
 const learnIds=runIds(startup);
-assert.equal(learnIds.length,30);assert(learnIds.every(id=>id.startsWith('QB')));
-assert(savedStorage.a320_systems_rotation_v1,'a quiz saves its draw history');
+assert.equal(learnIds.length,10);assert(learnIds.every(id=>core.COMMUNICATIONS_QUESTION_IDS.includes(id)));
+assert(savedStorage.a320_systems_communications_rotation_v1,'a quiz saves its Communications draw history');
 assert.match(nodes.get('quizModeStatus').textContent,/fresh mix/);
 nodes.get('againBtn').onclick();
 const againIds=runIds(startup);
-assert(againIds.every(id=>!learnIds.includes(id)),'Run again selects fresh questions in Learn mode');
+assert.equal(againIds.filter(id=>!learnIds.includes(id)).length,9,'Run again uses every remaining fresh Communications question before a repeat');
 const reloaded={...startup};
 for(const script of html.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInNewContext(script[1],reloaded);
 vm.runInNewContext('sysFeedbackMode="exam";',reloaded);
 nodes.get('startSystemsBtn').onclick();
 const examIds=runIds(reloaded);
-assert(examIds.every(id=>!learnIds.includes(id)&&!againIds.includes(id)),'reload and Exam mode preserve rotation');
+assert.equal(examIds.length,10);assert(examIds.every(id=>core.COMMUNICATIONS_QUESTION_IDS.includes(id)),'reload and Exam mode remain Communications-only');
 assert.match(nodes.get('quizModeStatus').textContent,/Exam mode/);
-// Old guide misses remain stored but cannot leak into weak-area review.
-vm.runInNewContext('recordAnswer(window.SYSTEMS_EXAM_QUESTIONS.find(q=>q.verification.id==="S001"),false);recordAnswer(SYSTEMS_BANK[0],false);',reloaded);
+// Old guide and non-Communications workbook misses remain stored but cannot leak into weak-area review.
+vm.runInNewContext('recordAnswer(window.SYSTEMS_EXAM_QUESTIONS.find(q=>q.verification.id==="S001"),false);recordAnswer(window.SYSTEMS_EXAM_QUESTIONS.find(q=>q.verification.id==="QB001"),false);recordAnswer(SYSTEMS_BANK[0],false);',reloaded);
 assert.equal(vm.runInNewContext('weakPool().length',reloaded),1);
-assert(vm.runInNewContext('weakPool().every(TrainerCore.isSuppliedQuestionBank)',reloaded));
+assert(vm.runInNewContext('weakPool().every(TrainerCore.isCommunicationsQuestion)',reloaded));
 const beforeReset=vm.runInNewContext('STATS',reloaded);
-assert(Object.keys(beforeReset).length===2,'question mastery uses its existing storage');
+assert(Object.keys(beforeReset).length===3,'question mastery uses its existing storage');
 reloaded.confirm=()=>true;
 nodes.get('resetProg').onclick();
-assert.equal(savedStorage.a320_systems_rotation_v1,undefined,'Reset progress also resets draw history');
+assert.equal(savedStorage.a320_systems_communications_rotation_v1,undefined,'Reset progress also resets Communications draw history');
 assert.equal(vm.runInNewContext('Object.keys(SYSTEMS_DRAWS).length',reloaded),0);
 
 async function offlineTests(){
@@ -168,7 +168,7 @@ async function offlineTests(){
   assert.match(await nav.text(),/Systems Exam Prep/);
   online=true;
   assert.equal((await event('fetch',request('missing.js'))).status,404);
-  assert.equal(await (await caches.open('a320-trainer-v41')).match('missing.js'),undefined,'404 responses are not cached');
+  assert.equal(await (await caches.open('a320-trainer-v42')).match('missing.js'),undefined,'404 responses are not cached');
   assert.equal(await event('fetch',{method:'GET',url:'https://other.invalid/a320/file.js'}),undefined);
   assert.equal(await event('fetch',{method:'GET',url:'https://trainer.invalid/another/file.js'}),undefined);
 }

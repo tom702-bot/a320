@@ -277,7 +277,7 @@
 
   <!-- ================= START ================= -->
   <section id="start">
-    <p class="lede">Pick a drill. Systems Exam Prep uses only the 298 questions from Question Bank.xlsx, with answers accepted as supplied. Each new run mixes the subjects and draws fresh questions before repeating earlier selections. Limitations Check includes 200 eligible questions from the supplied FCOM limitations
+    <p class="lede">Pick a drill. Systems Exam Prep now contains only the 19 questions from Question Bank.xlsx related to FCOM Communications, with answers accepted as supplied. Each new run draws fresh Communications questions before repeating earlier selections. Limitations Check includes 200 eligible questions from the supplied FCOM limitations
       chapter. Review Weak Areas now combines missed systems and limitations questions and requires two
       clean recalls after a miss. Progress is saved on this device only.</p>
 
@@ -288,7 +288,7 @@
       </button>
       <button class="mode systems" id="modeSystems">
         <div class="mt"><span class="ic">SYS</span>Systems Exam Prep</div>
-        <div class="md">298 questions across 15 subjects, drawn only from Question Bank.xlsx. Fresh questions come first, with a new mix each run and the supplied answer keys.</div>
+        <div class="md">19 Communications questions from Question Bank.xlsx covering radio/audio management, calls, interphone, PA, evacuation signalling and CVR. All other systems topics are excluded.</div>
       </button>
       <button class="mode review" id="modeReview">
         <div class="mt"><span class="ic">WEAK</span>Review Weak Areas</div>
@@ -328,7 +328,7 @@
       </a>
     </div>
 
-    <p class="source-note">The original FCOM audit and follow-up cover 259 limitations, 315 systems-guide questions, 8 memory cards and 141 fill-in cells. All 298 rows from Question Bank.xlsx are included with their supplied answer keys at the user&rsquo;s direction; those workbook answers are not represented as independently FCOM-verified. The FCOM compilation contains training pages and IAE inserts (A/C 20-IMHT, 13 AUG 2018) marked FOR ENGINEERING USE ONLY&mdash;not an operational approval or proof of the latest revision. See the <a href="verification-audit.json">item-by-item source record</a>. Confirm simulator options and operational procedures with your instructor and approved manuals.</p>
+    <p class="source-note">The original FCOM audit and follow-up cover 259 limitations, 315 systems-guide questions, 8 memory cards and 141 fill-in cells. All 298 rows from Question Bank.xlsx remain archived and traceable, but only 19 Communications-related rows are active in Systems Exam Prep. Their supplied answer keys are not represented as independently FCOM-verified. QB159, the DFDR-storage question, is excluded because it belongs to Indicating/Recording rather than FCOM DSC-23 Communications. The FCOM compilation contains training pages and IAE inserts (A/C 20-IMHT, 13 AUG 2018) marked FOR ENGINEERING USE ONLY&mdash;not an operational approval or proof of the latest revision. See the <a href="verification-audit.json">item-by-item source record</a>. Confirm simulator options and operational procedures with your instructor and approved manuals.</p>
     <div class="prog" id="progPanel"></div>
 
     <div class="panel filters" id="filterPanel">
@@ -344,8 +344,8 @@
     </div>
 
     <div class="panel filters hidden" id="systemsPanel">
-      <div class="eyebrow">Systems Exam Prep subjects</div>
-      <p class="source-note" style="margin:7px 0 14px">Question Bank.xlsx only. New runs use undrawn questions from your selected subjects first, then the least recently drawn. Subjects and question order are mixed each time. Selecting All includes every question in your selected subjects. Rotation is saved on this device.</p>
+      <div class="eyebrow">Systems Exam Prep subject</div>
+      <p class="source-note" style="margin:7px 0 14px">FCOM Communications only. New runs use undrawn questions first, then the least recently drawn. Question order and rotation are saved on this device.</p>
       <div class="chips" id="sysChips"></div>
       <div class="eyebrow" style="margin-top:20px">Questions per run</div>
       <div class="chips" id="sysLenChips"></div>
@@ -456,7 +456,7 @@
   <div class="foot">
     Study aid &mdash; NOT for flying. Verify every value against current FCOM / QRH.<br>
     Source: AAT A320 FCOM for A/C 21-CMHT, custom issue 16 MAR 2026 (Airbus content issue 22 MAY 2024).
-    Systems Exam Prep uses the supplied student guide reconciled to that FCOM plus Question Bank.xlsx answers accepted as supplied; MEL questions require the current operator MEL.
+    Systems Exam Prep uses only Communications-related rows from Question Bank.xlsx; their answers are accepted as supplied.
     Limitations Check remains FCOM LIM only.
     All aircraft and engine content is scoped to the Ansett A320 IAE V2500.
   </div>
@@ -732,7 +732,7 @@ const BANK = [
 /* Stable scope metadata lets one progress model follow the same limitation in every drill. */
 const VERIFIED_BANK=BANK.filter(TrainerCore.isVerified);
 VERIFIED_BANK.forEach(item=>{item.scope="limitations";item.topic=item.c;});
-const SYSTEMS_BASE=(window.SYSTEMS_EXAM_QUESTIONS||[]).filter(TrainerCore.isSuppliedQuestionBank);
+const SYSTEMS_BASE=(window.SYSTEMS_EXAM_QUESTIONS||[]).filter(TrainerCore.isCommunicationsQuestion);
 SYSTEMS_BASE.forEach(item=>{item.scope="systems";item.topic=item.c;});
 const SYSTEMS_BANK=SYSTEMS_BASE;
 const SYSTEMS_CATS=[...new Set(SYSTEMS_BANK.map(q=>q.c))];
@@ -796,14 +796,14 @@ function practicePriority(q){
 }
 function adaptiveDeck(pool){return shuffle(pool).sort((a,b)=>practicePriority(a)-practicePriority(b));}
 function readLocalObject(key){try{return JSON.parse(localStorage.getItem(key))||{};}catch(e){return {};}}
-const SYSTEMS_DRAW_KEY="a320_systems_rotation_v1";
+const SYSTEMS_DRAW_KEY="a320_systems_communications_rotation_v1";
 let SYSTEMS_DRAWS=readLocalObject(SYSTEMS_DRAW_KEY);
 function renderProgress(){
   const host=$("progPanel"); if(!host) return;
   let mastered=0,seen=0,weak=0;
   TRACKED_BANK.forEach(q=>{const r=STATS[statKey(q)];if(r){seen++;if(r.mastered)mastered++;if(r.w>0&&!r.mastered)weak++;}});
   let rows="";
-  [["Limitations",VERIFIED_BANK],["Systems",SYSTEMS_BASE]].forEach(group=>{
+  [["Limitations",VERIFIED_BANK],["Communications",SYSTEMS_BASE]].forEach(group=>{
     const items=group[1],m=items.filter(q=>STATS[statKey(q)]&&STATS[statKey(q)].mastered).length;
     const s=items.filter(q=>STATS[statKey(q)]).length,pct=Math.round(m/items.length*100);
     rows+='<div class="pbar"><span class="pname">'+group[0]+'</span>'+
@@ -817,7 +817,7 @@ function renderProgress(){
       '<span class="overall">'+mastered+'/'+TRACKED_BANK.length+' mastered &middot; '+(weak?'<span class="pweak">'+weak+' weak</span>':'0 weak')+'</span></div>'+
     rows+
     '<div class="psummary"><span class="pill">'+masteredFlows+' unassisted flow recalls</span></div>'+
-    '<div class="pnote">Mastery requires two clean recalls. Any miss resets that question until it is answered correctly twice in succession. Systems runs rotate through Question Bank.xlsx. Review Weak Areas revisits missed questions; limitations Learn mode prioritises weak and unseen items.</div>'+
+    '<div class="pnote">Mastery requires two clean recalls. Any miss resets that question until it is answered correctly twice in succession. Systems Exam Prep rotates through Communications questions only. Review Weak Areas revisits missed active questions; limitations Learn mode prioritises weak and unseen items.</div>'+
     '<div class="row" style="margin-top:12px"><button class="btn tiny ghost" id="resetProg">Reset progress</button></div>';
   $("resetProg").onclick=()=>{
     if(confirm("Reset all saved progress on this device? This cannot be undone.")){
@@ -889,22 +889,16 @@ $("modeFill").onclick=()=>{ show("fill"); buildFill(); };
 
 /* ---------- SYSTEMS EXAM PREP FILTERS ---------- */
 let sysActive=new Set(SYSTEMS_CATS);
-let sysRunLen=30;
+let sysRunLen=10;
 function drawSystemChips(){
   const host=$("sysChips");host.innerHTML="";
-  const all=document.createElement("button");
-  all.className="chip";all.textContent="All "+SYSTEMS_CATS.length+" subjects";
-  all.setAttribute("aria-pressed",sysActive.size===SYSTEMS_CATS.length);
-  all.onclick=()=>{sysActive=sysActive.size===SYSTEMS_CATS.length?new Set():new Set(SYSTEMS_CATS);drawSystemChips();};
-  host.appendChild(all);
   SYSTEMS_CATS.forEach(c=>{
     const b=document.createElement("button");b.className="chip";b.textContent=c;
-    b.setAttribute("aria-pressed",sysActive.has(c));
-    b.onclick=()=>{sysActive.has(c)?sysActive.delete(c):sysActive.add(c);drawSystemChips();};
+    b.setAttribute("aria-pressed","true");b.disabled=true;
     host.appendChild(b);
   });
 }
-const SYS_LENS=[[String(SYSTEMS_CATS.length),SYSTEMS_CATS.length],["30",30],["60",60],["All",0]];
+const SYS_LENS=[["10",10],["All 19",0]];
 function drawSystemLens(){
   const host=$("sysLenChips");host.innerHTML="";
   SYS_LENS.forEach(([label,value])=>{
@@ -935,7 +929,7 @@ $("startMcqBtn").onclick=()=>{
 $("startSystemsBtn").onclick=()=>{
   const selected=SYSTEMS_CATS.filter(c=>sysActive.has(c));
   const pool=SYSTEMS_BANK.filter(q=>sysActive.has(q.c));
-  if(!pool.length){alert("Select at least one Systems Exam Prep subject.");return;}
+  if(!pool.length){alert("No Communications questions are available.");return;}
   currentFeedbackMode=sysFeedbackMode;
   const draw=TrainerCore.selectSystemDeck(SYSTEMS_BANK,selected,sysRunLen,SYSTEMS_DRAWS,shuffle);
   queue=draw.questions;SYSTEMS_DRAWS=draw.history;
