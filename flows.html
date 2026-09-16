@@ -69,8 +69,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 @media(max-width:760px){.flow-map-shell{min-width:0;grid-template-columns:1fr;padding:6px}.flow-map-zone.overhead,.flow-map-zone.flightdeck,.flow-map-zone.pedestal,.flow-map-zone.checks{grid-column:1/-1;min-height:175px}.flow-map-zone.overhead{min-height:195px}.flow-zone-items,.flow-map-zone.pedestal .flow-zone-items,.flow-map-zone.checks .flow-zone-items{grid-template-columns:repeat(2,minmax(0,1fr))}.flow-item{padding-left:32px}.flow-map-path polyline{stroke-width:3}}
 .cockpit-control[data-grade=conditional]{border-color:#e2cc78;box-shadow:0 0 0 2px #e2cc78,0 0 16px rgba(226,204,120,.4)}.cockpit-control[data-grade=conditional]::after{content:"CONDITIONAL";background:#e2cc78}.photo-crop .cockpit-control[data-grade=conditional]{--grade:#e2cc78;box-shadow:none}
 </style>
-<link rel="stylesheet" href="cockpit-view.css?v=46">
-<link rel="stylesheet" href="cockpit-native.css?v=46">
+<link rel="stylesheet" href="cockpit-view.css?v=47">
+<link rel="stylesheet" href="cockpit-native.css?v=47">
 </head>
 <body>
 <main class="page">
@@ -95,7 +95,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 
     <div class="phase-brief" id="phaseBrief"></div>
     <div class="actions"><button class="btn primary" id="beginFlow">BEGIN FLOW &rarr;</button></div>
-    <p class="scope"><b>SOURCE:</b> Supplied Ansett FCOM compilation, 21 May 2026, and A320 Panel Scans. Cockpit preparation now uses individual controls. Other phases retain the sourced scan structure. FCOM conditions take precedence over simplified scan cards. Aircraft fit and some conditions remain unresolved; those actions are self-checked and excluded from position scoring. Cockpit geometry is schematic; all visible controls are interactive. Flight-specific entries and physical checks remain self-checked.</p>
+    <p class="scope"><b>SOURCE:</b> Supplied Ansett FCOM compilation, 21 May 2026, and A320 Panel Scans. Cockpit preparation now uses individual controls. Other phases retain the sourced scan structure. FCOM conditions take precedence over simplified scan cards. Aircraft fit and some conditions remain unresolved; those actions are self-checked and excluded from position scoring. The cockpit uses FlyByWire A320 imagery with controls aligned to the artwork. Flight-specific entries and physical checks remain self-checked.</p>
   </section>
 
   <section id="trainer" hidden>
@@ -120,16 +120,16 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
             <section class="flow-map-zone overhead" data-flow-zone="overhead"><img src="a32nx-overhead.webp" alt=""><div class="flow-zone-title">OVERHEAD PANEL <span>ABOVE</span></div><div class="flow-zone-items"></div></section>
             <section class="flow-map-zone flightdeck" data-flow-zone="flightdeck"><img src="a32nx-main.webp" alt=""><div class="flow-zone-title">GLARESHIELD / MAIN PANEL <span>FORWARD</span></div><div class="flow-zone-items"></div></section>
             <section class="flow-map-zone pedestal" data-flow-zone="pedestal"><img src="a32nx-pedestal.webp" alt=""><div class="flow-zone-title">CENTRE PEDESTAL <span>DOWN / INBOARD</span></div><div class="flow-zone-items"></div></section>
-            <section class="flow-map-zone checks" data-flow-zone="checks"><img src="a32nx-main.webp" alt=""><div class="flow-zone-title">WINDOWS / VISUAL CHECKS <span>OUTBOARD</span></div><div class="flow-zone-items"></div></section>
+            <section class="flow-map-zone checks" data-flow-zone="checks"><img src="a32nx-main.webp" alt=""><div class="flow-zone-title">WINDOWS / CREW CHECKS <span>OUTBOARD</span></div><div class="flow-zone-items"></div></section>
           </div>
         </div>
       </div>
 
       <div class="detailed-practice" id="detailedPractice" hidden>
       <section class="virtual-cockpit" id="virtualCockpit" hidden aria-label="Virtual cockpit">
-        <div class="cockpit-toolbar"><div><strong id="seatReadout">CM2 · RIGHT SEAT</strong><small id="lookReadout">LOOKING FORWARD · 100%</small></div><nav class="look-buttons" aria-label="Look toward cockpit panel"><button data-look="overhead">OVERHEAD ↑</button><button data-look="flightdeck" aria-pressed="true">FORWARD</button><button data-look="pedestal">PEDESTAL ↓</button><button data-look="checks">VISUAL CHECKS</button></nav></div>
+        <div class="cockpit-toolbar"><div><strong id="seatReadout">CM2 · RIGHT SEAT</strong><small id="lookReadout">LOOKING FORWARD · 100%</small></div><nav class="look-buttons" aria-label="Look toward cockpit panel"><button data-look="aft" aria-pressed="false">AFT O/H</button><button data-look="overhead">OVERHEAD ↑</button><button data-look="flightdeck" aria-pressed="true">FORWARD</button><button data-look="pedestal">PEDESTAL ↓</button><button data-look="checks">CREW CHECKS</button></nav></div>
         <div class="cockpit-viewport" id="cockpitViewport" tabindex="0" role="region" aria-label="Cockpit look-around view. Drag to look, scroll or pinch to zoom. Arrow keys look around; plus and minus zoom; zero centres the view." aria-describedby="cockpitHelp"><div class="cockpit-world" id="cockpitWorld"></div></div>
-        <div class="camera-tools"><div><button id="zoomOut" aria-label="Zoom out">−</button><output id="zoomLevel">100%</output><button id="zoomIn" aria-label="Zoom in">+</button><button id="resetLook">CENTRE</button></div><div><button id="followCamera" class="follow-camera" aria-pressed="true">FOLLOW FLOW</button><button id="exploreCockpit" aria-pressed="false">EXPLORE</button><button id="labelsToggle" aria-pressed="false">LABELS</button><button id="cockpitFullscreen">FULLSCREEN</button></div><label class="control-search">FIND <input id="controlSearch" list="controlOptions" placeholder="Control name" autocomplete="off"><datalist id="controlOptions"></datalist></label><p id="cockpitHelp">Drag to look · Pinch / scroll to zoom · Pushbuttons act directly · Tap a displayed value to confirm its setting.</p></div>
+        <div class="camera-tools"><div><button id="zoomOut" aria-label="Zoom out">−</button><output id="zoomLevel">100%</output><button id="zoomIn" aria-label="Zoom in">+</button><button id="resetLook">CENTRE</button></div><div><button id="followCamera" class="follow-camera" aria-pressed="true">FOLLOW FLOW</button><button id="exploreCockpit" aria-pressed="false">EXPLORE</button><button id="labelsToggle" aria-pressed="false">LABELS</button><button id="cockpitFullscreen">FULLSCREEN</button></div><label class="control-search">FIND <input id="controlSearch" list="controlOptions" placeholder="Control name" autocomplete="off"><datalist id="controlOptions"></datalist></label><p id="cockpitHelp">Drag to look · Pinch / scroll to zoom · Tap a switch to operate · Tap its value to confirm.</p></div>
       </section>
 
       <div class="view-note">PANEL PRACTICE &middot; Focused Panel shows only flow-relevant controls; Full Panel retains the complete search task. Operate controls and select required positions.</div>
@@ -165,6 +165,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
           </div>
         </section>
 
+        <section class="panel-view" data-panel="aft" hidden><div class="photo-crop aft-photo"><img src="fbw-cockpit.png" alt="FlyByWire A320 aft overhead"><div class="control-layer" data-layer="aft"></div></div></section>
         <section class="panel-view" data-panel="checks" hidden>
           <div class="photo-crop checks-photo">
             <img src="a32nx-main.webp" alt="Cockpit artwork used as a flight-deck visual-check canvas">
@@ -174,24 +175,25 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
         </section>
       </div>
       <div class="control-dock" id="controlDock" hidden></div>
-      <p class="source-credit">Legacy flow-map artwork: <a href="https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/#description" target="_blank" rel="noopener">FlyByWire Simulations flight-deck reference</a>. The artwork is only an interaction canvas; all procedures, grading and engine data in this trainer remain scoped to the Ansett A320 IAE V2500. This site is not affiliated with FlyByWire Simulations.</p>
+      <p class="source-credit">Cockpit artwork: <a href="https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/#description" target="_blank" rel="noopener">FlyByWire Simulations flight-deck reference</a>. The artwork is only an interaction canvas; all procedures, grading and engine data in this trainer remain scoped to the Ansett A320 IAE V2500. This site is not affiliated with FlyByWire Simulations.</p>
       </div>
 
       <details class="source-detail" id="sourceDetail"><summary>Source, conditions and training scope</summary><div id="sourceDetailBody"></div></details>
-      <details class="flow-drawer" id="flowDrawer"><summary>FLOW CARD TRANSCRIPTION / PROGRESS</summary><div class="flow-list" id="flowList"></div></details>
+      <details class="flow-drawer" id="flowDrawer"><summary>FLOW / PROGRESS</summary><div class="flow-list" id="flowList"></div></details>
       <section class="completion" id="completion" hidden><div class="eyebrow">Run complete</div><div class="score" id="completionScore">100%</div><p id="completionText"></p><div class="actions"><button class="btn primary" id="continueFlow" hidden>CONTINUE SEQUENCE &rarr;</button><button class="btn" id="retryFlow">RETRY SAME FLOW</button><button class="btn" id="chooseFlow">CHOOSE ANOTHER</button></div></section>
     </div>
   </section>
 
   <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE. VERIFY AGAINST CURRENT APPROVED PROCEDURES.</p>
 </main>
-<script src="a320-controls.js?v=46"></script>
-<script src="cockpit-systems.js?v=46"></script>
-<script src="flow-procedures.js?v=46"></script>
-<script src="cockpit-native.js?v=46"></script>
-<script src="flow-evidence.js?v=46"></script>
-<script src="cockpit-view.js?v=46"></script>
-<script src="flow-sim.js?v=46"></script>
+<script src="cockpit-photo-layout.js?v=47"></script>
+<script src="a320-controls.js?v=47"></script>
+<script src="cockpit-systems.js?v=47"></script>
+<script src="flow-procedures.js?v=47"></script>
+<script src="cockpit-native.js?v=47"></script>
+<script src="flow-evidence.js?v=47"></script>
+<script src="cockpit-view.js?v=47"></script>
+<script src="flow-sim.js?v=47"></script>
 <script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});}
 </script>

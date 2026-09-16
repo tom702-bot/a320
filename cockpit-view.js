@@ -2,10 +2,11 @@
   'use strict';
   // CSS perspective keeps the real DOM controls accessible on the panel surfaces.
   const PANELS={
-    flightdeck:{x:0,y:70,z:-1100,rx:0,w:1600,h:871},
-    overhead:{x:0,y:-650,z:-670,rx:-58,w:1030,h:760},
-    pedestal:{x:0,y:720,z:-670,rx:58,w:680,h:719},
-    checks:{x:-1140,y:70,z:-500,ry:65,w:820,h:446}
+    flightdeck:{x:0,y:120,z:-1100,rx:0,w:1900,h:585},
+    overhead:{x:0,y:-640,z:-700,rx:-58,w:1080,h:796},
+    aft:{x:0,y:-1270,z:-1080,rx:-58,w:1080,h:796},
+    pedestal:{x:0,y:780,z:-720,rx:58,w:710,h:865},
+    checks:{x:0,y:0,z:-800,w:820,h:650}
   };
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   function create(options){
@@ -28,11 +29,12 @@
     };
     const render=()=>{if(!frame)frame=requestAnimationFrame(repaint);};
     function focus(panel){
+      const tray=document.querySelector('[data-panel=checks].panel-view');if(enabled){tray.hidden=panel!=='checks';if(panel==='checks'){document.querySelectorAll('[data-look]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.look===panel)));return;}}
       const p=PANELS[panel]||PANELS.flightdeck;activePanel=panel;
       const dx=p.x-seatX;
       yaw=Math.atan2(dx,-p.z)*180/Math.PI;
       pitch=-Math.atan2(p.y,Math.hypot(dx,p.z))*180/Math.PI;
-      zoom=panel==='pedestal'?1.2:panel==='overhead'?.82:panel==='flightdeck'?.78:1;
+      zoom=panel==='pedestal'?.95:panel==='overhead'?.78:panel==='flightdeck'?.84:.75;
       document.querySelectorAll('[data-look]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.look===panel)));
       render();
     }
@@ -43,11 +45,12 @@
       panels.forEach(panel=>{
         if(value){
           const p=PANELS[panel.dataset.panel];
+          if(panel.dataset.panel==='checks'){host.appendChild(panel);panel.classList.add('floating-checks');panel.hidden=true;return;}
           world.appendChild(panel);panel.hidden=false;
           panel.style.setProperty('--surface-width',p.w+'px');
           panel.style.setProperty('--surface-height',p.h+'px');
           panel.style.transform='translate3d('+p.x+'px,'+p.y+'px,'+p.z+'px) rotateX('+(p.rx||0)+'deg) rotateY('+(p.ry||0)+'deg) translate(-50%,-50%)';
-        }else{home.appendChild(panel);panel.style.transform='';}
+        }else{home.appendChild(panel);panel.classList.remove('floating-checks');panel.style.transform='';}
       });
       document.getElementById('seatReadout').textContent=seat==='CM1'?'CM1 · LEFT SEAT':'CM2 · RIGHT SEAT';
       if(value)focus('flightdeck');
@@ -56,6 +59,7 @@
     function locate(id,highlight=true){
       const def=options.controls.find(c=>c.id===id);if(!enabled||!def)return;
       focus(def.panel);
+      if(def.panel==='checks'){const c=document.querySelector('.cockpit-control[data-control="'+id+'"]');c.classList.add('located');c.scrollIntoView({block:'nearest'});setTimeout(()=>c.classList.remove('located'),4000);return;}
       const p=PANELS[def.panel],rx=(p.rx||0)*Math.PI/180,ry=(p.ry||0)*Math.PI/180;
       const x=(def.x+def.w/2-50)*p.w/100,y=(def.y+def.h/2-50)*p.h/100;
       const wx=p.x+x*Math.cos(ry)+y*Math.sin(rx)*Math.sin(ry)-seatX;

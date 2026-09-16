@@ -365,7 +365,7 @@ function initBrowser(){
   let hintTimer=null;
   const controlDockHome=$('controlDock').parentElement;
   function paintSystems(){if(nativeCockpit)root.A320CockpitNative.paint(systems,controlState);}
-  function moveToCurrent(){if(cockpitView&&activeRun&&!activeRun.complete&&selectedView==='cockpit'&&selectedMode==='guided'&&followCamera){const step=activeRun.steps[activeRun.index];cockpitView.locate(step.controls.find(id=>!activeRun.doneControls.has(id))||step.controls[0],false);}}
+  function moveToCurrent(){if(cockpitView&&activeRun&&!activeRun.complete&&selectedView==='cockpit'&&selectedMode==='guided'&&followCamera){const step=activeRun.steps[activeRun.index];const id=step.controls.find(id=>!activeRun.doneControls.has(id))||step.controls[0];if(DEF_BY_ID[id].panel!=='checks')cockpitView.locate(id,false);}}
 
   let selectedSession="single";
   let selectedContext="standard-dry";
@@ -631,6 +631,7 @@ function initBrowser(){
     $("incorrectValue").textContent=activeRun.incorrect;
     $("orderValue").textContent=activeRun.outOfOrder;
     $("runProgress").style.width=Math.round(activeRun.index/activeRun.steps.length*100)+"%";
+    const next=activeRun.steps[activeRun.index];$('hintButton').textContent=next&&DEF_BY_ID[next.controls[0]].panel==='checks'?'OPEN CHECK':'FIND CONTROL';
     renderCue();renderFlowList();syncFlowMap();
   }
   function renderFlowList(){
@@ -680,7 +681,7 @@ function initBrowser(){
       $("sourceDetailBody").textContent="";
       const sourceLines=["Source: "+evidence.source.title+". SHA-256: "+evidence.source.sha256,
         "Selected scan: FCOM PDF pp. "+phase.sourcePages.join(', ')+". "+phase.evidence.reference,
-        phase.evidence.note,"Cockpit geometry is schematic. Preparation now requires individual controls; physical observations, crew coordination and flight-specific data still require self-checks. Display responses support control practice and are not an aircraft systems model.",
+        phase.evidence.note,"Cockpit imagery is the FlyByWire A320 flight-deck reference. Preparation requires individual controls; physical observations, crew coordination and flight-specific data still require self-checks. Display responses support control practice and are not an aircraft systems model.",
         "Session conditions: "+CONTEXT_BY_ID[selectedContext].description+" Phase transitions preset the next phase; engines, aircraft motion, MCDU entries and crew calls are not dynamically simulated."];
       sourceLines.forEach(function(line){const p=document.createElement('p');p.textContent=line;$("sourceDetailBody").appendChild(p);});
     }

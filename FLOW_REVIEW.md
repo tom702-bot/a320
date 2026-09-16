@@ -1,10 +1,12 @@
 # Virtual cockpit flow trainer — 16 September 2026
 
-## Interaction
+## Interaction and artwork (version 47)
 
-Version 46 replaces photo-only controls with native interactive panels in one perspective cockpit. Drag to look; pinch/scroll to zoom; panel shortcuts change view. Pushbuttons act directly. Selectors open beside the control, and tapping a displayed value confirms an already-correct position. Guided practice follows each remaining control in a grouped action. A control finder locates named controls without operating them. Explore pauses grading; returning to a flow or resetting restores normal grading. Both MCDUs accept scratchpad/line-select entries; ECAM page buttons, radio standby tuning/transfer and the transponder keypad update their displays. FCU altitude, heading, speed and QNH accept numeric entry. These interactions are rehearsal models, not aircraft avionics simulations.
+The cockpit now uses the original FlyByWire flight-deck image, not procedurally drawn panels. The main panel shows both complete sets of instruments. Forward/aft overhead panels and the pedestal use their own original image regions. The native image is stored unmodified as `fbw-cockpit.png`; cropping and perspective are performed only by the browser.
 
-The catalog has 472 controls/checks. Seven former broad-scan controls are hidden. Crew observations use visibly distinct dashed check cards. Every visible control responds; the geometry and instrument artwork are schematic. The original photo-based flow map remains available. All assets are local and included in offline cache v46.
+Four hundred physical control hit targets are aligned to image pixels in `cockpit-photo-layout.js`, including the MCDU keyboards, radio panels, FCU/EFIS, electrical, lighting and engine controls. Switches remain visible through transparent targets. Hover/focus shows state, selectors open locally, and the finder or camera shortcuts locate a panel. Sixty-five visible crew/data checks are in a separate tray, with seven obsolete scan controls hidden. Source procedure order and PF/PM grading are unchanged from version 46.
+
+Artwork source: [FlyByWire A320 flight deck](https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/); original asset [Cockpit.png](https://github.com/flybywiresim/docs/blob/primary/docs/pilots-corner/a32nx/assets/a32nx-briefing/Cockpit.png). It provides visual geometry, not the procedure or aircraft-fit authority. Snapshot instrument indications are illustrative. Live entry overlays support MCDU/radio/FCU/ECAM control rehearsal, not full aircraft systems simulation. All image and code assets are cached locally in version 47.
 
 ## Source
 
@@ -33,3 +35,5 @@ This is a procedural practice cockpit, not a certified simulator or a complete r
 ## Verification
 
 The publication gate runs source/bank regressions and all 46 role/context combinations through 674 individual control inputs. Browser testing checks actual control hit targets and entire role flows, desktop and phone layout, direct controls, local selectors, camera movement, avionics entry and reset behavior. Browser results: all 23 role runs completed via 338 actual selections (including a phone action), with zero page errors, incorrect inputs or order errors. A separate pass operated all 465 visible controls and checked MCDU entry/storage, radio tuning/transfer, ATC code entry, ECAM page selection, numeric FCU entry, reset, drag without activation, and return to the full-panel view. Desktop and 390 px phone screenshots were inspected.
+
+Artwork SHA-256: `894a5e08a6787d23d6421eb279d3059292812e80f58c8e68e96a008aee742c0c`.

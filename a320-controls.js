@@ -332,5 +332,7 @@ controls.forEach(c=>{
  if(c.id==='accu_press'){c.x=60;c.y=45;c.w=7;}
  if(c.id==='terr_cm1'||c.id==='terr_cm2')c.y=49;
 });
+const photo=(typeof window!=='undefined'&&window.A320PhotoLayout)||(typeof require!=='undefined'?require('./cockpit-photo-layout.js'):null);
+if(photo)photo.apply(controls);
 return {CONTROL_DEFS:controls};
 });
