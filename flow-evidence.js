@@ -162,7 +162,7 @@ const evidence={
     },
     "ten-thousand-climb": {
       "reference": "AAT PRO-NOR-SOP-14, PDF pp.3289, 3290. SOP text review 16 September 2026.",
-      "note": "",
+      "note": "Selected 10,000 ft climb cockpit actions and navigation checks from SOP-14. Apply the selected scenario conditions; communication exchanges are omitted.",
       "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure.",
       "omittedCommunications": []
     },
@@ -174,13 +174,13 @@ const evidence={
     },
     "after-landing": {
       "reference": "AAT PRO-NOR-SOP-21, PDF pp.3381, 3382, 3383, 3384, 3385, 3386. SOP text review 16 September 2026.",
-      "note": "",
+      "note": "Selected after-landing cockpit actions and instrument checks from SOP-21. Conditional selections remain explicit self-checks; communication exchanges are omitted.",
       "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure.",
       "omittedCommunications": []
     },
     "parking": {
       "reference": "AAT PRO-NOR-SOP-22, PDF pp.3390, 3391, 3392, 3393, 3394, 3395, 3396, 3397. SOP text review 16 September 2026.",
-      "note": "",
+      "note": "Selected parking cockpit actions from SOP-22. Cooling, power, brake pressure and chocks remain physical prerequisite checks; ground-personnel conversations are omitted.",
       "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure.",
       "omittedCommunications": []
     },
