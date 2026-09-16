@@ -146,12 +146,12 @@ const FLOW_PHASES = [
     initial:{land_light_l:"ON",land_light_r:"ON",seat_belts:"ON",efis_cstr_cm1:"OFF",efis_cstr_cm2:"OFF"},
     roles:{
       PF:[
-        step("EFIS OPTIONS","AS RQRD","flightdeck",EFIS_OPTION_TEMPLATES,null,{any:true,completeAny:true,conditional:true})
+        step("EFIS OPTIONS","CSTR · GRID MORA","flightdeck","efis_cstr_{seat}",["ON"])
       ],
       PM:[
         step("LAND L + R switches","RETRACT","overhead",["land_light_l","land_light_r"],["RETRACT"]),
         step("SEAT BELT sw","AS RQRD","overhead","seat_belts",null,{any:true,conditional:true}),
-        step("EFIS OPTIONS","AS RQRD","flightdeck",EFIS_OPTION_TEMPLATES,null,{any:true,completeAny:true,conditional:true}),
+        step("EFIS OPTIONS","ARPT","flightdeck","efis_arpt_{seat}",["ON"]),
         step("ECAM MEMO","REVIEW","flightdeck","ecam_memo"),
         step("NAVAIDS / SEC-PLAN / OPT FL / REC MAX FL","CLEAR / AS RQRD / CHECK","pedestal",["mcdu_{seat}_rad_nav","mcdu_{seat}_sec_f_pln","mcdu_{seat}_prog"],null,{conditional:true})
       ]
@@ -162,9 +162,9 @@ const FLOW_PHASES = [
     initial:{land_light_l:"OFF",land_light_r:"OFF",seat_belts:"OFF",ls_cm1:"OFF",ls_cm2:"OFF",efis_cstr_cm1:"OFF",efis_cstr_cm2:"OFF"},
     roles:{
       PF:[
-        step("ILS / LS pb","AS RQRD","flightdeck","ls_{seat}",null,{any:true,conditional:true}),
         step("EFIS option pb","CSTR","flightdeck","efis_cstr_{seat}",["ON"]),
-        step("NAVAIDS / NAV ACCURACY","AS RQRD / MONITOR","pedestal",["mcdu_{seat}_rad_nav","mcdu_{seat}_prog"],null,{conditional:true})
+        step("ILS / LS pb","AS RQRD","flightdeck","ls_{seat}",null,{any:true,conditional:true}),
+        step("NAVAIDS / NAV ACCURACY","NAVAIDS AS RQRD / CHECK; NAV ACCURACY IF GPS PRIMARY LOST","pedestal",["mcdu_{seat}_rad_nav","mcdu_{seat}_prog"],null,{conditional:true})
       ],
       PM:[
         step("LAND L + R switches","ON","overhead",["land_light_l","land_light_r"],["ON"]),
@@ -181,7 +181,7 @@ const FLOW_PHASES = [
     roles:{
       PF:[
         step("GND SPLRS","DISARM","pedestal","spoilers",["DISARMED"]),
-        step("EXTERIOR LIGHTS","SET","overhead",EXTERIOR_LIGHT_CONTROLS,null,{any:true,conditional:true,contextRule:"exterior-lights"})
+        step("EXTERIOR LIGHTS","LAND RETRACT; STROBE AUTO; NOSE TAXI AFTER VACATING; OTHER LIGHTS AS RQRD","overhead",EXTERIOR_LIGHT_CONTROLS,null,{any:true,conditional:true,contextRule:"exterior-lights"})
       ],
       PM:[
         step("RADAR / PWS","OFF","pedestal",["wx_radar_system","wx_pws"],["OFF"]),
@@ -218,6 +218,10 @@ const FLOW_PHASES = [
   }
 ];
 
+// Broad scan buttons report completion; they do not verify individual FCOM switch checks.
+FLOW_PHASES[0].roles.PF.forEach(function(item){item.conditional=true;item.selfCheck=true;});
+FLOW_PHASES[0].roles.PM.forEach(function(item){item.conditional=true;item.selfCheck=true;});
+const evidence=(root&&root.A320FlowEvidence)||(typeof require!=="undefined"?require("./flow-evidence.js"):null);
 const PHASE_BY_ID = Object.fromEntries(FLOW_PHASES.map(function(phase){return [phase.id,phase];}));
 const FLOW_SOURCES={
   'cockpit-preparation':[3414,3415,3416],'before-start':[3224,3225,3226,3417],
@@ -228,6 +232,7 @@ const FLOW_SOURCES={
 };
 FLOW_PHASES.forEach(function(phase){
   phase.sourcePages=FLOW_SOURCES[phase.id];
+  phase.evidence=evidence&&evidence.phases[phase.id];
   phase.note=(phase.note?phase.note+' ':'')+'Training scan subset — not a complete checklist. FCOM PDF pp.'+phase.sourcePages.join(', ')+'. CM1/PM and CM2/PF is the user-selected role allocation.';
   if(phase.id==='after-landing')phase.note+=' Begin after vacating the runway; after icing/slush/snow, do not retract until engines are shut down and ground crew confirm no ice obstruction. Above 30 °C, CONF 1 may be retained to avoid a wing-leak alert.';
   if(phase.id==='climb-acceleration')phase.note+=' Flap retraction is speed- and PF-command-dependent. If takeoff used TA ONLY, restore TA/RA after takeoff (PDF p.3421).';
@@ -351,7 +356,8 @@ function initBrowser(){
   let selectedPhase=FLOW_PHASES[0].id;
   let selectedRole="PF";
   let selectedMode="assessment";
-  let selectedView="diagram";
+  let selectedView="cockpit";
+  let cockpitView=null;
   let selectedSession="single";
   let selectedContext="standard-dry";
   let selectedPower="external";
@@ -419,28 +425,28 @@ function initBrowser(){
     trigger.setAttribute("aria-label",def.label+(def.kind==="check"?" check":" control"));
     trigger.title=def.label;
     wrap.appendChild(trigger);
-    if(def.kind==="check"||def.kind==="momentary"){
-      trigger.onclick=function(){wrap.classList.add("pressed");setTimeout(function(){wrap.classList.remove("pressed");},180);interact(def.id,"CHECK",wrap);};
-    }else if(def.kind==="pb"){
-      trigger.onclick=function(){
-        const current=activeRun&&!activeRun.complete?activeRun.steps[activeRun.index]:null;
-        if(current&&current.scenarioBound&&current.controls.indexOf(def.id)!==-1&&accepts(current,controlState[def.id],def.id)){
-          interact(def.id,controlState[def.id],wrap);return;
-        }
-        const next=controlState[def.id]===def.states[0]?def.states[1]:def.states[0];
-        setState(def.id,next);interact(def.id,next,wrap);
-      };
-    }else{
-      trigger.onclick=function(){openControlDock(def,wrap);};
-    }
+    trigger.onclick=function(){openControlDock(def,wrap);};
     if(def.states){const state=document.createElement("span");state.className="state-readout";state.dataset.stateFor=def.id;wrap.appendChild(state);}
     return wrap;
   }
   function openControlDock(def,wrap){
-    const dock=$("controlDock");dock.hidden=false;dock.innerHTML='<div><span>'+def.panel.toUpperCase()+' · SELECT POSITION</span><strong>'+def.label+'</strong></div>';
+    if(!activeRun||activeRun.complete)return;
+    const dock=$("controlDock");dock.hidden=false;dock.innerHTML="";
+    const info=document.createElement("div");
+    const name=document.createElement("strong");name.textContent=def.label;info.appendChild(name);
+    const note=document.createElement("span");note.className="dock-note";
+    note.textContent=def.states?"Current model position: "+controlState[def.id]+". Select a position, including the current position to confirm it.":"Self-check: perform the visual check or action, then confirm. The trainer cannot verify the observed aircraft indication.";
+    info.appendChild(note);dock.appendChild(info);
     const choices=document.createElement("div");choices.className="dock-choices";
-    def.states.forEach(function(state){const b=button(state,"position");b.setAttribute("aria-pressed",String(controlState[def.id]===state));b.onclick=function(){setState(def.id,state);interact(def.id,state,wrap);dock.hidden=true;};choices.appendChild(b);});
-    dock.appendChild(choices);dock.scrollIntoView({behavior:"smooth",block:"nearest"});
+    (def.states||["CHECK"]).forEach(function(state){
+      const b=button(def.states?state:(def.face||"CONFIRM CHECK"),"position");
+      if(def.states)b.setAttribute("aria-pressed",String(controlState[def.id]===state));
+      b.onclick=function(){if(def.states)setState(def.id,state);interact(def.id,state,wrap);dock.hidden=true;wrap.querySelector('button').focus({preventScroll:true});};choices.appendChild(b);
+    });
+    const close=button("CANCEL","close-dock");close.onclick=function(){dock.hidden=true;wrap.querySelector('button').focus({preventScroll:true});};choices.appendChild(close);
+    dock.appendChild(choices);dock.onkeydown=function(e){if(e.key==="Escape")close.click();};
+    choices.querySelector('button').focus({preventScroll:true});
+    dock.scrollIntoView({behavior:"smooth",block:"nearest"});
   }
   function renderCockpit(){
     if(cockpitRendered)return;
@@ -541,6 +547,7 @@ function initBrowser(){
     clearMapGrades();
     const selected=activeRun.steps[index],result=gradeStepChoice(activeRun,index);itemButton.dataset.grade=result.grade;
     if(result.stepComplete)applyStepEffect(selected);
+    if(result.stepComplete&&selectedMode==="assessment")revealed=false;
     const title=result.grade==="correct"?"CORRECT":result.grade==="conditional"?"CONDITIONAL ITEM":result.grade==="out-of-order"?"OUT OF ORDER":"INCORRECT";
     showFeedback(result.grade,title,selected.label+" · "+selected.target+" - "+result.message);
     updateRunUI();
@@ -550,6 +557,7 @@ function initBrowser(){
     if(!activeRun)return;
     clearControlGrades();
     const result=gradeInput(activeRun,id,value);wrap.dataset.grade=result.grade;
+    if(result.stepComplete&&selectedMode==="assessment")revealed=false;
     const def=DEF_BY_ID[id];
     const title=result.grade==="correct"?"CORRECT":result.grade==="conditional"?"CONDITIONAL ITEM":result.grade==="out-of-order"?"OUT OF ORDER":"INCORRECT";
     const detail=(def?def.label:id)+(value&&value!=="CHECK"?" · "+value:"");
@@ -586,15 +594,16 @@ function initBrowser(){
     if(!activeRun)return;
     activeRun.steps.forEach(function(item,index){
       const row=document.createElement("div");row.className="flow-row "+(index<activeRun.index?"done":index===activeRun.index?"current":"pending");
-      row.innerHTML='<span>'+(index+1)+'</span><b>'+item.label+(item.acknowledgeOnly?' <small>CONDITIONAL</small>':'')+'</b><em>'+item.target+'</em>';host.appendChild(row);
+      row.innerHTML='<span>'+(index+1)+'</span><b>'+item.label+(item.acknowledgeOnly?' <small>SELF-CHECK</small>':'')+'</b><em>'+item.target+'<small class="source-ref">FCOM PDF pp. '+PHASE_BY_ID[activeRun.phaseId].sourcePages.join(', ')+'</small></em>';host.appendChild(row);
     });
   }
   function selectPanel(name){
+    if(selectedView==="cockpit"&&cockpitView){cockpitView.focus(name);$("controlDock").hidden=true;return;}
     document.querySelectorAll(".panel-tab").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.panel===name));});
     document.querySelectorAll(".panel-view").forEach(function(view){view.hidden=view.dataset.panel!==name;});
     $("controlDock").hidden=true;
   }
-  function viewLabel(){return selectedView==="diagram"?"FLOW MAP":selectedView==="focus"?"FOCUSED PANEL":"FULL PANEL";}
+  function viewLabel(){return selectedView==="cockpit"?"VIRTUAL COCKPIT":selectedView==="diagram"?"FLOW MAP":selectedView==="focus"?"FOCUSED PANEL":"FULL PANEL";}
   function restorePhaseStart(){Object.keys(phaseStartState).forEach(function(id){setState(id,phaseStartState[id]);});}
   function startRun(options){
     options=options||{};
@@ -602,6 +611,8 @@ function initBrowser(){
     activeRun.practiceView=selectedView;
     activeRun.sessionMode=selectedSession;
     if(selectedView!=="diagram")renderCockpit();
+    if(!cockpitView&&root.A320CockpitView)cockpitView=root.A320CockpitView.create({controls:CONTROL_DEFS});
+    if(cockpitView)cockpitView.setEnabled(selectedView==="cockpit",activeRun.seat);
     if(options.restore)restorePhaseStart();
     else{applyInitial(PHASE_BY_ID[selectedPhase],Boolean(options.preserve));phaseStartState=Object.assign({},controlState);}
     clearControlGrades();clearMapGrades();markRelevantControls();
@@ -610,9 +621,18 @@ function initBrowser(){
     $("diagramPractice").hidden=selectedView!=="diagram";$("detailedPractice").hidden=selectedView==="diagram";
     $("runTitle").textContent=PHASE_BY_ID[selectedPhase].title.toUpperCase();
     $("runMeta").textContent=selectedRole+" · "+seatForRole(selectedRole)+" · "+selectedMode.toUpperCase()+" · "+viewLabel()+(selectedSession==="sequence"?" · PHASE "+(sequenceIndex+1)+"/"+sequencePhases.length:"");
-    $("flowDrawer").open=selectedMode==="guided";
+    $("flowDrawer").open=false;
+    const phase=PHASE_BY_ID[selectedPhase];
+    if($("sourceDetailBody")){
+      $("sourceDetailBody").textContent="";
+      const sourceLines=["Source: "+evidence.source.title+". SHA-256: "+evidence.source.sha256,
+        "Selected scan: FCOM PDF pp. "+phase.sourcePages.join(', ')+". "+phase.evidence.reference,
+        phase.evidence.note,"Camera geometry and panel artwork are illustrative. The scan is a subset, not a complete procedure or checklist. Conditional and broad-scan completions are self-reported; they do not establish FCOM compliance.",
+        "Session conditions: "+CONTEXT_BY_ID[selectedContext].description+" Phase transitions preset the next phase; engines, aircraft motion, MCDU entries and crew calls are not dynamically simulated."];
+      sourceLines.forEach(function(line){const p=document.createElement('p');p.textContent=line;$("sourceDetailBody").appendChild(p);});
+    }
     showFeedback("neutral","FLOW ARMED",activeRun.steps.length+" actions loaded. "+(selectedView==="diagram"?"Tap the flow items in order.":"Operate the cockpit controls in order.")+(PHASE_BY_ID[selectedPhase].coldDark?" Aircraft state: cold and dark.":"")+" Conditional items are acknowledged separately from scored actions.");
-    if(selectedView==="diagram")renderFlowMap();else selectPanel(activeRun.steps[0].panel);
+    if(selectedView==="diagram")renderFlowMap();else selectPanel(selectedView==="cockpit"?"flightdeck":activeRun.steps[0].panel);
     updateRunUI();window.scrollTo({top:0,behavior:"instant"});
   }
   function beginSession(){
@@ -629,10 +649,10 @@ function initBrowser(){
   function finishRun(){
     const pct=accuracy(activeRun);$("completion").hidden=false;
     const scored=pct!==null;
-    const mastered=scored&&selectedMode==="assessment"&&pct===100&&activeRun.incorrect===0&&activeRun.outOfOrder===0&&activeRun.hints===0&&activeRun.reveals===0;
+    const mastered=scored&&activeRun.conditional===0&&selectedMode==="assessment"&&pct===100&&activeRun.incorrect===0&&activeRun.outOfOrder===0&&activeRun.hints===0&&activeRun.reveals===0;
     $("completionScore").textContent=scored?pct+"% · "+(mastered?"UNASSISTED RECALL":selectedMode==="guided"?"GUIDED":"ASSISTED"):"NOT SCORED · CONDITIONAL";
     $("completion").classList.toggle("assisted",!mastered);
-    $("completionText").textContent=activeRun.correct+" scored "+(activeRun.practiceView==="diagram"?"flow items":"control inputs")+" · "+activeRun.conditional+" conditional · "+activeRun.incorrect+" incorrect · "+activeRun.outOfOrder+" out of order · "+activeRun.hints+" hints · "+activeRun.reveals+" full reveals";
+    $("completionText").textContent=activeRun.correct+" scored "+(activeRun.practiceView==="diagram"?"flow items":"control inputs")+" · "+activeRun.conditional+" conditional · "+activeRun.incorrect+" incorrect · "+activeRun.outOfOrder+" out of order · "+activeRun.hints+" hints · "+activeRun.reveals+" full reveals. Score covers modelled inputs only; self-checks are not verified.";
     const key=activeRun.phaseId+":"+activeRun.role+":"+activeRun.seat+":"+activeRun.practiceView+":"+activeRun.contextId;const best=loadBest();
     const previous=best[key]||{};if(scored&&(!previous.score||pct>previous.score||(pct===previous.score&&mastered&&!previous.mastered))){best[key]={score:pct,mastered:mastered,hints:activeRun.hints,reveals:activeRun.reveals,date:new Date().toISOString()};saveBest(best);}
     const resultRecord={phaseId:activeRun.phaseId,score:pct,mastered:mastered};
@@ -649,7 +669,7 @@ function initBrowser(){
     sequenceIndex++;selectedPhase=sequencePhases[sequenceIndex].id;startRun({preserve:true});
   }
   function backToSetup(){
-    activeRun=null;sequencePhases=[];sequenceResults=[];$("trainer").hidden=true;$("setup").hidden=false;renderPhases();renderRoles();renderBrief();window.scrollTo({top:0,behavior:"instant"});
+    if(cockpitView)cockpitView.setEnabled(false);activeRun=null;sequencePhases=[];sequenceResults=[];$("trainer").hidden=true;$("setup").hidden=false;renderPhases();renderRoles();renderBrief();window.scrollTo({top:0,behavior:"instant"});
   }
 
   renderPhases();renderRoles();renderBrief();
@@ -664,7 +684,8 @@ function initBrowser(){
   $("retryFlow").onclick=function(){startRun({restore:true});};
   $("chooseFlow").onclick=backToSetup;
   if($("continueFlow"))$("continueFlow").onclick=continueSequence;
-  $("hintButton").onclick=function(){if(activeRun&&!activeRun.complete){activeRun.hints++;revealed=true;renderCue();const item=document.querySelector('.flow-item[data-step-index="'+activeRun.index+'"]');if(item)item.classList.add("hinted");setTimeout(function(){if(item)item.classList.remove("hinted");if(selectedMode==="assessment"){revealed=false;renderCue();}},5000);}};
+  $("hintButton").onclick=function(){if(activeRun&&!activeRun.complete){activeRun.hints++;revealed=true;renderCue();if(selectedView==="cockpit"&&cockpitView)cockpitView.locate(activeRun.steps[activeRun.index].controls.find(function(id){return !activeRun.doneControls.has(id);})||activeRun.steps[activeRun.index].controls[0]);const item=document.querySelector('.flow-item[data-step-index="'+activeRun.index+'"]');if(item)item.classList.add("hinted");setTimeout(function(){if(item)item.classList.remove("hinted");if(selectedMode==="assessment"){revealed=false;renderCue();}},5000);}};
+  $("flowDrawer").querySelector('summary').addEventListener('click',function(){if(activeRun&&!activeRun.complete&&!$("flowDrawer").open)activeRun.reveals++;});
   $("revealButton").onclick=function(){if(activeRun&&!$("flowDrawer").open){activeRun.reveals++;$("flowDrawer").open=true;renderCue();}};
   document.querySelectorAll(".panel-tab").forEach(function(b){b.onclick=function(){selectPanel(b.dataset.panel);};});
   window.addEventListener("resize",function(){if(activeRun&&selectedView==="diagram")redrawFlowPath();});

@@ -22,7 +22,7 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `engine.html` | Interactive IAE V2500 engine-systems study assistant. |
 | `engine-sim.js` | Eight system layouts, normal/abnormal modes, component failures and ECAM-style SVG rendering for the IAE engine explorer. |
 | `engine-3d.js` | Lightweight procedural 3D cutaway renderer with 23 selectable parts, airflow overlays, touch controls and component-to-system links. |
-| `flows.html` | Interactive Ansett A320 PF/PM flow practice with phase sequences, three practice views, fixed CM1/PM and CM2/PF allocation, and artwork-only panel reference. |
+| `flows.html` | Interactive Ansett A320 PF/PM flow practice with phase sequences, four practice views, including a perspective virtual cockpit, fixed CM1/PM and CM2/PF allocation, and artwork-only panel reference. |
 | `a320-controls.js` | Individually positioned A320 control catalog with panel labels, states and cold-and-dark defaults. |
 | `flow-sim.js` | Source-card flow data, carried cockpit state, conditional acknowledgements and order-sensitive grading across the control catalog. |
 | `integration.html` | Cross-system engine-loss scenario lab linking engine, electrical and hydraulic modules through matching URL presets. |
@@ -123,7 +123,7 @@ source.
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
 4. Search every served file, including distractors and filenames, for content outside the strict Ansett A320 IAE V2500-A5 scope.
 5. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v44`. Unchanged flow script URLs remain at v40 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
+   `a320-trainer-v45`. Virtual cockpit and flow scripts use v45; a320-controls.js remains at v40 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
 
 Run `node validate-trainer.js` and `node test-trainer.js`. Validation includes `test-system-rotation.js`, `test-audit.js` and `test-communications-options.js`; CI runs the gate on pushes and pull requests. These are structural and source-record checks, not operational certification. A completed exam is required for a pass; test the unrounded threshold. Keep dependent options in their original order or rewrite them as independent statements. Corrected answers must not inherit mastery from the previous content.
 
@@ -143,3 +143,5 @@ to replace the prior offline copy. If an installed Home-Screen copy remains stal
 open the site in Safari, and add it to the Home Screen again.
 
 Audit revision: unchanged questions retain fcom-audit-20260905; L133, S116, S128 and S145 use fcom-followup-20260906; C23-001–C23-051 use communications-fcom-20260914. Eligible limitations: 200/259; archived systems data: 645/664; active Systems Exam Prep: 70/70 Communications; fill cells: 121/141; memory: eight self-graded cards. Do not restore a withheld item without resolving its recorded applicability question. A matched-in-source follow-up is not grading eligibility. test-audit.js, verification-audit.json and communications-fcom-audit.json are part of the publication gate. Flow scores use a320flows_v3 and are practice recall only. OUTSTANDING_REVIEW.md explains the 84 remaining applicability questions and 14 source conflicts/gaps.
+
+Virtual cockpit update (16 September): See FLOW_REVIEW.md and flow-evidence.js for the confirmed source, corrected EFIS roles/order, self-check boundaries and tests. Preserve test-cockpit.js in the validation gate.
