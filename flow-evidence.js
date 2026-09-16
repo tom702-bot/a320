@@ -5,61 +5,79 @@ const evidence={
     "title": "Ansett supplied FCOM training compilation, 21 May 2026",
     "file": "PDFA320_FCOM_AATIAECUSTOM20260521.pdf",
     "sha256": "7978fb0645d256b8affd4e76b751b5e0fff7e9b56a8bfb1bb168a46a163b6b06",
-    "restriction": "FOR TRAINING ONLY. Mixed compilation; current controlled revision and simulator fit are not established."
+    "restriction": "FOR TRAINING ONLY. Mixed compilation; current controlled revision and simulator fit are not established.",
+    "sopRange": [
+      3163,
+      3401
+    ],
+    "precedence": "SOP text takes precedence over older tasksharing tables; no aircraft MSN established."
   },
   "reviewed": "2026-09-16",
   "phases": {
     "cockpit-preparation": {
-      "reference": "AAT PRO-NOR-SOP-06, PDF pp.3197–3218; PRO-NOR-TSK pp.3–5/22, PDF pp.3414–3416.",
-      "note": "Individual PF panel actions and PM own-side/FMS crosschecks. Powered start follows preliminary preparation. Flight-specific data, audio, physical inspections and instrument indications are explicit self-checks. MCDU entry practice does not validate a flight plan or performance calculation."
+      "reference": "AAT PRO-NOR-SOP-06, PDF pp.3195, 3196, 3197, 3198, 3199, 3200, 3201, 3202, 3203, 3204, 3205, 3206, 3207, 3208, 3209, 3210, 3211, 3212, 3213, 3214, 3215, 3216, 3217, 3218, 3219. SOP text review 16 September 2026.",
+      "note": "Detailed cockpit-preparation scan. Start after preliminary cockpit preparation, with external power available and connected. The PF prepares overhead, centre panel and pedestal while PM completes the walkaround, then both perform their own-side checks. Flight-specific entries and observed indications remain explicit self-checks.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "before-start": {
-      "reference": "PRO-NOR-SOP-07; PRO-NOR-TSK p.6/22, 22 MAY 24. Ident PRO-NOR-TSK-C-00024983.0001001 / 14 NOV 23.",
-      "note": "Parking brake depends on pushback stage. ATC depends on airport requirements. Clearance, accumulator and branch-dependent pushback checks are self-checks."
+      "reference": "AAT PRO-NOR-SOP-07, PDF pp.3221, 3222, 3223, 3224, 3225, 3226. SOP text review 16 September 2026.",
+      "note": "SOP-07: complete the pre-clearance checks, then obtain ATC and ground clearance. Choose pushback or stationary start. Conventional/towbarless pushback is represented; powerpush and single-engine taxi require their separate procedures.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "after-start": {
-      "reference": "PRO-NOR-SOP-09; PRO-NOR-TSK p.7/22, 22 MAY 24. Ident PRO-NOR-TSK-00024894.0001001 / 03 NOV 22.",
-      "note": "APU shutdown only if no longer required. Takeoff flap selection and pitch trim require the briefing and performance data. Icing with rain, slush or snow can delay flap extension."
+      "reference": "AAT PRO-NOR-SOP-09-A, PDF pp.3237, 3239, 3240, 3241, 3242. SOP text review 16 September 2026.",
+      "note": "Both engines started. IAE warm-up: after shutdown longer than 2 h, operate at idle or near idle for at least 5 min before high power. Takeoff configuration and icing exceptions require the briefing.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "taxi": {
-      "reference": "PRO-NOR-SOP-10; PRO-NOR-TSK p.7/22, 22 MAY 24. Ident PRO-NOR-TSK-00024904.0002001 / 05 MAY 22.",
-      "note": "Clearance, brake response, flight-control movement and briefing are explicit self-checks; this model does not simulate aircraft motion. TERR and predictive windshear installation require confirmation."
+      "reference": "AAT PRO-NOR-SOP-10-A, PDF pp.3249, 3250, 3251, 3252, 3253, 3254. SOP text review 16 September 2026.",
+      "note": "Both engines taxi. Flight-control check may be completed at a convenient stage before or during taxi. STROBE ON when crossing a runway. If departure changes, apply SOP-10B separately.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "line-up": {
-      "reference": "PRO-NOR-SOP-11; PRO-NOR-TSK p.8/22, 22 MAY 24. Ident PRO-NOR-TSK-00024905.0003001 / 24 NOV 23.",
-      "note": "TA/RA is the normal selection; TA ONLY requires the applicable operator exception. Pack configuration requires takeoff performance and APU-bleed context. Exterior lights require runway conditions."
+      "reference": "AAT PRO-NOR-SOP-11, PDF pp.3269, 3270, 3271, 3272. SOP text review 16 September 2026.",
+      "note": "SOP-11 before takeoff. STROBE ON at runway entry. NOSE T.O, RWY TURN OFF ON and LAND ON belong to SOP-12 at takeoff clearance, outside this line-up flow. Packs / APU bleed must match performance; APU bleed is not authorized with wing anti-ice.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "climb-acceleration": {
-      "reference": "PRO-NOR-TSK p.9/22, 22 MAY 24. Ident PRO-NOR-TSK-00024906.0001001 / 24 NOV 23.",
-      "note": "Start this subset at S speed following the PF order for FLAPS 0. No speed or callout simulation verifies this trigger. Continue to After Takeoff for the subsequent PM actions, including conditional TCAS restoration."
+      "reference": "AAT PRO-NOR-SOP-12, PDF pp.3278, 3280, 3281, 3282. SOP text review 16 September 2026.",
+      "note": "SOP-12 subset beginning at S speed on PF order for FLAPS 0. F-speed FLAPS 1, takeoff, gear retraction, thrust reduction and pack restoration are preceding actions outside this subset.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "ten-thousand-climb": {
-      "reference": "AAT PRO-NOR-SOP-14 p.5/6, 05 MAY 25. Ident PRO-NOR-SOP-14-A-00020076.0001001 / 24 NOV 23. PRO-NOR-TSK p.10/22, 22 MAY 24.",
-      "note": "AAT SOP specifies PF CSTR for grid MORA and PM ARPT, overriding the generic AS RQRD scan wording. LAND RETRACT. Seat belts depend on conditions. NAV/secondary flight plan/performance entries remain self-checked."
+      "reference": "AAT PRO-NOR-SOP-14, PDF pp.3289, 3290. SOP text review 16 September 2026.",
+      "note": "SOP text reviewed. Equipment-specific and flight-specific conditions remain explicit self-checks.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "ten-thousand-descent": {
-      "reference": "AAT PRO-NOR-SOP-17 p.5/8, 09 SEP 25; PRO-NOR-TSK p.12/22, 22 MAY 24. Ident PRO-NOR-TSK-00024911.0002001 / 14 NOV 23.",
-      "note": "PF sequence now follows tasksharing: CSTR, LS as required, NAVAIDs as required/check. NAV accuracy monitoring here is conditional on GPS PRIMARY LOST. LS selection depends on approach and installed guidance."
+      "reference": "AAT PRO-NOR-SOP-17 / 18-C, PDF pp.3311, 3313. SOP text review 16 September 2026.",
+      "note": "10,000 ft AAL portion of SOP-17. Descent preparation, descent initiation/monitoring and transition-level altimeter setting are separate preceding procedures. Landing-light selection follows airline policy / regulatory recommendation.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "after-landing": {
-      "reference": "AAT PRO-NOR-SOP-21 pp.1–3/6, 09 SEP 25; PRO-NOR-TSK p.20/22, 22 MAY 24. Idents 00011841–00011848.",
-      "note": "Begin after vacating. LAND RETRACT, STROBE AUTO and NOSE TAXI; runway crossing changes strobe use. Flap retraction is conditional after icing/slush/snow and above 30 °C. TCAS STBY/XPNDR depends on fit; APU use depends on need."
+      "reference": "AAT PRO-NOR-SOP-21, PDF pp.3381, 3382, 3383, 3384, 3385, 3386. SOP text review 16 September 2026.",
+      "note": "SOP text reviewed. Equipment-specific and flight-specific conditions remain explicit self-checks.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "parking": {
-      "reference": "AAT PRO-NOR-SOP-22 pp.2–3, 8/10, 05 MAY 25; PRO-NOR-TSK pp.20–21/22, 22 MAY 24. Idents 00011853–00011856, 00011866.",
-      "note": "Brake temperature, accumulator/brake pressure, engine cooling and electrical-source availability are prerequisites. Fuel controls depend on installed system. This model does not simulate those conditions. Wings/beacon OFF does not require every exterior light OFF."
+      "reference": "AAT PRO-NOR-SOP-22, PDF pp.3390, 3391, 3392, 3393, 3394, 3395, 3396, 3397. SOP text review 16 September 2026.",
+      "note": "SOP text reviewed. Equipment-specific and flight-specific conditions remain explicit self-checks.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "engine-start": {
-      "reference": "PRO-NOR-TSK p.6/22, PDF p.3417. Ident 00024899 / 09 NOV 21.",
-      "note": "PF normal engine 2 then engine 1 start sequence. Start clearance, source availability, parameters and abnormal-start handling are not generated by this cockpit model."
+      "reference": "AAT PRO-NOR-SOP-08, PDF pp.3230, 3231, 3232. SOP text review 16 September 2026.",
+      "note": "Two-engine taxi departure: SOP-08 specifies engine 1 then engine 2. This supersedes the older engine-2-first tasksharing table. IAE effectivity: PDF pp.3230–3232. Engine indications are observed self-checks; this is not an automatic-start simulation.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "after-takeoff": {
-      "reference": "PRO-NOR-TSK p.10/22, PDF p.3421. Ident 00024907 / 09 NOV 21.",
-      "note": "PM column. APU shutdown applies when it supplied air conditioning during takeoff; TCAS restoration applies after TA ONLY. Engine mode and anti-ice remain conditional."
+      "reference": "AAT PRO-NOR-SOP-13, PDF pp.3283. SOP text review 16 September 2026.",
+      "note": "Apply the APU actions only if APU air conditioning was used for takeoff. TCAS TA/RA restoration applies if takeoff used TA ONLY.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     },
     "securing": {
-      "reference": "PRO-NOR-TSK p.21/22, PDF p.3432. Ident 00024930 / 24 NOV 23.",
-      "note": "Source assigns CM1 and CM2 duties. This trainer keeps the selected CM1/PM, CM2/PF allocation. Ground-service power choices, EFB closure and shared checklist are self-checks."
+      "reference": "AAT PRO-NOR-SOP-23, PDF pp.3399, 3400, 3401. SOP text review 16 September 2026.",
+      "note": "SOP-23 crew-station duties: CM1/PM and CM2/PF in this training allocation. Last passenger has left; secure per company policy. Apply relevant adverse-weather supplementary procedures first. Timing and colleague actions are explicit self-checks.",
+      "scope": "Selected flow; not complete chapter or dynamically verified aircraft procedure."
     }
   }
 };

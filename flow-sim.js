@@ -219,23 +219,17 @@ const FLOW_PHASES = [
 ];
 
 const detailedProcedures=(root&&root.A320FlowProcedures)||(typeof require!=="undefined"?require("./flow-procedures.js"):null);
-if(detailedProcedures)detailedProcedures.expand(FLOW_PHASES);
+if(!detailedProcedures)throw new Error("SOP procedures did not load. Reload the trainer while online.");
+detailedProcedures.expand(FLOW_PHASES);
 const evidence=(root&&root.A320FlowEvidence)||(typeof require!=="undefined"?require("./flow-evidence.js"):null);
 const PHASE_BY_ID = Object.fromEntries(FLOW_PHASES.map(function(phase){return [phase.id,phase];}));
-const FLOW_SOURCES={
-  'engine-start':[3417],'after-takeoff':[3421],securing:[3432],
-  'cockpit-preparation':[3197,3198,3199,3200,3201,3202,3203,3204,3205,3206,3207,3208,3209,3210,3211,3212,3213,3214,3215,3216,3217,3218,3416],'before-start':[3224,3225,3226,3417],
-  'after-start':[3239,3240,3241,3418],taxi:[3251,3252,3253,3418],
-  'line-up':[3270,3271,3272,3419],'climb-acceleration':[3420],
-  'ten-thousand-climb':[3289,3421],'ten-thousand-descent':[3311,3423],
-  'after-landing':[3381,3382,3383,3431],parking:[3390,3391,3396,3431,3432]
-};
 FLOW_PHASES.forEach(function(phase){
-  phase.sourcePages=FLOW_SOURCES[phase.id];
+  if(!phase.sopPages)throw new Error("SOP review data missing for "+phase.id);
+  phase.sourcePages=phase.sopPages;
   phase.evidence=evidence&&evidence.phases[phase.id];
   phase.note=(phase.note?phase.note+' ':'')+'FCOM references: PDF pp.'+phase.sourcePages.join(', ')+'. CM1/PM and CM2/PF is the user-selected role allocation.';
   if(phase.id==='after-landing')phase.note+=' Begin after vacating the runway; after icing/slush/snow, do not retract until engines are shut down and ground crew confirm no ice obstruction. Above 30 °C, CONF 1 may be retained to avoid a wing-leak alert.';
-  if(phase.id==='climb-acceleration')phase.note+=' Flap retraction is speed- and PF-command-dependent. If takeoff used TA ONLY, restore TA/RA after takeoff (PDF p.3421).';
+  if(phase.id==='climb-acceleration')phase.note+=' Flap retraction is speed- and PF-command-dependent. If takeoff used TA ONLY, restore TA/RA after takeoff (PDF p.3283).';
 });
 
 function getInitialControlState(phaseId,powerProfile){
@@ -264,21 +258,21 @@ function resolveStep(source,seat,contextId){
   }
   return resolved;
 }
-function getResolvedSteps(phaseId,role,seat,contextId){
+function getResolvedSteps(phaseId,role,seat,contextId,departure){
   const phase=PHASE_BY_ID[phaseId];
   if(!phase||!phase.roles[role]) return [];
-  return phase.roles[role].map(function(item){return resolveStep(item,seatForRole(role),contextId);});
+  return phase.roles[role].filter(item=>!item.departure||item.departure===(departure||"pushback")).map(function(item){return resolveStep(item,seatForRole(role),contextId);});
 }
 function accepts(stepDef,value,controlId){
   if(stepDef.any) return true;
   if(stepDef.acceptByControl&&stepDef.acceptByControl[controlId]) return stepDef.acceptByControl[controlId].indexOf(value)!==-1;
   return (stepDef.accept||["CHECK"]).indexOf(value)!==-1;
 }
-function createRun(phaseId,role,seat,contextId){
+function createRun(phaseId,role,seat,contextId,departure){
   const fixedSeat=seatForRole(role);
-  const steps=getResolvedSteps(phaseId,role,fixedSeat,contextId);
+  const steps=getResolvedSteps(phaseId,role,fixedSeat,contextId,departure);
   if(!steps.length) throw new Error("No flow actions for this phase and role");
-  return {phaseId:phaseId,role:role,seat:fixedSeat,contextId:contextId||"standard-dry",steps:steps,index:0,doneControls:new Set(),correct:0,conditional:0,incorrect:0,outOfOrder:0,hints:0,reveals:0,history:[],complete:false};
+  return {departure:departure||"pushback",phaseId:phaseId,role:role,seat:fixedSeat,contextId:contextId||"standard-dry",steps:steps,index:0,doneControls:new Set(),correct:0,conditional:0,incorrect:0,outOfOrder:0,hints:0,reveals:0,history:[],complete:false};
 }
 function findStepWithControl(run,controlId,start,end){
   for(let i=start;i<end;i++) if(run.steps[i].controls.indexOf(controlId)!==-1) return i;
@@ -369,6 +363,7 @@ function initBrowser(){
 
   let selectedSession="single";
   let selectedContext="standard-dry";
+  let selectedDeparture="pushback";
   let selectedPower="external";
   let activeRun=null;
   let revealed=false;
@@ -398,7 +393,7 @@ function initBrowser(){
     FLOW_PHASES.forEach(function(phase,index){
       const b=button("","phase-card");
       b.dataset.phase=phase.id;b.setAttribute("aria-pressed",String(phase.id===selectedPhase));
-      const roleLine=Object.keys(phase.roles).map(function(role){return role+" "+phase.roles[role].length;}).join(" / ");
+      const roleLine=Object.keys(phase.roles).map(function(role){return role+" "+getResolvedSteps(phase.id,role,null,selectedContext,selectedDeparture).length;}).join(" / ");
       b.innerHTML='<span class="phase-num">'+String(index+1).padStart(2,"0")+'</span><strong>'+phase.short+'</strong><span>'+roleLine+'</span>';
       b.onclick=function(){selectedPhase=phase.id;const roles=Object.keys(phase.roles);if(roles.indexOf(selectedRole)===-1)selectedRole=roles[0];renderPhases();renderRoles();renderBrief();};
       host.appendChild(b);
@@ -408,18 +403,18 @@ function initBrowser(){
     const host=$("roleButtons");host.innerHTML="";
     const phase=PHASE_BY_ID[selectedPhase];
     Object.keys(phase.roles).forEach(function(role){
-      const b=button(role+" · "+phase.roles[role].length+" actions","segment");
+      const b=button(role+" · "+getResolvedSteps(phase.id,role,null,selectedContext,selectedDeparture).length+" actions","segment");
       b.setAttribute("aria-pressed",String(role===selectedRole));
       b.onclick=function(){selectedRole=role;renderRoles();renderBrief();};host.appendChild(b);
     });
   }
   function renderBrief(){
     const phase=PHASE_BY_ID[selectedPhase];
-    const actions=phase.roles[selectedRole]||[];
+    const actions=getResolvedSteps(phase.id,selectedRole,null,selectedContext,selectedDeparture)||[];
     const remaining=FLOW_PHASES.slice(FLOW_PHASES.indexOf(phase)).filter(function(item){return item.roles[selectedRole];}).length;
     const sessionText=selectedSession==="sequence"?' · '+remaining+' phases from here':' · single phase';
     const context=CONTEXT_BY_ID[selectedContext]||FLOW_CONTEXTS[0];
-    $("phaseBrief").innerHTML='<strong>'+phase.title+' · '+selectedRole+' / '+seatForRole(selectedRole)+'</strong><span>'+actions.length+' source actions'+sessionText+(phase.note?' · '+phase.note:'')+'</span><span class="brief-context">'+context.description+(phase.id==="before-start"?' Ground power: '+GROUND_POWER_PROFILES[selectedPower].label+'.':'')+'</span>';
+    $("phaseBrief").innerHTML='<strong>'+phase.title+' · '+selectedRole+' / '+seatForRole(selectedRole)+'</strong><span>'+actions.length+' source actions'+sessionText+(phase.note?' · '+phase.note:'')+'</span><span class="brief-context">'+context.description+(phase.id==="before-start"?' Departure: '+(selectedDeparture==='pushback'?'pushback':'stationary start')+'. Ground power: '+GROUND_POWER_PROFILES[selectedPower].label+'.':'')+'</span>';
   }
   function wireSegments(id,onChange){
     $(id).querySelectorAll("button").forEach(function(b){b.onclick=function(){onChange(b.dataset.value);$(id).querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});};});
@@ -639,7 +634,7 @@ function initBrowser(){
     if(!activeRun)return;
     activeRun.steps.forEach(function(item,index){
       const row=document.createElement("div");row.className="flow-row "+(index<activeRun.index?"done":index===activeRun.index?"current":"pending");
-      row.innerHTML='<span>'+(index+1)+'</span><b>'+item.label+(item.acknowledgeOnly?' <small>SELF-CHECK</small>':'')+'</b><em>'+item.target+'<small class="source-ref">FCOM PDF pp. '+(item.sourcePages&&item.sourcePages.length?item.sourcePages:PHASE_BY_ID[activeRun.phaseId].sourcePages).join(', ')+'</small></em>';host.appendChild(row);
+      row.innerHTML='<span>'+(index+1)+'</span><b>'+item.label+(item.acknowledgeOnly?' <small>SELF-CHECK</small>':'')+'</b><em>'+item.target+'<small class="source-ref">FCOM SOP PDF pp. '+(item.sourcePages&&item.sourcePages.length?item.sourcePages:PHASE_BY_ID[activeRun.phaseId].sourcePages).join(', ')+'</small></em>';host.appendChild(row);
     });
   }
   function selectPanel(name){
@@ -655,7 +650,7 @@ function initBrowser(){
     options=options||{};
     exploration=false;$('exploreCockpit').setAttribute('aria-pressed','false');
     if(!options.preserve)Object.assign(systems,root.A320CockpitSystems.create());
-    activeRun=createRun(selectedPhase,selectedRole,null,selectedContext);revealed=selectedMode==="guided";
+    activeRun=createRun(selectedPhase,selectedRole,null,selectedContext,selectedDeparture);revealed=selectedMode==="guided";
     activeRun.practiceView=selectedView;
     activeRun.sessionMode=selectedSession;
     if(selectedView!=="diagram")renderCockpit();
@@ -707,7 +702,7 @@ function initBrowser(){
     $("completionScore").textContent=scored?pct+"% · "+(mastered?"UNASSISTED RECALL":selectedMode==="guided"?"GUIDED":"ASSISTED"):"NOT SCORED · CONDITIONAL";
     $("completion").classList.toggle("assisted",!mastered);
     $("completionText").textContent=activeRun.correct+" scored "+(activeRun.practiceView==="diagram"?"flow items":"control inputs")+" · "+activeRun.conditional+" conditional · "+activeRun.incorrect+" incorrect · "+activeRun.outOfOrder+" out of order · "+activeRun.hints+" hints · "+activeRun.reveals+" full reveals. Score covers modelled inputs only; self-checks are not verified.";
-    const key=activeRun.phaseId+":"+activeRun.role+":"+activeRun.seat+":"+activeRun.practiceView+":"+activeRun.contextId;const best=loadBest();
+    const key=activeRun.phaseId+":"+activeRun.role+":"+activeRun.seat+":"+activeRun.practiceView+":"+activeRun.contextId+":"+activeRun.departure+":sop48";const best=loadBest();
     const previous=best[key]||{};if(scored&&(!previous.score||pct>previous.score||(pct===previous.score&&mastered&&!previous.mastered))){best[key]={score:pct,mastered:mastered,hints:activeRun.hints,reveals:activeRun.reveals,date:new Date().toISOString()};saveBest(best);}
     const resultRecord={phaseId:activeRun.phaseId,score:pct,mastered:mastered};
     if(selectedSession==="sequence")sequenceResults[sequenceIndex]=resultRecord;else sequenceResults=[resultRecord];
@@ -730,6 +725,7 @@ function initBrowser(){
   wireSegments("modeButtons",function(value){selectedMode=value;renderBrief();});
   wireSegments("viewButtons",function(value){selectedView=value;renderBrief();});
   wireSegments("sessionButtons",function(value){selectedSession=value;renderBrief();});
+  wireSegments("departureButtons",function(value){selectedDeparture=value;renderPhases();renderRoles();renderBrief();});
   wireSegments("contextButtons",function(value){selectedContext=value;renderBrief();});
   wireSegments("powerButtons",function(value){selectedPower=value;renderBrief();});
   $("beginFlow").onclick=beginSession;

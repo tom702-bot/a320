@@ -143,6 +143,9 @@ function expand(phases){
  by.parking.roles.PM.push(conditional('BRAKE FAN','AS REQUIRED','flightdeck','brake_fan',3432),checklist('PARKING CHECKLIST',3432));
  phases.forEach(phase=>Object.values(phase.roles).forEach(steps=>steps.forEach(s=>{if(s.contextRule==='anti-ice')delete s.completeAny;})));
  phases.forEach(phase=>Object.values(phase.roles).forEach(steps=>steps.forEach(s=>{if(!s.sourcePages)s.sourcePages=phase.sourcePages||[];})));
+ const sop=(root&&root.A320SopAudit)||(typeof require!=="undefined"?require("./flow-sop.js"):null);
+ if(!sop)throw new Error("SOP review module did not load. Reload the trainer while online.");
+ sop.apply(phases);
  return phases;
 }
 const api={expand};if(typeof module!=='undefined'&&module.exports)module.exports=api;if(root)root.A320FlowProcedures=api;

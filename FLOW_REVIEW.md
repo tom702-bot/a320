@@ -1,3 +1,5 @@
+Release 48 SOP review supersedes the procedure details and verification counts below. See [SOP_AUDIT.md](SOP_AUDIT.md). The following describes the earlier artwork release.
+
 # Virtual cockpit flow trainer — 16 September 2026
 
 ## Interaction and artwork (version 47)

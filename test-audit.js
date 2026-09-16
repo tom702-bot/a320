@@ -84,11 +84,11 @@ assert(memory[7].steps.some(s=>s.join(' ').includes('FULL BACKSTICK')));
 assert(!memory[7].steps.some(s=>s.join(' ').includes('SRS')));
 assert(memory[6].name.includes('Not Available'),'TCAS manual branch must be scoped explicitly');
 const flows=require('./flow-sim.js');
-assert.equal(flows.getResolvedSteps('before-start','PF').find(s=>s.label==='PARK BRK handle').acknowledgeOnly,true);
+assert(flows.getResolvedSteps('before-start','PF').filter(s=>s.controls.includes('park_brake')).every(s=>!s.acknowledgeOnly),'selected pushback branch must grade brake positions');
 assert.equal(flows.getResolvedSteps('after-start','PF').find(s=>s.label==='APU MASTER SW').acknowledgeOnly,true);
 assert.equal(flows.getResolvedSteps('after-landing','PM').find(s=>s.label==='FLAPS').acknowledgeOnly,true);
 assert.equal(flows.getResolvedSteps('ten-thousand-climb','PM')[0].accept[0],'RETRACT');
-assert.equal(flows.getResolvedSteps('line-up','PM')[0].accept[0],'TA/RA');
+assert.equal(flows.getResolvedSteps('line-up','PM').find(s=>s.controls.includes('tcas_mode')).accept[0],'TA/RA');
 // Test the actual network evaluator against the source's normal, TR-loss and emergency cases.
 const elec=fs.readFileSync(__dirname+'/electrical-sim.js','utf8');const start=elec.indexOf('  function evaluate(st){'),end=elec.indexOf('\n  const busFields=',start);const model={};vm.runInNewContext(elec.slice(start,end)+';this.evaluate=evaluate;',model);
 const stateText=elec.match(/const normalState=(\{[^\n]+\});/)[1],st=vm.runInNewContext('('+stateText+')');

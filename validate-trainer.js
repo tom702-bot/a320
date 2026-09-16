@@ -42,7 +42,7 @@ function validateQuestions(name,questions,referencePattern){
   });
 }
 
-const required=["cockpit-photo-layout.js","fbw-cockpit.png","cockpit-native.js","cockpit-native.css","cockpit-systems.js","flow-procedures.js","cockpit-view.css","cockpit-view.js","flow-evidence.js","index.html","A320_Checkride_Trainer.html","trainer-core.js","flows.html","flow-sim.js","a320-controls.js","systems-exam-questions.js","question-bank-questions.js","communications-fcom-questions.js","communications-option-quality.js","communications-fcom-audit.json","electrical.html","electrical-sim.js","hydraulic.html","hydraulic-sim.js","engine.html","engine-sim.js","engine-3d.js","integration.html","manifest.webmanifest","sw.js"];
+const required=["flow-sop.js","cockpit-photo-layout.js","fbw-cockpit.png","cockpit-native.js","cockpit-native.css","cockpit-systems.js","flow-procedures.js","cockpit-view.css","cockpit-view.js","flow-evidence.js","index.html","A320_Checkride_Trainer.html","trainer-core.js","flows.html","flow-sim.js","a320-controls.js","systems-exam-questions.js","question-bank-questions.js","communications-fcom-questions.js","communications-option-quality.js","communications-fcom-audit.json","electrical.html","electrical-sim.js","hydraulic.html","hydraulic-sim.js","engine.html","engine-sim.js","engine-3d.js","integration.html","manifest.webmanifest","sw.js"];
 required.forEach(file=>ok(fs.existsSync(path.join(root,file)),file+" exists"));
 const allNames=fs.readdirSync(root);
 const legacyNamePattern=new RegExp("A3"+"21|P2"+"F","i");
@@ -51,7 +51,7 @@ ok(!allNames.some(name=>legacyNamePattern.test(name)),"legacy out-of-scope aircr
 parseInlineScripts("index.html");
 parseInlineScripts("flows.html");
 parseInlineScripts("integration.html");
-["cockpit-photo-layout.js","cockpit-native.js","cockpit-systems.js","flow-procedures.js","cockpit-view.js","flow-evidence.js","trainer-core.js","systems-exam-questions.js","question-bank-questions.js","communications-fcom-questions.js","communications-option-quality.js","a320-controls.js","flow-sim.js","electrical-sim.js","hydraulic-sim.js","engine-sim.js","engine-3d.js","sw.js"].forEach(file=>{
+["flow-sop.js","cockpit-photo-layout.js","cockpit-native.js","cockpit-systems.js","flow-procedures.js","cockpit-view.js","flow-evidence.js","trainer-core.js","systems-exam-questions.js","question-bank-questions.js","communications-fcom-questions.js","communications-option-quality.js","a320-controls.js","flow-sim.js","electrical-sim.js","hydraulic-sim.js","engine-sim.js","engine-3d.js","sw.js"].forEach(file=>{
   try{new vm.Script(read(file),{filename:file});}catch(error){errors.push(error.message);}
 });
 
@@ -114,7 +114,7 @@ ok(guideSystems.filter(item=>item.c==="MEL").every(item=>item.review==="withheld
 
 const controls=require("./a320-controls.js").CONTROL_DEFS;
 const flows=require("./flow-sim.js");
-ok(controls.length===472,"cockpit catalog has 472 controls");
+ok(controls.length===480,"cockpit catalog has 480 controls");
 ok(flows.FLOW_PHASES.length===13,"flow trainer has 13 phases");
 const controlIds=new Set(controls.map(item=>item.id));
 controls.forEach(item=>{
@@ -167,8 +167,8 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v47"),"offline cache is version 47");
-ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=47")&&sw.includes("./question-bank-questions.js")&&sw.includes("./communications-fcom-questions.js")&&sw.includes("./communications-option-quality.js")&&sw.includes("./communications-fcom-audit.json"),"offline cache includes upgraded modules, both Communications sources and the curated option layer");
+ok(sw.includes("a320-trainer-v48"),"offline cache is version 47");
+ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=48")&&sw.includes("./question-bank-questions.js")&&sw.includes("./communications-fcom-questions.js")&&sw.includes("./communications-option-quality.js")&&sw.includes("./communications-fcom-audit.json"),"offline cache includes upgraded modules, both Communications sources and the curated option layer");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
 const forbidden=new RegExp("\\bA3"+"21\\b|P2"+"F|CF"+"M(?:56)?|PW"+"1100|LE"+"AP-?1A|Pra"+"tt\\s*(?:&|and)?\\s*Whitney","i");
@@ -205,10 +205,12 @@ if(errors.length){
   errors.forEach(message=>console.error(" - "+message));
   process.exit(1);
 }
-console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 664 systems, 13 flow phases, 472 cockpit controls. This is not operational certification.");
+console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 664 systems, 13 flow phases, 480 cockpit controls. This is not operational certification.");
 require('./test-trainer.js');
 require('./test-audit.js');
 require('./test-system-rotation.js');
 require('./test-communications-options.js');
 
 require('./test-cockpit.js');
+
+require('./test-sop.js');

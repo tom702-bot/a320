@@ -1,0 +1,3885 @@
+{
+  "review": "2026-09-16",
+  "sourceHash": "7978fb0645d256b8affd4e76b751b5e0fff7e9b56a8bfb1bb168a46a163b6b06",
+  "coverage": "selected flows only",
+  "actions": [
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 1,
+      "action": "PRELIMINARY PREPARATION",
+      "conditionOrTarget": "SOP-02 TO SOP-05 SAFETY, POWER, ADIRS, ACCEPTANCE AND PERFORMANCE PREPARATION COMPLETED",
+      "departure": "both",
+      "pdfPages": [
+        3195
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 2,
+      "action": "OVERHEAD ANNUNCIATIONS",
+      "conditionOrTarget": "CHECK WHITE LIGHTS OFF EXCEPT MAINTENANCE / OPERATOR EXCEPTIONS; ONLY GEN FAULT AMBER",
+      "departure": "both",
+      "pdfPages": [
+        3197
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 3,
+      "action": "RCDR GND CTL",
+      "conditionOrTarget": "ON",
+      "departure": "both",
+      "pdfPages": [
+        3197
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 4,
+      "action": "PARK BRAKE",
+      "conditionOrTarget": "CHECK ON FOR CVR TEST",
+      "departure": "both",
+      "pdfPages": [
+        3197
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 5,
+      "action": "LOUDSPEAKERS",
+      "conditionOrTarget": "OFF BOTH SIDES FOR CVR TEST",
+      "departure": "both",
+      "pdfPages": [
+        3197
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 6,
+      "action": "ACP INT / RAD",
+      "conditionOrTarget": "INT BOTH ACPs",
+      "departure": "both",
+      "pdfPages": [
+        3197
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 7,
+      "action": "INTERPHONE RECEPTION",
+      "conditionOrTarget": "RELEASE / MINIMUM VOLUME",
+      "departure": "both",
+      "pdfPages": [
+        3197
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 8,
+      "action": "CVR TEST",
+      "conditionOrTarget": "PRESS AND MAINTAIN; CHECK AUDIO TEST SIGNAL",
+      "departure": "both",
+      "pdfPages": [
+        3197
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 9,
+      "action": "EVAC",
+      "conditionOrTarget": "CAPT / CAPT & PURS PER COMPANY POLICY",
+      "departure": "both",
+      "pdfPages": [
+        3198
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 10,
+      "action": "STROBE",
+      "conditionOrTarget": "AUTO",
+      "departure": "both",
+      "pdfPages": [
+        3198
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 11,
+      "action": "BEACON",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3198
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 12,
+      "action": "NAV & LOGO",
+      "conditionOrTarget": "1 AS REQUIRED; 2 ONLY IF 1 FAILS",
+      "departure": "both",
+      "pdfPages": [
+        3198
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 13,
+      "action": "REMAINING EXTERIOR LIGHTS",
+      "conditionOrTarget": "AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3198
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 14,
+      "action": "SEAT BELTS",
+      "conditionOrTarget": "ON WHEN REFUELLING COMPLETE",
+      "departure": "both",
+      "pdfPages": [
+        3198
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 15,
+      "action": "EMER EXIT LIGHTS",
+      "conditionOrTarget": "ARM",
+      "departure": "both",
+      "pdfPages": [
+        3198
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 16,
+      "action": "OTHER SIGNS",
+      "conditionOrTarget": "AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3198
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 17,
+      "action": "PROBE / WINDOW HEAT",
+      "conditionOrTarget": "AUTO",
+      "departure": "both",
+      "pdfPages": [
+        3199
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 18,
+      "action": "LANDING ELEVATION",
+      "conditionOrTarget": "AUTO",
+      "departure": "both",
+      "pdfPages": [
+        3199
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 19,
+      "action": "PACK FLOW",
+      "conditionOrTarget": "AS REQUIRED FOR OCCUPANTS / CONDITIONS / INSTALLED STANDARD",
+      "departure": "both",
+      "pdfPages": [
+        3199
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 20,
+      "action": "ECAM ELEC",
+      "conditionOrTarget": "SELECT ELEC PAGE",
+      "departure": "both",
+      "pdfPages": [
+        3200
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 21,
+      "action": "BAT 1 / BAT 2",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3200
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 22,
+      "action": "BAT 1 / BAT 2",
+      "conditionOrTarget": "AUTO",
+      "departure": "both",
+      "pdfPages": [
+        3200
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 23,
+      "action": "BATTERY CHARGING",
+      "conditionOrTarget": "AFTER 10 S: EACH CURRENT BELOW 60 A AND DECREASING; OTHERWISE WAIT / RECHECK",
+      "departure": "both",
+      "pdfPages": [
+        3200
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 24,
+      "action": "FUEL CENTRE MODE",
+      "conditionOrTarget": "AUTO OR APPLICABLE LOW-CENTRE-FUEL PROCEDURE; VERIFY INSTALLED STANDARD",
+      "departure": "both",
+      "pdfPages": [
+        3200
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 25,
+      "action": "ENGINE FIRE PUSHBUTTONS",
+      "conditionOrTarget": "CHECK IN AND GUARDED",
+      "departure": "both",
+      "pdfPages": [
+        3201
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 26,
+      "action": "AGENT LIGHTS",
+      "conditionOrTarget": "CHECK OFF",
+      "departure": "both",
+      "pdfPages": [
+        3201
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 27,
+      "action": "ENG 1 FIRE TEST",
+      "conditionOrTarget": "PRESS AND MAINTAIN; CHECK WARNINGS / LIGHTS",
+      "departure": "both",
+      "pdfPages": [
+        3201
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 28,
+      "action": "ENG 2 FIRE TEST",
+      "conditionOrTarget": "PRESS AND MAINTAIN; CHECK WARNINGS / LIGHTS",
+      "departure": "both",
+      "pdfPages": [
+        3201
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 29,
+      "action": "AUDIO SWITCHING",
+      "conditionOrTarget": "NORM",
+      "departure": "both",
+      "pdfPages": [
+        3201
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 30,
+      "action": "CARGO TEMPERATURE",
+      "conditionOrTarget": "AS REQUIRED IF FITTED",
+      "departure": "both",
+      "pdfPages": [
+        3201
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 31,
+      "action": "THIRD OCCUPANT PA",
+      "conditionOrTarget": "RECEPT; VOLUME AT LEAST MEDIUM",
+      "departure": "both",
+      "pdfPages": [
+        3202
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 32,
+      "action": "MAINTENANCE PANEL",
+      "conditionOrTarget": "CHECK LIGHTS",
+      "departure": "both",
+      "pdfPages": [
+        3202
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 33,
+      "action": "STANDBY INSTRUMENTS / ISIS",
+      "conditionOrTarget": "CHECK READINGS, SETTINGS, ATTITUDE AND FLAGS PER FIT",
+      "departure": "both",
+      "pdfPages": [
+        3202
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 34,
+      "action": "CLOCK",
+      "conditionOrTarget": "CHECK / SET UTC AND DATE",
+      "departure": "both",
+      "pdfPages": [
+        3203
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 35,
+      "action": "A/SKID & N/W STRG",
+      "conditionOrTarget": "ON",
+      "departure": "both",
+      "pdfPages": [
+        3203
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 36,
+      "action": "RMP 1 / RMP 2",
+      "conditionOrTarget": "CHECK ON",
+      "departure": "both",
+      "pdfPages": [
+        3203
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 37,
+      "action": "RMP NAV / SEL LIGHTS",
+      "conditionOrTarget": "CHECK OFF",
+      "departure": "both",
+      "pdfPages": [
+        3203
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 38,
+      "action": "COM FREQUENCIES",
+      "conditionOrTarget": "TUNE BRIEFED FREQUENCIES",
+      "departure": "both",
+      "pdfPages": [
+        3203
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 39,
+      "action": "ACP INTERPHONE",
+      "conditionOrTarget": "PRESS OUT / VOLUME CHECK FOR GROUND CONTACT",
+      "departure": "both",
+      "pdfPages": [
+        3204
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 40,
+      "action": "VHF",
+      "conditionOrTarget": "CHECK TRANSMISSION / RECEPTION",
+      "departure": "both",
+      "pdfPages": [
+        3204
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 41,
+      "action": "HF",
+      "conditionOrTarget": "CHECK IF REQUIRED; NO HF TRANSMISSION DURING REFUELLING",
+      "departure": "both",
+      "pdfPages": [
+        3204
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 42,
+      "action": "COCKPIT DOOR TEST",
+      "conditionOrTarget": "FUNCTION / MECHANICAL OVERRIDE CHECK AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3204
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 43,
+      "action": "COCKPIT DOOR",
+      "conditionOrTarget": "NORM",
+      "departure": "both",
+      "pdfPages": [
+        3204
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 44,
+      "action": "SWITCHING PANEL",
+      "conditionOrTarget": "ALL SELECTORS NORM",
+      "departure": "both",
+      "pdfPages": [
+        3204
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 45,
+      "action": "THRUST LEVERS",
+      "conditionOrTarget": "IDLE",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 46,
+      "action": "ENGINE MASTERS",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 47,
+      "action": "ENGINE MODE",
+      "conditionOrTarget": "NORM",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 48,
+      "action": "ACCU PRESS",
+      "conditionOrTarget": "CHECK GREEN BAND",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 49,
+      "action": "PARK BRAKE",
+      "conditionOrTarget": "CHECK ON; APPLY HOT-BRAKE / CHOCK EXCEPTION WHEN REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 50,
+      "action": "BRAKE PRESSURE",
+      "conditionOrTarget": "CHECK NORMAL INDICATIONS",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 51,
+      "action": "GRAVITY GEAR EXTENSION",
+      "conditionOrTarget": "CHECK STOWED",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 52,
+      "action": "ATC",
+      "conditionOrTarget": "STBY",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 53,
+      "action": "TCAS",
+      "conditionOrTarget": "STBY",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 54,
+      "action": "ALTITUDE REPORTING",
+      "conditionOrTarget": "ON",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 55,
+      "action": "ATC SYSTEM",
+      "conditionOrTarget": "SELECT PER AP / RVSM REQUIREMENTS",
+      "departure": "both",
+      "pdfPages": [
+        3205
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 56,
+      "action": "ATC MESSAGES",
+      "conditionOrTarget": "ERASE PREVIOUS FLIGHT MESSAGES",
+      "departure": "both",
+      "pdfPages": [
+        3206
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 57,
+      "action": "ADS",
+      "conditionOrTarget": "CHECK ARMED IF INSTALLED",
+      "departure": "both",
+      "pdfPages": [
+        3206
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 58,
+      "action": "FMS POWER-UP TESTS",
+      "conditionOrTarget": "ALLOW 3 MIN FOR TESTS; WAIT FOR PLEASE WAIT TO CLEAR BEFORE PRESSING MCDU KEYS",
+      "departure": "both",
+      "pdfPages": [
+        3206
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 59,
+      "action": "FMS DATA",
+      "conditionOrTarget": "OPEN STATUS FOR AIRCRAFT / ENGINE TYPE AND DATABASE CHECK",
+      "departure": "both",
+      "pdfPages": [
+        3207
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 60,
+      "action": "AIRCRAFT / ENGINE / DATABASE",
+      "conditionOrTarget": "VERIFY TYPE, VALID DATABASE AND STORED DATA",
+      "departure": "both",
+      "pdfPages": [
+        3207
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 61,
+      "action": "IDLE / PERF FACTOR",
+      "conditionOrTarget": "CHECK APPLICABLE FACTORS",
+      "departure": "both",
+      "pdfPages": [
+        3208
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 62,
+      "action": "NAVAID DESELECTION",
+      "conditionOrTarget": "DESELECT UNRELIABLE NAVAIDS PER NOTAMS",
+      "departure": "both",
+      "pdfPages": [
+        3208
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 63,
+      "action": "FMS INIT",
+      "conditionOrTarget": "OPEN / ENTER BRIEFED INITIALISATION",
+      "departure": "both",
+      "pdfPages": [
+        3209
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 64,
+      "action": "IRS POSITION INITIALIZATION",
+      "conditionOrTarget": "CONFIRM OR INSERT COORDINATES AS APPROPRIATE TO INSTALLED SYSTEM",
+      "departure": "both",
+      "pdfPages": [
+        3210
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 65,
+      "action": "FMS FLIGHT PLAN",
+      "conditionOrTarget": "OPEN / PREPARE BRIEFED ROUTE",
+      "departure": "both",
+      "pdfPages": [
+        3210
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 66,
+      "action": "FMS SECONDARY PLAN",
+      "conditionOrTarget": "OPEN / PREPARE AS APPROPRIATE",
+      "departure": "both",
+      "pdfPages": [
+        3211
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 67,
+      "action": "FMS RADIO NAV",
+      "conditionOrTarget": "OPEN / CHECK REQUIRED NAVAIDS",
+      "departure": "both",
+      "pdfPages": [
+        3211
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 68,
+      "action": "FMS INIT B",
+      "conditionOrTarget": "OPEN INIT FOR WEIGHT / FUEL ENTRIES",
+      "departure": "both",
+      "pdfPages": [
+        3211
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 69,
+      "action": "ZFW / ZFWCG / BLOCK FUEL",
+      "conditionOrTarget": "INSERT AFTER OTHER ROUTE ENTRIES; CHECK WEIGHT AND FUEL DATA",
+      "departure": "both",
+      "pdfPages": [
+        3211
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 70,
+      "action": "FMS PERFORMANCE",
+      "conditionOrTarget": "OPEN / ENTER TAKEOFF PERFORMANCE",
+      "departure": "both",
+      "pdfPages": [
+        3212
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 71,
+      "action": "TAKEOFF DATA",
+      "conditionOrTarget": "CHECK SHIFT AS REQUIRED, V1 / VR / V2, THRUST DATA, THR RED / ACC / EO ACC AND FLAPS / THS",
+      "departure": "both",
+      "pdfPages": [
+        3212
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 72,
+      "action": "SPEED PRESELECTION",
+      "conditionOrTarget": "CLIMB / CRUISE / DESCENT AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3212
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 73,
+      "action": "DESTINATION QNH PRE-ENTRY",
+      "conditionOrTarget": "IF APPLICABLE TO AIRCRAFT: INSERT QNH IN PERF APPR",
+      "departure": "both",
+      "pdfPages": [
+        3213
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 74,
+      "action": "FMS PREPARATION",
+      "conditionOrTarget": "REVIEW ALL DATA AGAINST BRIEFING; PAGE SELECTION ALONE DOES NOT VERIFY ENTRIES",
+      "departure": "both",
+      "pdfPages": [
+        3214
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 75,
+      "action": "BAROMETRIC REFERENCE",
+      "conditionOrTarget": "SET QNH / CROSSCHECK BRIEFED VALUE",
+      "departure": "both",
+      "pdfPages": [
+        3215
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 76,
+      "action": "FD",
+      "conditionOrTarget": "CHECK ON",
+      "departure": "both",
+      "pdfPages": [
+        3215
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 77,
+      "action": "LS",
+      "conditionOrTarget": "AS REQUIRED FOR DEPARTURE",
+      "departure": "both",
+      "pdfPages": [
+        3215
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 78,
+      "action": "ND MODE / RANGE",
+      "conditionOrTarget": "SET FOR DEPARTURE",
+      "departure": "both",
+      "pdfPages": [
+        3215
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 79,
+      "action": "ADF / VOR POINTERS",
+      "conditionOrTarget": "AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3215
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 80,
+      "action": "FCU SPEED",
+      "conditionOrTarget": "DASHED / MANAGED",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 81,
+      "action": "FLYING REFERENCE",
+      "conditionOrTarget": "HDG-V/S",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 82,
+      "action": "FCU ALTITUDE",
+      "conditionOrTarget": "INITIAL EXPECTED CLEARANCE ALTITUDE",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 83,
+      "action": "GROUND PERSONNEL",
+      "conditionOrTarget": "INFORM BEFORE OXYGEN MASK TEST",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 84,
+      "action": "OXYGEN MASK",
+      "conditionOrTarget": "TEST",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 85,
+      "action": "DOOR / OXY PAGE",
+      "conditionOrTarget": "SELECT",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 86,
+      "action": "REGUL LO PR",
+      "conditionOrTarget": "CHECK NOT DISPLAYED AFTER ALL MASK TESTS",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 87,
+      "action": "PFD / ND BRIGHTNESS",
+      "conditionOrTarget": "SET; ND OUTER RING MAX",
+      "departure": "both",
+      "pdfPages": [
+        3217
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 88,
+      "action": "LOUDSPEAKER",
+      "conditionOrTarget": "SET AROUND 1 O'CLOCK",
+      "departure": "both",
+      "pdfPages": [
+        3217
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 89,
+      "action": "PFD",
+      "conditionOrTarget": "CHECK FMA, TARGET ALT, AIRSPEED, ATTITUDE, BARO AND VSI",
+      "departure": "both",
+      "pdfPages": [
+        3217
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 90,
+      "action": "ND",
+      "conditionOrTarget": "CHECK HEADING, WAYPOINT AND NAVAIDS",
+      "departure": "both",
+      "pdfPages": [
+        3217
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 91,
+      "action": "ECAM PRESS",
+      "conditionOrTarget": "SELECT",
+      "departure": "both",
+      "pdfPages": [
+        3218
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 92,
+      "action": "LDG ELEV INDICATION",
+      "conditionOrTarget": "CHECK AUTO",
+      "departure": "both",
+      "pdfPages": [
+        3218
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 93,
+      "action": "ECAM STATUS",
+      "conditionOrTarget": "SELECT STS",
+      "departure": "both",
+      "pdfPages": [
+        3218
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 94,
+      "action": "STATUS",
+      "conditionOrTarget": "CHECK COMPATIBLE WITH MEL",
+      "departure": "both",
+      "pdfPages": [
+        3218
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 95,
+      "action": "FUEL ON BOARD",
+      "conditionOrTarget": "CHECK PLAN / BALANCE / UPLIFT CONSISTENCY",
+      "departure": "both",
+      "pdfPages": [
+        3218
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 96,
+      "action": "DEPARTURE BRIEFING",
+      "conditionOrTarget": "PERFORM WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3219
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 97,
+      "action": "MAINTENANCE PC / PRINTER",
+      "conditionOrTarget": "IF FITTED: STOWED, MANUAL SWITCH LIGHT OFF",
+      "departure": "both",
+      "pdfPages": [
+        3219
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "sequence": 98,
+      "action": "COCKPIT PREPARATION CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3219
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 1,
+      "action": "PRELIMINARY PREPARATION",
+      "conditionOrTarget": "SOP-02 TO SOP-05 SAFETY, POWER, ADIRS, ACCEPTANCE AND PERFORMANCE PREPARATION COMPLETED",
+      "departure": "both",
+      "pdfPages": [
+        3195
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 2,
+      "action": "EXTERIOR WALKAROUND",
+      "conditionOrTarget": "COMPLETED UNDER SOP-05 BEFORE FMS CROSSCHECK",
+      "departure": "both",
+      "pdfPages": [
+        3195
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 3,
+      "action": "FMS PREPARATION",
+      "conditionOrTarget": "CROSSCHECK PF DATA AGAINST PLAN / EFB",
+      "departure": "both",
+      "pdfPages": [
+        3214
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 4,
+      "action": "GREEN DOT",
+      "conditionOrTarget": "COMPARE EFB / MCDU",
+      "departure": "both",
+      "pdfPages": [
+        3214
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 5,
+      "action": "BAROMETRIC REFERENCE",
+      "conditionOrTarget": "SET QNH / CROSSCHECK BRIEFED VALUE",
+      "departure": "both",
+      "pdfPages": [
+        3215
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 6,
+      "action": "FD",
+      "conditionOrTarget": "CHECK ON",
+      "departure": "both",
+      "pdfPages": [
+        3215
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 7,
+      "action": "LS",
+      "conditionOrTarget": "AS REQUIRED FOR DEPARTURE",
+      "departure": "both",
+      "pdfPages": [
+        3215
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 8,
+      "action": "ND MODE / RANGE",
+      "conditionOrTarget": "SET FOR DEPARTURE",
+      "departure": "both",
+      "pdfPages": [
+        3215
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 9,
+      "action": "ADF / VOR POINTERS",
+      "conditionOrTarget": "AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3215
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 10,
+      "action": "GROUND PERSONNEL",
+      "conditionOrTarget": "INFORM BEFORE OXYGEN MASK TEST",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 11,
+      "action": "OXYGEN MASK",
+      "conditionOrTarget": "TEST",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 12,
+      "action": "DOOR / OXY PAGE",
+      "conditionOrTarget": "SELECT",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 13,
+      "action": "REGUL LO PR",
+      "conditionOrTarget": "CHECK NOT DISPLAYED AFTER ALL MASK TESTS",
+      "departure": "both",
+      "pdfPages": [
+        3216
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 14,
+      "action": "PFD / ND BRIGHTNESS",
+      "conditionOrTarget": "SET; ND OUTER RING MAX",
+      "departure": "both",
+      "pdfPages": [
+        3217
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 15,
+      "action": "LOUDSPEAKER",
+      "conditionOrTarget": "SET AROUND 1 O'CLOCK",
+      "departure": "both",
+      "pdfPages": [
+        3217
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 16,
+      "action": "PFD",
+      "conditionOrTarget": "CHECK FMA, TARGET ALT, AIRSPEED, ATTITUDE, BARO AND VSI",
+      "departure": "both",
+      "pdfPages": [
+        3217
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 17,
+      "action": "ND",
+      "conditionOrTarget": "CHECK HEADING, WAYPOINT AND NAVAIDS",
+      "departure": "both",
+      "pdfPages": [
+        3217
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 18,
+      "action": "IRS ALIGNMENT",
+      "conditionOrTarget": "CHECK NAV, POSITION DIFFERENCE AND AIRPORT CONSISTENCY",
+      "departure": "both",
+      "pdfPages": [
+        3218
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 19,
+      "action": "FUEL ON BOARD",
+      "conditionOrTarget": "CHECK PLAN / BALANCE / UPLIFT CONSISTENCY",
+      "departure": "both",
+      "pdfPages": [
+        3218
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 20,
+      "action": "DEPARTURE BRIEFING",
+      "conditionOrTarget": "PERFORM WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3219
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 21,
+      "action": "MAINTENANCE PC / PRINTER",
+      "conditionOrTarget": "IF FITTED: STOWED, MANUAL SWITCH LIGHT OFF",
+      "departure": "both",
+      "pdfPages": [
+        3219
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "sequence": 22,
+      "action": "COCKPIT PREPARATION CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3219
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 1,
+      "action": "FINAL LOADSHEET",
+      "conditionOrTarget": "CHECK FLIGHT, AIRCRAFT, WEIGHTS, INDEX, FUEL AND CONFIGURATION",
+      "departure": "both",
+      "pdfPages": [
+        3221
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 2,
+      "action": "ZFW / ZFWCG",
+      "conditionOrTarget": "CHECK / REVISE FMS DATA",
+      "departure": "both",
+      "pdfPages": [
+        3221
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 3,
+      "action": "FUEL ON BOARD",
+      "conditionOrTarget": "CHECK ECAM / FUEL PAGE AGAINST FLIGHT PLAN AND LOADSHEET",
+      "departure": "both",
+      "pdfPages": [
+        3221
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 4,
+      "action": "CHANGED TAKEOFF CONDITIONS",
+      "conditionOrTarget": "IF CHANGED: INDEPENDENTLY RECOMPUTE PERFORMANCE; REVISE FMS TAKEOFF DATA",
+      "departure": "both",
+      "pdfPages": [
+        3221
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 5,
+      "action": "SEATING / RESTRAINTS",
+      "conditionOrTarget": "ADJUST SEAT, BELTS, HARNESS, PEDALS AND ARMRESTS",
+      "departure": "both",
+      "pdfPages": [
+        3222
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 6,
+      "action": "MCDU PAGE",
+      "conditionOrTarget": "SELECT PERF TAKEOFF",
+      "departure": "both",
+      "pdfPages": [
+        3222
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 7,
+      "action": "START / PUSHBACK CLEARANCE",
+      "conditionOrTarget": "ATC AND GROUND CREW CLEARANCE CONFIRMED BEFORE BEACON ON",
+      "departure": "both",
+      "pdfPages": [
+        3223
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 8,
+      "action": "BEACON",
+      "conditionOrTarget": "ON",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 9,
+      "action": "WINDOW",
+      "conditionOrTarget": "CHECK CLOSED / LOCKED; RED INDICATOR VISIBLE",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 10,
+      "action": "CABIN DOORS",
+      "conditionOrTarget": "CHECK CLOSED ON ECAM",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 11,
+      "action": "COCKPIT DOOR",
+      "conditionOrTarget": "CHECK CLOSED / LOCKED AS REQUIRED BY AUTHORITY",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 12,
+      "action": "SLIDES",
+      "conditionOrTarget": "CHECK ARMED ON ECAM",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 13,
+      "action": "THRUST LEVERS",
+      "conditionOrTarget": "IDLE",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 14,
+      "action": "ACCU PRESS",
+      "conditionOrTarget": "GREEN BAND; OBTAIN GROUND CLEARANCE BEFORE USING YELLOW PUMP IF RECHARGE NEEDED",
+      "departure": "both",
+      "pdfPages": [
+        3225
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 15,
+      "action": "PARK BRAKE",
+      "conditionOrTarget": "ON — NO PUSHBACK",
+      "departure": "stationary",
+      "pdfPages": [
+        3225
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 16,
+      "action": "BRAKE PRESSURE",
+      "conditionOrTarget": "CHECK NORMAL INDICATIONS",
+      "departure": "stationary",
+      "pdfPages": [
+        3225
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 17,
+      "action": "NW STRG DISC",
+      "conditionOrTarget": "CHECK DISPLAYED; TOW PIN CONFIRMED. DO NOT START DURING PUSHBACK IF MEMO ABSENT",
+      "departure": "pushback",
+      "pdfPages": [
+        3225
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 18,
+      "action": "BEFORE START CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3225
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 19,
+      "action": "PARK BRAKE",
+      "conditionOrTarget": "OFF FOR PUSHBACK AFTER CHECKLIST",
+      "departure": "pushback",
+      "pdfPages": [
+        3226
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 20,
+      "action": "PUSHBACK COMPLETED",
+      "conditionOrTarget": "CONFIRM COMPLETED BEFORE APPLYING PARKING BRAKE; NO BRAKING DURING PUSHBACK EXCEPT EMERGENCY",
+      "departure": "pushback",
+      "pdfPages": [
+        3226
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 21,
+      "action": "PARK BRAKE",
+      "conditionOrTarget": "ON WHEN PUSHBACK COMPLETED",
+      "departure": "pushback",
+      "pdfPages": [
+        3226
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "sequence": 22,
+      "action": "BRAKE PRESSURE",
+      "conditionOrTarget": "CHECK NORMAL; REQUEST TOWBAR DISCONNECTION",
+      "departure": "pushback",
+      "pdfPages": [
+        3226
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 1,
+      "action": "FINAL LOADSHEET",
+      "conditionOrTarget": "CHECK FLIGHT, AIRCRAFT, WEIGHTS, INDEX, FUEL AND CONFIGURATION",
+      "departure": "both",
+      "pdfPages": [
+        3221
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 2,
+      "action": "ZFW / ZFWCG",
+      "conditionOrTarget": "CROSSCHECK FMS DATA AND TAKEOFF CG LIMITS",
+      "departure": "both",
+      "pdfPages": [
+        3221
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 3,
+      "action": "FUEL ON BOARD",
+      "conditionOrTarget": "CHECK ECAM / FUEL PAGE AGAINST FLIGHT PLAN AND LOADSHEET",
+      "departure": "both",
+      "pdfPages": [
+        3221
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 4,
+      "action": "CHANGED TAKEOFF CONDITIONS",
+      "conditionOrTarget": "IF CHANGED: INDEPENDENTLY RECOMPUTE PERFORMANCE; CROSSCHECK REVISED DATA AGAINST EFB",
+      "departure": "both",
+      "pdfPages": [
+        3221
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 5,
+      "action": "GREEN DOT",
+      "conditionOrTarget": "IF PERFORMANCE RECOMPUTED: COMPARE EFB / MCDU",
+      "departure": "both",
+      "pdfPages": [
+        3222
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 6,
+      "action": "SEATING / RESTRAINTS",
+      "conditionOrTarget": "ADJUST SEAT, BELTS, HARNESS, PEDALS AND ARMRESTS",
+      "departure": "both",
+      "pdfPages": [
+        3222
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 7,
+      "action": "MCDU PAGE",
+      "conditionOrTarget": "SELECT F-PLN",
+      "departure": "both",
+      "pdfPages": [
+        3222
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 8,
+      "action": "AIR CONDITIONING UNITS",
+      "conditionOrTarget": "CHECK DISCONNECTED",
+      "departure": "both",
+      "pdfPages": [
+        3222
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 9,
+      "action": "EXTERNAL POWER TRANSFER",
+      "conditionOrTarget": "ESTABLISH SUITABLE ALTERNATE ELECTRICAL SUPPLY BEFORE DESELECTING EXTERNAL POWER",
+      "departure": "both",
+      "pdfPages": [
+        3222
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 10,
+      "action": "EXTERNAL POWER",
+      "conditionOrTarget": "DESELECT — VERIFY AVAIL BEFORE REQUESTING DISCONNECTION",
+      "departure": "both",
+      "pdfPages": [
+        3222
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 11,
+      "action": "EXTERNAL POWER DISCONNECTION",
+      "conditionOrTarget": "CHECK AVAIL, THEN REQUEST DISCONNECTION; NEVER REQUEST WITH ON LIGHT",
+      "departure": "both",
+      "pdfPages": [
+        3222
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 12,
+      "action": "PUSHBACK / START CLEARANCE",
+      "conditionOrTarget": "OBTAIN ATC AND GROUND CREW CLEARANCE",
+      "departure": "both",
+      "pdfPages": [
+        3223
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 13,
+      "action": "ATC",
+      "conditionOrTarget": "SET FOR OPERATION PER AIRPORT REQUIREMENTS",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 14,
+      "action": "WINDOW",
+      "conditionOrTarget": "CHECK CLOSED / LOCKED; RED INDICATOR VISIBLE",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 15,
+      "action": "CABIN DOORS",
+      "conditionOrTarget": "CHECK CLOSED ON ECAM",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 16,
+      "action": "COCKPIT DOOR",
+      "conditionOrTarget": "CHECK CLOSED / LOCKED AS REQUIRED BY AUTHORITY",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 17,
+      "action": "SLIDES",
+      "conditionOrTarget": "CHECK ARMED ON ECAM",
+      "departure": "both",
+      "pdfPages": [
+        3224
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "sequence": 18,
+      "action": "BEFORE START CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3225
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 1,
+      "action": "START PREREQUISITES",
+      "conditionOrTarget": "CLEARANCE, GROUND SAFETY AND PNEUMATIC / ELECTRICAL SOURCES ESTABLISHED",
+      "departure": "both",
+      "pdfPages": [
+        3230
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 2,
+      "action": "THRUST LEVERS",
+      "conditionOrTarget": "IDLE",
+      "departure": "both",
+      "pdfPages": [
+        3230
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 3,
+      "action": "ENGINE MODE",
+      "conditionOrTarget": "IGN/START",
+      "departure": "both",
+      "pdfPages": [
+        3230
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 4,
+      "action": "ENGINE 1 START",
+      "conditionOrTarget": "ANNOUNCE",
+      "departure": "both",
+      "pdfPages": [
+        3230
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 5,
+      "action": "ENGINE 1 DISPLAY READY",
+      "conditionOrTarget": "AMBER CROSSES EXCEPT N1 / N2 AND MESSAGES CLEARED ON ENGINE DISPLAYS",
+      "departure": "both",
+      "pdfPages": [
+        3232
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 6,
+      "action": "ENGINE 1 MASTER",
+      "conditionOrTarget": "ON",
+      "departure": "both",
+      "pdfPages": [
+        3232
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 7,
+      "action": "ENGINE 1 START MONITOR",
+      "conditionOrTarget": "OBSERVE N2, START VALVE, BLEED / OIL PRESSURE, IGNITION, FUEL FLOW, EGT AND N1 PER IAE SOP-08",
+      "departure": "both",
+      "pdfPages": [
+        3232
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 8,
+      "action": "ENGINE 1 IDLE",
+      "conditionOrTarget": "CHECK APPLICABLE IDLE PARAMETERS / AVAIL BEFORE CONTINUING",
+      "departure": "both",
+      "pdfPages": [
+        3232
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 9,
+      "action": "ENGINE 2 START",
+      "conditionOrTarget": "ANNOUNCE",
+      "departure": "both",
+      "pdfPages": [
+        3232
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 10,
+      "action": "ENGINE 2 DISPLAY READY",
+      "conditionOrTarget": "AMBER CROSSES EXCEPT N1 / N2 AND MESSAGES CLEARED ON ENGINE DISPLAYS",
+      "departure": "both",
+      "pdfPages": [
+        3232
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 11,
+      "action": "ENGINE 2 MASTER",
+      "conditionOrTarget": "ON",
+      "departure": "both",
+      "pdfPages": [
+        3232
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 12,
+      "action": "ENGINE 2 START MONITOR",
+      "conditionOrTarget": "OBSERVE N2, START VALVE, BLEED / OIL PRESSURE, IGNITION, FUEL FLOW, EGT AND N1 PER IAE SOP-08",
+      "departure": "both",
+      "pdfPages": [
+        3232
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "sequence": 13,
+      "action": "ENGINE 2 IDLE",
+      "conditionOrTarget": "CHECK APPLICABLE IDLE PARAMETERS / AVAIL BEFORE CONTINUING",
+      "departure": "both",
+      "pdfPages": [
+        3232
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-start",
+      "role": "PF",
+      "sequence": 1,
+      "action": "ENG MODE selector",
+      "conditionOrTarget": "NORM",
+      "departure": "both",
+      "pdfPages": [
+        3239
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-start",
+      "role": "PF",
+      "sequence": 2,
+      "action": "APU BLEED pb-sw",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3239
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-start",
+      "role": "PF",
+      "sequence": 3,
+      "action": "ANTI ICE",
+      "conditionOrTarget": "AS RQRD",
+      "departure": "both",
+      "pdfPages": [
+        3239
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-start",
+      "role": "PF",
+      "sequence": 4,
+      "action": "APU MASTER SW",
+      "conditionOrTarget": "OFF IF NO LONGER REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3240
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-start",
+      "role": "PF",
+      "sequence": 5,
+      "action": "ECAM STATUS",
+      "conditionOrTarget": "CROSSCHECK NO STS REMINDER; IF PRESENT REVIEW STATUS",
+      "departure": "both",
+      "pdfPages": [
+        3241
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-start",
+      "role": "PF",
+      "sequence": 6,
+      "action": "NW STRG DISC MEMO",
+      "conditionOrTarget": "CHECK NOT DISPLAYED",
+      "departure": "both",
+      "pdfPages": [
+        3241
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-start",
+      "role": "PF",
+      "sequence": 7,
+      "action": "CLEAR TO DISCONNECT",
+      "conditionOrTarget": "ANNOUNCE TO GROUND CREW",
+      "departure": "both",
+      "pdfPages": [
+        3241
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-start",
+      "role": "PF",
+      "sequence": 8,
+      "action": "AFTER START CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3242
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-start",
+      "role": "PM",
+      "sequence": 1,
+      "action": "GND SPLRS",
+      "conditionOrTarget": "ARM",
+      "departure": "both",
+      "pdfPages": [
+        3240
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-start",
+      "role": "PM",
+      "sequence": 2,
+      "action": "RUDDER TRIM RESET",
+      "conditionOrTarget": "OPERATE RESET",
+      "departure": "both",
+      "pdfPages": [
+        3240
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-start",
+      "role": "PM",
+      "sequence": 3,
+      "action": "RUD TRIM",
+      "conditionOrTarget": "RESET THEN CHECK NEUTRAL",
+      "departure": "both",
+      "pdfPages": [
+        3240
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-start",
+      "role": "PM",
+      "sequence": 4,
+      "action": "FLAPS",
+      "conditionOrTarget": "SET FOR TAKEOFF; DELAY IN ICING WITH RAIN/SLUSH/SNOW",
+      "departure": "both",
+      "pdfPages": [
+        3241
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-start",
+      "role": "PM",
+      "sequence": 5,
+      "action": "FLAP POSITION",
+      "conditionOrTarget": "CHECK ECAM AGAINST SELECTED TAKEOFF CONFIGURATION; ICING DELAY EXCEPTION APPLIES",
+      "departure": "both",
+      "pdfPages": [
+        3241
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-start",
+      "role": "PM",
+      "sequence": 6,
+      "action": "PITCH TRIM",
+      "conditionOrTarget": "SET BRIEFED TAKEOFF VALUE",
+      "departure": "both",
+      "pdfPages": [
+        3241
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-start",
+      "role": "PM",
+      "sequence": 7,
+      "action": "ECAM STATUS",
+      "conditionOrTarget": "CHECK NO STS REMINDER; IF PRESENT SELECT STATUS",
+      "departure": "both",
+      "pdfPages": [
+        3241
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-start",
+      "role": "PM",
+      "sequence": 8,
+      "action": "AFTER START CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3242
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PF",
+      "sequence": 1,
+      "action": "TAXI LIGHTS",
+      "conditionOrTarget": "NOSE TAXI / RWY TURN OFF ON",
+      "departure": "both",
+      "pdfPages": [
+        3249
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "taxi",
+      "role": "PF",
+      "sequence": 2,
+      "action": "PARK BRAKE",
+      "conditionOrTarget": "OFF ON TAXI CLEARANCE",
+      "departure": "both",
+      "pdfPages": [
+        3249
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "taxi",
+      "role": "PF",
+      "sequence": 3,
+      "action": "BRAKE PRESSURE",
+      "conditionOrTarget": "CHECK ZERO AFTER PARKING BRAKE RELEASE",
+      "departure": "both",
+      "pdfPages": [
+        3249
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PF",
+      "sequence": 4,
+      "action": "BRAKES",
+      "conditionOrTarget": "CHECK RESPONSE",
+      "departure": "both",
+      "pdfPages": [
+        3249
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PF",
+      "sequence": 5,
+      "action": "FLIGHT CONTROLS",
+      "conditionOrTarget": "PERFORM FULL CONTROL CHECK",
+      "departure": "both",
+      "pdfPages": [
+        3250
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PF",
+      "sequence": 6,
+      "action": "PFD / ND",
+      "conditionOrTarget": "CHECK",
+      "departure": "both",
+      "pdfPages": [
+        3250
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PF",
+      "sequence": 7,
+      "action": "TERR ON ND",
+      "conditionOrTarget": "AS RQRD",
+      "departure": "both",
+      "pdfPages": [
+        3252
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PF",
+      "sequence": 8,
+      "action": "CABIN REPORT",
+      "conditionOrTarget": "RECEIVE CABIN READY INDICATION OR PURSER REPORT",
+      "departure": "both",
+      "pdfPages": [
+        3254
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PF",
+      "sequence": 9,
+      "action": "TAXI CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3254
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 1,
+      "action": "TAXI CLEARANCE",
+      "conditionOrTarget": "OBTAIN",
+      "departure": "both",
+      "pdfPages": [
+        3249
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 2,
+      "action": "BRAKE FAN",
+      "conditionOrTarget": "AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3249
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 3,
+      "action": "BRAKE PRESSURE",
+      "conditionOrTarget": "CHECK ZERO DURING BRAKE CHECK — IAE EFFECTIVITY MSN 01204–02290",
+      "departure": "both",
+      "pdfPages": [
+        3249
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 4,
+      "action": "FLIGHT CONTROLS",
+      "conditionOrTarget": "CHECK",
+      "departure": "both",
+      "pdfPages": [
+        3250
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 5,
+      "action": "ATC CLEARANCE",
+      "conditionOrTarget": "CONFIRM",
+      "departure": "both",
+      "pdfPages": [
+        3250
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 6,
+      "action": "FCU ALTITUDE / HEADING",
+      "conditionOrTarget": "SET PER CLEARANCE",
+      "departure": "both",
+      "pdfPages": [
+        3250
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 7,
+      "action": "BOTH FLIGHT DIRECTORS",
+      "conditionOrTarget": "CHECK ON",
+      "departure": "both",
+      "pdfPages": [
+        3250
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 8,
+      "action": "PFD / ND",
+      "conditionOrTarget": "CHECK",
+      "departure": "both",
+      "pdfPages": [
+        3250
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 9,
+      "action": "AUTO BRK MAX",
+      "conditionOrTarget": "ON",
+      "departure": "both",
+      "pdfPages": [
+        3251
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 10,
+      "action": "TERR ON ND",
+      "conditionOrTarget": "AS RQRD",
+      "departure": "both",
+      "pdfPages": [
+        3252
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 11,
+      "action": "ATC CODE / MODE",
+      "conditionOrTarget": "CONFIRM / SET FOR TAKEOFF",
+      "departure": "both",
+      "pdfPages": [
+        3252
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 12,
+      "action": "ENG MODE selector",
+      "conditionOrTarget": "AS RQRD",
+      "departure": "both",
+      "pdfPages": [
+        3252
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 13,
+      "action": "RADAR / PWS",
+      "conditionOrTarget": "ON / AUTO",
+      "departure": "both",
+      "pdfPages": [
+        3253
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 14,
+      "action": "T.O CONFIG pb",
+      "conditionOrTarget": "TEST; OBSERVE T.O CONFIG NORMAL ON EWD",
+      "departure": "both",
+      "pdfPages": [
+        3254
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 15,
+      "action": "T.O MEMO",
+      "conditionOrTarget": "CHECK NO BLUE",
+      "departure": "both",
+      "pdfPages": [
+        3254
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 16,
+      "action": "CABIN REPORT",
+      "conditionOrTarget": "RECEIVE CABIN READY INDICATION OR PURSER REPORT",
+      "departure": "both",
+      "pdfPages": [
+        3254
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "sequence": 17,
+      "action": "TAXI CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3254
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "line-up",
+      "role": "PF",
+      "sequence": 1,
+      "action": "TAKEOFF RUNWAY",
+      "conditionOrTarget": "CONFIRM",
+      "departure": "both",
+      "pdfPages": [
+        3270
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "line-up",
+      "role": "PF",
+      "sequence": 2,
+      "action": "APPROACH PATH",
+      "conditionOrTarget": "CLEAR OF TRAFFIC",
+      "departure": "both",
+      "pdfPages": [
+        3271
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "line-up",
+      "role": "PF",
+      "sequence": 3,
+      "action": "STROBE",
+      "conditionOrTarget": "ON TO ENTER OR CROSS RUNWAY",
+      "departure": "both",
+      "pdfPages": [
+        3271
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "line-up",
+      "role": "PF",
+      "sequence": 4,
+      "action": "SLIDING TABLE / EFB",
+      "conditionOrTarget": "STOW TABLE AND UNMOUNTED EFB; TRANSMITTING MODE PER OPERATOR POLICY",
+      "departure": "both",
+      "pdfPages": [
+        3272
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "line-up",
+      "role": "PF",
+      "sequence": 5,
+      "action": "LINE-UP CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3272
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "sequence": 1,
+      "action": "BRAKE FANS",
+      "conditionOrTarget": "IF ON: APPLY AIRCRAFT-SPECIFIC TEMPERATURE LIMIT / DELAY TAKEOFF AS REQUIRED, THEN OFF",
+      "departure": "both",
+      "pdfPages": [
+        3270
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "sequence": 2,
+      "action": "LINE-UP CLEARANCE",
+      "conditionOrTarget": "OBTAIN",
+      "departure": "both",
+      "pdfPages": [
+        3270
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "sequence": 3,
+      "action": "TCAS mode selector",
+      "conditionOrTarget": "TA/RA DEFAULT; TA ONLY FOR IDENTIFIED OPERATOR PROCEDURES",
+      "departure": "both",
+      "pdfPages": [
+        3270
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "sequence": 4,
+      "action": "TAKEOFF RUNWAY",
+      "conditionOrTarget": "CONFIRM",
+      "departure": "both",
+      "pdfPages": [
+        3270
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "sequence": 5,
+      "action": "APPROACH PATH",
+      "conditionOrTarget": "CLEAR OF TRAFFIC",
+      "departure": "both",
+      "pdfPages": [
+        3271
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "sequence": 6,
+      "action": "PACKS 1 AND 2",
+      "conditionOrTarget": "AS RQRD",
+      "departure": "both",
+      "pdfPages": [
+        3271
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "sequence": 7,
+      "action": "SLIDING TABLE / EFB",
+      "conditionOrTarget": "STOW TABLE AND UNMOUNTED EFB; TRANSMITTING MODE PER OPERATOR POLICY",
+      "departure": "both",
+      "pdfPages": [
+        3272
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "sequence": 8,
+      "action": "CABIN CREW",
+      "conditionOrTarget": "ADVISE",
+      "departure": "both",
+      "pdfPages": [
+        3272
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "sequence": 9,
+      "action": "LINE-UP CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3272
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "climb-acceleration",
+      "role": "PM",
+      "sequence": 1,
+      "action": "FLAPS ZERO",
+      "conditionOrTarget": "AT S SPEED, ON PF ORDER",
+      "departure": "both",
+      "pdfPages": [
+        3280
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "climb-acceleration",
+      "role": "PM",
+      "sequence": 2,
+      "action": "GND SPLRS",
+      "conditionOrTarget": "DISARM",
+      "departure": "both",
+      "pdfPages": [
+        3280
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "climb-acceleration",
+      "role": "PM",
+      "sequence": 3,
+      "action": "L/G",
+      "conditionOrTarget": "CHECK UP",
+      "departure": "both",
+      "pdfPages": [
+        3282
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "climb-acceleration",
+      "role": "PM",
+      "sequence": 4,
+      "action": "NOSE / RWY TURN OFF",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3282
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "climb-acceleration",
+      "role": "PM",
+      "sequence": 5,
+      "action": "OTHER EXTERIOR LIGHTS",
+      "conditionOrTarget": "AS REQUIRED; LAND MAY REMAIN ON PER POLICY",
+      "departure": "both",
+      "pdfPages": [
+        3282
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-takeoff",
+      "role": "PM",
+      "sequence": 1,
+      "action": "APU BLEED",
+      "conditionOrTarget": "OFF IF APU SUPPLIED AIR CONDITIONING DURING TAKEOFF",
+      "departure": "both",
+      "pdfPages": [
+        3283
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-takeoff",
+      "role": "PM",
+      "sequence": 2,
+      "action": "APU MASTER",
+      "conditionOrTarget": "OFF IF APU SUPPLIED AIR CONDITIONING DURING TAKEOFF",
+      "departure": "both",
+      "pdfPages": [
+        3283
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-takeoff",
+      "role": "PM",
+      "sequence": 3,
+      "action": "ENGINE MODE",
+      "conditionOrTarget": "IGN/START IN SEVERE TURBULENCE OR HEAVY RAIN; OTHERWISE AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3283
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-takeoff",
+      "role": "PM",
+      "sequence": 4,
+      "action": "TCAS",
+      "conditionOrTarget": "TA/RA IF TAKEOFF USED TA ONLY",
+      "departure": "both",
+      "pdfPages": [
+        3283
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-takeoff",
+      "role": "PM",
+      "sequence": 5,
+      "action": "ANTI ICE",
+      "conditionOrTarget": "ENG AS REQUIRED IN ICING EXCEPT CLIMB / CRUISE SAT BELOW -40 C; WING AS REQUIRED / ON WITH EVIDENCE OF ICE",
+      "departure": "both",
+      "pdfPages": [
+        3283
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-climb",
+      "role": "PF",
+      "sequence": 1,
+      "action": "EFIS OPTIONS",
+      "conditionOrTarget": "CSTR · GRID MORA",
+      "departure": "both",
+      "pdfPages": [
+        3289
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "ten-thousand-climb",
+      "role": "PM",
+      "sequence": 1,
+      "action": "LAND L + R switches",
+      "conditionOrTarget": "RETRACT",
+      "departure": "both",
+      "pdfPages": [
+        3289
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "ten-thousand-climb",
+      "role": "PM",
+      "sequence": 2,
+      "action": "SEAT BELT sw",
+      "conditionOrTarget": "AS RQRD",
+      "departure": "both",
+      "pdfPages": [
+        3289
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-climb",
+      "role": "PM",
+      "sequence": 3,
+      "action": "EFIS OPTIONS",
+      "conditionOrTarget": "ARPT",
+      "departure": "both",
+      "pdfPages": [
+        3289
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "ten-thousand-climb",
+      "role": "PM",
+      "sequence": 4,
+      "action": "ECAM MEMO",
+      "conditionOrTarget": "REVIEW",
+      "departure": "both",
+      "pdfPages": [
+        3290
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "ten-thousand-climb",
+      "role": "PM",
+      "sequence": 5,
+      "action": "NAVAIDS",
+      "conditionOrTarget": "CLEAR MANUALLY TUNED VORS",
+      "departure": "both",
+      "pdfPages": [
+        3290
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-climb",
+      "role": "PM",
+      "sequence": 6,
+      "action": "SECONDARY FLIGHT PLAN",
+      "conditionOrTarget": "AS REQUIRED; RECOPY ACTIVE PLAN IF IMMEDIATE RETURN PLAN USED",
+      "departure": "both",
+      "pdfPages": [
+        3290
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-climb",
+      "role": "PM",
+      "sequence": 7,
+      "action": "OPT FL / REC MAX FL",
+      "conditionOrTarget": "CHECK ON PROG PAGE",
+      "departure": "both",
+      "pdfPages": [
+        3290
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PF",
+      "sequence": 1,
+      "action": "EFIS option pb",
+      "conditionOrTarget": "CSTR",
+      "departure": "both",
+      "pdfPages": [
+        3311
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PF",
+      "sequence": 2,
+      "action": "ILS / LS pb",
+      "conditionOrTarget": "AS RQRD",
+      "departure": "both",
+      "pdfPages": [
+        3311
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PF",
+      "sequence": 3,
+      "action": "NAVAIDS",
+      "conditionOrTarget": "TUNE / IDENTIFY APPROPRIATE NAVAIDS; MANUALLY SELECT REFERENCE FOR NDB APPROACH",
+      "departure": "both",
+      "pdfPages": [
+        3311
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PF",
+      "sequence": 4,
+      "action": "NAVIGATION ACCURACY",
+      "conditionOrTarget": "IF GPS PRIMARY LOST: MONITOR REQUIRED ACCURACY ON PROG PAGE",
+      "departure": "both",
+      "pdfPages": [
+        3313
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PF",
+      "sequence": 5,
+      "action": "APPROACH-SPECIFIC NAVIGATION",
+      "conditionOrTarget": "FOR FINAL APP / FPA: CHECK NAV ACCURACY; FOR RNAV CHECK GPS PRIMARY; APPLY APPROACH-SPECIFIC BARO CROSSCHECK",
+      "departure": "both",
+      "pdfPages": [
+        3341,
+        3352,
+        3353
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PF",
+      "sequence": 6,
+      "action": "APPROACH CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3313
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PM",
+      "sequence": 1,
+      "action": "LAND L + R switches",
+      "conditionOrTarget": "ON",
+      "departure": "both",
+      "pdfPages": [
+        3311
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PM",
+      "sequence": 2,
+      "action": "SEAT BELTS",
+      "conditionOrTarget": "ON",
+      "departure": "both",
+      "pdfPages": [
+        3311
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PM",
+      "sequence": 3,
+      "action": "EFIS option pb",
+      "conditionOrTarget": "CSTR",
+      "departure": "both",
+      "pdfPages": [
+        3311
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PM",
+      "sequence": 4,
+      "action": "ILS / LS pb",
+      "conditionOrTarget": "AS RQRD",
+      "departure": "both",
+      "pdfPages": [
+        3311
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PM",
+      "sequence": 5,
+      "action": "ENG MODE selector",
+      "conditionOrTarget": "IGN/START FOR STANDING WATER OR EXPECTED HEAVY RAIN / SEVERE TURBULENCE IN APPROACH OR GO-AROUND",
+      "departure": "both",
+      "pdfPages": [
+        3313
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "ten-thousand-descent",
+      "role": "PM",
+      "sequence": 6,
+      "action": "APPROACH CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3313
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PF",
+      "sequence": 1,
+      "action": "GND SPLRS",
+      "conditionOrTarget": "DISARM",
+      "departure": "both",
+      "pdfPages": [
+        3381
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PF",
+      "sequence": 2,
+      "action": "EXTERIOR LIGHTS",
+      "conditionOrTarget": "AFTER VACATING: LAND RETRACT, STROBE AUTO, NOSE TAXI",
+      "departure": "both",
+      "pdfPages": [
+        3382
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PF",
+      "sequence": 3,
+      "action": "OTHER EXTERIOR LIGHTS",
+      "conditionOrTarget": "AS REQUIRED; SET STROBE ON FOR RUNWAY CROSSING",
+      "departure": "both",
+      "pdfPages": [
+        3382
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PF",
+      "sequence": 4,
+      "action": "AFTER LANDING CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3386
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PM",
+      "sequence": 1,
+      "action": "RADAR / PWS",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3382
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PM",
+      "sequence": 2,
+      "action": "ENG MODE selector",
+      "conditionOrTarget": "NORM",
+      "departure": "both",
+      "pdfPages": [
+        3382
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PM",
+      "sequence": 3,
+      "action": "FLAPS",
+      "conditionOrTarget": "RETRACT UNLESS ICING/SLUSH/SNOW OR HOT-WEATHER CONDITION APPLIES",
+      "departure": "both",
+      "pdfPages": [
+        3382
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PM",
+      "sequence": 4,
+      "action": "TCAS / ATC",
+      "conditionOrTarget": "TCAS STBY OR XPNDR PER FIT; ATC PER AIRPORT REQUIREMENTS",
+      "departure": "both",
+      "pdfPages": [
+        3383
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PM",
+      "sequence": 5,
+      "action": "APU",
+      "conditionOrTarget": "IF REQUIRED: MASTER ON, START ON, MONITOR AVAIL",
+      "departure": "both",
+      "pdfPages": [
+        3383
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PM",
+      "sequence": 6,
+      "action": "ANTI ICE",
+      "conditionOrTarget": "AS RQRD",
+      "departure": "both",
+      "pdfPages": [
+        3384
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PM",
+      "sequence": 7,
+      "action": "BRAKE TEMPERATURE",
+      "conditionOrTarget": "MONITOR WHEEL PAGE FOR DISCREPANCIES / HIGH TEMPERATURE; APPLY AIRCRAFT-SPECIFIC MAINTENANCE CRITERIA",
+      "departure": "both",
+      "pdfPages": [
+        3385
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PM",
+      "sequence": 8,
+      "action": "BRAKE FANS",
+      "conditionOrTarget": "AS REQUIRED; APPLY AIRCRAFT-SPECIFIC TIMING / TEMPERATURE CRITERIA",
+      "departure": "both",
+      "pdfPages": [
+        3386
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "after-landing",
+      "role": "PM",
+      "sequence": 9,
+      "action": "AFTER LANDING CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3386
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 1,
+      "action": "ACCU PRESS",
+      "conditionOrTarget": "CHECK",
+      "departure": "both",
+      "pdfPages": [
+        3390
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 2,
+      "action": "PARK BRAKE handle",
+      "conditionOrTarget": "ON; APPLY HOT-BRAKE PRECAUTIONS AND VERIFY PRESSURE",
+      "departure": "both",
+      "pdfPages": [
+        3390
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 3,
+      "action": "BRAKE PRESSURE",
+      "conditionOrTarget": "KEEP PEDALS PRESSED UNTIL BOTH NEEDLES ABOVE GREEN AREA; VERIFY PRESSURE",
+      "departure": "both",
+      "pdfPages": [
+        3390
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 4,
+      "action": "YELLOW ELEC PUMP",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3391
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 5,
+      "action": "ENGINE COOLING / POWER",
+      "conditionOrTarget": "AT LEAST 3 MIN AT / NEAR IDLE SINCE HIGH THRUST; CHECK APU AVAIL OR EXT PWR AVAIL THEN SELECT EXT PWR ON",
+      "departure": "both",
+      "pdfPages": [
+        3391
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 6,
+      "action": "ALL ENG MASTER LEVERS",
+      "conditionOrTarget": "OFF AFTER COOLING / POWER PREREQUISITES",
+      "departure": "both",
+      "pdfPages": [
+        3391
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 7,
+      "action": "ENGINE PARAMETERS",
+      "conditionOrTarget": "CHECK DECREASING; WAIT UNTIL ALL ENGINES SPOOLED DOWN BEFORE BEACON OFF",
+      "departure": "both",
+      "pdfPages": [
+        3392
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 8,
+      "action": "WING / BEACON",
+      "conditionOrTarget": "OFF AFTER ENGINE PARAMETERS CHECK",
+      "departure": "both",
+      "pdfPages": [
+        3393
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 9,
+      "action": "OTHER EXTERIOR LIGHTS",
+      "conditionOrTarget": "AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3393
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 10,
+      "action": "SLIDES",
+      "conditionOrTarget": "CHECK DISARMED",
+      "departure": "both",
+      "pdfPages": [
+        3394
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 11,
+      "action": "SEAT BELTS sw",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3394
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 12,
+      "action": "GROUND CONTACT",
+      "conditionOrTarget": "ESTABLISH COMMUNICATION; CHECK CHOCKS IN PLACE",
+      "departure": "both",
+      "pdfPages": [
+        3395
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 13,
+      "action": "PARK BRAKE",
+      "conditionOrTarget": "AS REQUIRED FOR GROUND HANDLING",
+      "departure": "both",
+      "pdfPages": [
+        3396
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 14,
+      "action": "PARKING CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3397
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 15,
+      "action": "EFB",
+      "conditionOrTarget": "TRANSMITTING MODE AS REQUIRED; CLOSE FLIGHT",
+      "departure": "both",
+      "pdfPages": [
+        3397
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PF",
+      "sequence": 16,
+      "action": "DISPLAY UNITS",
+      "conditionOrTarget": "DIM EFIS, ECAM AND MCDU",
+      "departure": "both",
+      "pdfPages": [
+        3397
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 1,
+      "action": "ANTI ICE",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3390
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 2,
+      "action": "APU BLEED pb-sw",
+      "conditionOrTarget": "IF APU USED: ON IMMEDIATELY BEFORE ENGINE SHUTDOWN",
+      "departure": "both",
+      "pdfPages": [
+        3391
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 3,
+      "action": "FUEL PUMPS / CTR TRANSFER CONTROLS",
+      "conditionOrTarget": "OFF PER INSTALLED FUEL SYSTEM",
+      "departure": "both",
+      "pdfPages": [
+        3393
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 4,
+      "action": "ATC",
+      "conditionOrTarget": "STBY",
+      "departure": "both",
+      "pdfPages": [
+        3394
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 5,
+      "action": "IRS PERFORMANCE",
+      "conditionOrTarget": "CHECK POSITION MONITOR DEVIATION AGAINST SOP-22 TABLE FOR ACCUMULATED BLOCK TIME",
+      "departure": "both",
+      "pdfPages": [
+        3394
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 6,
+      "action": "FUEL QUANTITY",
+      "conditionOrTarget": "CHECK FOB + FUEL USED AGAINST DEPARTURE FOB; UNUSUAL DISCREPANCY REQUIRES MAINTENANCE",
+      "departure": "both",
+      "pdfPages": [
+        3396
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 7,
+      "action": "BRAKE FAN",
+      "conditionOrTarget": "AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3397
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 8,
+      "action": "PARKING CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3397
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 9,
+      "action": "ECAM STATUS",
+      "conditionOrTarget": "SELECT FOR LOGBOOK — CM1",
+      "departure": "both",
+      "pdfPages": [
+        3397
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 10,
+      "action": "LOGBOOK",
+      "conditionOrTarget": "COMPLETE ACCORDING TO STATUS PAGE — CM1",
+      "departure": "both",
+      "pdfPages": [
+        3397
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 11,
+      "action": "EFB",
+      "conditionOrTarget": "TRANSMITTING MODE AS REQUIRED; CLOSE FLIGHT",
+      "departure": "both",
+      "pdfPages": [
+        3397
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "parking",
+      "role": "PM",
+      "sequence": 12,
+      "action": "DISPLAY UNITS",
+      "conditionOrTarget": "DIM EFIS, ECAM AND MCDU",
+      "departure": "both",
+      "pdfPages": [
+        3397
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PM",
+      "sequence": 1,
+      "action": "SECURING PREREQUISITES",
+      "conditionOrTarget": "LAST PASSENGER HAS LEFT; SECURING INTENDED; RELEVANT ADVERSE-WEATHER PROCEDURES CONSIDERED",
+      "departure": "both",
+      "pdfPages": [
+        3399
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PM",
+      "sequence": 2,
+      "action": "PARK BRAKE",
+      "conditionOrTarget": "CHECK ON",
+      "departure": "both",
+      "pdfPages": [
+        3399
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PM",
+      "sequence": 3,
+      "action": "SLATS / FLAPS",
+      "conditionOrTarget": "ENSURE RETRACTED BEFORE ALL ADIRS OFF; AFTER ICING / SLUSH / SNOW FIRST CONFIRM GROUND CLEARANCE AFTER ENGINE SHUTDOWN",
+      "departure": "both",
+      "pdfPages": [
+        3383
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PM",
+      "sequence": 4,
+      "action": "IR MODE SELECTORS",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3399
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PM",
+      "sequence": 5,
+      "action": "ADIRS DATA SAVE",
+      "conditionOrTarget": "WAIT AT LEAST 10 S AFTER ALL IR OFF BEFORE ELECTRICAL SUPPLY OFF; COORDINATE WITH CM2",
+      "departure": "both",
+      "pdfPages": [
+        3399
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PM",
+      "sequence": 6,
+      "action": "CM1 WINDOW",
+      "conditionOrTarget": "CHECK CLOSED",
+      "departure": "both",
+      "pdfPages": [
+        3401
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PM",
+      "sequence": 7,
+      "action": "SECURING CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3401
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PM",
+      "sequence": 8,
+      "action": "EFB",
+      "conditionOrTarget": "CLOSE APPLICATIONS THEN SWITCH OFF ALL EFBs",
+      "departure": "both",
+      "pdfPages": [
+        3401
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 1,
+      "action": "SECURING PREREQUISITES",
+      "conditionOrTarget": "LAST PASSENGER HAS LEFT; SECURING INTENDED; RELEVANT ADVERSE-WEATHER PROCEDURES CONSIDERED",
+      "departure": "both",
+      "pdfPages": [
+        3399
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 2,
+      "action": "OXYGEN CREW SUPPLY",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3399
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 3,
+      "action": "EXTERIOR LIGHTS",
+      "conditionOrTarget": "OFF / LANDING LIGHTS RETRACT",
+      "departure": "both",
+      "pdfPages": [
+        3400
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 4,
+      "action": "MAINTENANCE BUS",
+      "conditionOrTarget": "AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3400
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 5,
+      "action": "APU BLEED",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3400
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 6,
+      "action": "ADIRS POWER-OFF COORDINATION",
+      "conditionOrTarget": "CONFIRM CM1 SET ALL IR OFF AND AT LEAST 10 S ELAPSED BEFORE REMOVING ELECTRICAL SUPPLY",
+      "departure": "both",
+      "pdfPages": [
+        3399
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 7,
+      "action": "EXTERNAL POWER",
+      "conditionOrTarget": "AS REQUIRED",
+      "departure": "both",
+      "pdfPages": [
+        3400
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 8,
+      "action": "APU MASTER",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3400
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 9,
+      "action": "EMERGENCY EXIT LIGHTS",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3400
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 10,
+      "action": "SIGNS",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3400
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 11,
+      "action": "APU FLAP",
+      "conditionOrTarget": "CONFIRM FULLY CLOSED — ABOUT 2 MIN AFTER APU AVAIL GOES OUT — BEFORE BATTERIES OFF",
+      "departure": "both",
+      "pdfPages": [
+        3400
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 12,
+      "action": "BATTERIES",
+      "conditionOrTarget": "OFF",
+      "departure": "both",
+      "pdfPages": [
+        3400
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 13,
+      "action": "CM2 WINDOW",
+      "conditionOrTarget": "CHECK CLOSED",
+      "departure": "both",
+      "pdfPages": [
+        3401
+      ],
+      "assessment": "control-input"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 14,
+      "action": "SECURING CHECKLIST",
+      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "departure": "both",
+      "pdfPages": [
+        3401
+      ],
+      "assessment": "self-check"
+    },
+    {
+      "phase": "securing",
+      "role": "PF",
+      "sequence": 15,
+      "action": "EFB",
+      "conditionOrTarget": "CLOSE APPLICATIONS THEN SWITCH OFF ALL EFBs",
+      "departure": "both",
+      "pdfPages": [
+        3401
+      ],
+      "assessment": "self-check"
+    }
+  ]
+}

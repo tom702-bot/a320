@@ -63,7 +63,8 @@ function apply(controls){
  [['clr_l',371],['sts',448],['rcl',474],['clr_r',500]].forEach(([k,x])=>ped('ecam_'+k,x,174,20,12));
  ['1','2','3','4','5','6','7','0','clr'].forEach((k,i)=>ped('atc_code_'+k,610+i%3*20,581+Math.floor(i/3)*18,17,14));
  // Observation/data acknowledgements live in a separate tray, never on imaginary cockpit switches.
- let n=0;controls.forEach(c=>{if(mapped.has(c.id))return;c.panel='checks';c.photoMapped=false;c.observation=true;c.extension=false;c.zone=false;c.x=2+n%4*24.5;c.y=2+Math.floor(n/4)*5.4;c.w=23;c.h=4.8;n++;});
+ const rowHeight=96/Math.ceil(controls.filter(c=>!mapped.has(c.id)).length/4);
+ let n=0;controls.forEach(c=>{if(mapped.has(c.id))return;c.panel='checks';c.photoMapped=false;c.observation=true;c.extension=false;c.zone=false;c.x=2+n%4*24.5;c.y=2+Math.floor(n/4)*rowHeight;c.w=23;c.h=rowHeight-.6;n++;});
  return controls;
 }
 const api={atlas,apply};if(typeof module!=='undefined'&&module.exports)module.exports=api;if(root)root.A320PhotoLayout=api;

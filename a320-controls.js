@@ -314,6 +314,13 @@ exsel('maintenance_bus','overhead','MAINT BUS',['OFF','ON'],'OFF');
 excheck('efb_close_cm1','checks','CM1 EFB CLOSE');excheck('efb_close_cm2','checks','CM2 EFB CLOSE');excheck('securing_checklist','checks','SECURING CHECKLIST');
 excheck('flight_controls_check','flightdeck','FLIGHT CONTROL CHECK');excheck('brakes_check','flightdeck','BRAKE RESPONSE CHECK');excheck('ground_services','checks','GROUND SERVICES CHECK');
 exsel('brake_fan','flightdeck','BRAKE FAN',['OFF','ON'],'OFF');
+[
+ ['sop_prerequisites','PROCEDURE PREREQUISITES'],['sop_timing','TIMING / POWER-OFF CHECK'],
+ ['sop_loadsheet','FINAL LOADSHEET'],['sop_engine_monitor','ENGINE INDICATIONS'],
+ ['sop_flap_position','SLAT / FLAP POSITION'],['sop_cabin_report','CABIN READY REPORT'],
+ ['sop_brake_temp','BRAKE TEMPERATURE'],['sop_logbook','AIRCRAFT LOGBOOK']
+].forEach(([id,label])=>excheck(id,'checks',label));
+controls.forEach(c=>{if(c.id==='nw_strg_memo')c.label='ECAM MEMO — NW STRG DISC';});
 // Give extension controls a distinct strip in each existing panel; all hit boxes stay unique.
 const count={};controls.forEach(c=>{c.y*=.67;c.h*=.67;});
 additions.forEach(c=>{const i=count[c.panel]||0;count[c.panel]=i+1;const cols=c.panel==='checks'?4:10;

@@ -35,7 +35,7 @@ assert.equal(flow.gradeInput(incorrect,'apu_bleed','OFF').grade,'out-of-order');
 assert.equal(incorrect.index,0);
 const html=fs.readFileSync(__dirname+'/flows.html','utf8');
 const sw=fs.readFileSync(__dirname+'/sw.js','utf8');
-for(const name of ['cockpit-native.js?v=47','cockpit-native.css?v=47','cockpit-systems.js?v=47','flow-procedures.js?v=47','cockpit-view.js?v=47','cockpit-view.css?v=47','flow-evidence.js?v=47'])assert(html.includes(name)&&sw.includes(name),name+' offline inclusion');
+for(const name of ['cockpit-native.js?v=48','cockpit-native.css?v=48','cockpit-systems.js?v=48','flow-procedures.js?v=48','cockpit-view.js?v=48','cockpit-view.css?v=48','flow-evidence.js?v=48'])assert(html.includes(name)&&sw.includes(name),name+' offline inclusion');
 console.log(`Cockpit checks passed: ${runs} complete role/context runs, ${inputs} control actions, source coverage, corrected EFIS roles/order and individual preparation controls.`);
 const systems=require('./cockpit-systems.js');
 const model=systems.create();
@@ -47,4 +47,4 @@ for(const key of ['1','2','3','4'])operate('atc_code_'+key);assert.equal(avionic
 const antiIceRun=flow.createRun('after-start','PF');while(antiIceRun.steps[antiIceRun.index].contextRule!=='anti-ice')flow.gradeStepChoice(antiIceRun,antiIceRun.index);const aiIndex=antiIceRun.index;flow.gradeInput(antiIceRun,'anti_ice_eng_1','OFF');assert.equal(antiIceRun.index,aiIndex,'all anti-ice controls must be operated');
 console.log('Cockpit systems passed: every catalog control responds, MCDU entries, radios, ATC, ECAM and grouped anti-ice.');
 
-assert.equal(flow.CONTROL_DEFS.filter(c=>c.photoMapped).length,400);assert(flow.CONTROL_DEFS.filter(c=>!c.photoMapped).every(c=>c.panel==='checks'));assert(html.includes('cockpit-photo-layout.js?v=47')&&sw.includes('cockpit-photo-layout.js?v=47'));assert(sw.includes('./fbw-cockpit.png'));
+assert.equal(flow.CONTROL_DEFS.filter(c=>c.photoMapped).length,400);assert(flow.CONTROL_DEFS.filter(c=>!c.photoMapped).every(c=>c.panel==='checks'));assert(html.includes('cockpit-photo-layout.js?v=48')&&sw.includes('cockpit-photo-layout.js?v=48'));assert(sw.includes('./fbw-cockpit.png'));
