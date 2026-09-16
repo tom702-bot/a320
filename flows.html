@@ -69,8 +69,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 @media(max-width:760px){.flow-map-shell{min-width:0;grid-template-columns:1fr;padding:6px}.flow-map-zone.overhead,.flow-map-zone.flightdeck,.flow-map-zone.pedestal,.flow-map-zone.checks{grid-column:1/-1;min-height:175px}.flow-map-zone.overhead{min-height:195px}.flow-zone-items,.flow-map-zone.pedestal .flow-zone-items,.flow-map-zone.checks .flow-zone-items{grid-template-columns:repeat(2,minmax(0,1fr))}.flow-item{padding-left:32px}.flow-map-path polyline{stroke-width:3}}
 .cockpit-control[data-grade=conditional]{border-color:#e2cc78;box-shadow:0 0 0 2px #e2cc78,0 0 16px rgba(226,204,120,.4)}.cockpit-control[data-grade=conditional]::after{content:"CONDITIONAL";background:#e2cc78}.photo-crop .cockpit-control[data-grade=conditional]{--grade:#e2cc78;box-shadow:none}
 </style>
-<link rel="stylesheet" href="cockpit-view.css?v=48">
-<link rel="stylesheet" href="cockpit-native.css?v=48">
+<link rel="stylesheet" href="cockpit-view.css?v=49">
+<link rel="stylesheet" href="cockpit-native.css?v=49">
 </head>
 <body>
 <main class="page">
@@ -96,7 +96,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
     <div><div class="config-label">BEFORE START MOVEMENT</div><div class="segment-group" id="departureButtons"><button class="segment" data-value="pushback" aria-pressed="true">PUSHBACK</button><button class="segment" data-value="stationary" aria-pressed="false">STATIONARY START</button></div></div>
     <div class="phase-brief" id="phaseBrief"></div>
     <div class="actions"><button class="btn primary" id="beginFlow">BEGIN FLOW &rarr;</button></div>
-    <p class="scope"><b>SOP REVIEW:</b> Checked against the supplied Ansett FCOM SOP text, 21 May 2026. SOP text takes precedence over the older tasksharing table. This trainer covers selected cockpit flows, including two-engine taxi; it does not cover the whole SOP chapter. Start preparation after the preliminary checks. Aircraft-specific equipment, observations, timing and flight data require self-checks. <a href="SOP_AUDIT.md" target="_blank" rel="noopener">Review changes and coverage</a>.</p>
+    <p class="scope"><b>COCKPIT PRACTICE:</b> Communication exchanges, clearance requests and announcements are omitted.  Checked against the supplied Ansett FCOM SOP text, 21 May 2026. SOP text takes precedence over the older tasksharing table. This trainer covers selected cockpit flows, including two-engine taxi; it does not cover the whole SOP chapter. Start preparation after the preliminary checks. Aircraft-specific equipment, observations, timing and flight data require self-checks. <a href="SOP_AUDIT.md" target="_blank" rel="noopener">Review changes and coverage</a>.</p>
   </section>
 
   <section id="trainer" hidden>
@@ -187,15 +187,15 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var
 
   <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE. VERIFY AGAINST CURRENT APPROVED PROCEDURES.</p>
 </main>
-<script src="cockpit-photo-layout.js?v=48"></script>
-<script src="a320-controls.js?v=48"></script>
-<script src="cockpit-systems.js?v=48"></script>
-<script src="flow-sop.js?v=48"></script>
-<script src="flow-procedures.js?v=48"></script>
-<script src="cockpit-native.js?v=48"></script>
-<script src="flow-evidence.js?v=48"></script>
-<script src="cockpit-view.js?v=48"></script>
-<script src="flow-sim.js?v=48"></script>
+<script src="cockpit-photo-layout.js?v=49"></script>
+<script src="a320-controls.js?v=49"></script>
+<script src="cockpit-systems.js?v=49"></script>
+<script src="flow-sop.js?v=49"></script>
+<script src="flow-procedures.js?v=49"></script>
+<script src="cockpit-native.js?v=49"></script>
+<script src="flow-evidence.js?v=49"></script>
+<script src="cockpit-view.js?v=49"></script>
+<script src="flow-sim.js?v=49"></script>
 <script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});}
 </script>

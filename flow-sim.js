@@ -486,7 +486,7 @@ function initBrowser(){
   }
   function renderCockpit(){
     if(cockpitRendered)return;
-    CONTROL_DEFS.forEach(function(def){const layer=document.querySelector('.control-layer[data-layer="'+def.panel+'"]');if(layer)layer.appendChild(renderControl(def));});
+    CONTROL_DEFS.filter(def=>!def.practiceOmitted).forEach(function(def){const layer=document.querySelector('.control-layer[data-layer="'+def.panel+'"]');if(layer)layer.appendChild(renderControl(def));});
     cockpitRendered=true;
     nativeCockpit=root.A320CockpitNative.mount();
     resetControlStates();
@@ -531,7 +531,7 @@ function initBrowser(){
     });
   }
   function crewLoopText(){
-    return selectedRole==="PM"?"CM2 / PF CUE → CM1 / PM ACTION → CM1 CONFIRMS":"CM2 / PF ACTION → CM1 / PM MONITORS";
+    return selectedRole+" · COCKPIT ACTIONS / INSTRUMENT CHECKS";
   }
 
   function clearControlGrades(){document.querySelectorAll(".cockpit-control[data-grade]").forEach(function(el){delete el.dataset.grade;});}
@@ -656,8 +656,8 @@ function initBrowser(){
     if(selectedView!=="diagram")renderCockpit();
     if(!cockpitView&&root.A320CockpitView){
       cockpitView=root.A320CockpitView.create({controls:CONTROL_DEFS});
-      CONTROL_DEFS.filter(def=>!def.id.startsWith('scan_')).forEach(def=>{const option=document.createElement('option');option.value=def.label;$('controlOptions').appendChild(option);});
-      $('controlSearch').onchange=function(){const term=this.value.toLowerCase();const def=CONTROL_DEFS.find(d=>d.label.toLowerCase()===term||d.id===term)||CONTROL_DEFS.find(d=>d.label.toLowerCase().includes(term));if(def&&term){cockpitView.locate(def.id);if(activeRun&&!exploration)activeRun.reveals++;this.value='';}};
+      CONTROL_DEFS.filter(def=>!def.practiceOmitted&&!def.id.startsWith('scan_')).forEach(def=>{const option=document.createElement('option');option.value=def.label;$('controlOptions').appendChild(option);});
+      $('controlSearch').onchange=function(){const term=this.value.toLowerCase();const def=CONTROL_DEFS.find(d=>!d.practiceOmitted&&(d.label.toLowerCase()===term||d.id===term))||CONTROL_DEFS.find(d=>!d.practiceOmitted&&d.label.toLowerCase().includes(term));if(def&&term){cockpitView.locate(def.id);if(activeRun&&!exploration)activeRun.reveals++;this.value='';}};
       $('followCamera').onclick=function(){followCamera=!followCamera;this.setAttribute('aria-pressed',String(followCamera));if(followCamera)moveToCurrent();};
       $('exploreCockpit').onclick=function(){exploration=!exploration;this.setAttribute('aria-pressed',String(exploration));if(activeRun)activeRun.reveals++;showFeedback('neutral',exploration?'EXPLORE COCKPIT':'FLOW RESUMED',exploration?'All controls operate. Flow grading is paused.':'Continue the selected role flow.');};
     }
@@ -676,7 +676,7 @@ function initBrowser(){
       $("sourceDetailBody").textContent="";
       const sourceLines=["Source: "+evidence.source.title+". SHA-256: "+evidence.source.sha256,
         "Selected scan: FCOM PDF pp. "+phase.sourcePages.join(', ')+". "+phase.evidence.reference,
-        phase.evidence.note,"Cockpit imagery is the FlyByWire A320 flight-deck reference. Preparation requires individual controls; physical observations, crew coordination and flight-specific data still require self-checks. Display responses support control practice and are not an aircraft systems model.",
+        phase.evidence.note,"Cockpit imagery is the FlyByWire A320 flight-deck reference. Preparation requires individual controls; physical observations and flight-specific data still require self-checks; communication exchanges are omitted. Display responses support control practice and are not an aircraft systems model.",
         "Session conditions: "+CONTEXT_BY_ID[selectedContext].description+" Phase transitions preset the next phase; engines, aircraft motion, MCDU entries and crew calls are not dynamically simulated."];
       sourceLines.forEach(function(line){const p=document.createElement('p');p.textContent=line;$("sourceDetailBody").appendChild(p);});
     }
@@ -702,7 +702,7 @@ function initBrowser(){
     $("completionScore").textContent=scored?pct+"% · "+(mastered?"UNASSISTED RECALL":selectedMode==="guided"?"GUIDED":"ASSISTED"):"NOT SCORED · CONDITIONAL";
     $("completion").classList.toggle("assisted",!mastered);
     $("completionText").textContent=activeRun.correct+" scored "+(activeRun.practiceView==="diagram"?"flow items":"control inputs")+" · "+activeRun.conditional+" conditional · "+activeRun.incorrect+" incorrect · "+activeRun.outOfOrder+" out of order · "+activeRun.hints+" hints · "+activeRun.reveals+" full reveals. Score covers modelled inputs only; self-checks are not verified.";
-    const key=activeRun.phaseId+":"+activeRun.role+":"+activeRun.seat+":"+activeRun.practiceView+":"+activeRun.contextId+":"+activeRun.departure+":sop48";const best=loadBest();
+    const key=activeRun.phaseId+":"+activeRun.role+":"+activeRun.seat+":"+activeRun.practiceView+":"+activeRun.contextId+":"+activeRun.departure+":cockpit49";const best=loadBest();
     const previous=best[key]||{};if(scored&&(!previous.score||pct>previous.score||(pct===previous.score&&mastered&&!previous.mastered))){best[key]={score:pct,mastered:mastered,hints:activeRun.hints,reveals:activeRun.reveals,date:new Date().toISOString()};saveBest(best);}
     const resultRecord={phaseId:activeRun.phaseId,score:pct,mastered:mastered};
     if(selectedSession==="sequence")sequenceResults[sequenceIndex]=resultRecord;else sequenceResults=[resultRecord];

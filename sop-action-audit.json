@@ -475,30 +475,6 @@
       "phase": "cockpit-preparation",
       "role": "PF",
       "sequence": 40,
-      "action": "VHF",
-      "conditionOrTarget": "CHECK TRANSMISSION / RECEPTION",
-      "departure": "both",
-      "pdfPages": [
-        3204
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "cockpit-preparation",
-      "role": "PF",
-      "sequence": 41,
-      "action": "HF",
-      "conditionOrTarget": "CHECK IF REQUIRED; NO HF TRANSMISSION DURING REFUELLING",
-      "departure": "both",
-      "pdfPages": [
-        3204
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "cockpit-preparation",
-      "role": "PF",
-      "sequence": 42,
       "action": "COCKPIT DOOR TEST",
       "conditionOrTarget": "FUNCTION / MECHANICAL OVERRIDE CHECK AS REQUIRED",
       "departure": "both",
@@ -510,7 +486,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 43,
+      "sequence": 41,
       "action": "COCKPIT DOOR",
       "conditionOrTarget": "NORM",
       "departure": "both",
@@ -522,7 +498,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 44,
+      "sequence": 42,
       "action": "SWITCHING PANEL",
       "conditionOrTarget": "ALL SELECTORS NORM",
       "departure": "both",
@@ -534,7 +510,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 45,
+      "sequence": 43,
       "action": "THRUST LEVERS",
       "conditionOrTarget": "IDLE",
       "departure": "both",
@@ -546,7 +522,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 46,
+      "sequence": 44,
       "action": "ENGINE MASTERS",
       "conditionOrTarget": "OFF",
       "departure": "both",
@@ -558,7 +534,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 47,
+      "sequence": 45,
       "action": "ENGINE MODE",
       "conditionOrTarget": "NORM",
       "departure": "both",
@@ -570,7 +546,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 48,
+      "sequence": 46,
       "action": "ACCU PRESS",
       "conditionOrTarget": "CHECK GREEN BAND",
       "departure": "both",
@@ -582,7 +558,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 49,
+      "sequence": 47,
       "action": "PARK BRAKE",
       "conditionOrTarget": "CHECK ON; APPLY HOT-BRAKE / CHOCK EXCEPTION WHEN REQUIRED",
       "departure": "both",
@@ -594,7 +570,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 50,
+      "sequence": 48,
       "action": "BRAKE PRESSURE",
       "conditionOrTarget": "CHECK NORMAL INDICATIONS",
       "departure": "both",
@@ -606,7 +582,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 51,
+      "sequence": 49,
       "action": "GRAVITY GEAR EXTENSION",
       "conditionOrTarget": "CHECK STOWED",
       "departure": "both",
@@ -618,7 +594,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 52,
+      "sequence": 50,
       "action": "ATC",
       "conditionOrTarget": "STBY",
       "departure": "both",
@@ -630,7 +606,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 53,
+      "sequence": 51,
       "action": "TCAS",
       "conditionOrTarget": "STBY",
       "departure": "both",
@@ -642,7 +618,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 54,
+      "sequence": 52,
       "action": "ALTITUDE REPORTING",
       "conditionOrTarget": "ON",
       "departure": "both",
@@ -654,7 +630,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 55,
+      "sequence": 53,
       "action": "ATC SYSTEM",
       "conditionOrTarget": "SELECT PER AP / RVSM REQUIREMENTS",
       "departure": "both",
@@ -666,7 +642,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 56,
+      "sequence": 54,
       "action": "ATC MESSAGES",
       "conditionOrTarget": "ERASE PREVIOUS FLIGHT MESSAGES",
       "departure": "both",
@@ -678,7 +654,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 57,
+      "sequence": 55,
       "action": "ADS",
       "conditionOrTarget": "CHECK ARMED IF INSTALLED",
       "departure": "both",
@@ -690,7 +666,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 58,
+      "sequence": 56,
       "action": "FMS POWER-UP TESTS",
       "conditionOrTarget": "ALLOW 3 MIN FOR TESTS; WAIT FOR PLEASE WAIT TO CLEAR BEFORE PRESSING MCDU KEYS",
       "departure": "both",
@@ -702,7 +678,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 59,
+      "sequence": 57,
       "action": "FMS DATA",
       "conditionOrTarget": "OPEN STATUS FOR AIRCRAFT / ENGINE TYPE AND DATABASE CHECK",
       "departure": "both",
@@ -714,7 +690,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 60,
+      "sequence": 58,
       "action": "AIRCRAFT / ENGINE / DATABASE",
       "conditionOrTarget": "VERIFY TYPE, VALID DATABASE AND STORED DATA",
       "departure": "both",
@@ -726,7 +702,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 61,
+      "sequence": 59,
       "action": "IDLE / PERF FACTOR",
       "conditionOrTarget": "CHECK APPLICABLE FACTORS",
       "departure": "both",
@@ -738,7 +714,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 62,
+      "sequence": 60,
       "action": "NAVAID DESELECTION",
       "conditionOrTarget": "DESELECT UNRELIABLE NAVAIDS PER NOTAMS",
       "departure": "both",
@@ -750,7 +726,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 63,
+      "sequence": 61,
       "action": "FMS INIT",
       "conditionOrTarget": "OPEN / ENTER BRIEFED INITIALISATION",
       "departure": "both",
@@ -762,7 +738,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 64,
+      "sequence": 62,
       "action": "IRS POSITION INITIALIZATION",
       "conditionOrTarget": "CONFIRM OR INSERT COORDINATES AS APPROPRIATE TO INSTALLED SYSTEM",
       "departure": "both",
@@ -774,7 +750,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 65,
+      "sequence": 63,
       "action": "FMS FLIGHT PLAN",
       "conditionOrTarget": "OPEN / PREPARE BRIEFED ROUTE",
       "departure": "both",
@@ -786,7 +762,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 66,
+      "sequence": 64,
       "action": "FMS SECONDARY PLAN",
       "conditionOrTarget": "OPEN / PREPARE AS APPROPRIATE",
       "departure": "both",
@@ -798,7 +774,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 67,
+      "sequence": 65,
       "action": "FMS RADIO NAV",
       "conditionOrTarget": "OPEN / CHECK REQUIRED NAVAIDS",
       "departure": "both",
@@ -810,7 +786,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 68,
+      "sequence": 66,
       "action": "FMS INIT B",
       "conditionOrTarget": "OPEN INIT FOR WEIGHT / FUEL ENTRIES",
       "departure": "both",
@@ -822,7 +798,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 69,
+      "sequence": 67,
       "action": "ZFW / ZFWCG / BLOCK FUEL",
       "conditionOrTarget": "INSERT AFTER OTHER ROUTE ENTRIES; CHECK WEIGHT AND FUEL DATA",
       "departure": "both",
@@ -834,7 +810,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 70,
+      "sequence": 68,
       "action": "FMS PERFORMANCE",
       "conditionOrTarget": "OPEN / ENTER TAKEOFF PERFORMANCE",
       "departure": "both",
@@ -846,7 +822,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 71,
+      "sequence": 69,
       "action": "TAKEOFF DATA",
       "conditionOrTarget": "CHECK SHIFT AS REQUIRED, V1 / VR / V2, THRUST DATA, THR RED / ACC / EO ACC AND FLAPS / THS",
       "departure": "both",
@@ -858,7 +834,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 72,
+      "sequence": 70,
       "action": "SPEED PRESELECTION",
       "conditionOrTarget": "CLIMB / CRUISE / DESCENT AS REQUIRED",
       "departure": "both",
@@ -870,7 +846,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 73,
+      "sequence": 71,
       "action": "DESTINATION QNH PRE-ENTRY",
       "conditionOrTarget": "IF APPLICABLE TO AIRCRAFT: INSERT QNH IN PERF APPR",
       "departure": "both",
@@ -882,7 +858,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 74,
+      "sequence": 72,
       "action": "FMS PREPARATION",
       "conditionOrTarget": "REVIEW ALL DATA AGAINST BRIEFING; PAGE SELECTION ALONE DOES NOT VERIFY ENTRIES",
       "departure": "both",
@@ -894,7 +870,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 75,
+      "sequence": 73,
       "action": "BAROMETRIC REFERENCE",
       "conditionOrTarget": "SET QNH / CROSSCHECK BRIEFED VALUE",
       "departure": "both",
@@ -906,7 +882,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 76,
+      "sequence": 74,
       "action": "FD",
       "conditionOrTarget": "CHECK ON",
       "departure": "both",
@@ -918,7 +894,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 77,
+      "sequence": 75,
       "action": "LS",
       "conditionOrTarget": "AS REQUIRED FOR DEPARTURE",
       "departure": "both",
@@ -930,7 +906,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 78,
+      "sequence": 76,
       "action": "ND MODE / RANGE",
       "conditionOrTarget": "SET FOR DEPARTURE",
       "departure": "both",
@@ -942,7 +918,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 79,
+      "sequence": 77,
       "action": "ADF / VOR POINTERS",
       "conditionOrTarget": "AS REQUIRED",
       "departure": "both",
@@ -954,7 +930,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 80,
+      "sequence": 78,
       "action": "FCU SPEED",
       "conditionOrTarget": "DASHED / MANAGED",
       "departure": "both",
@@ -966,7 +942,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 81,
+      "sequence": 79,
       "action": "FLYING REFERENCE",
       "conditionOrTarget": "HDG-V/S",
       "departure": "both",
@@ -978,9 +954,9 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 82,
+      "sequence": 80,
       "action": "FCU ALTITUDE",
-      "conditionOrTarget": "INITIAL EXPECTED CLEARANCE ALTITUDE",
+      "conditionOrTarget": "SET SCENARIO INITIAL ALTITUDE",
       "departure": "both",
       "pdfPages": [
         3216
@@ -990,19 +966,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 83,
-      "action": "GROUND PERSONNEL",
-      "conditionOrTarget": "INFORM BEFORE OXYGEN MASK TEST",
-      "departure": "both",
-      "pdfPages": [
-        3216
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "cockpit-preparation",
-      "role": "PF",
-      "sequence": 84,
+      "sequence": 81,
       "action": "OXYGEN MASK",
       "conditionOrTarget": "TEST",
       "departure": "both",
@@ -1014,7 +978,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 85,
+      "sequence": 82,
       "action": "DOOR / OXY PAGE",
       "conditionOrTarget": "SELECT",
       "departure": "both",
@@ -1026,7 +990,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 86,
+      "sequence": 83,
       "action": "REGUL LO PR",
       "conditionOrTarget": "CHECK NOT DISPLAYED AFTER ALL MASK TESTS",
       "departure": "both",
@@ -1038,7 +1002,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 87,
+      "sequence": 84,
       "action": "PFD / ND BRIGHTNESS",
       "conditionOrTarget": "SET; ND OUTER RING MAX",
       "departure": "both",
@@ -1050,7 +1014,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 88,
+      "sequence": 85,
       "action": "LOUDSPEAKER",
       "conditionOrTarget": "SET AROUND 1 O'CLOCK",
       "departure": "both",
@@ -1062,7 +1026,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 89,
+      "sequence": 86,
       "action": "PFD",
       "conditionOrTarget": "CHECK FMA, TARGET ALT, AIRSPEED, ATTITUDE, BARO AND VSI",
       "departure": "both",
@@ -1074,7 +1038,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 90,
+      "sequence": 87,
       "action": "ND",
       "conditionOrTarget": "CHECK HEADING, WAYPOINT AND NAVAIDS",
       "departure": "both",
@@ -1086,7 +1050,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 91,
+      "sequence": 88,
       "action": "ECAM PRESS",
       "conditionOrTarget": "SELECT",
       "departure": "both",
@@ -1098,7 +1062,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 92,
+      "sequence": 89,
       "action": "LDG ELEV INDICATION",
       "conditionOrTarget": "CHECK AUTO",
       "departure": "both",
@@ -1110,7 +1074,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 93,
+      "sequence": 90,
       "action": "ECAM STATUS",
       "conditionOrTarget": "SELECT STS",
       "departure": "both",
@@ -1122,7 +1086,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 94,
+      "sequence": 91,
       "action": "STATUS",
       "conditionOrTarget": "CHECK COMPATIBLE WITH MEL",
       "departure": "both",
@@ -1134,7 +1098,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 95,
+      "sequence": 92,
       "action": "FUEL ON BOARD",
       "conditionOrTarget": "CHECK PLAN / BALANCE / UPLIFT CONSISTENCY",
       "departure": "both",
@@ -1146,19 +1110,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 96,
-      "action": "DEPARTURE BRIEFING",
-      "conditionOrTarget": "PERFORM WITH OTHER CREW MEMBER",
-      "departure": "both",
-      "pdfPages": [
-        3219
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "cockpit-preparation",
-      "role": "PF",
-      "sequence": 97,
+      "sequence": 93,
       "action": "MAINTENANCE PC / PRINTER",
       "conditionOrTarget": "IF FITTED: STOWED, MANUAL SWITCH LIGHT OFF",
       "departure": "both",
@@ -1170,9 +1122,9 @@
     {
       "phase": "cockpit-preparation",
       "role": "PF",
-      "sequence": 98,
+      "sequence": 94,
       "action": "COCKPIT PREPARATION CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3219
@@ -1291,18 +1243,6 @@
       "phase": "cockpit-preparation",
       "role": "PM",
       "sequence": 10,
-      "action": "GROUND PERSONNEL",
-      "conditionOrTarget": "INFORM BEFORE OXYGEN MASK TEST",
-      "departure": "both",
-      "pdfPages": [
-        3216
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "cockpit-preparation",
-      "role": "PM",
-      "sequence": 11,
       "action": "OXYGEN MASK",
       "conditionOrTarget": "TEST",
       "departure": "both",
@@ -1314,7 +1254,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PM",
-      "sequence": 12,
+      "sequence": 11,
       "action": "DOOR / OXY PAGE",
       "conditionOrTarget": "SELECT",
       "departure": "both",
@@ -1326,7 +1266,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PM",
-      "sequence": 13,
+      "sequence": 12,
       "action": "REGUL LO PR",
       "conditionOrTarget": "CHECK NOT DISPLAYED AFTER ALL MASK TESTS",
       "departure": "both",
@@ -1338,7 +1278,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PM",
-      "sequence": 14,
+      "sequence": 13,
       "action": "PFD / ND BRIGHTNESS",
       "conditionOrTarget": "SET; ND OUTER RING MAX",
       "departure": "both",
@@ -1350,7 +1290,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PM",
-      "sequence": 15,
+      "sequence": 14,
       "action": "LOUDSPEAKER",
       "conditionOrTarget": "SET AROUND 1 O'CLOCK",
       "departure": "both",
@@ -1362,7 +1302,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PM",
-      "sequence": 16,
+      "sequence": 15,
       "action": "PFD",
       "conditionOrTarget": "CHECK FMA, TARGET ALT, AIRSPEED, ATTITUDE, BARO AND VSI",
       "departure": "both",
@@ -1374,7 +1314,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PM",
-      "sequence": 17,
+      "sequence": 16,
       "action": "ND",
       "conditionOrTarget": "CHECK HEADING, WAYPOINT AND NAVAIDS",
       "departure": "both",
@@ -1386,7 +1326,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PM",
-      "sequence": 18,
+      "sequence": 17,
       "action": "IRS ALIGNMENT",
       "conditionOrTarget": "CHECK NAV, POSITION DIFFERENCE AND AIRPORT CONSISTENCY",
       "departure": "both",
@@ -1398,7 +1338,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PM",
-      "sequence": 19,
+      "sequence": 18,
       "action": "FUEL ON BOARD",
       "conditionOrTarget": "CHECK PLAN / BALANCE / UPLIFT CONSISTENCY",
       "departure": "both",
@@ -1410,19 +1350,7 @@
     {
       "phase": "cockpit-preparation",
       "role": "PM",
-      "sequence": 20,
-      "action": "DEPARTURE BRIEFING",
-      "conditionOrTarget": "PERFORM WITH OTHER CREW MEMBER",
-      "departure": "both",
-      "pdfPages": [
-        3219
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "cockpit-preparation",
-      "role": "PM",
-      "sequence": 21,
+      "sequence": 19,
       "action": "MAINTENANCE PC / PRINTER",
       "conditionOrTarget": "IF FITTED: STOWED, MANUAL SWITCH LIGHT OFF",
       "departure": "both",
@@ -1434,9 +1362,9 @@
     {
       "phase": "cockpit-preparation",
       "role": "PM",
-      "sequence": 22,
+      "sequence": 20,
       "action": "COCKPIT PREPARATION CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3219
@@ -1519,18 +1447,6 @@
       "phase": "before-start",
       "role": "PF",
       "sequence": 7,
-      "action": "START / PUSHBACK CLEARANCE",
-      "conditionOrTarget": "ATC AND GROUND CREW CLEARANCE CONFIRMED BEFORE BEACON ON",
-      "departure": "both",
-      "pdfPages": [
-        3223
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "before-start",
-      "role": "PF",
-      "sequence": 8,
       "action": "BEACON",
       "conditionOrTarget": "ON",
       "departure": "both",
@@ -1542,7 +1458,7 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 9,
+      "sequence": 8,
       "action": "WINDOW",
       "conditionOrTarget": "CHECK CLOSED / LOCKED; RED INDICATOR VISIBLE",
       "departure": "both",
@@ -1554,7 +1470,7 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 10,
+      "sequence": 9,
       "action": "CABIN DOORS",
       "conditionOrTarget": "CHECK CLOSED ON ECAM",
       "departure": "both",
@@ -1566,7 +1482,7 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 11,
+      "sequence": 10,
       "action": "COCKPIT DOOR",
       "conditionOrTarget": "CHECK CLOSED / LOCKED AS REQUIRED BY AUTHORITY",
       "departure": "both",
@@ -1578,7 +1494,7 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 12,
+      "sequence": 11,
       "action": "SLIDES",
       "conditionOrTarget": "CHECK ARMED ON ECAM",
       "departure": "both",
@@ -1590,7 +1506,7 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 13,
+      "sequence": 12,
       "action": "THRUST LEVERS",
       "conditionOrTarget": "IDLE",
       "departure": "both",
@@ -1602,9 +1518,9 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 14,
+      "sequence": 13,
       "action": "ACCU PRESS",
-      "conditionOrTarget": "GREEN BAND; OBTAIN GROUND CLEARANCE BEFORE USING YELLOW PUMP IF RECHARGE NEEDED",
+      "conditionOrTarget": "CHECK GREEN BAND",
       "departure": "both",
       "pdfPages": [
         3225
@@ -1614,7 +1530,7 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 15,
+      "sequence": 14,
       "action": "PARK BRAKE",
       "conditionOrTarget": "ON — NO PUSHBACK",
       "departure": "stationary",
@@ -1626,7 +1542,7 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 16,
+      "sequence": 15,
       "action": "BRAKE PRESSURE",
       "conditionOrTarget": "CHECK NORMAL INDICATIONS",
       "departure": "stationary",
@@ -1638,7 +1554,7 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 17,
+      "sequence": 16,
       "action": "NW STRG DISC",
       "conditionOrTarget": "CHECK DISPLAYED; TOW PIN CONFIRMED. DO NOT START DURING PUSHBACK IF MEMO ABSENT",
       "departure": "pushback",
@@ -1650,9 +1566,9 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 18,
+      "sequence": 17,
       "action": "BEFORE START CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3225
@@ -1662,7 +1578,7 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 19,
+      "sequence": 18,
       "action": "PARK BRAKE",
       "conditionOrTarget": "OFF FOR PUSHBACK AFTER CHECKLIST",
       "departure": "pushback",
@@ -1674,9 +1590,9 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 20,
+      "sequence": 19,
       "action": "PUSHBACK COMPLETED",
-      "conditionOrTarget": "CONFIRM COMPLETED BEFORE APPLYING PARKING BRAKE; NO BRAKING DURING PUSHBACK EXCEPT EMERGENCY",
+      "conditionOrTarget": "PUSHBACK COMPLETE — CHECK BEFORE APPLYING PARKING BRAKE",
       "departure": "pushback",
       "pdfPages": [
         3226
@@ -1686,7 +1602,7 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 21,
+      "sequence": 20,
       "action": "PARK BRAKE",
       "conditionOrTarget": "ON WHEN PUSHBACK COMPLETED",
       "departure": "pushback",
@@ -1698,9 +1614,9 @@
     {
       "phase": "before-start",
       "role": "PF",
-      "sequence": 22,
+      "sequence": 21,
       "action": "BRAKE PRESSURE",
-      "conditionOrTarget": "CHECK NORMAL; REQUEST TOWBAR DISCONNECTION",
+      "conditionOrTarget": "CHECK NORMAL INDICATIONS",
       "departure": "pushback",
       "pdfPages": [
         3226
@@ -1820,7 +1736,7 @@
       "role": "PM",
       "sequence": 10,
       "action": "EXTERNAL POWER",
-      "conditionOrTarget": "DESELECT — VERIFY AVAIL BEFORE REQUESTING DISCONNECTION",
+      "conditionOrTarget": "DESELECT — VERIFY AVAIL",
       "departure": "both",
       "pdfPages": [
         3222
@@ -1831,8 +1747,8 @@
       "phase": "before-start",
       "role": "PM",
       "sequence": 11,
-      "action": "EXTERNAL POWER DISCONNECTION",
-      "conditionOrTarget": "CHECK AVAIL, THEN REQUEST DISCONNECTION; NEVER REQUEST WITH ON LIGHT",
+      "action": "EXTERNAL POWER INDICATION",
+      "conditionOrTarget": "CHECK AVAIL; ON LIGHT EXTINGUISHED",
       "departure": "both",
       "pdfPages": [
         3222
@@ -1843,18 +1759,6 @@
       "phase": "before-start",
       "role": "PM",
       "sequence": 12,
-      "action": "PUSHBACK / START CLEARANCE",
-      "conditionOrTarget": "OBTAIN ATC AND GROUND CREW CLEARANCE",
-      "departure": "both",
-      "pdfPages": [
-        3223
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "before-start",
-      "role": "PM",
-      "sequence": 13,
       "action": "ATC",
       "conditionOrTarget": "SET FOR OPERATION PER AIRPORT REQUIREMENTS",
       "departure": "both",
@@ -1866,7 +1770,7 @@
     {
       "phase": "before-start",
       "role": "PM",
-      "sequence": 14,
+      "sequence": 13,
       "action": "WINDOW",
       "conditionOrTarget": "CHECK CLOSED / LOCKED; RED INDICATOR VISIBLE",
       "departure": "both",
@@ -1878,7 +1782,7 @@
     {
       "phase": "before-start",
       "role": "PM",
-      "sequence": 15,
+      "sequence": 14,
       "action": "CABIN DOORS",
       "conditionOrTarget": "CHECK CLOSED ON ECAM",
       "departure": "both",
@@ -1890,7 +1794,7 @@
     {
       "phase": "before-start",
       "role": "PM",
-      "sequence": 16,
+      "sequence": 15,
       "action": "COCKPIT DOOR",
       "conditionOrTarget": "CHECK CLOSED / LOCKED AS REQUIRED BY AUTHORITY",
       "departure": "both",
@@ -1902,7 +1806,7 @@
     {
       "phase": "before-start",
       "role": "PM",
-      "sequence": 17,
+      "sequence": 16,
       "action": "SLIDES",
       "conditionOrTarget": "CHECK ARMED ON ECAM",
       "departure": "both",
@@ -1914,9 +1818,9 @@
     {
       "phase": "before-start",
       "role": "PM",
-      "sequence": 18,
+      "sequence": 17,
       "action": "BEFORE START CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3225
@@ -1928,7 +1832,7 @@
       "role": "PF",
       "sequence": 1,
       "action": "START PREREQUISITES",
-      "conditionOrTarget": "CLEARANCE, GROUND SAFETY AND PNEUMATIC / ELECTRICAL SOURCES ESTABLISHED",
+      "conditionOrTarget": "PNEUMATIC / ELECTRICAL SOURCES ESTABLISHED",
       "departure": "both",
       "pdfPages": [
         3230
@@ -1963,18 +1867,6 @@
       "phase": "engine-start",
       "role": "PF",
       "sequence": 4,
-      "action": "ENGINE 1 START",
-      "conditionOrTarget": "ANNOUNCE",
-      "departure": "both",
-      "pdfPages": [
-        3230
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "engine-start",
-      "role": "PF",
-      "sequence": 5,
       "action": "ENGINE 1 DISPLAY READY",
       "conditionOrTarget": "AMBER CROSSES EXCEPT N1 / N2 AND MESSAGES CLEARED ON ENGINE DISPLAYS",
       "departure": "both",
@@ -1986,7 +1878,7 @@
     {
       "phase": "engine-start",
       "role": "PF",
-      "sequence": 6,
+      "sequence": 5,
       "action": "ENGINE 1 MASTER",
       "conditionOrTarget": "ON",
       "departure": "both",
@@ -1998,7 +1890,7 @@
     {
       "phase": "engine-start",
       "role": "PF",
-      "sequence": 7,
+      "sequence": 6,
       "action": "ENGINE 1 START MONITOR",
       "conditionOrTarget": "OBSERVE N2, START VALVE, BLEED / OIL PRESSURE, IGNITION, FUEL FLOW, EGT AND N1 PER IAE SOP-08",
       "departure": "both",
@@ -2010,7 +1902,7 @@
     {
       "phase": "engine-start",
       "role": "PF",
-      "sequence": 8,
+      "sequence": 7,
       "action": "ENGINE 1 IDLE",
       "conditionOrTarget": "CHECK APPLICABLE IDLE PARAMETERS / AVAIL BEFORE CONTINUING",
       "departure": "both",
@@ -2022,19 +1914,7 @@
     {
       "phase": "engine-start",
       "role": "PF",
-      "sequence": 9,
-      "action": "ENGINE 2 START",
-      "conditionOrTarget": "ANNOUNCE",
-      "departure": "both",
-      "pdfPages": [
-        3232
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "engine-start",
-      "role": "PF",
-      "sequence": 10,
+      "sequence": 8,
       "action": "ENGINE 2 DISPLAY READY",
       "conditionOrTarget": "AMBER CROSSES EXCEPT N1 / N2 AND MESSAGES CLEARED ON ENGINE DISPLAYS",
       "departure": "both",
@@ -2046,7 +1926,7 @@
     {
       "phase": "engine-start",
       "role": "PF",
-      "sequence": 11,
+      "sequence": 9,
       "action": "ENGINE 2 MASTER",
       "conditionOrTarget": "ON",
       "departure": "both",
@@ -2058,7 +1938,7 @@
     {
       "phase": "engine-start",
       "role": "PF",
-      "sequence": 12,
+      "sequence": 10,
       "action": "ENGINE 2 START MONITOR",
       "conditionOrTarget": "OBSERVE N2, START VALVE, BLEED / OIL PRESSURE, IGNITION, FUEL FLOW, EGT AND N1 PER IAE SOP-08",
       "departure": "both",
@@ -2070,7 +1950,7 @@
     {
       "phase": "engine-start",
       "role": "PF",
-      "sequence": 13,
+      "sequence": 11,
       "action": "ENGINE 2 IDLE",
       "conditionOrTarget": "CHECK APPLICABLE IDLE PARAMETERS / AVAIL BEFORE CONTINUING",
       "departure": "both",
@@ -2155,20 +2035,8 @@
       "phase": "after-start",
       "role": "PF",
       "sequence": 7,
-      "action": "CLEAR TO DISCONNECT",
-      "conditionOrTarget": "ANNOUNCE TO GROUND CREW",
-      "departure": "both",
-      "pdfPages": [
-        3241
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "after-start",
-      "role": "PF",
-      "sequence": 8,
       "action": "AFTER START CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3242
@@ -2264,7 +2132,7 @@
       "role": "PM",
       "sequence": 8,
       "action": "AFTER START CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3242
@@ -2288,7 +2156,7 @@
       "role": "PF",
       "sequence": 2,
       "action": "PARK BRAKE",
-      "conditionOrTarget": "OFF ON TAXI CLEARANCE",
+      "conditionOrTarget": "OFF FOR TAXI",
       "departure": "both",
       "pdfPages": [
         3249
@@ -2359,20 +2227,8 @@
       "phase": "taxi",
       "role": "PF",
       "sequence": 8,
-      "action": "CABIN REPORT",
-      "conditionOrTarget": "RECEIVE CABIN READY INDICATION OR PURSER REPORT",
-      "departure": "both",
-      "pdfPages": [
-        3254
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "taxi",
-      "role": "PF",
-      "sequence": 9,
       "action": "TAXI CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3254
@@ -2383,18 +2239,6 @@
       "phase": "taxi",
       "role": "PM",
       "sequence": 1,
-      "action": "TAXI CLEARANCE",
-      "conditionOrTarget": "OBTAIN",
-      "departure": "both",
-      "pdfPages": [
-        3249
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "taxi",
-      "role": "PM",
-      "sequence": 2,
       "action": "BRAKE FAN",
       "conditionOrTarget": "AS REQUIRED",
       "departure": "both",
@@ -2406,7 +2250,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 3,
+      "sequence": 2,
       "action": "BRAKE PRESSURE",
       "conditionOrTarget": "CHECK ZERO DURING BRAKE CHECK — IAE EFFECTIVITY MSN 01204–02290",
       "departure": "both",
@@ -2418,7 +2262,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 4,
+      "sequence": 3,
       "action": "FLIGHT CONTROLS",
       "conditionOrTarget": "CHECK",
       "departure": "both",
@@ -2430,21 +2274,9 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 5,
-      "action": "ATC CLEARANCE",
-      "conditionOrTarget": "CONFIRM",
-      "departure": "both",
-      "pdfPages": [
-        3250
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "taxi",
-      "role": "PM",
-      "sequence": 6,
+      "sequence": 4,
       "action": "FCU ALTITUDE / HEADING",
-      "conditionOrTarget": "SET PER CLEARANCE",
+      "conditionOrTarget": "SET SCENARIO ALTITUDE / HEADING",
       "departure": "both",
       "pdfPages": [
         3250
@@ -2454,7 +2286,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 7,
+      "sequence": 5,
       "action": "BOTH FLIGHT DIRECTORS",
       "conditionOrTarget": "CHECK ON",
       "departure": "both",
@@ -2466,7 +2298,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 8,
+      "sequence": 6,
       "action": "PFD / ND",
       "conditionOrTarget": "CHECK",
       "departure": "both",
@@ -2478,7 +2310,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 9,
+      "sequence": 7,
       "action": "AUTO BRK MAX",
       "conditionOrTarget": "ON",
       "departure": "both",
@@ -2490,7 +2322,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 10,
+      "sequence": 8,
       "action": "TERR ON ND",
       "conditionOrTarget": "AS RQRD",
       "departure": "both",
@@ -2502,7 +2334,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 11,
+      "sequence": 9,
       "action": "ATC CODE / MODE",
       "conditionOrTarget": "CONFIRM / SET FOR TAKEOFF",
       "departure": "both",
@@ -2514,7 +2346,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 12,
+      "sequence": 10,
       "action": "ENG MODE selector",
       "conditionOrTarget": "AS RQRD",
       "departure": "both",
@@ -2526,7 +2358,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 13,
+      "sequence": 11,
       "action": "RADAR / PWS",
       "conditionOrTarget": "ON / AUTO",
       "departure": "both",
@@ -2538,7 +2370,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 14,
+      "sequence": 12,
       "action": "T.O CONFIG pb",
       "conditionOrTarget": "TEST; OBSERVE T.O CONFIG NORMAL ON EWD",
       "departure": "both",
@@ -2550,7 +2382,7 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 15,
+      "sequence": 13,
       "action": "T.O MEMO",
       "conditionOrTarget": "CHECK NO BLUE",
       "departure": "both",
@@ -2562,21 +2394,9 @@
     {
       "phase": "taxi",
       "role": "PM",
-      "sequence": 16,
-      "action": "CABIN REPORT",
-      "conditionOrTarget": "RECEIVE CABIN READY INDICATION OR PURSER REPORT",
-      "departure": "both",
-      "pdfPages": [
-        3254
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "taxi",
-      "role": "PM",
-      "sequence": 17,
+      "sequence": 14,
       "action": "TAXI CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3254
@@ -2636,7 +2456,7 @@
       "role": "PF",
       "sequence": 5,
       "action": "LINE-UP CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3272
@@ -2659,18 +2479,6 @@
       "phase": "line-up",
       "role": "PM",
       "sequence": 2,
-      "action": "LINE-UP CLEARANCE",
-      "conditionOrTarget": "OBTAIN",
-      "departure": "both",
-      "pdfPages": [
-        3270
-      ],
-      "assessment": "self-check"
-    },
-    {
-      "phase": "line-up",
-      "role": "PM",
-      "sequence": 3,
       "action": "TCAS mode selector",
       "conditionOrTarget": "TA/RA DEFAULT; TA ONLY FOR IDENTIFIED OPERATOR PROCEDURES",
       "departure": "both",
@@ -2682,7 +2490,7 @@
     {
       "phase": "line-up",
       "role": "PM",
-      "sequence": 4,
+      "sequence": 3,
       "action": "TAKEOFF RUNWAY",
       "conditionOrTarget": "CONFIRM",
       "departure": "both",
@@ -2694,7 +2502,7 @@
     {
       "phase": "line-up",
       "role": "PM",
-      "sequence": 5,
+      "sequence": 4,
       "action": "APPROACH PATH",
       "conditionOrTarget": "CLEAR OF TRAFFIC",
       "departure": "both",
@@ -2706,7 +2514,7 @@
     {
       "phase": "line-up",
       "role": "PM",
-      "sequence": 6,
+      "sequence": 5,
       "action": "PACKS 1 AND 2",
       "conditionOrTarget": "AS RQRD",
       "departure": "both",
@@ -2718,7 +2526,7 @@
     {
       "phase": "line-up",
       "role": "PM",
-      "sequence": 7,
+      "sequence": 6,
       "action": "SLIDING TABLE / EFB",
       "conditionOrTarget": "STOW TABLE AND UNMOUNTED EFB; TRANSMITTING MODE PER OPERATOR POLICY",
       "departure": "both",
@@ -2730,21 +2538,9 @@
     {
       "phase": "line-up",
       "role": "PM",
-      "sequence": 8,
-      "action": "CABIN CREW",
-      "conditionOrTarget": "ADVISE",
-      "departure": "both",
-      "pdfPages": [
-        3272
-      ],
-      "assessment": "control-input"
-    },
-    {
-      "phase": "line-up",
-      "role": "PM",
-      "sequence": 9,
+      "sequence": 7,
       "action": "LINE-UP CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3272
@@ -2756,7 +2552,7 @@
       "role": "PM",
       "sequence": 1,
       "action": "FLAPS ZERO",
-      "conditionOrTarget": "AT S SPEED, ON PF ORDER",
+      "conditionOrTarget": "SELECT AT S SPEED",
       "departure": "both",
       "pdfPages": [
         3280
@@ -3034,7 +2830,7 @@
       "role": "PF",
       "sequence": 6,
       "action": "APPROACH CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3313
@@ -3106,7 +2902,7 @@
       "role": "PM",
       "sequence": 6,
       "action": "APPROACH CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3313
@@ -3154,7 +2950,7 @@
       "role": "PF",
       "sequence": 4,
       "action": "AFTER LANDING CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3386
@@ -3262,7 +3058,7 @@
       "role": "PM",
       "sequence": 9,
       "action": "AFTER LANDING CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3386
@@ -3405,8 +3201,8 @@
       "phase": "parking",
       "role": "PF",
       "sequence": 12,
-      "action": "GROUND CONTACT",
-      "conditionOrTarget": "ESTABLISH COMMUNICATION; CHECK CHOCKS IN PLACE",
+      "action": "CHOCKS",
+      "conditionOrTarget": "CHECK IN PLACE",
       "departure": "both",
       "pdfPages": [
         3395
@@ -3430,7 +3226,7 @@
       "role": "PF",
       "sequence": 14,
       "action": "PARKING CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3397
@@ -3550,7 +3346,7 @@
       "role": "PM",
       "sequence": 8,
       "action": "PARKING CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3397
@@ -3634,7 +3430,7 @@
       "role": "PM",
       "sequence": 3,
       "action": "SLATS / FLAPS",
-      "conditionOrTarget": "ENSURE RETRACTED BEFORE ALL ADIRS OFF; AFTER ICING / SLUSH / SNOW FIRST CONFIRM GROUND CLEARANCE AFTER ENGINE SHUTDOWN",
+      "conditionOrTarget": "CHECK RETRACTED BEFORE ALL ADIRS OFF; ICING / SLUSH / SNOW EXCEPTION REQUIRES ENGINE SHUTDOWN AND SLATS / FLAPS CLEAR OF ICE OBSTRUCTION",
       "departure": "both",
       "pdfPages": [
         3383
@@ -3658,7 +3454,7 @@
       "role": "PM",
       "sequence": 5,
       "action": "ADIRS DATA SAVE",
-      "conditionOrTarget": "WAIT AT LEAST 10 S AFTER ALL IR OFF BEFORE ELECTRICAL SUPPLY OFF; COORDINATE WITH CM2",
+      "conditionOrTarget": "WAIT AT LEAST 10 S AFTER ALL IR OFF BEFORE ELECTRICAL SUPPLY OFF",
       "departure": "both",
       "pdfPages": [
         3399
@@ -3682,7 +3478,7 @@
       "role": "PM",
       "sequence": 7,
       "action": "SECURING CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3401
@@ -3765,8 +3561,8 @@
       "phase": "securing",
       "role": "PF",
       "sequence": 6,
-      "action": "ADIRS POWER-OFF COORDINATION",
-      "conditionOrTarget": "CONFIRM CM1 SET ALL IR OFF AND AT LEAST 10 S ELAPSED BEFORE REMOVING ELECTRICAL SUPPLY",
+      "action": "ADIRS POWER-OFF CHECK",
+      "conditionOrTarget": "ALL IR OFF; AT LEAST 10 S ELAPSED BEFORE REMOVING ELECTRICAL SUPPLY",
       "departure": "both",
       "pdfPages": [
         3399
@@ -3862,7 +3658,7 @@
       "role": "PF",
       "sequence": 14,
       "action": "SECURING CHECKLIST",
-      "conditionOrTarget": "COMPLETE WITH OTHER CREW MEMBER",
+      "conditionOrTarget": "REVIEW COCKPIT ITEMS — SELF-CHECK",
       "departure": "both",
       "pdfPages": [
         3401
@@ -3880,6 +3676,162 @@
         3401
       ],
       "assessment": "self-check"
+    }
+  ],
+  "revision": "cockpit49",
+  "omittedCommunications": [
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "label": "VHF",
+      "sourcePages": [
+        3204
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "label": "HF",
+      "sourcePages": [
+        3204
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "label": "GROUND PERSONNEL",
+      "sourcePages": [
+        3216
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PF",
+      "label": "DEPARTURE BRIEFING",
+      "sourcePages": [
+        3219
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "label": "GROUND PERSONNEL",
+      "sourcePages": [
+        3216
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "cockpit-preparation",
+      "role": "PM",
+      "label": "DEPARTURE BRIEFING",
+      "sourcePages": [
+        3219
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "before-start",
+      "role": "PF",
+      "label": "START / PUSHBACK CLEARANCE",
+      "sourcePages": [
+        3223
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "before-start",
+      "role": "PM",
+      "label": "PUSHBACK / START CLEARANCE",
+      "sourcePages": [
+        3223
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "label": "ENGINE 1 START",
+      "sourcePages": [
+        3230
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "engine-start",
+      "role": "PF",
+      "label": "ENGINE 2 START",
+      "sourcePages": [
+        3232
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "after-start",
+      "role": "PF",
+      "label": "CLEAR TO DISCONNECT",
+      "sourcePages": [
+        3241
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "taxi",
+      "role": "PF",
+      "label": "CABIN REPORT",
+      "sourcePages": [
+        3254
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "label": "TAXI CLEARANCE",
+      "sourcePages": [
+        3249
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "label": "ATC CLEARANCE",
+      "sourcePages": [
+        3250
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "taxi",
+      "role": "PM",
+      "label": "CABIN REPORT",
+      "sourcePages": [
+        3254
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "label": "LINE-UP CLEARANCE",
+      "sourcePages": [
+        3270
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
+    },
+    {
+      "phase": "line-up",
+      "role": "PM",
+      "label": "CABIN CREW",
+      "sourcePages": [
+        3272
+      ],
+      "reason": "Communication omitted from cockpit-only practice at user request."
     }
   ]
 }

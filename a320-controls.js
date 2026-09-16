@@ -341,5 +341,7 @@ controls.forEach(c=>{
 });
 const photo=(typeof window!=='undefined'&&window.A320PhotoLayout)||(typeof require!=='undefined'?require('./cockpit-photo-layout.js'):null);
 if(photo)photo.apply(controls);
+const conversationOnly=new Set(['ground_clearance','departure_brief','sop_cabin_report','vhf_check_cm1','vhf_check_cm2','hf_check_cm1','hf_check_cm2']);
+controls.forEach(c=>{if(conversationOnly.has(c.id))c.practiceOmitted=true;});
 return {CONTROL_DEFS:controls};
 });

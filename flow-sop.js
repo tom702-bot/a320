@@ -184,6 +184,38 @@ function apply(phases){
    s.sourceRef='Ansett FCOM SOP · PDF pp. '+s.sourcePages.join(', ');
   }
  }
+ // User-selected cockpit-only practice: retain physical checks from mixed items,
+ // and omit conversations that this trainer cannot simulate.
+ const communicationControls=new Set(['ground_clearance','departure_brief','sop_cabin_report','vhf_check_cm1','vhf_check_cm2','hf_check_cm1','hf_check_cm2']);
+ for(const p of phases){
+  p.omittedCommunications=[];
+  for(const [role,steps] of Object.entries(p.roles)){
+   for(const s of steps){
+    if(s.label==='GROUND CONTACT'){s.label='CHOCKS';s.target='CHECK IN PLACE';s.controls=['ground_services'];}
+    if(s.label==='PUSHBACK COMPLETED'){s.target='PUSHBACK COMPLETE — CHECK BEFORE APPLYING PARKING BRAKE';s.controls=['sop_prerequisites'];}
+    if(s.label==='EXTERNAL POWER DISCONNECTION'){s.label='EXTERNAL POWER INDICATION';s.target='CHECK AVAIL; ON LIGHT EXTINGUISHED';}
+    if(s.label==='EXTERNAL POWER'&&p.id==='before-start')s.target='DESELECT — VERIFY AVAIL';
+    if(s.label==='ACCU PRESS'&&p.id==='before-start')s.target='CHECK GREEN BAND';
+    if(s.label==='BRAKE PRESSURE'&&p.id==='before-start')s.target='CHECK NORMAL INDICATIONS';
+    if(s.label==='START PREREQUISITES')s.target='PNEUMATIC / ELECTRICAL SOURCES ESTABLISHED';
+    if(s.label==='PARK BRAKE'&&p.id==='taxi')s.target='OFF FOR TAXI';
+    if(s.label==='FCU ALTITUDE / HEADING')s.target='SET SCENARIO ALTITUDE / HEADING';
+    if(s.label==='FCU ALTITUDE')s.target='SET SCENARIO INITIAL ALTITUDE';
+    if(s.label==='SLATS / FLAPS')s.target='CHECK RETRACTED BEFORE ALL ADIRS OFF; ICING / SLUSH / SNOW EXCEPTION REQUIRES ENGINE SHUTDOWN AND SLATS / FLAPS CLEAR OF ICE OBSTRUCTION';
+    if(s.label==='ADIRS DATA SAVE')s.target='WAIT AT LEAST 10 S AFTER ALL IR OFF BEFORE ELECTRICAL SUPPLY OFF';
+    if(s.label==='ADIRS POWER-OFF COORDINATION'){s.label='ADIRS POWER-OFF CHECK';s.target='ALL IR OFF; AT LEAST 10 S ELAPSED BEFORE REMOVING ELECTRICAL SUPPLY';}
+    if(s.label.includes('CHECKLIST'))s.target='REVIEW COCKPIT ITEMS — SELF-CHECK';
+    if(s.label==='FLAPS ZERO')s.target='SELECT AT S SPEED';
+   }
+   p.roles[role]=steps.filter(s=>{
+    const omitted=s.controls.some(id=>communicationControls.has(id.replace('{seat}',role==='PF'?'cm2':'cm1')))||s.label==='CABIN CREW';
+    if(omitted)p.omittedCommunications.push({role,label:s.label,sourcePages:s.sourcePages,reason:'Communication omitted from cockpit-only practice at user request.'});
+    return !omitted;
+   });
+  }
+ }
+ by['before-start'].note='SOP-07 cockpit actions. Choose pushback or stationary start. Required clearances and conversations are assumed complete outside this exercise.';
+ by.securing.note='SOP-23 crew-station duties: CM1/PM and CM2/PF in this training allocation. Timing and physical conditions remain self-checks; conversations are omitted.';
  return phases;
 }
 const api={apply};if(typeof module!=='undefined'&&module.exports)module.exports=api;if(root)root.A320SopAudit=api;

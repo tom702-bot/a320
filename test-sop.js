@@ -21,7 +21,7 @@ const park=steps('parking');before(park,'ENGINE COOLING / POWER','ALL ENG MASTER
 const r=f.createRun('parking','PF');while(r.steps[r.index].label!=='ALL ENG MASTER LEVERS')f.gradeStepChoice(r,r.index);
 assert.equal(f.gradeInput(r,'eng_master_1','ON').grade,'incorrect');
 assert.equal(f.gradeInput(r,'eng_master_1','OFF').stepComplete,false);assert.equal(f.gradeInput(r,'eng_master_2','OFF').stepComplete,true);
-const secure=steps('securing');before(secure,'ADIRS POWER-OFF COORDINATION','EXTERNAL POWER');before(secure,'APU FLAP','BATTERIES');
+const secure=steps('securing');before(secure,'ADIRS POWER-OFF CHECK','EXTERNAL POWER');before(secure,'APU FLAP','BATTERIES');
 assert(secure[index(secure,'APU FLAP')].acknowledgeOnly,'timing observation must not masquerade as measured elapsed time');
 const cm1=steps('securing','PM');before(cm1,'SLATS / FLAPS','IR MODE SELECTORS');before(cm1,'IR MODE SELECTORS','ADIRS DATA SAVE');
 for(const p of f.FLOW_PHASES)for(const role of Object.keys(p.roles))for(const s of steps(p.id,role)){
@@ -32,5 +32,15 @@ for(const p of f.FLOW_PHASES)for(const role of Object.keys(p.roles))for(const s 
 for(const phase of ['taxi','line-up','after-landing'])for(const role of ['PF','PM'])assert(steps(phase,role).at(-1).label.includes('CHECKLIST'));
 const cleanup=steps('climb-acceleration','PM').find(s=>s.label==='NOSE / RWY TURN OFF');assert.deepEqual(cleanup.accept,['OFF']);assert(!cleanup.acknowledgeOnly);
 const html=fs.readFileSync(__dirname+'/flows.html','utf8'),sw=fs.readFileSync(__dirname+'/sw.js','utf8');
-assert(html.includes('departureButtons'));assert(html.includes('flow-sop.js?v=48'));assert(sw.includes('./flow-sop.js?v=48'));assert(sw.includes('./SOP_AUDIT.md'));
+assert(html.includes('departureButtons'));assert(html.includes('flow-sop.js?v=49'));assert(sw.includes('./flow-sop.js?v=49'));assert(sw.includes('./SOP_AUDIT.md'));
 console.log('SOP regressions passed: engine-1-first, both departure branches, shutdown position grading, securing prerequisites, SOP citations and checklist boundaries.');
+
+for(const p of f.FLOW_PHASES)for(const ss of Object.values(p.roles))for(const s of ss){
+ assert(!s.controls.some(id=>/^(ground_clearance|departure_brief|sop_cabin_report|vhf_check_|hf_check_)/.test(id)),s.label);
+ assert(!/ANNOUNCE|OBTAIN.*CLEARANCE|REQUEST.*DISCONNECT|ADVISE|WITH OTHER CREW|ESTABLISH COMMUNICATION|COORDINATE WITH/.test(s.target),s.label+' contains a communication prompt');
+}
+assert(steps('parking').some(s=>s.label==='CHOCKS'));
+assert(steps('before-start','PM').some(s=>s.label==='EXTERNAL POWER INDICATION'));
+assert(steps('cockpit-preparation').some(s=>s.controls.includes('rmp_cm1_tune')));
+assert(f.CONTROL_DEFS.find(c=>c.id==='calls_all').photoMapped,'physical cockpit call button remains operable');
+console.log('Cockpit-only practice passed: no communication steps; radio controls, chock checks and source omissions preserved.');

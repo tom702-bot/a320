@@ -1,6 +1,14 @@
 # Ansett A320 flow trainer — SOP review
 
-Reviewed 16 September 2026. Release 48.
+Reviewed 16 September 2026. Current practice release 49.
+
+## Cockpit-only practice — release 49
+
+At the user’s request, the flow trainer omits communication exchanges that cannot be simulated. Seventeen role-specific steps were removed: clearance requests/confirmations, engine-start announcements, ground and cabin calls, departure briefings, and VHF/HF voice checks. Removed source items remain recorded in `sop-action-audit.json` and `flow-evidence.js` as intentional practice omissions.
+
+Mixed actions retain their physical part: external-power indication, brake pressure, chocks, completed-pushback condition and ADIRS power-off timing. Checklist checkpoints are individual cockpit reviews, with no spoken response or other-crew requirement. Radio tuning, ACP controls, transponder controls and physical cockpit call buttons remain interactive. Required real-world permissions are assumed complete outside this exercise; the SOP itself is unchanged.
+
+The procedure comparison below describes the release 48 source review; its references to communication steps are superseded by this practice policy. Current flows contain 306 role-action records including both departure branches. The 46 role/context software runs use 772 control inputs.
 
 ## Result
 

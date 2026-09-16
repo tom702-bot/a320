@@ -123,7 +123,7 @@ source.
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
 4. Search every served file, including distractors and filenames, for content outside the strict Ansett A320 IAE V2500-A5 scope.
 5. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v48`. All cockpit/flow scripts and styles use v48 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
+   `a320-trainer-v49`. All cockpit/flow scripts and styles use v49 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
 
 Run `node validate-trainer.js` and `node test-trainer.js`. Validation includes `test-system-rotation.js`, `test-audit.js` and `test-communications-options.js`; CI runs the gate on pushes and pull requests. These are structural and source-record checks, not operational certification. A completed exam is required for a pass; test the unrounded threshold. Keep dependent options in their original order or rewrite them as independent statements. Corrected answers must not inherit mastery from the previous content.
 
@@ -151,3 +151,5 @@ The seamless cockpit update uses cockpit-native.js/css, cockpit-systems.js and f
 FlyByWire artwork update: cockpit-photo-layout.js maps source-image pixel rectangles into panel coordinates. fbw-cockpit.png is the unmodified 1426 × 2744 FlyByWire reference atlas. Keep transparent switch hit targets aligned to the source image; never place extension grids on cockpit panels. Observation/data checks belong in the separate crew tray.
 
 SOP review: flow-sop.js overrides legacy scan/tasksharing entries with reviewed SOP text. SOP_AUDIT.md and sop-action-audit.json describe coverage. Keep test-sop.js in the validation gate. Engine 1 precedes engine 2 per SOP-08. Pushback and stationary branches have different brake/checklist order. Timing observations remain self-checks. Do not claim full SOP coverage or resolve aircraft fit without an MSN.
+
+User preference: flow practice excludes communication exchanges, clearance requests, announcements, briefings and voice radio checks. Preserve actual radio/ATC/ACP/call controls. Preserve physical checks from mixed steps and record intentional communication omissions in the SOP action audit. Do not restore these prompts from the FCOM without a user request.

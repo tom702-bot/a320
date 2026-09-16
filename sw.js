@@ -1,9 +1,9 @@
-const CACHE = 'a320-trainer-v48';
+const CACHE = 'a320-trainer-v49';
 const ASSETS = ['./','./index.html','./manifest.webmanifest',
   './trainer-core.js','./systems-exam-questions.js','./question-bank-questions.js','./communications-fcom-questions.js','./communications-option-quality.js',
-  './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js','./cockpit-view.css?v=48','./cockpit-view.js?v=48','./flow-evidence.js?v=48','./cockpit-native.css?v=48','./cockpit-native.js?v=48','./cockpit-systems.js?v=48','./flow-sop.js?v=48',
+  './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js','./cockpit-view.css?v=49','./cockpit-view.js?v=49','./flow-evidence.js?v=49','./cockpit-native.css?v=49','./cockpit-native.js?v=49','./cockpit-systems.js?v=49','./flow-sop.js?v=49',
   './SOP_AUDIT.md',
-  './flow-procedures.js?v=48','./cockpit-photo-layout.js?v=48','./fbw-cockpit.png','./flows.html','./integration.html','./verification-audit.json','./communications-fcom-audit.json','./a320-controls.js?v=48','./flow-sim.js?v=48','./a32nx-overhead.webp','./a32nx-main.webp','./a32nx-pedestal.webp',
+  './flow-procedures.js?v=49','./cockpit-photo-layout.js?v=49','./fbw-cockpit.png','./flows.html','./integration.html','./verification-audit.json','./communications-fcom-audit.json','./a320-controls.js?v=49','./flow-sim.js?v=49','./a32nx-overhead.webp','./a32nx-main.webp','./a32nx-pedestal.webp',
   './assets/question-bank/q002.png','./assets/question-bank/q004.png','./assets/question-bank/q005.png','./assets/question-bank/q006.png','./assets/question-bank/q007.png','./assets/question-bank/q008.png','./assets/question-bank/q018.png','./assets/question-bank/q071.png','./assets/question-bank/q094.png','./assets/question-bank/q126.png','./assets/question-bank/q188.png','./assets/question-bank/q189.png','./assets/question-bank/q191.png','./assets/question-bank/q266.png','./assets/question-bank/q268.png',
   './icon-180.png','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', function(e){
