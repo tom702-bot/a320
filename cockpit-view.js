@@ -51,8 +51,9 @@
       });
       document.getElementById('seatReadout').textContent=seat==='CM1'?'CM1 · LEFT SEAT':'CM2 · RIGHT SEAT';
       if(value)focus('flightdeck');
+      document.getElementById('controlDock').hidden=true;
     }
-    function locate(id){
+    function locate(id,highlight=true){
       const def=options.controls.find(c=>c.id===id);if(!enabled||!def)return;
       focus(def.panel);
       const p=PANELS[def.panel],rx=(p.rx||0)*Math.PI/180,ry=(p.ry||0)*Math.PI/180;
@@ -60,13 +61,18 @@
       const wx=p.x+x*Math.cos(ry)+y*Math.sin(rx)*Math.sin(ry)-seatX;
       const wy=p.y+y*Math.cos(rx),wz=p.z-x*Math.sin(ry)+y*Math.sin(rx)*Math.cos(ry);
       yaw=Math.atan2(wx,-wz)*180/Math.PI;pitch=-Math.atan2(wy,Math.hypot(wx,wz))*180/Math.PI;
-      zoom=viewport.clientWidth<650?2.6:1.6;render();
+      const focal=Math.max(240,Math.min(viewport.clientWidth*.82,viewport.clientHeight*1.12));
+      const distanceToControl=Math.hypot(wx,wy,wz);
+      const target=viewport.clientWidth<650?34:26;
+      const dimension=Math.min(def.w*p.w/100,def.h*p.h/100);
+      zoom=clamp(target*distanceToControl/(Math.max(8,dimension)*focal),viewport.clientWidth<650?3.2:1.7,12);render();
       const control=document.querySelector('[data-control="'+id+'"]');
-      control.classList.add('located');
+      if(highlight)control.classList.add('located');
       setTimeout(()=>control.classList.remove('located'),5000);
     }
     const distance=()=>{const p=[...pointers.values()];return Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);};
     viewport.addEventListener('pointerdown',e=>{
+      document.getElementById('controlDock').hidden=true;
       if(e.button!==0)return;
       pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
       if(pointers.size===2){pinch={distance:distance(),zoom};drag=null;suppressClick=true;}
@@ -75,7 +81,7 @@
     viewport.addEventListener('pointermove',e=>{
       if(!pointers.has(e.pointerId))return;
       pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
-      if(pinch&&pointers.size===2){zoom=clamp(pinch.zoom*distance()/pinch.distance,.65,3.2);render();return;}
+      if(pinch&&pointers.size===2){zoom=clamp(pinch.zoom*distance()/pinch.distance,.65,12);render();return;}
       if(!drag||drag.id!==e.pointerId)return;
       const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
       if(Math.hypot(dx,dy)>7){drag.moved=true;suppressClick=true;viewport.classList.add('dragging');viewport.setPointerCapture(e.pointerId);}
@@ -85,7 +91,7 @@
     viewport.addEventListener('pointerup',end);viewport.addEventListener('pointercancel',end);
     viewport.addEventListener('lostpointercapture',()=>{drag=null;});
     viewport.addEventListener('click',e=>{if(suppressClick){e.preventDefault();e.stopImmediatePropagation();suppressClick=false;}},true);
-    viewport.addEventListener('wheel',e=>{e.preventDefault();zoom=clamp(zoom*Math.exp(-e.deltaY*.001),.65,3.2);render();},{passive:false});
+    viewport.addEventListener('wheel',e=>{e.preventDefault();zoom=clamp(zoom*Math.exp(-e.deltaY*.001),.65,12);render();},{passive:false});
     viewport.addEventListener('keydown',e=>{
       if(e.target!==viewport)return;
       const keys=['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','+','=','-','0'];if(!keys.includes(e.key))return;
@@ -94,21 +100,21 @@
       if(e.key==='ArrowDown')pitch=clamp(pitch-5,-68,66);
       if(e.key==='ArrowLeft')yaw=clamp(yaw+5,-74,74);
       if(e.key==='ArrowRight')yaw=clamp(yaw-5,-74,74);
-      if(e.key==='+'||e.key==='=')zoom=clamp(zoom+.15,.65,3.2);
-      if(e.key==='-')zoom=clamp(zoom-.15,.65,3.2);
+      if(e.key==='+'||e.key==='=')zoom=clamp(zoom+.15,.65,12);
+      if(e.key==='-')zoom=clamp(zoom-.15,.65,12);
       if(e.key==='0')focus('flightdeck');
       render();
     });
     document.querySelectorAll('[data-look]').forEach(b=>b.onclick=()=>focus(b.dataset.look));
-    document.getElementById('zoomIn').onclick=()=>{zoom=clamp(zoom+.2,.65,3.2);render();};
-    document.getElementById('zoomOut').onclick=()=>{zoom=clamp(zoom-.2,.65,3.2);render();};
+    document.getElementById('zoomIn').onclick=()=>{zoom=clamp(zoom+.2,.65,12);render();};
+    document.getElementById('zoomOut').onclick=()=>{zoom=clamp(zoom-.2,.65,12);render();};
     document.getElementById('resetLook').onclick=()=>focus('flightdeck');
     document.getElementById('labelsToggle').onclick=function(){const value=this.getAttribute('aria-pressed')!=='true';this.setAttribute('aria-pressed',String(value));host.classList.toggle('show-labels',value);};
     document.getElementById('cockpitFullscreen').onclick=async()=>{
       try{if(document.fullscreenElement)await document.exitFullscreen();else await document.getElementById('trainer').requestFullscreen();}catch(e){document.getElementById('cockpitHelp').textContent='Fullscreen is unavailable in this browser. Use landscape for a larger view.';}
     };
     // Keyboard navigation to a control brings its panel into view without grading it.
-    world.addEventListener('focusin',e=>{const c=e.target.closest('[data-control]');if(c&&e.target.matches(':focus-visible'))locate(c.dataset.control);});
+    world.addEventListener('focusin',e=>{const c=e.target.closest('[data-control]');if(c&&e.target.matches(':focus-visible'))locate(c.dataset.control,false);});
     const observer=new ResizeObserver(render);observer.observe(viewport);
     return {setEnabled,focus,locate,getView:()=>({pitch,yaw,zoom,seat,enabled})};
   }

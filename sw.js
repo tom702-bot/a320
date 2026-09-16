@@ -1,7 +1,7 @@
-const CACHE = 'a320-trainer-v45';
+const CACHE = 'a320-trainer-v46';
 const ASSETS = ['./','./index.html','./manifest.webmanifest',
   './trainer-core.js','./systems-exam-questions.js','./question-bank-questions.js','./communications-fcom-questions.js','./communications-option-quality.js',
-  './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js','./cockpit-view.css?v=45','./cockpit-view.js?v=45','./flow-evidence.js?v=45','./flows.html','./integration.html','./verification-audit.json','./communications-fcom-audit.json','./a320-controls.js?v=40','./flow-sim.js?v=45','./a32nx-overhead.webp','./a32nx-main.webp','./a32nx-pedestal.webp',
+  './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js','./cockpit-view.css?v=46','./cockpit-view.js?v=46','./flow-evidence.js?v=46','./cockpit-native.css?v=46','./cockpit-native.js?v=46','./cockpit-systems.js?v=46','./flow-procedures.js?v=46','./flows.html','./integration.html','./verification-audit.json','./communications-fcom-audit.json','./a320-controls.js?v=46','./flow-sim.js?v=46','./a32nx-overhead.webp','./a32nx-main.webp','./a32nx-pedestal.webp',
   './assets/question-bank/q002.png','./assets/question-bank/q004.png','./assets/question-bank/q005.png','./assets/question-bank/q006.png','./assets/question-bank/q007.png','./assets/question-bank/q008.png','./assets/question-bank/q018.png','./assets/question-bank/q071.png','./assets/question-bank/q094.png','./assets/question-bank/q126.png','./assets/question-bank/q188.png','./assets/question-bank/q189.png','./assets/question-bank/q191.png','./assets/question-bank/q266.png','./assets/question-bank/q268.png',
   './icon-180.png','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', function(e){

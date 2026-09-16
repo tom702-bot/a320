@@ -42,7 +42,7 @@ function validateQuestions(name,questions,referencePattern){
   });
 }
 
-const required=["cockpit-view.css","cockpit-view.js","flow-evidence.js","index.html","A320_Checkride_Trainer.html","trainer-core.js","flows.html","flow-sim.js","a320-controls.js","systems-exam-questions.js","question-bank-questions.js","communications-fcom-questions.js","communications-option-quality.js","communications-fcom-audit.json","electrical.html","electrical-sim.js","hydraulic.html","hydraulic-sim.js","engine.html","engine-sim.js","engine-3d.js","integration.html","manifest.webmanifest","sw.js"];
+const required=["cockpit-native.js","cockpit-native.css","cockpit-systems.js","flow-procedures.js","cockpit-view.css","cockpit-view.js","flow-evidence.js","index.html","A320_Checkride_Trainer.html","trainer-core.js","flows.html","flow-sim.js","a320-controls.js","systems-exam-questions.js","question-bank-questions.js","communications-fcom-questions.js","communications-option-quality.js","communications-fcom-audit.json","electrical.html","electrical-sim.js","hydraulic.html","hydraulic-sim.js","engine.html","engine-sim.js","engine-3d.js","integration.html","manifest.webmanifest","sw.js"];
 required.forEach(file=>ok(fs.existsSync(path.join(root,file)),file+" exists"));
 const allNames=fs.readdirSync(root);
 const legacyNamePattern=new RegExp("A3"+"21|P2"+"F","i");
@@ -51,7 +51,7 @@ ok(!allNames.some(name=>legacyNamePattern.test(name)),"legacy out-of-scope aircr
 parseInlineScripts("index.html");
 parseInlineScripts("flows.html");
 parseInlineScripts("integration.html");
-["cockpit-view.js","flow-evidence.js","trainer-core.js","systems-exam-questions.js","question-bank-questions.js","communications-fcom-questions.js","communications-option-quality.js","a320-controls.js","flow-sim.js","electrical-sim.js","hydraulic-sim.js","engine-sim.js","engine-3d.js","sw.js"].forEach(file=>{
+["cockpit-native.js","cockpit-systems.js","flow-procedures.js","cockpit-view.js","flow-evidence.js","trainer-core.js","systems-exam-questions.js","question-bank-questions.js","communications-fcom-questions.js","communications-option-quality.js","a320-controls.js","flow-sim.js","electrical-sim.js","hydraulic-sim.js","engine-sim.js","engine-3d.js","sw.js"].forEach(file=>{
   try{new vm.Script(read(file),{filename:file});}catch(error){errors.push(error.message);}
 });
 
@@ -114,8 +114,8 @@ ok(guideSystems.filter(item=>item.c==="MEL").every(item=>item.review==="withheld
 
 const controls=require("./a320-controls.js").CONTROL_DEFS;
 const flows=require("./flow-sim.js");
-ok(controls.length===344,"cockpit catalog has 344 controls");
-ok(flows.FLOW_PHASES.length===10,"flow trainer has 10 phases");
+ok(controls.length===472,"cockpit catalog has 472 controls");
+ok(flows.FLOW_PHASES.length===13,"flow trainer has 13 phases");
 const controlIds=new Set(controls.map(item=>item.id));
 controls.forEach(item=>{
   if(item.x<0||item.y<0||item.w<=0||item.h<=0||item.x+item.w>100.001||item.y+item.h>100.001)errors.push("Control outside panel bounds: "+item.id);
@@ -134,10 +134,8 @@ flows.FLOW_PHASES.forEach(phase=>Object.keys(phase.roles).forEach(role=>{
   clean.steps.forEach((step,index)=>{const result=flows.gradeStepChoice(clean,index);if(result.grade!=="correct"&&result.grade!=="conditional")errors.push("Clean flow did not accept step: "+phase.id+" "+role+" "+index);});
   if(!clean.complete)errors.push("Clean flow did not complete: "+phase.id+" "+role);
 }));
-const cold=flows.getInitialControlState("cockpit-preparation");
-controls.filter(item=>Array.isArray(item.states)).forEach(item=>{
-  const expected=item.cold||item.states[0];if(cold[item.id]!==expected)errors.push("Cold-and-dark mismatch for "+item.id);
-});
+const prepared=flows.getInitialControlState("cockpit-preparation");
+ok(prepared.elec_ext_pwr==="ON"&&prepared.eng_master_1==="OFF"&&prepared.eng_master_2==="OFF"&&prepared.park_brake==="ON","Cockpit preparation begins after preliminary power-up with engines off and parking brake on");
 const ext=flows.getInitialControlState("before-start","external");
 const apu=flows.getInitialControlState("before-start","apu");
 ok(ext.elec_ext_pwr==="ON"&&ext.eng_master_1==="OFF"&&ext.eng_master_2==="OFF","Before Start external-power profile is valid");
@@ -169,8 +167,8 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v45"),"offline cache is version 45");
-ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=45")&&sw.includes("./question-bank-questions.js")&&sw.includes("./communications-fcom-questions.js")&&sw.includes("./communications-option-quality.js")&&sw.includes("./communications-fcom-audit.json"),"offline cache includes upgraded modules, both Communications sources and the curated option layer");
+ok(sw.includes("a320-trainer-v46"),"offline cache is version 46");
+ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=46")&&sw.includes("./question-bank-questions.js")&&sw.includes("./communications-fcom-questions.js")&&sw.includes("./communications-option-quality.js")&&sw.includes("./communications-fcom-audit.json"),"offline cache includes upgraded modules, both Communications sources and the curated option layer");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
 const forbidden=new RegExp("\\bA3"+"21\\b|P2"+"F|CF"+"M(?:56)?|PW"+"1100|LE"+"AP-?1A|Pra"+"tt\\s*(?:&|and)?\\s*Whitney","i");
@@ -207,7 +205,7 @@ if(errors.length){
   errors.forEach(message=>console.error(" - "+message));
   process.exit(1);
 }
-console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 664 systems, 10 flow phases, 344 cockpit controls. This is not operational certification.");
+console.log("Trainer validation passed: "+checks.length+" structural/source-record checks, 259 limitations, 664 systems, 13 flow phases, 472 cockpit controls. This is not operational certification.");
 require('./test-trainer.js');
 require('./test-audit.js');
 require('./test-system-rotation.js');

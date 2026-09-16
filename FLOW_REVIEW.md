@@ -1,31 +1,35 @@
-# Virtual cockpit and flow review — 16 September 2026
+# Virtual cockpit flow trainer — 16 September 2026
 
-The default flow view now places the existing interactive overhead, main panel and pedestal in a perspective cockpit workspace. Mouse/touch dragging changes the viewing direction; wheel, pinch, buttons and keyboard adjust zoom. Panel shortcuts and a Hint action help locate controls. Every switch action uses an explicit position chooser, including confirmation of an already-correct position. Looking, inspecting and cancelling do not grade an action. A separate visual-check surface holds non-switch acknowledgements.
+## Interaction
 
-PF/CM2 and PM/CM1 remain the existing training allocation. This assignment is a user preference, not a claim that PF always occupies the right seat. The existing Flow Map, Focused Panel and Full Panel views remain available. No external scripts, fonts, models or services are needed; cache v45 includes the new files.
+Version 46 replaces photo-only controls with native interactive panels in one perspective cockpit. Drag to look; pinch/scroll to zoom; panel shortcuts change view. Pushbuttons act directly. Selectors open beside the control, and tapping a displayed value confirms an already-correct position. Guided practice follows each remaining control in a grouped action. A control finder locates named controls without operating them. Explore pauses grading; returning to a flow or resetting restores normal grading. Both MCDUs accept scratchpad/line-select entries; ECAM page buttons, radio standby tuning/transfer and the transponder keypad update their displays. FCU altitude, heading, speed and QNH accept numeric entry. These interactions are rehearsal models, not aircraft avionics simulations.
 
-## Source used
+The catalog has 472 controls/checks. Seven former broad-scan controls are hidden. Crew observations use visibly distinct dashed check cards. Every visible control responds; the geometry and instrument artwork are schematic. The original photo-based flow map remains available. All assets are local and included in offline cache v46.
 
-The user confirmed the supplied `PDFA320_FCOM_AATIAECUSTOM20260521.pdf`, 3,901 pages, SHA-256 `7978fb0645d256b8affd4e76b751b5e0fff7e9b56a8bfb1bb168a46a163b6b06`. The three-page `A320 Panel Scans.pdf` supplies the existing scan-subset structure. The FCOM compilation contains AAT SOP pages and NVB A/C 21-CMHT tasksharing pages with different revisions. It is marked FOR TRAINING ONLY. No current controlled revision, aircraft configuration summary or simulator equipment list has been established by this update.
+## Source
 
-## Corrections
+User-confirmed file: `PDFA320_FCOM_AATIAECUSTOM20260521.pdf`, 3,901 pages; SHA-256 `7978fb0645d256b8affd4e76b751b5e0fff7e9b56a8bfb1bb168a46a163b6b06`. The compilation contains AAT SOP pages and NVB tasksharing inserts with differing effectivity/revision dates. Page numbers below are one-based PDF pages. The supplied A320 Panel Scans supplies the original phase structure. PF=CM2/right and PM=CM1/left remains the selected allocation, not a universal PF/seat rule.
 
-| Flow | Change | Evidence in supplied FCOM |
-|---|---|---|
-| 10,000 ft AAL climb | PF selects CSTR for grid MORA; PM selects ARPT. Replaces generic AS RQRD. | PDF p.3289; AAT PRO-NOR-SOP-14 p.5/6, 05 MAY 25; Ident PRO-NOR-SOP-14-A-00020076.0001001 / 24 NOV 23. Generic tasksharing p.3421 remains less specific. |
-| 10,000 ft AAL descent | PF CSTR precedes LS, followed by NAVAIDs. NAV accuracy monitoring is qualified by GPS PRIMARY LOST. | PDF pp.3311, 3423; PRO-NOR-TSK p.12/22, 22 MAY 24; Ident PRO-NOR-TSK-00024911.0002001 / 14 NOV 23. |
-| After landing | Lighting target specifies LAND RETRACT, STROBE AUTO and NOSE TAXI after vacating, with other lights as required. | PDF p.3382; AAT PRO-NOR-SOP-21 p.2/6, 09 SEP 25; Ident PRO-NOR-SOP-21-A-00011840.0001001 / 24 NOV 23. |
-| Cockpit preparation | Broad panel scans and FMGS completion are ungraded self-check acknowledgements. A single SCAN click does not verify the many underlying actions. | PDF pp.3414–3416; PRO-NOR-TSK pp.3–5/22, 22 MAY 24. |
+## Procedure expansion
 
-Per-phase source references and limitations are in `flow-evidence.js` and displayed in the trainer. Existing pushback, APU, icing, flap, TCAS-fit, engine-cooling and parking prerequisites remain conditional. Exact settings must not be inferred where the source requires conditions or applicability that the model does not establish.
+- Preparation: 86 PF actions and 19 PM actions replace the broad scan buttons. Individual control positions, repeated BAT OFF/AUTO steps, recorder/fire tests, own-side instruments, FMGS review and crew checks derive from AAT PRO-NOR-SOP-06, PDF pp.3197–3218; briefing/checklist p.3416. Start is powered, after preliminary preparation.
+- Before start: separate cabin-door closure and slide arming; clearance/ground-service prerequisites, accumulator, conditional pushback steering-disconnect check and shared checklist. AAT SOP-07 pp.3224–3226; tasksharing p.3417.
+- Engine start: PF engine 2 then engine 1, with separate announcements and observed idle checks. Tasksharing p.3417.
+- After start: rudder reset followed by neutral check, pitch trim selection, ground disconnect call and shared checklist. AAT SOP-09 pp.3239–3241; tasksharing p.3418.
+- Taxi: clearance, park brake, brake/control checks, FMS/FCU/FD/own-side checks and briefing precede the original panel scan. AAT SOP-10 pp.3251–3253; tasksharing p.3418.
+- After takeoff: PM APU, engine mode, TCAS restoration and anti-ice conditions. Tasksharing p.3421.
+- 10,000 ft climb: PF CSTR, PM ARPT per the AAT SOP, overriding generic AS RQRD wording. AAT SOP-14 p.3289; tasksharing p.3421.
+- Descent: PF CSTR, then LS as required, then navigation checks; NAV accuracy condition retained for GPS PRIMARY LOST. AAT SOP-17 p.3311; tasksharing p.3423.
+- After landing: after-vacating LAND RETRACT/STROBE AUTO/NOSE TAXI scored separately from remaining lighting conditions. Flap exceptions remain self-checked. AAT SOP-21 pp.3381–3383; tasksharing p.3431.
+- Parking: cooling/power prerequisite, wing/beacon OFF, ground contact, brake-fan condition and checklist added around existing shutdown actions. AAT SOP-22 pp.3390–3391,3396; tasksharing pp.3431–3432.
+- Securing: CM1/CM2 duties, maintenance bus, signs, power, windows, checklist and EFB closure/shutdown. Tasksharing p.3432.
 
-## Boundaries that remain
+Every phase has evidence metadata and PDF references; detailed added steps retain their page reference. Conditional choices and physical observations are reported separately from verified switch positions. Both dry and operator-conditions contexts require every member of an anti-ice group.
 
-- These ten flow-card subsets are not the complete FCOM procedures, checklists or crew callouts. Preparation still includes broad scans rather than every switch and test. Preliminary power-up, engine start, flight and landing are not simulated between phases.
-- Visual checks, MCDU data entry, live indications, speeds, cooling times, brake pressure/temperature and crew actions are self-reported. Phase sequences preset the next configuration; they are not an aircraft systems simulation.
-- Artwork, hotspot geometry and the perspective cockpit are illustrative. Existing source limitations concerning fuel-control fit and optional equipment remain unresolved.
-- Scores measure the tested model inputs. Runs containing conditional acknowledgements cannot claim unassisted mastery of a fully verified procedure. Opening the flow list counts as assistance, including its native disclosure control. Hints do not expose the following step after completing the hinted action.
+## Limits of source matching
 
-## Validation
+This is a procedural practice cockpit, not a certified simulator or a complete reproduction of the FCOM. Preliminary preparation, aircraft motion, engine dynamics, performance calculations, instrument response, audio and actual crew communication are not simulated. Normal checklists are acknowledged, not reproduced in full. MCDU storage does not validate route/performance entries. Optional equipment, fuel-system fit, weather and current operational instructions still govern applicable branches. Source page matching does not establish a current controlled revision or exact aircraft fit. Those conditions cannot be graded as verified by this model.
 
-`node validate-trainer.js` runs the existing source, bank, scoring and offline regressions plus `test-cockpit.js`. The latter completes all 38 role/context combinations through 268 control inputs, checks source coverage and asserts the corrected EFIS allocation/order. Browser verification exercised 46 actual control selections across seven desktop runs and a 390 px phone view, drag without switch activation, movement back to legacy views, and no page errors or horizontal overflow. Desktop and phone screenshots were visually inspected. These are software checks, not operational certification.
+## Verification
+
+The publication gate runs source/bank regressions and all 46 role/context combinations through 674 individual control inputs. Browser testing checks actual control hit targets and entire role flows, desktop and phone layout, direct controls, local selectors, camera movement, avionics entry and reset behavior. Browser results: all 23 role runs completed via 338 actual selections (including a phone action), with zero page errors, incorrect inputs or order errors. A separate pass operated all 465 visible controls and checked MCDU entry/storage, radio tuning/transfer, ATC code entry, ECAM page selection, numeric FCU entry, reset, drag without activation, and return to the full-panel view. Desktop and 390 px phone screenshots were inspected.

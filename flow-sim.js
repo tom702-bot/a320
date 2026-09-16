@@ -218,13 +218,13 @@ const FLOW_PHASES = [
   }
 ];
 
-// Broad scan buttons report completion; they do not verify individual FCOM switch checks.
-FLOW_PHASES[0].roles.PF.forEach(function(item){item.conditional=true;item.selfCheck=true;});
-FLOW_PHASES[0].roles.PM.forEach(function(item){item.conditional=true;item.selfCheck=true;});
+const detailedProcedures=(root&&root.A320FlowProcedures)||(typeof require!=="undefined"?require("./flow-procedures.js"):null);
+if(detailedProcedures)detailedProcedures.expand(FLOW_PHASES);
 const evidence=(root&&root.A320FlowEvidence)||(typeof require!=="undefined"?require("./flow-evidence.js"):null);
 const PHASE_BY_ID = Object.fromEntries(FLOW_PHASES.map(function(phase){return [phase.id,phase];}));
 const FLOW_SOURCES={
-  'cockpit-preparation':[3414,3415,3416],'before-start':[3224,3225,3226,3417],
+  'engine-start':[3417],'after-takeoff':[3421],securing:[3432],
+  'cockpit-preparation':[3197,3198,3199,3200,3201,3202,3203,3204,3205,3206,3207,3208,3209,3210,3211,3212,3213,3214,3215,3216,3217,3218,3416],'before-start':[3224,3225,3226,3417],
   'after-start':[3239,3240,3241,3418],taxi:[3251,3252,3253,3418],
   'line-up':[3270,3271,3272,3419],'climb-acceleration':[3420],
   'ten-thousand-climb':[3289,3421],'ten-thousand-descent':[3311,3423],
@@ -233,7 +233,7 @@ const FLOW_SOURCES={
 FLOW_PHASES.forEach(function(phase){
   phase.sourcePages=FLOW_SOURCES[phase.id];
   phase.evidence=evidence&&evidence.phases[phase.id];
-  phase.note=(phase.note?phase.note+' ':'')+'Training scan subset — not a complete checklist. FCOM PDF pp.'+phase.sourcePages.join(', ')+'. CM1/PM and CM2/PF is the user-selected role allocation.';
+  phase.note=(phase.note?phase.note+' ':'')+'FCOM references: PDF pp.'+phase.sourcePages.join(', ')+'. CM1/PM and CM2/PF is the user-selected role allocation.';
   if(phase.id==='after-landing')phase.note+=' Begin after vacating the runway; after icing/slush/snow, do not retract until engines are shut down and ground crew confirm no ice obstruction. Above 30 °C, CONF 1 may be retained to avoid a wing-leak alert.';
   if(phase.id==='climb-acceleration')phase.note+=' Flap retraction is speed- and PF-command-dependent. If takeoff used TA ONLY, restore TA/RA after takeoff (PDF p.3421).';
 });
@@ -355,9 +355,18 @@ function initBrowser(){
   if(!$('phaseGrid')) return;
   let selectedPhase=FLOW_PHASES[0].id;
   let selectedRole="PF";
-  let selectedMode="assessment";
+  let selectedMode="guided";
   let selectedView="cockpit";
   let cockpitView=null;
+  let nativeCockpit=null;
+  const systems=root.A320CockpitSystems.create();
+  let followCamera=true;
+  let exploration=false;
+  let hintTimer=null;
+  const controlDockHome=$('controlDock').parentElement;
+  function paintSystems(){if(nativeCockpit)root.A320CockpitNative.paint(systems,controlState);}
+  function moveToCurrent(){if(cockpitView&&activeRun&&!activeRun.complete&&selectedView==='cockpit'&&selectedMode==='guided'&&followCamera){const step=activeRun.steps[activeRun.index];cockpitView.locate(step.controls.find(id=>!activeRun.doneControls.has(id))||step.controls[0],false);}}
+
   let selectedSession="single";
   let selectedContext="standard-dry";
   let selectedPower="external";
@@ -419,39 +428,72 @@ function initBrowser(){
   function renderControl(def){
     const wrap=document.createElement("div");
     wrap.className="cockpit-control kind-"+def.kind+(def.zone?" check-zone":"");
-    wrap.dataset.control=def.id;
+    wrap.dataset.control=def.id;if(def.extension)wrap.classList.add('extension-control');
     wrap.style.left=def.x+"%";wrap.style.top=def.y+"%";wrap.style.width=def.w+"%";wrap.style.height=def.h+"%";
     const trigger=button(def.short||def.label,"hotspot-trigger");
     trigger.setAttribute("aria-label",def.label+(def.kind==="check"?" check":" control"));
     trigger.title=def.label;
     wrap.appendChild(trigger);
-    trigger.onclick=function(){openControlDock(def,wrap);};
-    if(def.states){const state=document.createElement("span");state.className="state-readout";state.dataset.stateFor=def.id;wrap.appendChild(state);}
+    trigger.onclick=function(e){
+      if(def.kind==='momentary'||def.kind==='check'){
+        operateControl(def,'CHECK',wrap);return;
+      }
+      if(def.kind==='pb'&&!e.shiftKey){
+        const next=controlState[def.id]===def.states[0]?def.states[1]:def.states[0];
+        operateControl(def,next,wrap);return;
+      }
+      openControlDock(def,wrap);
+    };
+    trigger.oncontextmenu=function(e){e.preventDefault();openControlDock(def,wrap);};
+    if(/^(cvr_test|eng_[12]_fire_test|apu_fire_test)$/.test(def.id)){
+      trigger.addEventListener('pointerdown',function(){systems.test=def.id;paintSystems();});
+      trigger.addEventListener('pointerup',function(){setTimeout(function(){systems.test=null;paintSystems();},600);});
+      trigger.addEventListener('pointercancel',function(){systems.test=null;paintSystems();});
+    }
+
+    if(def.states){const state=document.createElement("button");state.type="button";state.className="state-readout";state.dataset.stateFor=def.id;state.setAttribute('aria-label','Confirm '+def.label+' current position');state.onclick=function(e){e.stopPropagation();operateControl(def,controlState[def.id],wrap);};wrap.appendChild(state);}
     return wrap;
   }
+  function operateControl(def,value,wrap){
+    if(def.states)setState(def.id,value);
+    root.A320CockpitSystems.operate(systems,def,value);
+    if(def.id==='rudder_reset')setState('rudder_trim','NEUTRAL');
+    wrap.classList.add('pressed');setTimeout(function(){wrap.classList.remove('pressed');},130);paintSystems();
+    if(!activeRun||activeRun.complete||exploration){showFeedback('neutral','COCKPIT',def.label+' · '+(value==='CHECK'?'OPERATED':value));return;}
+    // Keypad input and display-page navigation are legitimate sub-actions, not flow errors.
+    const relevant=activeRun.steps.some(function(step){return step.controls.includes(def.id);});
+    if(!relevant&&(def.kind==='momentary'||def.id.startsWith('rmp_')||def.id.startsWith('acp_'))){showFeedback('neutral','CONTROL OPERATED',def.label);return;}
+    interact(def.id,value,wrap);
+  }
   function openControlDock(def,wrap){
-    if(!activeRun||activeRun.complete)return;
     const dock=$("controlDock");dock.hidden=false;dock.innerHTML="";
-    const info=document.createElement("div");
-    const name=document.createElement("strong");name.textContent=def.label;info.appendChild(name);
-    const note=document.createElement("span");note.className="dock-note";
-    note.textContent=def.states?"Current model position: "+controlState[def.id]+". Select a position, including the current position to confirm it.":"Self-check: perform the visual check or action, then confirm. The trainer cannot verify the observed aircraft indication.";
-    info.appendChild(note);dock.appendChild(info);
-    const choices=document.createElement("div");choices.className="dock-choices";
-    (def.states||["CHECK"]).forEach(function(state){
-      const b=button(def.states?state:(def.face||"CONFIRM CHECK"),"position");
-      if(def.states)b.setAttribute("aria-pressed",String(controlState[def.id]===state));
-      b.onclick=function(){if(def.states)setState(def.id,state);interact(def.id,state,wrap);dock.hidden=true;wrap.querySelector('button').focus({preventScroll:true});};choices.appendChild(b);
-    });
-    const close=button("CANCEL","close-dock");close.onclick=function(){dock.hidden=true;wrap.querySelector('button').focus({preventScroll:true});};choices.appendChild(close);
-    dock.appendChild(choices);dock.onkeydown=function(e){if(e.key==="Escape")close.click();};
-    choices.querySelector('button').focus({preventScroll:true});
-    dock.scrollIntoView({behavior:"smooth",block:"nearest"});
+    if(selectedView==='cockpit'){
+      $('virtualCockpit').appendChild(dock);dock.classList.add('floating-controls');
+    }else{controlDockHome.appendChild(dock);dock.classList.remove('floating-controls');}
+    const info=document.createElement('div'),name=document.createElement('strong');name.textContent=def.label;info.appendChild(name);
+    const note=document.createElement('span');note.className='dock-note';note.textContent=def.states?'Current: '+controlState[def.id]+'. Choose a position or confirm the current position.':'Confirm this individual indication or physical check.';info.appendChild(note);dock.appendChild(info);
+    const choices=document.createElement('div');choices.className='dock-choices';
+    (def.states||['CHECK']).forEach(function(value){const b=button(value==='CHECK'?'CONFIRM CHECK':value,'position');b.setAttribute('aria-pressed',String(controlState[def.id]===value));b.onclick=function(){dock.hidden=true;operateControl(def,value,wrap);};choices.appendChild(b);});
+    if(def.numeric){
+      const n=def.numeric,form=document.createElement('form');form.className='numeric-entry';
+      const label=document.createElement('label');label.textContent='Enter '+n.unit+' ';label.htmlFor='controlValue';
+      const input=document.createElement('input');input.id='controlValue';input.type='number';input.min=n.min;input.max=n.max;input.step=n.step;input.value=controlState[def.id];input.required=true;input.inputMode=n.decimals?'decimal':'numeric';label.appendChild(input);form.appendChild(label);
+      const set=button('SET VALUE','position');set.type='submit';form.appendChild(set);
+      form.onsubmit=function(e){e.preventDefault();if(!input.reportValidity())return;const value=Number(input.value).toFixed(n.decimals);dock.hidden=true;operateControl(def,value,wrap);};choices.prepend(form);
+    }
+    const close=button('CANCEL','close-dock');close.onclick=function(){dock.hidden=true;};choices.appendChild(close);dock.appendChild(choices);
+    dock.onkeydown=function(e){if(e.key==='Escape')dock.hidden=true;};
+    if(selectedView==='cockpit'){
+      const scene=$('virtualCockpit').getBoundingClientRect(),rect=wrap.getBoundingClientRect();
+      dock.style.left=Math.max(8,Math.min(rect.right-scene.left+8,scene.width-dock.offsetWidth-8))+'px';
+      dock.style.top=Math.max(56,Math.min(rect.top-scene.top,scene.height-dock.offsetHeight-8))+'px';
+    }
   }
   function renderCockpit(){
     if(cockpitRendered)return;
     CONTROL_DEFS.forEach(function(def){const layer=document.querySelector('.control-layer[data-layer="'+def.panel+'"]');if(layer)layer.appendChild(renderControl(def));});
     cockpitRendered=true;
+    nativeCockpit=root.A320CockpitNative.mount();
     resetControlStates();
   }
   function markRelevantControls(){
@@ -465,9 +507,11 @@ function initBrowser(){
     const def=DEF_BY_ID[id];if(!def)return;
     const wrap=document.querySelector('.cockpit-control[data-control="'+id+'"]');if(!wrap)return;
     wrap.dataset.state=value;
+    wrap.style.setProperty('--switch-angle',(-50+100*Math.max(0,def.states.indexOf(value))/Math.max(1,def.states.length-1))+'deg');
+    wrap.style.setProperty('--lever-position',(65-60*def.states.indexOf(value)/Math.max(1,def.states.length-1))+'%');
     const readout=wrap.querySelector('[data-state-for="'+id+'"]');if(readout){readout.textContent=value;readout.classList.toggle("on",value!==def.states[0]);}
     wrap.classList.toggle("is-on",value!==def.states[0]);
-    refreshPowerState();
+    refreshPowerState();paintSystems();
   }
   function resetControlStates(){CONTROL_DEFS.forEach(function(def){if(def.states)setState(def.id,def.initial||def.states[0]);});}
   function applyInitial(phase,preserve){
@@ -564,7 +608,7 @@ function initBrowser(){
     showFeedback(result.grade,title,detail+" - "+result.message);
     updateRunUI();
     if(result.stepComplete&&!result.flowComplete&&selectedView==="focus")selectPanel(activeRun.steps[activeRun.index].panel);
-    if(result.flowComplete)finishRun();
+    if(result.flowComplete)finishRun();else if(result.grade==='correct'||result.grade==='conditional')requestAnimationFrame(moveToCurrent);
   }
   function showFeedback(grade,title,text){
     const box=$("feedback");box.className="feedback "+grade;box.innerHTML='<strong>'+title+'</strong><span>'+text+'</span>';
@@ -594,7 +638,7 @@ function initBrowser(){
     if(!activeRun)return;
     activeRun.steps.forEach(function(item,index){
       const row=document.createElement("div");row.className="flow-row "+(index<activeRun.index?"done":index===activeRun.index?"current":"pending");
-      row.innerHTML='<span>'+(index+1)+'</span><b>'+item.label+(item.acknowledgeOnly?' <small>SELF-CHECK</small>':'')+'</b><em>'+item.target+'<small class="source-ref">FCOM PDF pp. '+PHASE_BY_ID[activeRun.phaseId].sourcePages.join(', ')+'</small></em>';host.appendChild(row);
+      row.innerHTML='<span>'+(index+1)+'</span><b>'+item.label+(item.acknowledgeOnly?' <small>SELF-CHECK</small>':'')+'</b><em>'+item.target+'<small class="source-ref">FCOM PDF pp. '+(item.sourcePages&&item.sourcePages.length?item.sourcePages:PHASE_BY_ID[activeRun.phaseId].sourcePages).join(', ')+'</small></em>';host.appendChild(row);
     });
   }
   function selectPanel(name){
@@ -606,12 +650,21 @@ function initBrowser(){
   function viewLabel(){return selectedView==="cockpit"?"VIRTUAL COCKPIT":selectedView==="diagram"?"FLOW MAP":selectedView==="focus"?"FOCUSED PANEL":"FULL PANEL";}
   function restorePhaseStart(){Object.keys(phaseStartState).forEach(function(id){setState(id,phaseStartState[id]);});}
   function startRun(options){
+    clearTimeout(hintTimer);$('controlDock').hidden=true;
     options=options||{};
+    exploration=false;$('exploreCockpit').setAttribute('aria-pressed','false');
+    if(!options.preserve)Object.assign(systems,root.A320CockpitSystems.create());
     activeRun=createRun(selectedPhase,selectedRole,null,selectedContext);revealed=selectedMode==="guided";
     activeRun.practiceView=selectedView;
     activeRun.sessionMode=selectedSession;
     if(selectedView!=="diagram")renderCockpit();
-    if(!cockpitView&&root.A320CockpitView)cockpitView=root.A320CockpitView.create({controls:CONTROL_DEFS});
+    if(!cockpitView&&root.A320CockpitView){
+      cockpitView=root.A320CockpitView.create({controls:CONTROL_DEFS});
+      CONTROL_DEFS.filter(def=>!def.id.startsWith('scan_')).forEach(def=>{const option=document.createElement('option');option.value=def.label;$('controlOptions').appendChild(option);});
+      $('controlSearch').onchange=function(){const term=this.value.toLowerCase();const def=CONTROL_DEFS.find(d=>d.label.toLowerCase()===term||d.id===term)||CONTROL_DEFS.find(d=>d.label.toLowerCase().includes(term));if(def&&term){cockpitView.locate(def.id);if(activeRun&&!exploration)activeRun.reveals++;this.value='';}};
+      $('followCamera').onclick=function(){followCamera=!followCamera;this.setAttribute('aria-pressed',String(followCamera));if(followCamera)moveToCurrent();};
+      $('exploreCockpit').onclick=function(){exploration=!exploration;this.setAttribute('aria-pressed',String(exploration));if(activeRun)activeRun.reveals++;showFeedback('neutral',exploration?'EXPLORE COCKPIT':'FLOW RESUMED',exploration?'All controls operate. Flow grading is paused.':'Continue the selected role flow.');};
+    }
     if(cockpitView)cockpitView.setEnabled(selectedView==="cockpit",activeRun.seat);
     if(options.restore)restorePhaseStart();
     else{applyInitial(PHASE_BY_ID[selectedPhase],Boolean(options.preserve));phaseStartState=Object.assign({},controlState);}
@@ -627,13 +680,13 @@ function initBrowser(){
       $("sourceDetailBody").textContent="";
       const sourceLines=["Source: "+evidence.source.title+". SHA-256: "+evidence.source.sha256,
         "Selected scan: FCOM PDF pp. "+phase.sourcePages.join(', ')+". "+phase.evidence.reference,
-        phase.evidence.note,"Camera geometry and panel artwork are illustrative. The scan is a subset, not a complete procedure or checklist. Conditional and broad-scan completions are self-reported; they do not establish FCOM compliance.",
+        phase.evidence.note,"Cockpit geometry is schematic. Preparation now requires individual controls; physical observations, crew coordination and flight-specific data still require self-checks. Display responses support control practice and are not an aircraft systems model.",
         "Session conditions: "+CONTEXT_BY_ID[selectedContext].description+" Phase transitions preset the next phase; engines, aircraft motion, MCDU entries and crew calls are not dynamically simulated."];
       sourceLines.forEach(function(line){const p=document.createElement('p');p.textContent=line;$("sourceDetailBody").appendChild(p);});
     }
     showFeedback("neutral","FLOW ARMED",activeRun.steps.length+" actions loaded. "+(selectedView==="diagram"?"Tap the flow items in order.":"Operate the cockpit controls in order.")+(PHASE_BY_ID[selectedPhase].coldDark?" Aircraft state: cold and dark.":"")+" Conditional items are acknowledged separately from scored actions.");
     if(selectedView==="diagram")renderFlowMap();else selectPanel(selectedView==="cockpit"?"flightdeck":activeRun.steps[0].panel);
-    updateRunUI();window.scrollTo({top:0,behavior:"instant"});
+    updateRunUI();requestAnimationFrame(moveToCurrent);window.scrollTo({top:0,behavior:"instant"});
   }
   function beginSession(){
     sequenceResults=[];sequenceIndex=0;
@@ -662,14 +715,14 @@ function initBrowser(){
     const cleanCount=sequenceResults.filter(function(item){return item.mastered;}).length;
     const status=!scored?"CONDITIONAL FLOW COMPLETE":mastered?"UNASSISTED FLOW COMPLETE":"ASSISTED FLOW COMPLETE";
     showFeedback(mastered?"correct":"conditional",status,PHASE_BY_ID[activeRun.phaseId].title+" · "+activeRun.role+" complete."+(selectedSession==="sequence"?" Sequence recall: "+cleanCount+"/"+sequenceResults.length+" phases.":""));
-    $("runProgress").style.width="100%";$("completion").scrollIntoView({behavior:"smooth",block:"center"});
+    $("runProgress").style.width="100%";if(selectedView!=="cockpit")$("completion").scrollIntoView({behavior:"smooth",block:"center"});
   }
   function continueSequence(){
     if(sequenceIndex+1>=sequencePhases.length)return;
     sequenceIndex++;selectedPhase=sequencePhases[sequenceIndex].id;startRun({preserve:true});
   }
   function backToSetup(){
-    if(cockpitView)cockpitView.setEnabled(false);activeRun=null;sequencePhases=[];sequenceResults=[];$("trainer").hidden=true;$("setup").hidden=false;renderPhases();renderRoles();renderBrief();window.scrollTo({top:0,behavior:"instant"});
+    if(cockpitView)cockpitView.setEnabled(false);$("controlDock").hidden=true;activeRun=null;sequencePhases=[];sequenceResults=[];$("trainer").hidden=true;$("setup").hidden=false;renderPhases();renderRoles();renderBrief();window.scrollTo({top:0,behavior:"instant"});
   }
 
   renderPhases();renderRoles();renderBrief();
@@ -684,7 +737,7 @@ function initBrowser(){
   $("retryFlow").onclick=function(){startRun({restore:true});};
   $("chooseFlow").onclick=backToSetup;
   if($("continueFlow"))$("continueFlow").onclick=continueSequence;
-  $("hintButton").onclick=function(){if(activeRun&&!activeRun.complete){activeRun.hints++;revealed=true;renderCue();if(selectedView==="cockpit"&&cockpitView)cockpitView.locate(activeRun.steps[activeRun.index].controls.find(function(id){return !activeRun.doneControls.has(id);})||activeRun.steps[activeRun.index].controls[0]);const item=document.querySelector('.flow-item[data-step-index="'+activeRun.index+'"]');if(item)item.classList.add("hinted");setTimeout(function(){if(item)item.classList.remove("hinted");if(selectedMode==="assessment"){revealed=false;renderCue();}},5000);}};
+  $("hintButton").onclick=function(){if(activeRun&&!activeRun.complete){activeRun.hints++;revealed=true;renderCue();if(selectedView==="cockpit"&&cockpitView)cockpitView.locate(activeRun.steps[activeRun.index].controls.find(function(id){return !activeRun.doneControls.has(id);})||activeRun.steps[activeRun.index].controls[0]);const item=document.querySelector('.flow-item[data-step-index="'+activeRun.index+'"]');if(item)item.classList.add("hinted");clearTimeout(hintTimer);hintTimer=setTimeout(function(){if(item)item.classList.remove("hinted");if(selectedMode==="assessment"){revealed=false;renderCue();}},5000);}};
   $("flowDrawer").querySelector('summary').addEventListener('click',function(){if(activeRun&&!activeRun.complete&&!$("flowDrawer").open)activeRun.reveals++;});
   $("revealButton").onclick=function(){if(activeRun&&!$("flowDrawer").open){activeRun.reveals++;$("flowDrawer").open=true;renderCue();}};
   document.querySelectorAll(".panel-tab").forEach(function(b){b.onclick=function(){selectPanel(b.dataset.panel);};});

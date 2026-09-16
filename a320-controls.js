@@ -235,5 +235,102 @@ sel("doors_slides","checks","CABIN DOORS / SLIDES","DOORS/SLIDES",["DISARMED","A
 check("takeoff_runway","checks","TAKEOFF RUNWAY — CONFIRM","RUNWAY",28.0,12.0,20.0,11.0,"CONFIRM",{zone:true});
 check("approach_path","checks","APPROACH PATH — CLEAR OF TRAFFIC","APP PATH",52.0,12.0,20.0,11.0,"CLEAR OF TRAFFIC",{zone:true});
 
+
+// Individually operable controls required by the detailed cockpit-preparation SOP.
+// Native-panel layout is schematic; control names and procedure references are retained.
+const additions=[];
+function extra(id,panel,label,kind,states,initial){additions.push({id,panel,label,short:label,kind,states:states||null,initial:initial||null,cold:initial||null});}
+function exsel(id,panel,label,states,initial){extra(id,panel,label,'selector',states,initial);}
+function expb(id,panel,label,initial){extra(id,panel,label,'pb',['OFF','ON'],initial||'OFF');}
+function excheck(id,panel,label){extra(id,panel,label,'check');}
+function exkey(id,panel,label){extra(id,panel,label,'momentary');}
+expb('rcdr_gnd_ctl','overhead','RCDR GND CTL');
+exkey('cvr_test','overhead','CVR TEST');
+exsel('evac_capt','overhead','EVAC CAPT / PURS',['CAPT','CAPT & PURS'],'CAPT');
+exkey('evac_command','overhead','EVAC COMMAND');exkey('evac_horn','overhead','EVAC HORN SHUT OFF');
+exsel('ldg_elev','overhead','LDG ELEV',['AUTO','MAN'],'AUTO');
+exsel('audio_switch','overhead','AUDIO SWITCHING',['CAPT 3','NORM','F/O 3'],'NORM');
+exsel('cargo_temp','overhead','CARGO TEMP',['COLD','NORM','HOT'],'NORM');
+exsel('third_pa','overhead','3RD OCCUPANT PA',['OFF','RECEPT'],'RECEPT');
+exsel('ann_lt','overhead','ANN LT',['DIM','BRT','TEST'],'BRT');
+expb('oxygen_crew','overhead','OXYGEN CREW SUPPLY','ON');
+['1','2'].forEach(n=>{
+ exkey('eng_'+n+'_fire_test','overhead','ENG '+n+' FIRE TEST');
+ excheck('eng_'+n+'_agents','overhead','ENG '+n+' AGENT LIGHTS');
+ exkey('eng_'+n+'_agent_1','overhead','ENG '+n+' AGENT 1');exkey('eng_'+n+'_agent_2','overhead','ENG '+n+' AGENT 2');
+});
+exkey('apu_fire_test','overhead','APU FIRE TEST');exkey('apu_agent','overhead','APU AGENT');
+excheck('overhead_lights','overhead','WHITE / AMBER LIGHTS');excheck('maint_lights','overhead','MAINT LIGHTS');
+exsel('wiper_cm1','overhead','CAPT WIPER',['OFF','SLOW','FAST'],'OFF');
+exsel('wiper_cm2','overhead','F/O WIPER',['OFF','SLOW','FAST'],'OFF');
+exsel('dome','overhead','DOME',['OFF','DIM','BRT'],'DIM');
+exsel('cabin_vspeed','overhead','CABIN V/S CTL',['UP','NEUTRAL','DN'],'NEUTRAL');
+expb('ditching','overhead','DITCHING');expb('vent_blower','overhead','VENT BLOWER','ON');expb('vent_extract','overhead','VENT EXTRACT','ON');
+['terrain','sys','gs_mode','flap_mode','ldg_flap3'].forEach(id=>expb('gpws_'+id,'overhead','GPWS '+id.toUpperCase().replace('_',' '),'ON'));
+expb('flt_ctl_sec_3','overhead','FLT CTL SEC 3','ON');
+excheck('battery_charge','flightdeck','BATTERY CHARGE CHECK');excheck('standby_check','flightdeck','STBY / ISIS CHECK');
+excheck('clock_check','flightdeck','CLOCK CHECK / SET');expb('askid_nw','flightdeck','A/SKID N/W STRG','ON');
+excheck('brake_pressure','flightdeck','BRAKE PRESSURE');excheck('regul_lo_pr','flightdeck','REGUL LO PR CHECK');
+excheck('ldg_elev_check','flightdeck','LDG ELEV AUTO CHECK');
+exsel('fcu_reference','flightdeck','HDG-V/S / TRK-FPA',['HDG-V/S','TRK-FPA'],'HDG-V/S');
+exsel('fcu_alt_value','flightdeck','FCU ALTITUDE',['3000','5000','7000','10000','15000','20000','25000','30000','35000','39000'],'5000');
+exsel('fcu_spd_value','flightdeck','FCU SPEED',['100','140','160','180','200','220','250','280','300'],'250');
+exsel('fcu_hdg_value','flightdeck','FCU HEADING',['000','030','060','090','120','150','180','210','240','270','300','330'],'000');
+exsel('gear_lever','flightdeck','LANDING GEAR',['DOWN','UP'],'DOWN');
+exkey('master_warning_cm1','flightdeck','CAPT MASTER WARN');exkey('master_warning_cm2','flightdeck','F/O MASTER WARN');
+exkey('master_caution_cm1','flightdeck','CAPT MASTER CAUT');exkey('master_caution_cm2','flightdeck','F/O MASTER CAUT');
+exsel('gravity_gear','pedestal','GRAVITY GEAR EXTN',['STOWED','EXTENDED'],'STOWED');exkey('rudder_reset','pedestal','RUD TRIM RESET');
+exsel('pitch_trim_value','pedestal','PITCH TRIM',['DN 1.0','0.0','UP 0.5','UP 1.0','UP 1.5','UP 2.0','UP 2.5'],'0.0');
+['cm1','cm2'].forEach(seat=>{
+ const label=seat.toUpperCase();
+ exsel('speaker_'+seat,'checks',label+' LOUDSPEAKER',['OFF','LOW','MED','HIGH'],'MED');
+ exsel('acp_int_rad_'+seat,'pedestal',label+' ACP INT/RAD',['RAD','NEUTRAL','INT'],'NEUTRAL');
+ exsel('acp_int_vol_'+seat,'pedestal',label+' INT RECEPTION',['OFF','RELEASE MIN','RELEASE MED'],'RELEASE MED');
+ ['vhf1','vhf2','vhf3','hf1','hf2','pa','int'].forEach(k=>expb('acp_'+seat+'_'+k,'pedestal',label+' ACP '+k.toUpperCase(),k==='vhf1'?'ON':'OFF'));
+ expb('rmp_'+seat+'_power','pedestal',label+' RMP POWER','ON');exkey('rmp_'+seat+'_transfer','pedestal',label+' RMP TRANSFER');
+ exsel('rmp_'+seat+'_tune','pedestal',label+' RMP STBY FREQ',['118.000','119.500','121.500','124.000','126.000','127.500','128.000'],'121.500');
+ excheck('rmp_'+seat+'_lights','pedestal',label+' RMP NAV / SEL LIGHTS');
+ excheck('vhf_check_'+seat,'pedestal',label+' VHF TX / RX CHECK');
+ excheck('hf_check_'+seat,'pedestal',label+' HF CHECK IF REQUIRED');
+ exsel('efis_vor1_'+seat,'flightdeck',label+' EFIS NAVAID 1',['ADF','OFF','VOR'],'OFF');
+ exsel('efis_vor2_'+seat,'flightdeck',label+' EFIS NAVAID 2',['ADF','OFF','VOR'],'OFF');
+ exsel('baro_value_'+seat,'flightdeck',label+' QNH VALUE',['980','990','1000','1005','1010','1013','1015','1020','1025','1030'],'1013');
+ exkey('oxygen_mask_'+seat,'checks',label+' OXY MASK TEST');
+ exsel('brightness_'+seat,'flightdeck',label+' PFD / ND BRIGHTNESS',['OFF','DIM','NORM','BRT'],'NORM');
+ excheck('pfd_check_'+seat,'flightdeck',label+' PFD CHECK');excheck('nd_check_'+seat,'flightdeck',label+' ND CHECK');
+ excheck('fmgs_check_'+seat,'pedestal',label+' FMS DATA CROSSCHECK');
+ excheck('green_dot_'+seat,'pedestal',label+' EFB / MCDU GREEN DOT');
+ excheck('irs_align_'+seat,'pedestal',label+' IRS POSITION CHECK');
+ excheck('fmgs_complete_'+seat,'pedestal',label+' FMS PREPARATION REVIEW');
+ exsel('ads_'+seat,'pedestal',label+' ADS',['DISARMED','ARMED'],'DISARMED');
+ exkey('msg_erase_'+seat,'pedestal',label+' ATC MSG ERASE');
+});
+excheck('departure_brief','checks','DEPARTURE BRIEFING');excheck('prep_checklist','checks','CREW CHECKLIST');
+excheck('ground_clearance','checks','CREW / GROUND COMMUNICATION');excheck('door_test','checks','COCKPIT DOOR FUNCTION / OVERRIDE');
+exsel('cabin_doors','checks','CABIN DOORS',['OPEN','CLOSED'],'CLOSED');
+excheck('engine_idle','flightdeck','ENGINE IDLE PARAMETERS');
+excheck('engine_cooling','checks','ENGINE COOLING / POWER SOURCE');
+exsel('maintenance_bus','overhead','MAINT BUS',['OFF','ON'],'OFF');
+excheck('efb_close_cm1','checks','CM1 EFB CLOSE');excheck('efb_close_cm2','checks','CM2 EFB CLOSE');excheck('securing_checklist','checks','SECURING CHECKLIST');
+excheck('flight_controls_check','flightdeck','FLIGHT CONTROL CHECK');excheck('brakes_check','flightdeck','BRAKE RESPONSE CHECK');excheck('ground_services','checks','GROUND SERVICES CHECK');
+exsel('brake_fan','flightdeck','BRAKE FAN',['OFF','ON'],'OFF');
+// Give extension controls a distinct strip in each existing panel; all hit boxes stay unique.
+const count={};controls.forEach(c=>{c.y*=.67;c.h*=.67;});
+additions.forEach(c=>{const i=count[c.panel]||0;count[c.panel]=i+1;const cols=c.panel==='checks'?4:10;
+ Object.assign(c,{x:1+(i%cols)*(98/cols),y:68+Math.floor(i/cols)*5.1,w:98/cols-.6,h:4.5,extension:true});
+ controls.push(c);
+});
+controls.forEach(c=>{if(c.id==='ext_nav_logo')c.initial='1';if(c.id==='eng_mode')c.cold='NORM';});
+
+controls.forEach(c=>{
+ const limits=c.id==='fcu_alt_value'?[0,49000,100,'ft']:c.id==='fcu_hdg_value'?[0,359,1,'degrees']:c.id==='fcu_spd_value'?[100,399,1,'kt']:c.id.startsWith('baro_value_')?[745,1100,1,'hPa']:/^rmp_cm[12]_tune$/.test(c.id)?[118,136.975,.005,'MHz']:null;
+ if(limits)c.numeric={min:limits[0],max:limits[1],step:limits[2],unit:limits[3],decimals:c.id.startsWith('rmp_')?3:0};
+});
+controls.forEach(c=>{
+ if(/^auto_brake_/.test(c.id)){c.x=60+['auto_brake_lo','auto_brake_med','auto_brake_max'].indexOf(c.id)*3;c.w=2.6;}
+ if(c.id==='gear_check'){c.x=60;c.y=36;c.w=7;}
+ if(c.id==='accu_press'){c.x=60;c.y=45;c.w=7;}
+ if(c.id==='terr_cm1'||c.id==='terr_cm2')c.y=49;
+});
 return {CONTROL_DEFS:controls};
 });

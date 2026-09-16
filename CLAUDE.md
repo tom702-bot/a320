@@ -115,15 +115,15 @@ source.
    - the fill-in datasets are identical;
    - the engine explorer exposes 8 system tabs and 23 selectable 3D parts;
    - every 3D part links to an existing system tab and every system has at least one operating mode.
-   - the flow trainer exposes 10 phases; every role step references an existing cockpit control;
+   - the flow trainer exposes 13 phases; every role step references an existing cockpit control;
    - every PF/CM2 and PM/CM1 role completes in Flow Map mode by selecting each source action once in order;
    - Flow Map assessment mode starts without visible sequence numbers, while correct selections number and connect the completed path;
    - every mapped cockpit hit box stays within its panel and no two control hit boxes overlap;
-   - Cockpit Preparation initializes every modeled power source and powered system to its cold-and-dark value;
+   - Cockpit Preparation starts after preliminary preparation, powered by external power, with both engines OFF and parking brake ON;
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
 4. Search every served file, including distractors and filenames, for content outside the strict Ansett A320 IAE V2500-A5 scope.
 5. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v45`. Virtual cockpit and flow scripts use v45; a320-controls.js remains at v40 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
+   `a320-trainer-v46`. All cockpit/flow scripts and styles use v46 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
 
 Run `node validate-trainer.js` and `node test-trainer.js`. Validation includes `test-system-rotation.js`, `test-audit.js` and `test-communications-options.js`; CI runs the gate on pushes and pull requests. These are structural and source-record checks, not operational certification. A completed exam is required for a pass; test the unrounded threshold. Keep dependent options in their original order or rewrite them as independent statements. Corrected answers must not inherit mastery from the previous content.
 
@@ -145,3 +145,5 @@ open the site in Safari, and add it to the Home Screen again.
 Audit revision: unchanged questions retain fcom-audit-20260905; L133, S116, S128 and S145 use fcom-followup-20260906; C23-001–C23-051 use communications-fcom-20260914. Eligible limitations: 200/259; archived systems data: 645/664; active Systems Exam Prep: 70/70 Communications; fill cells: 121/141; memory: eight self-graded cards. Do not restore a withheld item without resolving its recorded applicability question. A matched-in-source follow-up is not grading eligibility. test-audit.js, verification-audit.json and communications-fcom-audit.json are part of the publication gate. Flow scores use a320flows_v3 and are practice recall only. OUTSTANDING_REVIEW.md explains the 84 remaining applicability questions and 14 source conflicts/gaps.
 
 Virtual cockpit update (16 September): See FLOW_REVIEW.md and flow-evidence.js for the confirmed source, corrected EFIS roles/order, self-check boundaries and tests. Preserve test-cockpit.js in the validation gate.
+
+The seamless cockpit update uses cockpit-native.js/css, cockpit-systems.js and flow-procedures.js. Keep repeated controls (e.g. BAT OFF then AUTO) ordered, require every member of grouped anti-ice actions, and keep physical/data self-checks distinct from verified switch positions. All visible controls must remain operable in touch, pointer and keyboard workflows.
