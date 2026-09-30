@@ -10,9 +10,9 @@ This repository contains a self-contained, installable A320 study app. GitHub Pa
 | `index.html` | Main app: HTML, CSS, JavaScript and question data in one file. |
 | `A320_Checkride_Trainer.html` | Standalone twin of `index.html`; keep it byte-for-byte identical. |
 | `systems-exam-questions.js` | 315 student-guide questions across 19 subjects, with explicit per-item source status. |
-| `question-bank-questions.js` | All 298 imported workbook rows; its 19 FCOM Communications-related rows are active in Systems Exam Prep. |
+| `question-bank-questions.js` | Archived workbook rows; no longer loaded by the trainer. |
 | `communications-fcom-questions.js` | 51 Communications questions checked against FCOM DSC-23 and the 12-page Doc1 supplement. |
-| `communications-option-quality.js` | Presentation-only curated options for all 70 active Communications questions; preserves the original source choices and correct answers. |
+| `communications-option-quality.js` | Archived curated options for the former 70-question Communications pool; preserves the original source choices and correct answers. |
 | `communications-fcom-audit.json` | Item-by-item FCOM and supplement evidence map for the 51 Communications additions. |
 | `trainer-core.js` | Reviewed IAE evidence records with PDF page/Ident/revision, option ordering and completed-exam scoring. |
 | `electrical.html` | Interactive ECAM-style A320 electrical-system synoptic and configuration explainer. |
@@ -63,20 +63,15 @@ guide across 19 subjects. Guide numbers 311–317 are absent from the source PDF
   w: "Explanation", ref: "FCOM ... · Guide Q1, PDF p.2", review: "fcom-source-checked", verification: { id: "S001", status: "checked", pdfPages: [1], sourceHash: "..." } }
 ```
 
-Every systems item requires exactly four choices, a valid zero-based answer, a non-empty
-explanation and a visible source reference. Since 14 September 2026, Systems Exam Prep uses only
-the 70-question Communications allowlist: 19 Question Bank.xlsx rows (QB152–QB158 and
-QB160–QB171) plus 51 FCOM-checked additions (C23-001–C23-051). QB159 and the supplement's DFDR,
-QAR and accelerometer content are intentionally excluded because they belong to ATA 31
-Indicating/Recording, not DSC-23. CVR remains because it is covered by DSC-23-10-40. All guide and
-workbook records remain archived. Systems quizzes, weak-area review and mastery totals must exclude
-every other row. `TrainerCore.isCommunicationsQuestion` enforces the exact IDs and both source hashes.
-`selectSystemDeck` draws fresh rows before the oldest previous selections and shuffles question order.
-`communications-option-quality.js` replaces only the displayed choices, retains `sourceOptions` and
-`sourceAnswerIndex`, and must cover the full 70-question allowlist. Every correct answer remains exact;
-all three distractors must answer the stem, use parallel wording and be plausible but unambiguously wrong.
-Both feedback modes and Run Again share `a320_systems_communications_rotation_v1` draw history;
-do not change existing answer/mastery keys. Reset progress clears rotation too.
+As of 30 September 2026, the user requested removal of Systems Exam Prep and replacement
+with limitations-only practice. The UI has one Limitations Exam Prep entry, backed by the
+200 eligible `BANK` records: checked/corrected status, matching source evidence, an L-series
+record ID and an FCOM LIM reference. Learn mode, Exam mode, weak-area review, mastery and
+lookup all use this pool. Preserve existing limitations history and its storage keys.
+Historical systems/Communications rows and audits remain in the repository for provenance,
+but none of their scripts or images are loaded by the main page or precached. Their historical
+unit tests do not confer current browser eligibility. Do not restore a systems exam without
+an explicit request. Keep Pilot Type Ratings and the other independent study modules intact.
 
 ## Source and applicability rules
 
@@ -89,9 +84,8 @@ source.
 - Keep every served aircraft and engine item within the Ansett A320 IAE V2500 scope. Reject any question, distractor, explanation or legacy page that introduces a different aircraft or engine variant.
 - The standalone IAE engine systems explorer uses the actual 20-IMHT IAE insert effectivity and engineering-use restriction.
   Display descriptions use the separate IAE 19-IMHE insert, 12 AUG 2015, pp.2314–2322. Preserve its identity. Exact geometry and arbitrary failure propagation are illustrative, not verified operational logic.
-- The PXS and GTE self-study courses were removed at the user's request. Do not restore their menu, bank, quiz screens or cache entry. Systems Exam Prep and the IAE explorer remain part of the trainer.
-- Systems Exam Prep retains the guide location, reference and explicit verification status for every item. MEL items must direct the
-  learner to the current operator MEL. Do not move these questions into `BANK`.
+- The PXS and GTE self-study courses were removed at the user's request. Do not restore their menu, bank, quiz screens or cache entry. The IAE explorer remains part of the trainer; Systems Exam Prep has also been removed.
+- Archived systems records retain their guide locations, references and verification status. Do not move these questions into `BANK`.
 - The hydraulic trainer is sourced from the supplied active A/C 21-CMHT DSC-29-10 and DSC-29-20 pages dated 22 MAY 24. Keep the three fluid systems independent: the PTU transfers mechanical power, never hydraulic fluid.
 - Cite limitation questions with the relevant `FCOM LIM-...` reference.
 - Never invent a source reference. If the source is unavailable or ambiguous, flag the item.
@@ -104,10 +98,8 @@ source.
 3. Validate JavaScript syntax and check that:
    - the limitations bank total is 259 unless a deliberate addition/removal changes it;
    - every served Limitations Check item is sourced from an `FCOM LIM-...` page;
-   - Systems Exam Prep offers exactly the 70 Communications questions listed above;
-     315 guide records and the other 279 workbook records remain archived, with no duplicate normalized question text;
-   - every Systems Exam Prep question has exactly four choices, a valid answer index, a non-empty
-     explanation and a visible source reference (workbook filename and row for active systems questions);
+   - the active limitations pool contains 200 eligible LIM records; all 664 systems/workbook/Communications rows remain archived;
+   - the main page has one limitations exam entry, no systems exam UI or script loads, and no systems questions in weak-area review or mastery;
    - every answer index is valid;
    - every question has a non-empty explanation/reference;
    - normalized question text contains no duplicates;
@@ -123,7 +115,7 @@ source.
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
 4. Search every served file, including distractors and filenames, for content outside the strict Ansett A320 IAE V2500-A5 scope.
 5. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v50`. Unchanged cockpit/flow scripts and styles use v49 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
+   `a320-trainer-v51`. Unchanged cockpit/flow scripts and styles use v49 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
 
 Run `node validate-trainer.js` and `node test-trainer.js`. Validation includes `test-system-rotation.js`, `test-audit.js` and `test-communications-options.js`; CI runs the gate on pushes and pull requests. These are structural and source-record checks, not operational certification. A completed exam is required for a pass; test the unrounded threshold. Keep dependent options in their original order or rewrite them as independent statements. Corrected answers must not inherit mastery from the previous content.
 
@@ -142,7 +134,7 @@ page and service worker. On an iPhone, opening the site once while online allows
 to replace the prior offline copy. If an installed Home-Screen copy remains stale, remove it,
 open the site in Safari, and add it to the Home Screen again.
 
-Audit revision: unchanged questions retain fcom-audit-20260905; L133, S116, S128 and S145 use fcom-followup-20260906; C23-001–C23-051 use communications-fcom-20260914. Eligible limitations: 200/259; archived systems data: 645/664; active Systems Exam Prep: 70/70 Communications; fill cells: 121/141; memory: eight self-graded cards. Do not restore a withheld item without resolving its recorded applicability question. A matched-in-source follow-up is not grading eligibility. test-audit.js, verification-audit.json and communications-fcom-audit.json are part of the publication gate. Flow scores use a320flows_v3 and are practice recall only. OUTSTANDING_REVIEW.md explains the 84 remaining applicability questions and 14 source conflicts/gaps.
+Audit revision: unchanged questions retain fcom-audit-20260905; L133, S116, S128 and S145 use fcom-followup-20260906; C23-001–C23-051 use communications-fcom-20260914. Eligible limitations: 200/259; archived systems data: 645/664; active exam pool: 200 limitations; systems/Communications exam removed; fill cells: 121/141; memory: eight self-graded cards. Do not restore a withheld item without resolving its recorded applicability question. A matched-in-source follow-up is not grading eligibility. test-audit.js, verification-audit.json and communications-fcom-audit.json are part of the publication gate. Flow scores use a320flows_v3 and are practice recall only. OUTSTANDING_REVIEW.md explains the 84 remaining applicability questions and 14 source conflicts/gaps.
 
 Virtual cockpit update (16 September): See FLOW_REVIEW.md and flow-evidence.js for the confirmed source, corrected EFIS roles/order, self-check boundaries and tests. Preserve test-cockpit.js in the validation gate.
 

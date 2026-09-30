@@ -104,9 +104,9 @@ fcomCommunications.forEach(item=>{
 });
 const activeCommunications=questionBank.filter(core.isCommunicationsQuestion);
 const activeSystems=systems.filter(core.isCommunicationsQuestion);
-ok(activeCommunications.length===19,"Systems Exam Prep retains 19 active Communications workbook questions");
-ok(activeSystems.length===70,"Systems Exam Prep has exactly 70 active Communications questions");
-ok(JSON.stringify(activeSystems.map(item=>item.verification.id))===JSON.stringify(core.COMMUNICATIONS_QUESTION_IDS),"active Communications IDs match the explicit FCOM-section allowlist");
+ok(activeCommunications.length===19,"archived Communications allowlist retains 19 workbook questions");
+ok(activeSystems.length===70,"archived Communications allowlist retains 70 questions");
+ok(JSON.stringify(activeSystems.map(item=>item.verification.id))===JSON.stringify(core.COMMUNICATIONS_QUESTION_IDS),"archived Communications IDs match the historical FCOM-section allowlist");
 ok(!activeCommunications.some(item=>item.verification.id==='QB159'),"DFDR storage remains outside Communications practice");
 ok(questionBank.filter(item=>item.image).length===15,"all 15 workbook illustrations are attached");
 questionBank.filter(item=>item.image).forEach(item=>ok(fs.existsSync(path.join(root,item.image)),item.image+" exists"));
@@ -168,8 +168,8 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v50"),"offline cache is version 50");
-ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=49")&&sw.includes("./question-bank-questions.js")&&sw.includes("./communications-fcom-questions.js")&&sw.includes("./communications-option-quality.js")&&sw.includes("./communications-fcom-audit.json"),"offline cache includes upgraded modules, both Communications sources and the curated option layer");
+ok(sw.includes("a320-trainer-v51"),"offline cache is version 51");
+ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=49")&&!/systems-exam-questions|question-bank-questions|communications-fcom|communications-option/.test(sw),"offline cache includes active modules and excludes removed exam banks");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
 const forbidden=new RegExp("\\bA3"+"21\\b|P2"+"F|CF"+"M(?:56)?|PW"+"1100|LE"+"AP-?1A|Pra"+"tt\\s*(?:&|and)?\\s*Whitney","i");
