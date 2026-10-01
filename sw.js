@@ -1,4 +1,4 @@
-const CACHE = 'a320-trainer-v52';
+const CACHE = 'a320-trainer-v53';
 const ASSETS = ['./','./index.html','./manifest.webmanifest','./type-ratings.html','./type-ratings.js','./assets/type-ratings/casr-handout.jpeg',
   './trainer-core.js',
   './electrical.html','./electrical-sim.js','./hydraulic.html','./hydraulic-sim.js','./engine.html','./engine-sim.js','./engine-3d.js','./cockpit-view.css?v=49','./cockpit-view.js?v=49','./flow-evidence.js?v=49','./cockpit-native.css?v=49','./cockpit-native.js?v=49','./cockpit-systems.js?v=49','./flow-sop.js?v=49',

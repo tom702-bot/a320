@@ -168,7 +168,7 @@ ok(/scenario/.test(read("electrical-sim.js"))&&/scenario/.test(read("hydraulic-s
 const manifest=JSON.parse(read("manifest.webmanifest"));
 ok(manifest.orientation==="any","installed app supports portrait and landscape");
 const sw=read("sw.js");
-ok(sw.includes("a320-trainer-v52"),"offline cache is version 52");
+ok(sw.includes("a320-trainer-v53"),"offline cache is version 53");
 ok(sw.includes("./integration.html")&&sw.includes("./flow-sim.js?v=49")&&!/systems-exam-questions|question-bank-questions|communications-fcom|communications-option/.test(sw),"offline cache includes active modules and excludes removed exam banks");
 
 const served=required.filter(file=>/\.(?:html|js|webmanifest)$/.test(file));
