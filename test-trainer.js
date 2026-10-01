@@ -14,10 +14,10 @@ function fn(name){
   const end=html.indexOf('\n}',start)+2;
   return html.slice(start,end);
 }
-function element(){return {style:{},children:[],classList:{add(){},remove(){},toggle(){},contains(){return false;}},appendChild(child){this.children.push(child);}};}
+function element(){return {style:{},children:[],markup:'',attributes:{},classList:{add(){},remove(){},toggle(){},contains(){return false;}},get innerHTML(){return this.markup;},set innerHTML(value){this.markup=value;this.children=[];},setAttribute(key,value){this.attributes[key]=value;},focus(){},scrollIntoView(){},querySelector(){return element();},querySelectorAll(){return [];},appendChild(child){this.children.push(child);}};}
 function context(extra={}){
   const elements={};
-  return Object.assign({elements,$:id=>elements[id]??=element(),document:{createElement:element},TrainerCore:core,show(){},queue:[],missed:[],currentQuizKind:'systems',currentFeedbackMode:'exam'},extra);
+  return Object.assign({elements,$:id=>elements[id]??=element(),document:{createElement:element},window:{scrollTo(){}},TrainerCore:core,show(){},queue:[],missed:[],currentQuizKind:'systems',currentFeedbackMode:'exam'},extra);
 }
 function score(correct,missed,expected){
   const c=context({cor:correct,miss:missed,queue:Array(expected).fill({})});
@@ -83,7 +83,7 @@ assert.doesNotMatch(read('sw.js'),/self-study-quizzes/);
 // Run startup with only declared element IDs, catching handlers left attached to removed screens.
 const declaredIds=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));
 const nodes=new Map();
-function startupElement(){return {style:{},children:[],classList:{add(){},remove(){},toggle(){},contains(){return false;}},setAttribute(){},querySelectorAll(){return [];},appendChild(child){this.children.push(child);}};}
+function startupElement(){return element();}
 const savedStorage={};
 const startup={TrainerCore:core,window:{scrollTo(){},addEventListener(){}},navigator:{},localStorage:{getItem(key){return savedStorage[key]??null;},setItem(key,value){savedStorage[key]=value;},removeItem(key){delete savedStorage[key];}},document:{getElementById(id){if(!declaredIds.has(id))return null;if(!nodes.has(id))nodes.set(id,startupElement());return nodes.get(id);},createElement:startupElement,addEventListener(){}}};
 for(const script of html.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInNewContext(script[1],startup);
@@ -125,6 +125,43 @@ vm.runInNewContext('recordAnswer(VERIFIED_BANK[0],true);',reloaded);assert.equal
 assert.equal(vm.runInNewContext('Object.keys(STATS).length',reloaded),4,'old system history is preserved without counting toward active progress');
 reloaded.confirm=()=>true;nodes.get('resetProg').onclick();
 assert.equal(vm.runInNewContext('Object.keys(STATS).length',reloaded),0);
+
+// Wording edits preserve the existing recall history for the same sourced concept.
+const qualityAudit=JSON.parse(read('verification-audit.json'));
+for(const id of qualityAudit.limitationsQualityReview.ids){
+  const q=vm.runInNewContext('BANK',startup).find(q=>q.verification.id===id);
+  const previous=qualityAudit.items[id].qualityReview.previousResult;
+  assert.equal(statsContext.key(q),statsContext.key({...q,q:previous.q,progressQuestion:undefined}),id+' retains its progress key');
+  assert.equal(core.hasDependentOptions(q),false,id+' options remain independently shuffleable');
+}
+const qa={...startup};
+for(const script of html.matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInNewContext(script[1],qa);
+vm.runInNewContext('active=new Set();updateSetup();',qa);
+assert.equal(nodes.get('startMcqBtn').disabled,true);
+assert.match(nodes.get('selectionSummary').textContent,/Select at least one/);
+vm.runInNewContext('active=new Set(CATS);runLen=0;limFeedbackMode="exam";updateSetup();',qa);
+assert.equal(nodes.get('startMcqBtn').disabled,false);
+assert.match(nodes.get('startMcqBtn').textContent,/Exam.*200/);
+nodes.get('startMcqBtn').onclick();
+// Exercise every shuffled answer mapping and the final score, including duplicate input.
+for(let i=0;i<200;i++){
+  const q=vm.runInNewContext('queue[qi]',qa);
+  const button=nodes.get('qOpts').children.find(b=>b.innerHTML.endsWith('<span class="txt">'+q.o[q.a]+'</span>'));
+  assert(button,'correct displayed answer exists for '+q.verification.id);
+  button.onclick();
+  assert.equal(vm.runInNewContext('cor+miss',qa),i+1);
+  button.onclick();
+  assert.equal(vm.runInNewContext('cor+miss',qa),i+1,'duplicate input cannot inflate score');
+  assert.equal(nodes.get('sCor').textContent,'—','exam does not expose live correctness');
+  assert.match(nodes.get('ecamSlot').innerHTML,/Answer recorded/);
+  if(i===199)assert.equal(nodes.get('nextBtn').textContent,'View results');
+  nodes.get('nextBtn').onclick();
+}
+assert.equal(nodes.get('rScore').textContent,'100%');
+assert.match(nodes.get('rSummary').textContent,/200 correct · 0 missed · 0 unanswered/);
+assert.equal(nodes.get('bar').style.width,'100%');
+assert.match(html,/e\.repeat\|\|e\.ctrlKey\|\|e\.metaKey\|\|e\.altKey/);
+assert.match(html,/questionAnswered&&!e\.target\.closest\("button,a,input,select,textarea,summary"\)/,'native Enter activation is not handled twice');
 
 async function offlineTests(){
   const base='https://trainer.invalid/a320/';
@@ -184,7 +221,7 @@ async function offlineTests(){
   assert.match(await nav.text(),/Limitations Exam Prep/);
   online=true;
   assert.equal((await event('fetch',request('missing.js'))).status,404);
-  assert.equal(await (await caches.open('a320-trainer-v51')).match('missing.js'),undefined,'404 responses are not cached');
+  assert.equal(await (await caches.open('a320-trainer-v52')).match('missing.js'),undefined,'404 responses are not cached');
   assert.equal(await event('fetch',{method:'GET',url:'https://other.invalid/a320/file.js'}),undefined);
   assert.equal(await event('fetch',{method:'GET',url:'https://trainer.invalid/another/file.js'}),undefined);
 }

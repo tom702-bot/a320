@@ -115,7 +115,7 @@ source.
    - a correct sequence completes each PF/CM2 and PM/CM1 run, while future-step inputs grade out of order.
 4. Search every served file, including distractors and filenames, for content outside the strict Ansett A320 IAE V2500-A5 scope.
 5. Bump the cache version in `sw.js` after any app-content change. Current cache:
-   `a320-trainer-v51`. Unchanged cockpit/flow scripts and styles use v49 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
+   `a320-trainer-v52`. Unchanged cockpit/flow scripts and styles use v49 and match the precache manifest. Navigation fallbacks must never serve HTML to script requests.
 
 Run `node validate-trainer.js` and `node test-trainer.js`. Validation includes `test-system-rotation.js`, `test-audit.js` and `test-communications-options.js`; CI runs the gate on pushes and pull requests. These are structural and source-record checks, not operational certification. A completed exam is required for a pass; test the unrounded threshold. Keep dependent options in their original order or rewrite them as independent statements. Corrected answers must not inherit mastery from the previous content.
 
@@ -147,3 +147,8 @@ SOP review: flow-sop.js overrides legacy scan/tasksharing entries with reviewed 
 User preference: flow practice excludes communication exchanges, clearance requests, announcements, briefings and voice radio checks. Preserve actual radio/ATC/ACP/call controls. Preserve physical checks from mixed steps and record intentional communication omissions in the SOP action audit. Do not restore these prompts from the FCOM without a user request.
 
 Pilot Type Ratings is a separate CASR module (type-ratings.html/js), with 16 questions, the original handout and explicit compilation provenance. Do not append regulatory questions to either FCOM bank. Preserve the AND correction, current TYPE wording and later 61.800 alternatives. Source verification is against the named compilation, not a claim that later amendments or exemptions were checked. Include test-type-ratings.js in the publication gate.
+
+
+Limitations quality and UI review (1 October 2026, release 52): Reviewed all 200 eligible questions and refined 78 stems/option sets against the same supplied FCOM. Conditions now appear in the stems for normal ground ventilation, approach AP use, CAT III DUAL, engine-out autoland, fuel balancing and predictive GPWS inhibition. Distractors use comparable concepts/units without positional dependencies. `verification-audit.json` preserves each previous result in `qualityReview`; source hashes, page effectivity and the 59 withheld limitations remain unchanged. `progressQuestion` preserves the prior storage key after a wording-only edit; use it in `statKey` and do not remove it.
+
+Quiz setup now precedes the other study tools. Learn/Exam controls describe their behavior, subject selection reports the actual run size, empty selection disables Begin, and source/applicability information remains available in a disclosure. Quiz text and touch controls are larger. Feedback labels identify selected/correct answers without relying on colour, Exam records answers without revealing correctness, and the last action says View results. Question focus, a completed-answer progress bar, a duplicate-answer guard and native Enter handling prevent skipped items or duplicate scoring. The tests exercise all 200 correct shuffled choices, duplicate input, history preservation, source matching and offline assets.
