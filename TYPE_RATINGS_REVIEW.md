@@ -59,4 +59,4 @@ every requirement in Division 61.L.5.
 Exam feedback concealment, original-answer identity after shuffling, 80% pass
 threshold, incomplete-run handling, duplicate-answer guard, source links,
 unchanged original handout hash and offline assets. The main HTML twins remain
-identical. Cache version is 53. Aircraft question banks were not edited.
+identical. Cache version is 54. The type-rating script uses a matching versioned URL so a cached older script cannot accompany the updated HTML. Aircraft question banks were not edited.
