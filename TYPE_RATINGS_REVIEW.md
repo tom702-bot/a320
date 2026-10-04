@@ -60,3 +60,12 @@ Exam feedback concealment, original-answer identity after shuffling, 80% pass
 threshold, incomplete-run handling, duplicate-answer guard, source links,
 unchanged original handout hash and offline assets. The main HTML twins remain
 identical. Cache version is 54. The type-rating script uses a matching versioned URL so a cached older script cannot accompany the updated HTML. Aircraft question banks were not edited.
+
+
+## 4 October 2026 — release 55
+
+Rechecked all 20 existing keys and explanations against compilation 102 and F2026L00846. Clarified TR03 to state the multi-engine turbine-powered aircraft condition independently. Added TR21–TR36 covering 61.780, 61.785, 61.790, 61.795 and 61.805, with 61.385 competence and 202.291(2) application dates. 36 questions total; study notes and menu counts match. Each new question carries its clause reference.
+
+Reviewed sources: Volume 2 pp.173–179; Volume 5 p.66; F2026L00846 Schedule 1 and commencement table. The September schedules concern restricted category aircraft and large RPA, not these provisions. DeepSky's older snapshot was not used to override the June amendments. No aircraft-model-specific differences-training entitlement is inferred. Individual exemptions and operator approvals remain outside this generic study module.
+
+The 24-month type IPC question expressly separates type IPC validity from other instrument, licence and operator requirements. Failed checks and operator-only validity are tested. Cross-type IPC example uses a post-commencement check. Original handout preserved. Cache and quiz script advanced to v55. Main HTML twins remain identical.
