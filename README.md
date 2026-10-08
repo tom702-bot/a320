@@ -9,7 +9,7 @@ A personal study site built around the supplied FCOM, FCTM and QRH, FCOM and QRH
 - Normal SOPs, supplementary and systems-related procedures; FCTM techniques; the QRH normal checklist.
 - Abnormal procedure indexes and 8 source-linked scenario study prompts. Scenario prompts are self-assessed and do not invent or grade emergency actions.
 - 92 newly authored limitations questions, with Learn, Exam, flashcard, weak-question and local progress modes. Exact PDF pages, source hash, section and applicability accompany each question. Only a completed exam updates scored mastery.
-- Six aircraft choices: VH-ULD, VH-ULW, VH-ULY, VH-XF4, VH-XF5, VH-XF6. Selection filters question eligibility; original pages retain all registrations and equipment options.
+- One A321P2F study set and progress record. All 92 questions are available together. Equipment differences are noted on relevant questions; procedure branches and applicability stay with their original source pages. Previous registration selections no longer filter study content or reset progress.
 - Local PDF loading (FCOM 4,364 pages; FCTM 532; QRH 330), section browsing, private full-text search, source page links and optional browser storage for offline use.
 - Preserved engine, electrical, hydraulic and cross-system illustrative explorers; corrected engine limitations and updated source links. Simplified model assumptions remain explicit and are not a full aircraft-specific simulation.
 
