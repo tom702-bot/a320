@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>A320 Hydraulic Systems Trainer</title>
+<title>A321P2F Hydraulic Systems Trainer</title>
 <meta name="theme-color" content="#050806">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -24,10 +24,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offse
 @media(max-width:820px){.modes{grid-template-columns:repeat(4,1fr)}.stage{grid-template-columns:1fr}.info{border-left:0;border-top:1px solid var(--edge)}.component-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:560px){.page{padding-left:8px;padding-right:8px}.trainer{padding:9px 6px}.modes{grid-template-columns:repeat(2,1fr)}.component-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.refs{grid-template-columns:1fr}.section-head{display:block}.section-head p{text-align:left;margin-top:4px}.tag{font-size:9px}h1{font-size:19px}.info{padding:11px}}
 </style>
-</head>
+<link rel="icon" href="favicon.svg"><style>.tag,.back{font-size:14px!important}.scope,.warning,.source{font-size:14px!important;line-height:1.65!important}.placard{border-top-color:#d71920!important}.badge{background:#d71920!important;color:white!important}.top:before{content:"QANTAS";color:#ed2730;font:700 16px system-ui;margin-right:12px}</style></head>
 <body>
 <main class="page">
-  <div class="top"><a class="back" href="index.html">&larr; TRAINER</a><div class="tag">A320 &middot; ATA 29 &middot; 21-CMHT</div></div>
+  <div class="top"><a class="back" href="index.html">&larr; TRAINER</a><div class="tag">A321P2F &middot; ATA 29 &middot; QANTAS FREIGHT</div></div>
   <section class="trainer">
     <h1><span>HYD</span></h1>
     <p class="sub">CHOOSE A CONFIGURATION, SELECT ANY COMPONENT, THEN FAIL IT TO TRACE THE CONSEQUENCES</p>
@@ -41,7 +41,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offse
       <button class="mode" data-mode="rat">RAT / EMERGENCY</button>
     </div>
     <div class="stage">
-      <div class="canvas-wrap"><canvas id="hydraulicDiagram" role="img" aria-label="Interactive A320 green, blue and yellow hydraulic generation and distribution diagram"></canvas></div>
+      <div class="canvas-wrap"><canvas id="hydraulicDiagram" role="img" aria-label="Interactive A321P2F green, blue and yellow hydraulic generation and distribution diagram"></canvas></div>
       <aside class="info" aria-live="polite">
         <div class="eyebrow">SELECTED COMPONENT</div><h2 id="componentName">HYDRAULIC SYSTEM OVERVIEW</h2>
         <h3>FUNCTION</h3><p id="componentPurpose"></p>
@@ -68,7 +68,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offse
       <div class="item"><b>RESERVOIR PRESSURISATION</b><p>Engine 1 HP bleed normally pressurises all three reservoirs; the crossbleed duct supplies them if that pressure is too low.</p></div>
     </section>
   </div>
-  <p class="scope"><b>SOURCE:</b> Supplied Ansett/Navblue A320 FCOM for A/C 21-CMHT, DSC-29-10 and DSC-29-20, dated 22 MAY 24. Reviewed passages: PDF pp.1342–1357. The model assumes steady-state airborne operation, adequate airspeed and no PTU inhibit. Pressure dynamics, accumulator/braking reserve and cargo-door isolation timing are not simulated. NWS routing is withheld until the Ansett simulator hydraulic standard is confirmed. ECAM, QRH and the current approved FCOM remain authoritative.</p>
+  <p class="scope"><b>SOURCE:</b> Supplied Qantas A321P2F FCOM, DSC-29, PDF pp.1567–1586, effective 1 May 2026. <a href="index.html#source/FCOM/1567">Read the source</a>. This illustrative model assumes steady-state airborne operation, adequate airspeed and no PTU inhibit. Pressure dynamics, braking reserve, NWS routing and cargo-door isolation timing are not simulated. Original page effectivity remains authoritative.</p>
   <p class="foot">STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE</p>
 </main>
 <script src="hydraulic-sim.js"></script>

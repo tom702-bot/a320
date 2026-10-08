@@ -1,0 +1,396 @@
+[
+  {
+    "id": "preparation",
+    "title": "Cockpit preparation — panel scan",
+    "scope": "Recall the six areas in the printed flow pattern. Each area contains further actions in SOP-06; this is a panel-order drill.",
+    "pattern": 3646,
+    "steps": [
+      {
+        "label": "Overhead panel",
+        "target": "Complete the overhead scan and its conditional checks.",
+        "role": "PF",
+        "page": 3647
+      },
+      {
+        "label": "Centre instrument panel",
+        "target": "Continue through the centre instrument panel.",
+        "role": "PF",
+        "page": 3652
+      },
+      {
+        "label": "Pedestal",
+        "target": "Continue through the pedestal.",
+        "role": "PF",
+        "page": 3654
+      },
+      {
+        "label": "FMGS preparation",
+        "target": "Prepare and crosscheck applicable flight data.",
+        "role": "PF",
+        "page": 3656
+      },
+      {
+        "label": "Glareshield",
+        "target": "Each pilot completes their own-side checks.",
+        "role": "CM1/CM2",
+        "page": 3663
+      },
+      {
+        "label": "Lateral consoles and instrument panels",
+        "target": "Each pilot completes their own-side checks.",
+        "role": "CM1/CM2",
+        "page": 3664
+      }
+    ]
+  },
+  {
+    "id": "start",
+    "title": "Automatic engine start — selected actions",
+    "scope": "Selected physical actions and observed gates in SOP-08, after start clearance and ground prerequisites. Communications are omitted. Monitor the full start sequence on the source pages.",
+    "pattern": null,
+    "steps": [
+      {
+        "label": "Thrust levers",
+        "target": "IDLE",
+        "role": "PF",
+        "page": 3673
+      },
+      {
+        "label": "Engine mode selector",
+        "target": "IGN/START",
+        "role": "PF",
+        "page": 3673
+      },
+      {
+        "label": "Engine 1 display readiness",
+        "target": "Wait until amber crosses, except N1/N2, and messages disappear before selecting the master.",
+        "role": "PF",
+        "page": 3673
+      },
+      {
+        "label": "Engine 1 master",
+        "target": "ON; monitor the start sequence and idle parameters in the source.",
+        "role": "PF",
+        "page": 3673
+      },
+      {
+        "label": "Engine 2",
+        "target": "Apply the engine 2 start and monitoring sequence in SOP-08.",
+        "role": "PF",
+        "page": 3674
+      }
+    ]
+  },
+  {
+    "id": "after-start-pf",
+    "title": "After start — PF",
+    "scope": "Both engines started; two-engine taxi departure. Conditional selections remain conditional. This drill omits communications and is followed by the crew checklist.",
+    "pattern": 3677,
+    "steps": [
+      {
+        "label": "Engine mode selector",
+        "target": "NORM",
+        "role": "PF",
+        "page": 3678
+      },
+      {
+        "label": "APU bleed",
+        "target": "OFF",
+        "role": "PF",
+        "page": 3678
+      },
+      {
+        "label": "Engine anti-ice",
+        "target": "AS REQUIRED; ON when icing exists or is anticipated on the ground.",
+        "role": "PF",
+        "page": 3678
+      },
+      {
+        "label": "Wing anti-ice",
+        "target": "AS REQUIRED",
+        "role": "PF",
+        "page": 3678
+      },
+      {
+        "label": "APU master",
+        "target": "OFF if APU is not required.",
+        "role": "PF",
+        "page": 3679
+      },
+      {
+        "label": "ECAM status",
+        "target": "Check and crosscheck; if STS appears, display the STATUS page.",
+        "role": "BOTH",
+        "page": 3679
+      },
+      {
+        "label": "N/W steering disconnect memo",
+        "target": "Check NOT DISPLAYED.",
+        "role": "PF",
+        "page": 3680
+      },
+      {
+        "label": "Thrust setting",
+        "target": "Crosscheck E/WD thrust setting against FMS PERF.",
+        "role": "PF",
+        "page": 3680
+      }
+    ]
+  },
+  {
+    "id": "after-start-pm",
+    "title": "After start — PM",
+    "scope": "Selected two-engine taxi actions. Keep flaps retracted to the holding point when taxiing in icing conditions with rain, slush or snow.",
+    "pattern": 3677,
+    "steps": [
+      {
+        "label": "Ground spoilers",
+        "target": "ARM",
+        "role": "PM",
+        "page": 3679
+      },
+      {
+        "label": "Rudder trim reset",
+        "target": "PRESS",
+        "role": "PM",
+        "page": 3679
+      },
+      {
+        "label": "Rudder trim",
+        "target": "CHECK NEUTRAL; up to 0.3° L/R may be indicated after reset.",
+        "role": "PM",
+        "page": 3679
+      },
+      {
+        "label": "Flaps lever",
+        "target": "SET FOR TAKEOFF, subject to the icing/taxi condition.",
+        "role": "PM",
+        "page": 3679
+      },
+      {
+        "label": "Flap position",
+        "target": "CHECK on the upper ECAM display.",
+        "role": "PM",
+        "page": 3679
+      },
+      {
+        "label": "Pitch trim wheel",
+        "target": "SET takeoff CG.",
+        "role": "PM",
+        "page": 3679
+      },
+      {
+        "label": "ECAM status",
+        "target": "CHECK; PF crosschecks.",
+        "role": "BOTH",
+        "page": 3679
+      }
+    ]
+  },
+  {
+    "id": "after-takeoff",
+    "title": "After takeoff — PM",
+    "scope": "Selected SOP-13 actions. Use the source conditions when the APU supplied the packs, TA-only was used, or icing is present.",
+    "pattern": null,
+    "steps": [
+      {
+        "label": "APU bleed",
+        "target": "OFF if the APU supplied air conditioning for takeoff.",
+        "role": "PM",
+        "page": 3699
+      },
+      {
+        "label": "APU master",
+        "target": "OFF if the APU supplied air conditioning for takeoff.",
+        "role": "PM",
+        "page": 3699
+      },
+      {
+        "label": "Engine mode selector",
+        "target": "AS REQUIRED; IGN/START for severe turbulence or heavy rain.",
+        "role": "PM",
+        "page": 3699
+      },
+      {
+        "label": "TCAS",
+        "target": "TA/RA or TFC if takeoff was performed in TA-only.",
+        "role": "PM",
+        "page": 3699
+      },
+      {
+        "label": "Engine anti-ice",
+        "target": "AS REQUIRED under the source icing conditions and SAT exception.",
+        "role": "PM",
+        "page": 3699
+      },
+      {
+        "label": "Wing anti-ice",
+        "target": "AS REQUIRED; observe the evidence-of-ice criteria in the source.",
+        "role": "PM",
+        "page": 3699
+      }
+    ]
+  },
+  {
+    "id": "after-landing-pf",
+    "title": "After landing — PF",
+    "scope": "Begin after vacating the runway. This is the PF control subset, not the complete after-landing procedure.",
+    "pattern": 3791,
+    "steps": [
+      {
+        "label": "Ground spoilers",
+        "target": "DISARM after runway vacated.",
+        "role": "PF",
+        "page": 3791
+      },
+      {
+        "label": "Landing lights",
+        "target": "RETRACT",
+        "role": "PF",
+        "page": 3792
+      },
+      {
+        "label": "Strobe lights",
+        "target": "AUTO when leaving the runway; ON when crossing a runway.",
+        "role": "PF",
+        "page": 3792
+      },
+      {
+        "label": "Nose light",
+        "target": "TAXI when leaving the runway.",
+        "role": "PF",
+        "page": 3792
+      },
+      {
+        "label": "Other exterior lights",
+        "target": "AS REQUIRED",
+        "role": "PF",
+        "page": 3792
+      }
+    ]
+  },
+  {
+    "id": "parking-pf",
+    "title": "Parking — PF selected actions",
+    "scope": "Parking sequence including brake, electrical-supply and cooling conditions. Read the complete parking procedure; PM actions run alongside this subset.",
+    "pattern": 3799,
+    "steps": [
+      {
+        "label": "Accumulator pressure",
+        "target": "CHECK green band. If low, chocks are required before engine 1 shutdown.",
+        "role": "PF",
+        "page": 3799
+      },
+      {
+        "label": "Parking brake",
+        "target": "ON; avoid applying above 500°C, or above 350°C with brake fans ON, unless operationally necessary.",
+        "role": "PF",
+        "page": 3800
+      },
+      {
+        "label": "Brake pressure",
+        "target": "CHECK; hold pedals until both needles are above the green area.",
+        "role": "PF",
+        "page": 3800
+      },
+      {
+        "label": "Yellow electric pump",
+        "target": "OFF before engine 1 shutdown when used for one-engine taxi.",
+        "role": "PF",
+        "page": 3800
+      },
+      {
+        "label": "Electrical supply",
+        "target": "If no APU: EXT PWR AVAIL then ON. If APU used: check APU AVAIL.",
+        "role": "PF",
+        "page": 3800
+      },
+      {
+        "label": "Engine masters",
+        "target": "OFF no less than 3 min after high-thrust operations.",
+        "role": "PF",
+        "page": 3800
+      },
+      {
+        "label": "Engine parameters",
+        "target": "CHECK decreasing.",
+        "role": "PF",
+        "page": 3801
+      },
+      {
+        "label": "Wing lights",
+        "target": "OFF",
+        "role": "PF",
+        "page": 3801
+      },
+      {
+        "label": "Beacon",
+        "target": "OFF when all engines are below approximately 20% N2.",
+        "role": "PF",
+        "page": 3801
+      },
+      {
+        "label": "Other exterior lights",
+        "target": "AS REQUIRED",
+        "role": "PF",
+        "page": 3801
+      }
+    ]
+  },
+  {
+    "id": "securing-cm2",
+    "title": "Securing — CM2",
+    "scope": "Selected physical actions in SOP-23. Apply company policy and relevant adverse-weather procedures first. CM1 checks the parking brake and switches ADIRS off; allow at least 10 s after ADIRS shutdown before electrical power off.",
+    "pattern": null,
+    "steps": [
+      {
+        "label": "Crew oxygen supply",
+        "target": "OFF",
+        "role": "CM2",
+        "page": 3805
+      },
+      {
+        "label": "Exterior lights",
+        "target": "OFF",
+        "role": "CM2",
+        "page": 3806
+      },
+      {
+        "label": "Maintenance bus",
+        "target": "AS REQUIRED for crew or servicing personnel.",
+        "role": "CM2",
+        "page": 3806
+      },
+      {
+        "label": "APU bleed",
+        "target": "OFF",
+        "role": "CM2",
+        "page": 3806
+      },
+      {
+        "label": "External power",
+        "target": "AS REQUIRED",
+        "role": "CM2",
+        "page": 3806
+      },
+      {
+        "label": "APU master",
+        "target": "OFF after all occupants disembark.",
+        "role": "CM2",
+        "page": 3806
+      },
+      {
+        "label": "Emergency exit lights and signs",
+        "target": "OFF",
+        "role": "CM2",
+        "page": 3806
+      },
+      {
+        "label": "Batteries 1 and 2",
+        "target": "OFF only after APU flap fully closed, about 2 min after APU AVAIL goes out.",
+        "role": "CM2",
+        "page": 3806
+      }
+    ]
+  }
+]

@@ -1,0 +1,2036 @@
+[
+  {
+    "id": "QF-001",
+    "category": "Airframe",
+    "question": "Clean configuration: what is the manoeuvring load acceleration range?",
+    "options": [
+      "−1 g to +2.5 g",
+      "0 g to +2 g",
+      "−1 g to +2 g",
+      "0 g to +2.5 g"
+    ],
+    "answer": 0,
+    "explanation": "−1 g to +2.5 g",
+    "manual": "FCOM",
+    "pages": [
+      4111
+    ],
+    "ref": "LIM-AG-F_CTL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-002",
+    "category": "Airframe",
+    "question": "Other than clean configuration: what is the manoeuvring load acceleration range?",
+    "options": [
+      "0 g to +2 g",
+      "−1 g to +2.5 g",
+      "−1 g to +2 g",
+      "0 g to +2.5 g"
+    ],
+    "answer": 0,
+    "explanation": "0 g to +2 g",
+    "manual": "FCOM",
+    "pages": [
+      4111
+    ],
+    "ref": "LIM-AG-F_CTL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-003",
+    "category": "Airport & wind",
+    "question": "What is the maximum mean runway slope?",
+    "options": [
+      "±2%",
+      "±1%",
+      "±2.5%",
+      "±3%"
+    ],
+    "answer": 0,
+    "explanation": "±2%",
+    "manual": "FCOM",
+    "pages": [
+      4114
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-004",
+    "category": "Airport & wind",
+    "question": "What are the nominal and minimum runway widths?",
+    "options": [
+      "45 m / 30 m",
+      "45 m / 23 m",
+      "60 m / 30 m",
+      "30 m / 23 m"
+    ],
+    "answer": 0,
+    "explanation": "45 m / 30 m",
+    "manual": "FCOM",
+    "pages": [
+      4115
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-005",
+    "category": "Airport & wind",
+    "question": "What is the maximum demonstrated takeoff and landing crosswind, including gusts?",
+    "options": [
+      "38 kt",
+      "33 kt",
+      "35 kt",
+      "40 kt"
+    ],
+    "answer": 0,
+    "explanation": "38 kt including gusts. This is a demonstrated certification value, not an AFM limitation; Airbus recommends not intentionally exceeding it.",
+    "manual": "FCOM",
+    "pages": [
+      4115
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-006",
+    "category": "Airport & wind",
+    "question": "What is the maximum tailwind for takeoff?",
+    "options": [
+      "15 kt",
+      "10 kt",
+      "20 kt",
+      "5 kt"
+    ],
+    "answer": 0,
+    "explanation": "15 kt",
+    "manual": "FCOM",
+    "pages": [
+      4115
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-007",
+    "category": "Airport & wind",
+    "question": "What is the maximum tailwind for landing in the general wind limitations?",
+    "options": [
+      "15 kt",
+      "10 kt",
+      "20 kt",
+      "5 kt"
+    ],
+    "answer": 0,
+    "explanation": "15 kt. Automatic landing and rollout have their own wind limitations in LIM-AFS-20.",
+    "manual": "FCOM",
+    "pages": [
+      4115
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-008",
+    "category": "Airport & wind",
+    "question": "For landing with more than 10 kt tailwind, what does this FCOM say about FLAPS FULL?",
+    "options": [
+      "FLAPS FULL is recommended",
+      "FLAPS FULL is prohibited",
+      "CONF 3 is required",
+      "FLAPS FULL is mandatory in this note"
+    ],
+    "answer": 0,
+    "explanation": "The supplied A321P2F note says recommended. Do not change a recommendation into a mandatory limitation.",
+    "manual": "FCOM",
+    "pages": [
+      4115
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-009",
+    "category": "Airport & wind",
+    "question": "What is the recommended maximum landing crosswind (gust included) at RWYCC 5?",
+    "options": [
+      "38 kt",
+      "15 kt",
+      "20 kt",
+      "25 kt"
+    ],
+    "answer": 0,
+    "explanation": "Recommended computed value; use the complete runway-condition table and operator restrictions.",
+    "manual": "FCOM",
+    "pages": [
+      4116
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-010",
+    "category": "Airport & wind",
+    "question": "What is the recommended maximum landing crosswind (gust included) at RWYCC 4?",
+    "options": [
+      "29 kt",
+      "15 kt",
+      "20 kt",
+      "25 kt"
+    ],
+    "answer": 0,
+    "explanation": "Recommended computed value; use the complete runway-condition table and operator restrictions.",
+    "manual": "FCOM",
+    "pages": [
+      4116
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-011",
+    "category": "Airport & wind",
+    "question": "What is the recommended maximum landing crosswind (gust included) at RWYCC 3?",
+    "options": [
+      "25 kt",
+      "15 kt",
+      "20 kt",
+      "29 kt"
+    ],
+    "answer": 0,
+    "explanation": "Recommended computed value; use the complete runway-condition table and operator restrictions.",
+    "manual": "FCOM",
+    "pages": [
+      4116
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-012",
+    "category": "Airport & wind",
+    "question": "What is the recommended maximum landing crosswind (gust included) at RWYCC 2?",
+    "options": [
+      "20 kt",
+      "15 kt",
+      "25 kt",
+      "29 kt"
+    ],
+    "answer": 0,
+    "explanation": "Recommended computed value; use the complete runway-condition table and operator restrictions.",
+    "manual": "FCOM",
+    "pages": [
+      4116
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-013",
+    "category": "Airport & wind",
+    "question": "What is the recommended maximum landing crosswind (gust included) at RWYCC 1?",
+    "options": [
+      "15 kt",
+      "20 kt",
+      "25 kt",
+      "29 kt"
+    ],
+    "answer": 0,
+    "explanation": "Recommended computed value; use the complete runway-condition table and operator restrictions.",
+    "manual": "FCOM",
+    "pages": [
+      4116
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-014",
+    "category": "Freighter",
+    "question": "What is the maximum wind speed for opening the main deck cargo door?",
+    "options": [
+      "40 kt",
+      "50 kt",
+      "60 kt",
+      "65 kt"
+    ],
+    "answer": 0,
+    "explanation": "40 kt",
+    "manual": "FCOM",
+    "pages": [
+      4116
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-015",
+    "category": "Freighter",
+    "question": "The main deck cargo door must be closed before the wind exceeds what speed?",
+    "options": [
+      "60 kt",
+      "40 kt",
+      "50 kt",
+      "65 kt"
+    ],
+    "answer": 0,
+    "explanation": "60 kt",
+    "manual": "FCOM",
+    "pages": [
+      4116
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-016",
+    "category": "Freighter",
+    "question": "What is the normal maximum wind for operating FWD and AFT cargo doors?",
+    "options": [
+      "40 kt",
+      "35 kt",
+      "60 kt",
+      "65 kt"
+    ],
+    "answer": 0,
+    "explanation": "40 kt; may be 50 kt with the nose into wind or the FWD/AFT doors on the leeward side.",
+    "manual": "FCOM",
+    "pages": [
+      4115
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-017",
+    "category": "Freighter",
+    "question": "When may FWD/AFT cargo-door operation use a 50 kt wind limit?",
+    "options": [
+      "Nose into wind or doors on the leeward side",
+      "Tail into wind or doors windward",
+      "Only when MDCD is open",
+      "Only with engines running"
+    ],
+    "answer": 0,
+    "explanation": "Nose into wind or doors on the leeward side",
+    "manual": "FCOM",
+    "pages": [
+      4115
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-018",
+    "category": "Freighter",
+    "question": "FWD/AFT cargo doors must be closed before the wind exceeds what speed?",
+    "options": [
+      "65 kt",
+      "40 kt",
+      "50 kt",
+      "60 kt"
+    ],
+    "answer": 0,
+    "explanation": "65 kt",
+    "manual": "FCOM",
+    "pages": [
+      4115
+    ],
+    "ref": "LIM-AG-OPS",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-019",
+    "category": "Speeds",
+    "question": "What is VFE for slat/flap display configuration 1?",
+    "options": [
+      "235 kt",
+      "190 kt",
+      "195 kt",
+      "215 kt"
+    ],
+    "answer": 0,
+    "explanation": "235 kt",
+    "manual": "FCOM",
+    "pages": [
+      4119
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-020",
+    "category": "Speeds",
+    "question": "What is VFE for slat/flap display configuration 1+F?",
+    "options": [
+      "225 kt",
+      "190 kt",
+      "195 kt",
+      "215 kt"
+    ],
+    "answer": 0,
+    "explanation": "225 kt",
+    "manual": "FCOM",
+    "pages": [
+      4119
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-021",
+    "category": "Speeds",
+    "question": "What is VFE for slat/flap display configuration 2?",
+    "options": [
+      "215 kt",
+      "190 kt",
+      "195 kt",
+      "225 kt"
+    ],
+    "answer": 0,
+    "explanation": "215 kt",
+    "manual": "FCOM",
+    "pages": [
+      4119
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-022",
+    "category": "Speeds",
+    "question": "What is VFE for slat/flap display configuration 3?",
+    "options": [
+      "195 kt",
+      "190 kt",
+      "215 kt",
+      "225 kt"
+    ],
+    "answer": 0,
+    "explanation": "195 kt",
+    "manual": "FCOM",
+    "pages": [
+      4119
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-023",
+    "category": "Speeds",
+    "question": "What is VFE for slat/flap display configuration FULL?",
+    "options": [
+      "190 kt",
+      "195 kt",
+      "215 kt",
+      "225 kt"
+    ],
+    "answer": 0,
+    "explanation": "190 kt",
+    "manual": "FCOM",
+    "pages": [
+      4119
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-024",
+    "category": "Speeds",
+    "question": "What is VMO/MMO for all six aircraft listed in the supplied manual?",
+    "options": [
+      "350 kt / M 0.82",
+      "340 kt / M 0.82",
+      "350 kt / M 0.80",
+      "330 kt / M 0.84"
+    ],
+    "answer": 0,
+    "explanation": "Both registration groups specify 350 kt / M 0.82; consult the environmental envelope on the original pages.",
+    "manual": "FCOM",
+    "pages": [
+      4119,
+      4120
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-025",
+    "category": "Speeds",
+    "question": "What is the maximum speed with a cockpit sliding window open?",
+    "options": [
+      "200 kt",
+      "160 kt",
+      "230 kt",
+      "250 kt"
+    ],
+    "answer": 0,
+    "explanation": "200 kt",
+    "manual": "FCOM",
+    "pages": [
+      4119
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-026",
+    "category": "Speeds",
+    "question": "What is the maximum speed for gear extended (VLE)?",
+    "options": [
+      "280 kt / M 0.67",
+      "250 kt / M 0.60",
+      "220 kt / M 0.54",
+      "300 kt / M 0.70"
+    ],
+    "answer": 0,
+    "explanation": "280 kt / M 0.67",
+    "manual": "FCOM",
+    "pages": [
+      4121
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-027",
+    "category": "Speeds",
+    "question": "What is the maximum speed for gear extension (VLO)?",
+    "options": [
+      "250 kt / M 0.60",
+      "280 kt / M 0.67",
+      "220 kt / M 0.54",
+      "260 kt / M 0.67"
+    ],
+    "answer": 0,
+    "explanation": "250 kt / M 0.60",
+    "manual": "FCOM",
+    "pages": [
+      4121
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-028",
+    "category": "Speeds",
+    "question": "What is the maximum speed for gear retraction (VLO)?",
+    "options": [
+      "220 kt / M 0.54",
+      "250 kt / M 0.60",
+      "280 kt / M 0.67",
+      "230 kt / M 0.60"
+    ],
+    "answer": 0,
+    "explanation": "220 kt / M 0.54",
+    "manual": "FCOM",
+    "pages": [
+      4121
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-029",
+    "category": "Speeds",
+    "question": "What is the maximum tyre ground speed?",
+    "options": [
+      "195 kt",
+      "190 kt",
+      "200 kt",
+      "210 kt"
+    ],
+    "answer": 0,
+    "explanation": "195 kt",
+    "manual": "FCOM",
+    "pages": [
+      4121
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-030",
+    "category": "Speeds",
+    "question": "What is VMCL in the cited minimum control speed table?",
+    "options": [
+      "114 kt",
+      "110 kt",
+      "118 kt",
+      "123 kt"
+    ],
+    "answer": 0,
+    "explanation": "114 kt",
+    "manual": "FCOM",
+    "pages": [
+      4121
+    ],
+    "ref": "LIM-AG-SPD",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-031",
+    "category": "Weights",
+    "question": "What is the maximum taxi weight in the supplied FCOM?",
+    "options": [
+      "93,400 kg",
+      "93,000 kg",
+      "77,800 kg",
+      "73,800 kg"
+    ],
+    "answer": 0,
+    "explanation": "Applicable to ALL in this manual. Use the approved aircraft-specific weight schedule for operations.",
+    "manual": "FCOM",
+    "pages": [
+      4123
+    ],
+    "ref": "LIM-AG-WGHT",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-032",
+    "category": "Weights",
+    "question": "What is the maximum takeoff at brake release weight in the supplied FCOM?",
+    "options": [
+      "93,000 kg",
+      "93,400 kg",
+      "77,800 kg",
+      "73,800 kg"
+    ],
+    "answer": 0,
+    "explanation": "Applicable to ALL in this manual. Use the approved aircraft-specific weight schedule for operations.",
+    "manual": "FCOM",
+    "pages": [
+      4123
+    ],
+    "ref": "LIM-AG-WGHT",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-033",
+    "category": "Weights",
+    "question": "What is the maximum landing weight in the supplied FCOM?",
+    "options": [
+      "77,800 kg",
+      "93,400 kg",
+      "93,000 kg",
+      "73,800 kg"
+    ],
+    "answer": 0,
+    "explanation": "Applicable to ALL in this manual. Use the approved aircraft-specific weight schedule for operations.",
+    "manual": "FCOM",
+    "pages": [
+      4123
+    ],
+    "ref": "LIM-AG-WGHT",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-034",
+    "category": "Weights",
+    "question": "What is the maximum zero fuel weight in the supplied FCOM?",
+    "options": [
+      "73,800 kg",
+      "93,400 kg",
+      "93,000 kg",
+      "77,800 kg"
+    ],
+    "answer": 0,
+    "explanation": "Applicable to ALL in this manual. Use the approved aircraft-specific weight schedule for operations.",
+    "manual": "FCOM",
+    "pages": [
+      4123
+    ],
+    "ref": "LIM-AG-WGHT",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-035",
+    "category": "Weights",
+    "question": "What is the minimum aircraft weight in the supplied FCOM?",
+    "options": [
+      "47,500 kg",
+      "45,000 kg",
+      "50,000 kg",
+      "52,500 kg"
+    ],
+    "answer": 0,
+    "explanation": "47,500 kg",
+    "manual": "FCOM",
+    "pages": [
+      4123
+    ],
+    "ref": "LIM-AG-WGHT",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-036",
+    "category": "Air & pressurization",
+    "question": "May APU bleed and an HP air start unit supply bleed air at the same time?",
+    "options": [
+      "No",
+      "Yes, with packs off",
+      "Yes, below 10,000 ft",
+      "Yes, for a maximum of 5 min"
+    ],
+    "answer": 0,
+    "explanation": "No",
+    "manual": "FCOM",
+    "pages": [
+      4129
+    ],
+    "ref": "LIM-AIR",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-037",
+    "category": "Air & pressurization",
+    "question": "Maximum positive cabin differential pressure?",
+    "options": [
+      "9.0 psi",
+      "8.6 psi",
+      "8.0 psi",
+      "9.5 psi"
+    ],
+    "answer": 0,
+    "explanation": "Values match both registration groups. The maximum differential pressure and safety-valve setting tolerance is ±0.1 psi.",
+    "manual": "FCOM",
+    "pages": [
+      4130,
+      4131
+    ],
+    "ref": "LIM-AIR",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-038",
+    "category": "Air & pressurization",
+    "question": "Maximum negative cabin differential pressure?",
+    "options": [
+      "−1.0 psi",
+      "−0.5 psi",
+      "−1.5 psi",
+      "−2.0 psi"
+    ],
+    "answer": 0,
+    "explanation": "Values match both registration groups. The maximum differential pressure and safety-valve setting tolerance is ±0.1 psi.",
+    "manual": "FCOM",
+    "pages": [
+      4130,
+      4131
+    ],
+    "ref": "LIM-AIR",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-039",
+    "category": "Air & pressurization",
+    "question": "Cabin safety relief valve setting?",
+    "options": [
+      "8.6 psi",
+      "9.0 psi",
+      "8.0 psi",
+      "9.5 psi"
+    ],
+    "answer": 0,
+    "explanation": "Values match both registration groups. The maximum differential pressure and safety-valve setting tolerance is ±0.1 psi.",
+    "manual": "FCOM",
+    "pages": [
+      4130,
+      4131
+    ],
+    "ref": "LIM-AIR",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-040",
+    "category": "Air & pressurization",
+    "question": "VH-XF4: at OAT 44°C on the ground, how long may electrical power be used in normal avionics ventilation configuration?",
+    "options": [
+      "2 h",
+      "No time limit",
+      "1 h",
+      "30 min"
+    ],
+    "answer": 0,
+    "explanation": "VH-XF4 uses a different temperature/time table: above 41°C through 46°C, 2 h.",
+    "manual": "FCOM",
+    "pages": [
+      4129
+    ],
+    "ref": "LIM-AIR",
+    "applicability": [
+      "VH-XF4"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-041",
+    "category": "Air & pressurization",
+    "question": "VH-XF4: at OAT 50°C on the ground, what is the time limit in normal avionics ventilation configuration?",
+    "options": [
+      "1 h",
+      "2 h",
+      "30 min",
+      "No time limit"
+    ],
+    "answer": 0,
+    "explanation": "Above 46°C through 51°C: 1 h.",
+    "manual": "FCOM",
+    "pages": [
+      4129
+    ],
+    "ref": "LIM-AIR",
+    "applicability": [
+      "VH-XF4"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-042",
+    "category": "Air & pressurization",
+    "question": "VH-ULD/ULW/ULY/XF5/XF6: at OAT 53°C, what is the ground time limit in normal avionics ventilation configuration?",
+    "options": [
+      "2 h",
+      "1 h",
+      "30 min",
+      "No time limit"
+    ],
+    "answer": 0,
+    "explanation": "Above 49°C through 55°C: 2 h.",
+    "manual": "FCOM",
+    "pages": [
+      4129
+    ],
+    "ref": "LIM-AIR",
+    "applicability": [
+      "VH-ULD",
+      "VH-ULW",
+      "VH-ULY",
+      "VH-XF5",
+      "VH-XF6"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-043",
+    "category": "APU",
+    "question": "After three consecutive APU start attempts, how long must you wait before another attempt?",
+    "options": [
+      "60 min",
+      "30 min",
+      "15 min",
+      "5 min"
+    ],
+    "answer": 0,
+    "explanation": "60 min",
+    "manual": "FCOM",
+    "pages": [
+      4153
+    ],
+    "ref": "LIM-APU",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-044",
+    "category": "APU",
+    "question": "What is the maximum APU rotor speed?",
+    "options": [
+      "107%",
+      "100%",
+      "105%",
+      "110%"
+    ],
+    "answer": 0,
+    "explanation": "107%",
+    "manual": "FCOM",
+    "pages": [
+      4153
+    ],
+    "ref": "LIM-APU",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-045",
+    "category": "APU",
+    "question": "APU start below 35,000 ft: maximum EGT?",
+    "options": [
+      "1,090°C",
+      "1,120°C",
+      "675°C",
+      "1,000°C"
+    ],
+    "answer": 0,
+    "explanation": "1,090°C",
+    "manual": "FCOM",
+    "pages": [
+      4153
+    ],
+    "ref": "LIM-APU",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-046",
+    "category": "APU",
+    "question": "APU start above 35,000 ft: maximum EGT?",
+    "options": [
+      "1,120°C",
+      "1,090°C",
+      "675°C",
+      "1,000°C"
+    ],
+    "answer": 0,
+    "explanation": "1,120°C",
+    "manual": "FCOM",
+    "pages": [
+      4153
+    ],
+    "ref": "LIM-APU",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-047",
+    "category": "APU",
+    "question": "APU running: maximum EGT?",
+    "options": [
+      "675°C",
+      "650°C",
+      "705°C",
+      "1,090°C"
+    ],
+    "answer": 0,
+    "explanation": "675°C",
+    "manual": "FCOM",
+    "pages": [
+      4153
+    ],
+    "ref": "LIM-APU",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-048",
+    "category": "APU",
+    "question": "During refuelling/defuelling, what is required following an APU failed start or automatic shutdown?",
+    "options": [
+      "Do not start the APU",
+      "Retry once immediately",
+      "Wait 15 s then retry",
+      "Start with bleed off"
+    ],
+    "answer": 0,
+    "explanation": "Do not start the APU",
+    "manual": "FCOM",
+    "pages": [
+      4153
+    ],
+    "ref": "LIM-APU",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-049",
+    "category": "APU",
+    "question": "If a fuel spill occurs during refuelling/defuelling with the APU running, what is required?",
+    "options": [
+      "Perform a normal APU shutdown",
+      "Continue running with bleed off",
+      "Increase APU load",
+      "Always discharge the APU fire bottle"
+    ],
+    "answer": 0,
+    "explanation": "Perform a normal APU shutdown",
+    "manual": "FCOM",
+    "pages": [
+      4153
+    ],
+    "ref": "LIM-APU",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-050",
+    "category": "Engines",
+    "question": "Takeoff/go-around thrust: maximum time with all engines operative?",
+    "options": [
+      "5 min",
+      "10 min",
+      "3 min",
+      "Not time limited"
+    ],
+    "answer": 0,
+    "explanation": "5 min",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-051",
+    "category": "Engines",
+    "question": "Takeoff/go-around thrust: maximum time with one engine inoperative?",
+    "options": [
+      "10 min",
+      "5 min",
+      "3 min",
+      "Not time limited"
+    ],
+    "answer": 0,
+    "explanation": "10 min",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-052",
+    "category": "Engines",
+    "question": "Takeoff/go-around: maximum EGT?",
+    "options": [
+      "650°C",
+      "610°C",
+      "635°C",
+      "675°C"
+    ],
+    "answer": 0,
+    "explanation": "650°C",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-053",
+    "category": "Engines",
+    "question": "Maximum continuous thrust: EGT limit?",
+    "options": [
+      "610°C",
+      "650°C",
+      "635°C",
+      "600°C"
+    ],
+    "answer": 0,
+    "explanation": "610°C",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-054",
+    "category": "Engines",
+    "question": "Engine starting: EGT limit?",
+    "options": [
+      "635°C",
+      "650°C",
+      "610°C",
+      "675°C"
+    ],
+    "answer": 0,
+    "explanation": "635°C",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-055",
+    "category": "Engines",
+    "question": "Maximum N1 in the supplied engine limitations?",
+    "options": [
+      "100%",
+      "102%",
+      "105%",
+      "107%"
+    ],
+    "answer": 0,
+    "explanation": "See the original table. Ambient conditions and bleed configuration may limit N1 below the stated maximum.",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-056",
+    "category": "Engines",
+    "question": "Maximum N2 in the supplied engine limitations?",
+    "options": [
+      "100%",
+      "102%",
+      "105%",
+      "107%"
+    ],
+    "answer": 0,
+    "explanation": "100%",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-057",
+    "category": "Engines",
+    "question": "Maximum continuous engine oil temperature?",
+    "options": [
+      "155°C",
+      "165°C",
+      "140°C",
+      "150°C"
+    ],
+    "answer": 0,
+    "explanation": "155°C",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-058",
+    "category": "Engines",
+    "question": "Maximum transient oil temperature for 15 min?",
+    "options": [
+      "165°C",
+      "155°C",
+      "160°C",
+      "170°C"
+    ],
+    "answer": 0,
+    "explanation": "165°C",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-059",
+    "category": "Engines",
+    "question": "Minimum oil temperature for starting?",
+    "options": [
+      "−40°C",
+      "−10°C",
+      "0°C",
+      "−54°C"
+    ],
+    "answer": 0,
+    "explanation": "−40°C",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-060",
+    "category": "Engines",
+    "question": "Minimum oil temperature before exceeding idle?",
+    "options": [
+      "−10°C",
+      "−40°C",
+      "0°C",
+      "50°C"
+    ],
+    "answer": 0,
+    "explanation": "−10°C",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-061",
+    "category": "Engines",
+    "question": "Minimum oil temperature before takeoff?",
+    "options": [
+      "50°C",
+      "40°C",
+      "60°C",
+      "0°C"
+    ],
+    "answer": 0,
+    "explanation": "50°C",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-062",
+    "category": "Engines",
+    "question": "Minimum engine oil pressure?",
+    "options": [
+      "60 psi",
+      "50 psi",
+      "40 psi",
+      "80 psi"
+    ],
+    "answer": 0,
+    "explanation": "60 psi",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-063",
+    "category": "Engines",
+    "question": "Minimum engine oil quantity?",
+    "options": [
+      "11 qt + estimated consumption",
+      "10 qt + estimated consumption",
+      "13 qt + estimated consumption",
+      "11 qt regardless of flight time"
+    ],
+    "answer": 0,
+    "explanation": "11 qt + estimated consumption",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-064",
+    "category": "Engines",
+    "question": "Average estimated engine oil consumption used in this limitation?",
+    "options": [
+      "0.3 qt/h",
+      "0.5 qt/h",
+      "0.2 qt/h",
+      "1.0 qt/h"
+    ],
+    "answer": 0,
+    "explanation": "0.3 qt/h",
+    "manual": "FCOM",
+    "pages": [
+      4165
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-065",
+    "category": "Engines",
+    "question": "Ground engine starts: pause between successive starter cycles?",
+    "options": [
+      "15 s",
+      "30 s",
+      "60 s",
+      "120 s"
+    ],
+    "answer": 0,
+    "explanation": "15 s",
+    "manual": "FCOM",
+    "pages": [
+      4166
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-066",
+    "category": "Engines",
+    "question": "Starter cooling after three failed cycles, 4 min continuous or 5 min cumulative cranking?",
+    "options": [
+      "30 min",
+      "15 min",
+      "60 min",
+      "5 min"
+    ],
+    "answer": 0,
+    "explanation": "30 min",
+    "manual": "FCOM",
+    "pages": [
+      4166
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-067",
+    "category": "Engines",
+    "question": "Manual engine start: maximum starter cycle time?",
+    "options": [
+      "2 min",
+      "3 min",
+      "4 min",
+      "5 min"
+    ],
+    "answer": 0,
+    "explanation": "2 min",
+    "manual": "FCOM",
+    "pages": [
+      4166
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-068",
+    "category": "Engines",
+    "question": "Above what N2 must the starter not be run on the ground?",
+    "options": [
+      "10%",
+      "18%",
+      "20%",
+      "25%"
+    ],
+    "answer": 0,
+    "explanation": "10%",
+    "manual": "FCOM",
+    "pages": [
+      4166
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-069",
+    "category": "Engines",
+    "question": "Above what N2 must the starter not be run in flight?",
+    "options": [
+      "18%",
+      "10%",
+      "20%",
+      "25%"
+    ],
+    "answer": 0,
+    "explanation": "18%",
+    "manual": "FCOM",
+    "pages": [
+      4166
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-070",
+    "category": "Engines",
+    "question": "Below what speed should maximum reverse thrust not be used?",
+    "options": [
+      "70 kt",
+      "60 kt",
+      "80 kt",
+      "90 kt"
+    ],
+    "answer": 0,
+    "explanation": "70 kt",
+    "manual": "FCOM",
+    "pages": [
+      4166
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-071",
+    "category": "Engines",
+    "question": "Where is FLEX takeoff prohibited?",
+    "options": [
+      "On contaminated runways",
+      "On all wet runways",
+      "At night",
+      "Whenever packs are on"
+    ],
+    "answer": 0,
+    "explanation": "On contaminated runways",
+    "manual": "FCOM",
+    "pages": [
+      4166
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-072",
+    "category": "Engines",
+    "question": "What is the maximum flexible temperature TMAXFLEX?",
+    "options": [
+      "ISA + 42°C",
+      "ISA + 40°C",
+      "ISA + 50°C",
+      "OAT + 42°C"
+    ],
+    "answer": 0,
+    "explanation": "TFLEX must also not be below TREF or actual OAT; performance requirements must be met.",
+    "manual": "FCOM",
+    "pages": [
+      4166
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-073",
+    "category": "Engines",
+    "question": "Can FLEX and derated takeoff be combined?",
+    "options": [
+      "No",
+      "Yes, on a dry runway",
+      "Yes, if packs are off",
+      "Yes, below 15°C"
+    ],
+    "answer": 0,
+    "explanation": "No",
+    "manual": "FCOM",
+    "pages": [
+      4167
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-074",
+    "category": "Engines",
+    "question": "What crosswind capability is stated for engine starting?",
+    "options": [
+      "Up to 35 kt",
+      "Up to 38 kt",
+      "Up to 40 kt",
+      "Up to 29 kt"
+    ],
+    "answer": 0,
+    "explanation": "Up to 35 kt",
+    "manual": "FCOM",
+    "pages": [
+      4167
+    ],
+    "ref": "LIM-ENG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-075",
+    "category": "Flight controls",
+    "question": "Maximum operating altitude with slats and/or flaps extended?",
+    "options": [
+      "20,000 ft",
+      "25,000 ft",
+      "15,000 ft",
+      "22,000 ft"
+    ],
+    "answer": 0,
+    "explanation": "20,000 ft",
+    "manual": "FCOM",
+    "pages": [
+      4179
+    ],
+    "ref": "LIM-F_CTL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-076",
+    "category": "Freighter",
+    "question": "What is the maximum number of additional occupants, excluding the two operating flight crew?",
+    "options": [
+      "3",
+      "2",
+      "4",
+      "5"
+    ],
+    "answer": 0,
+    "explanation": "Subject to the accepted categories, installed seats and briefing requirements in the full freighter limitations.",
+    "manual": "FCOM",
+    "pages": [
+      4187,
+      4188,
+      4189
+    ],
+    "ref": "LIM-FRE",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-077",
+    "category": "Fuel",
+    "question": "Minimum fuel temperature for unmixed JET A1 / JP8 / No. 3 JET?",
+    "options": [
+      "-43°C",
+      "-36°C",
+      "-45°C",
+      "-54°C"
+    ],
+    "answer": 0,
+    "explanation": "For mixtures, the minimum fuel-specification values in the table no longer apply.",
+    "manual": "FCOM",
+    "pages": [
+      4197
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-078",
+    "category": "Fuel",
+    "question": "Minimum fuel temperature for unmixed JET A?",
+    "options": [
+      "-36°C",
+      "-43°C",
+      "-45°C",
+      "-54°C"
+    ],
+    "answer": 0,
+    "explanation": "For mixtures, the minimum fuel-specification values in the table no longer apply.",
+    "manual": "FCOM",
+    "pages": [
+      4197
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-079",
+    "category": "Fuel",
+    "question": "Minimum fuel temperature for unmixed JP5?",
+    "options": [
+      "-42°C",
+      "-36°C",
+      "-43°C",
+      "-45°C"
+    ],
+    "answer": 0,
+    "explanation": "For mixtures, the minimum fuel-specification values in the table no longer apply.",
+    "manual": "FCOM",
+    "pages": [
+      4197
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-080",
+    "category": "Fuel",
+    "question": "Minimum fuel temperature for unmixed RT / TS-1?",
+    "options": [
+      "-45°C",
+      "-36°C",
+      "-43°C",
+      "-54°C"
+    ],
+    "answer": 0,
+    "explanation": "For mixtures, the minimum fuel-specification values in the table no longer apply.",
+    "manual": "FCOM",
+    "pages": [
+      4197
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-081",
+    "category": "Fuel",
+    "question": "Minimum fuel temperature for unmixed JET B?",
+    "options": [
+      "-46°C",
+      "-36°C",
+      "-43°C",
+      "-45°C"
+    ],
+    "answer": 0,
+    "explanation": "For mixtures, the minimum fuel-specification values in the table no longer apply.",
+    "manual": "FCOM",
+    "pages": [
+      4197
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-082",
+    "category": "Fuel",
+    "question": "Minimum fuel temperature for unmixed JP4?",
+    "options": [
+      "-54°C",
+      "-36°C",
+      "-43°C",
+      "-45°C"
+    ],
+    "answer": 0,
+    "explanation": "For mixtures, the minimum fuel-specification values in the table no longer apply.",
+    "manual": "FCOM",
+    "pages": [
+      4197
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-083",
+    "category": "Fuel",
+    "question": "Maximum fuel temperature?",
+    "options": [
+      "54°C",
+      "49°C",
+      "60°C",
+      "64°C"
+    ],
+    "answer": 0,
+    "explanation": "54°C",
+    "manual": "FCOM",
+    "pages": [
+      4197
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-084",
+    "category": "Fuel",
+    "question": "Minimum total fuel quantity for takeoff?",
+    "options": [
+      "1,500 kg",
+      "1,000 kg",
+      "2,000 kg",
+      "2,500 kg"
+    ],
+    "answer": 0,
+    "explanation": "Fuel low-level alerts for the wing tanks must also not appear for takeoff.",
+    "manual": "FCOM",
+    "pages": [
+      4198
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-085",
+    "category": "Fuel",
+    "question": "At takeoff with the heavier wing tank full, maximum allowed imbalance?",
+    "options": [
+      "300 kg",
+      "600 kg",
+      "850 kg",
+      "1,500 kg"
+    ],
+    "answer": 0,
+    "explanation": "300 kg",
+    "manual": "FCOM",
+    "pages": [
+      4197
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-086",
+    "category": "Fuel",
+    "question": "At takeoff with 700 kg in the heavier wing tank, maximum allowed imbalance?",
+    "options": [
+      "600 kg",
+      "300 kg",
+      "700 kg",
+      "850 kg"
+    ],
+    "answer": 0,
+    "explanation": "Variation between the table points is linear.",
+    "manual": "FCOM",
+    "pages": [
+      4197
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-087",
+    "category": "Fuel",
+    "question": "In flight/landing with 2,350 kg in the heavier tank, maximum allowed imbalance?",
+    "options": [
+      "850 kg",
+      "600 kg",
+      "620 kg",
+      "1,500 kg"
+    ],
+    "answer": 0,
+    "explanation": "Variation between the table points is linear. Review the full table and failure note.",
+    "manual": "FCOM",
+    "pages": [
+      4198
+    ],
+    "ref": "LIM-FUEL",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-088",
+    "category": "Ice & rain",
+    "question": "What temperature threshold forms part of the icing-conditions definition?",
+    "options": [
+      "OAT on ground / TAT in flight at or below 10°C",
+      "OAT/TAT below 0°C only",
+      "SAT at or below −40°C only",
+      "OAT/TAT at or below 5°C"
+    ],
+    "answer": 0,
+    "explanation": "The visible-moisture or ground-contamination conditions must also be met; temperature alone is not the definition.",
+    "manual": "FCOM",
+    "pages": [
+      4203
+    ],
+    "ref": "LIM-ICE_RAIN",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-089",
+    "category": "Ice & rain",
+    "question": "Approximately what ice thickness is defined as severe ice accretion?",
+    "options": [
+      "5 mm or more",
+      "1 mm or more",
+      "3 mm or more",
+      "10 mm or more"
+    ],
+    "answer": 0,
+    "explanation": "5 mm or more",
+    "manual": "FCOM",
+    "pages": [
+      4203
+    ],
+    "ref": "LIM-ICE_RAIN",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-090",
+    "category": "Ice & rain",
+    "question": "When should rain repellent be used, if installed?",
+    "options": [
+      "Moderate to heavy rain",
+      "Any visible moisture",
+      "Light drizzle only",
+      "On a dry windshield before rain"
+    ],
+    "answer": 0,
+    "explanation": "Moderate to heavy rain",
+    "manual": "FCOM",
+    "pages": [
+      4203
+    ],
+    "ref": "LIM-ICE_RAIN",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-091",
+    "category": "Landing gear",
+    "question": "Maximum brake temperature for takeoff with brake fans off?",
+    "options": [
+      "300°C",
+      "150°C",
+      "350°C",
+      "500°C"
+    ],
+    "answer": 0,
+    "explanation": "300°C",
+    "manual": "FCOM",
+    "pages": [
+      4209
+    ],
+    "ref": "LIM-LG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  },
+  {
+    "id": "QF-092",
+    "category": "Landing gear",
+    "question": "Accepted towbarless towing vehicle operations: maximum NWS angle?",
+    "options": [
+      "±85°",
+      "±75°",
+      "±90°",
+      "±95°"
+    ],
+    "answer": 0,
+    "explanation": "Applies to the approved towbarless operations described in the source; not the normal taxi steering angle.",
+    "manual": "FCOM",
+    "pages": [
+      4209
+    ],
+    "ref": "LIM-LG",
+    "applicability": [
+      "ALL"
+    ],
+    "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+  }
+]

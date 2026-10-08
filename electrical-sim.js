@@ -313,7 +313,7 @@
     equipmentBox(W*.68,genY,Math.min(84,W*.15),genH*.72,'EXT PWR',!state.ext?['OFF']:s.extActive?['115 V','400 HZ']:['AVAILABLE'],state.ext?(s.extActive?'on':'available'):'isolated','ext');
     if(s.emerActive){label('RAT',xEmer,midY+35,C.green,10);arrowTriangle(xEmer,midY+47,true)}
     drawFooter(footerY);
-    canvas.setAttribute('aria-label','Interactive A320 ELEC training synoptic. '+systemSummary(s));
+    canvas.setAttribute('aria-label','Interactive A321P2F ELEC training synoptic. '+systemSummary(s));
   }
 
   canvas.addEventListener('click',event=>{
@@ -329,7 +329,7 @@
   });
   presetButtons.forEach(button=>button.addEventListener('click',()=>loadPreset(button.dataset.mode)));
   if('ResizeObserver' in window)new ResizeObserver(draw).observe(canvas.parentElement);else window.addEventListener('resize',draw);
-  window.A320ElectricalTrainer={loadPreset,toggleComponent,restoreAll:()=>loadPreset('normal'),getState:()=>({preset:activePreset,components:{...state},network:evaluate(state)}),getComponents:()=>Object.keys(components)};
+  window.A321P2FElectricalTrainer={loadPreset,toggleComponent,restoreAll:()=>loadPreset('normal'),getState:()=>({preset:activePreset,components:{...state},network:evaluate(state)}),getComponents:()=>Object.keys(components)};
   renderControls();
   const scenario=typeof location!=="undefined"?new URLSearchParams(location.search).get("scenario"):"";
   loadPreset({eng1:"eng1loss",eng2:"onegen",dual:"emergency"}[scenario]||"normal");

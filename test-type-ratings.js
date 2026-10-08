@@ -37,7 +37,7 @@ assert.match(questions.find(q=>q.id==='TR12').o[3],/valid AND.*three months/);
 assert.match(questions.find(q=>q.id==='TR14').o[1],/aircraft of the type/);
 assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(__dirname,source.handout))).digest('hex'),source.handoutSha256);
 for(const file of ['type-ratings.html','type-ratings.js',source.handout])assert(read('sw.js').includes('./'+file));
-assert(read('index.html').includes('href="type-ratings.html"'));
+assert(read('trainer.js').includes('href="type-ratings.html"'));
 const quizScript=read('type-ratings.html').match(/<script src="(type-ratings\.js\?v=\d+)"/);
 assert(quizScript,'quiz script has a versioned URL to avoid stale code after an update');
 assert(read('sw.js').includes("'./"+quizScript[1]+"'"),'offline cache matches the HTML script URL');

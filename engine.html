@@ -120,15 +120,15 @@
   }
   @media(max-width:430px){h1{font-size:18px}.tabs{grid-template-columns:repeat(2,1fr)}.tab{font-size:9px}.diagram-scroll{margin:0 -1px}.component-card{min-height:62px}}
 </style>
-</head>
+<link rel="icon" href="favicon.svg"><style>.tag,.back{font-size:14px!important}.scope,.warning,.source{font-size:14px!important;line-height:1.65!important}.placard{border-top-color:#d71920!important}.badge{background:#d71920!important;color:white!important}.top:before{content:"QANTAS";color:#ed2730;font:700 16px system-ui;margin-right:12px}</style></head>
 <body>
 <main class="page">
   <div class="top">
     <a class="back" href="index.html">&larr; TRAINER</a>
-    <div class="tag">A320 &middot; IAE V2500-A5 &middot; ATA 70</div>
+    <div class="tag">A321P2F &middot; IAE V2500-A5 &middot; ATA 70</div>
   </div>
 
-  <div class="warning"><b>SOURCE EFFECTIVITY:</b> Ansett A320 IAE V2500-A5 only. Engine limits and descriptions use the explicit IAE inserts: A/C 20-IMHT, 13 AUG 2018, marked FOR ENGINEERING USE ONLY. Limits: LIM-ENG pp.1/4–3/4, supplied PDF pp.3737–3739. The diagrams are simplified, ungraded study representations. Display descriptions also cite the IAE A/C 19-IMHE pages dated 12 AUG 2015; the source compilation contains multiple revisions. Confirm operational actions against the current approved FCOM, QRH and ECAM.</div>
+  <div class="warning"><b>QANTAS A321P2F SOURCE:</b> Supplied FCOM, effective 1 May 2026. Engine descriptions: DSC-70, PDF pp.2413–2492. Limits: LIM-ENG, pp.4165–4167. Display/equipment details retain registration effectivity in the original manual. Diagrams and injected-failure responses are simplified, ungraded study models. <a href="index.html#source/FCOM/2413">Open engine chapter</a> · <a href="index.html#source/FCOM/4165">Open engine limits</a>.</div>
 
   <section class="trainer" aria-labelledby="engineTitle">
     <h1 id="engineTitle"><span>IAE V2500 ENGINE SYSTEMS</span></h1>
@@ -219,22 +219,22 @@
       <h2>IAE V2500 ENGINE LIMITS</h2>
       <div class="limit"><b>SHAFT SPEED</b><p>Maximum N1: 100%. Maximum N2: 100%. Ambient conditions and engine-bleed configuration may impose a lower N1 value.</p></div>
       <div class="limit"><b>OIL TEMPERATURE</b><p>Maximum continuous: 155 &deg;C. Maximum transient: 165 &deg;C for 15 minutes. Minimum: &minus;40 &deg;C for start, &minus;10 &deg;C before exceeding idle, and 50 &deg;C before takeoff. Minimum oil pressure: 60 PSI.</p></div>
-      <div class="limit"><b>EGT / TIME</b><p>Takeoff/go-around: 635 &deg;C, 5 minutes with all engines operative or 10 minutes with one inoperative. MCT: 610 &deg;C. Starting: 635 &deg;C. Engine start crosswind capability: 35 kt.</p></div>
-      <div class="limit"><b>OIL QUANTITY</b><p>The IAE limitations page refers to PRO-NOR-SOP-04 Before Walkaround &mdash; ECAM Pages. Confirm minimum quantity and any consumption allowance in the applicable simulator/operator procedure; a numeric IAE quantity is not verified here.</p></div>
+      <div class="limit"><b>EGT / TIME</b><p>Takeoff/go-around: 650 &deg;C, 5 minutes with all engines operative or 10 minutes with one inoperative. MCT: 610 &deg;C. Starting: 635 &deg;C. Engine start crosswind capability: 35 kt.</p></div>
+      <div class="limit"><b>OIL QUANTITY</b><p>Minimum 11 qt plus estimated consumption. Average estimated consumption is 0.3 qt/h. FCOM LIM-ENG, PDF p.4165.</p></div>
       <div class="limit"><b>REVERSE</b><p>Reverse is prohibited in flight and must not be used to back the aircraft. Maximum reverse should not be used below 70 kt; idle reverse is permitted to a stop.</p></div>
     </section>
     <section class="reference">
       <h2>CONTROL &amp; PROTECTION NOTES</h2>
       <div class="limit"><b>EPR / N1 REVERSION</b><p>EPR is the normal thrust-control mode. Loss of sensed EPR produces rated N1 mode; loss of computed EPR produces degraded N1 mode. Autothrust and alpha-floor protection are lost in either N1 reversion.</p></div>
       <div class="limit"><b>AUTOMATIC START</b><p>Below 50% N2 on the ground, FADEC can abort a hot, hung, stalled or no-light-up automatic start and command approximately 30 seconds of dry cranking. A manual start is monitored but not automatically aborted.</p></div>
-      <div class="limit"><b>STARTER</b><p>One standard automatic start contains one attempt and counts as one cycle. Allow 15 seconds between ground cycles and 30 minutes after three failed cycles or five minutes of continuous cranking. Maximum manual start: 2 minutes; crank: 5 minutes. Starter engagement limits: 10% N2 on ground, 18% in flight; normal start-valve cutout is 43% N2.</p></div>
-      <div class="limit"><b>FLEX / DERATE</b><p>TMAXFLEX is ISA +55 &deg;C. TFLEX must not be below TREF or OAT. FLEX is prohibited on a contaminated runway and may not be combined with a derated takeoff.</p></div>
-      <div class="limit"><b>INSTRUMENTATION</b><p>Primary E/WD information includes EPR, EGT, N1, N2 and fuel FLOW. The ENG SD page includes fuel USED, oil quantity/pressure/temperature and vibration. Sensor paths are illustrative; exact physical sensor locations are not established here. FCOM PDF pp.2314–2322.</p></div>
+      <div class="limit"><b>STARTER</b><p>One standard automatic start contains one attempt and counts as one cycle. Allow 15 seconds between ground cycles and 30 minutes after three failed cycles, 4 minutes continuous cranking, or 5 minutes cumulative cranking. Maximum manual start: 2 minutes. Starter engagement limits: 10% N2 on ground, 18% in flight; normal start-valve cutout is 43% N2.</p></div>
+      <div class="limit"><b>FLEX / DERATE</b><p>TMAXFLEX is ISA +42 &deg;C. TFLEX must not be below TREF or OAT. FLEX is prohibited on a contaminated runway and may not be combined with a derated takeoff.</p></div>
+      <div class="limit"><b>INSTRUMENTATION</b><p>Primary E/WD information includes EPR, EGT, N1, N2 and fuel FLOW. The ENG SD page includes fuel USED, oil quantity/pressure/temperature and vibration. Sensor paths are illustrative; exact physical sensor locations are not established here. FCOM DSC-70-90, PDF pp.2473–2492.</p></div>
       <div class="limit"><b>STALL / SURGE RECOGNITION</b><p>Presentation indications include abnormal noises or bangs, possible inlet or exhaust flame, fluctuating EGT/N1/N2, vibration, sluggish thrust response and a rapid EGT rise. Use current ECAM/QRH for any operational response.</p></div>
     </section>
   </div>
 
-  <p class="source">SOURCE: SUPPLIED AAT A320 FCOM, IAE INSERTS, A/C 20-IMHT, 13 AUG 2018, FOR ENGINEERING USE ONLY &mdash; DSC-70-05/10/20/35/45/50/65/70/80/95 AND LIM-ENG; IAE DISPLAY PAGES A/C 19-IMHE, 12 AUG 2015, PDF pp.2314–2322. DIAGRAMS ARE SIMPLIFIED STUDY REPRESENTATIONS, NOT MAINTENANCE SCHEMATICS. STUDY AID ONLY &mdash; NOT FOR OPERATIONAL USE.</p>
+  <p class="source">SOURCE: QANTAS A321P2F supplied FCOM, effective 1 May 2026, DSC-70 and LIM-ENG. Original section effectivity applies. Diagrams, geometry and component failure propagation are illustrative; this is not an operational simulator.</p>
 </main>
 <script src="engine-sim.js"></script>
 <script src="engine-3d.js"></script>

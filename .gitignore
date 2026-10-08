@@ -1,0 +1,5 @@
+# Private source files belong on the learner's device, never in this repository.
+*.pdf
+manuals/
+patterns/
+data/*-pages.json

@@ -1,17 +1,25 @@
 {
-  "name": "Ansett A320 Checkride Trainer",
-  "short_name": "Ansett A320",
-  "description": "Offline Ansett A320 limitations, self-study quizzes, memory items and systems trainer.",
+  "name": "Qantas A321P2F Trainer",
+  "short_name": "Qantas A321P2F",
+  "description": "FCOM, FCTM and QRH study: flow patterns, normal and abnormal procedures, and limitations.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#0c1116",
-  "theme_color": "#0c1116",
+  "background_color": "#f4f6f8",
+  "theme_color": "#d71920",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }
-
