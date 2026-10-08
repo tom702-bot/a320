@@ -1,6 +1,6 @@
 # Qantas A321P2F Trainer
 
-A personal study site built around the supplied FCOM, FCTM and QRH, each effective 1 May 2026. This is not an official Qantas training product or an operational checklist.
+A personal study site built around the supplied FCOM, FCTM and QRH, FCOM and QRH effective 1 May 2026; FCTM effective 25 September 2026. This is not an official Qantas training product or an operational checklist.
 
 ## Study content
 
@@ -16,7 +16,7 @@ A personal study site built around the supplied FCOM, FCTM and QRH, each effecti
 
 ## Source fidelity
 
-Manuals are never published or uploaded. Load the supplied 1 May 2026 PDFs in the Manual library. The reader verifies SHA-256 hashes against data/manuals.json. Keeping a PDF privately saves it in IndexedDB on that device. Leaving that option unchecked keeps it for the current visit. Remove local copy deletes the browser copy and in-memory search text; browser data clearing also removes stored files. The first full-text search builds its index in memory, with progress and cancellation when leaving search. Manufacturer family terminology, operator identifiers, diagrams, restrictions, modifications and original page effectivity are not altered inside source documents. Extracted text is a search aid: use the PDF for tables, branches, symbols and diagrams. The supplied revision is not represented as a verified latest controlled revision.
+Manuals are never published or uploaded. Load the supplied PDFs (FCOM/QRH: 1 May 2026; FCTM: 25 September 2026) in the Manual library. The reader verifies SHA-256 hashes against data/manuals.json. Keeping a PDF privately saves it in IndexedDB on that device. Leaving that option unchecked keeps it for the current visit. Remove local copy deletes the browser copy and in-memory search text; browser data clearing also removes stored files. The first full-text search builds its index in memory, with progress and cancellation when leaving search. Manufacturer family terminology, operator identifiers, diagrams, restrictions, modifications and original page effectivity are not altered inside source documents. Extracted text is a search aid: use the PDF for tables, branches, symbols and diagrams. The supplied revision is not represented as a verified latest controlled revision.
 
 The prior aircraft training payloads have been superseded by the new source set. Compatibility files carry retirement markers instead of obsolete question/flow content. Previous Git history is preserved. New study progress uses its own device-local key so old answers do not confer mastery on new aircraft data.
 

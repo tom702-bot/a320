@@ -69,9 +69,13 @@
       },
       {
         "label": "Engine 1 master",
-        "target": "ON; monitor the start sequence and idle parameters in the source.",
+        "target": "ON; monitor the start sequence, then check idle parameters when AVAIL appears before continuing.",
         "role": "PF",
-        "page": 3673
+        "page": 3673,
+        "pages": [
+          3673,
+          3674
+        ]
       },
       {
         "label": "Engine 2",
@@ -84,7 +88,7 @@
   {
     "id": "after-start-pf",
     "title": "After start — PF",
-    "scope": "Both engines started; two-engine taxi departure. Conditional selections remain conditional. This drill omits communications and is followed by the crew checklist.",
+    "scope": "Both engines started; two-engine taxi departure. Conditional selections remain conditional. This drill omits communications and is followed by the crew checklist. After a shutdown longer than 2 h, allow at least 5 min at idle or near idle before high power; taxi time at idle may count.",
     "pattern": 3677,
     "steps": [
       {
@@ -121,7 +125,11 @@
         "label": "ECAM status",
         "target": "Check and crosscheck; if STS appears, display the STATUS page.",
         "role": "BOTH",
-        "page": 3679
+        "page": 3679,
+        "pages": [
+          3679,
+          3680
+        ]
       },
       {
         "label": "N/W steering disconnect memo",
@@ -219,13 +227,13 @@
       },
       {
         "label": "Engine anti-ice",
-        "target": "AS REQUIRED under the source icing conditions and SAT exception.",
+        "target": "AS REQUIRED; ON when icing exists or is anticipated, except during climb and cruise with SAT below −40°C.",
         "role": "PM",
         "page": 3699
       },
       {
         "label": "Wing anti-ice",
-        "target": "AS REQUIRED; observe the evidence-of-ice criteria in the source.",
+        "target": "AS REQUIRED; may be used to prevent accretion in icing conditions, and must be ON when there is evidence of ice accretion. See the source criteria.",
         "role": "PM",
         "page": 3699
       }
@@ -375,7 +383,7 @@
       },
       {
         "label": "APU master",
-        "target": "OFF after all occupants disembark.",
+        "target": "OFF after all passengers/supernumeraries have disembarked.",
         "role": "CM2",
         "page": 3806
       },

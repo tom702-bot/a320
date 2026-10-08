@@ -61,11 +61,14 @@ export async function load(id, file, remember) {
 }
 export async function forget(id) {
   const record = loaded.get(id);
+  try { await dbAction('readwrite', store => store.delete(id)); }
+  catch {
+    if (record?.remembered) throw Error('The saved copy could not be removed. Clear this site’s browser data to remove it, or retry when local storage is available.');
+  }
   loaded.delete(id);
   indexing.delete(id);
   if (record?.url) URL.revokeObjectURL(record.url);
-  if (record?.pdf) { try { (await record.pdf).destroy(); } catch {} }
-  try { await dbAction('readwrite', store => store.delete(id)); } catch {}
+  if (record?.pdf) { try { await (await record.pdf).destroy(); } catch {} }
   changed();
 }
 function requireManual(id) {
@@ -76,7 +79,9 @@ function requireManual(id) {
 async function documentFor(id) {
   const record = requireManual(id);
   return record.pdf ||= record.blob.arrayBuffer().then(buffer => pdfjs.getDocument({
-    data: new Uint8Array(buffer), useSystemFonts: true, isEvalSupported: false,
+    data: new Uint8Array(buffer), useSystemFonts: false, isEvalSupported: false,
+    standardFontDataUrl: new URL('./vendor/pdfjs/standard_fonts/', import.meta.url).href,
+    wasmUrl: new URL('./vendor/pdfjs/wasm/', import.meta.url).href,
     // No remote URL, font service, analytics or upload endpoint is used.
   }).promise);
 }
@@ -101,6 +106,7 @@ export async function render(id, number, container) {
   const context = canvas.getContext('2d');
   await page.render({ canvasContext: context, viewport, transform: ratio === 1 ? null : [ratio, 0, 0, ratio, 0, 0] }).promise;
   if (container.isConnected) container.replaceChildren(canvas);
+  page.cleanup();
 }
 async function extract(pdf, number) {
   const page = await pdf.getPage(number), content = await page.getTextContent();
@@ -112,6 +118,7 @@ async function extract(pdf, number) {
     text += item.str + (item.hasEOL ? '\n' : ' ');
     lastY = y;
   }
+  page.cleanup();
   return { page: number, text: text.trim() };
 }
 export async function pageText(id, number) {
@@ -123,7 +130,10 @@ export async function pages(id, onProgress = () => {}, cancelled = () => false) 
   const record = requireManual(id);
   if (record.pages) return record.pages;
   // A new search can cancel indexing cleanly; completed pages remain in memory.
-  if (indexing.has(id)) await indexing.get(id).catch(() => {});
+  while (indexing.has(id)) {
+    await indexing.get(id).catch(() => {});
+    if (cancelled() || loaded.get(id) !== record) throw Error('Search cancelled.');
+  }
   if (record.pages) return record.pages;
   const work = (async () => {
     const pdf = await documentFor(id);

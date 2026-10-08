@@ -17,3 +17,5 @@ jobs:
         with:
           node-version: 22
       - run: node validate-trainer.js
+      - run: node test-trainer.js
+      - run: node test-type-ratings.js
