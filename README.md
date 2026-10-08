@@ -12,7 +12,6 @@ A personal study site built around the supplied FCOM, FCTM and QRH, FCOM and QRH
 - Six aircraft choices: VH-ULD, VH-ULW, VH-ULY, VH-XF4, VH-XF5, VH-XF6. Selection filters question eligibility; original pages retain all registrations and equipment options.
 - Local PDF loading (FCOM 4,364 pages; FCTM 532; QRH 330), section browsing, private full-text search, source page links and optional browser storage for offline use.
 - Preserved engine, electrical, hydraulic and cross-system illustrative explorers; corrected engine limitations and updated source links. Simplified model assumptions remain explicit and are not a full aircraft-specific simulation.
-- Preserved independent Pilot Type Ratings module and original supplied handout. Regulatory examples use generic multi-crew wording; regulatory sources remain separate from aircraft manuals.
 
 ## Source fidelity
 
