@@ -4,6 +4,8 @@ A personal study site built around the supplied FCOM, FCTM and QRH, FCOM and QRH
 
 ## Study content
 
+- A clear study desk with flows, normal/abnormal procedures and limitations practice; a direct 10-question Learn session; private manual status; aircraft systems; progress and a last-opened study shortcut.
+
 - 11 original FCOM flow-pattern pages, rendered privately from the local PDF.
 - 8 selected sequence drills with 55 source-linked steps. Guided study and order-sensitive recall. Conditions and printed PF/PM/CM1/CM2 roles are retained. These are selected subsets, not a claim of complete cockpit simulation.
 - Normal SOPs, supplementary and systems-related procedures; FCTM techniques; the QRH normal checklist.
