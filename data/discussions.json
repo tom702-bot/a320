@@ -1,0 +1,3010 @@
+{
+  "version": 1,
+  "source": {
+    "title": "EFA340 Flight Crew Training discussion items",
+    "revision": "V5 — April 2025",
+    "photos": [
+      "IMG_6204.jpeg",
+      "IMG_6205.jpeg",
+      "IMG_6206.jpeg",
+      "IMG_6207.jpeg",
+      "IMG_6208.jpeg"
+    ],
+    "scope": "All 74 visible topic rows and their bullet points in the five supplied photos. Cropped introductory text is not reconstructed.",
+    "note": "The checklist supplies the topic scope, not operational answers. Reading links match the supplied manual section index; use original pages and current controlled company documents to check your response."
+  },
+  "items": [
+    {
+      "id": "cargo-door",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Cargo door operation (limitations and policy)",
+      "subtopics": [],
+      "scenario": "A loading team wants the main deck cargo door opened while conditions on the ramp are changing. Talk through your preparation, limitations and coordination.",
+      "checkpoints": [
+        "Which operating sequence, indications and restrictions apply to this door and aircraft?",
+        "Where are the wind limits and other opening/closing conditions?",
+        "Who may operate the door, and what clearance and ground-team coordination does company policy require?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 2363,
+          "end": 2366,
+          "title": "Main Deck Cargo Door (MDCD)",
+          "path": "Aircraft Systems / 52 Doors / 52-10 Description / 52-10-42 Main Deck Cargo Door (MDCD)",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 2375,
+          "end": 2375,
+          "title": "How to Operate the Main Deck Cargo Door",
+          "path": "Aircraft Systems / 52 Doors / 52-50 How to",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4114,
+          "end": 4118,
+          "title": "Airport Operations and Wind Limitations",
+          "path": "Limitations / Aircraft General / Operational Parameters",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Company cargo-door operating policy and ground-handling responsibilities"
+      ],
+      "related": [
+        "limitations"
+      ],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "internal-communications",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Communication between flight deck, courier area and MDCC",
+      "subtopics": [],
+      "scenario": "A person in the courier area needs to contact the flight deck, then communication with someone in the MDCC is lost. Explain the available methods and your coordination plan.",
+      "checkpoints": [
+        "Identify the installed controls and call/answer indications for each area.",
+        "How would you establish and confirm two-way communication?",
+        "What company arrangement applies if the normal method is unavailable?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 1245,
+          "end": 1250,
+          "title": "23-10-30 Intercommunication Systems",
+          "path": "Aircraft Systems / 23 Communications / 23-10 General",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 1261,
+          "end": 1264,
+          "title": "23-20-10 Flight Crew Interphone System",
+          "path": "Aircraft Systems / 23 Communications / 23-20 Internal Communication",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "QRH",
+          "page": 319,
+          "end": 320,
+          "title": "MDCC Brief",
+          "path": "Company Procedures / Supernumerary Person Brief",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        }
+      ],
+      "requiredSources": [
+        "Company flight deck / courier area / MDCC communication arrangements"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "company-briefings",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Company and CTWO+ briefings",
+      "subtopics": [],
+      "scenario": "Deliver a departure briefing for a freight flight with a changed runway, a ramp threat and an aircraft defect. Use the company CTWO+ format.",
+      "checkpoints": [
+        "What does each element of CTWO+ mean in the current company standard?",
+        "How will you turn the threats into specific crew actions and cross-checks?",
+        "How will you invite input and confirm a shared plan?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3666,
+          "end": 3666,
+          "title": "Departure Briefing",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 85,
+          "end": 92,
+          "title": "How to Conduct Briefings",
+          "path": "Airbus Operational Philosophy / Tasksharing Rules and Communication",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current company briefing and CTWO+ standard"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "crew-entry-door",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Crew entry door operation",
+      "subtopics": [],
+      "scenario": "Explain a normal crew entry door opening and closing to a new crew member, including how you establish that it is safe to operate.",
+      "checkpoints": [
+        "Identify the controls, indications and required checks.",
+        "What hazards and operating restrictions must be considered?",
+        "How do you confirm the door is correctly secured?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 2361,
+          "end": 2362,
+          "title": "Crew Entry Door (CED)",
+          "path": "Aircraft Systems / 52 Doors / 52-10 Description / 52-10-41 Crew Entry Door (CED)",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 2371,
+          "end": 2372,
+          "title": "DOOR/OXY SD Page",
+          "path": "Aircraft Systems / 52 Doors / 52-20 Controls and Indicators",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "exterior-inspection",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Supervised exterior inspection",
+      "subtopics": [
+        "Threats associated with freight tarmac operations",
+        "Landing gear safety pin/sleeve locations"
+      ],
+      "scenario": "Brief and talk through a supervised exterior inspection while freight vehicles and loading equipment are operating nearby.",
+      "checkpoints": [
+        "Describe your inspection route and the freight-ramp threats at each area.",
+        "Identify each landing gear safety pin/sleeve location using the source and the aircraft.",
+        "What discrepancy would stop the inspection or require engineering assistance?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3619,
+          "end": 3620,
+          "title": "Safety Exterior Inspection",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3635,
+          "end": 3644,
+          "title": "Exterior Walkaround",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "QRH",
+          "page": 261,
+          "end": 262,
+          "title": "Safety Exterior Inspection",
+          "path": "Normal Procedures",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        }
+      ],
+      "requiredSources": [
+        "Local ramp safety procedures and supervised aircraft familiarisation"
+      ],
+      "related": [
+        "flows"
+      ],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "flight-deck-door-a330",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Flight deck door access (A330 only)",
+      "subtopics": [],
+      "scenario": "This row is explicitly marked A330 only in the supplied checklist.",
+      "checkpoints": [
+        "Retain this row for checklist reconciliation; do not apply an A330 access procedure to the A321P2F."
+      ],
+      "references": [],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A330 only",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "limitations-review",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Limitations (review)",
+      "subtopics": [],
+      "scenario": "Use the limitations practice set, then open the full limitations chapter and identify any applicable limits outside the selected question bank.",
+      "checkpoints": [
+        "Recall relevant operating, airframe, engine and freighter limits.",
+        "Check the conditions, units and applicability of each value.",
+        "Which limitations still need review beyond the 92-question study set?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 4093,
+          "end": 4242,
+          "title": "Limitations",
+          "path": "",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4189,
+          "end": 4190,
+          "title": "Access to the Main Deck Cargo Compartment",
+          "path": "Limitations / Freighter Operations",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [
+        "limitations"
+      ],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "memory-items",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Memory items (recall all)",
+      "subtopics": [],
+      "scenario": "Using the current memory-item index to define the complete set, recall each item aloud before opening its procedure to check your wording and sequence.",
+      "checkpoints": [
+        "Identify every applicable memory item in the supplied index.",
+        "Recall the trigger, actions, order, conditions and crew roles from the applicable procedure.",
+        "Separate memory actions from the subsequent ECAM/QRH actions; record any item needing more practice."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 2577,
+          "end": 2578,
+          "title": "[MEM] Memory Items",
+          "path": "Procedures / Abnormal and Emergency Procedures / [MEM] MEMORY ITEMS",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [
+        "abnormal"
+      ],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "smoke-curtain-a330",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Smoke curtain and 9G cargo net (A330)",
+      "subtopics": [],
+      "scenario": "This row is explicitly marked A330 in the supplied checklist.",
+      "checkpoints": [
+        "Keep it outside the A321P2F practice pool; consult the applicable fleet training material if assigned to the A330."
+      ],
+      "references": [],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A330 only",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "pilot-incapacitation",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Pilot incapacitation actions",
+      "subtopics": [],
+      "scenario": "During cruise the other pilot becomes unresponsive. Rehearse your response and the assistance you would request.",
+      "checkpoints": [
+        "How would you recognise and confirm incapacitation?",
+        "What does the source require for aircraft control, crew coordination and securing the affected pilot?",
+        "How would you plan assistance, diversion and the remainder of the flight?"
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 469,
+          "end": 470,
+          "title": "Flight Crew Incapacitation",
+          "path": "Procedures / Abnormal and Emergency Procedures / MISC",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "raise",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Qantas support language (R.A.I.S.E)",
+      "subtopics": [],
+      "scenario": "You notice an unsafe trend and your first intervention receives no response. Rehearse an escalating intervention using the current R.A.I.S.E framework.",
+      "checkpoints": [
+        "State the meaning of each element using the company reference.",
+        "Give a practical phrase for each stage of escalation.",
+        "What response or lack of response would change your next action?"
+      ],
+      "references": [],
+      "requiredSources": [
+        "Current Qantas R.A.I.S.E training / support-language reference"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "runway-markings",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Runway markings, touchdown zone and aiming point",
+      "subtopics": [],
+      "scenario": "Using an aerodrome chart and runway image, identify the markings and explain your planned aiming and touchdown areas.",
+      "checkpoints": [
+        "Distinguish runway threshold, aiming-point and touchdown-zone markings.",
+        "How do displaced thresholds and available landing distance affect the plan?",
+        "Which technique and landing-performance references will you use?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 223,
+          "end": 223,
+          "title": "ILS/GLS (If Installed) /MLS (If Installed)  Final Approach and Landing Geometry",
+          "path": "Aircraft Systems / 20 Aircraft General / 20-50 Landing Geometry",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 323,
+          "end": 334,
+          "title": "Landing",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current aerodrome chart and runway-marking reference"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6204.jpeg"
+    },
+    {
+      "id": "stable-approach",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Stable approach criteria",
+      "subtopics": [],
+      "scenario": "The aircraft approaches a company stabilisation gate with one parameter outside tolerance. Explain your assessment and decision.",
+      "checkpoints": [
+        "State the company gates and each required stability criterion from the current source.",
+        "Explain the required callouts, corrective action and go-around decision.",
+        "How do approach type, weather and configuration affect your briefing?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3727,
+          "end": 3732,
+          "title": "Approach General",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 289,
+          "end": 322,
+          "title": "Approach",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current company stable-approach policy and gates"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "working-at-heights",
+      "stage": 1,
+      "phase": "Stage 1",
+      "title": "Working at heights (threat and error management)",
+      "subtopics": [],
+      "scenario": "During a freight turnaround you are asked to access an elevated area near an open doorway. Talk through your threat and error management.",
+      "checkpoints": [
+        "Identify fall, access-equipment and vehicle-movement hazards.",
+        "Which approved access, protection and personnel arrangements are required?",
+        "When would you stop and obtain ground-support assistance?"
+      ],
+      "references": [],
+      "requiredSources": [
+        "Company working-at-heights and freight-ramp safety procedures"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "efb-backup",
+      "stage": 2,
+      "phase": "Pre-flight",
+      "title": "EFB backup procedures",
+      "subtopics": [
+        "Policy",
+        "Jeppesen Trip Kit"
+      ],
+      "scenario": "An EFB becomes unavailable before departure. Explain how you establish whether the flight can proceed and what backup material is required.",
+      "checkpoints": [
+        "What does the company EFB policy require for availability, power and backup?",
+        "Locate and check the currency and completeness of the Jeppesen Trip Kit.",
+        "How does your plan change if the failure occurs in flight?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3627,
+          "end": 3628,
+          "title": "EFB/ACARS (If Installed) Initialization",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Company EFB policy",
+        "Current Jeppesen Trip Kit and backup-chart requirements"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "supplementary-starts",
+      "stage": 2,
+      "phase": "Pre-flight",
+      "title": "Supplementary procedures (FCOM PRO SUP)",
+      "subtopics": [
+        "Manual engine start",
+        "Crossbleed start"
+      ],
+      "scenario": "Discuss when a manual start or crossbleed start would be considered and walk through the applicable source procedure.",
+      "checkpoints": [
+        "Find the entry conditions and limitations for each start method.",
+        "Identify crew roles, required indications, monitoring and abort criteria.",
+        "What additional ground coordination and hazards apply to a crossbleed start?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3875,
+          "end": 3879,
+          "title": "Manual Engine Start",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Engines",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3881,
+          "end": 3881,
+          "title": "Crossbleed Engine Start",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Engines",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [
+        "normal"
+      ],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "external-power-apu",
+      "stage": 2,
+      "phase": "Pre-flight",
+      "title": "External power / APU",
+      "subtopics": [],
+      "scenario": "Plan a change from external power to APU supply during cockpit preparation and explain what you will check.",
+      "checkpoints": [
+        "Explain source availability, selection and indications.",
+        "Review APU start, fire-test and operating limitations.",
+        "How will you coordinate connecting or removing ground power?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3622,
+          "end": 3622,
+          "title": "Batteries Check/External Power",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3623,
+          "end": 3624,
+          "title": "APU Fire Test/APU Start",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [
+        "limitations",
+        "flows"
+      ],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "aircraft-documents",
+      "stage": 2,
+      "phase": "Pre-flight",
+      "title": "Review aircraft documents",
+      "subtopics": [
+        "Aircraft Documents Folder",
+        "Technical Logbook",
+        "Fuel Documentation",
+        "Load Documentation (LIR)"
+      ],
+      "scenario": "Prepare to accept an aircraft with an open defect, a fuel delivery and a revised load. Show how you would review the document pack.",
+      "checkpoints": [
+        "What must be present and current in the Aircraft Documents Folder?",
+        "How do you check the Technical Logbook and resolve outstanding defects?",
+        "Reconcile fuel documentation and the Load Instruction Report (LIR) with the aircraft and planned flight."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3629,
+          "end": 3629,
+          "title": "AIRCRAFT ACCEPTANCE",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Company Aircraft Documents Folder requirements",
+        "Technical Logbook, fuel-documentation and LIR procedures"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "cold-weather-preflight",
+      "stage": 2,
+      "phase": "Pre-flight",
+      "title": "Adverse weather (FCOM PRO SUP)",
+      "subtopics": [
+        "Cold weather operations",
+        "De-icing procedures"
+      ],
+      "scenario": "Prepare a departure after an overnight cold soak with possible airframe contamination.",
+      "checkpoints": [
+        "Which inspection and cold-weather preparation requirements apply?",
+        "Explain the approved de-icing/anti-icing process and required coordination.",
+        "What information and checks determine readiness for takeoff after treatment?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3851,
+          "end": 3854,
+          "title": "Airframe Deicing/Anti-Icing Procedure on Ground",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Adverse Weather",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3855,
+          "end": 3857,
+          "title": "Ground Operations in Cold Weather Conditions",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Adverse Weather",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 355,
+          "end": 362,
+          "title": "Cold Weather Operations and Icing Conditions",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Adverse Weather",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "QRH",
+          "page": 293,
+          "end": 294,
+          "title": "Airframe De-Icing/Anti-Icing",
+          "path": "Company Procedures / Adverse Weather",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "loadsheet",
+      "stage": 2,
+      "phase": "Pre-flight",
+      "title": "Loadsheet",
+      "subtopics": [
+        "Trapped fuel (loadsheet requirements)",
+        "LMCs"
+      ],
+      "scenario": "A fuel-system defect leaves trapped fuel and the load changes just before departure. Explain how you check and amend the loadsheet.",
+      "checkpoints": [
+        "How is trapped fuel accounted for under the approved loadsheet procedure?",
+        "What changes qualify for an LMC and who must approve or verify them?",
+        "Reconcile final weights, balance, LIR and flight-management entries."
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 144,
+          "end": 150,
+          "title": "ZFW - ZFWCG Entry Errors",
+          "path": "Aircraft Systems / Flight Management / Use of FMS",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Company loadsheet and trapped-fuel accounting requirements",
+        "Last-minute change (LMC) limits and process"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "engineering-log",
+      "stage": 2,
+      "phase": "Pre-flight",
+      "title": "FAM Chapter 19 engineering / Aircraft Technical Log",
+      "subtopics": [
+        "Practical scenarios"
+      ],
+      "scenario": "An intermittent defect is reported during aircraft acceptance. Talk through the technical-log and engineering decision process.",
+      "checkpoints": [
+        "What information belongs in a clear technical-log entry?",
+        "Who determines rectification, deferral or release, and which documents must be checked?",
+        "Apply FAM Chapter 19 to an example and explain the crew handover."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3629,
+          "end": 3629,
+          "title": "AIRCRAFT ACCEPTANCE",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Current FAM Chapter 19",
+        "Aircraft Technical Log procedures and applicable defect/dispatch references"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "supernumeraries",
+      "stage": 2,
+      "phase": "Pre-flight",
+      "title": "Supernumerary passengers",
+      "subtopics": [],
+      "scenario": "A supernumerary joins a freight flight and may need MDCC access. Deliver the relevant briefing and explain coordination.",
+      "checkpoints": [
+        "What authorisation, seating and documentation are required?",
+        "Deliver the standard and applicable MDCC briefing using the QRH.",
+        "How will you communicate during normal operations and an emergency?"
+      ],
+      "references": [
+        {
+          "manual": "QRH",
+          "page": 319,
+          "end": 320,
+          "title": "Standard Brief",
+          "path": "Company Procedures / Supernumerary Person Brief",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "QRH",
+          "page": 319,
+          "end": 320,
+          "title": "MDCC Brief",
+          "path": "Company Procedures / Supernumerary Person Brief",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "FCTM",
+          "page": 524,
+          "end": 524,
+          "title": "Coordination with Supernumerary Persons on Board",
+          "path": "Procedures / Abnormal and Emergency Procedures / SMOKE",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Company supernumerary carriage and access policy"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "ground-manoeuvring",
+      "stage": 2,
+      "phase": "Taxi & take-off",
+      "title": "Ground manoeuvring",
+      "subtopics": [
+        "Threats",
+        "Over-steer technique"
+      ],
+      "scenario": "Brief a tight taxi route on a congested freight apron, including a turn where over-steer may be needed.",
+      "checkpoints": [
+        "How will you assess geometry, clearance and wing/tail sweep?",
+        "Explain the over-steer technique from the FCTM and how the PM monitors it.",
+        "What uncertainty would make you stop or ask for assistance?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 217,
+          "end": 217,
+          "title": "Taxiing",
+          "path": "Aircraft Systems / 20 Aircraft General / 20-30 Ground Handling",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 218,
+          "end": 220,
+          "title": "180 degrees Turn on Runway",
+          "path": "Aircraft Systems / 20 Aircraft General / 20-30 Ground Handling",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 223,
+          "end": 230,
+          "title": "Taxi",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "brake-fans",
+      "stage": 2,
+      "phase": "Taxi & take-off",
+      "title": "Use of brake fans",
+      "subtopics": [],
+      "scenario": "After a short turnaround the brakes remain warm. Explain the decision to use brake fans and how it affects your departure checks.",
+      "checkpoints": [
+        "Locate the use conditions, cautions and indications.",
+        "How do brake-temperature readings and fan use affect interpretation?",
+        "Confirm the applicable takeoff brake-temperature limit and cooling requirements."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 1883,
+          "end": 1883,
+          "title": "Brake Fan (If Installed)",
+          "path": "Aircraft Systems / 32 Landing Gear / 32-30 Brakes and Antiskid / 32-30-20 Controls and Indicators",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 341,
+          "end": 342,
+          "title": "Use of Brake Fans",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / After Landing",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4209,
+          "end": 4209,
+          "title": "Braking System",
+          "path": "Limitations / Landing Gear",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [
+        "limitations"
+      ],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "departure-change",
+      "stage": 2,
+      "phase": "Taxi & take-off",
+      "title": "Departure change",
+      "subtopics": [],
+      "scenario": "ATC changes the runway and SID while you are taxiing. Rehearse the crew sequence before accepting takeoff clearance.",
+      "checkpoints": [
+        "Which performance, route and cockpit entries must be reviewed?",
+        "How are independent checks, briefing and checklist completion managed?",
+        "What conditions would require stopping the aircraft to complete the change?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3687,
+          "end": 3688,
+          "title": "Departure Change",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 231,
+          "end": 232,
+          "title": "Departure Change",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCTM",
+          "page": 350,
+          "end": 350,
+          "title": "<< Departure Change >>",
+          "path": "Procedures / Normal Procedures / Normal Checklists",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "rejected-takeoff",
+      "stage": 2,
+      "phase": "Taxi & take-off",
+      "title": "Rejected takeoff (RTO decision-making scenarios)",
+      "subtopics": [],
+      "scenario": "Compare a warning early in the takeoff roll with an event close to the takeoff decision speed. Explain your decision using the current source.",
+      "checkpoints": [
+        "State the decision criteria and crew roles for the different portions of the roll.",
+        "Rehearse the rejected-takeoff sequence, monitoring and communication.",
+        "What post-stop threats, brake considerations and evacuation decisions need assessment?"
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 477,
+          "end": 481,
+          "title": "Rejected Takeoff",
+          "path": "Procedures / Abnormal and Emergency Procedures / MISC",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCOM",
+          "page": 853,
+          "end": 854,
+          "title": "How to Change T.O Data or Departure Runway after Rejected Takeoff",
+          "path": "Aircraft Systems / 22_20 Auto Flight - Flight Management / 22_20-30 How To / Rejected Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6205.jpeg"
+    },
+    {
+      "id": "contaminated-takeoff",
+      "stage": 2,
+      "phase": "Taxi & take-off",
+      "title": "Contaminated runway operations",
+      "subtopics": [],
+      "scenario": "The reported runway condition deteriorates during taxi. Explain the information and performance checks needed before continuing.",
+      "checkpoints": [
+        "Interpret the condition report using current approved performance guidance.",
+        "How do contamination, wind and available distance affect your takeoff assessment?",
+        "Which revised inputs, briefing items and stop/continue considerations must be addressed?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3862,
+          "end": 3863,
+          "title": "Operations on Contaminated Airports",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Adverse Weather",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4313,
+          "end": 4316,
+          "title": "Takeoff on Contaminated Runway",
+          "path": "Performance / Takeoff / Runway Conditions",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "QRH",
+          "page": 293,
+          "end": 294,
+          "title": "Contaminated Runway",
+          "path": "Company Procedures / Adverse Weather",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "takeoff-initial-climb",
+      "stage": 2,
+      "phase": "Taxi & take-off",
+      "title": "Takeoff and initial climb",
+      "subtopics": [
+        "Noise abatement",
+        "Crosswind techniques and limitations",
+        "Tailwind technique",
+        "Windshear",
+        "Terrain considerations"
+      ],
+      "scenario": "Brief a departure with terrain, a noise-abatement procedure and a significant crosswind. Then explain how a tailwind or windshear report changes the plan.",
+      "checkpoints": [
+        "Find the applicable noise-abatement profile and terrain requirements.",
+        "Explain crosswind and tailwind technique and verify each applicable limit.",
+        "Discuss windshear recognition, avoidance and the applicable response.",
+        "Allocate PF/PM monitoring tasks through the initial climb."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3693,
+          "end": 3698,
+          "title": "Takeoff",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 235,
+          "end": 244,
+          "title": "Takeoff",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCTM",
+          "page": 241,
+          "end": 244,
+          "title": "Noise Abatement Departure Procedure",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Takeoff",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4114,
+          "end": 4118,
+          "title": "Airport Operations and Wind Limitations",
+          "path": "Limitations / Aircraft General / Operational Parameters",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 363,
+          "end": 370,
+          "title": "Windshear",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Adverse Weather",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current departure chart, company noise-abatement and terrain requirements"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "heavy-departures",
+      "stage": 2,
+      "phase": "Taxi & take-off",
+      "title": "High GW takeoffs, SID speed restrictions and ARS",
+      "subtopics": [
+        "Heavy weight departures"
+      ],
+      "scenario": "For a heavy departure, work through the interaction of the SID speed restrictions, aircraft performance and company ARS requirements.",
+      "checkpoints": [
+        "Check planned weight and approved takeoff performance.",
+        "How will you manage each SID speed/altitude restriction and any performance conflict?",
+        "Explain ARS using its company definition and demonstrate its required application."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 4291,
+          "end": 4294,
+          "title": "Takeoff Performance Optimization",
+          "path": "Performance / Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3693,
+          "end": 3698,
+          "title": "Takeoff",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 245,
+          "end": 248,
+          "title": "Climb",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current company ARS guidance and heavy-weight departure policy",
+        "Applicable SID and approved performance output"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "company-departures",
+      "stage": 2,
+      "phase": "Taxi & take-off",
+      "title": "Company Departure Procedures (CDP) — practical application",
+      "subtopics": [],
+      "scenario": "Using a current company departure procedure, brief its practical application for the selected runway and a relevant failure scenario.",
+      "checkpoints": [
+        "Locate the correct runway-specific CDP and confirm its applicability.",
+        "Explain its triggers, track, altitude and performance requirements.",
+        "How does it relate to the cleared SID and how will the crew coordinate a change?"
+      ],
+      "references": [],
+      "requiredSources": [
+        "Current runway-specific Company Departure Procedure (CDP)",
+        "Approved departure performance and company application guidance"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "tcas",
+      "stage": 2,
+      "phase": "Climb",
+      "title": "TCAS and high vertical-rate encounters",
+      "subtopics": [],
+      "scenario": "You are approaching a cleared level at a high vertical rate with nearby traffic. Discuss prevention, then rehearse a TCAS encounter.",
+      "checkpoints": [
+        "How will you manage the level-off and monitor traffic?",
+        "Distinguish the applicable TA and RA procedures, including crew callouts.",
+        "Check the installed AP/FD TCAS capability and the associated source procedure."
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 163,
+          "end": 168,
+          "title": "TCAS",
+          "path": "Aircraft Systems",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCOM",
+          "page": 2085,
+          "end": 2106,
+          "title": "34-SURV-60 TCAS",
+          "path": "Aircraft Systems / 34-SURV Surveillance",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3532,
+          "end": 3536,
+          "title": "[MEM] TCAS WARNING - RESOLUTION ADVISORY",
+          "path": "Procedures / Abnormal and Emergency Procedures / SURV",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "climb-turbulence",
+      "stage": 2,
+      "phase": "Climb",
+      "title": "Climb speed profiles and turbulence penetration",
+      "subtopics": [
+        "Jet streams"
+      ],
+      "scenario": "Plan a climb through a forecast turbulent jet-stream region and explain how you would adapt the speed profile.",
+      "checkpoints": [
+        "Compare the applicable normal and turbulence speed guidance.",
+        "What aircraft, atmosphere and performance factors influence the chosen level and speed?",
+        "Brief monitoring, coordination and the response to worsening turbulence."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3701,
+          "end": 3706,
+          "title": "Climb",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 245,
+          "end": 248,
+          "title": "Climb",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCTM",
+          "page": 371,
+          "end": 374,
+          "title": "Weather Turbulence",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Adverse Weather",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "QRH",
+          "page": 223,
+          "end": 223,
+          "title": "Severe Turbulence",
+          "path": "Abnormal and Emergency Procedures / MISC",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "opt-rec-max",
+      "stage": 2,
+      "phase": "Climb",
+      "title": "OPT and REC MAX (UPRT considerations)",
+      "subtopics": [],
+      "scenario": "ATC offers a level above the displayed optimum altitude and close to REC MAX. Explain your assessment before accepting.",
+      "checkpoints": [
+        "Explain OPT and REC MAX using the performance and FMS references.",
+        "What margins and environmental factors influence your level choice?",
+        "Discuss high-altitude energy awareness and upset prevention."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 4333,
+          "end": 4334,
+          "title": "Altitude Optimization",
+          "path": "Performance / In-Flight / All Engines Operative Operations / Cruise / Altitude/Ceilings",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 249,
+          "end": 258,
+          "title": "Cruise",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCTM",
+          "page": 488,
+          "end": 492,
+          "title": "Upset Prevention and Recovery",
+          "path": "Procedures / Abnormal and Emergency Procedures / MISC",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "transition",
+      "stage": 2,
+      "phase": "Climb",
+      "title": "Transition altitude and level",
+      "subtopics": [],
+      "scenario": "Brief altimeter-setting changes for departure and arrival where transition arrangements differ.",
+      "checkpoints": [
+        "Identify transition altitude and transition level from the applicable information.",
+        "Explain the crew setting, cross-check and callout sequence.",
+        "How will you resolve conflicting settings or indications?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3701,
+          "end": 3706,
+          "title": "Climb",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3721,
+          "end": 3721,
+          "title": "Descent Initiation",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 121,
+          "end": 124,
+          "title": "Altimeter Setting Monitor",
+          "path": "Aircraft Systems",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current charted and regional transition procedures"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "rvsm",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "RVSM considerations",
+      "subtopics": [],
+      "scenario": "A required system becomes unreliable during RVSM cruise. Explain your assessment and coordination.",
+      "checkpoints": [
+        "Find the required equipment and normal cross-checks.",
+        "Which abnormal or emergency procedure applies to the observed failure?",
+        "What ATC notification, level or routing action must be considered?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 4065,
+          "end": 4068,
+          "title": "Required Equipments/Functions for RVSM",
+          "path": "Procedures / Special Operations / 50 Reduced Vertical Separation Minimum - RVSM",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4069,
+          "end": 4070,
+          "title": "RVSM Abnormal and Emergency Procedure",
+          "path": "Procedures / Special Operations / 50 Reduced Vertical Separation Minimum - RVSM",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "fmgs-failure",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "FMGS failure",
+      "subtopics": [],
+      "scenario": "An FMGS fault occurs in cruise. Explain the remaining capability, task sharing and how you would find any authorised recovery procedure.",
+      "checkpoints": [
+        "Identify the failure and the functions available to each pilot.",
+        "How will you preserve navigation, aircraft control and situational awareness?",
+        "Where are the applicable reset conditions and subsequent checks?"
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 397,
+          "end": 398,
+          "title": "FMGC Failure",
+          "path": "Procedures / Abnormal and Emergency Procedures / AUTO FLIGHT",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCOM",
+          "page": 891,
+          "end": 900,
+          "title": "22_20-40-10 FMGC Reset",
+          "path": "Aircraft Systems / 22_20 Auto Flight - Flight Management / 22_20-40 Abnormal Operations",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "QRH",
+          "page": 53,
+          "end": 53,
+          "title": "System Reset - General",
+          "path": "Abnormal and Emergency Procedures / [RESET] SYSTEM RESET",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "fuel-system",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Review the fuel system and fuel transfer",
+      "subtopics": [],
+      "scenario": "Talk through the fuel supply and transfer arrangement for the aircraft, then assess an unexpected tank-quantity trend.",
+      "checkpoints": [
+        "Identify the applicable tanks, pumps, valves and transfer paths.",
+        "Explain the normal transfer logic and relevant indications.",
+        "Which checks and source procedures would distinguish a transfer fault, imbalance, leak or indication problem?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 1527,
+          "end": 1544,
+          "title": "28-10 Description",
+          "path": "Aircraft Systems / 28 Fuel",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 1544,
+          "end": 1544,
+          "title": "Fuel System Architecture",
+          "path": "Aircraft Systems / 28 Fuel / 28-10 Description / 28-10-80 Fuel Quantity Indication and Level Sensing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3158,
+          "end": 3158,
+          "title": "FUEL AUTO TRANSFER FAULT",
+          "path": "Procedures / Abnormal and Emergency Procedures / FUEL",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3150,
+          "end": 3153,
+          "title": "[QRH] FUEL LEAK",
+          "path": "Procedures / Abnormal and Emergency Procedures / FUEL",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [
+        "systems"
+      ],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "fuel-policy",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Company fuel policy",
+      "subtopics": [
+        "Pre-flight requirements",
+        "In-flight requirements",
+        "DPA"
+      ],
+      "scenario": "Review a planned fuel load, then reassess the flight after stronger winds and an arrival delay. Apply the company fuel policy and DPA process.",
+      "checkpoints": [
+        "State each applicable pre-flight fuel requirement from the company policy.",
+        "Explain in-flight fuel checks, replanning thresholds and required decisions.",
+        "Define and apply DPA using the current company reference."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3707,
+          "end": 3710,
+          "title": "Cruise",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3711,
+          "end": 3720,
+          "title": "Descent Preparation",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Current company fuel policy, pre-flight/in-flight requirements and DPA guidance"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "company-communications",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Communication with IOC, Maintenance Watch and Freight",
+      "subtopics": [
+        "VHF",
+        "HF",
+        "CPDLC",
+        "SATCOM",
+        "MEDLINK"
+      ],
+      "scenario": "During cruise you need operational, engineering and medical assistance. Explain which communication paths you would use and how you would manage an unavailable channel.",
+      "checkpoints": [
+        "Locate the current IOC, Maintenance Watch and Freight contact arrangements.",
+        "Explain the use and installed availability of VHF, HF, CPDLC and SATCOM.",
+        "How would you obtain MEDLINK assistance and pass the necessary information?",
+        "Describe the fallback and confirmation arrangements for an unsuccessful contact."
+      ],
+      "references": [
+        {
+          "manual": "QRH",
+          "page": 297,
+          "end": 297,
+          "title": "Contacting IOC and Maintenance Watch",
+          "path": "Company Procedures / Communications",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "QRH",
+          "page": 300,
+          "end": 302,
+          "title": "Use of ACARS",
+          "path": "Company Procedures / Communications",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "FCOM",
+          "page": 1273,
+          "end": 1274,
+          "title": "23-30-10 Radio Communication",
+          "path": "Aircraft Systems / 23 Communications / 23-30 External Communication",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 1275,
+          "end": 1280,
+          "title": "SATCOM",
+          "path": "Aircraft Systems / 23 Communications / 23-30 External Communication / 23-30-20 SATCOM",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 2247,
+          "end": 2250,
+          "title": "46-10-30-20 Controller/Pilot Datalink Communication (CPDLC)",
+          "path": "Aircraft Systems / 46 Information Systems / 46-10 Datalink / 46-10-30 ATC Applications",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Current Freight and MEDLINK contact/procedure details; verify contact currency"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "ecam-resets",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "ECAM ADV, computer resets and circuit-breaker reset policy",
+      "subtopics": [],
+      "scenario": "An ECAM advisory appears and a reset is suggested. Explain how you decide what action is permitted.",
+      "checkpoints": [
+        "How do you assess and manage the advisory?",
+        "Find the exact authorised reset procedure, conditions and follow-up checks.",
+        "State the company circuit-breaker reset policy and who must be consulted."
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 103,
+          "end": 104,
+          "title": "Handling of Advisory",
+          "path": "Airbus Operational Philosophy / Management of Abnormal Operations",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "QRH",
+          "page": 53,
+          "end": 53,
+          "title": "System Reset - General",
+          "path": "Abnormal and Emergency Procedures / [RESET] SYSTEM RESET",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "QRH",
+          "page": 54,
+          "end": 58,
+          "title": "System Reset Table",
+          "path": "Abnormal and Emergency Procedures / [RESET] SYSTEM RESET",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        }
+      ],
+      "requiredSources": [
+        "Current company circuit-breaker reset policy"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6206.jpeg"
+    },
+    {
+      "id": "libik",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Lithium-Ion Battery Incident Kit (LIBIK)",
+      "subtopics": [],
+      "scenario": "A portable electronic device shows signs of a battery incident. Rehearse finding the applicable procedure and coordinating use of the carried kit.",
+      "checkpoints": [
+        "Locate the applicable lithium-battery smoke/fire procedure.",
+        "Identify the carried LIBIK, its contents and approved instructions.",
+        "Explain crew coordination, monitoring and subsequent reporting using those sources."
+      ],
+      "references": [
+        {
+          "manual": "QRH",
+          "page": 250,
+          "end": 250,
+          "title": "Smoke / Fire from Lithium Battery",
+          "path": "Abnormal and Emergency Procedures / SMOKE",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "FCTM",
+          "page": 530,
+          "end": 530,
+          "title": "Lithium Battery Fire in the Cockpit",
+          "path": "Procedures / Abnormal and Emergency Procedures / SMOKE",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Instructions and company training for the actual LIBIK carried"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "weather-radar",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Weather radar operation and thunderstorm avoidance",
+      "subtopics": [],
+      "scenario": "Plan a route around convective weather and explain how you will interpret and adjust the radar display.",
+      "checkpoints": [
+        "Identify the installed radar and its controls, modes and limitations.",
+        "Explain scan/tilt or automatic-mode management using the applicable source.",
+        "Discuss attenuation, misleading returns and the avoidance guidance.",
+        "How will you coordinate a route change and continue reassessing the weather?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 2005,
+          "end": 2052,
+          "title": "34-SURV-30 Weather Radar",
+          "path": "Aircraft Systems / 34-SURV Surveillance",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 169,
+          "end": 190,
+          "title": "Weather Radar",
+          "path": "Aircraft Systems",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCTM",
+          "page": 184,
+          "end": 185,
+          "title": "Operations in Convective Weather",
+          "path": "Aircraft Systems / Weather Radar",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "cargo-smoke",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Cargo smoke detection and fire extinguishing",
+      "subtopics": [
+        "MDCC",
+        "Lower deck"
+      ],
+      "scenario": "Compare a main deck smoke event with a lower-deck cargo smoke event. Find the correct procedure for each.",
+      "checkpoints": [
+        "Identify the detection, indications and protection arrangements for each compartment.",
+        "Explain the differences between the applicable main deck and lower-deck responses.",
+        "Rehearse crew/supernumerary coordination and diversion assessment.",
+        "Check the installed equipment and page effectivity before using either procedure."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 1435,
+          "end": 1438,
+          "title": "26-60 Main Deck Cargo Compartment-System Description",
+          "path": "Aircraft Systems / 26 Fire Protection",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 1429,
+          "end": 1434,
+          "title": "26-50 Cargo Compartments",
+          "path": "Aircraft Systems / 26 Fire Protection",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3507,
+          "end": 3510,
+          "title": "[QRH] SMOKE MD SMOKE",
+          "path": "Procedures / Abnormal and Emergency Procedures / SMOKE",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3515,
+          "end": 3517,
+          "title": "SMOKE AFT CARGO SMOKE (If Installed)",
+          "path": "Procedures / Abnormal and Emergency Procedures / SMOKE",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3520,
+          "end": 3522,
+          "title": "SMOKE FWD CARGO SMOKE (If Installed)",
+          "path": "Procedures / Abnormal and Emergency Procedures / SMOKE",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 531,
+          "end": 532,
+          "title": "Cargo Smoke",
+          "path": "Procedures / Abnormal and Emergency Procedures / SMOKE",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "engine-cruise",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Engine failure / fire in cruise",
+      "subtopics": [],
+      "scenario": "Compare an engine failure and an engine fire in cruise, including aircraft control, procedure selection and diversion planning.",
+      "checkpoints": [
+        "Identify the event and locate the applicable ECAM/QRH guidance.",
+        "Explain crew task sharing, single-engine performance and level considerations.",
+        "How do weather, terrain, fuel and landing suitability affect the diversion?",
+        "Check the engine-fire procedure separately from the failure procedure."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 2990,
+          "end": 2994,
+          "title": "ENG 1(2) FAIL",
+          "path": "Procedures / Abnormal and Emergency Procedures / ENG",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 2995,
+          "end": 2996,
+          "title": "ENG 1(2) FIRE  (In Flight)",
+          "path": "Procedures / Abnormal and Emergency Procedures / ENG",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 422,
+          "end": 424,
+          "title": "Engine Failure During Cruise",
+          "path": "Procedures / Abnormal and Emergency Procedures / ENG",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCTM",
+          "page": 425,
+          "end": 425,
+          "title": "Engine Fire",
+          "path": "Procedures / Abnormal and Emergency Procedures / ENG",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "diversion",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Planning and managing a diversion",
+      "subtopics": [],
+      "scenario": "Choose and brief a diversion after an operational problem, then explain what would make you change your choice.",
+      "checkpoints": [
+        "Compare aerodrome suitability, weather, terrain, fuel and aircraft capability.",
+        "Explain route/flight-management preparation and independent verification.",
+        "Plan ATC, company and supernumerary communication and the arrival workload."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 575,
+          "end": 582,
+          "title": "Diversion",
+          "path": "Aircraft Systems / 22_20 Auto Flight - Flight Management / 22_20-10 System Description / 22_20-10-30 Flight Planning",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 576,
+          "end": 576,
+          "title": "Diversion Preparation on the Secondary Flight Plan",
+          "path": "Aircraft Systems / 22_20 Auto Flight - Flight Management / 22_20-10 System Description / 22_20-10-30 Flight Planning / Diversion",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 577,
+          "end": 577,
+          "title": "Execution of the Diversion",
+          "path": "Aircraft Systems / 22_20 Auto Flight - Flight Management / 22_20-10 System Description / 22_20-10-30 Flight Planning / Diversion",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Current company diversion policy and operational aerodrome information"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "edto",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Extended Diversion Time Operation (EDTO)",
+      "subtopics": [
+        "Flight planning",
+        "CPE",
+        "Critical system failures and weather deterioration scenarios"
+      ],
+      "scenario": "For an EDTO planning exercise, identify the applicable approval and CPE requirements, then reassess after a critical system failure or deteriorating alternate weather.",
+      "checkpoints": [
+        "Find the company definition and application of CPE.",
+        "Review planning, alternate, fuel and required-equipment criteria.",
+        "Compare a critical system failure with a weather deterioration scenario.",
+        "Confirm whether the particular flight and aircraft are authorised for the operation."
+      ],
+      "references": [
+        {
+          "manual": "QRH",
+          "page": 314,
+          "end": 316,
+          "title": "Extended Diversion Time Operations (EDTO)",
+          "path": "Company Procedures / Special Operations",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4059,
+          "end": 4060,
+          "title": "Diversion Decision Making",
+          "path": "Procedures / Special Operations / 40 Extended Range Operations / 40-40 Diversion During Extended Range Operations",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Current company EDTO approval, planning policy and CPE guidance"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "metric-altimetry",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Metric altimetry (China operations)",
+      "subtopics": [],
+      "scenario": "Prepare for a clearance using metric levels. Demonstrate how you will convert, set and cross-check the assigned level.",
+      "checkpoints": [
+        "Locate the China metric conversion chart and applicable regional procedure.",
+        "Explain the crew clearance, setting and verification sequence.",
+        "How will you resolve a mismatch between cleared, displayed and selected values?"
+      ],
+      "references": [
+        {
+          "manual": "QRH",
+          "page": 313,
+          "end": 313,
+          "title": "China Metric Conversion Chart",
+          "path": "Company Procedures / Special Operations",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        }
+      ],
+      "requiredSources": [
+        "Current China route/chart altimetry and ATC procedures"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "volcanic-ash",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "Volcanic ash — interpreting reports and procedures",
+      "subtopics": [],
+      "scenario": "An updated volcanic ash report affects your route. Discuss interpretation, avoidance and the procedure if an encounter is suspected.",
+      "checkpoints": [
+        "Interpret the location, levels, movement, timing and uncertainty in the current report.",
+        "Explain route/alternate reassessment and coordination.",
+        "Find and rehearse the applicable volcanic ash encounter procedure."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3864,
+          "end": 3869,
+          "title": "Operations with Volcanic Ash, Sand or Dust",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Adverse Weather",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "QRH",
+          "page": 225,
+          "end": 226,
+          "title": "Volcanic Ash Encounter",
+          "path": "Abnormal and Emergency Procedures / MISC",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "FCTM",
+          "page": 487,
+          "end": 487,
+          "title": "Volcanic Ash Encounter",
+          "path": "Procedures / Abnormal and Emergency Procedures / MISC",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current volcanic ash advisory, SIGMET and route weather"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "uprt-overspeed",
+      "stage": 2,
+      "phase": "Cruise",
+      "title": "UPRT considerations — e.g. overspeed",
+      "subtopics": [],
+      "scenario": "A change in wind or turbulence produces an unexpected energy trend near a speed limit. Discuss prevention and the applicable recovery guidance.",
+      "checkpoints": [
+        "Identify the developing threat and distinguish overspeed from other upset conditions.",
+        "Explain the applicable handling and automation guidance from the source.",
+        "Discuss high-altitude margins, monitoring and avoiding inappropriate control inputs."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3491,
+          "end": 3492,
+          "title": "OVERSPEED",
+          "path": "Procedures / Abnormal and Emergency Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 472,
+          "end": 475,
+          "title": "Overspeed",
+          "path": "Procedures / Abnormal and Emergency Procedures / MISC",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCTM",
+          "page": 488,
+          "end": 492,
+          "title": "Upset Prevention and Recovery",
+          "path": "Procedures / Abnormal and Emergency Procedures / MISC",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "descent-planning",
+      "stage": 2,
+      "phase": "Descent",
+      "title": "Descent planning (profile and gates)",
+      "subtopics": [],
+      "scenario": "Build and brief a descent plan from cruise, then revise it after a late clearance or track shortening.",
+      "checkpoints": [
+        "Identify the intended profile, expected winds and restrictions.",
+        "Explain how you monitor energy and progress against the company gates.",
+        "What options and communications are available when the plan is no longer achievable?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3711,
+          "end": 3720,
+          "title": "Descent Preparation",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3721,
+          "end": 3721,
+          "title": "Descent Monitoring",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 269,
+          "end": 286,
+          "title": "Descent",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current company descent gates and profile policy"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "cta-steps",
+      "stage": 2,
+      "phase": "Descent",
+      "title": "CTA steps",
+      "subtopics": [],
+      "scenario": "Using the applicable chart, brief a descent through the CTA steps and explain how you will remain within the planned clearance and airspace.",
+      "checkpoints": [
+        "Identify each relevant CTA step and vertical/lateral boundary.",
+        "Check clearance, terrain and minimum-altitude requirements along the descent.",
+        "Explain your monitoring and the action if the planned descent cannot be maintained."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3721,
+          "end": 3721,
+          "title": "Descent Monitoring",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Current charted CTA steps and company airspace/descent guidance"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "terrain-awareness",
+      "stage": 2,
+      "phase": "Descent",
+      "title": "Terrain awareness (CFIT)",
+      "subtopics": [],
+      "scenario": "Brief a descent toward an aerodrome with significant terrain, then rehearse the response to the applicable terrain alert.",
+      "checkpoints": [
+        "Identify terrain threats, charted protection and position checks.",
+        "Explain how clearance, navigation and vertical-path monitoring work together.",
+        "Find the distinct caution and warning procedures and recall the applicable actions."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 2061,
+          "end": 2062,
+          "title": "Terrain Awareness and Display",
+          "path": "Aircraft Systems / 34-SURV Surveillance / 34-SURV-40 GPWS / 34-SURV-40-35 Predictive GPWS Functions",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3527,
+          "end": 3528,
+          "title": "[MEM] TAWS CAUTION",
+          "path": "Procedures / Abnormal and Emergency Procedures / SURV",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3529,
+          "end": 3529,
+          "title": "[MEM] TAWS WARNING",
+          "path": "Procedures / Abnormal and Emergency Procedures / SURV",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Current approach/terrain charts and company terrain policy"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "constraints",
+      "stage": 2,
+      "phase": "Descent",
+      "title": "Managing constraints",
+      "subtopics": [
+        "Speed",
+        "Altitude",
+        "RTA"
+      ],
+      "scenario": "You receive a speed change and a new altitude restriction while managing an RTA. Explain how you check whether all constraints remain achievable.",
+      "checkpoints": [
+        "Identify which constraints are active, predicted and actually cleared.",
+        "Explain the applicable managed/selected-mode and flight-plan changes.",
+        "Describe independent checks and communication when a constraint cannot be met."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 535,
+          "end": 536,
+          "title": "Vertical Constraints (Speed, Altitude, Time)",
+          "path": "Aircraft Systems / 22_20 Auto Flight - Flight Management / 22_20-10 System Description / 22_20-10-30 Flight Planning / Vertical Functions - General",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 558,
+          "end": 559,
+          "title": "Required Time of Arrival (RTA)",
+          "path": "Aircraft Systems / 22_20 Auto Flight - Flight Management / 22_20-10 System Description / 22_20-10-30 Flight Planning / Vertical Functions - FMS2 Honeywell",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4011,
+          "end": 4023,
+          "title": "Descent Monitoring",
+          "path": "Procedures / Normal Procedures / Systems Related Procedures / FMS / Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "qnh",
+      "stage": 2,
+      "phase": "Descent",
+      "title": "QNH verification",
+      "subtopics": [],
+      "scenario": "Two available pressure reports disagree during descent. Explain how you resolve the discrepancy and cross-check the altimeters.",
+      "checkpoints": [
+        "Verify report location, time, units and applicability.",
+        "Describe the crew setting and cross-check sequence.",
+        "Find the guidance for discrepant barometric values and any approach implications."
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 121,
+          "end": 124,
+          "title": "Altimeter Setting Monitor",
+          "path": "Aircraft Systems",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3457,
+          "end": 3457,
+          "title": "NAV BARO VALUE DISAGREE",
+          "path": "Procedures / Abnormal and Emergency Procedures / NAV",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3721,
+          "end": 3721,
+          "title": "Descent Initiation",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "minimum-altitudes",
+      "stage": 2,
+      "phase": "Descent",
+      "title": "Minimum altitudes and safety heights",
+      "subtopics": [
+        "Company policy — descent below MSA"
+      ],
+      "scenario": "You are cleared lower near an aerodrome before being established on the intended approach. Explain what permits the descent.",
+      "checkpoints": [
+        "Identify the relevant charted minimum altitudes and safety heights.",
+        "State the company conditions for descent below MSA.",
+        "Explain required navigation, terrain and clearance checks without treating clearance alone as the whole assessment."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3727,
+          "end": 3732,
+          "title": "Approach General",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Current company descent-below-MSA policy",
+        "Current charted minimum altitudes and safety heights"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "noncontrolled",
+      "stage": 2,
+      "phase": "Descent",
+      "title": "Non-controlled aerodrome procedures",
+      "subtopics": [],
+      "scenario": "Brief arrival at a non-controlled aerodrome, including a conflict with other traffic and a change to the planned runway.",
+      "checkpoints": [
+        "Identify the applicable frequency, broadcasts and traffic procedures.",
+        "Explain weather, runway, lighting and instrument-approach coordination.",
+        "How will you manage an unresolved traffic conflict or uncertain runway status?"
+      ],
+      "references": [
+        {
+          "manual": "QRH",
+          "page": 311,
+          "end": 312,
+          "title": "Operation of VHF Pilot Activated Lighting (PAL)",
+          "path": "Company Procedures / Pilot Activated Lighting",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        }
+      ],
+      "requiredSources": [
+        "Current company non-controlled aerodrome procedures",
+        "Applicable AIP, aerodrome chart and local operating requirements"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "high-wind-descent",
+      "stage": 2,
+      "phase": "Descent",
+      "title": "Descending out of high winds",
+      "subtopics": [],
+      "scenario": "The descent takes you out of a strong wind layer. Explain the anticipated energy trend and how you would monitor and manage it.",
+      "checkpoints": [
+        "Review the descent-wind information and expected changes.",
+        "Explain how you monitor actual path, speed and required descent performance.",
+        "What changes to the plan or ATC requests may be needed?"
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 269,
+          "end": 286,
+          "title": "Descent",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3722,
+          "end": 3724,
+          "title": "Descent Adjustment",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "holding",
+      "stage": 2,
+      "phase": "Descent",
+      "title": "Holding — strategies for fuel conservation",
+      "subtopics": [],
+      "scenario": "An arrival delay requires holding. Compare your options and brief the fuel decision points.",
+      "checkpoints": [
+        "Use the source to choose an appropriate holding speed, level and configuration.",
+        "Reassess endurance, approach fuel and diversion requirements.",
+        "Explain how you monitor the hold and communicate a change to the plan."
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 287,
+          "end": 288,
+          "title": "Holding",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4337,
+          "end": 4338,
+          "title": "Holding",
+          "path": "Performance / In-Flight / All Engines Operative Operations",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4339,
+          "end": 4340,
+          "title": "Holding",
+          "path": "Performance / In-Flight / One Engine Inoperative Operations",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Current company fuel policy and decision thresholds"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6207.jpeg"
+    },
+    {
+      "id": "approach-briefing",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Approach preparation and CTWO+ briefing",
+      "subtopics": [],
+      "scenario": "Give a complete arrival and approach briefing for a changed runway with a relevant operational threat.",
+      "checkpoints": [
+        "Prepare and cross-check the route, approach, minima and performance.",
+        "Use the current company CTWO+ format and include the missed-approach plan.",
+        "Explain crew monitoring, stable-approach gates and any outstanding uncertainties."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3711,
+          "end": 3720,
+          "title": "Descent Preparation",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 259,
+          "end": 268,
+          "title": "Descent Preparation",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCTM",
+          "page": 85,
+          "end": 92,
+          "title": "How to Conduct Briefings",
+          "path": "Airbus Operational Philosophy / Tasksharing Rules and Communication",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current company approach briefing and CTWO+ standard"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "cold-weather-approach",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Cold weather considerations",
+      "subtopics": [],
+      "scenario": "Prepare an approach in cold conditions and show how you determine any required altitude corrections and aircraft precautions.",
+      "checkpoints": [
+        "Locate the approved cold-weather altitude-correction method and its scope.",
+        "Identify the affected altitudes and required crew/ATC coordination.",
+        "Consider icing, runway conditions and go-around implications."
+      ],
+      "references": [
+        {
+          "manual": "QRH",
+          "page": 295,
+          "end": 296,
+          "title": "Cold Weather Corrections to Altitude",
+          "path": "Company Procedures / Adverse Weather",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "QRH",
+          "page": 295,
+          "end": 296,
+          "title": "Alternative Method of Compliance-Cold Weather Corrections to Altitude",
+          "path": "Company Procedures / Adverse Weather",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "FCTM",
+          "page": 355,
+          "end": 362,
+          "title": "Cold Weather Operations and Icing Conditions",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Adverse Weather",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "discontinued-approach",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Discontinued approach",
+      "subtopics": [],
+      "scenario": "ATC interrupts your approach before landing configuration is complete. Explain the applicable discontinued-approach procedure.",
+      "checkpoints": [
+        "State the source conditions for a discontinued approach.",
+        "Explain the appropriate guidance, thrust, configuration and flight-plan management.",
+        "Compare the applicable sequence with a go-around and describe crew coordination."
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 290,
+          "end": 290,
+          "title": "Discontinued Approach",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Approach / General",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3787,
+          "end": 3790,
+          "title": "Go-Around",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "glideslope-above",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Glideslope interception from above",
+      "subtopics": [],
+      "scenario": "Vectors leave the aircraft above the glideslope. Explain whether an intercept is appropriate and how you would apply the approved technique.",
+      "checkpoints": [
+        "Locate the applicable above-glideslope interception guidance in the approach sections.",
+        "Discuss mode selection, altitude protection and energy monitoring.",
+        "What stable-approach or other criteria would require abandoning the attempt?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3741,
+          "end": 3774,
+          "title": "Aircraft Guidance Management",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 289,
+          "end": 322,
+          "title": "Approach",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current company stable-approach policy"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "two-dimensional-approach",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "2D approach",
+      "subtopics": [],
+      "scenario": "Brief a 2D instrument approach and explain vertical-path management from final approach through landing or missed approach.",
+      "checkpoints": [
+        "Identify the applicable guidance method, charted minima and restrictions.",
+        "Explain position, altitude and path cross-checks and task sharing.",
+        "Rehearse the decision and missed-approach requirements using the current chart and company procedure."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3727,
+          "end": 3732,
+          "title": "Approach General",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3741,
+          "end": 3774,
+          "title": "Aircraft Guidance Management",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 289,
+          "end": 322,
+          "title": "Approach",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Current approach chart and company 2D-approach/minima policy"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "landing-distance",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Landing distance calculations and runway exit planning",
+      "subtopics": [],
+      "scenario": "Assess landing performance after a runway/wind change, then brief an achievable runway exit.",
+      "checkpoints": [
+        "Select and verify the approved landing-performance inputs and method.",
+        "Explain the distinction between the applicable distance definitions and requirements.",
+        "Relate the braking plan and runway condition to exit planning and the landing briefing."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 4350,
+          "end": 4352,
+          "title": "Landing Distances Definitions",
+          "path": "Performance / Landing / Landing Speeds and Distances Definitions",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4360,
+          "end": 4360,
+          "title": "In-Flight Landing Distance Crosscheck",
+          "path": "Performance / Landing / Dispatch Requirements",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 323,
+          "end": 334,
+          "title": "Landing",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [
+        "Approved landing-performance tool/data and current runway information"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "lahso",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "LAHSO",
+      "subtopics": [],
+      "scenario": "ATC offers a land-and-hold-short operation. Explain how you establish whether it can be accepted.",
+      "checkpoints": [
+        "Check company authorisation and all applicable acceptance conditions.",
+        "Identify available landing distance, hold-short point and performance requirements.",
+        "Explain briefing, readback, monitoring and the applicable rejected-landing/missed-approach plan."
+      ],
+      "references": [],
+      "requiredSources": [
+        "Current company LAHSO policy/authorisation",
+        "Applicable AIP/charted LAHSO procedures and approved performance data"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "autobrake",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Autobrake selection and transition to manual braking",
+      "subtopics": [],
+      "scenario": "Choose an autobrake setting for the planned landing, then explain the transition to manual braking for the runway exit.",
+      "checkpoints": [
+        "Explain the selection rationale using performance, conditions and technique guidance.",
+        "Identify engagement, deceleration and disconnection indications.",
+        "Describe the approved transition and monitoring of braking effectiveness."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 1871,
+          "end": 1872,
+          "title": "Auto Brake",
+          "path": "Aircraft Systems / 32 Landing Gear / 32-30 Brakes and Antiskid / 32-30-10 Description",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 1873,
+          "end": 1876,
+          "title": "Braking Modes",
+          "path": "Aircraft Systems / 32 Landing Gear / 32-30 Brakes and Antiskid / 32-30-10 Description",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3775,
+          "end": 3779,
+          "title": "Manual Landing",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures / Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 323,
+          "end": 334,
+          "title": "Landing",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "contaminated-landing",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Landing on a slippery or contaminated runway",
+      "subtopics": [],
+      "scenario": "Braking action deteriorates while you are on arrival. Reassess the landing and brief the available options.",
+      "checkpoints": [
+        "Interpret the latest condition report and verify landing performance.",
+        "Explain the applicable technique, wind restrictions and braking/reverse considerations.",
+        "What conditions would lead you to delay, go around or divert?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 4354,
+          "end": 4356,
+          "title": "Contaminated Runway",
+          "path": "Performance / Landing / Runway Conditions",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "QRH",
+          "page": 293,
+          "end": 294,
+          "title": "Contaminated Runway",
+          "path": "Company Procedures / Adverse Weather",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        },
+        {
+          "manual": "FCTM",
+          "page": 323,
+          "end": 334,
+          "title": "Landing",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "landing-wind",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Crosswind/tailwind techniques and limitations",
+      "subtopics": [],
+      "scenario": "Brief a landing with a crosswind and possible tailwind component. Explain the limit and technique checks for the intended configuration.",
+      "checkpoints": [
+        "Verify the applicable limits, gust treatment and runway-condition restrictions.",
+        "Explain the landing technique and monitoring from the FCTM.",
+        "Check any automatic-landing limitations separately from manual-landing guidance."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 4114,
+          "end": 4118,
+          "title": "Airport Operations and Wind Limitations",
+          "path": "Limitations / Aircraft General / Operational Parameters",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4144,
+          "end": 4144,
+          "title": "Maximum Wind Conditions for ILS/MLS (If Installed)  CAT II or CAT III and for GLS (If Installed)  CAT I",
+          "path": "Limitations / Auto Flight System / Automatic Approach, Landing and Rollout",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 323,
+          "end": 334,
+          "title": "Landing",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [
+        "limitations"
+      ],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "windshear",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Windshear",
+      "subtopics": [],
+      "scenario": "Compare a predictive windshear alert with a reactive warning on approach and rehearse the applicable response.",
+      "checkpoints": [
+        "Identify each alert and the relevant phase/conditions.",
+        "Recall the applicable source actions and crew callouts.",
+        "Discuss avoidance, approach continuation and recovery considerations without mixing the procedures."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 2019,
+          "end": 2026,
+          "title": "34-SURV-30-20 Predictive Windshear System",
+          "path": "Aircraft Systems / 34-SURV Surveillance / 34-SURV-30 Weather Radar",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3540,
+          "end": 3540,
+          "title": "[MEM] WINDSHEAR WARNING - REACTIVE WINDSHEAR",
+          "path": "Procedures / Abnormal and Emergency Procedures / SURV",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 363,
+          "end": 370,
+          "title": "Windshear",
+          "path": "Procedures / Normal Procedures / Supplementary Procedures / Adverse Weather",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "go-around",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Go-around",
+      "subtopics": [],
+      "scenario": "Rehearse a go-around from the approach, then discuss a change to the missed-approach clearance.",
+      "checkpoints": [
+        "Recall the applicable sequence, crew callouts and task sharing.",
+        "Explain guidance, thrust, configuration and flight-plan monitoring.",
+        "How will you manage terrain, constraints and an amended clearance?"
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3787,
+          "end": 3790,
+          "title": "Go-Around",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 4049,
+          "end": 4050,
+          "title": "Task Sharing During a Go-Around",
+          "path": "Procedures / Normal Procedures / Systems Related Procedures / FMS / Go-Around",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 335,
+          "end": 340,
+          "title": "Go-Around",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [
+        "flows"
+      ],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "one-engine-taxi",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "One engine taxi (at arrival)",
+      "subtopics": [],
+      "scenario": "Assess whether one-engine taxi is suitable after landing and rehearse the procedure if the conditions are met.",
+      "checkpoints": [
+        "Find the eligibility conditions, restrictions and required timing.",
+        "Explain system availability, route/gradient and handling considerations.",
+        "Describe crew coordination, the shutdown sequence and monitoring."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3797,
+          "end": 3798,
+          "title": "One Engine Taxi At Arrival",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCTM",
+          "page": 343,
+          "end": 344,
+          "title": "One Engine Taxi At Arrival",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        }
+      ],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "docking",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "Marshalling and Visual Docking Guidance System (VDGS)",
+      "subtopics": [],
+      "scenario": "You approach a stand using VDGS and then receive an unexpected indication or conflicting guidance. Explain your actions.",
+      "checkpoints": [
+        "Identify the correct stand, aircraft selection and usable guidance.",
+        "Explain the applicable marshalling signals, stop indications and clearance monitoring.",
+        "How would you resolve uncertainty before continuing?"
+      ],
+      "references": [
+        {
+          "manual": "FCTM",
+          "page": 223,
+          "end": 230,
+          "title": "Taxi",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "1aac2e1a7bf6c9a7703f51b7bbe2ab3997ba4f29ffb36e8306167ebc702ba5aa"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3799,
+          "end": 3804,
+          "title": "Parking",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ],
+      "requiredSources": [
+        "Current aerodrome/stand VDGS instructions",
+        "Company marshalling and parking guidance"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "csff-a330",
+      "stage": 2,
+      "phase": "Approach & landing",
+      "title": "CSFF and OUTR TK TRANSFER (A330)",
+      "subtopics": [],
+      "scenario": "This row is explicitly marked A330 in the supplied checklist.",
+      "checkpoints": [
+        "Retain the row for traceability; it does not define an A321P2F fuel-transfer procedure."
+      ],
+      "references": [],
+      "requiredSources": [],
+      "related": [],
+      "aircraft": "A330 only",
+      "photo": "IMG_6208.jpeg"
+    },
+    {
+      "id": "postflight",
+      "stage": 2,
+      "phase": "Post-flight",
+      "title": "Post-flight actions",
+      "subtopics": [
+        "Aircraft Technical Log entries",
+        "EFF+ Nav Log",
+        "Flight Time Record",
+        "ACARS",
+        "Delay Report",
+        "Comply365 Flight Crew form requirements",
+        "INTELEX",
+        "MDCD considerations"
+      ],
+      "scenario": "Complete a post-flight handover after a delayed sector with a new defect and a cargo-door consideration. Talk through every required record.",
+      "checkpoints": [
+        "Prepare the Aircraft Technical Log entry and engineering handover.",
+        "Complete the EFF+ Nav Log and Flight Time Record and reconcile required times.",
+        "Identify the required ACARS actions and Delay Report.",
+        "Check Comply365 Flight Crew forms and whether an INTELEX report is required.",
+        "Explain the MDCD considerations during parking, handover and securing."
+      ],
+      "references": [
+        {
+          "manual": "FCOM",
+          "page": 3799,
+          "end": 3804,
+          "title": "Parking",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3805,
+          "end": 3808,
+          "title": "Securing the Aircraft",
+          "path": "Procedures / Normal Procedures / Standard Operating Procedures",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "FCOM",
+          "page": 3847,
+          "end": 3848,
+          "title": "Opening MDCD",
+          "path": "Procedures / Normal Procedures / Tasksharing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "manual": "QRH",
+          "page": 300,
+          "end": 302,
+          "title": "Use of ACARS",
+          "path": "Company Procedures / Communications",
+          "sourceHash": "cd177667c214b6c19627292a7a806b33f07889631399984dbe4a3ff1a5bf573b"
+        }
+      ],
+      "requiredSources": [
+        "Company post-flight Technical Log, EFF+, flight-time, delay and ACARS requirements",
+        "Current Comply365 Flight Crew forms and INTELEX reporting requirements"
+      ],
+      "related": [],
+      "aircraft": "A321P2F",
+      "photo": "IMG_6208.jpeg"
+    }
+  ]
+}

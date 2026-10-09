@@ -4,6 +4,9 @@ A personal study site built around the supplied FCOM, FCTM and QRH, FCOM and QRH
 
 ## Study content
 
+- Line training discussions: all 74 visible topic rows and their sub-bullets from the supplied EFA340 V5 (April 2025) checklist photos. 71 A321P2F topics have tailored oral scenarios, discussion checkpoints, source reading links where available, private answer notes and self-assessed progress. The three A330-only rows are retained separately, outside practice and progress. Filter by stage, flight phase, text, progress or additional reference needed; practise a single topic, five topics or the filtered selection.
+- Discussion checkpoints are prompts, not model answers. Company policy and live operational references that are not in the three supplied manuals are named explicitly. Reading links match the source section index and fingerprint; opening a link does not establish that all company requirements are covered. Self-checks do not award quiz mastery or sign the official training record. See DISCUSSION_COVERAGE.md for the row-by-row audit.
+
 - A clear study desk with flows, normal/abnormal procedures and limitations practice; a direct 10-question Learn session; private manual status; aircraft systems; progress and a last-opened study shortcut.
 
 - 11 original FCOM flow-pattern pages, rendered privately from the local PDF.

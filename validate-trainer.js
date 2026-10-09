@@ -1,4 +1,5 @@
 'use strict';
+require('./test-discussions.js');
 const fs=require('fs'),path=require('path'),assert=require('node:assert/strict'),crypto=require('crypto'),vm=require('vm');
 const read=f=>fs.readFileSync(path.join(__dirname,f),'utf8'),json=f=>JSON.parse(read(f));
 const manuals=json('data/manuals.json'),questions=json('data/questions.json'),drills=json('data/drills.json'),patterns=json('data/patterns.json');
