@@ -4,8 +4,8 @@ A personal study site built around the supplied FCOM, FCTM and QRH, FCOM and QRH
 
 ## Study content
 
-- Line training discussions: all 74 visible topic rows and their sub-bullets from the supplied EFA340 V5 (April 2025) checklist photos. 71 A321P2F topics have tailored oral scenarios, discussion checkpoints, source reading links where available, private answer notes and self-assessed progress. The three A330-only rows are retained separately, outside practice and progress. Filter by stage, flight phase, text, progress or additional reference needed; practise a single topic, five topics or the filtered selection.
-- Discussion checkpoints are prompts, not model answers. Company policy and live operational references that are not in the three supplied manuals are named explicitly. Reading links match the source section index and fingerprint; opening a link does not establish that all company requirements are covered. Self-checks do not award quiz mastery or sign the official training record. See DISCUSSION_COVERAGE.md for the row-by-row audit.
+- EFA340 line training quiz: 123 multiple-choice questions with automatic marking, source explanations, Learn/Exam modes, 5/10/25/all-question runs, filtered topic practice and retrying missed questions. The bank reuses the existing 92 limitations questions unchanged and adds 31 questions transformed from the existing source-linked flow drills. Progress is separate from the limitations quiz and earlier self-ratings. Incomplete exams do not award a score or question progress.
+- All 74 visible checklist rows and their sub-bullets remain represented. Selected material in 29 applicable topics has quiz questions; 42 remain reading-only until a supported answer key is available. Three A330-only rows remain visible outside practice. Earlier written notes are preserved read-only. See DISCUSSION_COVERAGE.md for the row-by-row audit and source limitations.
 
 - A clear study desk with flows, normal/abnormal procedures and limitations practice; a direct 10-question Learn session; private manual status; aircraft systems; progress and a last-opened study shortcut.
 

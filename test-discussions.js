@@ -39,8 +39,11 @@ for(const [id,subtopics] of Object.entries({
 }))assert.deepEqual(items.find(i=>i.id===id).subtopics,subtopics,id+' photo subtopics');
 const source=read('discussions.js');
 assert(!/\bfetch\s*\(|XMLHttpRequest|sendBeacon|WebSocket/.test(source),'Discussion notes must remain local');
-assert(!/recordQuestion\s*\(/.test(source),'Discussion self-ratings must not award scored quiz mastery');
-for(const file of ['index.html','A321P2F_Trainer.html','A321P2F_Checkride_Trainer.html'])assert(read(file).includes('discussions.js?v=66'));
+assert(!/<textarea|discussionNotes|data-discussion-rating/.test(source),'Written answers and self-rating controls have been replaced');
+for(const file of ['index.html','A321P2F_Trainer.html','A321P2F_Checkride_Trainer.html']){
+  assert(read(file).includes('discussions.js?v=67'));
+  assert(read(file).indexOf('line-quiz-core.js?v=67')<read(file).indexOf('discussions.js?v=67'));
+}
 assert(read('sw.js').includes('./data/discussions.json'));
-assert(read('sw.js').includes('./discussions.js?v=66'));
-console.log('Passed: 74 photo rows, 71 practice topics, all phase totals, retained subtopics, source-index/hash matches, A330 exclusions and private self-assessment.');
+for(const asset of ['./discussions.js?v=67','./line-quiz-core.js?v=67','./data/line-quiz.json'])assert(read('sw.js').includes(asset));
+console.log('Passed: 74 photo rows, 71 applicable topics, all phase totals, retained subtopics, source-index/hash matches, A330 exclusions and local notes preservation.');

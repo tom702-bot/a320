@@ -32,7 +32,12 @@
 @media(prefers-reduced-motion:no-preference){.study-home .button,.systems-resource,.desk-continue{transition:background .15s,border-color .15s}}
 @media(min-width:701px){.choice-actions{min-height:110px}}
 
-/* Line-training checklist and source-linked oral practice. */
+/* Line-training checklist and source-linked quiz practice. */
+.line-quiz-settings{display:flex;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-top:18px;margin-bottom:18px;border-top:1px solid var(--line)}
+.line-quiz-settings>.actions{margin-left:auto}.line-quiz-actions{margin-top:22px}.line-quiz-actions [hidden]{display:none}
+.line-question-topic{color:var(--muted);font-size:13px;margin:22px 0 10px}.line-results,.line-reading-guide{margin-top:28px}.line-results summary,.line-reading-guide summary{cursor:pointer;font-weight:650;padding:10px 0}.legacy-notes{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:16px}.line-correct{border-left:4px solid var(--good)}.line-incorrect{border-left:4px solid var(--red)}
+.discussion-status.recalled{background:#e4f1e9;color:#246244}.discussion-status.weak{background:#fff0df;color:#88510c}.discussion-status.started{background:#e8effb;color:#355b87}
+@media(max-width:700px){.line-quiz-settings>label{flex:1;min-width:130px}.line-quiz-settings>.actions{margin-left:0;flex-wrap:wrap}.line-quiz-settings>.actions>button{width:100%}.line-results .page-button{white-space:normal}}
 .discussion-home{display:flex;justify-content:space-between;align-items:center;gap:28px;margin-top:22px;padding:25px;border:1px solid #dcc9b1;border-radius:14px;background:#fffaf2}
 .discussion-home h2{font-size:24px;margin:8px 0}.discussion-home p{max-width:68ch;margin:0 0 10px;color:var(--muted);font-size:15px}.discussion-home>.actions{flex-shrink:0;flex-direction:column;align-items:stretch;min-width:185px}
 .discussion-overview{display:flex;align-items:center;gap:32px;margin:24px 0}.discussion-overview>div{display:flex;flex-direction:column;flex-shrink:0}.discussion-overview strong{font-size:32px;line-height:1.2}.discussion-overview span{color:var(--muted);font-size:13px}.discussion-overview>p{max-width:55ch;margin:0 0 0 auto;color:var(--muted);font-size:14px}

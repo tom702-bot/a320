@@ -1,153 +1,97 @@
 'use strict';
-// Checklist prompts are self-assessed against original sources, never scored as operational answers.
+// Source-linked multiple choice. Legacy written notes remain local and unscored.
 const DiscussionStudy = (() => {
-  let env, data, run = null;
-  const filters = {stage:'all', phase:'all', status:'all', search:''};
-  const $ = id => document.getElementById(id);
-  const safe = value => env.esc(value);
-  const applicable = item => item.aircraft === 'A321P2F';
-  const progress = item => env.state()[item.id] || {};
-  const statuses = {new:'Not started', reading:'Reading', review:'Needs practice', checked:'Self-checked'};
-  function stateLabel(item) { return statuses[progress(item).status] || statuses.new; }
-  function update(item, patch) {
-    env.state()[item.id] = {...progress(item), ...patch, updated:new Date().toISOString()};
-    env.persist();
+  let env,data,bank=[],run=null;
+  const filters={stage:'all',phase:'all',show:'quiz',search:'',mode:'learn',length:'10'};
+  const $=id=>document.getElementById(id),safe=value=>env.esc(value);
+  const applicable=item=>item.aircraft==='A321P2F';
+  const topicQuestions=item=>bank.filter(q=>q.topics.includes(item.id));
+  const progress=()=>env.quizState().questions;
+  const stateLabel={reading:'Reading only',new:'Not started',started:'In progress',weak:'Needs practice',recalled:'Recalled twice'};
+  const status=item=>LineQuizCore.topicStatus(topicQuestions(item),progress());
+  const topics=()=>data.items.filter(applicable);
+  function stats() {
+    const available=topics().filter(t=>topicQuestions(t).length);
+    return {total:topics().length,questions:bank.length,quizTopics:available.length,reading:topics().length-available.length,recalled:bank.filter(q=>(progress()[q.id]?.streak||0)>=2).length,weak:bank.filter(q=>progress()[q.id]?.weak).length};
   }
   function matches(item) {
-    const q = filters.search.trim().toLowerCase();
-    const p = progress(item);
-    return applicable(item) &&
-      (filters.stage === 'all' || item.stage === Number(filters.stage)) &&
-      (filters.phase === 'all' || item.phase === filters.phase) &&
-      (filters.status === 'all' || (filters.status === 'sources' ? item.requiredSources.length > 0 : (p.status || 'new') === filters.status)) &&
-      (!q || [item.title,item.scenario,...item.subtopics,...item.checkpoints,...item.requiredSources].join(' ').toLowerCase().includes(q));
+    const q=filters.search.trim().toLowerCase(),count=topicQuestions(item).length,s=status(item);
+    return applicable(item)&&(filters.stage==='all'||item.stage===Number(filters.stage))&&(filters.phase==='all'||item.phase===filters.phase)&&(filters.show==='all'||(filters.show==='quiz'&&count>0)||(filters.show==='reading'&&!count)||s===filters.show)&&(!q||[item.title,...item.subtopics].join(' ').toLowerCase().includes(q));
   }
-  function stats() {
-    const pool = data.items.filter(applicable);
-    return {total:pool.length, checked:pool.filter(i => progress(i).status === 'checked').length,
-      review:pool.filter(i => progress(i).status === 'review').length,
-      sources:pool.filter(i => i.requiredSources.length).length};
-  }
+  function selectedQuestions(weak=false) {return LineQuizCore.select(bank,topics().filter(matches).map(t=>t.id),progress(),weak);}
+  function scope(item) {return item.subtopics.length?`<div class="discussion-scope"><h3>Checklist coverage</h3><ul>${item.subtopics.map(t=>`<li>${safe(t)}</li>`).join('')}</ul></div>`:'';}
   function sourcePanel(item) {
-    return `<section class="discussion-sources"><h3>Read and check your answer</h3>
-      ${item.references.length ? `<p class="hint">Open the relevant section in your private PDF. These links are reading starting points; check the full procedure, conditions and page effectivity.</p><div class="discussion-references">${item.references.map(r =>
-        `<div>${env.pageButton(r.manual,r.page,`${r.manual} · ${r.title}`)}<small>PDF ${r.page === r.end ? 'p. '+r.page : 'pp. '+r.page+'–'+r.end}</small></div>`).join('')}</div>` :
-        '<p class="muted">This topic needs a company or operational reference that is not included in the three-manual library.</p>'}
-      ${item.requiredSources.length ? `<div class="discussion-gap"><strong>Also check the current reference</strong><ul>${item.requiredSources.map(s=>`<li>${safe(s)}</li>`).join('')}</ul><p>The trainer does not provide an answer key for these requirements. Consult the current document or your trainer.</p></div>` : ''}
-      ${item.related.length ? `<div class="actions discussion-related">${item.related.map(key=>`<a class="button" href="#${key}">${safe({limitations:'Open limitations quiz',flows:'Open flow practice',abnormal:'Open abnormal procedures',normal:'Open normal procedures',systems:'Explore systems'}[key])}</a>`).join('')}</div>` : ''}
-    </section>`;
+    return `<section class="discussion-sources"><h3>Read the source</h3>${item.references.length?`<p class="hint">Open the relevant section in your private PDF. Check the complete procedure, conditions and page effectivity.</p><div class="discussion-references">${item.references.map(r=>`<div>${env.pageButton(r.manual,r.page,`${r.manual} · ${r.title}`)}<small>PDF ${r.page===r.end?'p. '+r.page:'pp. '+r.page+'–'+r.end}</small></div>`).join('')}</div>`:'<p class="muted">This topic needs a company or operational reference outside the three-manual library.</p>'}${item.requiredSources.length?`<div class="discussion-gap"><strong>Additional reference for the full topic</strong><ul>${item.requiredSources.map(s=>`<li>${safe(s)}</li>`).join('')}</ul><p>Any quiz questions on this topic cover only the sourced material identified in each answer. They do not test the unavailable company requirements.</p></div>`:''}${item.related.length?`<div class="actions discussion-related">${item.related.map(key=>`<a class="button" href="#${key}">${safe({limitations:'Open limitations practice',flows:'Open flow practice',abnormal:'Read abnormal procedures',normal:'Read normal procedures',systems:'Explore systems'}[key])}</a>`).join('')}</div>`:''}</section>`;
   }
-  function scope(item) {
-    return item.subtopics.length ? `<div class="discussion-scope"><h3>Checklist coverage</h3><ul>${item.subtopics.map(t=>`<li>${safe(t)}</li>`).join('')}</ul></div>` : '';
-  }
-  function checkpoints(item) {
-    return `<h3>Discussion checkpoints</h3><p class="hint">Use these prompts to check the breadth of your answer. They are not a model answer or an action sequence.</p><ol class="discussion-checkpoints">${item.checkpoints.map(c=>`<li>${safe(c)}</li>`).join('')}</ol>`;
-  }
-  function noteEditor(item) {
-    return `<label class="discussion-note-label" for="discussionNotes">Your answer / study notes</label><textarea id="discussionNotes" rows="6" maxlength="20000" placeholder="Answer in your own words. After reading, add corrections and any questions for your trainer.">${safe(progress(item).notes || '')}</textarea><p class="hint" id="discussionSaveStatus" role="status">Saved only in this browser. Nothing is uploaded.</p>`;
-  }
-  function bindNotes(item) {
-    $('discussionNotes').oninput = () => {
-      update(item,{notes:$('discussionNotes').value});
-      $('discussionSaveStatus').textContent = 'Notes saved on this device.';
-    };
-  }
-  function rateControls(item) {
-    return `<div class="discussion-rating"><label class="discussion-confirm"><input id="discussionCompared" type="checkbox"> I compared my answer with the applicable manual${item.requiredSources.length ? ' and the additional current references listed above' : ''}.</label><div class="actions"><button data-discussion-rate="review">Needs more practice</button><button data-discussion-rate="checked" class="primary" disabled>Self-checked</button></div><p class="hint">Personal study progress only. This does not sign off the EFA training record or award quiz mastery.</p><p class="hint" id="discussionRatingStatus" role="status">${safe(stateLabel(item))}</p></div>`;
-  }
-  function bindRating(item, after) {
-    const checked = document.querySelector('[data-discussion-rate="checked"]');
-    $('discussionCompared').onchange = () => { checked.disabled = !$('discussionCompared').checked; };
-    document.querySelectorAll('[data-discussion-rate]').forEach(b => {
-      b.onclick = () => {
-        const status = b.dataset.discussionRate;
-        if (status === 'checked' && !$('discussionCompared').checked) return;
-        update(item,{status});
-        $('discussionRatingStatus').textContent = stateLabel(item)+' · saved on this device';
-        if (after) {
-          document.querySelectorAll('[data-discussion-rate]').forEach(x => { x.disabled=true; });
-          $('discussionCompared').disabled=true;
-          after(status);
-        }
-      };
-    });
-  }
+  function answerSource(q) {return `<div class="source"><p>${safe(q.ref)}</p><div class="source-row">${q.pages.map(p=>env.pageButton(q.manual,p)).join('')}</div></div>`;}
   function render(parts=[]) {
-    run = null;
-    const id = parts[1] === 'topic' ? parts[2] : null;
-    const item = data.items.find(i => i.id === id);
-    if (item && applicable(item)) return detail(item);
-    if (parts[1] === 'quick') return start(env.shuffle(data.items.filter(applicable)).slice(0,5));
+    run=null;const item=parts[1]==='topic'?data.items.find(t=>t.id===parts[2]):null;
+    if(item&&applicable(item))return detail(item);
+    if(parts[1]==='quick')return start(bank,'learn',10);
     list();
   }
   function list() {
-    const s = stats();
-    const phases = [...new Set(data.items.filter(applicable).map(i=>i.phase))];
-    $('workspace').innerHTML = env.header('EFA340 · Stage 1 & Stage 2','Line training discussions','Read the source, rehearse an answer and keep track of what needs more practice.') + `
-      <section class="discussion-overview" aria-label="Discussion coverage">
-        <div><strong>${s.total}</strong><span>A321P2F topics</span></div><div><strong>${s.checked}</strong><span>Self-checked</span></div><div><strong>${s.review}</strong><span>Need practice</span></div>
-        <p>Every visible row and bullet point from your five checklist photos is included. Three A330-only rows are listed separately below.</p>
-      </section>
-      <div class="discussion-toolbar panel"><div class="filters"><label>Find a discussion<input id="discussionSearch" type="search" placeholder="CTWO+, cargo door, DPA, post-flight…" value="${safe(filters.search)}"></label>
+    const s=stats(),phases=[...new Set(topics().map(t=>t.phase))];
+    $('workspace').innerHTML=env.header('EFA340 · Stage 1 & Stage 2','Line training quiz','Choose an answer. Get a score, a clear explanation and the source page.')+`
+      <section class="discussion-overview" aria-label="Quiz progress"><div><strong>${s.questions}</strong><span>Multiple-choice questions</span></div><div><strong>${s.recalled}</strong><span>Recalled twice</span></div><div><strong>${s.weak}</strong><span>To revisit</span></div><p>Questions cover selected material in ${s.quizTopics} checklist topics. All ${s.total} applicable topics remain available to read.</p></section>
+      <section class="panel discussion-toolbar"><div class="filters"><label>Find a topic<input id="discussionSearch" type="search" placeholder="Cargo door, crosswind, parking…" value="${safe(filters.search)}"></label>
         <label>Stage<select id="discussionStage" aria-label="Stage"><option value="all">Both stages</option><option value="1">Stage 1</option><option value="2">Stage 2</option></select></label>
         <label>Phase<select id="discussionPhase" aria-label="Phase"><option value="all">All phases</option>${phases.map(p=>`<option>${safe(p)}</option>`).join('')}</select></label>
-        <label>Show<select id="discussionStatus" aria-label="Show"><option value="all">All topics</option><option value="new">Not started</option><option value="reading">Reading</option><option value="review">Needs practice</option><option value="checked">Self-checked</option><option value="sources">Additional reference needed</option></select></label></div>
-        <div class="discussion-launch"><p id="discussionCount" class="hint" role="status"></p><div class="actions"><button id="discussionClear">Clear filters</button><button id="discussionQuick" class="primary">Practise 5 topics</button><button id="discussionAll">Practise this selection</button></div></div>
-      </div><p class="discussion-instructions">Oral practice is self-assessed: answer from memory, reveal the checkpoints, then compare with the original source. Company policy and current operational references are flagged where needed.</p>
+        <label>Show<select id="discussionStatus" aria-label="Show"><option value="quiz">Quiz topics</option><option value="all">All checklist topics</option><option value="weak">Needs practice</option><option value="new">Not started</option><option value="recalled">Recalled twice</option><option value="reading">Reading only</option></select></label></div>
+      <div class="line-quiz-settings"><label>Mode<select id="discussionMode" aria-label="Mode"><option value="learn">Learn · instant feedback</option><option value="exam">Exam · results at the end</option></select></label><label>Questions<select id="discussionLength" aria-label="Questions"><option value="5">5 questions</option><option value="10">10 questions</option><option value="25">25 questions</option><option value="0">All available</option></select></label><div class="actions"><button id="discussionStart" class="primary">Start quiz</button><button id="discussionWeak">Review missed questions</button></div></div>
+      <div class="discussion-launch"><p id="discussionCount" class="hint" role="status"></p><button id="discussionClear">Clear filters</button></div></section>
+      <p class="discussion-instructions">Answer questions, review explanations and retry anything you missed. “Recalled twice” means two consecutive correct answers to a question; it is personal study progress.</p>
       <div id="discussionList"></div>
-      <details class="panel discussion-exclusions"><summary>3 A330-only rows · outside A321P2F practice</summary>${data.items.filter(i=>!applicable(i)).map(i=>`<article><h3>${safe(i.title)}</h3><p>${safe(i.scenario)}</p><p class="hint">Stage ${i.stage} · ${safe(i.photo)} · Not counted in your progress.</p></article>`).join('')}</details>
-      <details class="discussion-provenance"><summary>Checklist and source coverage</summary><p>${safe(data.source.title)} · ${safe(data.source.revision)}.</p><p>${safe(data.source.scope)}</p><p>${safe(data.source.note)}</p><p>${s.sources} topics need an additional company, local or current operational reference. Their prompts are available for practice; those requirements are not represented as source-verified answers.</p><p>Your self-checks do not replace the candidate/trainer initials required by the official training record.</p></details>`;
-    $('discussionStage').value=filters.stage; $('discussionPhase').value=filters.phase; $('discussionStatus').value=filters.status;
-    const refresh = () => {
-      filters.stage=$('discussionStage').value;filters.phase=$('discussionPhase').value;filters.status=$('discussionStatus').value;filters.search=$('discussionSearch').value;
-      const pool=data.items.filter(matches);
-      $('discussionCount').textContent=pool.length+' topics in this selection';
-      $('discussionQuick').disabled=!pool.length;$('discussionAll').disabled=!pool.length;
-      $('discussionList').innerHTML=pool.length ? phases.map(phase=> {
-        const group=pool.filter(i=>i.phase===phase); if(!group.length)return '';
-        return `<section class="discussion-group"><h2>${safe(phase)} <span>${group.length}</span></h2><div class="discussion-grid">${group.map(i=>`<article class="discussion-card"><div class="discussion-card-meta"><span>Stage ${i.stage}</span><span class="discussion-status ${safe(progress(i).status||'new')}">${safe(stateLabel(i))}</span></div><h3>${safe(i.title)}</h3>${i.subtopics.length?`<p class="discussion-card-topics">${i.subtopics.map(safe).join(' · ')}</p>`:''}<p class="hint">${i.references.length?'Manual reading linked':'Company reference needed'}${i.references.length&&i.requiredSources.length?' · Additional reference needed':''}</p><div class="actions"><a class="button" href="#discussions/topic/${i.id}">Read & study</a><button class="primary" data-discussion-practice="${i.id}">Practise</button></div></article>`).join('')}</div></section>`;
-      }).join('') : '<div class="panel"><h2>No matching topics</h2><p>Try a shorter search or clear the filters.</p></div>';
-      document.querySelectorAll('[data-discussion-practice]').forEach(b=>{b.onclick=()=>start([data.items.find(i=>i.id===b.dataset.discussionPractice)]);});
+      <details class="panel discussion-exclusions"><summary>3 A330-only rows · outside this quiz</summary>${data.items.filter(t=>!applicable(t)).map(t=>`<article><h3>${safe(t.title)}</h3><p>${safe(t.scenario)}</p></article>`).join('')}</details>
+      <details class="discussion-provenance"><summary>Question and checklist coverage</summary><p>All 74 visible rows and their bullet points from EFA340 V5, April 2025, remain represented. ${s.reading} applicable topics currently have reading links only: a supported multiple-choice answer key is not available for them.</p><p>The quiz uses the existing source-reviewed limitations bank and questions adapted from the source-linked flow drills. Full topic coverage may still require the current company references listed on each topic.</p><p>Quiz results do not sign off the official training record. Earlier written notes remain on this device and are accessible from the topic reading view.</p></details>`;
+    for(const [id,key]of [['discussionStage','stage'],['discussionPhase','phase'],['discussionStatus','show'],['discussionMode','mode'],['discussionLength','length']])$(id).value=filters[key];
+    const refresh=()=>{
+      filters.search=$('discussionSearch').value;filters.stage=$('discussionStage').value;filters.phase=$('discussionPhase').value;filters.show=$('discussionStatus').value;
+      const pool=topics().filter(matches),qs=selectedQuestions(),weak=selectedQuestions(true);
+      $('discussionCount').textContent=`${qs.length} questions · ${pool.length} topics in this selection`;
+      $('discussionStart').disabled=!qs.length;$('discussionWeak').disabled=!weak.length;
+      $('discussionList').innerHTML=pool.length?phases.map(phase=>{
+        const group=pool.filter(t=>t.phase===phase);if(!group.length)return '';
+        return `<section class="discussion-group"><h2>${safe(phase)} <span>${group.length}</span></h2><div class="discussion-grid">${group.map(t=>{
+          const count=topicQuestions(t).length,s=status(t);
+          return `<article class="discussion-card"><div class="discussion-card-meta"><span>Stage ${t.stage}</span><span class="discussion-status ${s}">${stateLabel[s]}</span></div><h3>${safe(t.title)}</h3>${t.subtopics.length?`<p class="discussion-card-topics">${t.subtopics.map(safe).join(' · ')}</p>`:''}<p class="hint">${count?`${count} questions · selected material`:'Reading only · no graded answer key'}</p><div class="actions">${count?`<button class="primary" data-discussion-practice="${t.id}">Quiz this topic</button>`:''}<a class="button" href="#discussions/topic/${t.id}">Read topic</a></div></article>`;
+        }).join('')}</div></section>`;
+      }).join(''):'<div class="panel"><h2>No matching topics</h2><p>Try a shorter search or choose All checklist topics.</p></div>';
+      document.querySelectorAll('[data-discussion-practice]').forEach(b=>{b.onclick=()=>start(topicQuestions(data.items.find(t=>t.id===b.dataset.discussionPractice)),filters.mode,Number(filters.length));});
     };
-    $('discussionSearch').oninput=refresh;
-    for(const id of ['discussionStage','discussionPhase','discussionStatus'])$(id).onchange=refresh;
-    $('discussionClear').onclick=()=>{Object.assign(filters,{stage:'all',phase:'all',status:'all',search:''});list();};
-    $('discussionQuick').onclick=()=>start(env.shuffle(data.items.filter(matches)).slice(0,5));
-    $('discussionAll').onclick=()=>start(env.shuffle(data.items.filter(matches)));
-    refresh();
+    $('discussionSearch').oninput=refresh;for(const id of ['discussionStage','discussionPhase','discussionStatus'])$(id).onchange=refresh;
+    $('discussionMode').onchange=()=>{filters.mode=$('discussionMode').value;};$('discussionLength').onchange=()=>{filters.length=$('discussionLength').value;};
+    $('discussionClear').onclick=()=>{Object.assign(filters,{stage:'all',phase:'all',show:'quiz',search:''});list();};
+    $('discussionStart').onclick=()=>start(selectedQuestions(),filters.mode,Number(filters.length));
+    $('discussionWeak').onclick=()=>start(selectedQuestions(true),filters.mode,Number(filters.length));refresh();
   }
   function detail(item) {
-    $('workspace').innerHTML=`<div class="discussion-detail"><a class="desk-text-link" href="#discussions">← All discussions</a>${env.header('Stage '+item.stage+' · '+item.phase,item.title,'Study the topic using the original sources, then rehearse it without looking.')}
-      <section class="panel"><div class="discussion-scenario"><span class="eyebrow">Try this scenario</span><p>${safe(item.scenario)}</p><button id="discussionSingle" class="primary">Practise this topic</button></div>${scope(item)}${checkpoints(item)}${sourcePanel(item)}${noteEditor(item)}<div class="actions discussion-related"><button id="discussionRead">Mark as reading</button></div>${rateControls(item)}<p class="hint">Checklist: ${safe(item.photo)} · EFA340 V5, April 2025.</p></section></div>`;
-    bindNotes(item);bindRating(item);
-    $('discussionSingle').onclick=()=>start([item]);
-    $('discussionRead').onclick=()=>{update(item,{status:'reading'});$('discussionRatingStatus').textContent='Reading · saved on this device';};
+    const qs=topicQuestions(item),oldNotes=env.state()[item.id]?.notes;
+    $('workspace').innerHTML=`<div class="discussion-detail"><a class="desk-text-link" href="#discussions">← Quiz and topics</a>${env.header('Stage '+item.stage+' · '+item.phase,item.title,qs.length?`${qs.length} multiple-choice questions cover selected material in this topic.`:'Reading topic · a supported graded answer key is not yet available.')}<section class="panel">${qs.length?'<button id="discussionSingle" class="primary">Quiz this topic</button>':'<p class="notice">This topic remains available for reading. It is excluded from scored quizzes until an answer key can be supported by the applicable source.</p>'}${scope(item)}${sourcePanel(item)}<details class="line-reading-guide"><summary>What to look for when reading</summary><ul class="discussion-checkpoints">${item.checkpoints.map(c=>`<li>${safe(c)}</li>`).join('')}</ul></details>${oldNotes?`<details class="line-reading-guide"><summary>Your earlier notes</summary><p class="legacy-notes">${safe(oldNotes)}</p><p class="hint">Preserved from the earlier study mode. These notes do not affect quiz scores.</p></details>`:''}<p class="hint">Checklist: ${safe(item.photo)} · EFA340 V5, April 2025.</p></section></div>`;
+    if(qs.length)$('discussionSingle').onclick=()=>start(qs,filters.mode,Number(filters.length));
   }
-  function start(pool) {
-    pool=pool.filter(applicable);if(!pool.length)return;
-    run={pool,index:0,results:[],revealed:false};question();
-  }
+  function start(pool,mode='learn',length=10) {if(!pool.length)return;let selected=env.shuffle(pool);if(length)selected=selected.slice(0,length);run=LineQuizCore.create(selected,mode);question();}
   function question() {
-    const r=run,item=r.pool[r.index];r.revealed=false;
-    $('workspace').innerHTML=`<div class="discussion-detail">${env.header('Oral practice · Stage '+item.stage,item.title,'Answer aloud or type your response, then check it against the applicable sources.')}
-      <section class="panel"><div class="quiz-progress"><progress max="${r.pool.length}" value="${r.index}" aria-label="Discussion practice progress"></progress><span>${r.index+1} / ${r.pool.length}</span></div><h2 id="discussionPrompt" class="discussion-prompt" tabindex="-1">${safe(item.scenario)}</h2>${scope(item)}${noteEditor(item)}
-      <div class="actions discussion-related"><button id="discussionReveal" class="primary">Show checkpoints & reading</button><button id="discussionEnd">End practice</button></div><div id="discussionReview" hidden></div><div class="actions discussion-related"><button id="discussionNext" class="primary" hidden>${r.index+1===r.pool.length?'Finish practice':'Next topic'}</button></div></section></div>`;
-    bindNotes(item);$('discussionPrompt').focus();window.scrollTo(0,0);
-    $('discussionReveal').onclick=()=>{
-      if(r.revealed)return;r.revealed=true;$('discussionReveal').hidden=true;
-      $('discussionReview').hidden=false;$('discussionReview').innerHTML=checkpoints(item)+sourcePanel(item)+rateControls(item);
-      bindRating(item,status=>{r.results.push({id:item.id,status});$('discussionNext').hidden=false;$('discussionNext').focus();});
-    };
-    $('discussionNext').onclick=()=>{if(r.results.length!==r.index+1)return;r.index++;if(r.index===r.pool.length)finish(false);else question();};
-    $('discussionEnd').onclick=()=>finish(true);
+    const r=run,q=r.pool[r.index],labels=q.topics.filter(id=>id!=='limitations-review').map(id=>data.items.find(t=>t.id===id)?.title).filter(Boolean);
+    $('workspace').innerHTML=`<div class="questions">${env.header('EFA340 · '+(r.mode==='exam'?'Exam':'Learn'),'Line training quiz',r.mode==='exam'?'Answers and explanations appear after you complete the exam.':'Select one answer for immediate feedback.')}<section class="panel"><div class="quiz-progress"><progress max="${r.pool.length}" value="${r.index}" aria-label="Quiz progress"></progress><span>${r.index+1} / ${r.pool.length}</span></div><p class="line-question-topic">${safe(labels[0]||q.category||'Limitations review')}</p><h2 id="lineQuestion" class="question-title" tabindex="-1">${safe(q.question)}</h2>${!q.applicability.includes('ALL')?`<p class="notice variant-note"><strong>Applicability:</strong> ${safe(q.applicability.join(', '))}. Use the specified equipment/table.</p>`:''}<div class="answers" id="lineAnswers">${env.shuffle(q.options.map((text,index)=>({text,index}))).map(({text,index},i)=>`<button class="answer" data-line-answer="${index}"><span class="answer-label">${String.fromCharCode(65+i)}</span><span>${safe(text)}</span></button>`).join('')}</div><div id="lineFeedback" role="status"></div><div class="actions line-quiz-actions"><button id="lineNext" class="primary" hidden>${r.index+1===r.pool.length?'View results':'Next question'}</button><button id="lineEnd">End quiz</button></div></section></div>`;
+    $('lineQuestion').focus();window.scrollTo(0,0);
+    $('lineAnswers').onclick=e=>{const b=e.target.closest('[data-line-answer]');if(!b||b.disabled)return;choose(Number(b.dataset.lineAnswer));};
+    $('lineNext').onclick=()=>{if(r.answers.length!==r.index+1)return;r.index++;if(r.index===r.pool.length)finish();else question();};
+    $('lineEnd').onclick=()=>{if(r.mode==='exam'&&r.answers.length<r.pool.length&&!confirm('End this incomplete exam? No exam score or question progress will be saved.'))return;finish(true);};
   }
-  function finish(early) {
-    const r=run;if(!r)return;
-    const checked=r.results.filter(x=>x.status==='checked').length;
-    $('workspace').innerHTML=`<div class="discussion-detail">${env.header('Oral practice',early?'Practice paused':'Practice complete','Your notes and individual self-ratings are saved on this device. No quiz score or training sign-off has been awarded.')}<section class="panel"><div class="result-score">${r.results.length} / ${r.pool.length}</div><p>Topics reviewed · ${checked} self-checked · ${r.results.length-checked} need more practice</p>${early?'<p class="hint">Unreviewed topics keep their previous status.</p>':''}<div class="actions"><button id="discussionReturn" class="primary">Back to discussions</button><button id="discussionWeak">Review topics needing practice</button></div></section></div>`;
-    run=null;window.scrollTo(0,0);
-    $('discussionReturn').onclick=()=>{if(location.hash!=='#discussions')location.hash='#discussions';else list();};
-    $('discussionWeak').onclick=()=>{Object.assign(filters,{stage:'all',phase:'all',status:'review',search:''});if(location.hash!=='#discussions')location.hash='#discussions';else list();};
+  function choose(index) {
+    const r=run;if(!LineQuizCore.answer(r,index))return;const q=r.pool[r.index],correct=index===q.answer;
+    document.querySelectorAll('[data-line-answer]').forEach(b=>{b.disabled=true;if(Number(b.dataset.lineAnswer)===index)b.classList.add('chosen');if(r.mode==='learn'){if(Number(b.dataset.lineAnswer)===q.answer)b.classList.add('correct');else if(Number(b.dataset.lineAnswer)===index)b.classList.add('incorrect');}});
+    if(r.mode==='learn'){LineQuizCore.record(progress(),q,index);env.persist();$('lineFeedback').innerHTML=`<div class="feedback ${correct?'line-correct':'line-incorrect'}"><strong>${correct?'Correct':'Not quite'}.</strong><p><strong>Answer: ${safe(q.options[q.answer])}</strong></p><p>${safe(q.explanation)}</p>${answerSource(q)}</div>`;}else $('lineFeedback').textContent='Answer recorded. Feedback follows the completed exam.';
+    $('lineNext').hidden=false;$('lineNext').focus();
   }
-  return {init(context,payload){env=context;data=payload;},render,stats};
+  function finish(early=false) {
+    const r=run;if(!r)return;const result=LineQuizCore.score(r),cancelled=r.mode==='exam'&&!result.complete;
+    if(r.mode==='exam'&&!cancelled){if(!LineQuizCore.commitExam(r,progress()))return;env.persist();}
+    if(result.complete){env.quizState().lastResult={...result,mode:r.mode,date:new Date().toISOString()};env.persist();}
+    const missed=cancelled?[]:r.pool.filter((q,i)=>i<r.answers.length&&r.answers[i]!==q.answer),reviewed=cancelled?[]:r.pool.slice(0,r.answers.length);
+    $('workspace').innerHTML=`<div class="questions">${env.header('EFA340 · '+(r.mode==='exam'?'Exam':'Learn'),cancelled?'Exam ended':result.complete?'Quiz complete':'Practice ended',cancelled?'The exam was incomplete. No exam score or question progress was saved.':result.complete?'Review your answers and revisit the source for anything you missed.':'Answered questions are saved. Unanswered questions were not scored.')}<section class="panel">${cancelled?`<p>${result.answered} of ${result.total} questions answered.</p>`:result.answered?`<div class="result-score">${result.correct} / ${result.answered}</div><p>${result.percent}% correct${result.complete?'':' on answered questions · '+result.answered+' of '+result.total+' completed'}</p>`:'<p>No questions answered. No progress was recorded.</p>'}<div class="actions"><button id="lineReturn" class="primary">Choose another quiz</button>${missed.length?`<button id="lineRetry">Retry ${missed.length} missed question${missed.length===1?'':'s'}</button>`:''}<a class="button" href="#home">Study desk</a></div>${reviewed.length?`<details class="line-results" open><summary>Answers and explanations</summary>${reviewed.map((q,i)=>`<article class="review-row"><span class="tag">${r.answers[i]===q.answer?'Correct':'Needs practice'}</span><h3>${safe(q.question)}</h3><p>Your answer: ${safe(q.options[r.answers[i]])}</p><p><strong>Correct answer: ${safe(q.options[q.answer])}</strong></p><p>${safe(q.explanation)}</p>${answerSource(q)}</article>`).join('')}</details>`:''}</section></div>`;
+    run=null;window.scrollTo(0,0);$('lineReturn').onclick=()=>{if(location.hash!=='#discussions')location.hash='#discussions';else list();};if(missed.length)$('lineRetry').onclick=()=>start(missed,'learn',0);
+  }
+  return {init(context,payload,quizContent,limitations){env=context;data=payload;bank=LineQuizCore.bank(limitations,quizContent);},render,stats};
 })();

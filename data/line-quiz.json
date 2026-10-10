@@ -1,0 +1,1411 @@
+{
+  "version": 1,
+  "sourceNote": "Limitations questions reuse the existing source-reviewed bank unchanged. Additional multiple-choice questions are transformations of the existing source-linked drill actions and conditions. The original PDFs were not re-reviewed during this conversion; no new operational rules or company policy answers are inferred.",
+  "limitationsTopics": {
+    "QF-001": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-002": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-003": [
+      "limitations-review",
+      "ground-manoeuvring"
+    ],
+    "QF-004": [
+      "limitations-review",
+      "ground-manoeuvring"
+    ],
+    "QF-005": [
+      "limitations-review",
+      "takeoff-initial-climb",
+      "landing-wind"
+    ],
+    "QF-006": [
+      "limitations-review",
+      "takeoff-initial-climb"
+    ],
+    "QF-007": [
+      "limitations-review",
+      "landing-wind"
+    ],
+    "QF-008": [
+      "limitations-review",
+      "landing-wind"
+    ],
+    "QF-009": [
+      "limitations-review",
+      "landing-wind",
+      "contaminated-landing"
+    ],
+    "QF-010": [
+      "limitations-review",
+      "landing-wind",
+      "contaminated-landing"
+    ],
+    "QF-011": [
+      "limitations-review",
+      "landing-wind",
+      "contaminated-landing"
+    ],
+    "QF-012": [
+      "limitations-review",
+      "landing-wind",
+      "contaminated-landing"
+    ],
+    "QF-013": [
+      "limitations-review",
+      "landing-wind",
+      "contaminated-landing"
+    ],
+    "QF-014": [
+      "limitations-review",
+      "cargo-door",
+      "postflight"
+    ],
+    "QF-015": [
+      "limitations-review",
+      "cargo-door",
+      "postflight"
+    ],
+    "QF-016": [
+      "limitations-review",
+      "cargo-door"
+    ],
+    "QF-017": [
+      "limitations-review",
+      "cargo-door"
+    ],
+    "QF-018": [
+      "limitations-review",
+      "cargo-door"
+    ],
+    "QF-019": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-020": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-021": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-022": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-023": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-024": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-025": [
+      "limitations-review"
+    ],
+    "QF-026": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-027": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-028": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-029": [
+      "limitations-review",
+      "ground-manoeuvring"
+    ],
+    "QF-030": [
+      "limitations-review"
+    ],
+    "QF-031": [
+      "limitations-review",
+      "heavy-departures",
+      "loadsheet"
+    ],
+    "QF-032": [
+      "limitations-review",
+      "heavy-departures",
+      "loadsheet"
+    ],
+    "QF-033": [
+      "limitations-review",
+      "loadsheet",
+      "landing-distance"
+    ],
+    "QF-034": [
+      "limitations-review",
+      "heavy-departures",
+      "loadsheet"
+    ],
+    "QF-035": [
+      "limitations-review",
+      "heavy-departures",
+      "loadsheet"
+    ],
+    "QF-036": [
+      "limitations-review",
+      "supplementary-starts"
+    ],
+    "QF-037": [
+      "limitations-review"
+    ],
+    "QF-038": [
+      "limitations-review"
+    ],
+    "QF-039": [
+      "limitations-review"
+    ],
+    "QF-040": [
+      "limitations-review",
+      "external-power-apu"
+    ],
+    "QF-041": [
+      "limitations-review",
+      "external-power-apu"
+    ],
+    "QF-042": [
+      "limitations-review",
+      "external-power-apu"
+    ],
+    "QF-043": [
+      "limitations-review",
+      "external-power-apu"
+    ],
+    "QF-044": [
+      "limitations-review",
+      "external-power-apu"
+    ],
+    "QF-045": [
+      "limitations-review",
+      "external-power-apu"
+    ],
+    "QF-046": [
+      "limitations-review",
+      "external-power-apu"
+    ],
+    "QF-047": [
+      "limitations-review",
+      "external-power-apu"
+    ],
+    "QF-048": [
+      "limitations-review",
+      "external-power-apu",
+      "aircraft-documents"
+    ],
+    "QF-049": [
+      "limitations-review",
+      "external-power-apu",
+      "aircraft-documents"
+    ],
+    "QF-050": [
+      "limitations-review",
+      "takeoff-initial-climb",
+      "go-around"
+    ],
+    "QF-051": [
+      "limitations-review",
+      "go-around",
+      "engine-cruise"
+    ],
+    "QF-052": [
+      "limitations-review",
+      "takeoff-initial-climb",
+      "go-around"
+    ],
+    "QF-053": [
+      "limitations-review",
+      "engine-cruise"
+    ],
+    "QF-054": [
+      "limitations-review",
+      "supplementary-starts"
+    ],
+    "QF-055": [
+      "limitations-review"
+    ],
+    "QF-056": [
+      "limitations-review"
+    ],
+    "QF-057": [
+      "limitations-review"
+    ],
+    "QF-058": [
+      "limitations-review"
+    ],
+    "QF-059": [
+      "limitations-review",
+      "aircraft-documents",
+      "cold-weather-preflight"
+    ],
+    "QF-060": [
+      "limitations-review",
+      "aircraft-documents",
+      "cold-weather-preflight"
+    ],
+    "QF-061": [
+      "limitations-review",
+      "takeoff-initial-climb",
+      "aircraft-documents",
+      "cold-weather-preflight"
+    ],
+    "QF-062": [
+      "limitations-review"
+    ],
+    "QF-063": [
+      "limitations-review",
+      "aircraft-documents"
+    ],
+    "QF-064": [
+      "limitations-review",
+      "aircraft-documents"
+    ],
+    "QF-065": [
+      "limitations-review",
+      "supplementary-starts"
+    ],
+    "QF-066": [
+      "limitations-review",
+      "supplementary-starts"
+    ],
+    "QF-067": [
+      "limitations-review",
+      "supplementary-starts"
+    ],
+    "QF-068": [
+      "limitations-review",
+      "supplementary-starts"
+    ],
+    "QF-069": [
+      "limitations-review",
+      "supplementary-starts"
+    ],
+    "QF-070": [
+      "limitations-review",
+      "autobrake",
+      "contaminated-landing"
+    ],
+    "QF-071": [
+      "limitations-review",
+      "takeoff-initial-climb",
+      "contaminated-takeoff"
+    ],
+    "QF-072": [
+      "limitations-review",
+      "takeoff-initial-climb",
+      "heavy-departures"
+    ],
+    "QF-073": [
+      "limitations-review",
+      "takeoff-initial-climb",
+      "heavy-departures"
+    ],
+    "QF-074": [
+      "limitations-review",
+      "supplementary-starts"
+    ],
+    "QF-075": [
+      "limitations-review",
+      "uprt-overspeed"
+    ],
+    "QF-076": [
+      "limitations-review",
+      "supernumeraries"
+    ],
+    "QF-077": [
+      "limitations-review",
+      "fuel-system",
+      "cold-weather-preflight"
+    ],
+    "QF-078": [
+      "limitations-review",
+      "fuel-system",
+      "cold-weather-preflight"
+    ],
+    "QF-079": [
+      "limitations-review",
+      "fuel-system",
+      "cold-weather-preflight"
+    ],
+    "QF-080": [
+      "limitations-review",
+      "fuel-system",
+      "cold-weather-preflight"
+    ],
+    "QF-081": [
+      "limitations-review",
+      "fuel-system",
+      "cold-weather-preflight"
+    ],
+    "QF-082": [
+      "limitations-review",
+      "fuel-system",
+      "cold-weather-preflight"
+    ],
+    "QF-083": [
+      "limitations-review",
+      "fuel-system"
+    ],
+    "QF-084": [
+      "limitations-review",
+      "fuel-system"
+    ],
+    "QF-085": [
+      "limitations-review",
+      "fuel-system"
+    ],
+    "QF-086": [
+      "limitations-review",
+      "fuel-system"
+    ],
+    "QF-087": [
+      "limitations-review",
+      "fuel-system"
+    ],
+    "QF-088": [
+      "limitations-review",
+      "cold-weather-preflight",
+      "cold-weather-approach"
+    ],
+    "QF-089": [
+      "limitations-review",
+      "cold-weather-preflight",
+      "cold-weather-approach"
+    ],
+    "QF-090": [
+      "limitations-review",
+      "cold-weather-approach"
+    ],
+    "QF-091": [
+      "limitations-review",
+      "brake-fans"
+    ],
+    "QF-092": [
+      "limitations-review",
+      "ground-manoeuvring"
+    ]
+  },
+  "questions": [
+    {
+      "id": "LT-001",
+      "topics": [
+        "external-power-apu"
+      ],
+      "question": "Both engines have started for a two-engine taxi departure. What is the PF APU BLEED selection in the selected after-start flow?",
+      "options": [
+        "OFF",
+        "ON until the taxi checklist",
+        "ON until takeoff thrust is set",
+        "AS REQUIRED only after takeoff"
+      ],
+      "answer": 0,
+      "explanation": "The after-start PF flow selects APU BLEED OFF after both engines have started. Keep the complete procedure and its conditions in view.",
+      "manual": "FCOM",
+      "pages": [
+        3678
+      ],
+      "ref": "Normal procedures · After start — PF",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-start-pf",
+        "steps": [
+          1
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-002",
+      "topics": [
+        "external-power-apu"
+      ],
+      "question": "After both engines have started for a two-engine taxi departure, when does the selected PF flow call for the APU master to be switched OFF?",
+      "options": [
+        "If the APU is not required",
+        "After every start, regardless of subsequent APU requirements",
+        "Only after the runway is vacated at destination",
+        "Only once the aircraft is airborne"
+      ],
+      "answer": 0,
+      "explanation": "APU master OFF is conditional: the selected flow says to switch it off if the APU is not required.",
+      "manual": "FCOM",
+      "pages": [
+        3679
+      ],
+      "ref": "Normal procedures · After start — PF",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-start-pf",
+        "steps": [
+          4
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-003",
+      "topics": [
+        "cold-weather-preflight"
+      ],
+      "question": "During the after-start flow, icing exists or is anticipated on the ground. What engine anti-ice selection is required by the sourced drill?",
+      "options": [
+        "ON",
+        "OFF until takeoff thrust is applied",
+        "OFF until visible ice is detected",
+        "ON only after the aircraft is airborne"
+      ],
+      "answer": 0,
+      "explanation": "The selected after-start action specifies engine anti-ice ON when icing exists or is anticipated on the ground.",
+      "manual": "FCOM",
+      "pages": [
+        3678
+      ],
+      "ref": "Normal procedures · After start — PF",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-start-pf",
+        "steps": [
+          2
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-004",
+      "topics": [
+        "cold-weather-preflight",
+        "contaminated-takeoff"
+      ],
+      "question": "When taxiing in icing conditions with rain, slush or snow, what condition is retained in the selected after-start PM drill for flap selection?",
+      "options": [
+        "Keep flaps retracted to the holding point",
+        "Select takeoff flaps immediately after the second engine starts",
+        "Extend flaps fully for the taxi",
+        "Select takeoff flaps before the aircraft starts moving"
+      ],
+      "answer": 0,
+      "explanation": "The drill retains the source condition to keep the flaps retracted to the holding point when taxiing in icing conditions with rain, slush or snow.",
+      "manual": "FCOM",
+      "pages": [
+        3679
+      ],
+      "ref": "Normal procedures · After start — PM",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-start-pm",
+        "steps": [
+          3
+        ],
+        "includesScope": true
+      }
+    },
+    {
+      "id": "LT-005",
+      "topics": [
+        "loadsheet"
+      ],
+      "question": "In the selected after-start PM flow, what is the pitch-trim wheel set to?",
+      "options": [
+        "The takeoff CG setting",
+        "Neutral irrespective of takeoff CG",
+        "The landing CG setting",
+        "The last sector’s pitch-trim setting"
+      ],
+      "answer": 0,
+      "explanation": "The pitch-trim wheel is set to the takeoff CG. This question covers the sourced cockpit action, not company loadsheet/LMC policy.",
+      "manual": "FCOM",
+      "pages": [
+        3679
+      ],
+      "ref": "Normal procedures · After start — PM",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-start-pm",
+        "steps": [
+          5
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-006",
+      "topics": [
+        "takeoff-initial-climb"
+      ],
+      "question": "After selecting takeoff flaps under the applicable conditions, where does the selected PM flow check flap position?",
+      "options": [
+        "On the upper ECAM display",
+        "Only against the physical flap-lever position",
+        "On the flight plan page",
+        "On the rudder-trim indicator"
+      ],
+      "answer": 0,
+      "explanation": "The selected flow calls for flap position to be checked on the upper ECAM display; lever selection is not the complete position check.",
+      "manual": "FCOM",
+      "pages": [
+        3679
+      ],
+      "ref": "Normal procedures · After start — PM",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-start-pm",
+        "steps": [
+          4
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-007",
+      "topics": [
+        "ecam-resets"
+      ],
+      "question": "In the selected after-start flow, STS appears during the ECAM status check. What is the specified follow-up?",
+      "options": [
+        "Display the STATUS page",
+        "Clear STS without displaying STATUS",
+        "Reset the affected computer immediately",
+        "Defer the status check until after takeoff"
+      ],
+      "answer": 0,
+      "explanation": "The sourced after-start action says to display the STATUS page if STS appears. It does not authorise a computer or circuit-breaker reset.",
+      "manual": "FCOM",
+      "pages": [
+        3679,
+        3680
+      ],
+      "ref": "Normal procedures · After start — PF",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-start-pf",
+        "steps": [
+          5
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-008",
+      "topics": [
+        "ground-manoeuvring"
+      ],
+      "question": "What should the N/W steering disconnect memo show at the selected after-start PF check?",
+      "options": [
+        "The memo should not be displayed",
+        "The memo should remain displayed throughout taxi",
+        "The memo should be displayed only above idle",
+        "The memo should flash during the check"
+      ],
+      "answer": 0,
+      "explanation": "The selected PF action checks that the N/W steering disconnect memo is NOT DISPLAYED.",
+      "manual": "FCOM",
+      "pages": [
+        3680
+      ],
+      "ref": "Normal procedures · After start — PF",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-start-pf",
+        "steps": [
+          6
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-009",
+      "topics": [
+        "departure-change",
+        "takeoff-initial-climb"
+      ],
+      "question": "At the selected after-start thrust-setting cross-check, which two sources are compared?",
+      "options": [
+        "The E/WD thrust setting and FMS PERF",
+        "The E/WD thrust setting and the landing-gear page",
+        "The takeoff runway heading and rudder trim",
+        "The APU EGT and selected takeoff thrust"
+      ],
+      "answer": 0,
+      "explanation": "The drill cross-checks the E/WD thrust setting against FMS PERF. This is one sourced cross-check, not the full departure-change procedure.",
+      "manual": "FCOM",
+      "pages": [
+        3680
+      ],
+      "ref": "Normal procedures · After start — PF",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-start-pf",
+        "steps": [
+          7
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-010",
+      "topics": [
+        "takeoff-initial-climb"
+      ],
+      "question": "The APU supplied air conditioning for takeoff. Which selected PM after-takeoff actions apply?",
+      "options": [
+        "APU BLEED OFF, then APU master OFF",
+        "APU master OFF, with APU BLEED left ON",
+        "APU BLEED ON until cruise",
+        "Keep both selections unchanged until landing"
+      ],
+      "answer": 0,
+      "explanation": "For this stated condition, the selected after-takeoff sequence has APU BLEED OFF followed by APU master OFF.",
+      "manual": "FCOM",
+      "pages": [
+        3699
+      ],
+      "ref": "Normal procedures · After takeoff — PM",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-takeoff",
+        "steps": [
+          0,
+          1
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-011",
+      "topics": [
+        "climb-turbulence"
+      ],
+      "question": "During the selected after-takeoff flow, severe turbulence or heavy rain is encountered. Which engine-mode selector setting is specified?",
+      "options": [
+        "IGN/START",
+        "NORM in all cases",
+        "CRANK",
+        "The setting is determined only by altitude"
+      ],
+      "answer": 0,
+      "explanation": "The after-takeoff drill specifies IGN/START for severe turbulence or heavy rain as the applicable engine-mode selection.",
+      "manual": "FCOM",
+      "pages": [
+        3699
+      ],
+      "ref": "Normal procedures · After takeoff — PM",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-takeoff",
+        "steps": [
+          2
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-012",
+      "topics": [
+        "tcas"
+      ],
+      "question": "Takeoff was performed in TA-only. What TCAS selection is listed in the selected after-takeoff PM drill?",
+      "options": [
+        "TA/RA or TFC, as applicable",
+        "Remain in TA-only until descent",
+        "STBY until above the transition altitude",
+        "OFF until clear of departure traffic"
+      ],
+      "answer": 0,
+      "explanation": "The sourced after-takeoff action is TA/RA or TFC if takeoff was performed in TA-only. Use the applicable installed equipment and full procedure.",
+      "manual": "FCOM",
+      "pages": [
+        3699
+      ],
+      "ref": "Normal procedures · After takeoff — PM",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-takeoff",
+        "steps": [
+          3
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-013",
+      "topics": [
+        "climb-turbulence",
+        "cold-weather-approach"
+      ],
+      "question": "Which exception accompanies engine anti-ice ON for existing or anticipated icing in the selected after-takeoff drill?",
+      "options": [
+        "During climb and cruise with SAT below −40°C",
+        "During any phase with TAT below 0°C",
+        "During descent with SAT below −40°C",
+        "Whenever the aircraft is above the transition altitude"
+      ],
+      "answer": 0,
+      "explanation": "The retained exception is climb and cruise with SAT below −40°C. Keep both the phase and the temperature reference with the rule.",
+      "manual": "FCOM",
+      "pages": [
+        3699
+      ],
+      "ref": "Normal procedures · After takeoff — PM",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-takeoff",
+        "steps": [
+          4
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-014",
+      "topics": [
+        "cold-weather-approach"
+      ],
+      "question": "What wing anti-ice requirement is retained in the selected after-takeoff drill when there is evidence of ice accretion?",
+      "options": [
+        "Wing anti-ice must be ON",
+        "Wing anti-ice is prohibited until landing",
+        "Wing anti-ice remains OFF unless both engines are at idle",
+        "Wing anti-ice is used only on the ground"
+      ],
+      "answer": 0,
+      "explanation": "The drill states that wing anti-ice must be ON when there is evidence of ice accretion; it may also be used for prevention in icing conditions. Refer to the source criteria.",
+      "manual": "FCOM",
+      "pages": [
+        3699
+      ],
+      "ref": "Normal procedures · After takeoff — PM",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-takeoff",
+        "steps": [
+          5
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-015",
+      "topics": [
+        "ground-manoeuvring",
+        "docking"
+      ],
+      "question": "When does the selected after-landing PF control drill begin?",
+      "options": [
+        "After vacating the runway",
+        "Immediately after the main wheels touch down",
+        "As soon as reverse thrust is selected",
+        "Whenever the aircraft decelerates below taxi speed"
+      ],
+      "answer": 0,
+      "explanation": "The sourced drill begins after the runway is vacated. It is a selected PF control subset, not the complete after-landing procedure.",
+      "manual": "FCOM",
+      "pages": [
+        3791
+      ],
+      "ref": "Normal procedures · After landing — PF",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-landing-pf",
+        "steps": [
+          0
+        ],
+        "includesScope": true
+      }
+    },
+    {
+      "id": "LT-016",
+      "topics": [
+        "ground-manoeuvring"
+      ],
+      "question": "During the selected after-landing PF sequence, what strobe-light selection applies when crossing a runway?",
+      "options": [
+        "ON",
+        "AUTO in all ground circumstances",
+        "OFF",
+        "The landing-light switch determines the strobe selection"
+      ],
+      "answer": 0,
+      "explanation": "The retained instruction is AUTO when leaving the runway and ON when crossing a runway.",
+      "manual": "FCOM",
+      "pages": [
+        3792
+      ],
+      "ref": "Normal procedures · After landing — PF",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-landing-pf",
+        "steps": [
+          2
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-017",
+      "topics": [
+        "ground-manoeuvring",
+        "docking"
+      ],
+      "question": "What nose-light selection is listed in the selected PF flow when leaving the runway?",
+      "options": [
+        "TAXI",
+        "TO",
+        "OFF until parked",
+        "No change from the approach setting"
+      ],
+      "answer": 0,
+      "explanation": "The selected after-landing PF action is nose light TAXI when leaving the runway.",
+      "manual": "FCOM",
+      "pages": [
+        3792
+      ],
+      "ref": "Normal procedures · After landing — PF",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-landing-pf",
+        "steps": [
+          3
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-018",
+      "topics": [
+        "postflight",
+        "docking"
+      ],
+      "question": "During parking, accumulator pressure is low. What condition does the selected PF drill require before engine 1 shutdown?",
+      "options": [
+        "Chocks must be in place",
+        "The landing lights must be retracted",
+        "The APU must be shut down",
+        "The flight-control check must be repeated"
+      ],
+      "answer": 0,
+      "explanation": "The source-linked parking step requires chocks before engine 1 shutdown if accumulator pressure is low.",
+      "manual": "FCOM",
+      "pages": [
+        3799
+      ],
+      "ref": "Normal procedures · Parking — PF selected actions",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "parking-pf",
+        "steps": [
+          0
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-019",
+      "topics": [
+        "brake-fans",
+        "postflight"
+      ],
+      "question": "With brake fans ON, above what indicated brake temperature does the parking drill say to avoid applying the parking brake unless operationally necessary?",
+      "options": [
+        "350°C",
+        "300°C",
+        "500°C",
+        "650°C"
+      ],
+      "answer": 0,
+      "explanation": "The retained parking condition is above 350°C with brake fans ON. The qualification “unless operationally necessary” is part of the sourced instruction.",
+      "manual": "FCOM",
+      "pages": [
+        3800
+      ],
+      "ref": "Normal procedures · Parking — PF selected actions",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "parking-pf",
+        "steps": [
+          1
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-020",
+      "topics": [
+        "brake-fans",
+        "postflight"
+      ],
+      "question": "With brake fans OFF, above what brake temperature does the selected parking step say to avoid applying the parking brake unless operationally necessary?",
+      "options": [
+        "500°C",
+        "300°C",
+        "350°C",
+        "650°C"
+      ],
+      "answer": 0,
+      "explanation": "The source-linked parking step states above 500°C, or above 350°C with brake fans ON, unless operationally necessary.",
+      "manual": "FCOM",
+      "pages": [
+        3800
+      ],
+      "ref": "Normal procedures · Parking — PF selected actions",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "parking-pf",
+        "steps": [
+          1
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-021",
+      "topics": [
+        "postflight"
+      ],
+      "question": "In the selected parking brake-pressure check, when may the pedals be released?",
+      "options": [
+        "Once both needles are above the green area",
+        "As soon as the parking-brake handle is ON",
+        "Once either needle enters the green band",
+        "Only after the batteries have been switched OFF"
+      ],
+      "answer": 0,
+      "explanation": "The retained parking action says to hold the pedals until both brake-pressure needles are above the green area.",
+      "manual": "FCOM",
+      "pages": [
+        3800
+      ],
+      "ref": "Normal procedures · Parking — PF selected actions",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "parking-pf",
+        "steps": [
+          2
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-022",
+      "topics": [
+        "one-engine-taxi",
+        "postflight"
+      ],
+      "question": "The yellow electric pump was used for one-engine taxi. What does the selected parking drill require before engine 1 shutdown?",
+      "options": [
+        "Select the yellow electric pump OFF",
+        "Leave the yellow electric pump ON until the batteries are OFF",
+        "Select the blue electric pump ON instead",
+        "Cycle the yellow electric pump after engine 1 stops"
+      ],
+      "answer": 0,
+      "explanation": "The sourced parking step is yellow electric pump OFF before engine 1 shutdown when it was used for one-engine taxi.",
+      "manual": "FCOM",
+      "pages": [
+        3800
+      ],
+      "ref": "Normal procedures · Parking — PF selected actions",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "parking-pf",
+        "steps": [
+          3
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-023",
+      "topics": [
+        "external-power-apu",
+        "postflight"
+      ],
+      "question": "No APU is being used during parking. What electrical-supply sequence is retained before engine shutdown?",
+      "options": [
+        "Check EXT PWR AVAIL, then select external power ON",
+        "Select external power ON without checking availability",
+        "Shut down both engines, then check for external power",
+        "Switch both batteries OFF before selecting external power"
+      ],
+      "answer": 0,
+      "explanation": "With no APU, the selected parking drill checks EXT PWR AVAIL and then selects it ON. If the APU is used, it checks APU AVAIL instead.",
+      "manual": "FCOM",
+      "pages": [
+        3800
+      ],
+      "ref": "Normal procedures · Parking — PF selected actions",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "parking-pf",
+        "steps": [
+          4
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-024",
+      "topics": [
+        "external-power-apu",
+        "postflight"
+      ],
+      "question": "The APU is being used as the parking electrical source. Which availability check is listed before engine shutdown?",
+      "options": [
+        "APU AVAIL",
+        "APU master switch position alone",
+        "EXT PWR AVAIL regardless of APU use",
+        "Battery voltage alone"
+      ],
+      "answer": 0,
+      "explanation": "The source-linked parking step checks APU AVAIL when the APU is used; master-switch position alone is not the cited availability check.",
+      "manual": "FCOM",
+      "pages": [
+        3800
+      ],
+      "ref": "Normal procedures · Parking — PF selected actions",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "parking-pf",
+        "steps": [
+          4
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-025",
+      "topics": [
+        "one-engine-taxi",
+        "postflight"
+      ],
+      "question": "What minimum interval after high-thrust operations is retained for selecting the engine masters OFF in the parking drill?",
+      "options": [
+        "3 minutes",
+        "30 seconds",
+        "1 minute",
+        "5 minutes"
+      ],
+      "answer": 0,
+      "explanation": "The selected parking action is engine masters OFF no less than 3 minutes after high-thrust operations.",
+      "manual": "FCOM",
+      "pages": [
+        3800
+      ],
+      "ref": "Normal procedures · Parking — PF selected actions",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "parking-pf",
+        "steps": [
+          5
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-026",
+      "topics": [
+        "postflight",
+        "docking"
+      ],
+      "question": "During the selected parking sequence, when is the beacon switched OFF?",
+      "options": [
+        "When all engines are below approximately 20% N2",
+        "As soon as the first engine master is selected OFF",
+        "When either engine falls below 20% N1",
+        "When the parking brake is first applied"
+      ],
+      "answer": 0,
+      "explanation": "The retained condition is all engines below approximately 20% N2. Keep the parameter and the requirement for all engines with the action.",
+      "manual": "FCOM",
+      "pages": [
+        3801
+      ],
+      "ref": "Normal procedures · Parking — PF selected actions",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "parking-pf",
+        "steps": [
+          8
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-027",
+      "topics": [
+        "postflight"
+      ],
+      "question": "In the selected securing sequence, which crew-role label is assigned to switching crew oxygen supply OFF?",
+      "options": [
+        "CM2",
+        "PF regardless of seat",
+        "PM regardless of seat",
+        "CM1"
+      ],
+      "answer": 0,
+      "explanation": "The source-linked securing drill assigns this action to CM2. The trainer retains the printed seat role rather than substituting PF or PM.",
+      "manual": "FCOM",
+      "pages": [
+        3805
+      ],
+      "ref": "Normal procedures · Securing — CM2",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "securing-cm2",
+        "steps": [
+          0
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-028",
+      "topics": [
+        "supernumeraries",
+        "postflight"
+      ],
+      "question": "What condition is retained for APU master OFF in the selected CM2 securing drill?",
+      "options": [
+        "All passengers/supernumeraries have disembarked",
+        "The first engine has been shut down",
+        "The taxi checklist is complete",
+        "The aircraft has just vacated the runway"
+      ],
+      "answer": 0,
+      "explanation": "The selected securing action says APU master OFF after all passengers/supernumeraries have disembarked. Apply the full procedure and its other conditions.",
+      "manual": "FCOM",
+      "pages": [
+        3806
+      ],
+      "ref": "Normal procedures · Securing — CM2",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "securing-cm2",
+        "steps": [
+          5
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-029",
+      "topics": [
+        "external-power-apu",
+        "postflight"
+      ],
+      "question": "Before switching batteries 1 and 2 OFF during securing, what APU-related condition must be met in the sourced drill?",
+      "options": [
+        "The APU flap is fully closed",
+        "The APU master has just been selected OFF",
+        "APU AVAIL has just gone out, with no further wait",
+        "The APU BLEED switch is OFF"
+      ],
+      "answer": 0,
+      "explanation": "The batteries are switched OFF only after the APU flap is fully closed, about 2 minutes after APU AVAIL goes out.",
+      "manual": "FCOM",
+      "pages": [
+        3806
+      ],
+      "ref": "Normal procedures · Securing — CM2",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "securing-cm2",
+        "steps": [
+          7
+        ],
+        "includesScope": false
+      }
+    },
+    {
+      "id": "LT-030",
+      "topics": [
+        "postflight"
+      ],
+      "question": "How much time after ADIRS shutdown does the selected securing drill retain before electrical power is switched off?",
+      "options": [
+        "At least 10 seconds",
+        "No delay is required",
+        "At least 60 seconds",
+        "Exactly 2 minutes after APU AVAIL"
+      ],
+      "answer": 0,
+      "explanation": "The drill scope retains at least 10 seconds after ADIRS shutdown before electrical power OFF. This is separate from the APU-flap condition for battery shutdown.",
+      "manual": "FCOM",
+      "pages": [
+        3806
+      ],
+      "ref": "Normal procedures · Securing — CM2",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "securing-cm2",
+        "steps": [
+          4,
+          7
+        ],
+        "includesScope": true
+      }
+    },
+    {
+      "id": "LT-031",
+      "topics": [
+        "aircraft-documents",
+        "heavy-departures"
+      ],
+      "question": "Following an engine shutdown longer than 2 hours, what warm-up condition is retained in the after-start drill before high power?",
+      "options": [
+        "At least 5 minutes at idle or near idle; taxi time at idle may count",
+        "At least 3 minutes after the parking brake is released",
+        "At least 30 seconds once AVAIL appears",
+        "Five minutes airborne before climb thrust"
+      ],
+      "answer": 0,
+      "explanation": "The sourced drill scope requires at least 5 minutes at idle or near idle after a shutdown longer than 2 hours. Taxi time at idle may count.",
+      "manual": "FCOM",
+      "pages": [
+        3678
+      ],
+      "ref": "Normal procedures · After start — PF",
+      "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+      "applicability": [
+        "ALL"
+      ],
+      "evidence": {
+        "kind": "drill",
+        "id": "after-start-pf",
+        "steps": [
+          0
+        ],
+        "includesScope": true
+      }
+    }
+  ]
+}
