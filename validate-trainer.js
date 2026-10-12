@@ -1,4 +1,5 @@
 'use strict';
+require('./test-voice-quiz.js');
 require('./test-discussions.js');
 require('./test-line-quiz.js');
 const fs=require('fs'),path=require('path'),assert=require('node:assert/strict'),crypto=require('crypto'),vm=require('vm');

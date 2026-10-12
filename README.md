@@ -18,6 +18,12 @@ A personal study site built around the supplied FCOM, FCTM and QRH, FCOM and QRH
 - Local PDF loading (FCOM 4,364 pages; FCTM 532; QRH 330), section browsing, private full-text search, source page links and optional browser storage for offline use.
 - Preserved engine, electrical, hydraulic and cross-system illustrative explorers; corrected engine limitations and updated source links. Simplified model assumptions remain explicit and are not a full aircraft-specific simulation.
 
+## Voice limitations quiz
+
+Choose **Limitations → Start voice quiz**, then **Start voice**. The trainer reads each question and its displayed choices. Say Alpha, Bravo, Charlie, Delta, option one–four, or the exact option text. Confirm the recognised choice before it is scored; say “try again” to change it. After spoken feedback, say “next,” “repeat,” or “pause.” Voice practice uses the unchanged limitations bank and Learn scoring. Buttons remain available at all times.
+
+Speech recognition depends on browser support, microphone permission and often an internet connection. Your browser may process audio through its speech service; the trainer stores neither audio nor transcripts. Read-aloud uses the device/browser voice. Pausing, navigating away, opening a manual or putting the page in the background stops audio and microphone capture. No API key is required.
+
 ## Source fidelity
 
 Manuals are never published or uploaded. Load the supplied PDFs (FCOM/QRH: 1 May 2026; FCTM: 25 September 2026) in the Manual library. The reader verifies SHA-256 hashes against data/manuals.json. Keeping a PDF privately saves it in IndexedDB on that device. Leaving that option unchecked keeps it for the current visit. Remove local copy deletes the browser copy and in-memory search text; browser data clearing also removes stored files. The first full-text search builds its index in memory, with progress and cancellation when leaving search. Manufacturer family terminology, operator identifiers, diagrams, restrictions, modifications and original page effectivity are not altered inside source documents. Extracted text is a search aid: use the PDF for tables, branches, symbols and diagrams. The supplied revision is not represented as a verified latest controlled revision.

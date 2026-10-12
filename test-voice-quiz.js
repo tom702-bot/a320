@@ -1,0 +1,11 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {matchAnswer,speechText}=require('./voice-quiz.js');
+const choices=[{text:'A sample limitation',index:2},{text:'Another limitation',index:0},{text:'A third limitation',index:3},{text:'The final limitation',index:1}];
+for(const [text,expected] of [['Alpha',0],['ALFA.',0],['option one',0],['my answer is Bravo',1],['option two',1],['I choose option C',2],['Charlie',2],['choice four',3],['Delta',3],['Another limitation',1]])assert.equal(matchAnswer(text,choices),expected,text);
+for(const text of ['Alpha or Bravo','not Bravo','maybe Charlie','15','unknown','yes','two hundred','alpha bravo'])assert.equal(matchAnswer(text,choices),null,text);
+assert.equal(matchAnswer('identical',[{text:'identical'},{text:'identical'}]),null,'Ambiguous answers must not be guessed');
+assert.equal(choices[matchAnswer('Bravo',choices)].index,0,'Use displayed order to select the stable answer index');
+assert.equal(speechText('−1 g to +2.5 g; -15°C; 10–20 kt'),'minus 1 g to plus 2.5 g; minus 15 degrees Celsius; 10 to 20 knots','Read signs, temperatures and ranges explicitly');
+assert.equal(speechText('10-20 kt'),'10 to 20 knots');
+console.log('Passed: spoken letters, phonetic words, option numbers, exact text, ambiguity and shuffled choice mapping.');
