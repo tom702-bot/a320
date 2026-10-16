@@ -4,7 +4,7 @@ class ModelWorker{
   const id=++this.next;return new Promise((resolve,reject)=>{const timer=setTimeout(()=>this.reset('The local AI tools timed out. Try again, or use the answer buttons.'),type==='prepare'?300000:90000);this.jobs.set(id,{resolve,reject,progress,timer});this.worker.postMessage({id,type,...payload});});}
  reset(message){this.worker?.terminate();this.worker=null;for(const j of this.jobs.values()){clearTimeout(j.timer);j.reject(Error(message));}this.jobs.clear();}
 }
-const speech=new ModelWorker('./local-speech-worker.mjs'),answers=new ModelWorker('./local-answer-worker.mjs?v=71');
+const speech=new ModelWorker('./local-speech-worker.mjs'),answers=new ModelWorker('./local-answer-worker.mjs?v=72');
 let prepared=false,answerPrepared=false,recording=null;
 const AudioContextClass=globalThis.AudioContext||globalThis.webkitAudioContext;
 export const supported=()=>!!(globalThis.Worker&&globalThis.MediaRecorder&&navigator.mediaDevices?.getUserMedia&&AudioContextClass);
