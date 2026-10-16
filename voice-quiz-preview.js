@@ -167,7 +167,7 @@
   say(['I heard option '+names[choice]+'.',config.choices[choice].text,phrases.confirm],listen);
  }
  async function prepareSpeech(){
-  pause();preparing=true;controls();const token=generation;
+  pause();preparing=true;controls();status('Preparing local speech tools…');const token=generation;
   try{const m=await localModule();await m.prepare(p=>{if(token===generation)status('Downloading local speech tools: '+p.progress+'%');});if(token===generation)status('Local speech is ready. Start voice when you are ready.');}catch(e){if(token===generation)status(e.message);}finally{preparing=false;controls();}
  }
  async function listen(){

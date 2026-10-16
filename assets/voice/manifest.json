@@ -1,0 +1,2029 @@
+{
+  "version": 1,
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "aiGenerated": true,
+  "clips": {
+    "2": {
+      "file": "assets/voice/pack-00.mp3",
+      "start": 0,
+      "duration": 0.864
+    },
+    "3": {
+      "file": "assets/voice/pack-00.mp3",
+      "start": 1.114,
+      "duration": 1.008
+    },
+    "4": {
+      "file": "assets/voice/pack-00.mp3",
+      "start": 2.372,
+      "duration": 1.416
+    },
+    "5": {
+      "file": "assets/voice/pack-00.mp3",
+      "start": 4.038,
+      "duration": 1.368
+    },
+    "Say your answer in short form, or say Alpha, Bravo, Charlie, or Delta. You will confirm before it is scored.": {
+      "file": "assets/voice/pack-00.mp3",
+      "start": 5.656000000000001,
+      "duration": 7.416
+    },
+    "Say confirm, or try again.": {
+      "file": "assets/voice/pack-00.mp3",
+      "start": 13.322000000000001,
+      "duration": 2.808
+    },
+    "Try again. Say an option or your answer in short form.": {
+      "file": "assets/voice/pack-00.mp3",
+      "start": 16.380000000000003,
+      "duration": 3.96
+    },
+    "I could not match that to one answer. Include all values and units, or say Alpha, Bravo, Charlie, or Delta.": {
+      "file": "assets/voice/pack-00.mp3",
+      "start": 20.590000000000003,
+      "duration": 8.568
+    },
+    "Say next, repeat, or pause.": {
+      "file": "assets/voice/pack-00.mp3",
+      "start": 29.408,
+      "duration": 3.264
+    },
+    "Correct.": {
+      "file": "assets/voice/pack-00.mp3",
+      "start": 32.922000000000004,
+      "duration": 1.32
+    },
+    "Review this limitation.": {
+      "file": "assets/voice/pack-01.mp3",
+      "start": 0,
+      "duration": 1.704
+    },
+    "Option Alpha.": {
+      "file": "assets/voice/pack-01.mp3",
+      "start": 1.954,
+      "duration": 2.112
+    },
+    "I heard option Alpha.": {
+      "file": "assets/voice/pack-01.mp3",
+      "start": 4.316,
+      "duration": 2.016
+    },
+    "Option Bravo.": {
+      "file": "assets/voice/pack-01.mp3",
+      "start": 6.582,
+      "duration": 2.352
+    },
+    "I heard option Bravo.": {
+      "file": "assets/voice/pack-01.mp3",
+      "start": 9.184,
+      "duration": 1.8
+    },
+    "Option Charlie.": {
+      "file": "assets/voice/pack-01.mp3",
+      "start": 11.233999999999998,
+      "duration": 1.56
+    },
+    "I heard option Charlie.": {
+      "file": "assets/voice/pack-01.mp3",
+      "start": 13.043999999999999,
+      "duration": 2.112
+    },
+    "Option Delta.": {
+      "file": "assets/voice/pack-01.mp3",
+      "start": 15.405999999999999,
+      "duration": 1.848
+    },
+    "I heard option Delta.": {
+      "file": "assets/voice/pack-01.mp3",
+      "start": 17.503999999999998,
+      "duration": 2.016
+    },
+    "Clean configuration: what is the manoeuvring load acceleration range?": {
+      "file": "assets/voice/pack-01.mp3",
+      "start": 19.769999999999996,
+      "duration": 4.2
+    },
+    "−1 g to +2.5 g": {
+      "file": "assets/voice/pack-02.mp3",
+      "start": 0,
+      "duration": 3.912
+    },
+    "0 g to +2 g": {
+      "file": "assets/voice/pack-02.mp3",
+      "start": 4.162,
+      "duration": 3.168
+    },
+    "−1 g to +2 g": {
+      "file": "assets/voice/pack-02.mp3",
+      "start": 7.58,
+      "duration": 3
+    },
+    "0 g to +2.5 g": {
+      "file": "assets/voice/pack-02.mp3",
+      "start": 10.83,
+      "duration": 2.856
+    },
+    "The correct answer is −1 g to +2.5 g. −1 g to +2.5 g": {
+      "file": "assets/voice/pack-02.mp3",
+      "start": 13.936,
+      "duration": 8.352
+    },
+    "Other than clean configuration: what is the manoeuvring load acceleration range?": {
+      "file": "assets/voice/pack-02.mp3",
+      "start": 22.538,
+      "duration": 4.608
+    },
+    "The correct answer is 0 g to +2 g. 0 g to +2 g": {
+      "file": "assets/voice/pack-02.mp3",
+      "start": 27.396,
+      "duration": 7.104
+    },
+    "What is the maximum mean runway slope?": {
+      "file": "assets/voice/pack-02.mp3",
+      "start": 34.75,
+      "duration": 3.264
+    },
+    "±2%": {
+      "file": "assets/voice/pack-02.mp3",
+      "start": 38.264,
+      "duration": 1.704
+    },
+    "±1%": {
+      "file": "assets/voice/pack-02.mp3",
+      "start": 40.218,
+      "duration": 2.256
+    },
+    "±2.5%": {
+      "file": "assets/voice/pack-03.mp3",
+      "start": 0,
+      "duration": 2.4
+    },
+    "±3%": {
+      "file": "assets/voice/pack-03.mp3",
+      "start": 2.65,
+      "duration": 2.4
+    },
+    "The correct answer is ±2%. ±2%": {
+      "file": "assets/voice/pack-03.mp3",
+      "start": 5.3,
+      "duration": 5.304
+    },
+    "What are the nominal and minimum runway widths?": {
+      "file": "assets/voice/pack-03.mp3",
+      "start": 10.854,
+      "duration": 3.504
+    },
+    "45 m / 30 m": {
+      "file": "assets/voice/pack-03.mp3",
+      "start": 14.607999999999999,
+      "duration": 2.856
+    },
+    "45 m / 23 m": {
+      "file": "assets/voice/pack-03.mp3",
+      "start": 17.714,
+      "duration": 3.36
+    },
+    "60 m / 30 m": {
+      "file": "assets/voice/pack-03.mp3",
+      "start": 21.323999999999998,
+      "duration": 2.256
+    },
+    "30 m / 23 m": {
+      "file": "assets/voice/pack-03.mp3",
+      "start": 23.83,
+      "duration": 2.808
+    },
+    "The correct answer is 45 m / 30 m. 45 m / 30 m": {
+      "file": "assets/voice/pack-03.mp3",
+      "start": 26.887999999999998,
+      "duration": 6.312
+    },
+    "What is the maximum demonstrated takeoff and landing crosswind, including gusts?": {
+      "file": "assets/voice/pack-03.mp3",
+      "start": 33.449999999999996,
+      "duration": 4.848
+    },
+    "38 kt": {
+      "file": "assets/voice/pack-04.mp3",
+      "start": 0,
+      "duration": 1.704
+    },
+    "33 kt": {
+      "file": "assets/voice/pack-04.mp3",
+      "start": 1.954,
+      "duration": 1.368
+    },
+    "35 kt": {
+      "file": "assets/voice/pack-04.mp3",
+      "start": 3.572,
+      "duration": 1.752
+    },
+    "40 kt": {
+      "file": "assets/voice/pack-04.mp3",
+      "start": 5.574,
+      "duration": 1.56
+    },
+    "The correct answer is 38 kt. 38 kt including gusts. This is a demonstrated certification value, not an AFM limitation; Airbus recommends not intentionally exceeding it.": {
+      "file": "assets/voice/pack-04.mp3",
+      "start": 7.384,
+      "duration": 13.464
+    },
+    "What is the maximum tailwind for takeoff?": {
+      "file": "assets/voice/pack-04.mp3",
+      "start": 21.098,
+      "duration": 2.76
+    },
+    "15 kt": {
+      "file": "assets/voice/pack-04.mp3",
+      "start": 24.107999999999997,
+      "duration": 2.112
+    },
+    "10 kt": {
+      "file": "assets/voice/pack-04.mp3",
+      "start": 26.47,
+      "duration": 1.704
+    },
+    "20 kt": {
+      "file": "assets/voice/pack-04.mp3",
+      "start": 28.424,
+      "duration": 1.968
+    },
+    "5 kt": {
+      "file": "assets/voice/pack-04.mp3",
+      "start": 30.642,
+      "duration": 2.064
+    },
+    "The correct answer is 15 kt. 15 kt": {
+      "file": "assets/voice/pack-05.mp3",
+      "start": 0,
+      "duration": 4.704
+    },
+    "What is the maximum tailwind for landing in the general wind limitations?": {
+      "file": "assets/voice/pack-05.mp3",
+      "start": 4.954,
+      "duration": 4.152
+    },
+    "The correct answer is 15 kt. 15 kt. Automatic landing and rollout have their own wind limitations in LIM-AFS-20.": {
+      "file": "assets/voice/pack-05.mp3",
+      "start": 9.356,
+      "duration": 10.104
+    },
+    "For landing with more than 10 kt tailwind, what does this FCOM say about FLAPS FULL?": {
+      "file": "assets/voice/pack-05.mp3",
+      "start": 19.71,
+      "duration": 5.4
+    },
+    "FLAPS FULL is recommended": {
+      "file": "assets/voice/pack-05.mp3",
+      "start": 25.36,
+      "duration": 2.16
+    },
+    "FLAPS FULL is prohibited": {
+      "file": "assets/voice/pack-05.mp3",
+      "start": 27.77,
+      "duration": 2.16
+    },
+    "CONF 3 is required": {
+      "file": "assets/voice/pack-05.mp3",
+      "start": 30.18,
+      "duration": 2.568
+    },
+    "FLAPS FULL is mandatory in this note": {
+      "file": "assets/voice/pack-05.mp3",
+      "start": 32.998,
+      "duration": 3.816
+    },
+    "The correct answer is FLAPS FULL is recommended. The supplied A321P2F note says recommended. Do not change a recommendation into a mandatory limitation.": {
+      "file": "assets/voice/pack-05.mp3",
+      "start": 37.064,
+      "duration": 12.312
+    },
+    "What is the recommended maximum landing crosswind (gust included) at RWYCC 5?": {
+      "file": "assets/voice/pack-05.mp3",
+      "start": 49.626,
+      "duration": 6.6
+    },
+    "25 kt": {
+      "file": "assets/voice/pack-06.mp3",
+      "start": 0,
+      "duration": 1.968
+    },
+    "The correct answer is 38 kt. Recommended computed value; use the complete runway-condition table and operator restrictions.": {
+      "file": "assets/voice/pack-06.mp3",
+      "start": 2.218,
+      "duration": 8.112
+    },
+    "What is the recommended maximum landing crosswind (gust included) at RWYCC 4?": {
+      "file": "assets/voice/pack-06.mp3",
+      "start": 10.58,
+      "duration": 5.76
+    },
+    "29 kt": {
+      "file": "assets/voice/pack-06.mp3",
+      "start": 16.59,
+      "duration": 2.16
+    },
+    "The correct answer is 29 kt. Recommended computed value; use the complete runway-condition table and operator restrictions.": {
+      "file": "assets/voice/pack-06.mp3",
+      "start": 19,
+      "duration": 9
+    },
+    "What is the recommended maximum landing crosswind (gust included) at RWYCC 3?": {
+      "file": "assets/voice/pack-06.mp3",
+      "start": 28.25,
+      "duration": 6.768
+    },
+    "The correct answer is 25 kt. Recommended computed value; use the complete runway-condition table and operator restrictions.": {
+      "file": "assets/voice/pack-06.mp3",
+      "start": 35.268,
+      "duration": 8.856
+    },
+    "What is the recommended maximum landing crosswind (gust included) at RWYCC 2?": {
+      "file": "assets/voice/pack-06.mp3",
+      "start": 44.374,
+      "duration": 6.864
+    },
+    "The correct answer is 20 kt. Recommended computed value; use the complete runway-condition table and operator restrictions.": {
+      "file": "assets/voice/pack-06.mp3",
+      "start": 51.488,
+      "duration": 8.4
+    },
+    "What is the recommended maximum landing crosswind (gust included) at RWYCC 1?": {
+      "file": "assets/voice/pack-06.mp3",
+      "start": 60.138,
+      "duration": 6.12
+    },
+    "The correct answer is 15 kt. Recommended computed value; use the complete runway-condition table and operator restrictions.": {
+      "file": "assets/voice/pack-07.mp3",
+      "start": 0,
+      "duration": 9.36
+    },
+    "What is the maximum wind speed for opening the main deck cargo door?": {
+      "file": "assets/voice/pack-07.mp3",
+      "start": 9.61,
+      "duration": 4.368
+    },
+    "50 kt": {
+      "file": "assets/voice/pack-07.mp3",
+      "start": 14.228,
+      "duration": 1.704
+    },
+    "60 kt": {
+      "file": "assets/voice/pack-07.mp3",
+      "start": 16.182,
+      "duration": 1.848
+    },
+    "65 kt": {
+      "file": "assets/voice/pack-07.mp3",
+      "start": 18.279999999999998,
+      "duration": 1.92
+    },
+    "The correct answer is 40 kt. 40 kt": {
+      "file": "assets/voice/pack-07.mp3",
+      "start": 20.449999999999996,
+      "duration": 4.416
+    },
+    "The main deck cargo door must be closed before the wind exceeds what speed?": {
+      "file": "assets/voice/pack-07.mp3",
+      "start": 25.115999999999996,
+      "duration": 5.112
+    },
+    "The correct answer is 60 kt. 60 kt": {
+      "file": "assets/voice/pack-07.mp3",
+      "start": 30.477999999999994,
+      "duration": 4.104
+    },
+    "What is the normal maximum wind for operating FWD and AFT cargo doors?": {
+      "file": "assets/voice/pack-07.mp3",
+      "start": 34.831999999999994,
+      "duration": 5.808
+    },
+    "The correct answer is 40 kt. 40 kt; may be 50 kt with the nose into wind or the FWD/AFT doors on the leeward side.": {
+      "file": "assets/voice/pack-07.mp3",
+      "start": 40.88999999999999,
+      "duration": 9.504
+    },
+    "When may FWD/AFT cargo-door operation use a 50 kt wind limit?": {
+      "file": "assets/voice/pack-08.mp3",
+      "start": 0,
+      "duration": 5.952
+    },
+    "Nose into wind or doors on the leeward side": {
+      "file": "assets/voice/pack-08.mp3",
+      "start": 6.202,
+      "duration": 3.6
+    },
+    "Tail into wind or doors windward": {
+      "file": "assets/voice/pack-08.mp3",
+      "start": 10.052,
+      "duration": 3.408
+    },
+    "Only when MDCD is open": {
+      "file": "assets/voice/pack-08.mp3",
+      "start": 13.709999999999999,
+      "duration": 3.312
+    },
+    "Only with engines running": {
+      "file": "assets/voice/pack-08.mp3",
+      "start": 17.272,
+      "duration": 2.16
+    },
+    "The correct answer is Nose into wind or doors on the leeward side. Nose into wind or doors on the leeward side": {
+      "file": "assets/voice/pack-08.mp3",
+      "start": 19.682,
+      "duration": 7.608
+    },
+    "FWD/AFT cargo doors must be closed before the wind exceeds what speed?": {
+      "file": "assets/voice/pack-08.mp3",
+      "start": 27.54,
+      "duration": 5.856
+    },
+    "The correct answer is 65 kt. 65 kt": {
+      "file": "assets/voice/pack-08.mp3",
+      "start": 33.646,
+      "duration": 5.4
+    },
+    "What is VFE for slat/flap display configuration 1?": {
+      "file": "assets/voice/pack-08.mp3",
+      "start": 39.296,
+      "duration": 5.4
+    },
+    "235 kt": {
+      "file": "assets/voice/pack-08.mp3",
+      "start": 44.946,
+      "duration": 2.568
+    },
+    "190 kt": {
+      "file": "assets/voice/pack-09.mp3",
+      "start": 0,
+      "duration": 2.352
+    },
+    "195 kt": {
+      "file": "assets/voice/pack-09.mp3",
+      "start": 2.602,
+      "duration": 2.208
+    },
+    "215 kt": {
+      "file": "assets/voice/pack-09.mp3",
+      "start": 5.0600000000000005,
+      "duration": 2.256
+    },
+    "The correct answer is 235 kt. 235 kt": {
+      "file": "assets/voice/pack-09.mp3",
+      "start": 7.566000000000001,
+      "duration": 5.016
+    },
+    "What is VFE for slat/flap display configuration 1+F?": {
+      "file": "assets/voice/pack-09.mp3",
+      "start": 12.832,
+      "duration": 6.648
+    },
+    "225 kt": {
+      "file": "assets/voice/pack-09.mp3",
+      "start": 19.73,
+      "duration": 2.448
+    },
+    "The correct answer is 225 kt. 225 kt": {
+      "file": "assets/voice/pack-09.mp3",
+      "start": 22.428,
+      "duration": 5.448
+    },
+    "What is VFE for slat/flap display configuration 2?": {
+      "file": "assets/voice/pack-09.mp3",
+      "start": 28.126,
+      "duration": 4.248
+    },
+    "The correct answer is 215 kt. 215 kt": {
+      "file": "assets/voice/pack-09.mp3",
+      "start": 32.624,
+      "duration": 4.968
+    },
+    "What is VFE for slat/flap display configuration 3?": {
+      "file": "assets/voice/pack-09.mp3",
+      "start": 37.842,
+      "duration": 4.656
+    },
+    "The correct answer is 195 kt. 195 kt": {
+      "file": "assets/voice/pack-10.mp3",
+      "start": 0,
+      "duration": 5.4
+    },
+    "What is VFE for slat/flap display configuration FULL?": {
+      "file": "assets/voice/pack-10.mp3",
+      "start": 5.65,
+      "duration": 4.752
+    },
+    "The correct answer is 190 kt. 190 kt": {
+      "file": "assets/voice/pack-10.mp3",
+      "start": 10.652000000000001,
+      "duration": 4.92
+    },
+    "What is VMO/MMO for all six aircraft listed in the supplied manual?": {
+      "file": "assets/voice/pack-10.mp3",
+      "start": 15.822000000000001,
+      "duration": 6
+    },
+    "350 kt / M 0.82": {
+      "file": "assets/voice/pack-10.mp3",
+      "start": 22.072000000000003,
+      "duration": 3.96
+    },
+    "340 kt / M 0.82": {
+      "file": "assets/voice/pack-10.mp3",
+      "start": 26.282000000000004,
+      "duration": 3.72
+    },
+    "350 kt / M 0.80": {
+      "file": "assets/voice/pack-10.mp3",
+      "start": 30.252000000000002,
+      "duration": 3.72
+    },
+    "330 kt / M 0.84": {
+      "file": "assets/voice/pack-10.mp3",
+      "start": 34.222,
+      "duration": 3.456
+    },
+    "The correct answer is 350 kt / M 0.82. Both registration groups specify 350 kt / M 0.82; consult the environmental envelope on the original pages.": {
+      "file": "assets/voice/pack-10.mp3",
+      "start": 37.928000000000004,
+      "duration": 12.864
+    },
+    "What is the maximum speed with a cockpit sliding window open?": {
+      "file": "assets/voice/pack-10.mp3",
+      "start": 51.042,
+      "duration": 4.848
+    },
+    "200 kt": {
+      "file": "assets/voice/pack-11.mp3",
+      "start": 0,
+      "duration": 1.464
+    },
+    "160 kt": {
+      "file": "assets/voice/pack-11.mp3",
+      "start": 1.714,
+      "duration": 2.4
+    },
+    "230 kt": {
+      "file": "assets/voice/pack-11.mp3",
+      "start": 4.364,
+      "duration": 2.52
+    },
+    "250 kt": {
+      "file": "assets/voice/pack-11.mp3",
+      "start": 7.134,
+      "duration": 1.704
+    },
+    "The correct answer is 200 kt. 200 kt": {
+      "file": "assets/voice/pack-11.mp3",
+      "start": 9.088000000000001,
+      "duration": 3.264
+    },
+    "What is the maximum speed for gear extended (VLE)?": {
+      "file": "assets/voice/pack-11.mp3",
+      "start": 12.602,
+      "duration": 4.008
+    },
+    "280 kt / M 0.67": {
+      "file": "assets/voice/pack-11.mp3",
+      "start": 16.86,
+      "duration": 4.248
+    },
+    "250 kt / M 0.60": {
+      "file": "assets/voice/pack-11.mp3",
+      "start": 21.358,
+      "duration": 3.864
+    },
+    "220 kt / M 0.54": {
+      "file": "assets/voice/pack-11.mp3",
+      "start": 25.472,
+      "duration": 4.56
+    },
+    "300 kt / M 0.70": {
+      "file": "assets/voice/pack-11.mp3",
+      "start": 30.282,
+      "duration": 4.752
+    },
+    "The correct answer is 280 kt / M 0.67. 280 kt / M 0.67": {
+      "file": "assets/voice/pack-12.mp3",
+      "start": 0,
+      "duration": 9.864
+    },
+    "What is the maximum speed for gear extension (VLO)?": {
+      "file": "assets/voice/pack-12.mp3",
+      "start": 10.114,
+      "duration": 4.2
+    },
+    "260 kt / M 0.67": {
+      "file": "assets/voice/pack-12.mp3",
+      "start": 14.564,
+      "duration": 3.864
+    },
+    "The correct answer is 250 kt / M 0.60. 250 kt / M 0.60": {
+      "file": "assets/voice/pack-12.mp3",
+      "start": 18.678,
+      "duration": 9.168
+    },
+    "What is the maximum speed for gear retraction (VLO)?": {
+      "file": "assets/voice/pack-12.mp3",
+      "start": 28.096,
+      "duration": 3.768
+    },
+    "230 kt / M 0.60": {
+      "file": "assets/voice/pack-12.mp3",
+      "start": 32.114,
+      "duration": 4.056
+    },
+    "The correct answer is 220 kt / M 0.54. 220 kt / M 0.54": {
+      "file": "assets/voice/pack-12.mp3",
+      "start": 36.419999999999995,
+      "duration": 8.568
+    },
+    "What is the maximum tyre ground speed?": {
+      "file": "assets/voice/pack-12.mp3",
+      "start": 45.23799999999999,
+      "duration": 3.36
+    },
+    "210 kt": {
+      "file": "assets/voice/pack-12.mp3",
+      "start": 48.84799999999999,
+      "duration": 2.304
+    },
+    "What is VMCL in the cited minimum control speed table?": {
+      "file": "assets/voice/pack-12.mp3",
+      "start": 51.401999999999994,
+      "duration": 5.064
+    },
+    "114 kt": {
+      "file": "assets/voice/pack-13.mp3",
+      "start": 0,
+      "duration": 1.968
+    },
+    "110 kt": {
+      "file": "assets/voice/pack-13.mp3",
+      "start": 2.218,
+      "duration": 2.16
+    },
+    "118 kt": {
+      "file": "assets/voice/pack-13.mp3",
+      "start": 4.628,
+      "duration": 2.064
+    },
+    "123 kt": {
+      "file": "assets/voice/pack-13.mp3",
+      "start": 6.942,
+      "duration": 2.352
+    },
+    "The correct answer is 114 kt. 114 kt": {
+      "file": "assets/voice/pack-13.mp3",
+      "start": 9.544,
+      "duration": 5.76
+    },
+    "What is the maximum taxi weight in the supplied FCOM?": {
+      "file": "assets/voice/pack-13.mp3",
+      "start": 15.554,
+      "duration": 3.816
+    },
+    "93,400 kg": {
+      "file": "assets/voice/pack-13.mp3",
+      "start": 19.62,
+      "duration": 2.712
+    },
+    "93,000 kg": {
+      "file": "assets/voice/pack-13.mp3",
+      "start": 22.582,
+      "duration": 2.712
+    },
+    "77,800 kg": {
+      "file": "assets/voice/pack-13.mp3",
+      "start": 25.544,
+      "duration": 3.264
+    },
+    "73,800 kg": {
+      "file": "assets/voice/pack-13.mp3",
+      "start": 29.058,
+      "duration": 3.12
+    },
+    "The correct answer is 93,400 kg. Applicable to ALL in this manual. Use the approved aircraft-specific weight schedule for operations.": {
+      "file": "assets/voice/pack-14.mp3",
+      "start": 0,
+      "duration": 10.464
+    },
+    "What is the maximum takeoff at brake release weight in the supplied FCOM?": {
+      "file": "assets/voice/pack-14.mp3",
+      "start": 10.714,
+      "duration": 5.448
+    },
+    "The correct answer is 93,000 kg. Applicable to ALL in this manual. Use the approved aircraft-specific weight schedule for operations.": {
+      "file": "assets/voice/pack-14.mp3",
+      "start": 16.412,
+      "duration": 11.208
+    },
+    "What is the maximum landing weight in the supplied FCOM?": {
+      "file": "assets/voice/pack-14.mp3",
+      "start": 27.869999999999997,
+      "duration": 4.152
+    },
+    "The correct answer is 77,800 kg. Applicable to ALL in this manual. Use the approved aircraft-specific weight schedule for operations.": {
+      "file": "assets/voice/pack-14.mp3",
+      "start": 32.272,
+      "duration": 10.752
+    },
+    "What is the maximum zero fuel weight in the supplied FCOM?": {
+      "file": "assets/voice/pack-14.mp3",
+      "start": 43.274,
+      "duration": 3.912
+    },
+    "The correct answer is 73,800 kg. Applicable to ALL in this manual. Use the approved aircraft-specific weight schedule for operations.": {
+      "file": "assets/voice/pack-14.mp3",
+      "start": 47.436,
+      "duration": 10.752
+    },
+    "What is the minimum aircraft weight in the supplied FCOM?": {
+      "file": "assets/voice/pack-14.mp3",
+      "start": 58.438,
+      "duration": 3.912
+    },
+    "47,500 kg": {
+      "file": "assets/voice/pack-14.mp3",
+      "start": 62.6,
+      "duration": 3.312
+    },
+    "45,000 kg": {
+      "file": "assets/voice/pack-14.mp3",
+      "start": 66.162,
+      "duration": 2.352
+    },
+    "50,000 kg": {
+      "file": "assets/voice/pack-15.mp3",
+      "start": 0,
+      "duration": 3.312
+    },
+    "52,500 kg": {
+      "file": "assets/voice/pack-15.mp3",
+      "start": 3.562,
+      "duration": 3.168
+    },
+    "The correct answer is 47,500 kg. 47,500 kg": {
+      "file": "assets/voice/pack-15.mp3",
+      "start": 6.98,
+      "duration": 7.248
+    },
+    "May APU bleed and an HP air start unit supply bleed air at the same time?": {
+      "file": "assets/voice/pack-15.mp3",
+      "start": 14.478000000000002,
+      "duration": 5.904
+    },
+    "No": {
+      "file": "assets/voice/pack-15.mp3",
+      "start": 20.632,
+      "duration": 0.816
+    },
+    "Yes, with packs off": {
+      "file": "assets/voice/pack-15.mp3",
+      "start": 21.698,
+      "duration": 2.568
+    },
+    "Yes, below 10,000 ft": {
+      "file": "assets/voice/pack-15.mp3",
+      "start": 24.516000000000002,
+      "duration": 2.904
+    },
+    "Yes, for a maximum of 5 min": {
+      "file": "assets/voice/pack-15.mp3",
+      "start": 27.67,
+      "duration": 3.6
+    },
+    "The correct answer is No. No": {
+      "file": "assets/voice/pack-15.mp3",
+      "start": 31.520000000000003,
+      "duration": 2.904
+    },
+    "Maximum positive cabin differential pressure?": {
+      "file": "assets/voice/pack-15.mp3",
+      "start": 34.67400000000001,
+      "duration": 3.216
+    },
+    "9.0 psi": {
+      "file": "assets/voice/pack-16.mp3",
+      "start": 0,
+      "duration": 2.952
+    },
+    "8.6 psi": {
+      "file": "assets/voice/pack-16.mp3",
+      "start": 3.202,
+      "duration": 2.16
+    },
+    "8.0 psi": {
+      "file": "assets/voice/pack-16.mp3",
+      "start": 5.612,
+      "duration": 2.664
+    },
+    "9.5 psi": {
+      "file": "assets/voice/pack-16.mp3",
+      "start": 8.526,
+      "duration": 2.208
+    },
+    "The correct answer is 9.0 psi. Values match both registration groups. The maximum differential pressure and safety-valve setting tolerance is ±0.1 psi.": {
+      "file": "assets/voice/pack-16.mp3",
+      "start": 10.984,
+      "duration": 11.4
+    },
+    "Maximum negative cabin differential pressure?": {
+      "file": "assets/voice/pack-16.mp3",
+      "start": 22.634,
+      "duration": 2.904
+    },
+    "−1.0 psi": {
+      "file": "assets/voice/pack-16.mp3",
+      "start": 25.788,
+      "duration": 2.712
+    },
+    "−0.5 psi": {
+      "file": "assets/voice/pack-16.mp3",
+      "start": 28.75,
+      "duration": 3.048
+    },
+    "−1.5 psi": {
+      "file": "assets/voice/pack-16.mp3",
+      "start": 32.048,
+      "duration": 2.952
+    },
+    "−2.0 psi": {
+      "file": "assets/voice/pack-16.mp3",
+      "start": 35.25,
+      "duration": 2.616
+    },
+    "The correct answer is −1.0 psi. Values match both registration groups. The maximum differential pressure and safety-valve setting tolerance is ±0.1 psi.": {
+      "file": "assets/voice/pack-17.mp3",
+      "start": 0,
+      "duration": 14.448
+    },
+    "Cabin safety relief valve setting?": {
+      "file": "assets/voice/pack-17.mp3",
+      "start": 14.698,
+      "duration": 3.12
+    },
+    "The correct answer is 8.6 psi. Values match both registration groups. The maximum differential pressure and safety-valve setting tolerance is ±0.1 psi.": {
+      "file": "assets/voice/pack-17.mp3",
+      "start": 18.068,
+      "duration": 14.112
+    },
+    "At OAT 44°C on the ground, how long may electrical power be used in normal avionics ventilation configuration? Variant note: This ventilation table applies to VH-XF4.": {
+      "file": "assets/voice/pack-17.mp3",
+      "start": 32.43,
+      "duration": 13.368
+    },
+    "2 h": {
+      "file": "assets/voice/pack-17.mp3",
+      "start": 46.048,
+      "duration": 1.248
+    },
+    "No time limit": {
+      "file": "assets/voice/pack-17.mp3",
+      "start": 47.546,
+      "duration": 2.016
+    },
+    "1 h": {
+      "file": "assets/voice/pack-17.mp3",
+      "start": 49.812,
+      "duration": 1.56
+    },
+    "30 min": {
+      "file": "assets/voice/pack-17.mp3",
+      "start": 51.622,
+      "duration": 2.568
+    },
+    "The correct answer is 2 h. VH-XF4 uses a different temperature/time table: above 41°C through 46°C, 2 h.": {
+      "file": "assets/voice/pack-17.mp3",
+      "start": 54.44,
+      "duration": 10.512
+    },
+    "At OAT 50°C on the ground, what is the time limit in normal avionics ventilation configuration? Variant note: This ventilation table applies to VH-XF4.": {
+      "file": "assets/voice/pack-17.mp3",
+      "start": 65.202,
+      "duration": 11.568
+    },
+    "The correct answer is 1 h. Above 46°C through 51°C: 1 h.": {
+      "file": "assets/voice/pack-18.mp3",
+      "start": 0,
+      "duration": 8.016
+    },
+    "At OAT 53°C, what is the ground time limit in normal avionics ventilation configuration? Variant note: This ventilation table applies to VH-ULD, VH-ULW, VH-ULY, VH-XF5, VH-XF6.": {
+      "file": "assets/voice/pack-18.mp3",
+      "start": 8.266,
+      "duration": 18.408
+    },
+    "The correct answer is 2 h. Above 49°C through 55°C: 2 h.": {
+      "file": "assets/voice/pack-18.mp3",
+      "start": 26.924,
+      "duration": 7.056
+    },
+    "After three consecutive APU start attempts, how long must you wait before another attempt?": {
+      "file": "assets/voice/pack-18.mp3",
+      "start": 34.23,
+      "duration": 6.552
+    },
+    "60 min": {
+      "file": "assets/voice/pack-18.mp3",
+      "start": 41.032,
+      "duration": 1.512
+    },
+    "15 min": {
+      "file": "assets/voice/pack-18.mp3",
+      "start": 42.794,
+      "duration": 1.656
+    },
+    "5 min": {
+      "file": "assets/voice/pack-18.mp3",
+      "start": 44.699999999999996,
+      "duration": 1.368
+    },
+    "The correct answer is 60 min. 60 min": {
+      "file": "assets/voice/pack-18.mp3",
+      "start": 46.318,
+      "duration": 3.36
+    },
+    "What is the maximum APU rotor speed?": {
+      "file": "assets/voice/pack-18.mp3",
+      "start": 49.928,
+      "duration": 3.168
+    },
+    "107%": {
+      "file": "assets/voice/pack-18.mp3",
+      "start": 53.346,
+      "duration": 2.448
+    },
+    "100%": {
+      "file": "assets/voice/pack-19.mp3",
+      "start": 0,
+      "duration": 1.512
+    },
+    "105%": {
+      "file": "assets/voice/pack-19.mp3",
+      "start": 1.762,
+      "duration": 1.92
+    },
+    "110%": {
+      "file": "assets/voice/pack-19.mp3",
+      "start": 3.932,
+      "duration": 1.8
+    },
+    "The correct answer is 107%. 107%": {
+      "file": "assets/voice/pack-19.mp3",
+      "start": 5.981999999999999,
+      "duration": 5.256
+    },
+    "APU start below 35,000 ft: maximum EGT?": {
+      "file": "assets/voice/pack-19.mp3",
+      "start": 11.488,
+      "duration": 4.968
+    },
+    "1,090°C": {
+      "file": "assets/voice/pack-19.mp3",
+      "start": 16.706,
+      "duration": 2.664
+    },
+    "1,120°C": {
+      "file": "assets/voice/pack-19.mp3",
+      "start": 19.62,
+      "duration": 3.048
+    },
+    "675°C": {
+      "file": "assets/voice/pack-19.mp3",
+      "start": 22.918,
+      "duration": 3.168
+    },
+    "1,000°C": {
+      "file": "assets/voice/pack-19.mp3",
+      "start": 26.336,
+      "duration": 2.304
+    },
+    "The correct answer is 1,090°C. 1,090°C": {
+      "file": "assets/voice/pack-19.mp3",
+      "start": 28.889999999999997,
+      "duration": 6.168
+    },
+    "APU start above 35,000 ft: maximum EGT?": {
+      "file": "assets/voice/pack-20.mp3",
+      "start": 0,
+      "duration": 4.464
+    },
+    "The correct answer is 1,120°C. 1,120°C": {
+      "file": "assets/voice/pack-20.mp3",
+      "start": 4.714,
+      "duration": 7.32
+    },
+    "APU running: maximum EGT?": {
+      "file": "assets/voice/pack-20.mp3",
+      "start": 12.284,
+      "duration": 3.216
+    },
+    "650°C": {
+      "file": "assets/voice/pack-20.mp3",
+      "start": 15.75,
+      "duration": 2.904
+    },
+    "705°C": {
+      "file": "assets/voice/pack-20.mp3",
+      "start": 18.904,
+      "duration": 3.36
+    },
+    "The correct answer is 675°C. 675°C": {
+      "file": "assets/voice/pack-20.mp3",
+      "start": 22.514,
+      "duration": 7.2
+    },
+    "During refuelling/defuelling, what is required following an APU failed start or automatic shutdown?": {
+      "file": "assets/voice/pack-20.mp3",
+      "start": 29.964,
+      "duration": 7.56
+    },
+    "Do not start the APU": {
+      "file": "assets/voice/pack-20.mp3",
+      "start": 37.774,
+      "duration": 2.808
+    },
+    "Retry once immediately": {
+      "file": "assets/voice/pack-20.mp3",
+      "start": 40.832,
+      "duration": 2.4
+    },
+    "Wait 15 s then retry": {
+      "file": "assets/voice/pack-20.mp3",
+      "start": 43.482,
+      "duration": 3.264
+    },
+    "Start with bleed off": {
+      "file": "assets/voice/pack-21.mp3",
+      "start": 0,
+      "duration": 2.448
+    },
+    "The correct answer is Do not start the APU. Do not start the APU": {
+      "file": "assets/voice/pack-21.mp3",
+      "start": 2.698,
+      "duration": 6
+    },
+    "If a fuel spill occurs during refuelling/defuelling with the APU running, what is required?": {
+      "file": "assets/voice/pack-21.mp3",
+      "start": 8.948,
+      "duration": 6.456
+    },
+    "Perform a normal APU shutdown": {
+      "file": "assets/voice/pack-21.mp3",
+      "start": 15.654,
+      "duration": 2.712
+    },
+    "Continue running with bleed off": {
+      "file": "assets/voice/pack-21.mp3",
+      "start": 18.616,
+      "duration": 3.264
+    },
+    "Increase APU load": {
+      "file": "assets/voice/pack-21.mp3",
+      "start": 22.13,
+      "duration": 2.064
+    },
+    "Always discharge the APU fire bottle": {
+      "file": "assets/voice/pack-21.mp3",
+      "start": 24.444,
+      "duration": 3.216
+    },
+    "The correct answer is Perform a normal APU shutdown. Perform a normal APU shutdown": {
+      "file": "assets/voice/pack-21.mp3",
+      "start": 27.91,
+      "duration": 7.752
+    },
+    "Takeoff/go-around thrust: maximum time with all engines operative?": {
+      "file": "assets/voice/pack-21.mp3",
+      "start": 35.912,
+      "duration": 5.016
+    },
+    "10 min": {
+      "file": "assets/voice/pack-21.mp3",
+      "start": 41.178,
+      "duration": 1.752
+    },
+    "3 min": {
+      "file": "assets/voice/pack-22.mp3",
+      "start": 0,
+      "duration": 2.52
+    },
+    "Not time limited": {
+      "file": "assets/voice/pack-22.mp3",
+      "start": 2.77,
+      "duration": 2.208
+    },
+    "The correct answer is 5 min. 5 min": {
+      "file": "assets/voice/pack-22.mp3",
+      "start": 5.228,
+      "duration": 3.456
+    },
+    "Takeoff/go-around thrust: maximum time with one engine inoperative?": {
+      "file": "assets/voice/pack-22.mp3",
+      "start": 8.934,
+      "duration": 5.016
+    },
+    "The correct answer is 10 min. 10 min": {
+      "file": "assets/voice/pack-22.mp3",
+      "start": 14.2,
+      "duration": 3.72
+    },
+    "Takeoff/go-around: maximum EGT?": {
+      "file": "assets/voice/pack-22.mp3",
+      "start": 18.169999999999998,
+      "duration": 3.216
+    },
+    "610°C": {
+      "file": "assets/voice/pack-22.mp3",
+      "start": 21.636,
+      "duration": 2.568
+    },
+    "635°C": {
+      "file": "assets/voice/pack-22.mp3",
+      "start": 24.454,
+      "duration": 2.616
+    },
+    "The correct answer is 650°C. 650°C": {
+      "file": "assets/voice/pack-22.mp3",
+      "start": 27.32,
+      "duration": 6.552
+    },
+    "Maximum continuous thrust: EGT limit?": {
+      "file": "assets/voice/pack-22.mp3",
+      "start": 34.122,
+      "duration": 3.312
+    },
+    "600°C": {
+      "file": "assets/voice/pack-23.mp3",
+      "start": 0,
+      "duration": 2.4
+    },
+    "The correct answer is 610°C. 610°C": {
+      "file": "assets/voice/pack-23.mp3",
+      "start": 2.65,
+      "duration": 6.36
+    },
+    "Engine starting: EGT limit?": {
+      "file": "assets/voice/pack-23.mp3",
+      "start": 9.26,
+      "duration": 3.12
+    },
+    "The correct answer is 635°C. 635°C": {
+      "file": "assets/voice/pack-23.mp3",
+      "start": 12.629999999999999,
+      "duration": 7.248
+    },
+    "Maximum N1 in the supplied engine limitations?": {
+      "file": "assets/voice/pack-23.mp3",
+      "start": 20.128,
+      "duration": 4.248
+    },
+    "102%": {
+      "file": "assets/voice/pack-23.mp3",
+      "start": 24.626,
+      "duration": 1.752
+    },
+    "The correct answer is 100%. See the original table. Ambient conditions and bleed configuration may limit N1 below the stated maximum.": {
+      "file": "assets/voice/pack-23.mp3",
+      "start": 26.628,
+      "duration": 9.408
+    },
+    "Maximum N2 in the supplied engine limitations?": {
+      "file": "assets/voice/pack-23.mp3",
+      "start": 36.286,
+      "duration": 4.248
+    },
+    "The correct answer is 100%. 100%": {
+      "file": "assets/voice/pack-23.mp3",
+      "start": 40.784,
+      "duration": 4.704
+    },
+    "Maximum continuous engine oil temperature?": {
+      "file": "assets/voice/pack-23.mp3",
+      "start": 45.738,
+      "duration": 3.6
+    },
+    "155°C": {
+      "file": "assets/voice/pack-24.mp3",
+      "start": 0,
+      "duration": 3.216
+    },
+    "165°C": {
+      "file": "assets/voice/pack-24.mp3",
+      "start": 3.466,
+      "duration": 2.616
+    },
+    "140°C": {
+      "file": "assets/voice/pack-24.mp3",
+      "start": 6.332000000000001,
+      "duration": 3.456
+    },
+    "150°C": {
+      "file": "assets/voice/pack-24.mp3",
+      "start": 10.038,
+      "duration": 2.76
+    },
+    "The correct answer is 155°C. 155°C": {
+      "file": "assets/voice/pack-24.mp3",
+      "start": 13.048,
+      "duration": 7.8
+    },
+    "Maximum transient oil temperature for 15 min?": {
+      "file": "assets/voice/pack-24.mp3",
+      "start": 21.098,
+      "duration": 3.12
+    },
+    "160°C": {
+      "file": "assets/voice/pack-24.mp3",
+      "start": 24.468,
+      "duration": 3
+    },
+    "170°C": {
+      "file": "assets/voice/pack-24.mp3",
+      "start": 27.718,
+      "duration": 2.856
+    },
+    "The correct answer is 165°C. 165°C": {
+      "file": "assets/voice/pack-24.mp3",
+      "start": 30.823999999999998,
+      "duration": 7.512
+    },
+    "Minimum oil temperature for starting?": {
+      "file": "assets/voice/pack-24.mp3",
+      "start": 38.586,
+      "duration": 2.76
+    },
+    "−40°C": {
+      "file": "assets/voice/pack-25.mp3",
+      "start": 0,
+      "duration": 3
+    },
+    "−10°C": {
+      "file": "assets/voice/pack-25.mp3",
+      "start": 3.25,
+      "duration": 3.312
+    },
+    "0°C": {
+      "file": "assets/voice/pack-25.mp3",
+      "start": 6.811999999999999,
+      "duration": 2.4
+    },
+    "−54°C": {
+      "file": "assets/voice/pack-25.mp3",
+      "start": 9.462,
+      "duration": 3.36
+    },
+    "The correct answer is −40°C. −40°C": {
+      "file": "assets/voice/pack-25.mp3",
+      "start": 13.072,
+      "duration": 5.568
+    },
+    "Minimum oil temperature before exceeding idle?": {
+      "file": "assets/voice/pack-25.mp3",
+      "start": 18.89,
+      "duration": 3.552
+    },
+    "50°C": {
+      "file": "assets/voice/pack-25.mp3",
+      "start": 22.692,
+      "duration": 2.208
+    },
+    "The correct answer is −10°C. −10°C": {
+      "file": "assets/voice/pack-25.mp3",
+      "start": 25.15,
+      "duration": 5.4
+    },
+    "Minimum oil temperature before takeoff?": {
+      "file": "assets/voice/pack-25.mp3",
+      "start": 30.799999999999997,
+      "duration": 3.12
+    },
+    "40°C": {
+      "file": "assets/voice/pack-25.mp3",
+      "start": 34.169999999999995,
+      "duration": 2.208
+    },
+    "60°C": {
+      "file": "assets/voice/pack-26.mp3",
+      "start": 0,
+      "duration": 1.848
+    },
+    "The correct answer is 50°C. 50°C": {
+      "file": "assets/voice/pack-26.mp3",
+      "start": 2.098,
+      "duration": 6.312
+    },
+    "Minimum engine oil pressure?": {
+      "file": "assets/voice/pack-26.mp3",
+      "start": 8.66,
+      "duration": 2.352
+    },
+    "60 psi": {
+      "file": "assets/voice/pack-26.mp3",
+      "start": 11.262,
+      "duration": 1.656
+    },
+    "50 psi": {
+      "file": "assets/voice/pack-26.mp3",
+      "start": 13.168000000000001,
+      "duration": 2.304
+    },
+    "40 psi": {
+      "file": "assets/voice/pack-26.mp3",
+      "start": 15.722000000000001,
+      "duration": 1.656
+    },
+    "80 psi": {
+      "file": "assets/voice/pack-26.mp3",
+      "start": 17.628,
+      "duration": 2.064
+    },
+    "The correct answer is 60 psi. 60 psi": {
+      "file": "assets/voice/pack-26.mp3",
+      "start": 19.942,
+      "duration": 4.848
+    },
+    "Minimum engine oil quantity?": {
+      "file": "assets/voice/pack-26.mp3",
+      "start": 25.04,
+      "duration": 2.16
+    },
+    "11 qt + estimated consumption": {
+      "file": "assets/voice/pack-26.mp3",
+      "start": 27.45,
+      "duration": 3.216
+    },
+    "10 qt + estimated consumption": {
+      "file": "assets/voice/pack-27.mp3",
+      "start": 0,
+      "duration": 3.312
+    },
+    "13 qt + estimated consumption": {
+      "file": "assets/voice/pack-27.mp3",
+      "start": 3.562,
+      "duration": 3.264
+    },
+    "11 qt regardless of flight time": {
+      "file": "assets/voice/pack-27.mp3",
+      "start": 7.076,
+      "duration": 3.504
+    },
+    "The correct answer is 11 qt + estimated consumption. 11 qt + estimated consumption": {
+      "file": "assets/voice/pack-27.mp3",
+      "start": 10.83,
+      "duration": 7.92
+    },
+    "Average estimated engine oil consumption used in this limitation?": {
+      "file": "assets/voice/pack-27.mp3",
+      "start": 19,
+      "duration": 4.8
+    },
+    "0.3 qt/h": {
+      "file": "assets/voice/pack-27.mp3",
+      "start": 24.05,
+      "duration": 3.816
+    },
+    "0.5 qt/h": {
+      "file": "assets/voice/pack-27.mp3",
+      "start": 28.116,
+      "duration": 2.664
+    },
+    "0.2 qt/h": {
+      "file": "assets/voice/pack-27.mp3",
+      "start": 31.03,
+      "duration": 2.448
+    },
+    "1.0 qt/h": {
+      "file": "assets/voice/pack-27.mp3",
+      "start": 33.728,
+      "duration": 3.048
+    },
+    "The correct answer is 0.3 qt/h. 0.3 qt/h": {
+      "file": "assets/voice/pack-27.mp3",
+      "start": 37.026,
+      "duration": 5.76
+    },
+    "Ground engine starts: pause between successive starter cycles?": {
+      "file": "assets/voice/pack-28.mp3",
+      "start": 0,
+      "duration": 4.248
+    },
+    "15 s": {
+      "file": "assets/voice/pack-28.mp3",
+      "start": 4.498,
+      "duration": 1.656
+    },
+    "30 s": {
+      "file": "assets/voice/pack-28.mp3",
+      "start": 6.404,
+      "duration": 2.208
+    },
+    "60 s": {
+      "file": "assets/voice/pack-28.mp3",
+      "start": 8.862,
+      "duration": 2.112
+    },
+    "120 s": {
+      "file": "assets/voice/pack-28.mp3",
+      "start": 11.224,
+      "duration": 2.304
+    },
+    "The correct answer is 15 s. 15 s": {
+      "file": "assets/voice/pack-28.mp3",
+      "start": 13.778,
+      "duration": 4.248
+    },
+    "Starter cooling after three failed cycles, 4 min continuous or 5 min cumulative cranking?": {
+      "file": "assets/voice/pack-28.mp3",
+      "start": 18.276,
+      "duration": 6.72
+    },
+    "The correct answer is 30 min. 30 min": {
+      "file": "assets/voice/pack-28.mp3",
+      "start": 25.246,
+      "duration": 3.72
+    },
+    "Manual engine start: maximum starter cycle time?": {
+      "file": "assets/voice/pack-28.mp3",
+      "start": 29.215999999999998,
+      "duration": 3.864
+    },
+    "2 min": {
+      "file": "assets/voice/pack-28.mp3",
+      "start": 33.33,
+      "duration": 1.752
+    },
+    "4 min": {
+      "file": "assets/voice/pack-29.mp3",
+      "start": 0,
+      "duration": 1.752
+    },
+    "The correct answer is 2 min. 2 min": {
+      "file": "assets/voice/pack-29.mp3",
+      "start": 2.002,
+      "duration": 3
+    },
+    "Above what N2 must the starter not be run on the ground?": {
+      "file": "assets/voice/pack-29.mp3",
+      "start": 5.252,
+      "duration": 4.464
+    },
+    "10%": {
+      "file": "assets/voice/pack-29.mp3",
+      "start": 9.966000000000001,
+      "duration": 1.848
+    },
+    "18%": {
+      "file": "assets/voice/pack-29.mp3",
+      "start": 12.064,
+      "duration": 2.16
+    },
+    "20%": {
+      "file": "assets/voice/pack-29.mp3",
+      "start": 14.474,
+      "duration": 1.464
+    },
+    "25%": {
+      "file": "assets/voice/pack-29.mp3",
+      "start": 16.188,
+      "duration": 1.416
+    },
+    "The correct answer is 10%. 10%": {
+      "file": "assets/voice/pack-29.mp3",
+      "start": 17.854,
+      "duration": 3.456
+    },
+    "Above what N2 must the starter not be run in flight?": {
+      "file": "assets/voice/pack-29.mp3",
+      "start": 21.56,
+      "duration": 4.2
+    },
+    "The correct answer is 18%. 18%": {
+      "file": "assets/voice/pack-29.mp3",
+      "start": 26.009999999999998,
+      "duration": 4.008
+    },
+    "Below what speed should maximum reverse thrust not be used?": {
+      "file": "assets/voice/pack-30.mp3",
+      "start": 0,
+      "duration": 4.656
+    },
+    "70 kt": {
+      "file": "assets/voice/pack-30.mp3",
+      "start": 4.906,
+      "duration": 1.968
+    },
+    "80 kt": {
+      "file": "assets/voice/pack-30.mp3",
+      "start": 7.124,
+      "duration": 1.368
+    },
+    "90 kt": {
+      "file": "assets/voice/pack-30.mp3",
+      "start": 8.741999999999999,
+      "duration": 1.656
+    },
+    "The correct answer is 70 kt. 70 kt": {
+      "file": "assets/voice/pack-30.mp3",
+      "start": 10.648,
+      "duration": 4.8
+    },
+    "Where is FLEX takeoff prohibited?": {
+      "file": "assets/voice/pack-30.mp3",
+      "start": 15.698,
+      "duration": 3.408
+    },
+    "On contaminated runways": {
+      "file": "assets/voice/pack-30.mp3",
+      "start": 19.356,
+      "duration": 2.568
+    },
+    "On all wet runways": {
+      "file": "assets/voice/pack-30.mp3",
+      "start": 22.174000000000003,
+      "duration": 2.4
+    },
+    "At night": {
+      "file": "assets/voice/pack-30.mp3",
+      "start": 24.824,
+      "duration": 1.368
+    },
+    "Whenever packs are on": {
+      "file": "assets/voice/pack-30.mp3",
+      "start": 26.442,
+      "duration": 2.352
+    },
+    "The correct answer is On contaminated runways. On contaminated runways": {
+      "file": "assets/voice/pack-31.mp3",
+      "start": 0,
+      "duration": 5.016
+    },
+    "What is the maximum flexible temperature TMAXFLEX?": {
+      "file": "assets/voice/pack-31.mp3",
+      "start": 5.266,
+      "duration": 3.912
+    },
+    "ISA + 42°C": {
+      "file": "assets/voice/pack-31.mp3",
+      "start": 9.428,
+      "duration": 3.912
+    },
+    "ISA + 40°C": {
+      "file": "assets/voice/pack-31.mp3",
+      "start": 13.59,
+      "duration": 3.048
+    },
+    "ISA + 50°C": {
+      "file": "assets/voice/pack-31.mp3",
+      "start": 16.887999999999998,
+      "duration": 3.168
+    },
+    "OAT + 42°C": {
+      "file": "assets/voice/pack-31.mp3",
+      "start": 20.305999999999997,
+      "duration": 3.36
+    },
+    "The correct answer is ISA + 42°C. TFLEX must also not be below TREF or actual OAT; performance requirements must be met.": {
+      "file": "assets/voice/pack-31.mp3",
+      "start": 23.915999999999997,
+      "duration": 10.8
+    },
+    "Can FLEX and derated takeoff be combined?": {
+      "file": "assets/voice/pack-31.mp3",
+      "start": 34.965999999999994,
+      "duration": 3.816
+    },
+    "Yes, on a dry runway": {
+      "file": "assets/voice/pack-31.mp3",
+      "start": 39.032,
+      "duration": 2.208
+    },
+    "Yes, if packs are off": {
+      "file": "assets/voice/pack-31.mp3",
+      "start": 41.489999999999995,
+      "duration": 3.216
+    },
+    "Yes, below 15°C": {
+      "file": "assets/voice/pack-32.mp3",
+      "start": 0,
+      "duration": 3.12
+    },
+    "What crosswind capability is stated for engine starting?": {
+      "file": "assets/voice/pack-32.mp3",
+      "start": 3.37,
+      "duration": 3.912
+    },
+    "Up to 35 kt": {
+      "file": "assets/voice/pack-32.mp3",
+      "start": 7.532,
+      "duration": 1.968
+    },
+    "Up to 38 kt": {
+      "file": "assets/voice/pack-32.mp3",
+      "start": 9.75,
+      "duration": 2.016
+    },
+    "Up to 40 kt": {
+      "file": "assets/voice/pack-32.mp3",
+      "start": 12.016,
+      "duration": 2.16
+    },
+    "Up to 29 kt": {
+      "file": "assets/voice/pack-32.mp3",
+      "start": 14.426,
+      "duration": 2.448
+    },
+    "The correct answer is Up to 35 kt. Up to 35 kt": {
+      "file": "assets/voice/pack-32.mp3",
+      "start": 17.124,
+      "duration": 4.056
+    },
+    "Maximum operating altitude with slats and/or flaps extended?": {
+      "file": "assets/voice/pack-32.mp3",
+      "start": 21.43,
+      "duration": 5.4
+    },
+    "20,000 ft": {
+      "file": "assets/voice/pack-32.mp3",
+      "start": 27.08,
+      "duration": 2.016
+    },
+    "25,000 ft": {
+      "file": "assets/voice/pack-32.mp3",
+      "start": 29.345999999999997,
+      "duration": 1.968
+    },
+    "15,000 ft": {
+      "file": "assets/voice/pack-33.mp3",
+      "start": 0,
+      "duration": 2.112
+    },
+    "22,000 ft": {
+      "file": "assets/voice/pack-33.mp3",
+      "start": 2.362,
+      "duration": 2.52
+    },
+    "The correct answer is 20,000 ft. 20,000 ft": {
+      "file": "assets/voice/pack-33.mp3",
+      "start": 5.132,
+      "duration": 4.968
+    },
+    "What is the maximum number of additional occupants, excluding the two operating flight crew?": {
+      "file": "assets/voice/pack-33.mp3",
+      "start": 10.35,
+      "duration": 6.216
+    },
+    "The correct answer is 3. Subject to the accepted categories, installed seats and briefing requirements in the full freighter limitations.": {
+      "file": "assets/voice/pack-33.mp3",
+      "start": 16.816,
+      "duration": 9.312
+    },
+    "Minimum fuel temperature for unmixed JET A1 / JP8 / No. 3 JET?": {
+      "file": "assets/voice/pack-33.mp3",
+      "start": 26.378,
+      "duration": 5.952
+    },
+    "-43°C": {
+      "file": "assets/voice/pack-33.mp3",
+      "start": 32.58,
+      "duration": 2.952
+    },
+    "-36°C": {
+      "file": "assets/voice/pack-33.mp3",
+      "start": 35.782,
+      "duration": 3.312
+    },
+    "-45°C": {
+      "file": "assets/voice/pack-33.mp3",
+      "start": 39.343999999999994,
+      "duration": 2.712
+    },
+    "-54°C": {
+      "file": "assets/voice/pack-33.mp3",
+      "start": 42.306,
+      "duration": 3.36
+    },
+    "The correct answer is -43°C. For mixtures, the minimum fuel-specification values in the table no longer apply.": {
+      "file": "assets/voice/pack-34.mp3",
+      "start": 0,
+      "duration": 9.408
+    },
+    "Minimum fuel temperature for unmixed JET A?": {
+      "file": "assets/voice/pack-34.mp3",
+      "start": 9.658,
+      "duration": 3.768
+    },
+    "The correct answer is -36°C. For mixtures, the minimum fuel-specification values in the table no longer apply.": {
+      "file": "assets/voice/pack-34.mp3",
+      "start": 13.675999999999998,
+      "duration": 9.456
+    },
+    "Minimum fuel temperature for unmixed JP5?": {
+      "file": "assets/voice/pack-34.mp3",
+      "start": 23.381999999999998,
+      "duration": 3.504
+    },
+    "-42°C": {
+      "file": "assets/voice/pack-34.mp3",
+      "start": 27.136,
+      "duration": 3.36
+    },
+    "The correct answer is -42°C. For mixtures, the minimum fuel-specification values in the table no longer apply.": {
+      "file": "assets/voice/pack-34.mp3",
+      "start": 30.746,
+      "duration": 8.52
+    },
+    "Minimum fuel temperature for unmixed RT / TS-1?": {
+      "file": "assets/voice/pack-34.mp3",
+      "start": 39.516,
+      "duration": 4.848
+    },
+    "The correct answer is -45°C. For mixtures, the minimum fuel-specification values in the table no longer apply.": {
+      "file": "assets/voice/pack-34.mp3",
+      "start": 44.614,
+      "duration": 9.408
+    },
+    "Minimum fuel temperature for unmixed JET B?": {
+      "file": "assets/voice/pack-34.mp3",
+      "start": 54.272,
+      "duration": 3.048
+    },
+    "-46°C": {
+      "file": "assets/voice/pack-34.mp3",
+      "start": 57.57,
+      "duration": 3.048
+    },
+    "The correct answer is -46°C. For mixtures, the minimum fuel-specification values in the table no longer apply.": {
+      "file": "assets/voice/pack-35.mp3",
+      "start": 0,
+      "duration": 8.76
+    },
+    "Minimum fuel temperature for unmixed JP4?": {
+      "file": "assets/voice/pack-35.mp3",
+      "start": 9.01,
+      "duration": 3.312
+    },
+    "The correct answer is -54°C. For mixtures, the minimum fuel-specification values in the table no longer apply.": {
+      "file": "assets/voice/pack-35.mp3",
+      "start": 12.572,
+      "duration": 8.016
+    },
+    "Maximum fuel temperature?": {
+      "file": "assets/voice/pack-35.mp3",
+      "start": 20.838,
+      "duration": 2.016
+    },
+    "54°C": {
+      "file": "assets/voice/pack-35.mp3",
+      "start": 23.104,
+      "duration": 2.568
+    },
+    "49°C": {
+      "file": "assets/voice/pack-35.mp3",
+      "start": 25.922,
+      "duration": 2.4
+    },
+    "64°C": {
+      "file": "assets/voice/pack-35.mp3",
+      "start": 28.572,
+      "duration": 2.568
+    },
+    "The correct answer is 54°C. 54°C": {
+      "file": "assets/voice/pack-35.mp3",
+      "start": 31.39,
+      "duration": 6.048
+    },
+    "Minimum total fuel quantity for takeoff?": {
+      "file": "assets/voice/pack-35.mp3",
+      "start": 37.688,
+      "duration": 3.12
+    },
+    "1,500 kg": {
+      "file": "assets/voice/pack-35.mp3",
+      "start": 41.058,
+      "duration": 2.52
+    },
+    "1,000 kg": {
+      "file": "assets/voice/pack-36.mp3",
+      "start": 0,
+      "duration": 2.52
+    },
+    "2,000 kg": {
+      "file": "assets/voice/pack-36.mp3",
+      "start": 2.77,
+      "duration": 2.352
+    },
+    "2,500 kg": {
+      "file": "assets/voice/pack-36.mp3",
+      "start": 5.372,
+      "duration": 2.664
+    },
+    "The correct answer is 1,500 kg. Fuel low-level alerts for the wing tanks must also not appear for takeoff.": {
+      "file": "assets/voice/pack-36.mp3",
+      "start": 8.286,
+      "duration": 8.208
+    },
+    "At takeoff with the heavier wing tank full, maximum allowed imbalance?": {
+      "file": "assets/voice/pack-36.mp3",
+      "start": 16.744,
+      "duration": 5.112
+    },
+    "300 kg": {
+      "file": "assets/voice/pack-36.mp3",
+      "start": 22.106,
+      "duration": 2.016
+    },
+    "600 kg": {
+      "file": "assets/voice/pack-36.mp3",
+      "start": 24.372,
+      "duration": 2.112
+    },
+    "850 kg": {
+      "file": "assets/voice/pack-36.mp3",
+      "start": 26.734,
+      "duration": 2.256
+    },
+    "The correct answer is 300 kg. 300 kg": {
+      "file": "assets/voice/pack-36.mp3",
+      "start": 29.240000000000002,
+      "duration": 2.952
+    },
+    "At takeoff with 700 kg in the heavier wing tank, maximum allowed imbalance?": {
+      "file": "assets/voice/pack-36.mp3",
+      "start": 32.442,
+      "duration": 5.952
+    },
+    "700 kg": {
+      "file": "assets/voice/pack-37.mp3",
+      "start": 0,
+      "duration": 2.448
+    },
+    "The correct answer is 600 kg. Variation between the table points is linear.": {
+      "file": "assets/voice/pack-37.mp3",
+      "start": 2.698,
+      "duration": 5.952
+    },
+    "In flight/landing with 2,350 kg in the heavier tank, maximum allowed imbalance?": {
+      "file": "assets/voice/pack-37.mp3",
+      "start": 8.9,
+      "duration": 7.848
+    },
+    "620 kg": {
+      "file": "assets/voice/pack-37.mp3",
+      "start": 16.998,
+      "duration": 2.208
+    },
+    "The correct answer is 850 kg. Variation between the table points is linear. Review the full table and failure note.": {
+      "file": "assets/voice/pack-37.mp3",
+      "start": 19.456000000000003,
+      "duration": 9.216
+    },
+    "What temperature threshold forms part of the icing-conditions definition?": {
+      "file": "assets/voice/pack-37.mp3",
+      "start": 28.922000000000004,
+      "duration": 4.848
+    },
+    "OAT on ground / TAT in flight at or below 10°C": {
+      "file": "assets/voice/pack-37.mp3",
+      "start": 34.02,
+      "duration": 5.904
+    },
+    "OAT/TAT below 0°C only": {
+      "file": "assets/voice/pack-37.mp3",
+      "start": 40.17400000000001,
+      "duration": 4.368
+    },
+    "SAT at or below −40°C only": {
+      "file": "assets/voice/pack-37.mp3",
+      "start": 44.79200000000001,
+      "duration": 3.96
+    },
+    "OAT/TAT at or below 5°C": {
+      "file": "assets/voice/pack-37.mp3",
+      "start": 49.00200000000001,
+      "duration": 4.704
+    },
+    "The correct answer is OAT on ground / TAT in flight at or below 10°C. The visible-moisture or ground-contamination conditions must also be met; temperature alone is not the definition.": {
+      "file": "assets/voice/pack-38.mp3",
+      "start": 0,
+      "duration": 13.152
+    },
+    "Approximately what ice thickness is defined as severe ice accretion?": {
+      "file": "assets/voice/pack-38.mp3",
+      "start": 13.402,
+      "duration": 4.464
+    },
+    "5 mm or more": {
+      "file": "assets/voice/pack-38.mp3",
+      "start": 18.116,
+      "duration": 2.664
+    },
+    "1 mm or more": {
+      "file": "assets/voice/pack-38.mp3",
+      "start": 21.03,
+      "duration": 2.352
+    },
+    "3 mm or more": {
+      "file": "assets/voice/pack-38.mp3",
+      "start": 23.632,
+      "duration": 2.016
+    },
+    "10 mm or more": {
+      "file": "assets/voice/pack-38.mp3",
+      "start": 25.898000000000003,
+      "duration": 2.52
+    },
+    "The correct answer is 5 mm or more. 5 mm or more": {
+      "file": "assets/voice/pack-38.mp3",
+      "start": 28.668000000000003,
+      "duration": 5.952
+    },
+    "When should rain repellent be used, if installed?": {
+      "file": "assets/voice/pack-38.mp3",
+      "start": 34.870000000000005,
+      "duration": 3.768
+    },
+    "Moderate to heavy rain": {
+      "file": "assets/voice/pack-38.mp3",
+      "start": 38.888000000000005,
+      "duration": 2.448
+    },
+    "Any visible moisture": {
+      "file": "assets/voice/pack-38.mp3",
+      "start": 41.586000000000006,
+      "duration": 2.16
+    },
+    "Light drizzle only": {
+      "file": "assets/voice/pack-39.mp3",
+      "start": 0,
+      "duration": 2.112
+    },
+    "On a dry windshield before rain": {
+      "file": "assets/voice/pack-39.mp3",
+      "start": 2.362,
+      "duration": 3
+    },
+    "The correct answer is Moderate to heavy rain. Moderate to heavy rain": {
+      "file": "assets/voice/pack-39.mp3",
+      "start": 5.612,
+      "duration": 5.16
+    },
+    "Maximum brake temperature for takeoff with brake fans off?": {
+      "file": "assets/voice/pack-39.mp3",
+      "start": 11.022,
+      "duration": 3.816
+    },
+    "300°C": {
+      "file": "assets/voice/pack-39.mp3",
+      "start": 15.088000000000001,
+      "duration": 2.616
+    },
+    "350°C": {
+      "file": "assets/voice/pack-39.mp3",
+      "start": 17.954,
+      "duration": 3.12
+    },
+    "500°C": {
+      "file": "assets/voice/pack-39.mp3",
+      "start": 21.324,
+      "duration": 2.064
+    },
+    "The correct answer is 300°C. 300°C": {
+      "file": "assets/voice/pack-39.mp3",
+      "start": 23.638,
+      "duration": 5.256
+    },
+    "Accepted towbarless towing vehicle operations: maximum NWS angle?": {
+      "file": "assets/voice/pack-39.mp3",
+      "start": 29.144000000000002,
+      "duration": 5.064
+    },
+    "±85°": {
+      "file": "assets/voice/pack-39.mp3",
+      "start": 34.458,
+      "duration": 2.112
+    },
+    "±75°": {
+      "file": "assets/voice/pack-40.mp3",
+      "start": 0,
+      "duration": 3.816
+    },
+    "±90°": {
+      "file": "assets/voice/pack-40.mp3",
+      "start": 4.066,
+      "duration": 2.616
+    },
+    "±95°": {
+      "file": "assets/voice/pack-40.mp3",
+      "start": 6.932,
+      "duration": 3.312
+    },
+    "The correct answer is ±85°. Applies to the approved towbarless operations described in the source; not the normal taxi steering angle.": {
+      "file": "assets/voice/pack-40.mp3",
+      "start": 10.494,
+      "duration": 10.2
+    }
+  },
+  "packVersion": 1
+}
