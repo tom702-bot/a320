@@ -3,3 +3,8 @@
 manuals/
 patterns/
 data/*-pages.json
+
+# Local API credentials must never be published.
+.env
+.env.*
+!.env.example

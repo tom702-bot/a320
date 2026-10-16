@@ -22,7 +22,13 @@ A personal study site built around the supplied FCOM, FCTM and QRH, FCOM and QRH
 
 Choose **Limitations → Start voice quiz**, then **Start voice**. The trainer reads each question and its displayed choices. Say a short answer such as “45 metres and 30 metres” or “45 and 30” for “45 m / 30 m.” The matcher accepts spoken numbers, common unit spellings and abbreviations, and “and” in place of a slash. All values must stay in order; signs, decimals and any supplied units must match. Unitless answers must identify exactly one choice. If ambiguous, it asks for a clearer answer. You can still say Alpha, Bravo, Charlie, Delta, or option one–four. Bare numbers are interpreted as answer values. Confirm the recognised choice before it is scored; say “try again” to change it. After spoken feedback, say “next,” “repeat,” or “pause.” Voice practice uses the unchanged limitations bank and Learn scoring. Buttons remain available at all times.
 
-Speech recognition depends on browser support, microphone permission and often an internet connection. Your browser may process audio through its speech service; the trainer stores neither audio nor transcripts. Read-aloud uses the device/browser voice. Pausing, navigating away, opening a manual or putting the page in the background stops audio and microphone capture. No API key is required.
+First choose **Prepare local speech** on Wi-Fi. This downloads the speech model and its software (approximately 65 MB); later visits can reuse the browser cache. Allow microphone access when answering. Speech is transcribed on the device with Whisper tiny.en. The trainer does not upload or save microphone audio or transcripts. Recognition speed depends on the device; answer buttons remain available.
+
+Questions, choices and feedback use saved OpenAI-generated voice recordings. These are downloaded as needed and played without a live AI account or API key. The voice is AI-generated. If a recording cannot load, the trainer can use an installed local device voice.
+
+For broader paraphrases, expand **Flexible wording & privacy** and choose **Enable flexible wording**. This optional small language model runs on the device through WebGPU and downloads several hundred MB on first use. It only matches the spoken answer to the displayed choices; the existing question bank supplies scoring. Numeric values, signs and supplied units must still match, and the recognised choice always requires confirmation. Downloaded models and software come from Hugging Face and jsDelivr. No server or live OpenAI connection is required. Offline operation depends on which recordings, software and models the browser has retained.
+
+Pausing, navigating away, opening a manual or putting the page in the background stops audio and microphone capture. Use a current browser with microphone recording support; the optional wording model also requires WebGPU.
 
 ## Source fidelity
 
@@ -32,6 +38,8 @@ The prior aircraft training payloads have been superseded by the new source set.
 
 ## Implementation
 
-Static HTML/CSS/JavaScript; no remote fonts, scripts, analytics or upload APIs. index.html and the two A321P2F standalone entry pages are identical. trainer.js owns the study experience; data/ contains navigation metadata and authored learning content. private-manuals.mjs uses locally bundled Mozilla PDF.js (Apache-2.0) to read selected File objects. sw.js caches the study shell and reader software. Never put manuals, extracted full page text or images of manual pages in the repository.
+Static HTML/CSS/JavaScript with no analytics or user-data upload API. Voice models and their libraries load from external hosts only when the user enables those features. index.html and the two A321P2F standalone entry pages are identical. trainer.js owns the study experience; data/ contains navigation metadata and authored learning content. private-manuals.mjs uses locally bundled Mozilla PDF.js (Apache-2.0) to read selected File objects. sw.js caches the study shell and reader software. Never put manuals, extracted full page text or images of manual pages in the repository.
+
+Saved voice assets are generated from the public question bank with `node tools/generate-voice-audio.mjs`, using an ignored local `.env.local` file containing `OPENAI_API_KEY`. Use `--plan` to inspect the text count without calling the API. Pack the generated clips with `node tools/pack-voice-audio.mjs <path-to-ffmpeg>`. These maintenance steps are unnecessary for visitors and must never publish the key.
 
 Run node validate-trainer.js for source integrity, page bounds, question structure, local links, branding and syntax checks. Run node test-trainer.js for application logic checks. Browser checks exercise full quizzes, flow recall, procedure navigation, manual readers, search and responsive layouts.
