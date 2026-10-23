@@ -1,5 +1,6 @@
 'use strict';
 require('./test-full-flight.js');
+require('./test-cache-upgrade.js');
 require('./test-voice-coach.js');
 require('./test-discussions.js');
 require('./test-line-quiz.js');
