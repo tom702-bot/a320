@@ -89,7 +89,7 @@ export function originalURL(id) {
   const record = requireManual(id);
   return record.url ||= URL.createObjectURL(record.blob);
 }
-export async function render(id, number, container) {
+export async function render(id, number, container, options = {}) {
   const pdf = await documentFor(id), page = await pdf.getPage(number);
   if (!container.isConnected) return;
   const natural = page.getViewport({ scale: 1 });
@@ -105,7 +105,19 @@ export async function render(id, number, container) {
   canvas.style.width = '100%'; canvas.style.height = 'auto';
   const context = canvas.getContext('2d');
   await page.render({ canvasContext: context, viewport, transform: ratio === 1 ? null : [ratio, 0, 0, ratio, 0, 0] }).promise;
-  if (container.isConnected) container.replaceChildren(canvas);
+  if (options.crop) {
+    const [top, bottom] = options.crop;
+    if (!(top >= 0 && bottom <= 1 && bottom > top)) throw Error('Invalid source page portion.');
+    const clipped = document.createElement('canvas');
+    clipped.width = canvas.width;
+    const y = Math.floor(top * canvas.height), end = Math.ceil(bottom * canvas.height);
+    clipped.height = end - y;
+    clipped.style.width = '100%'; clipped.style.height = 'auto';
+    clipped.setAttribute('role', 'img');
+    clipped.setAttribute('aria-label', id + ' original PDF page ' + number + ', selected portion; full page available above');
+    clipped.getContext('2d').drawImage(canvas, 0, y, canvas.width, end - y, 0, 0, clipped.width, clipped.height);
+    if (container.isConnected) container.replaceChildren(clipped);
+  } else if (container.isConnected) container.replaceChildren(canvas);
   page.cleanup();
 }
 async function extract(pdf, number) {
