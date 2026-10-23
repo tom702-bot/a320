@@ -4,6 +4,9 @@ A personal study site built around the supplied FCOM, FCTM and QRH, FCOM and QRH
 
 ## Study content
 
+- **Full flight** adds a combined FCOM and company SOP reading sequence, with a recall practice mode and separate local progress. Load the FCOM and FAM in the Manual library to display their original pages privately on your device.
+- The preparation checkpoint follows the user-requested order: complete the FAM 21.27.1 items before the Cockpit Preparation Checklist. No manual PDFs, extracted page text or original page images are included in this update.
+
 - EFA340 line training quiz: 123 multiple-choice questions with automatic marking, source explanations, Learn/Exam modes, 5/10/25/all-question runs, filtered topic practice and retrying missed questions. The bank reuses the existing 92 limitations questions unchanged and adds 31 questions transformed from the existing source-linked flow drills. Progress is separate from the limitations quiz and earlier self-ratings. Incomplete exams do not award a score or question progress.
 - All 74 visible checklist rows and their sub-bullets remain represented. Selected material in 29 applicable topics has quiz questions; 42 remain reading-only until a supported answer key is available. Three A330-only rows remain visible outside practice. Earlier written notes are preserved read-only. See DISCUSSION_COVERAGE.md for the row-by-row audit and source limitations.
 

@@ -1,4 +1,5 @@
 'use strict';
+require('./test-full-flight.js');
 require('./test-voice-coach.js');
 require('./test-discussions.js');
 require('./test-line-quiz.js');
@@ -28,7 +29,7 @@ assert(read('engine.html').includes('Takeoff/go-around: 650 &deg;C'));
 assert(read('engine.html').includes('ISA +42 &deg;C'));
 assert(read('engine.html').includes('Minimum 11 qt'));
 assert(read('engine.html').includes('4 minutes continuous cranking'));
-assert.equal(Object.values(manuals).reduce((n,m)=>n+m.pages,0),5226);
+assert.equal(Object.values(manuals).reduce((n,m)=>n+m.pages,0),5757);
 const app=read('trainer.js'),scenarioContext={};vm.createContext(scenarioContext);vm.runInContext(app.slice(app.indexOf('const scenarios='),app.indexOf('function abnormal(')).replace('const scenarios=','this.scenarios='),scenarioContext);
 const scenarios=scenarioContext.scenarios;
 for(const [, , refs]of scenarios)for(const [doc,page]of refs){assert(manuals[doc]);assert(page>=1&&page<=manuals[doc].pages);}
@@ -44,4 +45,4 @@ assert(swContext.precache.includes('./vendor/pdfjs/wasm/openjpeg.wasm'),'Image d
 const privateReader=read('private-manuals.mjs');
 assert(!/\bfetch\s*\(|XMLHttpRequest|sendBeacon|WebSocket/.test(privateReader),'Private reader must have no upload/network calls');
 assert(privateReader.includes("crypto.subtle.digest('SHA-256'"));
-console.log('Validated: no private PDFs, page text or source images; 3 source fingerprints; 92 questions; 8 drills; 11 local patterns; page bounds, local links, branding, systems and syntax.');
+console.log('Validated: no private PDFs, page text or source images; 4 source fingerprints; 92 questions; 8 drills; 11 local patterns; page bounds, local links, branding, systems and syntax.');

@@ -1,0 +1,37 @@
+'use strict';
+const assert = require('node:assert/strict'), fs = require('fs');
+const read = name => fs.readFileSync(__dirname + '/' + name, 'utf8');
+const data = JSON.parse(read('data/full-flight.json')), manuals = JSON.parse(read('data/manuals.json'));
+const steps = data.phases.flatMap(p => p.steps);
+assert.equal(new Set(steps.map(s => s.id)).size, steps.length, 'Stable unique progress identities');
+assert.equal(data.phases[0].start,3621); assert.equal(data.phases.at(-1).end,3808);
+for (let i=1;i<data.phases.length;i++) assert.equal(data.phases[i].start,data.phases[i-1].end+1,'No omitted FCOM phase');
+const covered = steps.filter(s => s.kind === 'fcom').flatMap(s => s.pages);
+for(let p=3621;p<=3808;p++) assert(covered.includes(p),'Missing original FCOM page '+p);
+assert.equal(new Set(covered).size,188);
+for(const s of steps) {
+  assert(s.title && s.ref && s.pages.length);
+  assert.equal(s.sourceHash,manuals[s.manual].sha256);
+  for(const page of s.pages) assert(page>=1 && page<=manuals[s.manual].pages,s.id);
+  if(s.crop) assert(s.crop[0]>=0 && s.crop[1]<=1 && s.crop[1]>s.crop[0]);
+  if(s.kind==='fcom') assert(s.pages.every(p=>p>=3621 && p<=3808));
+  if(s.kind==='company') assert(s.pages.every(p=>p>=424 && p<=512));
+}
+assert.equal(data.reference.length,86);
+assert.equal(data.coverage.famSections.length,85);
+for(let i=1;i<=86;i++) assert.equal(data.coverage.famSections.includes('21.'+i),i!==46);
+assert.equal(data.excluded[0].ref,'21.46');
+assert.deepEqual(Object.keys(data.sourceSet).sort(),['FAM','FCOM']);
+assert.equal(data.sourceSet.FAM,'e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f');
+assert.equal(data.sourceSet.FCOM,manuals.FCOM.sha256);
+const prep = data.phases.find(p=>p.id==='cockpit-preparation').steps;
+const i = prep.findIndex(s=>s.kind==='checkpoint'), checkpoint=prep[i];
+assert.equal(prep[i-1].id,'fcom-3666-briefing');
+assert.equal(prep[i+1].id,'fcom-3666-checklist');
+assert.equal(prep[i+1].requires,checkpoint.id);
+assert.deepEqual(checkpoint.checks.map(c=>c.id),['serviceability','fuel','flight-plan','clearance','data']);
+assert.equal(prep[i-1].crop[1],prep[i+1].crop[0]);
+assert.equal(prep[i+1].crop[1],prep[i+2].crop[0]);
+assert.equal(prep[i-1].crop[0],0); assert.equal(prep[i+2].crop[1],1);
+assert(!/\bfetch\s*\(|XMLHttpRequest|sendBeacon|WebSocket/.test(read('full-flight.js')),'No manual upload or remote retrieval in the sequence');
+console.log('Full flight: 188 original FCOM pages, 85 company topics, all source fingerprints and pre-checklist ordering verified.');

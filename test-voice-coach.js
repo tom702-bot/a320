@@ -10,6 +10,7 @@ const context={
  window:{scrollTo(){}},confirm:()=>true,
  setTimeout:()=>0,clearTimeout(){},
  DiscussionStudy:{stats:()=>({questions:123,recalled:0})},
+ FullFlight:{dispose(){}},
  bank:JSON.parse(read('data/questions.json')),sourceManuals:JSON.parse(read('data/manuals.json')),
 };
 vm.createContext(context);

@@ -1,0 +1,4370 @@
+{
+  "version": 1,
+  "title": "Cockpit preparation to securing",
+  "sourceSet": {
+    "FCOM": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+    "FAM": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+  },
+  "defaultPhase": "cockpit-preparation",
+  "phases": [
+    {
+      "id": "preliminary-cockpit-preparation",
+      "title": "Preliminary Cockpit Preparation",
+      "start": 3621,
+      "end": 3634,
+      "steps": [
+        {
+          "id": "fam-3621-0",
+          "kind": "company",
+          "title": "When to perform full preparation",
+          "sections": [
+            "21.25"
+          ],
+          "manual": "FAM",
+          "pages": [
+            443
+          ],
+          "ref": "FAM 21.25",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fam-3621-1",
+          "kind": "company",
+          "title": "Crew roles, monitoring and speaking up",
+          "sections": [
+            "21.1",
+            "21.2",
+            "21.3",
+            "21.5",
+            "21.6"
+          ],
+          "manual": "FAM",
+          "pages": [
+            424,
+            425,
+            426,
+            427,
+            428,
+            429,
+            430,
+            431,
+            432
+          ],
+          "ref": "FAM 21.1, FAM 21.2, FAM 21.3, FAM 21.5, FAM 21.6",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fam-3621-2",
+          "kind": "company",
+          "title": "Checklist philosophy and automation",
+          "sections": [
+            "21.8",
+            "21.9"
+          ],
+          "manual": "FAM",
+          "pages": [
+            434,
+            435
+          ],
+          "ref": "FAM 21.8, FAM 21.9",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3621",
+          "kind": "fcom",
+          "title": "General / Aircraft Setup",
+          "manual": "FCOM",
+          "pages": [
+            3621
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3622-0",
+          "kind": "company",
+          "title": "EFB readiness and securing the iPad",
+          "sections": [
+            "21.10"
+          ],
+          "manual": "FAM",
+          "pages": [
+            436
+          ],
+          "ref": "FAM 21.10",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3622",
+          "kind": "fcom",
+          "title": "Batteries Check/External Power",
+          "manual": "FCOM",
+          "pages": [
+            3622
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3623-0",
+          "kind": "company",
+          "title": "Ground power, APU and bleed supply",
+          "sections": [
+            "21.28",
+            "21.29"
+          ],
+          "manual": "FAM",
+          "pages": [
+            451
+          ],
+          "ref": "FAM 21.28, FAM 21.29",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3623",
+          "kind": "fcom",
+          "title": "APU Fire Test/APU Start",
+          "manual": "FCOM",
+          "pages": [
+            3623
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3624",
+          "kind": "fcom",
+          "title": "APU Fire Test/APU Start (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3624
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3625-0",
+          "kind": "company",
+          "title": "Circuit breakers and windshield maintenance",
+          "sections": [
+            "21.17",
+            "21.18"
+          ],
+          "manual": "FAM",
+          "pages": [
+            440
+          ],
+          "ref": "FAM 21.17, FAM 21.18",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3625",
+          "kind": "fcom",
+          "title": "ADIRS",
+          "manual": "FCOM",
+          "pages": [
+            3625
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3626",
+          "kind": "fcom",
+          "title": "ADIRS",
+          "manual": "FCOM",
+          "pages": [
+            3626
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3627",
+          "kind": "fcom",
+          "title": "Cockpit Lights / EFB/ACARS (If Installed) Initialization",
+          "manual": "FCOM",
+          "pages": [
+            3627
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3628",
+          "kind": "fcom",
+          "title": "EFB/ACARS (If Installed) Initialization (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3628
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3629",
+          "kind": "fcom",
+          "title": "AIRCRAFT ACCEPTANCE",
+          "manual": "FCOM",
+          "pages": [
+            3629
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3630",
+          "kind": "fcom",
+          "title": "Preliminary Performance Determination",
+          "manual": "FCOM",
+          "pages": [
+            3630
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3631",
+          "kind": "fcom",
+          "title": "Before Walkaround",
+          "manual": "FCOM",
+          "pages": [
+            3631
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3632",
+          "kind": "fcom",
+          "title": "Before Walkaround (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3632
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3633",
+          "kind": "fcom",
+          "title": "Before Walkaround (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3633
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3634",
+          "kind": "fcom",
+          "title": "Before Walkaround (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3634
+          ],
+          "ref": "Preliminary Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "exterior-walkaround",
+      "title": "Exterior Walkaround",
+      "start": 3635,
+      "end": 3644,
+      "steps": [
+        {
+          "id": "fam-3635-0",
+          "kind": "company",
+          "title": "Gear pins and exterior inspection",
+          "sections": [
+            "21.32",
+            "21.33"
+          ],
+          "manual": "FAM",
+          "pages": [
+            452
+          ],
+          "ref": "FAM 21.32, FAM 21.33",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3635",
+          "kind": "fcom",
+          "title": "General",
+          "manual": "FCOM",
+          "pages": [
+            3635
+          ],
+          "ref": "Exterior Walkaround",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3636",
+          "kind": "fcom",
+          "title": "General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3636
+          ],
+          "ref": "Exterior Walkaround",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3637",
+          "kind": "fcom",
+          "title": "General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3637
+          ],
+          "ref": "Exterior Walkaround",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3638",
+          "kind": "fcom",
+          "title": "General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3638
+          ],
+          "ref": "Exterior Walkaround",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3639",
+          "kind": "fcom",
+          "title": "General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3639
+          ],
+          "ref": "Exterior Walkaround",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3640",
+          "kind": "fcom",
+          "title": "General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3640
+          ],
+          "ref": "Exterior Walkaround",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3641",
+          "kind": "fcom",
+          "title": "General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3641
+          ],
+          "ref": "Exterior Walkaround",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3642",
+          "kind": "fcom",
+          "title": "General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3642
+          ],
+          "ref": "Exterior Walkaround",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3643",
+          "kind": "fcom",
+          "title": "General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3643
+          ],
+          "ref": "Exterior Walkaround",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3644",
+          "kind": "fcom",
+          "title": "General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3644
+          ],
+          "ref": "Exterior Walkaround",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "cockpit-preparation",
+      "title": "Cockpit Preparation",
+      "start": 3645,
+      "end": 3666,
+      "steps": [
+        {
+          "id": "fam-3645-0",
+          "kind": "company",
+          "title": "Checks and briefings before the preparation checklist",
+          "sections": [
+            "21.27.1"
+          ],
+          "manual": "FAM",
+          "pages": [
+            447
+          ],
+          "ref": "FAM 21.27.1",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+          "note": "Your study sequence completes the five checks in FAM 21.27.1 before the Cockpit Preparation Checklist. Each check is revisited at the checkpoint."
+        },
+        {
+          "id": "fcom-3645",
+          "kind": "fcom",
+          "title": "General",
+          "manual": "FCOM",
+          "pages": [
+            3645
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3646",
+          "kind": "fcom",
+          "title": "Flow Pattern",
+          "manual": "FCOM",
+          "pages": [
+            3646
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3647-0",
+          "kind": "company",
+          "title": "UTC clocks, duplicate systems and oxygen panels",
+          "sections": [
+            "21.4",
+            "21.19",
+            "21.21"
+          ],
+          "manual": "FAM",
+          "pages": [
+            425,
+            440,
+            441
+          ],
+          "ref": "FAM 21.4, FAM 21.19, FAM 21.21",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3647",
+          "kind": "fcom",
+          "title": "Overhead Panel",
+          "manual": "FCOM",
+          "pages": [
+            3647
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3648",
+          "kind": "fcom",
+          "title": "Overhead Panel (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3648
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3649",
+          "kind": "fcom",
+          "title": "Overhead Panel (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3649
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3650",
+          "kind": "fcom",
+          "title": "Overhead Panel (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3650
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3651",
+          "kind": "fcom",
+          "title": "Overhead Panel (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3651
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3652",
+          "kind": "fcom",
+          "title": "CTR Instrument Panel",
+          "manual": "FCOM",
+          "pages": [
+            3652
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3653",
+          "kind": "fcom",
+          "title": "CTR Instrument Panel (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3653
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3654-0",
+          "kind": "company",
+          "title": "HF check and FMGS factors",
+          "sections": [
+            "21.30",
+            "21.31"
+          ],
+          "manual": "FAM",
+          "pages": [
+            451,
+            452
+          ],
+          "ref": "FAM 21.30, FAM 21.31",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3654",
+          "kind": "fcom",
+          "title": "Pedestal",
+          "manual": "FCOM",
+          "pages": [
+            3654
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3655",
+          "kind": "fcom",
+          "title": "Pedestal (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3655
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3656-0",
+          "kind": "company",
+          "title": "Flight plan, clearance and uplink preparation",
+          "sections": [
+            "21.7",
+            "21.26"
+          ],
+          "manual": "FAM",
+          "pages": [
+            433,
+            434,
+            444,
+            445,
+            446
+          ],
+          "ref": "FAM 21.7, FAM 21.26",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3656",
+          "kind": "fcom",
+          "title": "ATC Datalink Communication / FMGS Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3656
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3657",
+          "kind": "fcom",
+          "title": "FMGS Preparation (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3657
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3658",
+          "kind": "fcom",
+          "title": "FMGS Preparation (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3658
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3659",
+          "kind": "fcom",
+          "title": "FMGS Preparation (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3659
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3660",
+          "kind": "fcom",
+          "title": "FMGS Preparation (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3660
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3661",
+          "kind": "fcom",
+          "title": "FMGS Preparation (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3661
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3662",
+          "kind": "fcom",
+          "title": "FMGS Preparation (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3662
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3662-0",
+          "kind": "company",
+          "title": "Flight plan, FMGS confirmation and data check",
+          "sections": [
+            "21.27.4",
+            "21.27.5"
+          ],
+          "manual": "FAM",
+          "pages": [
+            448,
+            449
+          ],
+          "ref": "FAM 21.27.4, FAM 21.27.5",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fam-3663-0",
+          "kind": "company",
+          "title": "ATIS, QNH and temperature corrections",
+          "sections": [
+            "21.14",
+            "21.20",
+            "21.55"
+          ],
+          "manual": "FAM",
+          "pages": [
+            439,
+            440,
+            471,
+            472,
+            473,
+            474
+          ],
+          "ref": "FAM 21.14, FAM 21.20, FAM 21.55",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3663",
+          "kind": "fcom",
+          "title": "Glareshield",
+          "manual": "FCOM",
+          "pages": [
+            3663
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3664",
+          "kind": "fcom",
+          "title": "Lateral Consoles / Instrument Panels",
+          "manual": "FCOM",
+          "pages": [
+            3664
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3665",
+          "kind": "fcom",
+          "title": "ECAM Control Panel / ADIRS / Fuel on Board",
+          "manual": "FCOM",
+          "pages": [
+            3665
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3665-0",
+          "kind": "company",
+          "title": "Refuelling and the fuel crosscheck",
+          "sections": [
+            "21.35"
+          ],
+          "manual": "FAM",
+          "pages": [
+            454,
+            455
+          ],
+          "ref": "FAM 21.35",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fam-3666-0",
+          "kind": "company",
+          "title": "Departure briefing: CTWO Plus",
+          "sections": [
+            "21.27.1"
+          ],
+          "manual": "FAM",
+          "pages": [
+            447
+          ],
+          "ref": "FAM 21.27.1",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3666-briefing",
+          "kind": "fcom",
+          "title": "Departure briefing and maintenance PC",
+          "manual": "FCOM",
+          "pages": [
+            3666
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+          "crop": [
+            0,
+            0.4319327731092437
+          ]
+        },
+        {
+          "id": "preparation-checkpoint",
+          "kind": "checkpoint",
+          "title": "Before the Cockpit Preparation Checklist",
+          "checks": [
+            {
+              "id": "serviceability",
+              "title": "Aircraft Serviceability Check",
+              "refs": [
+                "21.27.2"
+              ],
+              "pages": [
+                448
+              ]
+            },
+            {
+              "id": "fuel",
+              "title": "Fuel Check",
+              "refs": [
+                "21.27.3",
+                "21.35.2"
+              ],
+              "pages": [
+                448,
+                454
+              ]
+            },
+            {
+              "id": "flight-plan",
+              "title": "Flight Plan Checks",
+              "refs": [
+                "21.27.4"
+              ],
+              "pages": [
+                448,
+                449
+              ]
+            },
+            {
+              "id": "clearance",
+              "title": "Clearance / PDC Check",
+              "refs": [
+                "21.7.2"
+              ],
+              "pages": [
+                433
+              ]
+            },
+            {
+              "id": "data",
+              "title": "Data Check",
+              "refs": [
+                "21.27.5"
+              ],
+              "pages": [
+                449
+              ]
+            }
+          ],
+          "manual": "FAM",
+          "pages": [
+            447
+          ],
+          "ref": "FAM 21.27.1",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+          "note": "Study order specified by you: finish all five checks before the Cockpit Preparation Checklist. These marks record your rehearsal, not aircraft checks."
+        },
+        {
+          "id": "fcom-3666-checklist",
+          "kind": "fcom",
+          "title": "Cockpit Preparation Checklist",
+          "manual": "FCOM",
+          "pages": [
+            3666
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+          "crop": [
+            0.4319327731092437,
+            0.5378151260504201
+          ],
+          "requires": "preparation-checkpoint"
+        },
+        {
+          "id": "fcom-3666-doors",
+          "kind": "fcom",
+          "title": "Doors closed",
+          "manual": "FCOM",
+          "pages": [
+            3666
+          ],
+          "ref": "Cockpit Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87",
+          "crop": [
+            0.5378151260504201,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "before-pushback-or-start",
+      "title": "Before Pushback or Start",
+      "start": 3667,
+      "end": 3672,
+      "steps": [
+        {
+          "id": "fam-3667-0",
+          "kind": "company",
+          "title": "Final loadsheet and any performance changes",
+          "sections": [
+            "21.26"
+          ],
+          "manual": "FAM",
+          "pages": [
+            444,
+            445,
+            446
+          ],
+          "ref": "FAM 21.26",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3667",
+          "kind": "fcom",
+          "title": "Before Pushback/Start Clearance",
+          "manual": "FCOM",
+          "pages": [
+            3667
+          ],
+          "ref": "Before Pushback or Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3668-0",
+          "kind": "company",
+          "title": "Headsets, communications and sterile flight deck",
+          "sections": [
+            "21.11",
+            "21.12",
+            "21.13",
+            "21.15",
+            "21.16",
+            "21.50"
+          ],
+          "manual": "FAM",
+          "pages": [
+            437,
+            438,
+            439,
+            440,
+            469
+          ],
+          "ref": "FAM 21.11, FAM 21.12, FAM 21.13, FAM 21.15, FAM 21.16, FAM 21.50",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3668",
+          "kind": "fcom",
+          "title": "Before Pushback/Start Clearance (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3668
+          ],
+          "ref": "Before Pushback or Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3669-0",
+          "kind": "company",
+          "title": "Ground crew departure communications",
+          "sections": [
+            "21.36"
+          ],
+          "manual": "FAM",
+          "pages": [
+            456,
+            457,
+            458
+          ],
+          "ref": "FAM 21.36",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3669",
+          "kind": "fcom",
+          "title": "At Pushback/Start Clearance",
+          "manual": "FCOM",
+          "pages": [
+            3669
+          ],
+          "ref": "Before Pushback or Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3670",
+          "kind": "fcom",
+          "title": "At Pushback/Start Clearance (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3670
+          ],
+          "ref": "Before Pushback or Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3671",
+          "kind": "fcom",
+          "title": "At Pushback/Start Clearance (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3671
+          ],
+          "ref": "Before Pushback or Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3672",
+          "kind": "fcom",
+          "title": "At Pushback/Start Clearance (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3672
+          ],
+          "ref": "Before Pushback or Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "engine-start",
+      "title": "Engine Start",
+      "start": 3673,
+      "end": 3676,
+      "steps": [
+        {
+          "id": "fcom-3673",
+          "kind": "fcom",
+          "title": "Automatic Engine Start",
+          "manual": "FCOM",
+          "pages": [
+            3673
+          ],
+          "ref": "Engine Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3674",
+          "kind": "fcom",
+          "title": "Automatic Engine Start (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3674
+          ],
+          "ref": "Engine Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3675",
+          "kind": "fcom",
+          "title": "Ground Run Up - Danger Areas",
+          "manual": "FCOM",
+          "pages": [
+            3675
+          ],
+          "ref": "Engine Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3676",
+          "kind": "fcom",
+          "title": "Ground Run Up - Danger Areas (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3676
+          ],
+          "ref": "Engine Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "after-start",
+      "title": "After Start",
+      "start": 3677,
+      "end": 3680,
+      "steps": [
+        {
+          "id": "fam-3677-0",
+          "kind": "company",
+          "title": "Pushback completion and clearance to taxi",
+          "sections": [
+            "21.36"
+          ],
+          "manual": "FAM",
+          "pages": [
+            456,
+            457,
+            458
+          ],
+          "ref": "FAM 21.36",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3677",
+          "kind": "fcom",
+          "title": "After Start (All Engines Taxi at Departure)",
+          "manual": "FCOM",
+          "pages": [
+            3677
+          ],
+          "ref": "After Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3678-0",
+          "kind": "company",
+          "title": "Brake fan use around ground personnel",
+          "sections": [
+            "21.34"
+          ],
+          "manual": "FAM",
+          "pages": [
+            453
+          ],
+          "ref": "FAM 21.34",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3678",
+          "kind": "fcom",
+          "title": "After Start (All Engines Taxi at Departure) (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3678
+          ],
+          "ref": "After Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3679",
+          "kind": "fcom",
+          "title": "After Start (All Engines Taxi at Departure) (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3679
+          ],
+          "ref": "After Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3680",
+          "kind": "fcom",
+          "title": "After Start (All Engines Taxi at Departure) (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3680
+          ],
+          "ref": "After Start",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "taxi",
+      "title": "Taxi",
+      "start": 3681,
+      "end": 3686,
+      "steps": [
+        {
+          "id": "fam-3681-0",
+          "kind": "company",
+          "title": "Taxi responsibilities and loss of steering",
+          "sections": [
+            "21.37"
+          ],
+          "manual": "FAM",
+          "pages": [
+            458,
+            459,
+            460
+          ],
+          "ref": "FAM 21.37",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3681",
+          "kind": "fcom",
+          "title": "All Engines Taxi at Departure",
+          "manual": "FCOM",
+          "pages": [
+            3681
+          ],
+          "ref": "Taxi",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3682-0",
+          "kind": "company",
+          "title": "Collision avoidance, lighting and transponder",
+          "sections": [
+            "21.22",
+            "21.23",
+            "21.38"
+          ],
+          "manual": "FAM",
+          "pages": [
+            441,
+            442,
+            460
+          ],
+          "ref": "FAM 21.22, FAM 21.23, FAM 21.38",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3682",
+          "kind": "fcom",
+          "title": "All Engines Taxi at Departure (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3682
+          ],
+          "ref": "Taxi",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3683",
+          "kind": "fcom",
+          "title": "All Engines Taxi at Departure (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3683
+          ],
+          "ref": "Taxi",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3684",
+          "kind": "fcom",
+          "title": "All Engines Taxi at Departure (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3684
+          ],
+          "ref": "Taxi",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3685-0",
+          "kind": "company",
+          "title": "Departure review and runway crossing clearance",
+          "sections": [
+            "21.37"
+          ],
+          "manual": "FAM",
+          "pages": [
+            458,
+            459,
+            460
+          ],
+          "ref": "FAM 21.37",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3685",
+          "kind": "fcom",
+          "title": "All Engines Taxi at Departure (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3685
+          ],
+          "ref": "Taxi",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3686",
+          "kind": "fcom",
+          "title": "All Engines Taxi at Departure (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3686
+          ],
+          "ref": "Taxi",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "departure-change",
+      "title": "Departure Change",
+      "start": 3687,
+      "end": 3688,
+      "steps": [
+        {
+          "id": "fam-3687-0",
+          "kind": "company",
+          "title": "Recalculate and crosscheck changed takeoff data",
+          "sections": [
+            "21.26"
+          ],
+          "manual": "FAM",
+          "pages": [
+            444,
+            445,
+            446
+          ],
+          "ref": "FAM 21.26",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3687",
+          "kind": "fcom",
+          "title": "Departure Change",
+          "manual": "FCOM",
+          "pages": [
+            3687
+          ],
+          "ref": "Departure Change",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3688",
+          "kind": "fcom",
+          "title": "Departure Change",
+          "manual": "FCOM",
+          "pages": [
+            3688
+          ],
+          "ref": "Departure Change",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "before-takeoff",
+      "title": "Before Takeoff",
+      "start": 3689,
+      "end": 3692,
+      "steps": [
+        {
+          "id": "fam-3689-0",
+          "kind": "company",
+          "title": "Runway verification and takeoff clearance",
+          "sections": [
+            "21.41",
+            "21.43"
+          ],
+          "manual": "FAM",
+          "pages": [
+            461,
+            462
+          ],
+          "ref": "FAM 21.41, FAM 21.43",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3689",
+          "kind": "fcom",
+          "title": "Before Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3689
+          ],
+          "ref": "Before Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3690-0",
+          "kind": "company",
+          "title": "Takeoff minima and low visibility calls",
+          "sections": [
+            "21.44"
+          ],
+          "manual": "FAM",
+          "pages": [
+            463,
+            464
+          ],
+          "ref": "FAM 21.44",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3690",
+          "kind": "fcom",
+          "title": "Before Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3690
+          ],
+          "ref": "Before Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3691-0",
+          "kind": "company",
+          "title": "Contamination, thunderstorms and wake separation",
+          "sections": [
+            "21.39",
+            "21.40",
+            "21.42",
+            "21.48"
+          ],
+          "manual": "FAM",
+          "pages": [
+            460,
+            462,
+            466,
+            467,
+            468
+          ],
+          "ref": "FAM 21.39, FAM 21.40, FAM 21.42, FAM 21.48",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3691",
+          "kind": "fcom",
+          "title": "Before Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3691
+          ],
+          "ref": "Before Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3692",
+          "kind": "fcom",
+          "title": "Before Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3692
+          ],
+          "ref": "Before Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "takeoff",
+      "title": "Takeoff",
+      "start": 3693,
+      "end": 3698,
+      "steps": [
+        {
+          "id": "fam-3693-0",
+          "kind": "company",
+          "title": "Control transfer and guarding the controls",
+          "sections": [
+            "21.6"
+          ],
+          "manual": "FAM",
+          "pages": [
+            431,
+            432
+          ],
+          "ref": "FAM 21.6",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3693",
+          "kind": "fcom",
+          "title": "Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3693
+          ],
+          "ref": "Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3694",
+          "kind": "fcom",
+          "title": "Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3694
+          ],
+          "ref": "Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3695",
+          "kind": "fcom",
+          "title": "Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3695
+          ],
+          "ref": "Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3696",
+          "kind": "fcom",
+          "title": "Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3696
+          ],
+          "ref": "Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3697",
+          "kind": "fcom",
+          "title": "Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3697
+          ],
+          "ref": "Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3698",
+          "kind": "fcom",
+          "title": "Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3698
+          ],
+          "ref": "Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "after-takeoff",
+      "title": "After Takeoff",
+      "start": 3699,
+      "end": 3700,
+      "steps": [
+        {
+          "id": "fam-3699-0",
+          "kind": "company",
+          "title": "Turns, thrust reduction and noise abatement",
+          "sections": [
+            "21.45",
+            "21.47"
+          ],
+          "manual": "FAM",
+          "pages": [
+            464,
+            465
+          ],
+          "ref": "FAM 21.45, FAM 21.47",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3699",
+          "kind": "fcom",
+          "title": "After Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3699
+          ],
+          "ref": "After Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3700",
+          "kind": "fcom",
+          "title": "After Takeoff",
+          "manual": "FCOM",
+          "pages": [
+            3700
+          ],
+          "ref": "After Takeoff",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "climb",
+      "title": "Climb",
+      "start": 3701,
+      "end": 3706,
+      "steps": [
+        {
+          "id": "fam-3701-0",
+          "kind": "company",
+          "title": "Frequency change, sterile cockpit and climb speed",
+          "sections": [
+            "21.49",
+            "21.50",
+            "21.51",
+            "21.52"
+          ],
+          "manual": "FAM",
+          "pages": [
+            469
+          ],
+          "ref": "FAM 21.49, FAM 21.50, FAM 21.51, FAM 21.52",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3701",
+          "kind": "fcom",
+          "title": "Climb",
+          "manual": "FCOM",
+          "pages": [
+            3701
+          ],
+          "ref": "Climb",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3702",
+          "kind": "fcom",
+          "title": "Climb",
+          "manual": "FCOM",
+          "pages": [
+            3702
+          ],
+          "ref": "Climb",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3703-0",
+          "kind": "company",
+          "title": "Flight levels, level changes and altimetry",
+          "sections": [
+            "21.53",
+            "21.54",
+            "21.55"
+          ],
+          "manual": "FAM",
+          "pages": [
+            470,
+            471,
+            472,
+            473,
+            474
+          ],
+          "ref": "FAM 21.53, FAM 21.54, FAM 21.55",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3703",
+          "kind": "fcom",
+          "title": "Climb",
+          "manual": "FCOM",
+          "pages": [
+            3703
+          ],
+          "ref": "Climb",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3704",
+          "kind": "fcom",
+          "title": "Climb",
+          "manual": "FCOM",
+          "pages": [
+            3704
+          ],
+          "ref": "Climb",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3705",
+          "kind": "fcom",
+          "title": "Climb",
+          "manual": "FCOM",
+          "pages": [
+            3705
+          ],
+          "ref": "Climb",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3706",
+          "kind": "fcom",
+          "title": "Climb",
+          "manual": "FCOM",
+          "pages": [
+            3706
+          ],
+          "ref": "Climb",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "cruise",
+      "title": "Cruise",
+      "start": 3707,
+      "end": 3710,
+      "steps": [
+        {
+          "id": "fam-3707-0",
+          "kind": "company",
+          "title": "Navigation, RAIM and position checking",
+          "sections": [
+            "21.24",
+            "21.56"
+          ],
+          "manual": "FAM",
+          "pages": [
+            442,
+            475
+          ],
+          "ref": "FAM 21.24, FAM 21.56",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3707",
+          "kind": "fcom",
+          "title": "Cruise",
+          "manual": "FCOM",
+          "pages": [
+            3707
+          ],
+          "ref": "Cruise",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3708-0",
+          "kind": "company",
+          "title": "Watch keeping, relief and controlled rest",
+          "sections": [
+            "21.57",
+            "21.58"
+          ],
+          "manual": "FAM",
+          "pages": [
+            476,
+            477,
+            478
+          ],
+          "ref": "FAM 21.57, FAM 21.58",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3708",
+          "kind": "fcom",
+          "title": "Cruise",
+          "manual": "FCOM",
+          "pages": [
+            3708
+          ],
+          "ref": "Cruise",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3709-0",
+          "kind": "company",
+          "title": "Contingencies, weather deviations and ATC variations",
+          "sections": [
+            "21.59",
+            "21.60",
+            "21.61"
+          ],
+          "manual": "FAM",
+          "pages": [
+            478,
+            479
+          ],
+          "ref": "FAM 21.59, FAM 21.60, FAM 21.61",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3709",
+          "kind": "fcom",
+          "title": "Cruise",
+          "manual": "FCOM",
+          "pages": [
+            3709
+          ],
+          "ref": "Cruise",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3710",
+          "kind": "fcom",
+          "title": "Cruise",
+          "manual": "FCOM",
+          "pages": [
+            3710
+          ],
+          "ref": "Cruise",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "descent-preparation",
+      "title": "Descent Preparation",
+      "start": 3711,
+      "end": 3720,
+      "steps": [
+        {
+          "id": "fam-3711-0",
+          "kind": "company",
+          "title": "Arrival briefing and performance assessment",
+          "sections": [
+            "21.27.6",
+            "21.10.3"
+          ],
+          "manual": "FAM",
+          "pages": [
+            436,
+            450
+          ],
+          "ref": "FAM 21.27.6, FAM 21.10.3",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3711",
+          "kind": "fcom",
+          "title": "Descent Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3711
+          ],
+          "ref": "Descent Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3712",
+          "kind": "fcom",
+          "title": "Descent Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3712
+          ],
+          "ref": "Descent Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3713-0",
+          "kind": "company",
+          "title": "Non-controlled airport operations",
+          "sections": [
+            "21.62"
+          ],
+          "manual": "FAM",
+          "pages": [
+            480,
+            481,
+            482
+          ],
+          "ref": "FAM 21.62",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3713",
+          "kind": "fcom",
+          "title": "Descent Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3713
+          ],
+          "ref": "Descent Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3714",
+          "kind": "fcom",
+          "title": "Descent Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3714
+          ],
+          "ref": "Descent Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3715-0",
+          "kind": "company",
+          "title": "Go-around thrust reduction and acceleration setup",
+          "sections": [
+            "21.63"
+          ],
+          "manual": "FAM",
+          "pages": [
+            483
+          ],
+          "ref": "FAM 21.63",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3715",
+          "kind": "fcom",
+          "title": "Descent Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3715
+          ],
+          "ref": "Descent Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3716",
+          "kind": "fcom",
+          "title": "Descent Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3716
+          ],
+          "ref": "Descent Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3717",
+          "kind": "fcom",
+          "title": "Descent Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3717
+          ],
+          "ref": "Descent Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3718-0",
+          "kind": "company",
+          "title": "Approach type, roles, minima and visual references",
+          "sections": [
+            "21.67",
+            "21.68",
+            "21.69",
+            "21.76"
+          ],
+          "manual": "FAM",
+          "pages": [
+            485,
+            486,
+            487,
+            488,
+            489,
+            490,
+            491,
+            496,
+            497,
+            498,
+            499,
+            500,
+            501,
+            502,
+            503
+          ],
+          "ref": "FAM 21.67, FAM 21.68, FAM 21.69, FAM 21.76",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3718",
+          "kind": "fcom",
+          "title": "Descent Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3718
+          ],
+          "ref": "Descent Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3719",
+          "kind": "fcom",
+          "title": "Descent Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3719
+          ],
+          "ref": "Descent Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3720",
+          "kind": "fcom",
+          "title": "Descent Preparation",
+          "manual": "FCOM",
+          "pages": [
+            3720
+          ],
+          "ref": "Descent Preparation",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "descent",
+      "title": "Descent",
+      "start": 3721,
+      "end": 3726,
+      "steps": [
+        {
+          "id": "fam-3721-0",
+          "kind": "company",
+          "title": "Descent speed, descent rate and orbits",
+          "sections": [
+            "21.64",
+            "21.65",
+            "21.66"
+          ],
+          "manual": "FAM",
+          "pages": [
+            484
+          ],
+          "ref": "FAM 21.64, FAM 21.65, FAM 21.66",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3721",
+          "kind": "fcom",
+          "title": "Descent Initiation / Descent Monitoring",
+          "manual": "FCOM",
+          "pages": [
+            3721
+          ],
+          "ref": "Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3722",
+          "kind": "fcom",
+          "title": "Descent Adjustment",
+          "manual": "FCOM",
+          "pages": [
+            3722
+          ],
+          "ref": "Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3723",
+          "kind": "fcom",
+          "title": "Descent Adjustment (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3723
+          ],
+          "ref": "Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3724-0",
+          "kind": "company",
+          "title": "QNH and descent altitude calls",
+          "sections": [
+            "21.14",
+            "21.55"
+          ],
+          "manual": "FAM",
+          "pages": [
+            439,
+            471,
+            472,
+            473,
+            474
+          ],
+          "ref": "FAM 21.14, FAM 21.55",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3724",
+          "kind": "fcom",
+          "title": "Descent Adjustment (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3724
+          ],
+          "ref": "Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3725",
+          "kind": "fcom",
+          "title": "Approach Checklist",
+          "manual": "FCOM",
+          "pages": [
+            3725
+          ],
+          "ref": "Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3726",
+          "kind": "fcom",
+          "title": "Approach Checklist (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3726
+          ],
+          "ref": "Descent",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "approach",
+      "title": "Approach",
+      "start": 3727,
+      "end": 3774,
+      "steps": [
+        {
+          "id": "fam-3727-0",
+          "kind": "company",
+          "title": "Approach setup and noise abatement",
+          "sections": [
+            "21.67",
+            "21.75"
+          ],
+          "manual": "FAM",
+          "pages": [
+            485,
+            486,
+            487,
+            488,
+            495
+          ],
+          "ref": "FAM 21.67, FAM 21.75",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3727",
+          "kind": "fcom",
+          "title": "Approach General",
+          "manual": "FCOM",
+          "pages": [
+            3727
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3728",
+          "kind": "fcom",
+          "title": "Approach General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3728
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3729-0",
+          "kind": "company",
+          "title": "Company stable approach criteria and monitoring",
+          "sections": [
+            "21.73",
+            "21.74",
+            "21.76"
+          ],
+          "manual": "FAM",
+          "pages": [
+            493,
+            494,
+            496,
+            497,
+            498,
+            499,
+            500,
+            501,
+            502,
+            503
+          ],
+          "ref": "FAM 21.73, FAM 21.74, FAM 21.76",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+          "note": "Read the company stable-approach criteria alongside the following FCOM guidance. FAM 21.73 specifies the company 1000 ft / 500 ft criteria and go-around calls."
+        },
+        {
+          "id": "fcom-3729",
+          "kind": "fcom",
+          "title": "Approach General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3729
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3730",
+          "kind": "fcom",
+          "title": "Approach General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3730
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3731",
+          "kind": "fcom",
+          "title": "Approach General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3731
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3732",
+          "kind": "fcom",
+          "title": "Approach General (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3732
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3733",
+          "kind": "fcom",
+          "title": "Aircraft Configuration Management",
+          "manual": "FCOM",
+          "pages": [
+            3733
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3734",
+          "kind": "fcom",
+          "title": "Aircraft Configuration Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3734
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3735",
+          "kind": "fcom",
+          "title": "Aircraft Configuration Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3735
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3736",
+          "kind": "fcom",
+          "title": "Aircraft Configuration Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3736
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3737",
+          "kind": "fcom",
+          "title": "Aircraft Configuration Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3737
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3738",
+          "kind": "fcom",
+          "title": "Aircraft Configuration Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3738
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3739",
+          "kind": "fcom",
+          "title": "Aircraft Configuration Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3739
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3740",
+          "kind": "fcom",
+          "title": "Aircraft Configuration Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3740
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3741-0",
+          "kind": "company",
+          "title": "ILS, autoland and low visibility requirements",
+          "sections": [
+            "21.68",
+            "21.69"
+          ],
+          "manual": "FAM",
+          "pages": [
+            489,
+            490,
+            491
+          ],
+          "ref": "FAM 21.68, FAM 21.69",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3741",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management",
+          "manual": "FCOM",
+          "pages": [
+            3741
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3742",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3742
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3743",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3743
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3744",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3744
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3745",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3745
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3746",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3746
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3747-0",
+          "kind": "company",
+          "title": "Non-ILS continuous descent and minima",
+          "sections": [
+            "21.67.4"
+          ],
+          "manual": "FAM",
+          "pages": [
+            488
+          ],
+          "ref": "FAM 21.67.4",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3747",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3747
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3748",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3748
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3749",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3749
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3750",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3750
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3751",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3751
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3752",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3752
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3753",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3753
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3754",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3754
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3755",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3755
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3756",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3756
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3757",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3757
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3758",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3758
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3759",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3759
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3760",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3760
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3761",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3761
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3762",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3762
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3763",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3763
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3764",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3764
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3765",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3765
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3766",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3766
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3767-0",
+          "kind": "company",
+          "title": "PRM, PAR and restricted approaches",
+          "sections": [
+            "21.70",
+            "21.71",
+            "21.72"
+          ],
+          "manual": "FAM",
+          "pages": [
+            492
+          ],
+          "ref": "FAM 21.70, FAM 21.71, FAM 21.72",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3767",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3767
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3768",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3768
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3769",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3769
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3770",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3770
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3771",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3771
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3772",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3772
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3773",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3773
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3774",
+          "kind": "fcom",
+          "title": "Aircraft Guidance Management (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3774
+          ],
+          "ref": "Approach",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "landing",
+      "title": "Landing",
+      "start": 3775,
+      "end": 3786,
+      "steps": [
+        {
+          "id": "fam-3775-0",
+          "kind": "company",
+          "title": "Landing distance, touchdown and reverse thrust",
+          "sections": [
+            "21.78"
+          ],
+          "manual": "FAM",
+          "pages": [
+            505,
+            506,
+            507,
+            508
+          ],
+          "ref": "FAM 21.78",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fam-3775-1",
+          "kind": "company",
+          "title": "Landing runway and clearance confirmation",
+          "sections": [
+            "21.41",
+            "21.43"
+          ],
+          "manual": "FAM",
+          "pages": [
+            461,
+            462
+          ],
+          "ref": "FAM 21.41, FAM 21.43",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3775",
+          "kind": "fcom",
+          "title": "Manual Landing",
+          "manual": "FCOM",
+          "pages": [
+            3775
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3776",
+          "kind": "fcom",
+          "title": "Manual Landing (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3776
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3777",
+          "kind": "fcom",
+          "title": "Manual Landing (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3777
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3778",
+          "kind": "fcom",
+          "title": "Manual Landing (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3778
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3779",
+          "kind": "fcom",
+          "title": "Manual Landing (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3779
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3780",
+          "kind": "fcom",
+          "title": "Autoland",
+          "manual": "FCOM",
+          "pages": [
+            3780
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3781",
+          "kind": "fcom",
+          "title": "Autoland (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3781
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3782",
+          "kind": "fcom",
+          "title": "Autoland (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3782
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3783",
+          "kind": "fcom",
+          "title": "Autoland (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3783
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3784",
+          "kind": "fcom",
+          "title": "Autoland (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3784
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3785",
+          "kind": "fcom",
+          "title": "Autoland (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3785
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3786",
+          "kind": "fcom",
+          "title": "Autoland (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3786
+          ],
+          "ref": "Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "go-around",
+      "title": "Go-Around",
+      "start": 3787,
+      "end": 3790,
+      "steps": [
+        {
+          "id": "fam-3787-0",
+          "kind": "company",
+          "title": "Go-around policy and missed approach execution",
+          "sections": [
+            "21.77"
+          ],
+          "manual": "FAM",
+          "pages": [
+            504
+          ],
+          "ref": "FAM 21.77",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3787",
+          "kind": "fcom",
+          "title": "Go Around with FD",
+          "manual": "FCOM",
+          "pages": [
+            3787
+          ],
+          "ref": "Go-Around",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3788",
+          "kind": "fcom",
+          "title": "Go Around with FD (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3788
+          ],
+          "ref": "Go-Around",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3789",
+          "kind": "fcom",
+          "title": "Go Around with FD (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3789
+          ],
+          "ref": "Go-Around",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3790",
+          "kind": "fcom",
+          "title": "Go Around with FD (continued)",
+          "manual": "FCOM",
+          "pages": [
+            3790
+          ],
+          "ref": "Go-Around",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "after-landing",
+      "title": "After Landing",
+      "start": 3791,
+      "end": 3796,
+      "steps": [
+        {
+          "id": "fam-3791-0",
+          "kind": "company",
+          "title": "Hot-weather slat setting and ground clearance",
+          "sections": [
+            "21.79"
+          ],
+          "manual": "FAM",
+          "pages": [
+            509
+          ],
+          "ref": "FAM 21.79",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3791",
+          "kind": "fcom",
+          "title": "After Landing",
+          "manual": "FCOM",
+          "pages": [
+            3791
+          ],
+          "ref": "After Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3792-0",
+          "kind": "company",
+          "title": "Brake fans after landing",
+          "sections": [
+            "21.34"
+          ],
+          "manual": "FAM",
+          "pages": [
+            453
+          ],
+          "ref": "FAM 21.34",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3792",
+          "kind": "fcom",
+          "title": "After Landing",
+          "manual": "FCOM",
+          "pages": [
+            3792
+          ],
+          "ref": "After Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3793",
+          "kind": "fcom",
+          "title": "After Landing",
+          "manual": "FCOM",
+          "pages": [
+            3793
+          ],
+          "ref": "After Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3794",
+          "kind": "fcom",
+          "title": "After Landing",
+          "manual": "FCOM",
+          "pages": [
+            3794
+          ],
+          "ref": "After Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3795",
+          "kind": "fcom",
+          "title": "After Landing",
+          "manual": "FCOM",
+          "pages": [
+            3795
+          ],
+          "ref": "After Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3796",
+          "kind": "fcom",
+          "title": "After Landing",
+          "manual": "FCOM",
+          "pages": [
+            3796
+          ],
+          "ref": "After Landing",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "one-engine-taxi-at-arrival",
+      "title": "One Engine Taxi At Arrival",
+      "start": 3797,
+      "end": 3798,
+      "steps": [
+        {
+          "id": "fam-3797-0",
+          "kind": "company",
+          "title": "Taxiing after landing",
+          "sections": [
+            "21.37"
+          ],
+          "manual": "FAM",
+          "pages": [
+            458,
+            459,
+            460
+          ],
+          "ref": "FAM 21.37",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3797",
+          "kind": "fcom",
+          "title": "One Engine Taxi At Arrival",
+          "manual": "FCOM",
+          "pages": [
+            3797
+          ],
+          "ref": "One Engine Taxi At Arrival",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3798",
+          "kind": "fcom",
+          "title": "One Engine Taxi At Arrival",
+          "manual": "FCOM",
+          "pages": [
+            3798
+          ],
+          "ref": "One Engine Taxi At Arrival",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "parking",
+      "title": "Parking",
+      "start": 3799,
+      "end": 3804,
+      "steps": [
+        {
+          "id": "fam-3799-0",
+          "kind": "company",
+          "title": "Marshalling and parking",
+          "sections": [
+            "21.80",
+            "21.81"
+          ],
+          "manual": "FAM",
+          "pages": [
+            509,
+            510
+          ],
+          "ref": "FAM 21.80, FAM 21.81",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3799",
+          "kind": "fcom",
+          "title": "Parking",
+          "manual": "FCOM",
+          "pages": [
+            3799
+          ],
+          "ref": "Parking",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3800-0",
+          "kind": "company",
+          "title": "Chocks, ground power and arrival communications",
+          "sections": [
+            "21.28",
+            "21.83"
+          ],
+          "manual": "FAM",
+          "pages": [
+            451,
+            511
+          ],
+          "ref": "FAM 21.28, FAM 21.83",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3800",
+          "kind": "fcom",
+          "title": "Parking",
+          "manual": "FCOM",
+          "pages": [
+            3800
+          ],
+          "ref": "Parking",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3801",
+          "kind": "fcom",
+          "title": "Parking",
+          "manual": "FCOM",
+          "pages": [
+            3801
+          ],
+          "ref": "Parking",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fam-3802-0",
+          "kind": "company",
+          "title": "Disinsection and cargo door restrictions",
+          "sections": [
+            "21.82",
+            "21.86"
+          ],
+          "manual": "FAM",
+          "pages": [
+            510,
+            512
+          ],
+          "ref": "FAM 21.82, FAM 21.86",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3802",
+          "kind": "fcom",
+          "title": "Parking",
+          "manual": "FCOM",
+          "pages": [
+            3802
+          ],
+          "ref": "Parking",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3803",
+          "kind": "fcom",
+          "title": "Parking",
+          "manual": "FCOM",
+          "pages": [
+            3803
+          ],
+          "ref": "Parking",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3804",
+          "kind": "fcom",
+          "title": "Parking",
+          "manual": "FCOM",
+          "pages": [
+            3804
+          ],
+          "ref": "Parking",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    },
+    {
+      "id": "securing-the-aircraft",
+      "title": "Securing the Aircraft",
+      "start": 3805,
+      "end": 3808,
+      "steps": [
+        {
+          "id": "fam-3805-0",
+          "kind": "company",
+          "title": "End-of-flight accuracy check and post-flight setup",
+          "sections": [
+            "21.84",
+            "21.85"
+          ],
+          "manual": "FAM",
+          "pages": [
+            511
+          ],
+          "ref": "FAM 21.84, FAM 21.85",
+          "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f"
+        },
+        {
+          "id": "fcom-3805",
+          "kind": "fcom",
+          "title": "Securing the Aircraft",
+          "manual": "FCOM",
+          "pages": [
+            3805
+          ],
+          "ref": "Securing the Aircraft",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3806",
+          "kind": "fcom",
+          "title": "Securing the Aircraft",
+          "manual": "FCOM",
+          "pages": [
+            3806
+          ],
+          "ref": "Securing the Aircraft",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3807",
+          "kind": "fcom",
+          "title": "Securing the Aircraft",
+          "manual": "FCOM",
+          "pages": [
+            3807
+          ],
+          "ref": "Securing the Aircraft",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        },
+        {
+          "id": "fcom-3808",
+          "kind": "fcom",
+          "title": "Securing the Aircraft",
+          "manual": "FCOM",
+          "pages": [
+            3808
+          ],
+          "ref": "Securing the Aircraft",
+          "sourceHash": "22aa14fe0af798922024bb80c7d524ef56080e08bf036661869123ffe5a88c87"
+        }
+      ]
+    }
+  ],
+  "reference": [
+    {
+      "ref": "21.1",
+      "title": "Adherence to Standard Operating Procedures",
+      "page": 424,
+      "pages": [
+        424
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.2",
+      "title": "Flight Path Management",
+      "page": 424,
+      "pages": [
+        424
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.3",
+      "title": "Monitoring and Crosschecking",
+      "page": 425,
+      "pages": [
+        425
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.4",
+      "title": "Time and Clocks",
+      "page": 425,
+      "pages": [
+        425
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.5",
+      "title": "Flight Deck Seating",
+      "page": 426,
+      "pages": [
+        426,
+        427,
+        428,
+        429,
+        430
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.6",
+      "title": "Controls and Flight Deck Management",
+      "page": 431,
+      "pages": [
+        431,
+        432
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.7",
+      "title": "Air Traffic Control Clearances and Flight Plans",
+      "page": 433,
+      "pages": [
+        433,
+        434
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.8",
+      "title": "Checklist Philosophy",
+      "page": 434,
+      "pages": [
+        434
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.9",
+      "title": "Automation Systems",
+      "page": 435,
+      "pages": [
+        435
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.10",
+      "title": "Electronic Flight Bag (EFB)",
+      "page": 436,
+      "pages": [
+        436
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.11",
+      "title": "Communication",
+      "page": 437,
+      "pages": [
+        437,
+        438
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.12",
+      "title": "Communication Watch",
+      "page": 438,
+      "pages": [
+        438
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.13",
+      "title": "Radiotelephone (R/T) Phraseology",
+      "page": 439,
+      "pages": [
+        439
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.14",
+      "title": "ATIS/AWIS",
+      "page": 439,
+      "pages": [
+        439
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.15",
+      "title": "Communication at the Gate and on the Ground",
+      "page": 439,
+      "pages": [
+        439
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.16",
+      "title": "Headset Usage",
+      "page": 440,
+      "pages": [
+        440
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.17",
+      "title": "Circuit Breakers",
+      "page": 440,
+      "pages": [
+        440
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.18",
+      "title": "Windshield Maintenance",
+      "page": 440,
+      "pages": [
+        440
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.19",
+      "title": "Equal Use of Duplicated Systems",
+      "page": 440,
+      "pages": [
+        440
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.20",
+      "title": "Temperature Corrections",
+      "page": 440,
+      "pages": [
+        440
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.21",
+      "title": "Oxygen Masks",
+      "page": 441,
+      "pages": [
+        441
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.22",
+      "title": "Collision Avoidance",
+      "page": 441,
+      "pages": [
+        441
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.23",
+      "title": "Use of Lights",
+      "page": 442,
+      "pages": [
+        442
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.24",
+      "title": "RAIM Prediction for RNP1/2 GNSS/GPS Based Operations",
+      "page": 442,
+      "pages": [
+        442
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.25",
+      "title": "Pre-Flight Preliminary Cockpit Preparation",
+      "page": 443,
+      "pages": [
+        443
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.26",
+      "title": "Cockpit Preparation",
+      "page": 444,
+      "pages": [
+        444,
+        445,
+        446
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.27",
+      "title": "Briefings",
+      "page": 447,
+      "pages": [
+        447,
+        448,
+        449,
+        450
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.28",
+      "title": "APU and Ground Power Management",
+      "page": 451,
+      "pages": [
+        451
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.29",
+      "title": "APU Bleed Supply",
+      "page": 451,
+      "pages": [
+        451
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.30",
+      "title": "HF (if required for flight)",
+      "page": 451,
+      "pages": [
+        451
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.31",
+      "title": "FMGC/FMGEC Idle and Performance Factors",
+      "page": 452,
+      "pages": [
+        452
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.32",
+      "title": "Landing Gear Pins",
+      "page": 452,
+      "pages": [
+        452
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.33",
+      "title": "Exterior Walkaround",
+      "page": 452,
+      "pages": [
+        452
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.34",
+      "title": "Use of Brake Fans",
+      "page": 453,
+      "pages": [
+        453
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.35",
+      "title": "Refuelling/Defuelling",
+      "page": 454,
+      "pages": [
+        454,
+        455
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.36",
+      "title": "Pilot and Ground Crew Departure Communications",
+      "page": 456,
+      "pages": [
+        456,
+        457,
+        458
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.37",
+      "title": "Taxiing",
+      "page": 458,
+      "pages": [
+        458,
+        459,
+        460
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.38",
+      "title": "Transponder Operation",
+      "page": 460,
+      "pages": [
+        460
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.39",
+      "title": "Taxi and Takeoff Operations in Snow, Ice or Slush",
+      "page": 460,
+      "pages": [
+        460
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.40",
+      "title": "Takeoff on Contaminated Runways",
+      "page": 460,
+      "pages": [
+        460
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.41",
+      "title": "Runway Verification",
+      "page": 461,
+      "pages": [
+        461
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.42",
+      "title": "Thunderstorm Avoidance Procedure",
+      "page": 462,
+      "pages": [
+        462
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.43",
+      "title": "Takeoff and Landing Clearances",
+      "page": 462,
+      "pages": [
+        462
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.44",
+      "title": "Takeoff Minima",
+      "page": 463,
+      "pages": [
+        463,
+        464
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.45",
+      "title": "Turns and Thrust Reduction",
+      "page": 464,
+      "pages": [
+        464
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.46",
+      "title": "Derated Takeoff/Climb Power Option – A330",
+      "page": 464,
+      "pages": [
+        464
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "A330 only"
+    },
+    {
+      "ref": "21.47",
+      "title": "Noise Abatement Considerations",
+      "page": 465,
+      "pages": [
+        465
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.48",
+      "title": "Wake Turbulence Standards and Pilot Waivers",
+      "page": 466,
+      "pages": [
+        466,
+        467,
+        468
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.49",
+      "title": "Frequency Change After Takeoff",
+      "page": 469,
+      "pages": [
+        469
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.50",
+      "title": "Sterile Flight Deck",
+      "page": 469,
+      "pages": [
+        469
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.51",
+      "title": "Completion of Flight Deck Documentation",
+      "page": 469,
+      "pages": [
+        469
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.52",
+      "title": "Standard Climb Speeds",
+      "page": 469,
+      "pages": [
+        469
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.53",
+      "title": "Standard Flight Levels",
+      "page": 470,
+      "pages": [
+        470
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.54",
+      "title": "Change of Flight Level",
+      "page": 470,
+      "pages": [
+        470
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.55",
+      "title": "Altimetry Procedures",
+      "page": 471,
+      "pages": [
+        471,
+        472,
+        473,
+        474
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.56",
+      "title": "Navigation Procedures",
+      "page": 475,
+      "pages": [
+        475
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.57",
+      "title": "Watch Keeping Duties",
+      "page": 476,
+      "pages": [
+        476,
+        477
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.58",
+      "title": "Controlled Rest on the Flight Deck",
+      "page": 478,
+      "pages": [
+        478
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.59",
+      "title": "In-Flight Contingency Procedures",
+      "page": 478,
+      "pages": [
+        478
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.60",
+      "title": "Weather Deviation Procedures",
+      "page": 479,
+      "pages": [
+        479
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.61",
+      "title": "Notifying ATC of Flight Plan Variations",
+      "page": 479,
+      "pages": [
+        479
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.62",
+      "title": "Operations to Non-Controlled Airports",
+      "page": 480,
+      "pages": [
+        480,
+        481,
+        482
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.63",
+      "title": "Descent Preparation",
+      "page": 483,
+      "pages": [
+        483
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.64",
+      "title": "Standard Descent Speeds",
+      "page": 484,
+      "pages": [
+        484
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.65",
+      "title": "Rates of Descent",
+      "page": 484,
+      "pages": [
+        484
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.66",
+      "title": "Orbits",
+      "page": 484,
+      "pages": [
+        484
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.67",
+      "title": "Conducting Approaches",
+      "page": 485,
+      "pages": [
+        485,
+        486,
+        487,
+        488
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.68",
+      "title": "Regulatory Criteria for ILS Approaches",
+      "page": 489,
+      "pages": [
+        489
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.69",
+      "title": "Autoland",
+      "page": 490,
+      "pages": [
+        490,
+        491
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.70",
+      "title": "ILS Precision Runway Monitor (PRM) Approaches",
+      "page": 492,
+      "pages": [
+        492
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.71",
+      "title": "Precision Approach Radar (PAR) Approach",
+      "page": 492,
+      "pages": [
+        492
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.72",
+      "title": "Restricted Approaches",
+      "page": 492,
+      "pages": [
+        492
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.73",
+      "title": "Stable Approach",
+      "page": 493,
+      "pages": [
+        493
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.74",
+      "title": "Approach Monitoring and Tolerances",
+      "page": 494,
+      "pages": [
+        494
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.75",
+      "title": "Noise Abatement Approach",
+      "page": 495,
+      "pages": [
+        495
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.76",
+      "title": "Approach Procedures",
+      "page": 496,
+      "pages": [
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.77",
+      "title": "Missed Approach",
+      "page": 504,
+      "pages": [
+        504
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.78",
+      "title": "Landing",
+      "page": 505,
+      "pages": [
+        505,
+        506,
+        507,
+        508
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.79",
+      "title": "Leaving Slats Extended in Hot Weather (A321)",
+      "page": 509,
+      "pages": [
+        509
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.80",
+      "title": "Marshalling",
+      "page": 509,
+      "pages": [
+        509
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.81",
+      "title": "Parking",
+      "page": 510,
+      "pages": [
+        510
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.82",
+      "title": "Cargo Hold Disinsection",
+      "page": 510,
+      "pages": [
+        510
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.83",
+      "title": "Pilot and Ground Crew Arrival Communications",
+      "page": 511,
+      "pages": [
+        511
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.84",
+      "title": "End of Flight IRS/IRU Accuracy Check",
+      "page": 511,
+      "pages": [
+        511
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.85",
+      "title": "Post Flight Procedures",
+      "page": 511,
+      "pages": [
+        511
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    },
+    {
+      "ref": "21.86",
+      "title": "Main Deck Cargo Door (MDCD) Operational Restrictions (A321)",
+      "page": 512,
+      "pages": [
+        512
+      ],
+      "manual": "FAM",
+      "sourceHash": "e1e6d11a00fdb7a4617f63f4211cdb7a1a03e5f3030880af0ff3a29019754a1f",
+      "applicability": "Use the printed A321 / common conditions; retain any fleet-specific distinctions."
+    }
+  ],
+  "excluded": [
+    {
+      "ref": "21.46",
+      "reason": "A330-only derated takeoff/climb policy; excluded from the A321P2F sequence."
+    }
+  ],
+  "coverage": {
+    "fcomStart": 3621,
+    "fcomEnd": 3808,
+    "famSections": [
+      "21.1",
+      "21.2",
+      "21.3",
+      "21.4",
+      "21.5",
+      "21.6",
+      "21.7",
+      "21.8",
+      "21.9",
+      "21.10",
+      "21.11",
+      "21.12",
+      "21.13",
+      "21.14",
+      "21.15",
+      "21.16",
+      "21.17",
+      "21.18",
+      "21.19",
+      "21.20",
+      "21.21",
+      "21.22",
+      "21.23",
+      "21.24",
+      "21.25",
+      "21.26",
+      "21.27",
+      "21.28",
+      "21.29",
+      "21.30",
+      "21.31",
+      "21.32",
+      "21.33",
+      "21.34",
+      "21.35",
+      "21.36",
+      "21.37",
+      "21.38",
+      "21.39",
+      "21.40",
+      "21.41",
+      "21.42",
+      "21.43",
+      "21.44",
+      "21.45",
+      "21.47",
+      "21.48",
+      "21.49",
+      "21.50",
+      "21.51",
+      "21.52",
+      "21.53",
+      "21.54",
+      "21.55",
+      "21.56",
+      "21.57",
+      "21.58",
+      "21.59",
+      "21.60",
+      "21.61",
+      "21.62",
+      "21.63",
+      "21.64",
+      "21.65",
+      "21.66",
+      "21.67",
+      "21.68",
+      "21.69",
+      "21.70",
+      "21.71",
+      "21.72",
+      "21.73",
+      "21.74",
+      "21.75",
+      "21.76",
+      "21.77",
+      "21.78",
+      "21.79",
+      "21.80",
+      "21.81",
+      "21.82",
+      "21.83",
+      "21.84",
+      "21.85",
+      "21.86"
+    ]
+  }
+}
