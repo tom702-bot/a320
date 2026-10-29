@@ -1,7 +1,7 @@
 'use strict';
 const FlightQuizCore=(()=>{
  function shuffle(values,random=Math.random){const out=[...values];for(let i=out.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
- function pool(bank,filter,marks={}){return bank.filter(q=>(filter.phase==='all'||q.phase===filter.phase)&&(filter.kind==='all'||q.kind===filter.kind)&&(!filter.missed||marks[q.id]?.lastCorrect===false));}
+ function pool(bank,filter,marks={}){return bank.filter(q=>(filter.phase==='all'||q.phase===filter.phase)&&(filter.kind==='all'||q.kind===filter.kind)&&(!filter.section||filter.section==='all'||q.section===filter.section||q.section?.startsWith(filter.section+'.'))&&(!filter.missed||marks[q.id]?.lastCorrect===false));}
  function prepare(q,pfSeat,random=Math.random){
   let values=q.choices,correct=q.correct;
   if(q.kind==='role'){

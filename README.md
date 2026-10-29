@@ -1,6 +1,6 @@
 # Integrated flight study and quiz
 
-The Full flight section now includes 176 lessons, 947 FCOM actions, the company SOPs in flight order, PF/PM responsibility labels and 49 embedded diagrams. No manual uploads are required for this section. SOP quiz provides 151 multiple-choice questions across all 22 flight phases, with explanations, inline procedure review, completed-run scores and missed-question retries.
+The Full flight section now includes 176 lessons, 947 FCOM actions, the company SOPs in flight order, PF/PM responsibility labels and 49 embedded diagrams. No manual uploads are required for this section. SOP quiz provides 34 multiple-choice questions restricted to FAM 21.26.2 and 21.27 (including 21.27.1–21.27.6), with explanations, inline procedure review, completed-run scores and missed-question retries. Filter by the two selected sections or individual 21.27 subsections. Other FCOM/SOP quiz questions are excluded; the Full flight study remains complete.
 
 The existing normal/abnormal procedures, limitations, flow patterns, line training and systems sections remain available. The optional manual library still reads the original PDFs locally. Supplied editions remain FCOM 1 May 2026 and FAM revision 30.4, 15 June 2026. The five FAM 21.27.1 preparation checks precede the Cockpit Preparation Checklist.
 

@@ -9,7 +9,7 @@ const FullFlight = (() => {
     if(state().sourceSet!==stamp)Object.assign(state(),{sourceSet:stamp,read:{},practice:{},last:null});
     if(!['CM1','CM2'].includes(state().pfSeat))state().pfSeat='CM1';
     for(const key of ['read','practice'])if(!state()[key]||typeof state()[key]!=='object')state()[key]={};
-    FlightQuiz.init(env,data,(pid,sid)=>{const p=data.phases.find(p=>p.id===pid),s=p.steps.find(s=>s.id===sid);return StudyFlow.sequence(p,s).map(block).join('');});
+    FlightQuiz.init(env,data,(pid,sid,ref)=>{if(ref){const parent=ref==='21.26.2'?'21.26':ref;let blocks=data.studySections[parent].blocks;if(ref==='21.26.2')blocks=blocks.slice(blocks.findIndex(b=>b.kind==='heading'&&b.text.startsWith('21.26.2 ')));return blocks.map(block).join('');}const p=data.phases.find(p=>p.id===pid),s=p.steps.find(s=>s.id===sid);return StudyFlow.sequence(p,s).map(block).join('');});
   }
   function route(parts=[]){
     if(parts[1]==='quiz')return FlightQuiz.open();
