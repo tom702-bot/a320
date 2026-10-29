@@ -1,6 +1,6 @@
 # Qantas A321P2F project guide
 
-Keep manuals private. Never commit, upload or publish the PDFs, full extracted page text or images of original manual pages. The user explicitly chose local file loading. Render and search them only on the user’s device through private-manuals.mjs. Public data contains authored study material and source navigation metadata only.
+Keep original PDFs and private development history private. The user explicitly authorized the public integrated study text and 49 diagrams, and on 29 October 2026 requested moving this content and quiz into this trainer. flight-study-data.js contains that authorized content. Do not publish other original manual content without authorization. The optional original-PDF library remains local to the device.
 
 Preserve the supplied manuals exactly. Use the source set in data/manuals.json and retain page effectivity, conditions and exact references. Never relabel a different aircraft or engine source as evidence for this one. New questions require matching original PDF pages and source hash. Do not claim the supplied revision is the latest controlled revision. Original manufacturer wording inside manuals must not be rewritten for branding.
 

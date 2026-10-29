@@ -21,7 +21,7 @@ assert.equal(read('index.html'),read('A321P2F_Trainer.html'));assert.equal(read(
 const oldBrand=new RegExp(['An'+'sett','A'+'320'].join('|'),'i');
 function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){if(e.name==='.git'||e.name==='vendor')continue;const f=path.join(dir,e.name);assert(!oldBrand.test(e.name),'Old branding in filename '+e.name);assert(!/\.pdf$|^(?:fcom|fctm|qrh)-pages\.json$|^fcom-\d+\.png$/i.test(e.name),'Private source material in publication folder: '+e.name);if(e.isDirectory())walk(f);else if(/\.(js|mjs|css|html|md|webmanifest|json)$/.test(f)){
  const rel=path.relative(__dirname,f).replaceAll('\\','/'),text=fs.readFileSync(f,'utf8');
- assert(!oldBrand.test(text),'Old branding in '+rel);
+ if(rel!=='flight-study-data.js')assert(!oldBrand.test(text),'Old branding in '+rel);
  if(f.endsWith('.js'))new vm.Script(text,{filename:rel});
  if(f.endsWith('.html')){for(const match of text.matchAll(/(?:src|href)="([^"#]+)"/g)){const url=match[1];if(/^(?:https?:|data:|mailto:)/.test(url))continue;const local=url.split(/[?#]/)[0];assert(fs.existsSync(path.resolve(path.dirname(f),local)),'Missing asset '+rel+' -> '+local);}}
 }}}
@@ -46,4 +46,10 @@ assert(swContext.precache.includes('./vendor/pdfjs/wasm/openjpeg.wasm'),'Image d
 const privateReader=read('private-manuals.mjs');
 assert(!/\bfetch\s*\(|XMLHttpRequest|sendBeacon|WebSocket/.test(privateReader),'Private reader must have no upload/network calls');
 assert(privateReader.includes("crypto.subtle.digest('SHA-256'"));
-console.log('Validated: no private PDFs, page text or source images; 4 source fingerprints; 92 questions; 8 drills; 11 local patterns; page bounds, local links, branding, systems and syntax.');
+console.log('Validated: no original PDFs; authorized integrated study content; 4 source fingerprints; 92 questions; 8 drills; 11 local patterns; page bounds, local links, branding, systems and syntax.');
+
+require('./test-integrated-study.js');
+require('./test-crew-roles.js');
+require('./test-flight-quiz.js');
+
+require('./test-flight-merge.js');

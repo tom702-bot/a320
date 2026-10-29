@@ -1,11 +1,21 @@
+# Integrated flight study and quiz
+
+The Full flight section now includes 176 lessons, 947 FCOM actions, the company SOPs in flight order, PF/PM responsibility labels and 49 embedded diagrams. No manual uploads are required for this section. SOP quiz provides 151 multiple-choice questions across all 22 flight phases, with explanations, inline procedure review, completed-run scores and missed-question retries.
+
+The existing normal/abnormal procedures, limitations, flow patterns, line training and systems sections remain available. The optional manual library still reads the original PDFs locally. Supplied editions remain FCOM 1 May 2026 and FAM revision 30.4, 15 June 2026. The five FAM 21.27.1 preparation checks precede the Cockpit Preparation Checklist.
+
+Existing flight-study progress on the same browser origin imports once if its source revision matches. It remains separate from other trainer progress. The integrated study data and diagrams are public with the user's authorization; original PDFs and the private repository remain private.
+
+---
+
 # Qantas A321P2F Trainer
 
 A personal study site built around the supplied FCOM, FCTM and QRH, FCOM and QRH effective 1 May 2026; FCTM effective 25 September 2026. This is not an official Qantas training product or an operational checklist.
 
 ## Study content
 
-- **Full flight** adds a combined FCOM and company SOP reading sequence, with a recall practice mode and separate local progress. Load the FCOM and FAM in the Manual library to display their original pages privately on your device.
-- The preparation checkpoint follows the user-requested order: complete the FAM 21.27.1 items before the Cockpit Preparation Checklist. No manual PDFs, extracted page text or original page images are included in this update.
+- **Full flight** adds a combined FCOM and company SOP reading sequence, with a recall practice mode and separate local progress. The integrated content and quiz are included; the original PDFs can optionally be loaded in the Manual library.
+- The preparation checkpoint follows the user-requested order: complete the FAM 21.27.1 items before the Cockpit Preparation Checklist. The authorized study text and diagrams are included; original manual PDFs remain private.
 
 - EFA340 line training quiz: 123 multiple-choice questions with automatic marking, source explanations, Learn/Exam modes, 5/10/25/all-question runs, filtered topic practice and retrying missed questions. The bank reuses the existing 92 limitations questions unchanged and adds 31 questions transformed from the existing source-linked flow drills. Progress is separate from the limitations quiz and earlier self-ratings. Incomplete exams do not award a score or question progress.
 - All 74 visible checklist rows and their sub-bullets remain represented. Selected material in 29 applicable topics has quiz questions; 42 remain reading-only until a supported answer key is available. Three A330-only rows remain visible outside practice. Earlier written notes are preserved read-only. See DISCUSSION_COVERAGE.md for the row-by-row audit and source limitations.
@@ -31,12 +41,12 @@ Live conversations incur OpenAI API usage charges. The API key remains a private
 
 ## Source fidelity
 
-Manuals are never published or uploaded. Load the supplied PDFs (FCOM/QRH: 1 May 2026; FCTM: 25 September 2026) in the Manual library. The reader verifies SHA-256 hashes against data/manuals.json. Keeping a PDF privately saves it in IndexedDB on that device. Leaving that option unchecked keeps it for the current visit. Remove local copy deletes the browser copy and in-memory search text; browser data clearing also removes stored files. The first full-text search builds its index in memory, with progress and cancellation when leaving search. Manufacturer family terminology, operator identifiers, diagrams, restrictions, modifications and original page effectivity are not altered inside source documents. Extracted text is a search aid: use the PDF for tables, branches, symbols and diagrams. The supplied revision is not represented as a verified latest controlled revision.
+Original manual PDFs are never published or uploaded. The integrated Full flight study text and diagrams are published with user authorization. Load the supplied PDFs (FCOM/QRH: 1 May 2026; FCTM: 25 September 2026) in the Manual library. The reader verifies SHA-256 hashes against data/manuals.json. Keeping a PDF privately saves it in IndexedDB on that device. Leaving that option unchecked keeps it for the current visit. Remove local copy deletes the browser copy and in-memory search text; browser data clearing also removes stored files. The first full-text search builds its index in memory, with progress and cancellation when leaving search. Manufacturer family terminology, operator identifiers, diagrams, restrictions, modifications and original page effectivity are not altered inside source documents. Extracted text is a search aid: use the PDF for tables, branches, symbols and diagrams. The supplied revision is not represented as a verified latest controlled revision.
 
 The prior aircraft training payloads have been superseded by the new source set. Compatibility files carry retirement markers instead of obsolete question/flow content. Previous Git history is preserved. New study progress uses its own device-local key so old answers do not confer mastery on new aircraft data.
 
 ## Implementation
 
-Static HTML/CSS/JavaScript with no analytics or user-data upload API. The live voice coach is a separately hosted private service linked from the trainer. index.html and the two A321P2F standalone entry pages are identical. trainer.js owns the study experience; data/ contains navigation metadata and authored learning content. private-manuals.mjs uses locally bundled Mozilla PDF.js (Apache-2.0) to read selected File objects. sw.js caches the study shell and reader software. Never put manuals, extracted full page text or images of manual pages in the repository.
+Static HTML/CSS/JavaScript with no analytics or user-data upload API. The live voice coach is a separately hosted private service linked from the trainer. index.html and the two A321P2F standalone entry pages are identical. trainer.js owns the study experience; data/ contains navigation metadata and authored learning content. private-manuals.mjs uses locally bundled Mozilla PDF.js (Apache-2.0) to read selected File objects. sw.js caches the study shell and reader software. Do not add original PDFs or manual content beyond the specifically authorized integrated study dataset.
 
 Run node validate-trainer.js for source integrity, page bounds, question structure, local links, branding and syntax checks. Run node test-trainer.js for application logic checks. Browser checks exercise full quizzes, flow recall, procedure navigation, manual readers, search and responsive layouts.

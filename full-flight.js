@@ -1,178 +1,102 @@
 'use strict';
-// Navigation metadata only. All exact procedure wording is rendered from private local PDFs.
 const FullFlight = (() => {
-  let env, data, phase, stepIndex = 0, mode = 'read', generation = 0, revealed = false;
-  let viewedPages = new Set(), activeSource = null;
-  const $ = id => document.getElementById(id);
-  const step = () => phase.steps[stepIndex];
-  const state = () => env.state();
-  const sourceReady = s => env.reader.status(s.manual).ready;
-  const stamp = () => JSON.stringify(data.sourceSet);
-  function init(context, metadata) {
-    env = context; data = metadata;
-    clearGate();
-    if (state().sourceSet !== stamp()) {
-      Object.assign(state(), {sourceSet: stamp(), read: {}, practice: {}, last: null});
-    }
-    for (const key of ['read', 'practice']) if (!state()[key] || typeof state()[key] !== 'object') state()[key] = {};
+  let env,data,phase,index=0,mode='read',revealed=true;
+  const gateChecks=new Set(), $=id=>document.getElementById(id);
+  const state=()=>env.state(), lessons=()=>StudyFlow.lessons(phase), step=()=>lessons()[index];
+  function init(context,metadata){
+    env=context;data=metadata;gateChecks.clear();
+    const stamp=JSON.stringify([data.sourceSet,data.studyRevision]);
+    if(state().sourceSet!==stamp)Object.assign(state(),{sourceSet:stamp,read:{},practice:{},last:null});
+    if(!['CM1','CM2'].includes(state().pfSeat))state().pfSeat='CM1';
+    for(const key of ['read','practice'])if(!state()[key]||typeof state()[key]!=='object')state()[key]={};
+    FlightQuiz.init(env,data,(pid,sid)=>{const p=data.phases.find(p=>p.id===pid),s=p.steps.find(s=>s.id===sid);return StudyFlow.sequence(p,s).map(block).join('');});
   }
-  function count(p, kind = mode) {
-    const marks = state()[kind === 'read' ? 'read' : 'practice'];
-    return p.steps.filter(s => marks[s.id] === (kind === 'read' ? true : 'recalled')).length;
+  function route(parts=[]){
+    if(parts[1]==='quiz')return FlightQuiz.open();
+    phase=data.phases.find(p=>p.id===parts[1])||data.phases[0];
+    let id=parts[2];const original=phase.steps.find(s=>s.id===id);
+    if(original?.kind==='company')id=original.study.target;
+    index=Math.max(0,lessons().findIndex(s=>s.id===id));render();
   }
-  function route(parts = []) {
-    const requested = parts[1] || state().last?.phase || data.defaultPhase;
-    phase = data.phases.find(p => p.id === requested) || data.phases.find(p => p.id === data.defaultPhase);
-    const requestedStep = parts[2] || (state().last?.phase === phase.id ? state().last.step : null);
-    const found = phase.steps.findIndex(s => s.id === requestedStep);
-    stepIndex = found >= 0 ? found : 0;
-    render();
+  function count(p){return StudyFlow.lessons(p).filter(s=>state()[mode][s.id]===(mode==='read'?true:'recalled')).length;}
+  function gateComplete(){return data.phases.flatMap(p=>p.steps).find(s=>s.kind==='checkpoint').checks.every(c=>gateChecks.has(c.id));}
+  function sourceButtons(s){return (s.pages||[]).map(p=>env.pageButton(s.manual,p,s.manual+' p. '+p)).join('');}
+  function section(ref){
+    const x=data.studySections[ref];
+    return `<section class="sop-source"><h4>${env.esc(ref+' · '+x.title)}</h4>${x.blocks.map(block).join('')}</section>`;
   }
-  function remember() {
-    state().last = {phase: phase.id, step: step().id}; env.persist();
-    // Replace within this route so page navigation does not reset rehearsal state.
-    history.replaceState(null, '', '#flight/' + phase.id + '/' + step().id);
+  function crewBadge(crew){
+    const r=StudyFlow.crewRole(crew,state().pfSeat);
+    return `<span class="crew-label crew-${r.tone}" title="${env.esc(r.basis)}"><strong class="study-role">${env.esc(r.label)}</strong><small>${env.esc(r.detail)}</small></span>`;
   }
-  function render() {
-    generation++; revealed = mode === 'read'; viewedPages = new Set(); activeSource = null; remember();
-    const {esc, header} = env, s = step();
-    $('workspace').innerHTML = header('FCOM + FAM · In flight order', 'Full flight procedures',
-      'Read the original procedures with the company SOPs at the relevant point. Practise by recalling each part, then revealing its source.',
-      '<a class="button" href="#manuals">Your manuals</a>' + env.pageButton('QRH', 329, 'Normal checklist')) + `
-      <div class="flight-toolbar">
-        <div class="tabs" aria-label="Study mode"><button id="flightRead" aria-pressed="${mode === 'read'}">Read procedures</button><button id="flightPractice" aria-pressed="${mode === 'practice'}">Practise recall</button></div>
-        <button id="flightCheckpointLink">Preparation checkpoint</button>
-        <button id="flightReferenceLink">All Section 21 topics</button>
-      </div>
-      <p class="flight-sources hint">FCOM: 1 May 2026 · FAM: revision 30.4, 15 June 2026. Original crew roles, equipment branches and conditions stay visible. In the FAM, follow the A321 or common provisions; A330-only 21.46 is outside this sequence.</p>
-      <div class="flight-layout">
-        <aside class="flight-navigation" aria-label="Flight phases">
-          <label>Flight phase<select id="flightPhase">${data.phases.map(p => `<option value="${p.id}" ${p === phase ? 'selected' : ''}>${esc(p.title)} (${count(p)}/${p.steps.length})</option>`).join('')}</select></label>
-          <p class="hint flight-position">${stepIndex + 1} / ${phase.steps.length} in this phase · ${count(phase)} ${mode === 'read' ? 'read' : 'self-rated recalled'}</p>
-          <progress max="${phase.steps.length}" value="${count(phase)}" aria-label="Phase study progress"></progress>
-          <nav class="flight-step-list" aria-label="Steps in this phase">${phase.steps.map((x, i) => `<button data-flight-step="${i}" ${i === stepIndex ? 'aria-current="step"' : ''}><span class="flight-kind ${x.kind}">${x.kind === 'fcom' ? 'FCOM' : x.kind === 'checkpoint' ? 'CHECK' : 'FAM'}</span><span>${esc(x.title)}</span>${state()[mode === 'read' ? 'read' : 'practice'][x.id] ? '<span aria-label="Previously reviewed">✓</span>' : ''}</button>`).join('')}</nav>
-          <p class="hint">Read marks and recall ratings are separate and saved on this device.</p>
-          <button id="flightReset">Reset this phase’s practice</button>
-        </aside>
-        <section class="flight-study panel" aria-labelledby="flightTitle">
-          <div class="flight-step-heading"><span class="flight-kind ${s.kind}">${s.kind === 'fcom' ? 'FCOM procedure' : s.kind === 'checkpoint' ? 'Study checkpoint' : 'Company SOP'}</span><span class="hint">${esc(phase.title)}</span></div>
-          <h2 id="flightTitle" tabindex="-1">${esc(s.title)}</h2>
-          ${s.note ? `<p class="notice">${esc(s.note)}</p>` : ''}
-          <div id="flightGate"></div>
-          ${mode === 'practice' ? `<div class="flight-recall"><p>Recall the actions, crew roles, callouts and applicable conditions for this part. Then compare with the original source.</p><label>Your recall notes<textarea id="flightRecallNotes" rows="3" placeholder="Optional notes for this attempt. These are not saved or uploaded."></textarea></label><button class="primary" id="flightReveal">Reveal exact procedure</button></div>` : ''}
-          <div id="flightContent" ${mode === 'practice' ? 'hidden' : ''}></div>
-          <div class="flight-rating actions" id="flightRating" hidden>${mode === 'read' ? '<button id="flightMark" class="primary">Mark read & continue</button>' : '<button id="flightAgain">Needs more practice</button><button id="flightRecalled" class="primary">Recalled it</button>'}</div>
-          <p id="flightStatus" class="hint" role="status"></p>
-          <div class="flight-bottom actions"><button id="flightPrevious" ${stepIndex === 0 && data.phases.indexOf(phase) === 0 ? 'disabled' : ''}>← Previous</button><span class="hint">${s.manual} · ${esc(s.ref)}</span><button id="flightNext">${stepIndex === phase.steps.length - 1 ? 'Next phase →' : 'Next →'}</button></div>
-        </section>
-      </div>
-      <details class="panel flight-reference" id="flightReference"><summary>Section 21 reference and placement</summary><p class="hint">These links open the exact FAM pages. General policies continue to apply throughout the flight. Phase placement is a study aid; source conditions determine when an action applies.</p><div class="flight-reference-list">${data.reference.map(x => `<div><strong>${esc(x.ref)} · ${esc(x.title)}</strong><span class="hint">${x.ref === '21.46' ? 'A330 only — reference only' : [...new Set(data.phases.filter(p => p.steps.some(s => s.sections?.some(r => r === x.ref || r.startsWith(x.ref + '.')))).map(p => p.title))].join(' · ')}</span>${env.pageButton('FAM', x.page, 'Read FAM')}</div>`).join('')}</div></details>`;
-    $('flightRead').onclick = () => {mode = 'read'; render();};
-    $('flightPractice').onclick = () => {mode = 'practice'; render();};
-    $('flightPhase').onchange = e => {phase = data.phases.find(p => p.id === e.target.value); stepIndex = 0; render();};
-    document.querySelectorAll('[data-flight-step]').forEach(b => b.onclick = () => {stepIndex = +b.dataset.flightStep; render();});
-    const list = document.querySelector('.flight-step-list'), selected = list.querySelector('[aria-current="step"]');
-    if (selected) list.scrollTop = selected.offsetTop - list.offsetTop - 60;
-    $('flightCheckpointLink').onclick = () => {phase = data.phases.find(p => p.id === 'cockpit-preparation'); stepIndex = phase.steps.findIndex(s => s.id === 'preparation-checkpoint'); render();};
-    $('flightReferenceLink').onclick = () => {$('flightReference').open = true; $('flightReference').scrollIntoView({behavior: 'smooth'});};
-    $('flightPrevious').onclick = () => move(-1);
-    $('flightNext').onclick = () => move(1);
-    $('flightReset').onclick = () => {
-      if (confirm('Clear this phase’s recall ratings and rehearsal checks? Read marks and PDFs will stay.')) {
-        for (const s of phase.steps) delete state().practice[s.id];
-        if (phase.id === 'cockpit-preparation') clearGate();
-        env.persist(); render();
-      }
-    };
-    if ($('flightReveal')) $('flightReveal').onclick = () => {
-      revealed = true; $('flightContent').hidden = false; $('flightReveal').disabled = true; showContent();
-    };
-    if (mode === 'read') $('flightMark').onclick = () => rate(true);
-    else { $('flightAgain').onclick = () => rate(false); $('flightRecalled').onclick = () => rate(true); }
-    if (revealed) showContent();
-    if (s.requires && mode === 'practice' && !gateComplete()) {
-      $('flightGate').innerHTML = '<p class="notice">First rehearse all five pre-checklist checks. <button id="returnToGate">Go to the preparation checkpoint</button></p>';
-      $('returnToGate').onclick = () => $('flightCheckpointLink').click();
-      if ($('flightReveal')) $('flightReveal').disabled = true;
-    }
+  function highlights(study){
+    return study.highlights.map((t,i)=>`<li class="crew-guidance">${crewBadge(study.crew?.[i])}<span>${env.esc(t)}</span></li>`).join('');
   }
-  // Rehearsal checks are deliberately session-only: yesterday’s practice cannot satisfy today’s checkpoint.
-  const gateChecks = new Set();
-  function clearGate() { gateChecks.clear(); }
-  function gateComplete() { return data.phases.flatMap(p => p.steps).find(s => s.kind === 'checkpoint').checks.every(c => gateChecks.has(c.id)); }
-  function showContent() {
-    const s = step(), {esc} = env;
-    const content = $('flightContent'); if (!content) return;
-    if (s.kind === 'checkpoint') {
-      content.innerHTML = `<p>Review or recall each check before proceeding to the Cockpit Preparation Checklist.</p><div class="flight-checks">${s.checks.map(c => `<div><label><input type="checkbox" data-gate-check="${c.id}" ${gateChecks.has(c.id) ? 'checked' : ''} disabled> ${esc(c.title)}</label><button data-check-source="${c.id}">Read ${c.refs.map(r => 'FAM ' + r).join(' / ')}</button></div>`).join('')}</div><p class="hint">Open each source and view all its pages to enable its rehearsal tick. FAM 21.27.1 lists the five checks; their position here follows your requested study order.</p><div id="flightSource"></div>`;
-      content.querySelectorAll('[data-check-source]').forEach(b => b.onclick = () => {
-        const c = s.checks.find(c => c.id === b.dataset.checkSource);
-        showSource({manual: 'FAM', pages: c.pages, ref: c.refs.map(r => 'FAM ' + r).join(', ')}, c.id);
-      });
-      content.querySelectorAll('[data-gate-check]').forEach(box => box.onchange = () => {
-        box.checked ? gateChecks.add(box.dataset.gateCheck) : gateChecks.delete(box.dataset.gateCheck);
-        updateRating();
-      });
-      showSource(s);
-    } else {
-      content.innerHTML = '<div id="flightSource"></div>';
-      showSource(s);
-    }
+  function company(c){
+    const s=data.phases.flatMap(p=>p.steps).find(s=>s.id===c.sourceStep);
+    return `<aside class="study-sop" data-sop="${env.esc(c.id)}"><span class="study-label">Company SOP · ${env.esc(c.sections.join(' / '))}</span><h3>${env.esc(c.title)}</h3><ul>${highlights(c)}</ul><details><summary>Read the full SOP here</summary>${c.sections.map(section).join('')}${s?`<div class="source-row">${sourceButtons(s)}</div>`:''}</details></aside>`;
   }
-  async function showSource(s, checkId = null, pageIndex = 0) {
-    activeSource = {s, checkId, pageIndex};
-    const gen = ++generation, container = $('flightSource'), page = s.pages[pageIndex], {esc} = env;
-    if (!container) return;
-    container.innerHTML = `<div class="flight-source-tools"><strong>${s.manual} · PDF page ${page}${s.manual === 'FAM' ? ' / printed ' + (page - 4) : ''}</strong><span class="hint">${esc(s.ref)} · ${env.manuals[s.manual].revision}</span><div class="actions">${s.pages.map((p,i) => `<button data-flight-page="${i}" aria-pressed="${i === pageIndex}">${p}</button>`).join('')}${env.pageButton(s.manual,page,'Open full page')}${s.crop ? '<span class="hint">Exact portion of the original page</span>' : ''}</div></div><div id="flightSourceBody" class="flight-pdf"></div>`;
-    container.querySelectorAll('[data-flight-page]').forEach(b => b.onclick = () => showSource(s, checkId, +b.dataset.flightPage));
-    const body = $('flightSourceBody');
-    if (!sourceReady(s)) { body.innerHTML = env.localLoader(s.manual); updateRating(); return; }
-    body.innerHTML = '<p class="loading">Opening your local source…</p>';
-    try {
-      await env.reader.render(s.manual, page, body, s.crop ? {crop: s.crop} : undefined);
-      if (gen !== generation || !body.isConnected) return;
-      viewedPages.add((checkId || step().id) + ':' + page);
-      if (checkId && s.pages.every(p => viewedPages.has(checkId + ':' + p))) {
-        const check = document.querySelector(`[data-gate-check="${checkId}"]`);
-        if (check) check.disabled = false;
-      }
-      updateRating();
-    } catch (err) { if (gen === generation && body.isConnected) {body.innerHTML = '<p class="error">' + esc(err.message) + '</p>'; updateRating();} }
+  function block(b){
+    const e=env.esc;
+    if(b.kind==='company')return company(b);
+    if(b.kind==='figure')return `<figure class="study-figure"><img src="${e(b.src)}" alt="${e(b.caption)}" loading="lazy"><figcaption>${e(b.caption)}</figcaption></figure>`;
+    if(b.kind==='action')return `<div class="study-action">${crewBadge(b.crew||{role:b.role})}<div class="study-action-body"><div class="study-action-main"><strong>${e(b.label)}</strong><span class="study-target">${e(b.target)}</span></div><div class="study-action-meta">${b.transit?'<span title="Starred in the FCOM transit procedure">★ Transit</span>':''}${b.applicability&&b.applicability!=='ALL'?`<span>${e(b.applicability)}</span>`:''}${b.crew?.type==='unassigned'?`<span class="crew-unallocated-note">${e(b.crew.basis)}</span>`:''}</div></div></div>`;
+    if(b.kind==='heading')return `<h3 class="study-heading">${e(b.text)}</h3>`;
+    if(b.kind==='applicability')return `<p class="study-applicability">Applies to: ${e(b.text)}</p>`;
+    if(b.kind==='bullet')return `<p class="study-bullet">• ${e(b.text)}</p>`;
+    return `<p class="study-${e(b.kind)}">${e(b.text)}</p>`;
   }
-  function updateRating() {
-    if (!$('flightRating')) return;
-    const s = step();
-    const ready = revealed && sourceReady(s) && (s.kind === 'checkpoint' ? gateComplete() : s.pages.every(p => viewedPages.has(s.id + ':' + p))) && (!s.requires || mode === 'read' || gateComplete());
-    $('flightRating').hidden = !ready;
-    if (s.kind === 'checkpoint') $('flightStatus').textContent = gateComplete() ? 'All five checks rehearsed. You can continue to the checklist.' : `${gateChecks.size} / 5 checks rehearsed.`;
-    else $('flightStatus').textContent = ready ? (mode === 'read' ? 'Mark this part read when you have finished.' : 'Compare your recall with the source. Your rating is a self-assessment.') : (revealed ? 'View all source pages before marking this part.' : 'Recall first, then reveal the source.');
+  function checkpoint(s){
+    return `<p class="study-condition">Complete these five verbal checks before the Cockpit Preparation Checklist.</p><p class="hint">Ticks record this study session. They are not aircraft checklist completion.</p>${s.checks.map((c,i)=>`<article class="study-check"><h3>${i+1}. ${env.esc(c.title)}</h3><ul>${highlights(c.study)}</ul><details><summary>Read the full check here</summary>${c.study.sections.map(section).join('')}</details><label class="study-tick"><input type="checkbox" data-gate-check="${c.id}" ${gateChecks.has(c.id)?'checked':''}> I have rehearsed this check</label></article>`).join('')}`;
   }
-  function rate(recalled) {
-    if (!$('flightRating') || $('flightRating').hidden) return;
-    if (mode === 'read') state().read[step().id] = true;
-    else state().practice[step().id] = recalled ? 'recalled' : 'again';
-    env.persist(); move(1);
+  function render(){
+    const {esc,header}=env,s=step(),list=lessons();revealed=mode==='read';
+    state().last={phase:phase.id,step:s.id};env.persist();
+    history.replaceState(null,'','#flight/'+phase.id+'/'+s.id);
+    $('workspace').innerHTML=header('FCOM actions + company SOPs','Full flight study','Work through the normal procedures in flight order. Company SOPs sit beside the actions they qualify.')+`
+      <div class="flight-toolbar"><div class="tabs" aria-label="Study mode"><button id="flightRead" aria-pressed="${mode==='read'}">Guided study</button><button id="flightPractice" aria-pressed="${mode==='practice'}">Practise recall</button><button id="flightQuiz">Multiple-choice quiz</button></div><button id="flightCheckpointLink">Five preparation checks</button></div>
+      <div class="crew-allocation"><label>PF seat for this study session<select id="flightPfSeat"><option value="CM1" ${state().pfSeat==='CM1'?'selected':''}>PF: left seat (CM1) · PM: right seat (CM2)</option><option value="CM2" ${state().pfSeat==='CM2'?'selected':''}>PF: right seat (CM2) · PM: left seat (CM1)</option></select></label><p>PF = pilot flying · PM = pilot monitoring. Seat-based duties follow the selection above and retain their source CM1/CM2 label. Shared SOP guidance applies to both pilots; individual duties in the text still apply. Change this study allocation when rehearsing a control transfer; procedure-specific seat restrictions still apply.</p></div>
+      <div class="flight-layout study-layout"><aside class="flight-navigation"><label>Flight phase<select id="flightPhase">${data.phases.map((p,i)=>`<option value="${p.id}" ${p===phase?'selected':''}>${i+1}. ${esc(p.title)}</option>`).join('')}</select></label><p class="study-goal">${esc(phase.studyGoal)}</p><label>Find a step in this phase<input type="search" id="flightFind" placeholder="Action or SOP…"></label><p class="hint">${index+1} / ${list.length} steps · ${count(phase)} ${mode==='read'?'studied':'self-rated recalled'}</p><progress max="${list.length}" value="${count(phase)}" aria-label="Phase study progress"></progress><nav class="flight-step-list" aria-label="Study steps">${list.map((x,i)=>`<button data-flight-step="${i}" ${i===index?'aria-current="step"':''}><span class="study-nav-number">${i+1}</span><span>${esc(x.title)}${StudyFlow.cards(phase,x).length?'<small>Company SOP included</small>':''}</span>${state()[mode][x.id]===(mode==='read'?true:'recalled')?'<span aria-label="Completed">✓</span>':''}</button>`).join('')}</nav><p class="hint">Study and recall progress are saved separately on this device.</p><button id="flightReset">Reset recall for this phase</button></aside>
+      <section class="flight-study panel"><div class="flight-step-heading"><span class="study-label">${s.kind==='checkpoint'?'Before the checklist':s.study.actionCount+' FCOM actions'}</span><span class="hint">${esc(phase.title)}</span></div><h2 id="flightTitle" tabindex="-1">${esc(s.title)}</h2>
+      ${s.requires&&!gateComplete()?'<p class="notice">Rehearse all five preparation checks before marking this checklist complete. <button id="returnToGate">Go to the five checks</button></p>':''}
+      ${mode==='practice'?'<div class="flight-recall"><p>Recall the actions, crew roles, conditions and company requirements. Then reveal the integrated procedure and compare.</p><label>Your recall notes<textarea rows="3" placeholder="Optional notes for this attempt; not saved."></textarea></label><button class="primary" id="flightReveal">Reveal actions + SOPs</button></div>':''}
+      <div id="flightContent" ${revealed?'':'hidden'}>${s.kind==='checkpoint'?checkpoint(s):StudyFlow.sequence(phase,s).map(block).join('')}</div>
+      <div class="flight-rating actions" id="flightRating" ${revealed?'':'hidden'}>${mode==='read'?'<button class="primary" id="flightMark">Studied · next step →</button>':'<button id="flightAgain">Needs more practice</button><button id="flightRecalled" class="primary">Recalled it</button>'}</div><p class="hint" id="flightStatus" role="status"></p>
+      <div class="flight-bottom actions"><button id="flightPrevious" ${index===0&&phase===data.phases[0]?'disabled':''}>← Previous</button><button id="flightNext">${index===list.length-1?'Next phase →':'Next step →'}</button></div>
+      <details class="study-reference"><summary>Original source pages and study notes</summary><p class="hint">FCOM action wording and original role assignments are retained. PF/PM labels for CM1/CM2 follow the selected study allocation. Roles taken from the general task-sharing instructions are identified; unallocated source items are flagged rather than guessed. Company highlights are study summaries; the full SOP text expands beside them. Aircraft variants and conditional branches must be read with their headings. ★ identifies a starred transit item.</p><p class="hint">FCOM: 1 May 2026 · FAM: revision 30.4, 15 June 2026. All study text and diagrams are included. Original PDF links below use your optional local manual library.</p><div class="source-row">${sourceButtons(s)}</div></details>
+      </section></div>`;
+    $('flightRead').onclick=()=>{mode='read';render();};$('flightPractice').onclick=()=>{mode='practice';render();};
+    $('flightQuiz').onclick=()=>FlightQuiz.open();
+    $('flightPfSeat').onchange=e=>{state().pfSeat=e.target.value;env.persist();render();};
+    $('flightPhase').onchange=e=>{phase=data.phases.find(p=>p.id===e.target.value);index=0;render();};
+    document.querySelectorAll('[data-flight-step]').forEach(b=>b.onclick=()=>{index=+b.dataset.flightStep;render();});
+    $('flightFind').oninput=e=>{const term=e.target.value.toLowerCase();document.querySelectorAll('[data-flight-step]').forEach(b=>{const x=list[+b.dataset.flightStep];b.hidden=!JSON.stringify([x.title,x.study,StudyFlow.cards(phase,x)]).toLowerCase().includes(term);});};
+    $('flightCheckpointLink').onclick=()=>{phase=data.phases.find(p=>p.id==='cockpit-preparation');index=lessons().findIndex(s=>s.kind==='checkpoint');render();};
+    if($('returnToGate'))$('returnToGate').onclick=()=>$('flightCheckpointLink').click();
+    if($('flightReveal'))$('flightReveal').onclick=()=>{revealed=true;$('flightContent').hidden=false;$('flightReveal').disabled=true;updateRating();};
+    document.querySelectorAll('[data-gate-check]').forEach(box=>box.onchange=()=>{box.checked?gateChecks.add(box.dataset.gateCheck):gateChecks.delete(box.dataset.gateCheck);updateRating();});
+    if(mode==='read')$('flightMark').onclick=()=>rate(true);else{$('flightAgain').onclick=()=>rate(false);$('flightRecalled').onclick=()=>rate(true);}
+    $('flightPrevious').onclick=()=>move(-1);$('flightNext').onclick=()=>move(1);
+    $('flightReset').onclick=()=>{if(confirm('Reset recall ratings for this phase?')){for(const x of list)delete state().practice[x.id];if(phase.id==='cockpit-preparation')gateChecks.clear();env.persist();render();}};
+    updateRating();
+    const nav=document.querySelector('.flight-step-list'),current=nav.querySelector('[aria-current]');if(current)nav.scrollTop=current.offsetTop-nav.offsetTop-50;
   }
-  function move(direction) {
-    if (direction > 0 && mode === 'practice' && ((step().kind === 'checkpoint' || step().requires) && !gateComplete())) {
-      env.toast('Rehearse all five pre-checklist checks first.'); return;
-    }
-    const next = stepIndex + direction;
-    if (next < 0 || next >= phase.steps.length) {
-      const p = data.phases.indexOf(phase) + direction;
-      if (p < 0) return;
-      if (p >= data.phases.length) {
-        env.toast('You have reached the end of securing. Unreviewed parts remain unmarked.'); return;
-      }
-      phase = data.phases[p]; stepIndex = direction > 0 ? 0 : phase.steps.length - 1;
-    } else stepIndex = next;
-    render(); $('flightTitle').focus();
+  function updateRating(){
+    const s=step(),needsGate=(s.requires||s.kind==='checkpoint')&&!gateComplete();
+    $('flightRating').hidden=!revealed;
+    for(const id of ['flightMark','flightRecalled'])if($(id))$(id).disabled=needsGate;
+    $('flightStatus').textContent=needsGate?`${gateChecks.size} / 5 preparation checks rehearsed this session.`:revealed?(mode==='read'?'Mark studied when you have reviewed the actions and SOPs.':'Compare your recall with the procedure. This rating is a self-assessment.'):'Recall first, then reveal the procedure.';
   }
-  function onManualChange() {
-    if (location.hash.split('/')[0] !== '#flight' || !activeSource) return;
-    const {s, checkId, pageIndex} = activeSource;
-    showSource(s, checkId, pageIndex);
+  function rate(ok){
+    if(!revealed||ok&&(step().requires||step().kind==='checkpoint')&&!gateComplete())return;
+    state()[mode][step().id]=mode==='read'?true:ok?'recalled':'again';env.persist();move(1);
   }
-  function dispose() {generation++; activeSource = null;}
-  return {init, render: route, onManualChange, dispose};
+  function move(direction){
+    if(direction>0&&step().kind==='checkpoint'&&!gateComplete()){env.toast('Rehearse the five checks before the preparation checklist.');return;}
+    const next=index+direction;
+    if(next<0||next>=lessons().length){const p=data.phases.indexOf(phase)+direction;if(p<0)return;if(p>=data.phases.length){env.toast('You have reached the end of securing. Unstudied steps remain unmarked.');return;}phase=data.phases[p];index=direction>0?0:lessons().length-1;}else index=next;
+    render();$('flightTitle').focus();$('flightTitle').scrollIntoView({block:'start'});
+  }
+  // PDF availability does not reset the lesson, recall notes or open SOP explanations.
+  return {init,render:route,onManualChange(){},dispose(){}};
 })();

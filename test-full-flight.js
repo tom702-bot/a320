@@ -1,7 +1,7 @@
 'use strict';
 const assert = require('node:assert/strict'), fs = require('fs');
 const read = name => fs.readFileSync(__dirname + '/' + name, 'utf8');
-const data = JSON.parse(read('data/full-flight.json')), manuals = JSON.parse(read('data/manuals.json'));
+const data = require('./flight-study-data.js'), manuals = JSON.parse(read('data/manuals.json'));
 const steps = data.phases.flatMap(p => p.steps);
 assert.equal(new Set(steps.map(s => s.id)).size, steps.length, 'Stable unique progress identities');
 assert.equal(data.phases[0].start,3621); assert.equal(data.phases.at(-1).end,3808);
